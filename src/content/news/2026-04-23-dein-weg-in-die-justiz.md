@@ -1,6 +1,6 @@
 ---
 title: Dein Weg in die Justiz
-date: 2026-04-01
+date: 2026-04-23
 category: Kooperation
 excerpt: Am vergangenen Freitag nahmen Schülerinnen und Schüler der EF und Q1 an der Informationsveranstaltung „Dein Weg in die Justiz“ des Amtsgericht Essen teil.
 coverImage: /unesco-schule-essen-homepage/assets/news/WhatsApp Image 2026-03-20 at 11.37.35.jpeg
