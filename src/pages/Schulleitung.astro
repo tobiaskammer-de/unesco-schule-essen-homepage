@@ -1,0 +1,243 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+<BaseLayout title="Schulleitung und Sekretariat — UNESCO-Schule Essen">
+<style is:global>
+.sl-hero{
+    position:relative;padding:96px 0 56px;
+    background:
+      radial-gradient(ellipse at 20% 20%, rgba(127,176,105,0.10), transparent 50%),
+      radial-gradient(ellipse at 85% 90%, rgba(212,165,116,0.12), transparent 50%),
+      var(--creme);
+    border-bottom:1px solid var(--hairline);
+  }
+  .sl-hero .eyebrow{display:block;margin-bottom:16px;}
+  .sl-hero h1{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(40px,5vw,68px);line-height:1.05;
+    letter-spacing:-0.02em;color:var(--petrol);max-width:900px;margin:0 0 20px;
+  }
+  .sl-hero p.lede{
+    font-family:var(--sans);font-size:18px;line-height:1.6;color:var(--stein);
+    max-width:640px;margin:0;
+  }
+
+  /* Office info card */
+  .sl-office{background:var(--offwhite);padding:64px 0;}
+  .office-card{
+    background:#fff;border:1px solid var(--hairline);
+    border-top:3px solid var(--petrol);
+    padding:36px 40px;
+    display:grid;grid-template-columns:auto 1fr 1fr 1fr;gap:32px;align-items:center;
+  }
+  .office-card .brand{
+    font-family:var(--serif);font-weight:500;font-size:20px;
+    color:var(--petrol);letter-spacing:-0.005em;max-width:220px;
+  }
+  .office-card .col{display:flex;flex-direction:column;gap:4px;}
+  .office-card .col .lbl{
+    font-family:var(--sans);font-size:10.5px;font-weight:600;
+    letter-spacing:0.14em;text-transform:uppercase;color:var(--stein);
+  }
+  .office-card .col a, .office-card .col span.val{
+    font-family:var(--sans);font-size:16px;font-weight:500;color:var(--petrol);line-height:1.35;
+  }
+  .office-card .col a:hover{text-decoration:underline;}
+
+  /* People */
+  .sl-team{background:var(--offwhite);padding:24px 0 104px;}
+  .sl-team .head{max-width:760px;margin:0 0 48px;}
+  .sl-team .head .eyebrow{display:block;margin-bottom:14px;}
+  .sl-team .head h2{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(30px,3.2vw,44px);line-height:1.15;letter-spacing:-0.015em;
+    color:var(--petrol);margin:0;
+  }
+  .people{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;}
+  .person{
+    background:#fff;border:1px solid var(--hairline);
+    padding:32px 28px 28px;
+    display:flex;flex-direction:column;gap:16px;
+    transition:transform .3s ease, box-shadow .3s ease;
+  }
+  .person:hover{transform:translateY(-2px);box-shadow:0 16px 36px -22px rgba(14,77,79,0.3);}
+  .avatar{
+    width:100px;height:100px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    font-family:var(--serif);font-weight:500;font-size:36px;line-height:1;
+    letter-spacing:-0.02em;color:var(--creme);
+    background:var(--petrol);
+    position:relative;
+  }
+  .avatar::after{
+    content:"Platzhalter";
+    position:absolute;bottom:-6px;right:-6px;
+    font-family:var(--sans);font-size:8px;font-weight:500;
+    letter-spacing:0.1em;text-transform:uppercase;
+    padding:3px 6px;border-radius:2px;
+    background:var(--gold);color:#3a2a10;
+  }
+  .person.lead .avatar{background:var(--bordeaux);}
+  .person.deputy .avatar{background:#8f3a4e;}
+  .person.coord .avatar{background:var(--petrol);}
+  .person.office .avatar{background:#4a6b20;}
+  .person .name{
+    font-family:var(--serif);font-weight:500;font-size:22px;line-height:1.15;
+    color:var(--petrol);letter-spacing:-0.008em;margin:0;
+  }
+  .person .role{
+    font-family:var(--sans);font-size:12px;font-weight:600;
+    letter-spacing:0.12em;text-transform:uppercase;color:var(--bordeaux);margin:0;
+  }
+  .person .contact{
+    font-family:var(--sans);font-size:14.5px;line-height:1.6;color:var(--stein);
+    padding-top:12px;border-top:1px solid var(--hairline);
+  }
+  .person .contact a{color:var(--petrol);}
+
+  /* Note about Erprobungsstufe */
+  .sl-note{
+    background:var(--creme);padding:72px 0;border-top:1px solid var(--hairline);
+  }
+  .sl-note .inner{
+    display:grid;grid-template-columns:auto 1fr;gap:36px;align-items:center;
+    padding:32px 40px;background:#fff;border:1px solid var(--hairline);
+    border-left:3px solid var(--gold);
+  }
+  .sl-note .icon{
+    width:64px;height:64px;border-radius:50%;
+    background:rgba(212,165,116,0.2);color:#8a5a20;
+    display:flex;align-items:center;justify-content:center;
+    font-family:var(--serif);font-weight:500;font-size:28px;
+  }
+  .sl-note h3{
+    font-family:var(--serif);font-weight:500;font-size:24px;line-height:1.2;
+    color:var(--petrol);letter-spacing:-0.008em;margin:0 0 6px;
+  }
+  .sl-note p{
+    font-family:var(--sans);font-size:15.5px;line-height:1.6;color:var(--stein);margin:0;
+  }
+
+  @media (max-width:960px){
+    .office-card{grid-template-columns:1fr;gap:16px;}
+    .people{grid-template-columns:1fr;gap:16px;}
+    .sl-note .inner{grid-template-columns:1fr;gap:16px;padding:24px 28px;}
+    .sl-hero{padding:56px 0 40px;}
+    .sl-team,.sl-office,.sl-note{padding:48px 0;}
+  }
+</style>
+
+<main id="top">
+
+<section class="sl-hero" aria-label="Schulleitung und Sekretariat">
+  <div class="container">
+    <span class="eyebrow">Über Uns · Schulleitung und Sekretariat</span>
+    <h1>Ihre Ansprechpartner in Schulleitung und Sekretariat.</h1>
+    <p class="lede">Das Team, das unsere Schule trägt — mit offenen Türen für Schülerinnen und Schüler, Eltern und Kolleginnen und Kollegen.</p>
+  </div>
+</section>
+
+<section class="sl-office" aria-label="Kontaktdaten">
+  <div class="container">
+    <div class="office-card">
+      <div class="brand">UNESCO-Schule Essen<br>Steinmetzstr. 9 · 45139 Essen</div>
+      <div class="col">
+        <span class="lbl">Telefon</span>
+        <a href="tel:+492012802630">0201 · 280 26 30</a>
+      </div>
+      <div class="col">
+        <span class="lbl">Telefax</span>
+        <span class="val">0201 · 280 26 31</span>
+      </div>
+      <div class="col">
+        <span class="lbl">E-Mail</span>
+        <a href="mailto:info@unesco-schule-essen.de">info@unesco-schule-essen.de</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sl-team" aria-label="Das Team">
+  <div class="container">
+    <div class="head">
+      <span class="eyebrow">Unser Team</span>
+      <h2>Schulleitung, Koordination, Sekretariat.</h2>
+    </div>
+    <div class="people">
+      <article class="person lead">
+        <div class="avatar" aria-hidden="true">SL</div>
+        <div>
+          <p class="role">Schulleiterin</p>
+          <h3 class="name">Silvia Lichtenstein</h3>
+        </div>
+        <p class="contact">
+          <a href="mailto:info@unesco-schule-essen.de">info@unesco-schule-essen.de</a><br>
+          <a href="tel:+492012802630">0201 · 280 26 30</a>
+        </p>
+      </article>
+
+      <article class="person deputy">
+        <div class="avatar" aria-hidden="true">BS</div>
+        <div>
+          <p class="role">Stellvertretender Schulleiter</p>
+          <h3 class="name">Björn Stief</h3>
+        </div>
+        <p class="contact">
+          <a href="mailto:info@unesco-schule-essen.de">info@unesco-schule-essen.de</a><br>
+          <a href="tel:+492012802630">0201 · 280 26 30</a>
+        </p>
+      </article>
+
+      <article class="person coord">
+        <div class="avatar" aria-hidden="true">TO</div>
+        <div>
+          <p class="role">Kommissarischer Koordinator · Sekundarstufe II</p>
+          <h3 class="name">Thorsten Omlor</h3>
+        </div>
+        <p class="contact">
+          <a href="mailto:thorsten.omlor@164835.nrw.schule">thorsten.omlor@164835.nrw.schule</a><br>
+          <a href="tel:+492012802643">0201 · 280 26 43</a> · Oberstufenbüro
+        </p>
+      </article>
+
+      <article class="person coord">
+        <div class="avatar" aria-hidden="true">CW</div>
+        <div>
+          <p class="role">Koordinatorin · Sekundarstufe I</p>
+          <h3 class="name">Carmen Wilbat</h3>
+        </div>
+        <p class="contact">
+          <a href="mailto:carmen.wilbat@164835.nrw.schule">carmen.wilbat@164835.nrw.schule</a><br>
+          <a href="tel:+492012802630">0201 · 280 26 30</a>
+        </p>
+      </article>
+
+      <article class="person office">
+        <div class="avatar" aria-hidden="true">KA</div>
+        <div>
+          <p class="role">Sekretariat</p>
+          <h3 class="name">Kristina Axer</h3>
+        </div>
+        <p class="contact">
+          <a href="mailto:info@unesco-schule-essen.de">info@unesco-schule-essen.de</a><br>
+          <a href="tel:+492012802630">0201 · 280 26 30</a>
+        </p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="sl-note" aria-label="Hinweis zur Erprobungsstufe">
+  <div class="container">
+    <div class="inner">
+      <div class="icon">★</div>
+      <div>
+        <h3>Erprobungsstufe ab 2026/27</h3>
+        <p>Für Fragen zur Erprobungsstufe (Klassen 5 und 6) ist <strong>Sven Scheding</strong> als kommissarischer Erprobungsstufenleiter Ansprechpartner. <a class="inline-link" href="Erprobungsstufe.html">Mehr zur Erprobungsstufe →</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+</BaseLayout>

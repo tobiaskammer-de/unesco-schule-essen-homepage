@@ -1,0 +1,416 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+<BaseLayout title="UNESCO – Name und Mission — UNESCO-Schule Essen">
+<style is:global>
+/* ---------- UNESCO-Mission page ---------- */
+  .un-hero{
+    position:relative;
+    min-height:560px;
+    display:flex;align-items:flex-end;
+    padding:96px 0 72px;
+    color:var(--creme);
+    overflow:hidden;
+    isolation:isolate;
+  }
+  .un-hero::before{
+    content:"";position:absolute;inset:0;z-index:-2;
+    background:
+      linear-gradient(135deg, var(--petrol-dark) 0%, var(--petrol) 50%, #0f5f62 100%);
+  }
+  .un-hero::after{
+    content:"";position:absolute;inset:0;z-index:-1;
+    background-image:
+      radial-gradient(circle at 20% 30%, rgba(212,165,116,0.12) 1.5px, transparent 2px),
+      radial-gradient(circle at 70% 60%, rgba(245,239,231,0.08) 1px, transparent 1.5px);
+    background-size:40px 40px, 56px 56px;opacity:0.8;
+  }
+  .un-hero .eyebrow{color:var(--gold);display:block;margin-bottom:20px;}
+  .un-hero h1{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(42px,5.6vw,80px);line-height:1.02;
+    letter-spacing:-0.02em;color:var(--creme);
+    max-width:1040px;margin:0 0 22px;
+  }
+  .un-hero h1 em{font-style:italic;color:var(--gold);}
+  .un-hero p.lede{
+    font-family:var(--sans);font-size:19px;line-height:1.6;
+    color:rgba(245,239,231,0.9);max-width:720px;margin:0;
+  }
+  .un-hero .badge-tier{
+    display:inline-flex;align-items:center;gap:10px;
+    padding:8px 16px;border-radius:999px;
+    background:rgba(245,239,231,0.10);border:1px solid rgba(245,239,231,0.25);
+    color:var(--creme);
+    font-family:var(--sans);font-size:12px;font-weight:500;letter-spacing:0.12em;
+    text-transform:uppercase;margin-bottom:26px;
+  }
+  .un-hero .badge-tier .dot{
+    width:8px;height:8px;border-radius:50%;background:var(--gold);
+  }
+
+  /* Intro statement */
+  .un-statement{
+    background:var(--creme);
+    padding:104px 0;
+  }
+  .un-statement .container{max-width:960px;}
+  .un-statement h2{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(32px,4vw,56px);line-height:1.12;
+    color:var(--petrol);letter-spacing:-0.018em;margin:0 0 28px;
+  }
+  .un-statement h2 em{font-style:italic;color:var(--bordeaux);}
+  .un-statement p{
+    font-family:var(--sans);font-size:18px;line-height:1.7;color:var(--tinte);
+    max-width:72ch;margin:0 0 18px;
+  }
+  .un-statement p.highlight{
+    font-family:var(--serif);font-style:italic;font-weight:400;
+    font-size:22px;line-height:1.5;color:var(--bordeaux);
+    border-left:3px solid var(--bordeaux);padding:6px 0 6px 24px;
+    margin-top:32px;
+  }
+
+  /* ASPnet explainer */
+  .un-aspnet{
+    background:var(--offwhite);
+    padding:96px 0 72px;
+  }
+  .un-aspnet .head{max-width:780px;margin:0 0 56px;}
+  .un-aspnet .head .eyebrow{display:block;margin-bottom:14px;}
+  .un-aspnet .head h2{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(30px,3.2vw,44px);line-height:1.15;letter-spacing:-0.015em;
+    color:var(--petrol);margin:0 0 18px;
+  }
+  .un-aspnet .head p{
+    font-family:var(--sans);font-size:17px;line-height:1.65;color:var(--stein);
+    max-width:640px;margin:0;
+  }
+  .stats{
+    display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;
+    border-top:1px solid var(--hairline);border-bottom:1px solid var(--hairline);
+  }
+  .stat{
+    padding:40px 32px;border-right:1px solid var(--hairline);
+    display:flex;flex-direction:column;gap:10px;
+  }
+  .stat:last-child{border-right:0;}
+  .stat .n{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(38px,4.2vw,60px);line-height:1;
+    color:var(--bordeaux);letter-spacing:-0.025em;
+  }
+  .stat .label{
+    font-family:var(--sans);font-size:13px;color:var(--stein);line-height:1.55;
+  }
+
+  /* Tier ladder */
+  .un-tiers{
+    background:var(--creme);
+    padding:96px 0;
+  }
+  .un-tiers .head{max-width:780px;margin:0 0 56px;}
+  .un-tiers .head .eyebrow{display:block;margin-bottom:14px;}
+  .un-tiers .head h2{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(30px,3.2vw,44px);line-height:1.15;letter-spacing:-0.015em;
+    color:var(--petrol);margin:0 0 18px;
+  }
+  .un-tiers .head p{
+    font-family:var(--sans);font-size:17px;line-height:1.65;color:var(--stein);
+    max-width:640px;margin:0;
+  }
+  .tier-list{
+    list-style:none;margin:0;padding:0;
+    display:flex;flex-direction:column;gap:18px;
+  }
+  .tier{
+    display:grid;grid-template-columns:80px 1fr auto;gap:28px;align-items:center;
+    padding:28px 32px;background:#fff;border:1px solid var(--hairline);
+    position:relative;
+  }
+  .tier .step{
+    font-family:var(--serif);font-weight:500;font-size:42px;line-height:1;
+    color:var(--stein);letter-spacing:-0.025em;opacity:0.45;
+  }
+  .tier .body h3{
+    font-family:var(--serif);font-weight:500;font-size:22px;line-height:1.2;
+    color:var(--petrol);letter-spacing:-0.008em;margin:0 0 6px;
+  }
+  .tier .body p{
+    font-family:var(--sans);font-size:15px;line-height:1.55;color:var(--stein);margin:0;
+  }
+  .tier .marker{
+    font-family:var(--sans);font-size:11px;font-weight:600;
+    letter-spacing:0.14em;text-transform:uppercase;color:var(--stein);
+  }
+  .tier.is-us{
+    background:var(--petrol);color:var(--creme);border-color:var(--petrol);
+  }
+  .tier.is-us .step{color:var(--gold);opacity:0.85;}
+  .tier.is-us h3{color:var(--creme);}
+  .tier.is-us p{color:rgba(245,239,231,0.85);}
+  .tier.is-us .marker{
+    color:var(--petrol);background:var(--gold);
+    padding:5px 12px;border-radius:999px;letter-spacing:0.1em;
+  }
+
+  /* Five themes */
+  .un-themes{
+    background:var(--offwhite);
+    padding:96px 0;
+  }
+  .un-themes .head{max-width:780px;margin:0 0 56px;}
+  .un-themes .head .eyebrow{display:block;margin-bottom:14px;}
+  .un-themes .head h2{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(30px,3.2vw,44px);line-height:1.15;letter-spacing:-0.015em;
+    color:var(--petrol);margin:0;
+  }
+  .themes-grid{
+    display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px;
+  }
+  .theme{
+    padding:30px 32px;background:#fff;border:1px solid var(--hairline);
+    display:flex;flex-direction:column;gap:12px;
+    border-left:3px solid var(--bordeaux);
+  }
+  .theme:nth-child(2){border-left-color:var(--gold);}
+  .theme:nth-child(3){border-left-color:var(--sage);}
+  .theme:nth-child(4){border-left-color:var(--petrol);}
+  .theme:nth-child(5){border-left-color:#8a5a20;}
+  .theme .n{
+    font-family:var(--serif);font-weight:500;font-size:22px;line-height:1;
+    color:var(--bordeaux);letter-spacing:-0.015em;
+  }
+  .theme:nth-child(2) .n{color:#8a5a20;}
+  .theme:nth-child(3) .n{color:#3e6b2a;}
+  .theme:nth-child(4) .n{color:var(--petrol);}
+  .theme:nth-child(5) .n{color:#8a5a20;}
+  .theme h3{
+    font-family:var(--serif);font-weight:500;font-size:21px;line-height:1.25;
+    color:var(--petrol);letter-spacing:-0.008em;margin:0;
+  }
+  .theme p{
+    font-family:var(--sans);font-size:15px;line-height:1.6;color:var(--stein);margin:0;
+  }
+
+  /* Alltag / examples */
+  .un-alltag{
+    background:var(--creme);
+    padding:96px 0;border-top:1px solid var(--hairline);
+  }
+  .un-alltag .head{max-width:780px;margin:0 0 48px;}
+  .un-alltag .head .eyebrow{display:block;margin-bottom:14px;}
+  .un-alltag .head h2{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(30px,3.2vw,44px);line-height:1.15;letter-spacing:-0.015em;
+    color:var(--petrol);margin:0 0 18px;
+  }
+  .un-alltag .head p{
+    font-family:var(--sans);font-size:17px;line-height:1.65;color:var(--stein);margin:0;
+  }
+  .alltag-list{
+    list-style:none;margin:0;padding:0;
+    display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 32px;
+    border-top:1px solid var(--hairline);
+  }
+  .alltag-list li{
+    display:grid;grid-template-columns:28px 1fr;gap:12px;align-items:start;
+    padding:18px 0;border-bottom:1px solid var(--hairline);
+    font-family:var(--sans);font-size:15.5px;line-height:1.55;color:var(--tinte);
+  }
+  .alltag-list li::before{
+    content:"✦";color:var(--gold);font-size:16px;line-height:1.55;
+    grid-column:1;
+  }
+
+  /* Commitment pledge */
+  .un-pledge{
+    background:var(--petrol);color:var(--creme);
+    padding:96px 0;
+  }
+  .un-pledge .container{max-width:880px;text-align:center;}
+  .un-pledge .eyebrow{color:rgba(245,239,231,0.55);display:block;margin-bottom:16px;}
+  .un-pledge h2{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(28px,3.4vw,44px);line-height:1.18;
+    color:var(--creme);margin:0 0 28px;letter-spacing:-0.015em;
+  }
+  .un-pledge p{
+    font-family:var(--sans);font-size:17.5px;line-height:1.65;
+    color:rgba(245,239,231,0.9);max-width:720px;margin:0 auto 16px;
+  }
+  .un-pledge .sig{
+    margin-top:36px;padding-top:28px;
+    border-top:1px solid rgba(245,239,231,0.18);
+    font-family:var(--sans);font-size:13px;letter-spacing:0.1em;
+    text-transform:uppercase;color:rgba(245,239,231,0.55);
+  }
+
+  @media (max-width:960px){
+    .stats{grid-template-columns:1fr;}
+    .stat{border-right:0;border-bottom:1px solid var(--hairline);}
+    .stat:last-child{border-bottom:0;}
+    .tier{grid-template-columns:56px 1fr;gap:18px;padding:22px 24px;}
+    .tier .marker{grid-column:1 / -1;margin-top:8px;}
+    .tier .step{font-size:32px;}
+    .themes-grid{grid-template-columns:1fr;gap:16px;}
+    .alltag-list{grid-template-columns:1fr;}
+    .un-statement,.un-aspnet,.un-tiers,.un-themes,.un-alltag,.un-pledge{padding:64px 0;}
+    .un-hero{min-height:420px;padding:56px 0 48px;}
+  }
+</style>
+
+<main id="top">
+
+<section class="un-hero" aria-label="UNESCO-Schule Essen">
+  <div class="container">
+    <span class="eyebrow">Über Uns · UNESCO – Name und Mission</span>
+    <span class="badge-tier"><span class="dot"></span>Anerkannte UNESCO-Projektschule · Stufe 3</span>
+    <h1>Wir sind nicht <em>irgendeine</em><br>UNESCO-Schule.</h1>
+    <p class="lede">Wir sind das einzige Gymnasium in Deutschland, das den Namen der UNESCO trägt — nach einem intensiven, mehrjährigen Prüfungsverfahren der Deutschen UNESCO-Kommission. Der Name ist für uns Auftrag, nicht Auszeichnung.</p>
+  </div>
+</section>
+
+<section class="un-statement" aria-label="Unser Selbstverständnis">
+  <div class="container">
+    <h2>Den Namen zu tragen<br>heißt, ihn zu <em>leben.</em></h2>
+    <p>Die UNESCO-Schule Essen trägt nicht nur den Namen der UNESCO — sie setzt sich aktiv dafür ein, deren Werte und Ziele zu vermitteln. Dazu gehören <strong>Erziehung zur Demokratie auf Basis der Menschenrechte</strong>, die <strong>Förderung des globalen Lernens</strong>, der <strong>Erwerb interkultureller Kompetenz</strong> durch vielfältige Begegnungen sowie <strong>Umwelterziehung im Sinne der Agenda 21</strong> und der 17 Ziele für nachhaltige Entwicklung.</p>
+    <p>Diese Ziele sind bei uns nicht Projekttag, sondern Lehrplan. Sie prägen, was wir unterrichten, wie wir Konflikte lösen, welche Partnerschaften wir eingehen und welche Projekte wir möglich machen.</p>
+    <p class="highlight">Inwiefern der Schulalltag unserer Schülerinnen und Schüler zum Erreichen dieser Ziele geprägt ist, erfahren Sie weiter unten.</p>
+  </div>
+</section>
+
+<section class="un-aspnet" aria-label="Was ist eine UNESCO-Projektschule">
+  <div class="container">
+    <div class="head">
+      <span class="eyebrow">Ein weltweites Netzwerk</span>
+      <h2>Was eine UNESCO-Projektschule ist.</h2>
+      <p>Seit 1953 verbindet das UNESCO-Projektschul-Netzwerk (ASPnet — Associated Schools Project Network) Schulen, die sich den Zielen der UNESCO verpflichten: Frieden, Menschenrechte, Nachhaltigkeit, interkultureller Dialog. Koordiniert wird das deutsche Netzwerk von der Deutschen UNESCO-Kommission.</p>
+    </div>
+    <div class="stats">
+      <div class="stat">
+        <span class="n">~12&#8239;000</span>
+        <span class="label">UNESCO-Projektschulen weltweit, in über 180 Ländern — eines der ältesten und größten bildungspolitischen Netzwerke der Vereinten Nationen.</span>
+      </div>
+      <div class="stat">
+        <span class="n">~300</span>
+        <span class="label">Anerkannte UNESCO-Projektschulen in Deutschland. Alle Schulformen, alle Bundesländer.</span>
+      </div>
+      <div class="stat">
+        <span class="n">1</span>
+        <span class="label">Einziges Gymnasium in Deutschland, das den Namen der UNESCO im eigenen Schulnamen führt — nach intensivem Prüfungsverfahren.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="un-tiers" aria-label="Die drei Stufen">
+  <div class="container">
+    <div class="head">
+      <span class="eyebrow">Drei Stufen, ein Weg</span>
+      <h2>Wie Schulen zu UNESCO-Projektschulen werden.</h2>
+      <p>Der Weg in das Netzwerk verläuft in drei Stufen. Er ist lang, die Prüfung streng — und das ist gut so. Wir sind auf der dritten und höchsten Stufe angekommen.</p>
+    </div>
+    <ol class="tier-list">
+      <li class="tier">
+        <span class="step">01</span>
+        <div class="body">
+          <h3>Interessierte Schule</h3>
+          <p>Erste Annäherung an das Netzwerk. Die Schule zeigt Interesse, nimmt an Veranstaltungen teil, erprobt erste Projekte im UNESCO-Kontext.</p>
+        </div>
+        <span class="marker">Einstieg</span>
+      </li>
+      <li class="tier">
+        <span class="step">02</span>
+        <div class="body">
+          <h3>Mitarbeitende Schule</h3>
+          <p>Mehrjährige Mitarbeit: kontinuierliche Projekte, Ausrichtung des Schulprogramms an UNESCO-Werten, Vernetzung mit anderen Projektschulen. Dokumentationspflicht gegenüber der Deutschen UNESCO-Kommission.</p>
+        </div>
+        <span class="marker">Aufbau</span>
+      </li>
+      <li class="tier is-us">
+        <span class="step">03</span>
+        <div class="body">
+          <h3>Anerkannte UNESCO-Projektschule</h3>
+          <p>Die höchste Stufe. Nach intensiver Prüfung bestätigt die Deutsche UNESCO-Kommission, dass die Schule die Werte der UNESCO im gesamten Schulleben verankert hat — in Unterricht, Schulprogramm, Alltag und Partnerschaften. Nur Schulen dieser Stufe dürfen den Namen „UNESCO-Projektschule" führen.</p>
+        </div>
+        <span class="marker">Hier sind wir</span>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section class="un-themes" aria-label="Die fünf Themenfelder">
+  <div class="container">
+    <div class="head">
+      <span class="eyebrow">Fünf Themenfelder der UNESCO</span>
+      <h2>Woran wir arbeiten.</h2>
+    </div>
+    <div class="themes-grid">
+      <article class="theme">
+        <span class="n">01</span>
+        <h3>Menschenrechte, Frieden und Demokratie</h3>
+        <p>Demokratieerziehung, Klassenrat, Schülervertretung, Gedenkstättenfahrten, Projekte zur Erinnerungskultur. Konflikte gewaltfrei lösen — und junge Menschen als mündige Mitgestalterinnen und Mitgestalter ernst nehmen.</p>
+      </article>
+      <article class="theme">
+        <span class="n">02</span>
+        <h3>Interkulturelles Lernen</h3>
+        <p>Über 30 Erstsprachen in unserer Schülerschaft. Austauschprogramme, bilinguale Projekte, kulturelle Feste, Arche-Noah-Projekt. Vielfalt ist bei uns Realität, nicht Lehrplan-Thema.</p>
+      </article>
+      <article class="theme">
+        <span class="n">03</span>
+        <h3>UNESCO-Welterbe</h3>
+        <p>Projekte und Exkursionen zu Welterbestätten in der Region — Zollverein vor der Haustür, Industriekultur als Lernort. Sensibilisierung für den Schutz kulturellen und natürlichen Erbes.</p>
+      </article>
+      <article class="theme">
+        <span class="n">04</span>
+        <h3>Globales Lernen &amp; nachhaltige Entwicklung</h3>
+        <p>Die 17 Ziele für nachhaltige Entwicklung (SDGs) als Kompass: Schulgarten, Differenzierungskurs „Nachhaltige Gesellschaft", UNESCO-Projekttage zu Klima, Ressourcen und globaler Gerechtigkeit.</p>
+      </article>
+      <article class="theme">
+        <span class="n">05</span>
+        <h3>Bildung für alle &amp; Literacy</h3>
+        <p>Leseförderung, Begabtenförderung, Inklusion. Wir treten dafür ein, dass jede Schülerin und jeder Schüler — unabhängig von Herkunft — Zugang zu höherer Bildung und einem starken Abitur findet.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="un-alltag" aria-label="UNESCO im Alltag">
+  <div class="container">
+    <div class="head">
+      <span class="eyebrow">UNESCO im Schulalltag</span>
+      <h2>Was das konkret bedeutet.</h2>
+      <p>Der Name verpflichtet uns zu einer Vielzahl an Aktivitäten, die über den regulären Unterricht hinausgehen — zwölf Monate im Jahr, in allen Jahrgängen.</p>
+    </div>
+    <ul class="alltag-list">
+      <li>Zwei UNESCO-Projekttage pro Schuljahr mit jahrgangsübergreifenden Themen</li>
+      <li>UNESCO-Führerschein in der Sekundarstufe I</li>
+      <li>Ausstellungen zu Welttagen der Vereinten Nationen (2 – 3 pro Monat)</li>
+      <li>Ein hauptamtlicher UNESCO-Beauftragter im Kollegium</li>
+      <li>Aktive Mitarbeit in regionalen und bundesweiten UNESCO-Arbeitskreisen</li>
+      <li>Jährliche Berichte und Dokumentationen an die Deutsche UNESCO-Kommission</li>
+      <li>Partnerschaften mit Kulturinstitutionen (Theater und Philharmonie Essen, Aalto-Theater, Museen)</li>
+      <li>Erasmus-Plus-Programm und internationale Schüleraustausche</li>
+      <li>Orientierung an den 17 Zielen für nachhaltige Entwicklung (SDGs) im Unterricht</li>
+      <li>Zusammenarbeit mit der Deutschen UNESCO-Kommission und dem Schulnetzwerk ASPnet</li>
+    </ul>
+  </div>
+</section>
+
+<section class="un-pledge" aria-label="Unsere Selbstverpflichtung">
+  <div class="container">
+    <span class="eyebrow">Unsere Selbstverpflichtung</span>
+    <h2>Den Namen zu tragen heißt, ihm gerecht zu werden — jeden Tag.</h2>
+    <p>Die Aufnahme ins Netzwerk der anerkannten UNESCO-Projektschulen ist kein Schlusspunkt, sondern Versprechen. Wir verpflichten uns, die Werte der UNESCO nicht nur zu unterrichten, sondern zu leben — und unsere Arbeit regelmäßig zur Prüfung zu stellen.</p>
+    <p>Das bedeutet: Wer unsere Schule verlässt, soll nicht nur ein starkes Abitur in der Hand halten — sondern eine Haltung im Kopf, die in der Welt trägt.</p>
+    <div class="sig">Kollegium der UNESCO-Schule Essen</div>
+  </div>
+</section>
+
+</main>
+</BaseLayout>

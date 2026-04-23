@@ -1,0 +1,289 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+<BaseLayout title="Unser Leitbild — UNESCO-Schule Essen">
+<style is:global>
+/* ---------- Leitbild page ---------- */
+  .lb-hero{
+    position:relative;
+    min-height:460px;
+    display:flex;align-items:flex-end;
+    padding:96px 0 64px;
+    background:
+      radial-gradient(ellipse at 20% 15%, rgba(127,176,105,0.12), transparent 55%),
+      radial-gradient(ellipse at 85% 90%, rgba(212,165,116,0.14), transparent 55%),
+      var(--creme);
+    border-bottom:1px solid var(--hairline);
+    overflow:hidden;
+  }
+  .lb-hero::before{
+    content:"";position:absolute;inset:0;z-index:0;
+    background-image:
+      radial-gradient(circle at 25% 30%, rgba(14,77,79,0.04) 1px, transparent 1px),
+      radial-gradient(circle at 75% 70%, rgba(110,38,57,0.03) 1px, transparent 1px);
+    background-size:24px 24px, 32px 32px;
+    opacity:0.7;pointer-events:none;
+  }
+  .lb-hero .container{position:relative;z-index:1;}
+  .lb-hero .eyebrow{display:block;margin-bottom:18px;}
+  .lb-hero h1{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(40px,5.2vw,72px);line-height:1.05;
+    letter-spacing:-0.02em;color:var(--petrol);
+    max-width:960px;margin:0 0 22px;
+  }
+  .lb-hero h1 em{font-style:italic;color:var(--bordeaux);}
+  .lb-hero p.lede{
+    font-family:var(--sans);font-size:18px;line-height:1.6;color:var(--stein);
+    max-width:680px;margin:0;
+  }
+  .lb-hero .wip-pill{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:6px 14px;border-radius:999px;
+    background:rgba(212,165,116,0.20);color:#7a5120;
+    font-family:var(--sans);font-size:12px;font-weight:500;letter-spacing:0.08em;
+    text-transform:uppercase;margin-bottom:22px;
+  }
+  .lb-hero .wip-pill .dot{
+    width:7px;height:7px;border-radius:50%;background:#c9831c;
+  }
+
+  /* Motto band */
+  .lb-motto{
+    background:var(--petrol);color:var(--creme);
+    padding:90px 0;
+  }
+  .lb-motto .container{text-align:center;max-width:880px;}
+  .lb-motto blockquote{
+    margin:0;
+    font-family:var(--serif);font-weight:500;font-style:italic;
+    font-size:clamp(28px,3.4vw,46px);line-height:1.2;letter-spacing:-0.015em;
+    color:var(--creme);
+  }
+  .lb-motto blockquote::before{
+    content:"\201E";display:block;
+    font-family:var(--serif);font-size:84px;line-height:0.3;
+    color:var(--gold);opacity:0.7;margin-bottom:18px;
+  }
+  .lb-motto .sub{
+    font-family:var(--sans);font-size:17px;line-height:1.65;
+    color:rgba(245,239,231,0.85);
+    max-width:660px;margin:32px auto 0;
+  }
+
+  /* Three values */
+  .lb-values{
+    background:var(--offwhite);
+    padding:96px 0 72px;
+  }
+  .lb-values .head{max-width:760px;margin:0 0 56px;}
+  .lb-values .head .eyebrow{display:block;margin-bottom:14px;}
+  .lb-values .head h2{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(30px,3.2vw,44px);line-height:1.15;letter-spacing:-0.015em;
+    color:var(--petrol);margin:0;
+  }
+  .values-grid{
+    display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px;
+  }
+  .value-card{
+    background:#fff;border:1px solid var(--hairline);
+    padding:36px 32px 34px;
+    display:flex;flex-direction:column;gap:16px;
+    border-top:3px solid var(--bordeaux);
+    transition:transform .3s ease, box-shadow .3s ease;
+  }
+  .value-card:nth-child(2){border-top-color:var(--gold);}
+  .value-card:nth-child(3){border-top-color:var(--sage);}
+  .value-card:hover{transform:translateY(-2px);box-shadow:0 14px 36px -22px rgba(14,77,79,0.3);}
+  .value-card .num{
+    font-family:var(--serif);font-weight:500;font-size:28px;line-height:1;
+    color:var(--bordeaux);letter-spacing:-0.02em;
+  }
+  .value-card:nth-child(2) .num{color:#8a5a20;}
+  .value-card:nth-child(3) .num{color:#3e6b2a;}
+  .value-card h3{
+    font-family:var(--serif);font-weight:500;font-size:24px;line-height:1.2;
+    color:var(--petrol);letter-spacing:-0.01em;margin:0;
+  }
+  .value-card p{
+    font-family:var(--sans);font-size:15.5px;line-height:1.65;color:var(--tinte);margin:0;
+  }
+
+  /* Timeline / path */
+  .lb-path{
+    background:var(--creme);
+    padding:96px 0;position:relative;overflow:hidden;
+  }
+  .lb-path::before{
+    content:"";position:absolute;inset:0;
+    background-image:
+      radial-gradient(circle at 20% 20%, rgba(14,77,79,0.035) 1px, transparent 1px),
+      radial-gradient(circle at 80% 80%, rgba(110,38,57,0.025) 1px, transparent 1px);
+    background-size:28px 28px, 36px 36px;opacity:0.6;pointer-events:none;
+  }
+  .lb-path .container{position:relative;}
+  .lb-path .head{max-width:760px;margin:0 0 56px;}
+  .lb-path .head .eyebrow{display:block;margin-bottom:14px;}
+  .lb-path .head h2{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(30px,3.2vw,44px);line-height:1.15;letter-spacing:-0.015em;
+    color:var(--petrol);margin:0 0 16px;
+  }
+  .lb-path .head p{
+    font-family:var(--sans);font-size:16.5px;line-height:1.65;color:var(--stein);
+    max-width:640px;margin:0;
+  }
+  .stages{
+    display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:0;
+    border:1px solid var(--hairline);
+    background:#fff;
+  }
+  .stage{
+    padding:36px 32px 40px;
+    border-right:1px solid var(--hairline);
+    display:flex;flex-direction:column;gap:12px;
+    position:relative;
+  }
+  .stage:last-child{border-right:0;}
+  .stage .klassen{
+    font-family:var(--sans);font-size:11.5px;font-weight:600;
+    letter-spacing:0.14em;text-transform:uppercase;color:var(--bordeaux);
+  }
+  .stage h3{
+    font-family:var(--serif);font-weight:500;font-size:26px;line-height:1.15;
+    color:var(--petrol);letter-spacing:-0.01em;margin:0 0 6px;
+  }
+  .stage p{
+    font-family:var(--sans);font-size:15.5px;line-height:1.65;color:var(--tinte);margin:0;
+  }
+  .stage .num-big{
+    position:absolute;top:24px;right:28px;
+    font-family:var(--serif);font-weight:500;font-size:64px;line-height:1;
+    color:rgba(14,77,79,0.08);letter-spacing:-0.04em;pointer-events:none;
+  }
+
+  /* CTA */
+  .lb-cta{
+    background:var(--offwhite);
+    padding:88px 0 104px;
+    border-top:1px solid var(--hairline);
+  }
+  .lb-cta-grid{
+    display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:56px;align-items:center;
+  }
+  .lb-cta h2{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(28px,3vw,40px);line-height:1.15;
+    color:var(--petrol);letter-spacing:-0.015em;margin:0;
+  }
+  .lb-cta p{
+    font-family:var(--sans);font-size:17px;line-height:1.6;color:var(--stein);
+    margin:0 0 24px;max-width:62ch;
+  }
+  .lb-cta-links{display:flex;gap:14px;flex-wrap:wrap;}
+
+  @media (max-width:960px){
+    .values-grid{grid-template-columns:1fr;gap:20px;}
+    .stages{grid-template-columns:1fr;}
+    .stage{border-right:0;border-bottom:1px solid var(--hairline);}
+    .stage:last-child{border-bottom:0;}
+    .lb-cta-grid{grid-template-columns:1fr;gap:24px;}
+    .lb-motto{padding:64px 0;}
+    .lb-values,.lb-path,.lb-cta{padding:64px 0;}
+  }
+</style>
+
+<main id="top">
+
+<section class="lb-hero" aria-label="Unser Leitbild">
+  <div class="container">
+    <span class="eyebrow">Über Uns · Unser Leitbild</span>
+    <h1>Unser Leitbild<br>wächst <em>mit uns.</em></h1>
+    <p class="lede">Mit dem Start der Erprobungsstufe ab Klasse 5 entwickeln wir unser Schulprofil weiter. Das aktuelle Leitbild wird derzeit überarbeitet — gemeinsam mit Kollegium, Eltern und Schülerschaft. Bis dahin gilt: Was Sie hier lesen, zeigt, woher wir kommen. Wohin wir gehen, erleben Sie am besten vor Ort.</p>
+  </div>
+</section>
+
+<section class="lb-motto" aria-label="Unser Motto">
+  <div class="container">
+    <blockquote>Gemeinsam lernen —<br>den eigenen Weg finden.</blockquote>
+    <p class="sub">Im Sinne unseres Leitbildes fördern wir eine Schulgemeinschaft, die Vielfalt als Chance sieht und individuelle Lern- und Lebenswege ermöglicht. Wir leben ein Miteinander, das geprägt ist von gegenseitigem Respekt und Wertschätzung — sichtbar in unserer täglichen pädagogischen Arbeit.</p>
+  </div>
+</section>
+
+<section class="lb-values" aria-label="Unsere Werte">
+  <div class="container">
+    <div class="head">
+      <span class="eyebrow">Drei Überzeugungen</span>
+      <h2>Worauf unser Leitbild steht.</h2>
+    </div>
+    <div class="values-grid">
+      <article class="value-card">
+        <div class="num">01</div>
+        <h3>Unsere Ziele</h3>
+        <p>Wir treten dafür ein, dass jede Schülerin und jeder Schüler — unabhängig von sozialer und kultureller Herkunft — Zugang zu höherer Bildung erhält, seine Persönlichkeit entfalten, selbstständig und kritisch Entscheidungen treffen sowie Verantwortung für sich und seine Umwelt übernehmen kann.</p>
+      </article>
+      <article class="value-card">
+        <div class="num">02</div>
+        <h3>Unser Menschenbild</h3>
+        <p>Wir sehen Vielfalt als Chance, die das gemeinsame Lernen bereichert — und in jeder Schülerin und in jedem Schüler Potenzial, das gefördert werden kann.</p>
+      </article>
+      <article class="value-card">
+        <div class="num">03</div>
+        <h3>Unser Miteinander</h3>
+        <p>Respekt und Wertschätzung prägen unseren Alltag. Sie sind nicht nur Regel, sondern Haltung — und spiegeln sich in jeder pädagogischen Entscheidung, die wir treffen.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="lb-path" aria-label="Unser Weg">
+  <div class="container">
+    <div class="head">
+      <span class="eyebrow">Unser Weg</span>
+      <h2>Vom Ankommen bis zum Abitur.</h2>
+      <p>Neun Jahre begleiten wir junge Menschen. In drei Phasen, die aufeinander aufbauen — und in jeder Phase mit einem klaren Schwerpunkt.</p>
+    </div>
+    <div class="stages">
+      <article class="stage">
+        <span class="num-big">5·6</span>
+        <span class="klassen">Klasse 5 – 6</span>
+        <h3>Erprobungsstufe</h3>
+        <p>Mit den Profilen <strong>WortArt⁺</strong> (sprachlich-kreativ) und <strong>Forscher²</strong> (naturwissenschaftlich) entdecken Kinder früh ihre Stärken — unterstützt von UNESCO-Projekttagen und einer ersten Kennenlernfahrt.</p>
+      </article>
+      <article class="stage">
+        <span class="num-big">7·10</span>
+        <span class="klassen">Klasse 7 – 10</span>
+        <h3>Mittelstufe</h3>
+        <p>Latein oder Französisch ab Klasse 7 erweitern den sprachlichen Horizont. Wahlpflichtkurse, Tablet-gestützter Unterricht, Austauschprogramme und kulturelle Kooperationen verknüpfen Fachwissen, digitale Kompetenz und interkulturelles Lernen.</p>
+      </article>
+      <article class="stage">
+        <span class="num-big">EF·Q</span>
+        <span class="klassen">Einführungs- &amp; Qualifikationsphase</span>
+        <h3>Oberstufe</h3>
+        <p>Ein breites Kursangebot mit Leistungskursen, individueller Studien- und Berufsberatung sowie praxisnahen Projekten führt gezielt zum Abitur. Internationale Kooperationen bereiten unsere Schülerinnen und Schüler darauf vor, verantwortungsbewusste Weltbürgerinnen und Weltbürger zu werden.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="lb-cta" aria-label="Einladung">
+  <div class="container">
+    <div class="lb-cta-grid">
+      <div>
+        <h2>Am besten: vor Ort erleben.</h2>
+      </div>
+      <div>
+        <p>Das Leitbild lebt im Alltag — in den Fluren, in den Pausen, im Unterricht. Kommen Sie zum Tag der offenen Tür, oder vereinbaren Sie ein Gespräch. Wir zeigen Ihnen gerne, wie „Gemeinsam lernen" bei uns konkret aussieht.</p>
+        <div class="lb-cta-links">
+          <a href="index.html#wegzuuns" class="btn btn-primary">Tag der offenen Tür <span class="arrow">→</span></a>
+          <a href="mailto:kontakt@unesco-schule-essen.de" class="btn btn-secondary">Gespräch vereinbaren <span class="arrow">→</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+</BaseLayout>
