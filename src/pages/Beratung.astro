@@ -200,6 +200,13 @@ import PageHero from "../components/PageHero.astro";
     color:var(--gold);font-style:normal;
   }
 
+  /* Tablet-Zwischenlayout: Personen-Card unter die Q&A-Liste,
+     damit br-qa volle Breite bekommt. */
+  @media (max-width:1080px) and (min-width:961px){
+    .br-split{grid-template-columns:1fr;gap:28px;}
+    .br-qa .row{grid-template-columns:minmax(0,130px) minmax(0,1fr);}
+  }
+
   @media (max-width:960px){
     .br-intro-grid{grid-template-columns:1fr;gap:28px;}
     .br-overview-grid{grid-template-columns:1fr;gap:14px;}

@@ -178,6 +178,19 @@ import PageHero from "../components/PageHero.astro";
     font-family:var(--sans);font-size:14px;color:var(--stein);margin:0;
   }
 
+  /* Tablet-Zwischenlayout: Contact-Card darf unter den Body rutschen,
+     damit die Mittelspalte mehr Raum für den Text bekommt. */
+  @media (max-width:1080px) and (min-width:961px){
+    .bo-lauf .inner{
+      grid-template-columns:minmax(0,120px) minmax(0,1fr);
+      grid-template-areas:"icon body" "contact contact";
+      gap:24px 28px;padding:28px 32px;
+    }
+    .bo-lauf .icon{grid-area:icon;width:72px;height:72px;font-size:32px;}
+    .bo-lauf .body{grid-area:body;}
+    .bo-lauf .contact{grid-area:contact;}
+  }
+
   @media (max-width:960px){
     .bo-intro-grid{grid-template-columns:1fr;gap:28px;}
     .bo-lauf .inner{grid-template-columns:1fr;gap:18px;padding:24px 24px;}
