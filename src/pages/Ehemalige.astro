@@ -2,40 +2,45 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
 
-// Testimonials — Stimmen von Ehemaligen (Fotos folgen)
+// Testimonials — Stimmen von Ehemaligen
 const testimonials = [
   {
     name: "Valentina",
-    initials: "V",
+    photo: "assets/ehemalige/Valentina.png",
     quote:
       "Immer wieder erinnere ich mich an meine Schulzeit, an die warme Atmosphäre, Freunde und die lieben Lehrerinnen und Lehrer. Die Lehrer haben uns nicht nur den Schulstoff mit großem Engagement beigebracht, sondern auch motiviert, an eigene Stärken zu glauben und die Chancen zu ergreifen.",
   },
   {
     name: "Kevin",
-    initials: "K",
+    photo: "assets/ehemalige/Kevin.png",
     quote:
       "Unterschiedliche Kulturen und Nationen finden an der UNESCO-Schule friedlich zusammen. Man lernt verschiedene Sichtweisen und Kulturen kennen. Engagierte Lehrer und Lehrerinnen haben immer ein offenes Ohr und unterstützen jeden auf dem Weg zum Abitur.",
   },
   {
     name: "Vithussa",
-    initials: "V",
+    photo: "assets/ehemalige/Vithussa.png",
     quote:
       "Die UNESCO-Schule war und bleibt für mich etwas Besonderes. Ich habe viel gelernt — vor allem fürs Leben, durch meine Freunde und durch meine Lehrer. Die Schulzeit hat mich sehr geprägt und ich blicke sehr gerne zurück. Die UNESCO-Schule wird für mich immer eine sehr schöne Erinnerung bleiben.",
   },
   {
     name: "Dounia",
-    initials: "D",
+    photo: "assets/ehemalige/Dounia.png",
     quote:
       "Die beste Schule auf dem gesamten Planeten! Im Gegensatz zu meiner alten Schule hatte ich hier nie das Gefühl, nicht dazuzugehören. Den Umgang, den die Lehrer mit den Schülern pflegen, habe ich so vorher noch nie gesehen. Man merkt, dass die Lehrer sich nur das Beste für die Mitschüler wünschen und tatkräftig in der Gestaltung ihrer Zukunft unterstützen. Für mich war meine Zeit im Abitur, die ich hier verbrachte, mehr als nur Schule. Vielmehr ist es wie eine Anlaufstelle für jeden, wie ein zweites Zuhause. Der Abgang von dieser Schule fiel mir definitiv nicht leicht — denn ich werde mich immer als ein Teil der UNESCO-Schule ansehen.",
     long: true,
   },
   {
     name: "Vinthusa",
-    initials: "V",
+    photo: "assets/ehemalige/Vinthusa.png",
     quote:
       "Die UNESCO-Schule nimmt jeden Schüler unabhängig seines Hintergrundes herzlich auf — das macht diese Schule wirklich aus. Ich bin froh und gleichzeitig auch stolz darüber, ein Teil dieser Schule gewesen zu sein und eine tolle Oberstufenzeit gehabt zu haben. Heute, in der Uni, vermisse ich nicht nur die Pausen und Zeiten mit den Freunden, sondern auch den Unterricht!",
   },
 ];
+
+const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
+function asset(p: string): string {
+  return BASE + "/" + p.replace(/^\//, "");
+}
 ---
 <BaseLayout title="Ehemalige — UNESCO-Schule Essen">
 <style is:global>
@@ -71,11 +76,14 @@ const testimonials = [
   .testimonial:hover{transform:translateY(-2px);box-shadow:0 16px 40px -24px rgba(14,77,79,0.28);}
   @media (prefers-reduced-motion: reduce){.testimonial:hover{transform:none;}}
   .testimonial .avatar{
-    width:92px;height:92px;border-radius:50%;
-    background:var(--petrol);color:var(--creme);
+    width:96px;height:96px;border-radius:50%;overflow:hidden;
+    background:var(--creme);
     display:flex;align-items:center;justify-content:center;
-    font-family:var(--serif);font-weight:500;font-size:36px;letter-spacing:-0.02em;
     box-shadow:0 0 0 6px var(--creme), 0 0 0 7px var(--hairline);
+    flex-shrink:0;
+  }
+  .testimonial .avatar img{
+    width:100%;height:100%;object-fit:cover;display:block;
   }
   .testimonial blockquote{
     margin:0;position:relative;padding-top:6px;
@@ -210,7 +218,9 @@ const testimonials = [
     <div class="testimonials-grid">
       {testimonials.map((t) => (
         <figure class={`testimonial ${t.long ? "is-long" : ""}`}>
-          <div class="avatar" aria-hidden="true">{t.initials}</div>
+          <div class="avatar">
+            <img src={asset(t.photo)} alt={`Porträt von ${t.name}`} width="192" height="192" loading="lazy" />
+          </div>
           <blockquote>
             {t.quote.split("\n\n").map((para) => <p>{para}</p>)}
           </blockquote>
