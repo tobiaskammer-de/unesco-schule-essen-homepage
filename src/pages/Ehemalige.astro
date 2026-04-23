@@ -1,9 +1,100 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
+
+// Testimonials — Stimmen von Ehemaligen (Fotos folgen)
+const testimonials = [
+  {
+    name: "Valentina",
+    initials: "V",
+    quote:
+      "Immer wieder erinnere ich mich an meine Schulzeit, an die warme Atmosphäre, Freunde und die lieben Lehrerinnen und Lehrer. Die Lehrer haben uns nicht nur den Schulstoff mit großem Engagement beigebracht, sondern auch motiviert, an eigene Stärken zu glauben und die Chancen zu ergreifen.",
+  },
+  {
+    name: "Kevin",
+    initials: "K",
+    quote:
+      "Unterschiedliche Kulturen und Nationen finden an der UNESCO-Schule friedlich zusammen. Man lernt verschiedene Sichtweisen und Kulturen kennen. Engagierte Lehrer und Lehrerinnen haben immer ein offenes Ohr und unterstützen jeden auf dem Weg zum Abitur.",
+  },
+  {
+    name: "Vithussa",
+    initials: "V",
+    quote:
+      "Die UNESCO-Schule war und bleibt für mich etwas Besonderes. Ich habe viel gelernt — vor allem fürs Leben, durch meine Freunde und durch meine Lehrer. Die Schulzeit hat mich sehr geprägt und ich blicke sehr gerne zurück. Die UNESCO-Schule wird für mich immer eine sehr schöne Erinnerung bleiben.",
+  },
+  {
+    name: "Dounia",
+    initials: "D",
+    quote:
+      "Die beste Schule auf dem gesamten Planeten! Im Gegensatz zu meiner alten Schule hatte ich hier nie das Gefühl, nicht dazuzugehören. Den Umgang, den die Lehrer mit den Schülern pflegen, habe ich so vorher noch nie gesehen. Man merkt, dass die Lehrer sich nur das Beste für die Mitschüler wünschen und tatkräftig in der Gestaltung ihrer Zukunft unterstützen. Für mich war meine Zeit im Abitur, die ich hier verbrachte, mehr als nur Schule. Vielmehr ist es wie eine Anlaufstelle für jeden, wie ein zweites Zuhause. Der Abgang von dieser Schule fiel mir definitiv nicht leicht — denn ich werde mich immer als ein Teil der UNESCO-Schule ansehen.",
+    long: true,
+  },
+  {
+    name: "Vinthusa",
+    initials: "V",
+    quote:
+      "Die UNESCO-Schule nimmt jeden Schüler unabhängig seines Hintergrundes herzlich auf — das macht diese Schule wirklich aus. Ich bin froh und gleichzeitig auch stolz darüber, ein Teil dieser Schule gewesen zu sein und eine tolle Oberstufenzeit gehabt zu haben. Heute, in der Uni, vermisse ich nicht nur die Pausen und Zeiten mit den Freunden, sondern auch den Unterricht!",
+  },
+];
 ---
 <BaseLayout title="Ehemalige — UNESCO-Schule Essen">
 <style is:global>
+  /* Testimonials */
+  .eh-testimonials{background:var(--offwhite);padding:var(--space-section) 0;border-top:1px solid var(--hairline);}
+  .eh-testimonials .head{max-width:820px;margin:0 0 48px;}
+  .eh-testimonials .head .eyebrow{display:block;margin-bottom:14px;}
+  .eh-testimonials .head h2{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(30px,3.4vw,44px);line-height:1.12;letter-spacing:-0.015em;
+    color:var(--petrol);margin:0 0 16px;
+  }
+  .eh-testimonials .head h2 em{font-style:italic;color:var(--bordeaux);}
+  .eh-testimonials .head p{
+    font-family:var(--sans);font-size:17px;line-height:1.65;color:var(--stein);
+    max-width:680px;margin:0;
+  }
+  .testimonials-grid{
+    display:grid;grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));gap:28px;
+    grid-auto-rows:auto;align-items:start;
+  }
+  .testimonial{
+    background:#fff;border:1px solid var(--hairline);
+    border-top:var(--card-accent-width) solid var(--petrol);
+    padding:36px 32px 32px;
+    display:flex;flex-direction:column;align-items:center;text-align:center;gap:20px;
+    transition:transform var(--transition), box-shadow var(--transition);
+  }
+  .testimonial.is-long{
+    grid-column:span 2;
+  }
+  @media (max-width:900px){.testimonial.is-long{grid-column:auto;}}
+  .testimonial:hover{transform:translateY(-2px);box-shadow:0 16px 40px -24px rgba(14,77,79,0.28);}
+  @media (prefers-reduced-motion: reduce){.testimonial:hover{transform:none;}}
+  .testimonial .avatar{
+    width:92px;height:92px;border-radius:50%;
+    background:var(--petrol);color:var(--creme);
+    display:flex;align-items:center;justify-content:center;
+    font-family:var(--serif);font-weight:500;font-size:36px;letter-spacing:-0.02em;
+    box-shadow:0 0 0 6px var(--creme), 0 0 0 7px var(--hairline);
+  }
+  .testimonial blockquote{
+    margin:0;position:relative;padding-top:6px;
+    font-family:var(--serif);font-style:italic;font-weight:400;
+    font-size:16.5px;line-height:1.55;color:var(--tinte);
+  }
+  .testimonial blockquote::before{
+    content:"„";display:block;
+    font-family:var(--serif);font-size:48px;line-height:0.4;
+    color:var(--bordeaux);opacity:0.55;margin-bottom:10px;
+  }
+  .testimonial blockquote p{margin:0 0 10px;}
+  .testimonial blockquote p:last-child{margin-bottom:0;}
+  .testimonial cite{
+    display:block;margin-top:auto;padding-top:8px;
+    font-family:var(--sans);font-style:normal;font-weight:600;font-size:13px;
+    letter-spacing:0.16em;text-transform:uppercase;color:var(--petrol);
+  }
+
   /* Statement */
   .eh-statement{background:var(--creme);padding:var(--space-section) 0;}
   .eh-statement .container{max-width:880px;text-align:center;}
@@ -96,7 +187,7 @@ import PageHero from "../components/PageHero.astro";
 
 <main id="top">
 
-<PageHero variant="feature">
+<PageHero variant="feature" image="assets/ehemalige/banner.png" imageAlt="UNESCO-Schule Essen — Ehemalige">
   <Fragment slot="eyebrow">Über Uns · Ehemalige</Fragment>
   <Fragment slot="title">Einmal UNESCO —<br>immer <em>verbunden.</em></Fragment>
   <Fragment slot="lede">Egal, ob dein Abitur ein Jahr oder fünfzig Jahre zurückliegt — ein Wiedersehen macht Freude. Bleib in Kontakt mit deiner alten Schule.</Fragment>
@@ -106,6 +197,27 @@ import PageHero from "../components/PageHero.astro";
   <div class="container">
     <blockquote>Egal, ob dein Abitur ein Jahr oder 50 Jahre zurückliegt — ein Wiedersehen macht Freude.</blockquote>
     <p class="sub">Unsere Schule verändert sich, aber die Menschen bleiben. Wir möchten mit unseren Ehemaligen in Kontakt bleiben — nicht, um zu werben, sondern weil uns eure Geschichten wichtig sind.</p>
+  </div>
+</section>
+
+<section class="eh-testimonials" aria-label="Stimmen ehemaliger Schülerinnen und Schüler">
+  <div class="container">
+    <div class="head">
+      <span class="eyebrow">Stimmen von Ehemaligen</span>
+      <h2>Was <em>bleibt</em>, wenn die Schulzeit vorbei ist.</h2>
+      <p>Fünf Ehemalige erzählen, was ihnen die UNESCO-Schule gegeben hat — und was davon sie bis heute begleitet.</p>
+    </div>
+    <div class="testimonials-grid">
+      {testimonials.map((t) => (
+        <figure class={`testimonial ${t.long ? "is-long" : ""}`}>
+          <div class="avatar" aria-hidden="true">{t.initials}</div>
+          <blockquote>
+            {t.quote.split("\n\n").map((para) => <p>{para}</p>)}
+          </blockquote>
+          <cite>— {t.name}</cite>
+        </figure>
+      ))}
+    </div>
   </div>
 </section>
 
