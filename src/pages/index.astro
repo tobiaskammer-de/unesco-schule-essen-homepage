@@ -1,5 +1,9 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { upcomingEvents, formatDayNum, formatMonthShort, formatWeekdayShort } from "../lib/calendar";
+
+// Nächste 5 Termine für die Startseite
+const nextDates = await upcomingEvents(5);
 ---
 <BaseLayout title="UNESCO-Schule Essen — Gymnasium">
 <style is:global>
@@ -426,40 +430,37 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       <aside aria-label="Nächste Termine">
         <div class="section-head">
           <h2>Nächste Termine</h2>
-          <a href="#" class="all-link">Alle Termine →</a>
+          <a href="Kalender.html" class="all-link">Alle Termine →</a>
         </div>
-        <ul class="dates-list">
-          <li class="date-row highlight">
-            <div>
-              <div class="date-main">22. Apr</div>
-              <div class="date-sub">Mittwoch</div>
-            </div>
-            <div class="date-body">
-              <h3>Schriftl. Abiturprüfung LK/GK Biologie</h3>
-              <span class="date-cat">Abitur 2026</span>
-            </div>
-          </li>
-          <li class="date-row">
-            <div>
-              <div class="date-main">23. Apr</div>
-              <div class="date-sub">Donnerstag</div>
-            </div>
-            <div class="date-body">
-              <h3>Girls' and Boys' Day</h3>
-              <span class="date-cat">Jahrgänge 7–10</span>
-            </div>
-          </li>
-          <li class="date-row highlight">
-            <div>
-              <div class="date-main">24. Apr</div>
-              <div class="date-sub">Freitag</div>
-            </div>
-            <div class="date-body">
-              <h3>Schriftl. Abiturprüfung LK/GK Chemie</h3>
-              <span class="date-cat">Abitur 2026</span>
-            </div>
-          </li>
-        </ul>
+        {nextDates.length === 0 ? (
+          <p style="font-family:var(--sans);color:var(--stein);font-size:15px;">Derzeit keine anstehenden Termine.</p>
+        ) : (
+          <ul class="dates-list">
+            {nextDates.map((e) => (
+              <li class={`date-row ${e.category === "highlight" || e.category === "exam" ? "highlight" : ""}`}>
+                <div>
+                  <div class="date-main">{formatDayNum(e.startDate)}&nbsp;{formatMonthShort(e.startDate)}</div>
+                  <div class="date-sub">{formatWeekdayShort(e.startDate)}</div>
+                </div>
+                <div class="date-body">
+                  <h3>{e.title}</h3>
+                  {e.isMultiDay && (
+                    <span class="date-cat">bis {formatDayNum(e.endDate)}&nbsp;{formatMonthShort(e.endDate)}</span>
+                  )}
+                  {!e.isMultiDay && e.category === "exam" && (
+                    <span class="date-cat">Prüfung</span>
+                  )}
+                  {!e.isMultiDay && e.category === "highlight" && (
+                    <span class="date-cat">Termin der Schulgemeinschaft</span>
+                  )}
+                  {!e.isMultiDay && e.category === "holiday" && (
+                    <span class="date-cat">Ferien &middot; schulfrei</span>
+                  )}
+                </div>
+              </li>
+            ))}
+          </ul>
+        )}
       </aside>
 
     </div>
