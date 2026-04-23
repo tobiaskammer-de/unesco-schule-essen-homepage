@@ -312,4 +312,19 @@ const categories = Array.from(new Set(news.map((e) => e.data.category)));
 </script>
 
 </main>
+
+<script is:inline>
+  // Client-side filter
+  document.querySelectorAll('.filter-row .chip').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const filter = btn.getAttribute('data-filter');
+      document.querySelectorAll('.filter-row .chip').forEach(b => b.classList.remove('is-active'));
+      btn.classList.add('is-active');
+      document.querySelectorAll('.article').forEach(a => {
+        const show = filter === 'all' || a.getAttribute('data-category') === filter;
+        a.style.display = show ? '' : 'none';
+      });
+    });
+  });
+</script>
 </BaseLayout>
