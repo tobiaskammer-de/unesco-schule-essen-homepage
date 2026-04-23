@@ -1,0 +1,416 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHero from "../components/PageHero.astro";
+
+// Ansprechpartner*innen
+const people = [
+  {
+    role: "Sekretariat · Erste Anlaufstelle",
+    name: "Frau Axer",
+    sub: "Zentrales Sekretariat der UNESCO-Schule Essen",
+    tel: "+492012802630",
+    telDisplay: "0201 · 280 26 30",
+    mail: "164835@schule.nrw.de",
+    initials: "A",
+    primary: true,
+  },
+  {
+    role: "Ansprechpartnerin Sekundarstufe I",
+    name: "Frau Wilbat",
+    sub: "Koordination Klassen 5 – 10",
+    tel: "+492012802630",
+    telDisplay: "0201 · 280 26 30 (Sekretariat)",
+    mail: "164835@schule.nrw.de",
+    initials: "W",
+  },
+  {
+    role: "Ansprechpartner Sekundarstufe II",
+    name: "Herr Omlor",
+    sub: "Oberstufenkoordination · Raum 104",
+    tel: "+492012802630",
+    telDisplay: "0201 · 280 26 30 (Sekretariat)",
+    mail: "oberstufe@unesco-schule-essen.de",
+    initials: "O",
+  },
+];
+---
+<BaseLayout title="Kontakt — UNESCO-Schule Essen" description="Kontakt zur UNESCO-Schule Essen. Anschrift, Sekretariat, Ansprechpartner für Sekundarstufe I und II sowie Kontaktformular.">
+<style is:global>
+  /* ---------- Kontakt ---------- */
+  .kt-school{background:var(--creme);padding:var(--space-section) 0;}
+  .kt-school-grid{
+    display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);
+    gap:56px;align-items:start;
+  }
+  .kt-school h2{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(30px,3.4vw,44px);line-height:1.1;
+    color:var(--petrol);letter-spacing:-0.015em;margin:0;
+  }
+  .kt-school .addr-card{
+    background:#fff;border:1px solid var(--hairline);
+    border-top:var(--card-accent-width) solid var(--petrol);
+    padding:32px 36px;
+  }
+  .kt-school .addr-card .brand{
+    font-family:var(--serif);font-weight:500;font-size:22px;color:var(--petrol);
+    margin:0 0 4px;letter-spacing:-0.005em;
+  }
+  .kt-school .addr-card address{
+    font-style:normal;font-family:var(--sans);font-size:16.5px;line-height:1.75;color:var(--tinte);
+    margin:0 0 18px;
+  }
+  .kt-school .addr-card .contact-list{
+    list-style:none;margin:18px 0 0;padding:18px 0 0;
+    border-top:1px solid var(--hairline);
+    display:grid;grid-template-columns:1fr 1fr;gap:14px 24px;
+  }
+  .kt-school .addr-card .contact-list li{
+    display:flex;flex-direction:column;gap:2px;
+    font-family:var(--sans);
+  }
+  .kt-school .addr-card .contact-list .lbl{
+    font-size:11px;font-weight:600;letter-spacing:0.14em;
+    text-transform:uppercase;color:var(--stein);
+  }
+  .kt-school .addr-card .contact-list a,
+  .kt-school .addr-card .contact-list .val{
+    font-size:16px;color:var(--petrol);font-weight:500;
+  }
+  .kt-school .addr-card .contact-list a:hover{text-decoration:underline;}
+
+  /* People */
+  .kt-people{background:var(--offwhite);padding:var(--space-section) 0;border-top:1px solid var(--hairline);}
+  .kt-people .head{max-width:820px;margin:0 0 48px;}
+  .kt-people .head .eyebrow{display:block;margin-bottom:14px;}
+  .kt-people .head h2{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(30px,3.2vw,44px);line-height:1.15;letter-spacing:-0.015em;
+    color:var(--petrol);margin:0 0 16px;
+  }
+  .kt-people .head p{
+    font-family:var(--sans);font-size:17px;line-height:1.65;color:var(--stein);
+    max-width:680px;margin:0;
+  }
+  .kt-people-grid{
+    display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;
+  }
+  .kt-person{
+    background:#fff;border:1px solid var(--hairline);
+    border-top:var(--card-accent-width) solid var(--petrol);
+    padding:32px 28px 28px;display:flex;flex-direction:column;gap:14px;
+    transition:transform var(--transition), box-shadow var(--transition);
+  }
+  .kt-person.is-primary{
+    border-top-color:var(--bordeaux);
+    box-shadow:0 0 0 1px var(--bordeaux);
+  }
+  .kt-person:hover{transform:translateY(-2px);box-shadow:0 16px 40px -24px rgba(14,77,79,0.28);}
+  .kt-person.is-primary:hover{box-shadow:0 0 0 1px var(--bordeaux), 0 16px 40px -24px rgba(110,38,57,0.3);}
+  @media (prefers-reduced-motion: reduce){.kt-person:hover{transform:none;}}
+  .kt-person .avatar{
+    width:84px;height:84px;border-radius:50%;
+    background:var(--petrol);color:var(--creme);
+    display:flex;align-items:center;justify-content:center;
+    font-family:var(--serif);font-weight:500;font-size:32px;letter-spacing:-0.01em;
+  }
+  .kt-person.is-primary .avatar{background:var(--bordeaux);}
+  .kt-person .role{
+    font-family:var(--sans);font-size:11px;font-weight:600;
+    letter-spacing:0.14em;text-transform:uppercase;color:var(--petrol);
+  }
+  .kt-person.is-primary .role{color:var(--bordeaux);}
+  .kt-person .name{
+    font-family:var(--serif);font-weight:500;font-size:24px;
+    color:var(--petrol);letter-spacing:-0.008em;margin:0;
+  }
+  .kt-person .sub{
+    font-family:var(--sans);font-size:14.5px;color:var(--stein);margin:0;
+  }
+  .kt-person .links{
+    margin-top:auto;padding-top:14px;border-top:1px solid var(--hairline);
+    display:flex;flex-direction:column;gap:6px;
+    font-family:var(--sans);font-size:15px;
+  }
+  .kt-person .links a{color:var(--petrol);text-decoration:none;}
+  .kt-person .links a:hover{text-decoration:underline;}
+  .kt-person .links .lbl{
+    font-size:10.5px;font-weight:600;letter-spacing:0.14em;
+    text-transform:uppercase;color:var(--stein);margin-right:6px;
+  }
+
+  /* Form */
+  .kt-form{background:var(--creme);padding:var(--space-section) 0;border-top:1px solid var(--hairline);}
+  .kt-form-grid{
+    display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);
+    gap:56px;align-items:start;
+  }
+  .kt-form h2{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(30px,3.2vw,44px);line-height:1.15;letter-spacing:-0.015em;
+    color:var(--petrol);margin:0 0 14px;
+  }
+  .kt-form .lede{
+    font-family:var(--sans);font-size:17px;line-height:1.7;color:var(--stein);margin:0 0 16px;
+  }
+  .kt-form .hint{
+    font-family:var(--sans);font-size:13.5px;line-height:1.55;color:var(--stein);margin:0;
+  }
+
+  form.contact{
+    background:#fff;border:1px solid var(--hairline);
+    border-top:var(--card-accent-width) solid var(--petrol);
+    padding:36px;
+    display:grid;gap:22px;
+  }
+  form.contact .row{display:grid;gap:6px;}
+  form.contact .row.two{grid-template-columns:1fr 1fr;gap:22px;}
+  @media (max-width:640px){form.contact .row.two{grid-template-columns:1fr;}}
+  form.contact label{
+    font-family:var(--sans);font-size:12.5px;font-weight:600;
+    letter-spacing:0.1em;text-transform:uppercase;color:var(--petrol);
+  }
+  form.contact label .req{color:var(--bordeaux);margin-left:4px;}
+  form.contact input[type="text"],
+  form.contact input[type="email"],
+  form.contact input[type="tel"],
+  form.contact textarea,
+  form.contact select{
+    width:100%;padding:12px 14px;
+    font-family:var(--sans);font-size:15.5px;line-height:1.5;color:var(--tinte);
+    background:#fff;border:1.5px solid var(--hairline);
+    transition:border-color var(--transition-fast), box-shadow var(--transition-fast);
+  }
+  form.contact textarea{min-height:160px;resize:vertical;font-family:var(--sans);}
+  form.contact input:focus,
+  form.contact textarea:focus,
+  form.contact select:focus{
+    outline:none;border-color:var(--petrol);
+    box-shadow:0 0 0 3px rgba(14,77,79,0.15);
+  }
+  form.contact .consent{
+    display:flex;align-items:flex-start;gap:12px;
+    font-family:var(--sans);font-size:14px;line-height:1.55;color:var(--tinte);
+  }
+  form.contact .consent input{
+    margin-top:4px;accent-color:var(--petrol);width:18px;height:18px;flex-shrink:0;
+  }
+  form.contact .consent a{color:var(--bordeaux);text-decoration:underline;}
+  form.contact .actions{
+    display:flex;gap:14px;flex-wrap:wrap;align-items:center;
+  }
+  form.contact button[type="submit"]{
+    background:var(--petrol);color:var(--creme);border:0;
+    padding:14px 28px;font-family:var(--sans);font-weight:500;font-size:15px;
+    cursor:pointer;
+    transition:background var(--transition-fast);
+  }
+  form.contact button[type="submit"]:hover{background:var(--petrol-dark);}
+  form.contact button[type="submit"]:disabled{opacity:0.6;cursor:wait;}
+  form.contact .feedback{
+    font-family:var(--sans);font-size:14.5px;color:var(--stein);
+    padding:14px 18px;border-left:3px solid var(--hairline);
+    display:none;
+  }
+  form.contact .feedback.is-success{
+    display:block;border-left-color:#3e6b2a;background:rgba(127,176,105,0.12);color:#2b4d20;
+  }
+  form.contact .feedback.is-error{
+    display:block;border-left-color:var(--bordeaux);background:rgba(110,38,57,0.08);color:var(--bordeaux);
+  }
+
+  .kt-setup-note{
+    background:rgba(212,165,116,0.14);border-left:3px solid var(--gold);
+    padding:16px 20px;margin-bottom:22px;
+    font-family:var(--sans);font-size:13.5px;line-height:1.6;color:#5e3f12;
+  }
+  .kt-setup-note strong{color:#3a2a10;}
+
+  @media (max-width:960px){
+    .kt-school-grid,.kt-form-grid{grid-template-columns:1fr;gap:28px;}
+    .kt-people-grid{grid-template-columns:1fr;gap:14px;}
+    .kt-school,.kt-people,.kt-form{padding:var(--space-section-sm) 0;}
+    form.contact{padding:24px;}
+    .kt-school .addr-card .contact-list{grid-template-columns:1fr;}
+  }
+</style>
+
+<main id="top">
+
+<PageHero variant="feature">
+  <Fragment slot="eyebrow">Service · Kontakt</Fragment>
+  <Fragment slot="title">Wir sind <em>für Sie da.</em></Fragment>
+  <Fragment slot="lede">Ob Anmeldung, Beratung oder einfach eine Frage zum Schulalltag — so erreichen Sie uns am besten.</Fragment>
+</PageHero>
+
+<!-- Anschrift -->
+<section class="kt-school" aria-label="Anschrift und zentrale Kontaktdaten">
+  <div class="container">
+    <div class="kt-school-grid">
+      <div>
+        <h2>So erreichen Sie uns.</h2>
+      </div>
+      <div class="addr-card">
+        <p class="brand">UNESCO-Schule Essen</p>
+        <address>
+          Steinmetzstraße 9<br>
+          45139 Essen
+        </address>
+        <ul class="contact-list">
+          <li>
+            <span class="lbl">Telefon</span>
+            <a href="tel:+492012802630">0201 · 280&nbsp;26&nbsp;30</a>
+          </li>
+          <li>
+            <span class="lbl">Fax</span>
+            <span class="val">0201 · 280&nbsp;26&nbsp;31</span>
+          </li>
+          <li>
+            <span class="lbl">E-Mail</span>
+            <a href="mailto:info@unesco-schule-essen.de">info@unesco-schule-essen.de</a>
+          </li>
+          <li>
+            <span class="lbl">Schulverwaltung</span>
+            <a href="mailto:164835@schule.nrw.de">164835@schule.nrw.de</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Ansprechpartner -->
+<section class="kt-people" aria-label="Ansprechpartner*innen">
+  <div class="container">
+    <div class="head">
+      <span class="eyebrow">Ansprechpartner*innen</span>
+      <h2>Drei persönliche Kontakte.</h2>
+      <p>Frau Axer im Sekretariat ist Ihre <strong>erste Anlaufstelle</strong>. Für spezifische Fragen zu Sekundarstufe&nbsp;I oder der Oberstufe gibt es jeweils eine Koordinatorin bzw. einen Koordinator.</p>
+    </div>
+    <div class="kt-people-grid">
+      {people.map((p) => (
+        <article class={`kt-person ${p.primary ? "is-primary" : ""}`}>
+          <span class="avatar" aria-hidden="true">{p.initials}</span>
+          <div class="role">{p.role}</div>
+          <p class="name">{p.name}</p>
+          <p class="sub">{p.sub}</p>
+          <div class="links">
+            <div><span class="lbl">Tel</span><a href={`tel:${p.tel}`}>{p.telDisplay}</a></div>
+            <div><span class="lbl">E-Mail</span><a href={`mailto:${p.mail}`}>{p.mail}</a></div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- Formular -->
+<section class="kt-form" aria-label="Kontaktformular">
+  <div class="container">
+    <div class="kt-form-grid">
+      <div>
+        <h2>Schreiben Sie uns.</h2>
+        <p class="lede">Dieses Formular geht direkt an unser Sekretariat. Wir melden uns werktags in der Regel innerhalb von 24&nbsp;Stunden zurück.</p>
+        <p class="hint">Ihre Angaben verwenden wir ausschließlich zur Beantwortung Ihrer Anfrage. Details in unserer <a href="Datenschutz.html">Datenschutzerklärung</a>.</p>
+      </div>
+
+      <form class="contact" action="https://api.web3forms.com/submit" method="POST" novalidate>
+        <!-- Web3Forms Access Key — funktioniert sofort nach Einrichtung auf web3forms.com -->
+        <input type="hidden" name="access_key" value="REPLACE_WITH_WEB3FORMS_KEY">
+        <!-- Ziel-E-Mail für die Weiterleitung (Web3Forms nutzt die Adresse, die beim Key hinterlegt ist; dieses Feld ist nur informativ) -->
+        <input type="hidden" name="from_name" value="UNESCO-Schule Kontaktformular">
+        <input type="hidden" name="subject" value="Neue Nachricht über das Kontaktformular">
+        <!-- Honeypot gegen Bots -->
+        <input type="checkbox" name="botcheck" style="display:none;" tabindex="-1" autocomplete="off">
+
+        <div class="row two">
+          <div class="row">
+            <label for="ct-name">Name <span class="req" aria-hidden="true">*</span></label>
+            <input id="ct-name" type="text" name="name" required autocomplete="name" placeholder="Ihr Name">
+          </div>
+          <div class="row">
+            <label for="ct-email">E-Mail <span class="req" aria-hidden="true">*</span></label>
+            <input id="ct-email" type="email" name="email" required autocomplete="email" inputmode="email" placeholder="name@example.com">
+          </div>
+        </div>
+
+        <div class="row">
+          <label for="ct-phone">Telefon <span style="color:var(--stein);font-size:11px;letter-spacing:0.08em;">(optional)</span></label>
+          <input id="ct-phone" type="tel" name="phone" autocomplete="tel" inputmode="tel" placeholder="z.B. 0201 1234567">
+        </div>
+
+        <div class="row">
+          <label for="ct-topic">Anliegen <span class="req" aria-hidden="true">*</span></label>
+          <select id="ct-topic" name="topic" required>
+            <option value="">Bitte auswählen …</option>
+            <option>Allgemeine Anfrage</option>
+            <option>Anmeldung Klasse 5</option>
+            <option>Wechsel in die Oberstufe</option>
+            <option>Elternanfrage</option>
+            <option>Presse / Medien</option>
+            <option>Kooperation / Partnerschaft</option>
+            <option>Etwas anderes</option>
+          </select>
+        </div>
+
+        <div class="row">
+          <label for="ct-message">Nachricht <span class="req" aria-hidden="true">*</span></label>
+          <textarea id="ct-message" name="message" required placeholder="Worum geht es? Schreiben Sie uns so knapp oder ausführlich, wie es passt."></textarea>
+        </div>
+
+        <label class="consent">
+          <input type="checkbox" name="consent" required>
+          <span>Ich bin damit einverstanden, dass meine Angaben zur Bearbeitung meiner Anfrage verwendet werden. Details in der <a href="Datenschutz.html">Datenschutzerklärung</a>. Diese Einwilligung kann jederzeit widerrufen werden.</span>
+        </label>
+
+        <div class="actions">
+          <button type="submit">Nachricht senden →</button>
+          <span class="feedback" id="ct-feedback" role="status" aria-live="polite"></span>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  (function(){
+    var form = document.querySelector('form.contact');
+    if (!form) return;
+    var feedback = document.getElementById('ct-feedback');
+    var submit = form.querySelector('button[type="submit"]');
+    form.addEventListener('submit', async function(e){
+      e.preventDefault();
+      feedback.className = 'feedback';
+      feedback.textContent = '';
+      submit.disabled = true;
+      var submitText = submit.textContent;
+      submit.textContent = 'Senden …';
+      try {
+        var data = new FormData(form);
+        var res = await fetch(form.action, {
+          method: 'POST',
+          body: data,
+          headers: { 'Accept': 'application/json' }
+        });
+        if (res.ok) {
+          feedback.className = 'feedback is-success';
+          feedback.textContent = 'Danke! Ihre Nachricht ist angekommen. Wir melden uns werktags zurück.';
+          form.reset();
+        } else {
+          var j = await res.json().catch(function(){return {};});
+          feedback.className = 'feedback is-error';
+          feedback.textContent = j.message || 'Das Senden hat leider nicht geklappt. Bitte per E-Mail an info@unesco-schule-essen.de.';
+        }
+      } catch (err) {
+        feedback.className = 'feedback is-error';
+        feedback.textContent = 'Keine Verbindung. Bitte später erneut versuchen oder E-Mail schreiben.';
+      } finally {
+        submit.disabled = false;
+        submit.textContent = submitText;
+      }
+    });
+  })();
+</script>
+
+</main>
+</BaseLayout>
