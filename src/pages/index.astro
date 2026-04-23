@@ -1,9 +1,14 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { upcomingEvents, formatDayNum, formatMonthShort, formatWeekdayShort } from "../lib/calendar";
+import { getLatestNews, withBase, formatArticleDate, entrySlug, categoryBadgeClass } from "../lib/news";
 
 // Nächste 5 Termine für die Startseite
 const nextDates = await upcomingEvents(5);
+
+// Drei neueste News-Artikel
+const latestNews = await getLatestNews(3);
+const BASE = import.meta.env.BASE_URL;
 ---
 <BaseLayout title="UNESCO-Schule Essen — Gymnasium">
 <style is:global>
@@ -379,50 +384,31 @@ const nextDates = await upcomingEvents(5);
         </div>
 
         <div class="news-list">
-          <!-- Featured: UNESCO-Projekttag -->
-          <a href="#" class="news-card featured">
-            <div class="thumb">
-              <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1000&q=70" alt="UNESCO-Projekttag Grenzen überwinden" width="1000" height="800" loading="lazy">
-            </div>
-            <div>
-              <div class="news-meta">
-                <span class="badge badge-unesco">UNESCO-Projekttag</span>
-                <span class="caption date">15. April 2026</span>
-              </div>
-              <h3 style="margin-top:10px;">Grenzen überwinden — UNESCO-Projekttag</h3>
-              <p class="excerpt">Im Rahmen unseres Profils als UNESCO-Projektschule haben wir den zweiten Projekttag dieses Schuljahres durchgeführt. Das Thema eröffnete einen weiten Denkraum — von persönlichen Grenzen über gesellschaftliche und politische bis hin zu globalen Herausforderungen wie Migration und Klimawandel.</p>
-            </div>
-          </a>
-
-          <!-- Aalto-Kooperation -->
-          <a href="#" class="news-card">
-            <div class="thumb">
-              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=70" alt="Aalto-Theater Essen" width="800" height="600" loading="lazy">
-            </div>
-            <div>
-              <div class="news-meta">
-                <span class="badge badge-kunst">Kooperation</span>
-                <span class="caption date">Schuljahr 2025/26</span>
-              </div>
-              <h3 style="margin-top:10px;">Kooperation mit dem Aalto-Theater: Unsere Schülerinnen und Schüler auf der großen Bühne</h3>
-              <p class="excerpt">Gemeinsam mit dem Aalto-Musiktheater und den Essener Philharmonikern erarbeiten Schülerinnen und Schüler ein interdisziplinäres Bühnenprojekt — von der Textproduktion über Bildkomposition bis zur Musik. Aufführung im Juni 2026.</p>
-            </div>
-          </a>
-
-          <!-- DELF-Zertifikate -->
-          <a href="#" class="news-card">
-            <div class="thumb">
-              <img src="https://images.unsplash.com/photo-1568667256549-094345857637?auto=format&fit=crop&w=800&q=70" alt="DELF Französisch-Zertifikate" width="800" height="600" loading="lazy">
-            </div>
-            <div>
-              <div class="news-meta">
-                <span class="badge badge-news">Sprachen</span>
-                <span class="caption date">08. April 2026</span>
-              </div>
-              <h3 style="margin-top:10px;">DELF scolaire: 24 Schülerinnen und Schüler mit französischem Sprachzertifikat</h3>
-              <p class="excerpt">Auf den Stufen A1 bis B2 haben Schülerinnen und Schüler der Jahrgänge 8 bis Q1 die international anerkannten DELF-Prüfungen bestanden — ein starkes Signal für unser Sprachenprofil.</p>
-            </div>
-          </a>
+          {latestNews.length === 0 ? (
+            <p style="font-family:var(--sans);color:var(--stein);">Noch keine Beiträge veröffentlicht.</p>
+          ) : (
+            latestNews.map((entry, idx) => (
+              <a href={`${BASE}/aktuelles/${entrySlug(entry)}.html`} class={`news-card ${idx === 0 ? "featured" : ""}`}>
+                <div class="thumb">
+                  <img
+                    src={withBase(entry.data.coverImage, BASE)}
+                    alt={entry.data.coverAlt}
+                    width={idx === 0 ? 1000 : 800}
+                    height={idx === 0 ? 800 : 600}
+                    loading={idx === 0 ? "eager" : "lazy"}
+                  />
+                </div>
+                <div>
+                  <div class="news-meta">
+                    <span class={`badge ${categoryBadgeClass(entry.data.category)}`}>{entry.data.category}</span>
+                    <span class="caption date">{formatArticleDate(entry.data.date)}</span>
+                  </div>
+                  <h3 style="margin-top:10px;">{entry.data.title}</h3>
+                  <p class="excerpt">{entry.data.excerpt}</p>
+                </div>
+              </a>
+            ))
+          )}
         </div>
       </div>
 

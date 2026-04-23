@@ -1,6 +1,13 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
+import { getAllNews, withBase, formatArticleDate, entrySlug, categoryBadgeClass } from "../lib/news";
+
+const news = await getAllNews();
+const BASE = import.meta.env.BASE_URL;
+
+// Eindeutige Kategorien aus den Artikeln (für die Filter-Chips)
+const categories = Array.from(new Set(news.map((e) => e.data.category)));
 ---
 <BaseLayout title="Aktuelles — UNESCO-Schule Essen">
 <style is:global>
@@ -131,12 +138,10 @@ import PageHero from "../components/PageHero.astro";
   <Fragment slot="extra">
     <nav class="filter-row" aria-label="Filter">
       <span class="label">Filter</span>
-      <a href="#" class="chip is-active">Alle Beiträge</a>
-      <a href="#" class="chip">UNESCO-Projekte</a>
-      <a href="#" class="chip">Kooperationen</a>
-      <a href="#" class="chip">Wettbewerbe</a>
-      <a href="#" class="chip">Aus dem Unterricht</a>
-      <a href="#" class="chip">Termine</a>
+      <button type="button" class="chip is-active" data-filter="all">Alle Beiträge</button>
+      {categories.map((cat) => (
+        <button type="button" class="chip" data-filter={cat}>{cat}</button>
+      ))}
     </nav>
   </Fragment>
 </PageHero>
@@ -144,67 +149,66 @@ import PageHero from "../components/PageHero.astro";
 
 <main class="journal-main">
   <div class="container">
-    <div class="articles">
-
-      <!-- 1. Feature / neuester Beitrag: Weststadthalle / „Nur ein Bild!?" -->
-      <a href="#" class="article feature">
-        <div class="thumb">
-          <img src="https://images.unsplash.com/photo-1531058020387-3be344556be6?auto=format&fit=crop&w=1600&q=75" alt="Vernissage Weststadthalle Essen – Pop-Up-Ausstellung" width="1600" height="700" loading="lazy">
-        </div>
-        <div>
-          <div class="meta">
-            <span class="badge badge-kunst">Ausstellung</span>
-            <span class="date">16. März 2026 · Weststadthalle Essen</span>
-          </div>
-          <h2>„Nur ein Bild!? Oder doch schon politische Kunst?" — Pop-Up-Ausstellung in der Weststadthalle</h2>
-          <p class="excerpt">Was für ein inspirierender Auftakt: Die Pop-Up-Ausstellung ist mit einer tollen Vernissage gestartet. Besucherinnen und Besucher kamen zusammen, um Kunst zu erleben, ins Gespräch zu kommen und sich von den vielfältigen Perspektiven auf politische Bildsprache inspirieren zu lassen. Besonders stolz sind wir auf die Beiträge unserer UNESCO-Schülerinnen und -Schüler — sie zeigen eindrucksvoll, wie junge Menschen gesellschaftliche Themen kreativ aufgreifen und künstlerisch reflektieren. Ein herzliches Dankeschön an alle Beteiligten, besonders an Martin von der Jugendhilfe Essen. Noch bis kommenden Mittwoch zu sehen — Mo–Mi 10–13 Uhr und Mo+Di 15–18 Uhr.</p>
-          <span class="read-more">Beitrag lesen <span class="arrow">→</span></span>
-        </div>
-      </a>
-
-      <!-- 2. UNESCO-Projekttag -->
-      <a href="#" class="article">
-        <div>
-          <div class="meta">
-            <span class="badge badge-unesco">UNESCO-Projekttag</span>
-            <span class="date">15. April 2026</span>
-          </div>
-          <h2>Grenzen überwinden — UNESCO-Projekttag 2026</h2>
-          <p class="excerpt">Im Rahmen unseres Profils als UNESCO-Projektschule haben wir den zweiten Projekttag dieses Schuljahres durchgeführt. Das Thema eröffnete einen weiten Denkraum — von persönlichen Grenzen über gesellschaftliche und politische bis hin zu globalen Herausforderungen wie Migration und Klimawandel. Eine Schülergruppe hielt ihre Ergebnisse in einer eigenen Ausstellung fest.</p>
-          <span class="read-more">Beitrag lesen <span class="arrow">→</span></span>
-        </div>
-        <div class="thumb">
-          <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1200&q=75" alt="UNESCO-Projekttag Grenzen überwinden" width="1200" height="900" loading="lazy">
-        </div>
-      </a>
-
-      <!-- 3. Aalto-Kooperation -->
-      <a href="#" class="article flip">
-        <div class="thumb">
-          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=1200&q=75" alt="Aalto-Theater Essen" width="1200" height="900" loading="lazy">
-        </div>
-        <div>
-          <div class="meta">
-            <span class="badge badge-kunst">Kooperation</span>
-            <span class="date">Schuljahr 2025/26</span>
-          </div>
-          <h2>Kooperation mit dem Aalto-Theater: Unsere Schülerinnen und Schüler auf der großen Bühne</h2>
-          <p class="excerpt">Gemeinsam mit dem Aalto-Musiktheater und den Essener Philharmonikern erarbeiten Schülerinnen und Schüler ein interdisziplinäres Bühnenprojekt — von der Textproduktion über Bildkomposition bis zur Musik. Aufführung im Juni 2026 im Aalto-Theater.</p>
-          <span class="read-more">Beitrag lesen <span class="arrow">→</span></span>
-        </div>
-      </a>
-
-    </div>
-
-    <nav class="pagination" aria-label="Paginierung">
-      <span class="prev">← Neuere</span>
-      <span class="current">1</span>
-      <a href="#">2</a>
-      <a href="#">3</a>
-      <span>…</span>
-      <a href="#">12</a>
-      <a href="#" class="next">Ältere →</a>
-    </nav>
+    {news.length === 0 ? (
+      <p style="font-family:var(--sans);color:var(--stein);font-size:17px;padding:48px 0;text-align:center;">
+        Noch keine Beiträge veröffentlicht. Sobald etwas passiert, findet ihr es hier.
+      </p>
+    ) : (
+      <div class="articles">
+        {news.map((entry, idx) => (
+          <a
+            href={`${BASE}/aktuelles/${entrySlug(entry)}.html`}
+            class={`article ${idx === 0 ? "feature" : idx % 2 === 0 ? "flip" : ""}`}
+            data-category={entry.data.category}
+          >
+            {idx !== 0 && (idx % 2 === 0) && (
+              <div class="thumb">
+                <img
+                  src={withBase(entry.data.coverImage, BASE)}
+                  alt={entry.data.coverAlt}
+                  width="1200" height="900" loading="lazy"
+                />
+              </div>
+            )}
+            <div>
+              <div class="meta">
+                <span class={`badge ${categoryBadgeClass(entry.data.category)}`}>{entry.data.category}</span>
+                <span class="date">{formatArticleDate(entry.data.date)}</span>
+              </div>
+              <h2>{entry.data.title}</h2>
+              <p class="excerpt">{entry.data.excerpt}</p>
+              <span class="read-more">Vollständiger Beitrag <span class="arrow">→</span></span>
+            </div>
+            {(idx === 0 || idx % 2 !== 0) && (
+              <div class="thumb">
+                <img
+                  src={withBase(entry.data.coverImage, BASE)}
+                  alt={entry.data.coverAlt}
+                  width={idx === 0 ? 1600 : 1200}
+                  height={idx === 0 ? 700 : 900}
+                  loading={idx < 2 ? "eager" : "lazy"}
+                />
+              </div>
+            )}
+          </a>
+        ))}
+      </div>
+    )}
   </div>
 </main>
+
+<script is:inline>
+  // Client-side filter
+  document.querySelectorAll('.filter-row .chip').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const filter = btn.getAttribute('data-filter');
+      document.querySelectorAll('.filter-row .chip').forEach(b => b.classList.remove('is-active'));
+      btn.classList.add('is-active');
+      document.querySelectorAll('.article').forEach(a => {
+        const show = filter === 'all' || a.getAttribute('data-category') === filter;
+        a.style.display = show ? '' : 'none';
+      });
+    });
+  });
+</script>
 </BaseLayout>
