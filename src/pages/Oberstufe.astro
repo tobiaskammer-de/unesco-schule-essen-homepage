@@ -4,51 +4,23 @@ import PageHero from "../components/PageHero.astro";
 ---
 <BaseLayout title="Oberstufe (EF · Q1 · Q2) — UNESCO-Schule Essen">
 <style is:global>
-/* ---------- Oberstufe ---------- */
-  .ob-hero{
-    position:relative;min-height:540px;
-    display:flex;align-items:flex-end;padding:96px 0 72px;
-    color:var(--creme);overflow:hidden;isolation:isolate;
-  }
-  .ob-hero::before{
-    content:"";position:absolute;inset:0;z-index:-2;
-    background:
-      linear-gradient(135deg, rgba(110,38,57,0.85) 0%, rgba(78,26,40,0.90) 50%, rgba(10,54,56,0.92) 100%),
-      url("/unesco-schule-essen-homepage/assets/pillar-abitur.jpg") center/cover no-repeat;
-  }
-  .ob-hero::after{
-    content:"";position:absolute;inset:0;z-index:-1;
-    background-image:
-      radial-gradient(circle at 20% 30%, rgba(212,165,116,0.14) 1.5px, transparent 2px),
-      radial-gradient(circle at 70% 60%, rgba(245,239,231,0.06) 1px, transparent 1.5px);
-    background-size:44px 44px, 60px 60px;opacity:0.85;
-  }
-  .ob-hero .eyebrow{color:var(--gold);display:block;margin-bottom:18px;}
-  .ob-hero h1{
-    font-family:var(--serif);font-weight:500;
-    font-size:clamp(40px,5.4vw,76px);line-height:1.05;
-    letter-spacing:-0.02em;color:var(--creme);max-width:1040px;margin:0 0 22px;
-  }
-  .ob-hero h1 em{font-style:italic;color:var(--gold);}
-  .ob-hero p.lede{
-    font-family:var(--sans);font-size:19px;line-height:1.6;
-    color:rgba(245,239,231,0.9);max-width:700px;margin:0 0 34px;
-  }
+  /* ---------- Oberstufe ---------- */
   .ob-download{
     display:inline-flex;align-items:center;gap:12px;
     padding:14px 22px;border-radius:4px;
     background:var(--gold);color:#2a1d08;
     font-family:var(--sans);font-size:15px;font-weight:600;text-decoration:none;
-    transition:background .2s, transform .2s;
+    transition:background var(--transition-fast), transform var(--transition-fast);
   }
   .ob-download:hover{background:#e0b68a;transform:translateY(-1px);color:#2a1d08;}
+  @media (prefers-reduced-motion: reduce){.ob-download:hover{transform:none;}}
   .ob-download .icon{width:18px;height:18px;fill:currentColor;}
   .ob-download .meta{
     font-family:var(--sans);font-size:12px;font-weight:500;color:#5e3f12;letter-spacing:0.04em;
   }
 
   /* DU/WIR split */
-  .ob-duwir{background:var(--creme);padding:96px 0;}
+  .ob-duwir{background:var(--creme);padding:var(--space-section) 0;}
   .duwir-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;}
   .duwir{padding:40px 36px;background:#fff;border:1px solid var(--hairline);}
   .duwir-du{border-top:4px solid var(--bordeaux);}
@@ -82,7 +54,7 @@ import PageHero from "../components/PageHero.astro";
   .duwir-wir .oder{color:rgba(245,239,231,0.7);}
 
   /* Stats band */
-  .ob-stats{background:var(--offwhite);padding:64px 0;}
+  .ob-stats{background:var(--offwhite);padding:var(--space-section-sm) 0;}
   .stats-row{
     display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;
     border:1px solid var(--hairline);
@@ -94,7 +66,8 @@ import PageHero from "../components/PageHero.astro";
   .ob-stat:last-child{border-right:0;}
   .ob-stat .n{
     font-family:var(--serif);font-weight:500;font-size:clamp(32px,3.4vw,44px);line-height:1;
-    color:var(--bordeaux);letter-spacing:-0.02em;
+    color:var(--petrol);letter-spacing:-0.02em;
+    font-variant-numeric:tabular-nums;
   }
   .ob-stat .label{
     font-family:var(--sans);font-size:12.5px;color:var(--stein);line-height:1.5;
@@ -102,7 +75,7 @@ import PageHero from "../components/PageHero.astro";
   }
 
   /* Generic section pattern */
-  .ob-sect{padding:88px 0;border-top:1px solid var(--hairline);}
+  .ob-sect{padding:var(--space-section) 0;border-top:1px solid var(--hairline);}
   .ob-sect.alt{background:var(--creme);}
   .ob-sect .head{max-width:780px;margin:0 0 40px;}
   .ob-sect .head .eyebrow{display:block;margin-bottom:14px;}
@@ -131,7 +104,7 @@ import PageHero from "../components/PageHero.astro";
   .ob-check li strong{color:var(--petrol);}
 
   /* Six steps */
-  .ob-steps{background:var(--petrol);color:var(--creme);padding:96px 0;}
+  .ob-steps{background:var(--petrol);color:var(--creme);padding:var(--space-section) 0;}
   .ob-steps .head{max-width:780px;margin:0 0 48px;}
   .ob-steps .head .eyebrow{color:var(--gold);display:block;margin-bottom:14px;}
   .ob-steps .head h2{
@@ -167,15 +140,18 @@ import PageHero from "../components/PageHero.astro";
   }
 
   /* Contact */
-  .ob-contact{background:var(--offwhite);padding:88px 0 104px;}
+  .ob-contact{background:var(--offwhite);padding:var(--space-section) 0;}
   .contact-duo{display:grid;grid-template-columns:1fr 1fr;gap:28px;}
   .contact-person{
     padding:32px 32px 30px;background:#fff;border:1px solid var(--hairline);
     display:flex;flex-direction:column;gap:8px;
   }
+  .contact-person{
+    border-top:var(--card-accent-width) solid var(--petrol);
+  }
   .contact-person .role{
     font-family:var(--sans);font-size:11px;font-weight:600;
-    letter-spacing:0.14em;text-transform:uppercase;color:var(--bordeaux);
+    letter-spacing:0.14em;text-transform:uppercase;color:var(--petrol);
   }
   .contact-person .name{
     font-family:var(--serif);font-weight:500;font-size:24px;line-height:1.2;
@@ -231,8 +207,7 @@ import PageHero from "../components/PageHero.astro";
     .steps-list .when{grid-column:1 / -1;text-align:left;margin-top:6px;}
     .steps-list .num{font-size:30px;}
     .contact-duo{grid-template-columns:1fr;gap:14px;}
-    .ob-hero{min-height:420px;padding:56px 0 48px;}
-    .ob-duwir,.ob-sect,.ob-steps,.ob-contact{padding:56px 0;}
+    .ob-duwir,.ob-sect,.ob-steps,.ob-contact{padding:var(--space-section-sm) 0;}
   }
 
   /* ---------- Photo placeholders (to be replaced by real photos) ---------- */

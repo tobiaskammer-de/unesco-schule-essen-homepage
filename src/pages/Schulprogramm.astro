@@ -4,44 +4,11 @@ import PageHero from "../components/PageHero.astro";
 ---
 <BaseLayout title="Schulprogramm — UNESCO-Schule Essen">
 <style is:global>
-/* ---------- Schulprogramm page ---------- */
-  .sp-hero{
-    position:relative;
-    min-height:520px;
-    display:flex;align-items:flex-end;
-    padding:72px 0 64px;
-    color:var(--creme);
-    overflow:hidden;
-    isolation:isolate;
-  }
-  .sp-hero::before{
-    content:"";position:absolute;inset:0;z-index:-2;
-    background:url('assets/sp-hero.jpg') center/cover no-repeat;
-  }
-  .sp-hero::after{
-    content:"";position:absolute;inset:0;z-index:-1;
-    background:linear-gradient(180deg, rgba(14,77,79,0.55) 0%, rgba(14,77,79,0.85) 80%);
-  }
-  .sp-hero .eyebrow{
-    color:rgba(245,239,231,0.75);display:block;margin-bottom:18px;
-  }
-  .sp-hero h1{
-    font-family:var(--serif);font-weight:500;
-    font-size:clamp(44px,6vw,84px);line-height:1.02;
-    letter-spacing:-0.02em;
-    max-width:1000px;margin:0 0 20px;
-    color:var(--creme);
-  }
-  .sp-hero p.lede{
-    font-family:var(--sans);font-size:18px;line-height:1.6;
-    color:rgba(245,239,231,0.9);
-    max-width:640px;margin:0;
-  }
-
+  /* ---------- Schulprogramm page ---------- */
   /* ---------- Intro ---------- */
   .sp-intro{
     background:var(--creme);
-    padding:96px 0;
+    padding:var(--space-section) 0;
   }
   .sp-intro-grid{
     display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);
@@ -62,7 +29,7 @@ import PageHero from "../components/PageHero.astro";
   /* ---------- Pledge (Selbstverpflichtung) ---------- */
   .sp-pledge{
     background:var(--petrol);color:var(--creme);
-    padding:96px 0;position:relative;overflow:hidden;
+    padding:var(--space-section) 0;position:relative;overflow:hidden;
   }
   .sp-pledge .eyebrow{
     color:rgba(245,239,231,0.6);display:block;margin-bottom:16px;
@@ -104,7 +71,7 @@ import PageHero from "../components/PageHero.astro";
   /* ---------- Leitsätze Intro ---------- */
   .sp-pillars-intro{
     background:var(--offwhite);
-    padding:96px 0 48px;
+    padding:var(--space-section) 0 48px;
   }
   .sp-pillars-intro .eyebrow{display:block;margin-bottom:16px;}
   .sp-pillars-intro h2{
@@ -120,10 +87,10 @@ import PageHero from "../components/PageHero.astro";
     display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-top:32px;
   }
   .sp-pillars-intro .two-cols .card{
-    padding:28px 30px;background:#fff;border:1px solid var(--hairline);
-    border-top:3px solid var(--bordeaux);
+    padding:var(--card-padding);background:#fff;border:1px solid var(--hairline);
+    border-top:var(--card-accent-width) solid var(--petrol);
+    border-radius:var(--card-radius);
   }
-  .sp-pillars-intro .two-cols .card:last-child{border-top-color:var(--gold);}
   .sp-pillars-intro .two-cols h3{
     font-family:var(--serif);font-weight:500;font-size:22px;color:var(--petrol);
     margin:0 0 10px;letter-spacing:-0.01em;
@@ -210,8 +177,7 @@ import PageHero from "../components/PageHero.astro";
     .leitsatz .media{order:-1;aspect-ratio:16/10;}
   }
   @media (max-width:620px){
-    .sp-hero{min-height:420px;padding:48px 0 40px;}
-    .sp-intro,.sp-pledge,.sp-pillars-intro{padding:56px 0;}
+    .sp-intro,.sp-pledge,.sp-pillars-intro{padding:var(--space-section-sm) 0;}
     .sp-leitsaetze{padding:12px 0 72px;}
     .leitsatz{padding:36px 0;}
   }
@@ -286,7 +252,7 @@ import PageHero from "../components/PageHero.astro";
     
       <article class="leitsatz">
         <div class="media">
-          <img src="assets/sp-lernend.jpg" alt="">
+          <img src="assets/sp-lernend.jpg" alt="" width="1000" height="800" loading="lazy">
           <span class="num-badge">01</span>
         </div>
         <div class="body">
@@ -310,7 +276,7 @@ import PageHero from "../components/PageHero.astro";
 
       <article class="leitsatz flip">
         <div class="media">
-          <img src="assets/sp-persoenlich.jpg" alt="">
+          <img src="assets/sp-persoenlich.jpg" alt="" width="1000" height="800" loading="lazy">
           <span class="num-badge">02</span>
         </div>
         <div class="body">
@@ -335,7 +301,7 @@ import PageHero from "../components/PageHero.astro";
 
       <article class="leitsatz">
         <div class="media">
-          <img src="assets/sp-divers.jpg" alt="">
+          <img src="assets/sp-divers.jpg" alt="" width="1000" height="800" loading="lazy">
           <span class="num-badge">03</span>
         </div>
         <div class="body">
@@ -360,7 +326,7 @@ import PageHero from "../components/PageHero.astro";
 
       <article class="leitsatz flip">
         <div class="media">
-          <img src="assets/sp-demokratie.jpg" alt="">
+          <img src="assets/sp-demokratie.jpg" alt="" width="1000" height="800" loading="lazy">
           <span class="num-badge">04</span>
         </div>
         <div class="body">
@@ -385,7 +351,7 @@ import PageHero from "../components/PageHero.astro";
 
       <article class="leitsatz">
         <div class="media">
-          <img src="assets/sp-nachhaltig.jpg" alt="">
+          <img src="assets/sp-nachhaltig.jpg" alt="" width="1000" height="800" loading="lazy">
           <span class="num-badge">05</span>
         </div>
         <div class="body">
@@ -410,7 +376,7 @@ import PageHero from "../components/PageHero.astro";
 
       <article class="leitsatz flip">
         <div class="media">
-          <img src="assets/sp-weltoffen.jpg" alt="">
+          <img src="assets/sp-weltoffen.jpg" alt="" width="1000" height="800" loading="lazy">
           <span class="num-badge">06</span>
         </div>
         <div class="body">
@@ -427,7 +393,7 @@ import PageHero from "../components/PageHero.astro";
 
       <article class="leitsatz">
         <div class="media">
-          <img src="assets/sp-digital.jpg" alt="">
+          <img src="assets/sp-digital.jpg" alt="" width="1000" height="800" loading="lazy">
           <span class="num-badge">07</span>
         </div>
         <div class="body">
@@ -452,7 +418,7 @@ import PageHero from "../components/PageHero.astro";
 
       <article class="leitsatz flip">
         <div class="media">
-          <img src="assets/sp-hero.jpg" alt="">
+          <img src="assets/sp-hero.jpg" alt="" width="1000" height="800" loading="lazy">
           <span class="num-badge">08</span>
         </div>
         <div class="body">

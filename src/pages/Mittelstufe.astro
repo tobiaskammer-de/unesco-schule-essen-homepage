@@ -4,47 +4,9 @@ import PageHero from "../components/PageHero.astro";
 ---
 <BaseLayout title="Mittelstufe (Klassen 7–10) — UNESCO-Schule Essen">
 <style is:global>
-/* ---------- Mittelstufe ---------- */
-  .mi-hero{
-    position:relative;min-height:420px;
-    display:flex;align-items:flex-end;padding:88px 0 56px;
-    background:
-      radial-gradient(ellipse at 20% 10%, rgba(212,165,116,0.16), transparent 50%),
-      radial-gradient(ellipse at 80% 90%, rgba(110,38,57,0.10), transparent 50%),
-      var(--creme);
-    border-bottom:1px solid var(--hairline);overflow:hidden;
-  }
-  .mi-hero::before{
-    content:"";position:absolute;inset:0;
-    background-image:
-      radial-gradient(circle at 25% 30%, rgba(14,77,79,0.04) 1px, transparent 1px),
-      radial-gradient(circle at 75% 70%, rgba(110,38,57,0.03) 1px, transparent 1px);
-    background-size:26px 26px, 34px 34px;opacity:0.7;pointer-events:none;
-  }
-  .mi-hero .container{position:relative;}
-  .mi-hero-grid{
-    display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);
-    gap:56px;align-items:center;
-  }
-  .mi-hero-grid .photo{aspect-ratio:4/5;max-height:440px;}
-  @media (max-width:960px){
-    .mi-hero-grid{grid-template-columns:1fr;gap:32px;}
-    .mi-hero-grid .photo{aspect-ratio:3/2;max-height:260px;}
-  }
-  .mi-hero .eyebrow{display:block;margin-bottom:18px;}
-  .mi-hero h1{
-    font-family:var(--serif);font-weight:500;
-    font-size:clamp(40px,5.2vw,72px);line-height:1.05;letter-spacing:-0.02em;
-    color:var(--petrol);max-width:980px;margin:0 0 20px;
-  }
-  .mi-hero h1 em{font-style:italic;color:var(--bordeaux);}
-  .mi-hero p.lede{
-    font-family:var(--sans);font-size:18px;line-height:1.6;color:var(--stein);
-    max-width:640px;margin:0;
-  }
-
+  /* ---------- Mittelstufe ---------- */
   /* Alert (wichtige Info) */
-  .mi-alert{background:var(--offwhite);padding:96px 0 64px;}
+  .mi-alert{background:var(--offwhite);padding:var(--space-section) 0 var(--space-section-sm);}
   .alert-box{
     background:#fff;border:1px solid var(--hairline);
     border-left:4px solid var(--bordeaux);
@@ -73,7 +35,7 @@ import PageHero from "../components/PageHero.astro";
   .alert-body p strong{color:var(--petrol);}
 
   /* Rules list */
-  .mi-rules{background:var(--offwhite);padding:24px 0 96px;}
+  .mi-rules{background:var(--offwhite);padding:24px 0 var(--space-section);}
   .rules-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px;}
   .rule{
     background:#fff;border:1px solid var(--hairline);
@@ -105,7 +67,7 @@ import PageHero from "../components/PageHero.astro";
   .rule .requirement strong{color:#3a2a10;}
 
   /* Path section */
-  .mi-path{background:var(--creme);padding:96px 0;border-top:1px solid var(--hairline);}
+  .mi-path{background:var(--creme);padding:var(--space-section) 0;border-top:1px solid var(--hairline);}
   .mi-path-grid{
     display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);
     gap:56px;align-items:start;
@@ -125,7 +87,7 @@ import PageHero from "../components/PageHero.astro";
   }
   .mi-path .contact-card .role{
     font-family:var(--sans);font-size:11px;font-weight:600;
-    letter-spacing:0.14em;text-transform:uppercase;color:var(--bordeaux);margin-bottom:6px;
+    letter-spacing:0.14em;text-transform:uppercase;color:var(--petrol);margin-bottom:6px;
   }
   .mi-path .contact-card .title-line{
     font-family:var(--sans);font-size:14px;color:var(--stein);margin-bottom:14px;
@@ -142,8 +104,7 @@ import PageHero from "../components/PageHero.astro";
     .alert-icon{width:60px;height:60px;font-size:30px;}
     .rules-grid{grid-template-columns:1fr;gap:16px;}
     .mi-path-grid{grid-template-columns:1fr;gap:28px;}
-    .mi-alert,.mi-rules,.mi-path{padding:56px 0;}
-    .mi-hero{min-height:340px;padding:48px 0 32px;}
+    .mi-alert,.mi-rules,.mi-path{padding:var(--space-section-sm) 0;}
   }
 
   /* ---------- Photo placeholders (to be replaced by real photos) ---------- */
@@ -205,7 +166,7 @@ import PageHero from "../components/PageHero.astro";
     <div class="mi-path-grid">
       <div>
         <div class="photo">
-          <img src="assets/sp-demokratie.jpg" alt="Beratungsgespräch an der UNESCO-Schule Essen">
+          <img src="assets/sp-demokratie.jpg" alt="Beratungsgespräch an der UNESCO-Schule Essen" width="800" height="1000" loading="lazy">
           <span class="cred">Platzhalter · Foto folgt</span>
         </div>
         <h2>Ihr Weg zu uns.</h2>

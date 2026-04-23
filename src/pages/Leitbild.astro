@@ -4,55 +4,10 @@ import PageHero from "../components/PageHero.astro";
 ---
 <BaseLayout title="Unser Leitbild — UNESCO-Schule Essen">
 <style is:global>
-/* ---------- Leitbild page ---------- */
-  .lb-hero{
-    position:relative;
-    min-height:460px;
-    display:flex;align-items:flex-end;
-    padding:96px 0 64px;
-    background:
-      radial-gradient(ellipse at 20% 15%, rgba(127,176,105,0.12), transparent 55%),
-      radial-gradient(ellipse at 85% 90%, rgba(212,165,116,0.14), transparent 55%),
-      var(--creme);
-    border-bottom:1px solid var(--hairline);
-    overflow:hidden;
-  }
-  .lb-hero::before{
-    content:"";position:absolute;inset:0;z-index:0;
-    background-image:
-      radial-gradient(circle at 25% 30%, rgba(14,77,79,0.04) 1px, transparent 1px),
-      radial-gradient(circle at 75% 70%, rgba(110,38,57,0.03) 1px, transparent 1px);
-    background-size:24px 24px, 32px 32px;
-    opacity:0.7;pointer-events:none;
-  }
-  .lb-hero .container{position:relative;z-index:1;}
-  .lb-hero .eyebrow{display:block;margin-bottom:18px;}
-  .lb-hero h1{
-    font-family:var(--serif);font-weight:500;
-    font-size:clamp(40px,5.2vw,72px);line-height:1.05;
-    letter-spacing:-0.02em;color:var(--petrol);
-    max-width:960px;margin:0 0 22px;
-  }
-  .lb-hero h1 em{font-style:italic;color:var(--bordeaux);}
-  .lb-hero p.lede{
-    font-family:var(--sans);font-size:18px;line-height:1.6;color:var(--stein);
-    max-width:680px;margin:0;
-  }
-  .lb-hero .wip-pill{
-    display:inline-flex;align-items:center;gap:8px;
-    padding:6px 14px;border-radius:999px;
-    background:rgba(212,165,116,0.20);color:#7a5120;
-    font-family:var(--sans);font-size:12px;font-weight:500;letter-spacing:0.08em;
-    text-transform:uppercase;margin-bottom:22px;
-  }
-  .lb-hero .wip-pill .dot{
-    width:7px;height:7px;border-radius:50%;background:#c9831c;
-  }
-
-  /* Motto band */
+  /* ---------- Leitbild page ---------- */
   .lb-motto{
     background:var(--petrol);color:var(--creme);
-    padding:90px 0;
+    padding:var(--space-section) 0;
   }
   .lb-motto .container{text-align:center;max-width:880px;}
   .lb-motto blockquote{
@@ -75,7 +30,7 @@ import PageHero from "../components/PageHero.astro";
   /* Three values */
   .lb-values{
     background:var(--offwhite);
-    padding:96px 0 72px;
+    padding:var(--space-section) 0 var(--space-section-sm);
   }
   .lb-values .head{max-width:760px;margin:0 0 56px;}
   .lb-values .head .eyebrow{display:block;margin-bottom:14px;}
@@ -89,20 +44,17 @@ import PageHero from "../components/PageHero.astro";
   }
   .value-card{
     background:#fff;border:1px solid var(--hairline);
-    padding:36px 32px 34px;
+    border-top:var(--card-accent-width) solid var(--petrol);
+    padding:var(--card-padding);
     display:flex;flex-direction:column;gap:16px;
-    border-top:3px solid var(--bordeaux);
-    transition:transform .3s ease, box-shadow .3s ease;
+    transition:transform var(--transition), box-shadow var(--transition);
   }
-  .value-card:nth-child(2){border-top-color:var(--gold);}
-  .value-card:nth-child(3){border-top-color:var(--sage);}
   .value-card:hover{transform:translateY(-2px);box-shadow:0 14px 36px -22px rgba(14,77,79,0.3);}
+  @media (prefers-reduced-motion: reduce){.value-card:hover{transform:none;}}
   .value-card .num{
     font-family:var(--serif);font-weight:500;font-size:28px;line-height:1;
-    color:var(--bordeaux);letter-spacing:-0.02em;
+    color:var(--petrol);letter-spacing:-0.02em;
   }
-  .value-card:nth-child(2) .num{color:#8a5a20;}
-  .value-card:nth-child(3) .num{color:#3e6b2a;}
   .value-card h3{
     font-family:var(--serif);font-weight:500;font-size:24px;line-height:1.2;
     color:var(--petrol);letter-spacing:-0.01em;margin:0;
@@ -114,7 +66,7 @@ import PageHero from "../components/PageHero.astro";
   /* Timeline / path */
   .lb-path{
     background:var(--creme);
-    padding:96px 0;position:relative;overflow:hidden;
+    padding:var(--space-section) 0;position:relative;overflow:hidden;
   }
   .lb-path::before{
     content:"";position:absolute;inset:0;
@@ -150,7 +102,7 @@ import PageHero from "../components/PageHero.astro";
   .stage:last-child{border-right:0;}
   .stage .klassen{
     font-family:var(--sans);font-size:11.5px;font-weight:600;
-    letter-spacing:0.14em;text-transform:uppercase;color:var(--bordeaux);
+    letter-spacing:0.14em;text-transform:uppercase;color:var(--petrol);
   }
   .stage h3{
     font-family:var(--serif);font-weight:500;font-size:26px;line-height:1.15;
@@ -168,7 +120,7 @@ import PageHero from "../components/PageHero.astro";
   /* CTA */
   .lb-cta{
     background:var(--offwhite);
-    padding:88px 0 104px;
+    padding:var(--space-section) 0;
     border-top:1px solid var(--hairline);
   }
   .lb-cta-grid{

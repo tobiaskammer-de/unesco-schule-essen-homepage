@@ -80,8 +80,8 @@ import BaseLayout from "../layouts/BaseLayout.astro";
   .badge-kunst{background:rgba(212,165,116,0.22);color:#7a5120;}
   .badge-sport{background:rgba(14,77,79,0.10);color:var(--petrol);}
   .news-card h3{
-    color:var(--petrol);font-size:19px;line-height:1.3;
-    font-family:var(--sans);font-weight:600;
+    color:var(--petrol);font-size:20px;line-height:1.25;
+    font-family:var(--serif);font-weight:500;letter-spacing:-0.005em;
     margin:0;
   }
   .news-card:hover h3{color:var(--petrol-dark);}
@@ -107,6 +107,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
   .date-row .date-main{
     font-family:var(--serif);font-weight:500;font-size:26px;
     color:var(--petrol);line-height:1;letter-spacing:-0.01em;
+    font-variant-numeric:tabular-nums;
   }
   .date-row .date-sub{
     font-family:var(--sans);font-size:12px;color:var(--stein);
@@ -342,7 +343,8 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         <!-- Dummy hero image: Unsplash, warm/petrol tones, editorial -->
         <img id="heroImage"
              src="assets/hero.jpeg"
-             alt="Bibliothek mit geschwungenen Bücherregalen">
+             alt="Bibliothek mit geschwungenen Bücherregalen"
+             width="960" height="900" fetchpriority="high">
         <span class="cred">Platzhalter · Foto-Shoot folgt</span>
       </div>
       <div class="hero-text">
@@ -376,7 +378,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
           <!-- Featured: UNESCO-Projekttag -->
           <a href="#" class="news-card featured">
             <div class="thumb">
-              <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1000&q=70" alt="UNESCO-Projekttag Grenzen überwinden">
+              <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1000&q=70" alt="UNESCO-Projekttag Grenzen überwinden" width="1000" height="800" loading="lazy">
             </div>
             <div>
               <div class="news-meta">
@@ -391,7 +393,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
           <!-- Aalto-Kooperation -->
           <a href="#" class="news-card">
             <div class="thumb">
-              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=70" alt="Aalto-Theater Essen">
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=70" alt="Aalto-Theater Essen" width="800" height="600" loading="lazy">
             </div>
             <div>
               <div class="news-meta">
@@ -406,7 +408,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
           <!-- DELF-Zertifikate -->
           <a href="#" class="news-card">
             <div class="thumb">
-              <img src="https://images.unsplash.com/photo-1568667256549-094345857637?auto=format&fit=crop&w=800&q=70" alt="DELF Französisch-Zertifikate">
+              <img src="https://images.unsplash.com/photo-1568667256549-094345857637?auto=format&fit=crop&w=800&q=70" alt="DELF Französisch-Zertifikate" width="800" height="600" loading="lazy">
             </div>
             <div>
               <div class="news-meta">
@@ -574,21 +576,21 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     </div>
 
     <ul class="partners-logos">
-      <li><a class="partner-logo" href="https://www.unesco.de/bildung/unesco-projektschulen" target="_blank" rel="noopener" title="UNESCO-Projektschulen"><img src="assets/partners/unesco.png" alt="UNESCO-Projektschulen"></a></li>
-      <li><a class="partner-logo" href="https://www.uni-due.de" target="_blank" rel="noopener" title="Universität Duisburg-Essen"><img src="assets/partners/uni-due.png" alt="Universität Duisburg-Essen"></a></li>
-      <li><a class="partner-logo" href="https://www.theater-essen.de" target="_blank" rel="noopener" title="Theater und Philharmonie Essen"><img src="assets/partners/tup.png" alt="Theater und Philharmonie Essen"></a></li>
-      <li><a class="partner-logo" href="https://www.stifterverband.org" target="_blank" rel="noopener" title="Stifterverband"><img src="assets/partners/stifterverband.png" alt="Stifterverband"></a></li>
-      <li><a class="partner-logo" href="https://www.contact-essen.de" target="_blank" rel="noopener" title="Contact — Kommunikation · Sport · Event"><img src="assets/partners/contact.png" alt="Contact"></a></li>
-      <li><a class="partner-logo" href="https://www.arbeitsagentur.de/vor-ort/essen/startseite" target="_blank" rel="noopener" title="Agentur für Arbeit Essen"><img src="assets/partners/agentur-arbeit.png" alt="Agentur für Arbeit Essen"></a></li>
-      <li><a class="partner-logo" href="https://www.cse.de" target="_blank" rel="noopener" title="CSE"><img src="assets/partners/cse.png" alt="CSE"></a></li>
-      <li><a class="partner-logo" href="https://www.goldschmidt.com" target="_blank" rel="noopener" title="Goldschmidt Thermit Group"><img src="assets/partners/goldschmidt-thermit.png" alt="Goldschmidt Thermit Group"></a></li>
-      <li><a class="partner-logo" href="https://www.theater-essen.de/philharmonie" target="_blank" rel="noopener" title="Essener Philharmoniker"><img src="assets/partners/philharmoniker.png" alt="Essener Philharmoniker"></a></li>
-      <li><a class="partner-logo" href="https://www.jugendhilfe-essen.de" target="_blank" rel="noopener" title="Jugendhilfe Essen"><img src="assets/partners/jhe.png" alt="jhe"></a></li>
-      <li><a class="partner-logo" href="https://goldschmidt-stiftung.de" target="_blank" rel="noopener" title="Goldschmidt Stiftung"><img src="assets/partners/goldschmidt-stiftung.png" alt="Goldschmidt Stiftung"></a></li>
-      <li><a class="partner-logo" href="https://www.rotary-essen.de" target="_blank" rel="noopener" title="Rotary Club Essen"><img src="assets/partners/rotary.png" alt="Rotary Club Essen"></a></li>
-      <li><a class="partner-logo" href="https://www.archenoah-essen.de" target="_blank" rel="noopener" title="Arche Noah Essen"><img src="assets/partners/arche-noah.png" alt="Arche Noah Essen"></a></li>
-      <li><a class="partner-logo" href="https://www.wdr.de" target="_blank" rel="noopener" title="WDR"><img src="assets/partners/wdr.png" alt="WDR"></a></li>
-      <li><a class="partner-logo" href="https://www.iwc-essen-nord.de" target="_blank" rel="noopener" title="IWC Essen-Nord"><img src="assets/partners/iwc.png" alt="IWC Essen-Nord"></a></li>
+      <li><a class="partner-logo" href="https://www.unesco.de/bildung/unesco-projektschulen" target="_blank" rel="noopener" title="UNESCO-Projektschulen"><img src="assets/partners/unesco.png" alt="UNESCO-Projektschulen" width="200" height="80" loading="lazy"></a></li>
+      <li><a class="partner-logo" href="https://www.uni-due.de" target="_blank" rel="noopener" title="Universität Duisburg-Essen"><img src="assets/partners/uni-due.png" alt="Universität Duisburg-Essen" width="200" height="80" loading="lazy"></a></li>
+      <li><a class="partner-logo" href="https://www.theater-essen.de" target="_blank" rel="noopener" title="Theater und Philharmonie Essen"><img src="assets/partners/tup.png" alt="Theater und Philharmonie Essen" width="200" height="80" loading="lazy"></a></li>
+      <li><a class="partner-logo" href="https://www.stifterverband.org" target="_blank" rel="noopener" title="Stifterverband"><img src="assets/partners/stifterverband.png" alt="Stifterverband" width="200" height="80" loading="lazy"></a></li>
+      <li><a class="partner-logo" href="https://www.contact-essen.de" target="_blank" rel="noopener" title="Contact — Kommunikation · Sport · Event"><img src="assets/partners/contact.png" alt="Contact" width="200" height="80" loading="lazy"></a></li>
+      <li><a class="partner-logo" href="https://www.arbeitsagentur.de/vor-ort/essen/startseite" target="_blank" rel="noopener" title="Agentur für Arbeit Essen"><img src="assets/partners/agentur-arbeit.png" alt="Agentur für Arbeit Essen" width="200" height="80" loading="lazy"></a></li>
+      <li><a class="partner-logo" href="https://www.cse.de" target="_blank" rel="noopener" title="CSE"><img src="assets/partners/cse.png" alt="CSE" width="200" height="80" loading="lazy"></a></li>
+      <li><a class="partner-logo" href="https://www.goldschmidt.com" target="_blank" rel="noopener" title="Goldschmidt Thermit Group"><img src="assets/partners/goldschmidt-thermit.png" alt="Goldschmidt Thermit Group" width="200" height="80" loading="lazy"></a></li>
+      <li><a class="partner-logo" href="https://www.theater-essen.de/philharmonie" target="_blank" rel="noopener" title="Essener Philharmoniker"><img src="assets/partners/philharmoniker.png" alt="Essener Philharmoniker" width="200" height="80" loading="lazy"></a></li>
+      <li><a class="partner-logo" href="https://www.jugendhilfe-essen.de" target="_blank" rel="noopener" title="Jugendhilfe Essen"><img src="assets/partners/jhe.png" alt="jhe" width="200" height="80" loading="lazy"></a></li>
+      <li><a class="partner-logo" href="https://goldschmidt-stiftung.de" target="_blank" rel="noopener" title="Goldschmidt Stiftung"><img src="assets/partners/goldschmidt-stiftung.png" alt="Goldschmidt Stiftung" width="200" height="80" loading="lazy"></a></li>
+      <li><a class="partner-logo" href="https://www.rotary-essen.de" target="_blank" rel="noopener" title="Rotary Club Essen"><img src="assets/partners/rotary.png" alt="Rotary Club Essen" width="200" height="80" loading="lazy"></a></li>
+      <li><a class="partner-logo" href="https://www.archenoah-essen.de" target="_blank" rel="noopener" title="Arche Noah Essen"><img src="assets/partners/arche-noah.png" alt="Arche Noah Essen" width="200" height="80" loading="lazy"></a></li>
+      <li><a class="partner-logo" href="https://www.wdr.de" target="_blank" rel="noopener" title="WDR"><img src="assets/partners/wdr.png" alt="WDR" width="200" height="80" loading="lazy"></a></li>
+      <li><a class="partner-logo" href="https://www.iwc-essen-nord.de" target="_blank" rel="noopener" title="IWC Essen-Nord"><img src="assets/partners/iwc.png" alt="IWC Essen-Nord" width="200" height="80" loading="lazy"></a></li>
     </ul>
 
     <p class="partners-foot">
