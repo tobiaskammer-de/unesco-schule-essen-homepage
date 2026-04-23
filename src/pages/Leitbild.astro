@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHero from "../components/PageHero.astro";
 ---
 <BaseLayout title="Unser Leitbild — UNESCO-Schule Essen">
 <style is:global>
@@ -197,13 +198,12 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
 <main id="top">
 
-<section class="lb-hero" aria-label="Unser Leitbild">
-  <div class="container">
-    <span class="eyebrow">Über Uns · Unser Leitbild</span>
-    <h1>Unser Leitbild<br>wächst <em>mit uns.</em></h1>
-    <p class="lede">Mit dem Start der Erprobungsstufe ab Klasse 5 entwickeln wir unser Schulprofil weiter. Das aktuelle Leitbild wird derzeit überarbeitet — gemeinsam mit Kollegium, Eltern und Schülerschaft. Bis dahin gilt: Was Sie hier lesen, zeigt, woher wir kommen. Wohin wir gehen, erleben Sie am besten vor Ort.</p>
-  </div>
-</section>
+<PageHero variant="feature">
+  <Fragment slot="badge">Work in Progress · Leitbild in Überarbeitung</Fragment>
+  <Fragment slot="eyebrow">Über Uns · Unser Leitbild</Fragment>
+  <Fragment slot="title">Unser Leitbild<br>wächst <em>mit uns.</em></Fragment>
+  <Fragment slot="lede">Mit dem Start der Erprobungsstufe ab Klasse 5 entwickeln wir unser Schulprofil weiter. Das aktuelle Leitbild wird derzeit überarbeitet — gemeinsam mit Kollegium, Eltern und Schülerschaft. Bis dahin gilt: Was Sie hier lesen, zeigt, woher wir kommen. Wohin wir gehen, erleben Sie am besten vor Ort.</Fragment>
+</PageHero>
 
 <section class="lb-motto" aria-label="Unser Motto">
   <div class="container">

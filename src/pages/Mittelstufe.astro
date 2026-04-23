@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHero from "../components/PageHero.astro";
 ---
 <BaseLayout title="Mittelstufe (Klassen 7–10) — UNESCO-Schule Essen">
 <style is:global>
@@ -160,21 +161,11 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
 <main id="top">
 
-<section class="mi-hero" aria-label="Mittelstufe">
-  <div class="container">
-    <div class="mi-hero-grid">
-      <div>
-        <span class="eyebrow">Unterricht · Mittelstufe · Klasse 7 – 10</span>
-        <h1>Die <em>Mittelstufe.</em><br>Klasse 7 bis 10.</h1>
-        <p class="lede">Fundiertes Wissen, methodische Klarheit und Zeit, den eigenen Weg zu finden — die Mittelstufe ist die tragende Phase zwischen Ankommen und Oberstufe.</p>
-      </div>
-      <div class="photo">
-        <img src="assets/sp-lernend.jpg" alt="Mittelstufe der UNESCO-Schule Essen">
-        <span class="cred">Platzhalter · Foto folgt</span>
-      </div>
-    </div>
-  </div>
-</section>
+<PageHero variant="feature" image="assets/sp-lernend.jpg" imageAlt="" imageCredit="Platzhalter · Foto folgt">
+  <Fragment slot="eyebrow">Unterricht · Mittelstufe · Klasse 7 – 10</Fragment>
+  <Fragment slot="title">Die <em>Mittelstufe.</em><br>Klasse 7 bis 10.</Fragment>
+  <Fragment slot="lede">Fundiertes Wissen, methodische Klarheit und Zeit, den eigenen Weg zu finden — die Mittelstufe ist die tragende Phase zwischen Ankommen und Oberstufe.</Fragment>
+</PageHero>
 
 <section class="mi-alert" aria-label="Wichtige Information zur Aufnahme">
   <div class="container">

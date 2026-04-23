@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHero from "../components/PageHero.astro";
 ---
 <BaseLayout title="Förderverein — UNESCO-Schule Essen">
 <style is:global>
@@ -155,14 +156,12 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
 <main id="top">
 
-<section class="fv-hero" aria-label="Förderverein">
-  <div class="container">
-    <span class="meta"><span class="dot"></span>Gemeinnützig · gegründet 2007</span>
-    <span class="eyebrow">Über Uns · Förderverein</span>
-    <h1>Der Förderverein —<br><em>mehr möglich machen.</em></h1>
-    <p class="lede">Als gemeinnützig anerkannter Verein unterstützt der Förderverein die pädagogische Arbeit an der UNESCO-Schule und macht Projekte möglich, die über das reguläre Schulbudget hinausgehen.</p>
-  </div>
-</section>
+<PageHero variant="page">
+  <Fragment slot="badge">Gemeinnützig · gegründet 2007</Fragment>
+  <Fragment slot="eyebrow">Über Uns · Förderverein</Fragment>
+  <Fragment slot="title">Der Förderverein —<br><em>mehr möglich machen.</em></Fragment>
+  <Fragment slot="lede">Als gemeinnützig anerkannter Verein unterstützt der Förderverein die pädagogische Arbeit an der UNESCO-Schule und macht Projekte möglich, die über das reguläre Schulbudget hinausgehen.</Fragment>
+</PageHero>
 
 <section class="fv-purpose" aria-label="Zweck des Fördervereins">
   <div class="container">

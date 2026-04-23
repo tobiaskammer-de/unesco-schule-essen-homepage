@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHero from "../components/PageHero.astro";
 ---
 <BaseLayout title="Ehemalige — UNESCO-Schule Essen">
 <style is:global>
@@ -128,13 +129,11 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
 <main id="top">
 
-<section class="eh-hero" aria-label="Ehemalige">
-  <div class="container">
-    <span class="eyebrow">Über Uns · Ehemalige</span>
-    <h1>Einmal UNESCO —<br>immer <em>verbunden.</em></h1>
-    <p class="lede">Egal, ob dein Abitur ein Jahr oder fünfzig Jahre zurückliegt — ein Wiedersehen macht Freude. Bleib in Kontakt mit deiner alten Schule.</p>
-  </div>
-</section>
+<PageHero variant="feature">
+  <Fragment slot="eyebrow">Über Uns · Ehemalige</Fragment>
+  <Fragment slot="title">Einmal UNESCO —<br>immer <em>verbunden.</em></Fragment>
+  <Fragment slot="lede">Egal, ob dein Abitur ein Jahr oder fünfzig Jahre zurückliegt — ein Wiedersehen macht Freude. Bleib in Kontakt mit deiner alten Schule.</Fragment>
+</PageHero>
 
 <section class="eh-statement" aria-label="Unser Versprechen">
   <div class="container">

@@ -1,0 +1,130 @@
+---
+/**
+ * Einheitlicher Unterseiten-Hero.
+ *
+ * variant:
+ *   "feature" — dunkel, vollbreit, creme-Text. Mit Bild ODER Gradient.
+ *               (für Hauptrubriken: Identität, Schulstufen, große Inhalte)
+ *   "page"    — hell, creme-Hintergrund, petrol-Text.
+ *               (für Service-/Übersichtsseiten: Aktuelles, Anfahrt,
+ *                Förderverein, Schulleitung)
+ *
+ * image:       Pfad zum Hero-Bild. Wenn nicht gesetzt, nutzt "feature" einen
+ *              dekorativen Gradient. Ignoriert bei "page".
+ * imageAlt:    Alt-Text (leer = dekorativ).
+ * imageCredit: optionaler Credit-Text unten rechts.
+ *
+ * Slots:
+ *   eyebrow — kleine Kicker-Zeile über der Überschrift (optional)
+ *   badge   — zusätzlicher Status-Badge (z. B. "Work in Progress")
+ *   title   — H1-Inhalt, HTML erlaubt (<em>, <span class="accent">)
+ *   lede    — Lede-Absatz
+ *   actions — Button/Link-Reihe unter dem Lede
+ *   extra   — Zusätzlicher Block (z. B. Filter-Chips)
+ */
+
+interface Props {
+  variant?: "feature" | "page";
+  image?: string;
+  imageAlt?: string;
+  imageCredit?: string;
+}
+
+const {
+  variant = "feature",
+  image,
+  imageAlt = "",
+  imageCredit,
+} = Astro.props;
+
+const hasImage = Boolean(image) && variant === "feature";
+const heroClass =
+  variant === "page"
+    ? "page-hero page-hero--light"
+    : hasImage
+    ? "page-hero"
+    : "page-hero page-hero--no-image";
+---
+<section class={heroClass}>
+  {hasImage && (
+    <img
+      class="page-hero__bg"
+      src={image}
+      alt={imageAlt}
+      width="1920"
+      height="1080"
+      loading="eager"
+      fetchpriority="high"
+      aria-hidden={imageAlt ? undefined : "true"}
+    />
+  )}
+  <div class="container">
+    {Astro.slots.has("eyebrow") && (
+      <span class="eyebrow"><slot name="eyebrow" /></span>
+    )}
+    {Astro.slots.has("badge") && (
+      <div class="hero-badge"><slot name="badge" /></div>
+    )}
+    <h1><slot name="title" /></h1>
+    {Astro.slots.has("lede") && (
+      <p class="lede"><slot name="lede" /></p>
+    )}
+    {Astro.slots.has("actions") && (
+      <div class="hero-actions"><slot name="actions" /></div>
+    )}
+    {Astro.slots.has("extra") && (
+      <div class="hero-extra"><slot name="extra" /></div>
+    )}
+  </div>
+  {imageCredit && (
+    <span class="cred">{imageCredit}</span>
+  )}
+</section>
+
+<style is:global>
+  /* Real <img> as background */
+  .page-hero__bg{
+    position:absolute;inset:0;z-index:-2;
+    width:100%;height:100%;object-fit:cover;
+  }
+
+  /* Light variant (creme background, petrol text) */
+  .page-hero--light{
+    background:var(--creme);
+    color:var(--tinte);
+    min-height:auto;
+    padding:96px 0 64px;
+    align-items:flex-start;
+    border-bottom:1px solid var(--hairline);
+  }
+  .page-hero--light::before{
+    background-image:
+      radial-gradient(ellipse at 15% 10%, rgba(127,176,105,0.10), transparent 45%),
+      radial-gradient(ellipse at 85% 90%, rgba(212,165,116,0.10), transparent 50%),
+      var(--creme);
+  }
+  .page-hero--light::after{display:none;}
+  .page-hero--light .eyebrow{color:var(--bordeaux);}
+  .page-hero--light h1{color:var(--petrol);}
+  .page-hero--light h1 em, .page-hero--light h1 .accent{color:var(--bordeaux);}
+  .page-hero--light .lede{color:var(--stein);}
+
+  /* Shared extras */
+  .hero-badge{
+    display:inline-flex;align-items:center;gap:8px;
+    margin-bottom:18px;
+    font-family:var(--sans);font-size:12px;font-weight:500;
+    letter-spacing:0.1em;text-transform:uppercase;
+    padding:6px 12px;border-radius:999px;
+    background:rgba(212,165,116,0.18);color:var(--gold);
+    border:1px solid rgba(212,165,116,0.35);
+  }
+  .page-hero--light .hero-badge{
+    background:rgba(212,165,116,0.22);color:#7a5120;
+    border-color:rgba(212,165,116,0.45);
+  }
+  .hero-extra{margin-top:32px;}
+  @media (max-width:960px){
+    .page-hero--light{padding:72px 0 48px;}
+  }
+</style>

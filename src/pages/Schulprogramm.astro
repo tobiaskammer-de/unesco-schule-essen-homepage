@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHero from "../components/PageHero.astro";
 ---
 <BaseLayout title="Schulprogramm — UNESCO-Schule Essen">
 <style is:global>
@@ -218,13 +219,11 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
 <main id="top">
 
-<section class="sp-hero" aria-label="Schulprogramm">
-  <div class="container">
-    <span class="eyebrow">Profil · Schulprogramm</span>
-    <h1>Gemeinsam lernen,<br>den eigenen Weg finden.</h1>
-    <p class="lede">Unser Schulprogramm — das, was uns trägt. Ein Leitbild, das aus einer Überzeugung wächst: Schule muss beides sein — ein Ort der Sicherheit für die Zukunft und ein Freiraum, in dem junge Menschen heute schon ganz sie selbst sein dürfen.</p>
-  </div>
-</section>
+<PageHero variant="feature" image="assets/sp-hero.jpg" imageAlt="">
+  <Fragment slot="eyebrow">Profil · Schulprogramm</Fragment>
+  <Fragment slot="title">Gemeinsam lernen,<br>den eigenen Weg finden.</Fragment>
+  <Fragment slot="lede">Unser Schulprogramm — das, was uns trägt. Ein Leitbild, das aus einer Überzeugung wächst: Schule muss beides sein — ein Ort der Sicherheit für die Zukunft und ein Freiraum, in dem junge Menschen heute schon ganz sie selbst sein dürfen.</Fragment>
+</PageHero>
 
 
 <section class="sp-intro">
