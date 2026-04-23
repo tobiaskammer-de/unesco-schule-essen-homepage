@@ -11,8 +11,9 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^5.0.0",
+    "@fontsource/fraunces": "^5.1.0",
     "@fontsource/inter": "^5.1.0",
-    "@fontsource/fraunces": "^5.1.0"
+    "astro": "^5.0.0",
+    "node-ical": "^0.26.0"
   }
 }
