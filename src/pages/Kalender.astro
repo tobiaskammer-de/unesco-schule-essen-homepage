@@ -385,6 +385,7 @@ const lastUpdated = new Intl.DateTimeFormat("de-DE", {
         if (!wasOpen) day.classList.add('is-open');
       });
     });
+
     // Keyboard-Navigation
     document.addEventListener('keydown', function(e){
       if (e.target && (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA')) return;
