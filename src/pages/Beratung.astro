@@ -1,0 +1,376 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHero from "../components/PageHero.astro";
+---
+<BaseLayout title="Beratung und Unterstützung — UNESCO-Schule Essen">
+<style is:global>
+  /* ---------- Beratung & Unterstützung ---------- */
+  .br-intro{background:var(--creme);padding:var(--space-section) 0;}
+  .br-intro-grid{
+    display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);
+    gap:56px;align-items:start;
+  }
+  .br-intro h2{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(30px,3.4vw,44px);line-height:1.1;
+    color:var(--petrol);letter-spacing:-0.015em;margin:0;
+  }
+  .br-intro p{
+    font-family:var(--sans);font-size:17px;line-height:1.7;color:var(--tinte);
+    margin:0 0 16px;
+  }
+  .br-intro p em{font-style:italic;color:var(--bordeaux);}
+  .br-intro .pledge{
+    background:rgba(212,165,116,0.16);border-left:3px solid var(--gold);
+    padding:14px 18px;font-family:var(--serif);font-style:italic;font-size:17px;
+    color:var(--tinte);line-height:1.55;margin:22px 0 0;
+  }
+
+  /* Overview 3-cards */
+  .br-overview{background:var(--offwhite);padding:var(--space-section) 0;border-top:1px solid var(--hairline);}
+  .br-overview .head{max-width:780px;margin:0 0 48px;}
+  .br-overview .head .eyebrow{display:block;margin-bottom:14px;}
+  .br-overview .head h2{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(30px,3.2vw,44px);line-height:1.15;letter-spacing:-0.015em;
+    color:var(--petrol);margin:0;
+  }
+  .br-overview-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;}
+  .br-nav-card{
+    background:#fff;border:1px solid var(--hairline);
+    border-top:var(--card-accent-width) solid var(--petrol);
+    padding:28px 28px;display:flex;flex-direction:column;gap:10px;
+    text-decoration:none;color:inherit;
+    transition:transform var(--transition), box-shadow var(--transition);
+  }
+  .br-nav-card:hover{transform:translateY(-2px);box-shadow:0 14px 34px -22px rgba(14,77,79,0.28);}
+  @media (prefers-reduced-motion: reduce){.br-nav-card:hover{transform:none;}}
+  .br-nav-card .label{
+    font-family:var(--sans);font-size:11px;font-weight:600;
+    letter-spacing:0.14em;text-transform:uppercase;color:var(--petrol);
+  }
+  .br-nav-card h3{
+    font-family:var(--serif);font-weight:500;font-size:22px;line-height:1.2;
+    color:var(--petrol);letter-spacing:-0.008em;margin:0;
+  }
+  .br-nav-card p{
+    font-family:var(--sans);font-size:14.5px;line-height:1.6;color:var(--stein);margin:0;flex:1;
+  }
+  .br-nav-card .go{
+    align-self:flex-start;margin-top:6px;
+    font-family:var(--sans);font-size:13.5px;font-weight:500;color:var(--bordeaux);
+    border-bottom:1px solid currentColor;padding-bottom:2px;
+  }
+
+  /* Detail section */
+  .br-section{padding:var(--space-section) 0;border-top:1px solid var(--hairline);scroll-margin-top:120px;}
+  .br-section.alt{background:var(--creme);}
+  .br-section.dark{background:var(--petrol);color:var(--creme);}
+  .br-section.dark h2,.br-section.dark h3,.br-section.dark h4{color:var(--creme);}
+  .br-section .head{max-width:820px;margin:0 0 40px;}
+  .br-section .head .eyebrow{display:block;margin-bottom:14px;}
+  .br-section.dark .head .eyebrow{color:var(--gold);}
+  .br-section .head h2{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(30px,3.4vw,48px);line-height:1.1;letter-spacing:-0.015em;
+    color:var(--petrol);margin:0 0 16px;
+  }
+  .br-section.dark .head h2{color:var(--creme);}
+  .br-section .head h2 em{font-style:italic;color:var(--bordeaux);}
+  .br-section.dark .head h2 em{color:var(--gold);}
+  .br-section .head .lede{
+    font-family:var(--sans);font-size:17px;line-height:1.65;color:var(--stein);
+    max-width:720px;margin:0;
+  }
+  .br-section.dark .head .lede{color:rgba(245,239,231,0.88);}
+
+  .br-split{
+    display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);
+    gap:48px;align-items:start;
+  }
+
+  /* Q&A list ("Wer? / Wie? / Wobei? / Wo?") */
+  .br-qa{
+    display:grid;grid-template-columns:1fr;gap:2px;
+    background:var(--hairline);border:1px solid var(--hairline);
+  }
+  .br-section.dark .br-qa{
+    background:rgba(245,239,231,0.18);border-color:rgba(245,239,231,0.18);
+  }
+  .br-qa .row{
+    background:#fff;padding:22px 26px;
+    display:grid;grid-template-columns:minmax(0,160px) minmax(0,1fr);gap:22px;align-items:baseline;
+  }
+  .br-section.alt .br-qa .row{background:#fff;}
+  .br-section.dark .br-qa .row{background:var(--petrol);}
+  .br-qa .q{
+    font-family:var(--sans);font-size:11.5px;font-weight:600;
+    letter-spacing:0.14em;text-transform:uppercase;color:var(--petrol);
+  }
+  .br-section.dark .br-qa .q{color:var(--gold);}
+  .br-qa .a{
+    font-family:var(--sans);font-size:15.5px;line-height:1.65;color:var(--tinte);
+  }
+  .br-section.dark .br-qa .a{color:rgba(245,239,231,0.92);}
+
+  /* Topic tag list */
+  .br-topics{
+    list-style:none;margin:0;padding:0;
+    display:flex;flex-wrap:wrap;gap:6px;
+  }
+  .br-topics li{
+    background:var(--creme);color:var(--tinte);border:1px solid var(--hairline);
+    padding:5px 12px;font-family:var(--sans);font-size:13px;line-height:1.3;
+  }
+  .br-section.alt .br-topics li{background:#fff;}
+  .br-section.dark .br-topics li{
+    background:rgba(245,239,231,0.08);color:var(--creme);
+    border-color:rgba(245,239,231,0.2);
+  }
+
+  /* Person card */
+  .br-person{
+    background:#fff;border:1px solid var(--hairline);
+    border-top:var(--card-accent-width) solid var(--petrol);
+    padding:32px 32px 28px;
+    display:flex;flex-direction:column;gap:14px;
+  }
+  .br-section.dark .br-person{
+    background:rgba(245,239,231,0.06);border-color:rgba(245,239,231,0.2);
+    border-top-color:var(--gold);
+  }
+  .br-person .avatar{
+    width:84px;height:84px;border-radius:50%;background:var(--petrol);
+    display:flex;align-items:center;justify-content:center;
+    font-family:var(--serif);font-weight:500;font-size:28px;color:var(--creme);
+    letter-spacing:-0.01em;
+  }
+  .br-section.dark .br-person .avatar{background:var(--gold);color:#2a1d08;}
+  .br-person .role{
+    font-family:var(--sans);font-size:11px;font-weight:600;
+    letter-spacing:0.14em;text-transform:uppercase;color:var(--petrol);
+  }
+  .br-section.dark .br-person .role{color:var(--gold);}
+  .br-person .name{
+    font-family:var(--serif);font-weight:500;font-size:24px;color:var(--petrol);
+    letter-spacing:-0.01em;margin:0;
+  }
+  .br-section.dark .br-person .name{color:var(--creme);}
+  .br-person .sub{
+    font-family:var(--sans);font-size:14.5px;color:var(--stein);margin:0;
+  }
+  .br-section.dark .br-person .sub{color:rgba(245,239,231,0.78);}
+  .br-person .room{
+    font-family:var(--sans);font-size:14px;color:var(--stein);
+    padding-top:12px;border-top:1px solid var(--hairline);
+  }
+  .br-section.dark .br-person .room{
+    color:rgba(245,239,231,0.78);border-top-color:rgba(245,239,231,0.18);
+  }
+  .br-person .actions{
+    display:flex;flex-wrap:wrap;gap:10px;margin-top:4px;
+  }
+  .br-person .btn-mail{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:11px 18px;
+    background:var(--petrol);color:var(--creme);
+    font-family:var(--sans);font-weight:500;font-size:14px;
+    border:1.5px solid var(--petrol);
+    transition:background var(--transition-fast);white-space:nowrap;
+  }
+  .br-person .btn-mail:hover{background:var(--petrol-dark);color:var(--creme);}
+  .br-section.dark .br-person .btn-mail{
+    background:var(--gold);color:#2a1d08;border-color:var(--gold);
+  }
+  .br-section.dark .br-person .btn-mail:hover{background:#e0b68a;color:#2a1d08;}
+
+  /* Concerns list (Schulsozialarbeit) */
+  .br-concerns{
+    list-style:none;margin:0;padding:0;
+    display:grid;grid-template-columns:1fr 1fr;gap:8px 28px;
+  }
+  .br-concerns li{
+    position:relative;padding:8px 0 8px 22px;
+    font-family:var(--serif);font-style:italic;font-size:16px;line-height:1.5;
+    color:rgba(245,239,231,0.92);
+    border-bottom:1px solid rgba(245,239,231,0.15);
+  }
+  .br-concerns li::before{
+    content:"…";position:absolute;left:0;top:8px;
+    color:var(--gold);font-style:normal;
+  }
+
+  @media (max-width:960px){
+    .br-intro-grid{grid-template-columns:1fr;gap:28px;}
+    .br-overview-grid{grid-template-columns:1fr;gap:14px;}
+    .br-split{grid-template-columns:1fr;gap:28px;}
+    .br-qa .row{grid-template-columns:1fr;gap:4px;}
+    .br-concerns{grid-template-columns:1fr;}
+    .br-intro,.br-overview,.br-section{padding:var(--space-section-sm) 0;}
+  }
+</style>
+
+<main id="top">
+
+<PageHero variant="feature">
+  <Fragment slot="eyebrow">Angebote · Beratung &amp; Mitbestimmung</Fragment>
+  <Fragment slot="title">Beratung und<br><em>Unterstützung.</em></Fragment>
+  <Fragment slot="lede">Schule ist mehr als Unterricht. Wir hören zu, wenn's schwierig wird — vertraulich, auf Augenhöhe und mit klaren Ansprechpersonen für jede Situation.</Fragment>
+</PageHero>
+
+<section class="br-intro" aria-label="Einordnung">
+  <div class="container">
+    <div class="br-intro-grid">
+      <div>
+        <h2>Wer uns braucht, <em>findet uns.</em></h2>
+      </div>
+      <div>
+        <p>Ob Lernschwierigkeiten, Mobbing, Sorgen zu Hause, die Frage nach dem richtigen Studium oder Schulangst — bei uns gibt es für jede Situation jemanden, der zuhört.</p>
+        <p>Drei feste Anlaufstellen ergänzen sich: der <strong>Beratungslehrer</strong>, der <strong>Talentscout</strong> der Universität Duisburg-Essen und die <strong>Schulsozialarbeit</strong>. Alle Gespräche sind vertraulich.</p>
+        <p class="pledge">Für Beratung und Schulsozialarbeit gilt die Schweigepflicht. Du kannst über alles reden, was dich bedrückt.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="br-overview" aria-label="Drei Anlaufstellen">
+  <div class="container">
+    <div class="head">
+      <span class="eyebrow">Drei Anlaufstellen</span>
+      <h2>Wer berät wofür?</h2>
+    </div>
+    <div class="br-overview-grid">
+      <a href="#beratungslehrer" class="br-nav-card">
+        <span class="label">Schule &amp; Alltag</span>
+        <h3>Beratungslehrer</h3>
+        <p>Lernschwierigkeiten, Konflikte mit Mitschülerinnen oder Lehrkräften, Sorgen im Alltag — erste Adresse für Schülerinnen, Schüler und Eltern.</p>
+        <span class="go">Mehr erfahren →</span>
+      </a>
+      <a href="#talentscout" class="br-nav-card">
+        <span class="label">Uni-Übergang</span>
+        <h3>Talentscout</h3>
+        <p>Begleitung auf dem Weg in ein Studium — gerade dann, wenn niemand in der Familie bisher studiert hat. Kostenfrei, vor Ort, langfristig.</p>
+        <span class="go">Mehr erfahren →</span>
+      </a>
+      <a href="#schulsozialarbeit" class="br-nav-card">
+        <span class="label">Vertraulich</span>
+        <h3>Schulsozialarbeit</h3>
+        <p>Wenn zu Hause Ärger ist, es finanzielle Probleme gibt oder einfach nichts mehr klappt — wir unterstützen und schweigen.</p>
+        <span class="go">Mehr erfahren →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- =================== BERATUNGSLEHRER =================== -->
+<section class="br-section" id="beratungslehrer" aria-label="Beratungslehrer">
+  <div class="container">
+    <div class="head">
+      <span class="eyebrow">01 · Beratungslehrer</span>
+      <h2>Wenn im Schulalltag <em>etwas klemmt.</em></h2>
+      <p class="lede">Erste Anlaufstelle für Schülerinnen, Schüler und Eltern — bei schulischen, sozialen und persönlichen Themen, die den Schulalltag beeinflussen.</p>
+    </div>
+
+    <div class="br-split">
+      <div class="br-qa">
+        <div class="row"><span class="q">Wer wird beraten?</span><span class="a">Schülerinnen und Schüler sowie Eltern — unabhängig von Jahrgang und Schulform.</span></div>
+        <div class="row"><span class="q">Wie wird beraten?</span><span class="a">Vertrauliche Einzelgespräche. Bei Bedarf vermittle ich Kontakt zu außerschulischen Beratungsstellen.</span></div>
+        <div class="row"><span class="q">Wobei kann ich helfen?</span><span class="a">
+          <ul class="br-topics">
+            <li>Lernschwierigkeiten</li>
+            <li>Konzentrationsstörungen</li>
+            <li>Ärger mit Mitschüler*innen</li>
+            <li>Probleme mit den Eltern</li>
+            <li>Angst vor Gewalt</li>
+            <li>Mobbing</li>
+            <li>Schulangst</li>
+            <li>Drogenprobleme</li>
+            <li>Konfliktberatung</li>
+            <li>Kontakt zu externen Stellen</li>
+          </ul>
+        </span></div>
+        <div class="row"><span class="q">Wo findest du mich?</span><span class="a">Sprich mich im Lehrerzimmer an oder wo immer du mich triffst. Wir vereinbaren einen Termin. Alternativ: Telefonnummer im Sekretariat hinterlassen — ich rufe zurück.</span></div>
+      </div>
+
+      <article class="br-person">
+        <span class="avatar" aria-hidden="true">CB</span>
+        <div class="role">Beratungslehrer</div>
+        <p class="name">Christian Büngers</p>
+        <p class="sub">Ansprechpartner für Schülerinnen, Schüler und Eltern</p>
+        <div class="room">Lehrerzimmer / Sekretariat</div>
+        <div class="actions">
+          <a href="mailto:christian.buengers@164835.nrw.schule" class="btn-mail">E-Mail senden</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- =================== TALENTSCOUT =================== -->
+<section class="br-section alt" id="talentscout" aria-label="Talentscout">
+  <div class="container">
+    <div class="head">
+      <span class="eyebrow">02 · Talentscout</span>
+      <h2>Gleiche Chancen —<br><em>unabhängig vom Elternhaus.</em></h2>
+      <p class="lede">Ziel des NRW-Talentscoutings ist es, jungen Menschen gleiche Bildungschancen zu ermöglichen — unabhängig von Bildungshintergrund oder Einkommen der Eltern.</p>
+    </div>
+
+    <div class="br-split">
+      <div class="br-qa">
+        <div class="row"><span class="q">Für wen?</span><span class="a">Insbesondere Jugendliche ohne akademische Wurzeln, die sich ein Studium zutrauen sollen — wir ermutigen und begleiten.</span></div>
+        <div class="row"><span class="q">Was gibt's?</span><span class="a">Regelmäßige Beratungsgespräche vor Ort in der Schule. Orientierung beim Übergang von Schule zu Hochschule. Begleitung auch nach dem Abitur.</span></div>
+        <div class="row"><span class="q">Von wem?</span><span class="a">Sarah Schröter, Talentscout der Universität Duisburg-Essen — regelmäßig bei uns im Haus und erreichbar über das Sekretariat.</span></div>
+        <div class="row"><span class="q">Was kostet's?</span><span class="a">Nichts. Das Angebot ist für Schülerinnen und Schüler kostenfrei — finanziert durch das NRW-Talentscouting.</span></div>
+      </div>
+
+      <article class="br-person">
+        <span class="avatar" aria-hidden="true">SS</span>
+        <div class="role">Talentscout</div>
+        <p class="name">Sarah Schröter</p>
+        <p class="sub">Universität Duisburg-Essen · NRW-Talentscouting</p>
+        <div class="room">Regelmäßig vor Ort · Termine über das Sekretariat</div>
+        <div class="actions">
+          <a href="tel:+492012802630" class="btn-mail">Termin über Sekretariat</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- =================== SCHULSOZIALARBEIT =================== -->
+<section class="br-section dark" id="schulsozialarbeit" aria-label="Schulsozialarbeit">
+  <div class="container">
+    <div class="head">
+      <span class="eyebrow">03 · Schulsozialarbeit</span>
+      <h2>Wenn's mal <em>nicht so gut</em> läuft.</h2>
+      <p class="lede">Für alles, was dich bedrückt — und nicht in Schulnoten passt. Wir unterstützen dich dort, wo du dir Hilfe wünschst. Vertraulich, auf Augenhöhe.</p>
+    </div>
+
+    <div class="br-split">
+      <ul class="br-concerns">
+        <li>…wenn es dir nicht so gut geht und du nicht weiter weißt</li>
+        <li>…wenn du zu Hause Ärger hast und dich nicht wohlfühlst</li>
+        <li>…wenn es mit Lehrern oder Mitschülern Stress gibt</li>
+        <li>…wenn Schule nicht klappt und du nicht weißt, wie's weitergehen soll</li>
+        <li>…wenn du Probleme mit Ämtern hast</li>
+        <li>…wenn du Unterstützung bei Anträgen brauchst</li>
+        <li>…wenn du finanzielle Probleme hast</li>
+        <li>…wenn du einfach mal reden möchtest</li>
+      </ul>
+
+      <article class="br-person">
+        <span class="avatar" aria-hidden="true">FS</span>
+        <div class="role">Schulsozialarbeit</div>
+        <p class="name">Frau Spiegel</p>
+        <p class="sub">Schulsozialarbeiterin · Schweigepflicht gilt</p>
+        <div class="room">Raum 103A · komm vorbei oder frag am Lehrerzimmer</div>
+        <div class="actions">
+          <a href="mailto:info@unesco-schule-essen.de" class="btn-mail" aria-label="Kontakt Schulsozialarbeit">Kontakt (E-Mail folgt)</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+</main>
+</BaseLayout>

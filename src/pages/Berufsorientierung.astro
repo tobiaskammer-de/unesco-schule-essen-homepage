@@ -1,0 +1,326 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHero from "../components/PageHero.astro";
+---
+<BaseLayout title="Studien- und Berufsorientierung — UNESCO-Schule Essen">
+<style is:global>
+  /* ---------- Berufsorientierung ---------- */
+  .bo-intro{background:var(--creme);padding:var(--space-section) 0;}
+  .bo-intro-grid{
+    display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);
+    gap:56px;align-items:start;
+  }
+  .bo-intro h2{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(30px,3.4vw,44px);line-height:1.1;
+    color:var(--petrol);letter-spacing:-0.015em;margin:0;
+  }
+  .bo-intro p{
+    font-family:var(--sans);font-size:17px;line-height:1.7;color:var(--tinte);
+    margin:0 0 16px;
+  }
+  .bo-intro p em{font-style:italic;color:var(--bordeaux);}
+
+  /* Laufbahn (callout) */
+  .bo-lauf{background:var(--offwhite);padding:var(--space-section) 0;border-top:1px solid var(--hairline);}
+  .bo-lauf .inner{
+    background:#fff;border:1px solid var(--hairline);
+    border-left:var(--card-accent-width) solid var(--petrol);
+    display:grid;grid-template-columns:minmax(0,140px) minmax(0,1fr) minmax(0,260px);
+    gap:36px;align-items:center;padding:32px 40px;
+  }
+  .bo-lauf .icon{
+    width:88px;height:88px;border-radius:50%;
+    background:rgba(14,77,79,0.08);color:var(--petrol);
+    display:flex;align-items:center;justify-content:center;
+    font-family:var(--serif);font-weight:500;font-size:38px;
+  }
+  .bo-lauf .body .kicker{
+    font-family:var(--sans);font-size:11px;font-weight:600;
+    letter-spacing:0.14em;text-transform:uppercase;color:var(--petrol);
+  }
+  .bo-lauf .body h3{
+    font-family:var(--serif);font-weight:500;font-size:clamp(24px,2.6vw,32px);
+    line-height:1.2;color:var(--petrol);letter-spacing:-0.01em;margin:8px 0 10px;
+  }
+  .bo-lauf .body p{
+    font-family:var(--sans);font-size:16px;line-height:1.65;color:var(--tinte);margin:0;
+  }
+  .bo-lauf .contact{
+    font-family:var(--sans);font-size:14.5px;line-height:1.55;
+    color:var(--stein);
+    padding:18px 20px;background:var(--creme);border:1px solid var(--hairline);
+  }
+  .bo-lauf .contact .role{
+    font-size:11px;font-weight:600;letter-spacing:0.14em;
+    text-transform:uppercase;color:var(--bordeaux);margin-bottom:6px;
+  }
+  .bo-lauf .contact .name{
+    font-family:var(--serif);font-weight:500;font-size:18px;color:var(--petrol);
+    margin:0 0 4px;
+  }
+  .bo-lauf .contact .room{color:var(--stein);}
+
+  /* Stufen — Sek I & Sek II */
+  .bo-stufen{background:var(--creme);padding:var(--space-section) 0;}
+  .bo-stufen .head{max-width:820px;margin:0 0 48px;}
+  .bo-stufen .head .eyebrow{display:block;margin-bottom:14px;}
+  .bo-stufen .head h2{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(30px,3.2vw,44px);line-height:1.15;letter-spacing:-0.015em;
+    color:var(--petrol);margin:0 0 16px;
+  }
+  .bo-stufen .head p{
+    font-family:var(--sans);font-size:17px;line-height:1.65;color:var(--stein);
+    max-width:680px;margin:0;
+  }
+  .bo-stufen-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;}
+  .bo-stufe{
+    background:#fff;border:1px solid var(--hairline);
+    border-top:var(--card-accent-width) solid var(--petrol);
+    padding:36px 36px 32px;display:flex;flex-direction:column;gap:18px;
+  }
+  .bo-stufe .label{
+    font-family:var(--sans);font-size:11px;font-weight:600;
+    letter-spacing:0.16em;text-transform:uppercase;color:var(--petrol);
+  }
+  .bo-stufe h3{
+    font-family:var(--serif);font-weight:500;font-size:24px;line-height:1.2;
+    color:var(--petrol);letter-spacing:-0.008em;margin:0;
+  }
+  .bo-stufe .when{
+    font-family:var(--serif);font-style:italic;font-size:15px;color:var(--stein);
+    margin:0;
+  }
+  .bo-stufe ul{list-style:none;margin:0;padding:0;}
+  .bo-stufe ul li{
+    position:relative;padding:10px 0 10px 22px;
+    font-family:var(--sans);font-size:15px;line-height:1.55;color:var(--tinte);
+    border-bottom:1px solid var(--hairline);
+  }
+  .bo-stufe ul li:first-child{border-top:1px solid var(--hairline);}
+  .bo-stufe ul li::before{
+    content:"";position:absolute;left:0;top:18px;
+    width:12px;height:1px;background:var(--petrol);
+  }
+  .bo-stufe ul li strong{color:var(--petrol);font-weight:500;}
+
+  /* Beratungsangebot — quick nav */
+  .bo-angebot{background:var(--offwhite);padding:var(--space-section) 0;border-top:1px solid var(--hairline);}
+  .bo-angebot .head{max-width:820px;margin:0 0 48px;}
+  .bo-angebot .head .eyebrow{display:block;margin-bottom:14px;}
+  .bo-angebot .head h2{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(28px,3vw,40px);line-height:1.15;letter-spacing:-0.015em;
+    color:var(--petrol);margin:0;
+  }
+  .bo-angebot-grid{
+    display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;
+  }
+  .bo-angebot-card{
+    background:#fff;border:1px solid var(--hairline);
+    border-top:var(--card-accent-width) solid var(--petrol);
+    padding:28px 28px;
+    display:flex;flex-direction:column;gap:10px;
+    text-decoration:none;color:inherit;
+    transition:transform var(--transition), box-shadow var(--transition);
+  }
+  .bo-angebot-card:hover{transform:translateY(-2px);box-shadow:0 14px 34px -22px rgba(14,77,79,0.28);}
+  @media (prefers-reduced-motion: reduce){.bo-angebot-card:hover{transform:none;}}
+  .bo-angebot-card .label{
+    font-family:var(--sans);font-size:11px;font-weight:600;
+    letter-spacing:0.14em;text-transform:uppercase;color:var(--petrol);
+  }
+  .bo-angebot-card h3{
+    font-family:var(--serif);font-weight:500;font-size:20px;line-height:1.2;
+    color:var(--petrol);letter-spacing:-0.008em;margin:0;
+  }
+  .bo-angebot-card p{
+    font-family:var(--sans);font-size:14.5px;line-height:1.6;color:var(--stein);margin:0;flex:1;
+  }
+  .bo-angebot-card .go{
+    align-self:flex-start;margin-top:6px;
+    font-family:var(--sans);font-size:13.5px;font-weight:500;color:var(--bordeaux);
+    border-bottom:1px solid currentColor;padding-bottom:2px;
+  }
+
+  /* Ansprechpartner */
+  .bo-contacts{background:var(--creme);padding:var(--space-section) 0;border-top:1px solid var(--hairline);}
+  .bo-contacts .head{max-width:820px;margin:0 0 40px;}
+  .bo-contacts .head .eyebrow{display:block;margin-bottom:14px;}
+  .bo-contacts .head h2{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(28px,3vw,40px);line-height:1.15;letter-spacing:-0.015em;
+    color:var(--petrol);margin:0;
+  }
+  .bo-contacts-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+  .bo-contact{
+    background:#fff;border:1px solid var(--hairline);
+    border-top:var(--card-accent-width) solid var(--petrol);
+    padding:28px 32px;
+    display:grid;grid-template-columns:72px 1fr;gap:20px;align-items:center;
+  }
+  .bo-contact .avatar{
+    width:72px;height:72px;border-radius:50%;background:var(--petrol);
+    display:flex;align-items:center;justify-content:center;
+    font-family:var(--serif);font-weight:500;font-size:26px;color:var(--creme);
+    letter-spacing:-0.01em;
+  }
+  .bo-contact .info .role{
+    font-family:var(--sans);font-size:11px;font-weight:600;
+    letter-spacing:0.14em;text-transform:uppercase;color:var(--petrol);margin-bottom:4px;
+  }
+  .bo-contact .info .name{
+    font-family:var(--serif);font-weight:500;font-size:20px;color:var(--petrol);
+    letter-spacing:-0.008em;margin:0 0 4px;
+  }
+  .bo-contact .info .sub{
+    font-family:var(--sans);font-size:14px;color:var(--stein);margin:0;
+  }
+
+  @media (max-width:960px){
+    .bo-intro-grid{grid-template-columns:1fr;gap:28px;}
+    .bo-lauf .inner{grid-template-columns:1fr;gap:18px;padding:24px 24px;}
+    .bo-lauf .icon{width:64px;height:64px;font-size:28px;}
+    .bo-stufen-grid{grid-template-columns:1fr;gap:18px;}
+    .bo-angebot-grid{grid-template-columns:1fr;gap:14px;}
+    .bo-contacts-grid{grid-template-columns:1fr;gap:14px;}
+    .bo-intro,.bo-lauf,.bo-stufen,.bo-angebot,.bo-contacts{padding:var(--space-section-sm) 0;}
+  }
+</style>
+
+<main id="top">
+
+<PageHero variant="feature">
+  <Fragment slot="eyebrow">Angebote · Beratung &amp; Mitbestimmung</Fragment>
+  <Fragment slot="title">Studien- und<br><em>Berufsorientierung.</em></Fragment>
+  <Fragment slot="lede">Schule bereitet auf das Berufsleben vor. Wir geben Schülerinnen und Schülern über viele Jahre hinweg einen Überblick über berufliche Möglichkeiten — und beraten individuell, wenn's konkret wird.</Fragment>
+</PageHero>
+
+<section class="bo-intro" aria-label="Einordnung">
+  <div class="container">
+    <div class="bo-intro-grid">
+      <div>
+        <h2>Der Weg entsteht — <em>beim Gehen.</em></h2>
+      </div>
+      <div>
+        <p>Zwischen Grundschule und Universität liegt ein Bildungsweg voller Regeln, Vorgaben und Entscheidungen. Für Schülerinnen, Schüler und Eltern ist es oft schwierig, dabei den Überblick zu behalten — zumal Bildungswege nicht immer geradlinig verlaufen.</p>
+        <p>Deshalb begleiten wir systematisch: mit altersgerechten Angeboten in den Klassen&nbsp;8 bis 10, intensiver Orientierung in der Oberstufe und persönlicher Laufbahnberatung, wann immer sie gebraucht wird.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="bo-lauf" aria-label="Individuelle Laufbahnberatung">
+  <div class="container">
+    <div class="inner">
+      <div class="icon" aria-hidden="true">i</div>
+      <div class="body">
+        <span class="kicker">Wenn's individuell wird</span>
+        <h3>Individuelle Laufbahnberatung.</h3>
+        <p>Der Weg von der Grundschule in die Universität ist von zahlreichen Gesetzen und Vorgaben geregelt. Für Schüler und Eltern ist es oft schwierig, einen Überblick über alle Regelungen zu erhalten und die bestmöglichen Optionen zu wählen. Hier hilft persönliche Beratung — auch, wenn der Weg einmal nicht idealtypisch verläuft.</p>
+      </div>
+      <aside class="contact">
+        <div class="role">Ansprechpartner</div>
+        <p class="name">Herr Omlor</p>
+        <p class="room">Oberstufenbüro · Raum 104</p>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<section class="bo-stufen" aria-label="Angebote in Sek I und Sek II">
+  <div class="container">
+    <div class="head">
+      <span class="eyebrow">Was wann passiert</span>
+      <h2>Orientierung in Sek&nbsp;I und Sek&nbsp;II.</h2>
+      <p>Zwei Phasen mit klar unterschiedlichen Zielen: In der Sekundarstufe&nbsp;I legen wir die Grundlage. In der Sekundarstufe&nbsp;II wird's konkret — Studium, Ausbildung, duales Modell.</p>
+    </div>
+
+    <div class="bo-stufen-grid">
+      <article class="bo-stufe">
+        <span class="label">Sekundarstufe&nbsp;I</span>
+        <h3>Potentiale erkennen.</h3>
+        <p class="when">Klassen 8 – 10</p>
+        <ul>
+          <li><strong>Klasse 8 —</strong> Potentialanalyse und Berufsfelderkundung (3 Tage in Betrieben).</li>
+          <li><strong>Klasse 9 —</strong> Schülerbetriebspraktikum (2 Wochen) und Anschlussvereinbarung.</li>
+          <li><strong>Klasse 10 —</strong> Beratungstermine für Schulabgängerinnen und Schulabgänger mit der Arbeitsagentur Essen.</li>
+        </ul>
+      </article>
+
+      <article class="bo-stufe">
+        <span class="label">Sekundarstufe&nbsp;II</span>
+        <h3>Konkret werden.</h3>
+        <p class="when">EF · Q1 · Q2</p>
+        <ul>
+          <li><strong>EF —</strong> Freiwilliges Schülerbetriebspraktikum oder Duales Orientierungspraktikum.</li>
+          <li><strong>Q1 / Q2 —</strong> Veranstaltungen „Wege ins Berufsleben", „Wege ins Studium" und „Wege in die Ausbildung".</li>
+          <li><strong>Beratung —</strong> Regelmäßige Gesprächstermine mit der Arbeitsagentur.</li>
+          <li><strong>UniTrainees —</strong> Orientierung an der Universität Duisburg-Essen.</li>
+          <li><strong>Studienfeldbezogener Eignungstest —</strong> zur Selbsteinschätzung.</li>
+          <li><strong>Studi-Finder —</strong> Einführung und begleitete Nutzung.</li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="bo-angebot" aria-label="Beratungsangebot im Überblick">
+  <div class="container">
+    <div class="head">
+      <span class="eyebrow">Beratungsangebot</span>
+      <h2>Wer berät zu welchem Thema?</h2>
+    </div>
+    <div class="bo-angebot-grid">
+      <a href="#laufbahn" class="bo-angebot-card">
+        <span class="label">Schullaufbahn</span>
+        <h3>Individuelle Laufbahnberatung</h3>
+        <p>Wege durch das Schulsystem, Fächerwahl, Übergänge, Wiederholung oder Wechsel — persönliche Orientierung, wenn Entscheidungen anstehen.</p>
+        <span class="go">Zur Laufbahnberatung →</span>
+      </a>
+      <a href="#studium" class="bo-angebot-card">
+        <span class="label">Studium &amp; Beruf</span>
+        <h3>Studien- und Berufsberatung</h3>
+        <p>Vom Praktikum bis zum Studi-Finder: Wir begleiten den Übergang von Schule zu Hochschule oder Ausbildung — inklusive externer Partner.</p>
+        <span class="go">Zu Sek I &amp; Sek II →</span>
+      </a>
+      <a href="Beratung.html" class="bo-angebot-card">
+        <span class="label">Persönlich</span>
+        <h3>Beratung &amp; Unterstützung</h3>
+        <p>Beratungslehrer, Talentscout der Uni Duisburg-Essen, Schulsozialarbeit — die Menschen, die zuhören, wenn's nicht nur um Noten geht.</p>
+        <span class="go">Zur Beratungsseite →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="bo-contacts" aria-label="Weitere Ansprechpersonen">
+  <div class="container">
+    <div class="head">
+      <span class="eyebrow">Weitere Ansprechpersonen</span>
+      <h2>Für Orientierung &amp; Beratung.</h2>
+    </div>
+    <div class="bo-contacts-grid">
+      <article class="bo-contact">
+        <span class="avatar" aria-hidden="true">S</span>
+        <div class="info">
+          <div class="role">StuBO-Koordination</div>
+          <p class="name">Frau Sprado</p>
+          <p class="sub">Studien- und Berufsorientierung</p>
+        </div>
+      </article>
+      <article class="bo-contact">
+        <span class="avatar" aria-hidden="true">SO</span>
+        <div class="info">
+          <div class="role">StuBO-Team</div>
+          <p class="name">Frau Schulte-Ontrop</p>
+          <p class="sub">Studien- und Berufsorientierung</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+</main>
+</BaseLayout>
