@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHero from "../components/PageHero.astro";
 ---
 <BaseLayout title="Aktuelles — UNESCO-Schule Essen">
 <style is:global>
@@ -139,11 +140,12 @@ import BaseLayout from "../layouts/BaseLayout.astro";
   }
 </style>
 
-<section class="journal-hero">
-  <div class="container">
-    <span class="eyebrow">Aktuelles</span>
-    <h1>Aus unserem<br>Schulleben.</h1>
-    <p class="lede">Berichte, Projekte und Stimmen aus dem Alltag der UNESCO-Schule Essen. Was wir machen — und warum es uns wichtig ist.</p>
+<a id="top" tabindex="-1"></a>
+<PageHero variant="page">
+  <Fragment slot="eyebrow">Aktuelles</Fragment>
+  <Fragment slot="title">Aus unserem<br>Schulleben.</Fragment>
+  <Fragment slot="lede">Berichte, Projekte und Stimmen aus dem Alltag der UNESCO-Schule Essen. Was wir machen — und warum es uns wichtig ist.</Fragment>
+  <Fragment slot="extra">
     <nav class="filter-row" aria-label="Filter">
       <span class="label">Filter</span>
       <a href="#" class="chip is-active">Alle Beiträge</a>
@@ -153,8 +155,8 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       <a href="#" class="chip">Aus dem Unterricht</a>
       <a href="#" class="chip">Termine</a>
     </nav>
-  </div>
-</section>
+  </Fragment>
+</PageHero>
 
 
 <main class="journal-main">

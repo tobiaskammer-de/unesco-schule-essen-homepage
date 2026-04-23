@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHero from "../components/PageHero.astro";
 ---
 <BaseLayout title="Adresse und Anfahrt — UNESCO-Schule Essen">
 <style is:global>
@@ -122,13 +123,11 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
 <main id="top">
 
-<section class="an-hero" aria-label="Adresse und Anfahrt">
-  <div class="container">
-    <span class="eyebrow">Über Uns · Adresse und Anfahrt</span>
-    <h1>So finden Sie uns.</h1>
-    <p class="lede">Zentral in Essen, in der Nähe des Steeler Wasserturms — fünfzehn Minuten fußläufig vom Hauptbahnhof.</p>
-  </div>
-</section>
+<PageHero variant="page">
+  <Fragment slot="eyebrow">Über Uns · Adresse und Anfahrt</Fragment>
+  <Fragment slot="title">So finden Sie uns.</Fragment>
+  <Fragment slot="lede">Zentral in Essen, in der Nähe des Steeler Wasserturms — fünfzehn Minuten fußläufig vom Hauptbahnhof.</Fragment>
+</PageHero>
 
 <section class="an-main" aria-label="Adresse und Karte">
   <div class="container">

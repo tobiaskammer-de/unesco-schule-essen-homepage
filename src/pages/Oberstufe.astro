@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHero from "../components/PageHero.astro";
 ---
 <BaseLayout title="Oberstufe (EF · Q1 · Q2) — UNESCO-Schule Essen">
 <style is:global>
@@ -249,18 +250,18 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
 <main id="top">
 
-<section class="ob-hero" aria-label="Oberstufe">
-  <div class="container">
-    <span class="eyebrow">Unterricht · Oberstufe · EF · Q1 · Q2</span>
-    <h1>Gemeinsam lernen —<br>den <em>eigenen Weg</em> finden.</h1>
-    <p class="lede">Die gymnasiale Oberstufe der UNESCO-Schule Essen. Für alle, die nach Klasse 10 zum Abitur oder zur Fachhochschulreife führen wollen — besonders für Schulwechslerinnen und Schulwechsler.</p>
+<PageHero variant="feature" image="assets/pillar-abitur.jpg" imageAlt="">
+  <Fragment slot="eyebrow">Unterricht · Oberstufe · EF · Q1 · Q2</Fragment>
+  <Fragment slot="title">Gemeinsam lernen —<br>den <em>eigenen Weg</em> finden.</Fragment>
+  <Fragment slot="lede">Die gymnasiale Oberstufe der UNESCO-Schule Essen. Für alle, die nach Klasse 10 zum Abitur oder zur Fachhochschulreife führen wollen — besonders für Schulwechslerinnen und Schulwechsler.</Fragment>
+  <Fragment slot="actions">
     <a href="assets/GO2026.pdf" class="ob-download" download>
       <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
       Informationsbroschüre herunterladen
       <span class="meta">PDF · 2,2&#8239;MB</span>
     </a>
-  </div>
-</section>
+  </Fragment>
+</PageHero>
 
 <section class="ob-duwir" aria-label="Für wen ist die Oberstufe gedacht">
   <div class="container">

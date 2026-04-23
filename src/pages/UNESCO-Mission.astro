@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHero from "../components/PageHero.astro";
 ---
 <BaseLayout title="UNESCO – Name und Mission — UNESCO-Schule Essen">
 <style is:global>
@@ -266,14 +267,12 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
 <main id="top">
 
-<section class="un-hero" aria-label="UNESCO-Schule Essen">
-  <div class="container">
-    <span class="eyebrow">Über Uns · UNESCO – Name und Mission</span>
-    <span class="badge-tier"><span class="dot"></span>Anerkannte UNESCO-Projektschule · Stufe 3</span>
-    <h1>Wir sind nicht <em>irgendeine</em><br>UNESCO-Schule.</h1>
-    <p class="lede">Wir sind das einzige Gymnasium in Deutschland, das den Namen der UNESCO trägt — nach einem intensiven, mehrjährigen Prüfungsverfahren der Deutschen UNESCO-Kommission. Der Name ist für uns Auftrag, nicht Auszeichnung.</p>
-  </div>
-</section>
+<PageHero variant="feature">
+  <Fragment slot="eyebrow">Über Uns · UNESCO – Name und Mission</Fragment>
+  <Fragment slot="badge">Anerkannte UNESCO-Projektschule · Stufe 3</Fragment>
+  <Fragment slot="title">Wir sind nicht <em>irgendeine</em><br>UNESCO-Schule.</Fragment>
+  <Fragment slot="lede">Wir sind das einzige Gymnasium in Deutschland, das den Namen der UNESCO trägt — nach einem intensiven, mehrjährigen Prüfungsverfahren der Deutschen UNESCO-Kommission. Der Name ist für uns Auftrag, nicht Auszeichnung.</Fragment>
+</PageHero>
 
 <section class="un-statement" aria-label="Unser Selbstverständnis">
   <div class="container">
