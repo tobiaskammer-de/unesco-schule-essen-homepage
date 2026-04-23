@@ -4,56 +4,11 @@ import PageHero from "../components/PageHero.astro";
 ---
 <BaseLayout title="UNESCO – Name und Mission — UNESCO-Schule Essen">
 <style is:global>
-/* ---------- UNESCO-Mission page ---------- */
-  .un-hero{
-    position:relative;
-    min-height:560px;
-    display:flex;align-items:flex-end;
-    padding:96px 0 72px;
-    color:var(--creme);
-    overflow:hidden;
-    isolation:isolate;
-  }
-  .un-hero::before{
-    content:"";position:absolute;inset:0;z-index:-2;
-    background:
-      linear-gradient(135deg, var(--petrol-dark) 0%, var(--petrol) 50%, #0f5f62 100%);
-  }
-  .un-hero::after{
-    content:"";position:absolute;inset:0;z-index:-1;
-    background-image:
-      radial-gradient(circle at 20% 30%, rgba(212,165,116,0.12) 1.5px, transparent 2px),
-      radial-gradient(circle at 70% 60%, rgba(245,239,231,0.08) 1px, transparent 1.5px);
-    background-size:40px 40px, 56px 56px;opacity:0.8;
-  }
-  .un-hero .eyebrow{color:var(--gold);display:block;margin-bottom:20px;}
-  .un-hero h1{
-    font-family:var(--serif);font-weight:500;
-    font-size:clamp(42px,5.6vw,80px);line-height:1.02;
-    letter-spacing:-0.02em;color:var(--creme);
-    max-width:1040px;margin:0 0 22px;
-  }
-  .un-hero h1 em{font-style:italic;color:var(--gold);}
-  .un-hero p.lede{
-    font-family:var(--sans);font-size:19px;line-height:1.6;
-    color:rgba(245,239,231,0.9);max-width:720px;margin:0;
-  }
-  .un-hero .badge-tier{
-    display:inline-flex;align-items:center;gap:10px;
-    padding:8px 16px;border-radius:999px;
-    background:rgba(245,239,231,0.10);border:1px solid rgba(245,239,231,0.25);
-    color:var(--creme);
-    font-family:var(--sans);font-size:12px;font-weight:500;letter-spacing:0.12em;
-    text-transform:uppercase;margin-bottom:26px;
-  }
-  .un-hero .badge-tier .dot{
-    width:8px;height:8px;border-radius:50%;background:var(--gold);
-  }
-
+  /* ---------- UNESCO-Mission page ---------- */
   /* Intro statement */
   .un-statement{
     background:var(--creme);
-    padding:104px 0;
+    padding:var(--space-section) 0;
   }
   .un-statement .container{max-width:960px;}
   .un-statement h2{
@@ -76,7 +31,7 @@ import PageHero from "../components/PageHero.astro";
   /* ASPnet explainer */
   .un-aspnet{
     background:var(--offwhite);
-    padding:96px 0 72px;
+    padding:var(--space-section) 0;
   }
   .un-aspnet .head{max-width:780px;margin:0 0 56px;}
   .un-aspnet .head .eyebrow{display:block;margin-bottom:14px;}
@@ -101,7 +56,8 @@ import PageHero from "../components/PageHero.astro";
   .stat .n{
     font-family:var(--serif);font-weight:500;
     font-size:clamp(38px,4.2vw,60px);line-height:1;
-    color:var(--bordeaux);letter-spacing:-0.025em;
+    color:var(--petrol);letter-spacing:-0.025em;
+    font-variant-numeric:tabular-nums;
   }
   .stat .label{
     font-family:var(--sans);font-size:13px;color:var(--stein);line-height:1.55;
@@ -110,7 +66,7 @@ import PageHero from "../components/PageHero.astro";
   /* Tier ladder */
   .un-tiers{
     background:var(--creme);
-    padding:96px 0;
+    padding:var(--space-section) 0;
   }
   .un-tiers .head{max-width:780px;margin:0 0 56px;}
   .un-tiers .head .eyebrow{display:block;margin-bottom:14px;}
@@ -161,7 +117,7 @@ import PageHero from "../components/PageHero.astro";
   /* Five themes */
   .un-themes{
     background:var(--offwhite);
-    padding:96px 0;
+    padding:var(--space-section) 0;
   }
   .un-themes .head{max-width:780px;margin:0 0 56px;}
   .un-themes .head .eyebrow{display:block;margin-bottom:14px;}
@@ -174,22 +130,14 @@ import PageHero from "../components/PageHero.astro";
     display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px;
   }
   .theme{
-    padding:30px 32px;background:#fff;border:1px solid var(--hairline);
+    padding:var(--card-padding);background:#fff;border:1px solid var(--hairline);
     display:flex;flex-direction:column;gap:12px;
-    border-left:3px solid var(--bordeaux);
+    border-left:var(--card-accent-width) solid var(--petrol);
   }
-  .theme:nth-child(2){border-left-color:var(--gold);}
-  .theme:nth-child(3){border-left-color:var(--sage);}
-  .theme:nth-child(4){border-left-color:var(--petrol);}
-  .theme:nth-child(5){border-left-color:#8a5a20;}
   .theme .n{
     font-family:var(--serif);font-weight:500;font-size:22px;line-height:1;
-    color:var(--bordeaux);letter-spacing:-0.015em;
+    color:var(--petrol);letter-spacing:-0.015em;
   }
-  .theme:nth-child(2) .n{color:#8a5a20;}
-  .theme:nth-child(3) .n{color:#3e6b2a;}
-  .theme:nth-child(4) .n{color:var(--petrol);}
-  .theme:nth-child(5) .n{color:#8a5a20;}
   .theme h3{
     font-family:var(--serif);font-weight:500;font-size:21px;line-height:1.25;
     color:var(--petrol);letter-spacing:-0.008em;margin:0;
@@ -201,7 +149,7 @@ import PageHero from "../components/PageHero.astro";
   /* Alltag / examples */
   .un-alltag{
     background:var(--creme);
-    padding:96px 0;border-top:1px solid var(--hairline);
+    padding:var(--space-section) 0;border-top:1px solid var(--hairline);
   }
   .un-alltag .head{max-width:780px;margin:0 0 48px;}
   .un-alltag .head .eyebrow{display:block;margin-bottom:14px;}
@@ -231,7 +179,7 @@ import PageHero from "../components/PageHero.astro";
   /* Commitment pledge */
   .un-pledge{
     background:var(--petrol);color:var(--creme);
-    padding:96px 0;
+    padding:var(--space-section) 0;
   }
   .un-pledge .container{max-width:880px;text-align:center;}
   .un-pledge .eyebrow{color:rgba(245,239,231,0.55);display:block;margin-bottom:16px;}
@@ -260,8 +208,7 @@ import PageHero from "../components/PageHero.astro";
     .tier .step{font-size:32px;}
     .themes-grid{grid-template-columns:1fr;gap:16px;}
     .alltag-list{grid-template-columns:1fr;}
-    .un-statement,.un-aspnet,.un-tiers,.un-themes,.un-alltag,.un-pledge{padding:64px 0;}
-    .un-hero{min-height:420px;padding:56px 0 48px;}
+    .un-statement,.un-aspnet,.un-tiers,.un-themes,.un-alltag,.un-pledge{padding:var(--space-section-sm) 0;}
   }
 </style>
 

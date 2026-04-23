@@ -4,37 +4,8 @@ import PageHero from "../components/PageHero.astro";
 ---
 <BaseLayout title="Förderverein — UNESCO-Schule Essen">
 <style is:global>
-.fv-hero{
-    position:relative;min-height:420px;
-    display:flex;align-items:flex-end;padding:96px 0 56px;
-    background:
-      radial-gradient(ellipse at 20% 10%, rgba(127,176,105,0.14), transparent 50%),
-      radial-gradient(ellipse at 85% 90%, rgba(212,165,116,0.14), transparent 50%),
-      var(--creme);
-    border-bottom:1px solid var(--hairline);
-  }
-  .fv-hero .eyebrow{display:block;margin-bottom:16px;}
-  .fv-hero h1{
-    font-family:var(--serif);font-weight:500;
-    font-size:clamp(40px,5.2vw,72px);line-height:1.05;
-    letter-spacing:-0.02em;color:var(--petrol);max-width:980px;margin:0 0 22px;
-  }
-  .fv-hero h1 em{font-style:italic;color:var(--bordeaux);}
-  .fv-hero p.lede{
-    font-family:var(--sans);font-size:18px;line-height:1.6;color:var(--stein);
-    max-width:660px;margin:0;
-  }
-  .fv-hero .meta{
-    display:inline-flex;align-items:center;gap:10px;
-    padding:6px 14px;border-radius:999px;
-    background:rgba(127,176,105,0.18);color:#3e6b2a;
-    font-family:var(--sans);font-size:12px;font-weight:500;
-    letter-spacing:0.1em;text-transform:uppercase;margin-bottom:22px;
-  }
-  .fv-hero .meta .dot{width:7px;height:7px;border-radius:50%;background:#3e6b2a;}
-
   /* Purpose */
-  .fv-purpose{background:var(--offwhite);padding:88px 0;}
+  .fv-purpose{background:var(--offwhite);padding:var(--space-section) 0;}
   .fv-purpose-grid{
     display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:56px;align-items:start;
   }
@@ -47,7 +18,7 @@ import PageHero from "../components/PageHero.astro";
   }
 
   /* Goals */
-  .fv-goals{background:var(--creme);padding:88px 0;border-top:1px solid var(--hairline);}
+  .fv-goals{background:var(--creme);padding:var(--space-section) 0;border-top:1px solid var(--hairline);}
   .fv-goals .head{max-width:760px;margin:0 0 48px;}
   .fv-goals .head .eyebrow{display:block;margin-bottom:14px;}
   .fv-goals .head h2{
@@ -56,11 +27,12 @@ import PageHero from "../components/PageHero.astro";
   }
   .goals-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;}
   .goal{
-    background:#fff;border:1px solid var(--hairline);padding:26px 28px;
-    display:flex;flex-direction:column;gap:10px;border-top:3px solid var(--sage);
+    background:#fff;border:1px solid var(--hairline);padding:var(--card-padding);
+    display:flex;flex-direction:column;gap:10px;
+    border-top:var(--card-accent-width) solid var(--petrol);
   }
   .goal .n{
-    font-family:var(--serif);font-weight:500;font-size:22px;color:#3e6b2a;letter-spacing:-0.02em;line-height:1;
+    font-family:var(--serif);font-weight:500;font-size:22px;color:var(--petrol);letter-spacing:-0.02em;line-height:1;
   }
   .goal h3{
     font-family:var(--sans);font-weight:600;font-size:16px;line-height:1.35;
@@ -71,7 +43,7 @@ import PageHero from "../components/PageHero.astro";
   }
 
   /* Board */
-  .fv-board{background:var(--offwhite);padding:88px 0;}
+  .fv-board{background:var(--offwhite);padding:var(--space-section) 0;}
   .fv-board .head{max-width:760px;margin:0 0 40px;}
   .fv-board .head .eyebrow{display:block;margin-bottom:14px;}
   .fv-board .head h2{
@@ -80,13 +52,13 @@ import PageHero from "../components/PageHero.astro";
   }
   .board-duo{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
   .board-person{
-    background:#fff;border:1px solid var(--hairline);padding:32px 32px 28px;
-    display:flex;flex-direction:column;gap:14px;border-top:3px solid var(--bordeaux);
+    background:#fff;border:1px solid var(--hairline);padding:var(--card-padding);
+    display:flex;flex-direction:column;gap:14px;
+    border-top:var(--card-accent-width) solid var(--petrol);
   }
-  .board-person:nth-child(2){border-top-color:#8f3a4e;}
   .board-person .role{
     font-family:var(--sans);font-size:11px;font-weight:600;
-    letter-spacing:0.14em;text-transform:uppercase;color:var(--bordeaux);
+    letter-spacing:0.14em;text-transform:uppercase;color:var(--petrol);
   }
   .board-person .name{
     font-family:var(--serif);font-weight:500;font-size:26px;line-height:1.15;
@@ -99,7 +71,7 @@ import PageHero from "../components/PageHero.astro";
   .board-person .contact a{color:var(--petrol);}
 
   /* Projects showcase */
-  .fv-projects{background:var(--petrol);color:var(--creme);padding:88px 0;}
+  .fv-projects{background:var(--petrol);color:var(--creme);padding:var(--space-section) 0;}
   .fv-projects .head{max-width:760px;margin:0 0 40px;}
   .fv-projects .head .eyebrow{color:var(--gold);display:block;margin-bottom:14px;}
   .fv-projects .head h2{
@@ -125,7 +97,7 @@ import PageHero from "../components/PageHero.astro";
   }
 
   /* Join CTA */
-  .fv-join{background:var(--creme);padding:88px 0 104px;border-top:1px solid var(--hairline);}
+  .fv-join{background:var(--creme);padding:var(--space-section) 0;border-top:1px solid var(--hairline);}
   .fv-join-grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:56px;align-items:center;}
   .fv-join h2{
     font-family:var(--serif);font-weight:500;font-size:clamp(28px,3vw,40px);
@@ -146,8 +118,7 @@ import PageHero from "../components/PageHero.astro";
     .goals-grid{grid-template-columns:1fr;gap:14px;}
     .board-duo{grid-template-columns:1fr;gap:14px;}
     .projects-row{grid-template-columns:1fr 1fr;}
-    .fv-hero{min-height:340px;padding:56px 0 40px;}
-    .fv-purpose,.fv-goals,.fv-board,.fv-projects,.fv-join{padding:56px 0;}
+    .fv-purpose,.fv-goals,.fv-board,.fv-projects,.fv-join{padding:var(--space-section-sm) 0;}
   }
   @media (max-width:560px){
     .projects-row{grid-template-columns:1fr;}
@@ -247,11 +218,11 @@ import PageHero from "../components/PageHero.astro";
       <h2>Ein Ausschnitt dessen,<br>was möglich wurde.</h2>
     </div>
     <div class="projects-row">
-      <div class="project"><span class="n">♪</span><span class="text"><strong style="color:var(--creme);">Musik­instrumente</strong><br>für Unterricht &amp; AGs</span></div>
-      <div class="project"><span class="n">⚗</span><span class="text"><strong style="color:var(--creme);">Biologie-Ausstattung</strong><br>Mikroskope, Präparate</span></div>
-      <div class="project"><span class="n">☕</span><span class="text"><strong style="color:var(--creme);">Schülercafé</strong><br>Verschönerung, Möbel</span></div>
-      <div class="project"><span class="n">✦</span><span class="text"><strong style="color:var(--creme);">Schulhof</strong><br>Neugestaltung</span></div>
-      <div class="project"><span class="n">♥</span><span class="text"><strong style="color:var(--creme);">Familien­unterstützung</strong><br>individuell, still</span></div>
+      <div class="project"><span class="n" aria-hidden="true">♪</span><span class="text"><strong style="color:var(--creme);">Musik­instrumente</strong><br>für Unterricht &amp; AGs</span></div>
+      <div class="project"><span class="n" aria-hidden="true">⚗</span><span class="text"><strong style="color:var(--creme);">Biologie-Ausstattung</strong><br>Mikroskope, Präparate</span></div>
+      <div class="project"><span class="n" aria-hidden="true">☕</span><span class="text"><strong style="color:var(--creme);">Schülercafé</strong><br>Verschönerung, Möbel</span></div>
+      <div class="project"><span class="n" aria-hidden="true">✦</span><span class="text"><strong style="color:var(--creme);">Schulhof</strong><br>Neugestaltung</span></div>
+      <div class="project"><span class="n" aria-hidden="true">♥</span><span class="text"><strong style="color:var(--creme);">Familien­unterstützung</strong><br>individuell, still</span></div>
     </div>
   </div>
 </section>

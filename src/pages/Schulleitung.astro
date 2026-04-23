@@ -4,27 +4,8 @@ import PageHero from "../components/PageHero.astro";
 ---
 <BaseLayout title="Schulleitung und Sekretariat — UNESCO-Schule Essen">
 <style is:global>
-.sl-hero{
-    position:relative;padding:96px 0 56px;
-    background:
-      radial-gradient(ellipse at 20% 20%, rgba(127,176,105,0.10), transparent 50%),
-      radial-gradient(ellipse at 85% 90%, rgba(212,165,116,0.12), transparent 50%),
-      var(--creme);
-    border-bottom:1px solid var(--hairline);
-  }
-  .sl-hero .eyebrow{display:block;margin-bottom:16px;}
-  .sl-hero h1{
-    font-family:var(--serif);font-weight:500;
-    font-size:clamp(40px,5vw,68px);line-height:1.05;
-    letter-spacing:-0.02em;color:var(--petrol);max-width:900px;margin:0 0 20px;
-  }
-  .sl-hero p.lede{
-    font-family:var(--sans);font-size:18px;line-height:1.6;color:var(--stein);
-    max-width:640px;margin:0;
-  }
-
   /* Office info card */
-  .sl-office{background:var(--offwhite);padding:64px 0;}
+  .sl-office{background:var(--offwhite);padding:var(--space-section) 0 var(--space-section-sm);}
   .office-card{
     background:#fff;border:1px solid var(--hairline);
     border-top:3px solid var(--petrol);
@@ -46,7 +27,7 @@ import PageHero from "../components/PageHero.astro";
   .office-card .col a:hover{text-decoration:underline;}
 
   /* People */
-  .sl-team{background:var(--offwhite);padding:24px 0 104px;}
+  .sl-team{background:var(--offwhite);padding:24px 0 var(--space-section);}
   .sl-team .head{max-width:760px;margin:0 0 48px;}
   .sl-team .head .eyebrow{display:block;margin-bottom:14px;}
   .sl-team .head h2{
@@ -57,11 +38,13 @@ import PageHero from "../components/PageHero.astro";
   .people{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;}
   .person{
     background:#fff;border:1px solid var(--hairline);
-    padding:32px 28px 28px;
+    border-top:var(--card-accent-width) solid var(--petrol);
+    padding:var(--card-padding);
     display:flex;flex-direction:column;gap:16px;
-    transition:transform .3s ease, box-shadow .3s ease;
+    transition:transform var(--transition), box-shadow var(--transition);
   }
   .person:hover{transform:translateY(-2px);box-shadow:0 16px 36px -22px rgba(14,77,79,0.3);}
+  @media (prefers-reduced-motion: reduce){.person:hover{transform:none;}}
   .avatar{
     width:100px;height:100px;border-radius:50%;
     display:flex;align-items:center;justify-content:center;
@@ -98,7 +81,7 @@ import PageHero from "../components/PageHero.astro";
 
   /* Note about Erprobungsstufe */
   .sl-note{
-    background:var(--creme);padding:72px 0;border-top:1px solid var(--hairline);
+    background:var(--creme);padding:var(--space-section-sm) 0;border-top:1px solid var(--hairline);
   }
   .sl-note .inner{
     display:grid;grid-template-columns:auto 1fr;gap:36px;align-items:center;
@@ -123,7 +106,6 @@ import PageHero from "../components/PageHero.astro";
     .office-card{grid-template-columns:1fr;gap:16px;}
     .people{grid-template-columns:1fr;gap:16px;}
     .sl-note .inner{grid-template-columns:1fr;gap:16px;padding:24px 28px;}
-    .sl-hero{padding:56px 0 40px;}
     .sl-team,.sl-office,.sl-note{padding:48px 0;}
   }
 </style>
