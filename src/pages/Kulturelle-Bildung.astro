@@ -1,0 +1,279 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHero from "../components/PageHero.astro";
+---
+<BaseLayout title="Kulturelle Bildung und Kunst — UNESCO-Schule Essen">
+<style is:global>
+  /* ---------- Kulturelle Bildung ---------- */
+  .kb-intro{background:var(--creme);padding:var(--space-section) 0;}
+  .kb-intro-grid{
+    display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);
+    gap:64px;align-items:start;
+  }
+  .kb-intro h2{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(30px,3.4vw,44px);line-height:1.1;
+    color:var(--petrol);letter-spacing:-0.015em;margin:0;
+  }
+  .kb-intro p{
+    font-family:var(--sans);font-size:17px;line-height:1.7;color:var(--tinte);
+    margin:0 0 16px;
+  }
+  .kb-intro p em{font-style:italic;color:var(--bordeaux);}
+
+  /* Schulalltag — Courses */
+  .kb-courses{background:var(--offwhite);padding:var(--space-section) 0;}
+  .kb-courses .head{max-width:780px;margin:0 0 56px;}
+  .kb-courses .head .eyebrow{display:block;margin-bottom:14px;}
+  .kb-courses .head .num-label{
+    font-family:var(--serif);font-weight:500;font-size:28px;
+    color:var(--petrol);letter-spacing:-0.02em;line-height:1;
+    margin-right:14px;font-variant-numeric:tabular-nums;
+  }
+  .kb-courses .head h2{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(30px,3.2vw,44px);line-height:1.15;letter-spacing:-0.015em;
+    color:var(--petrol);margin:0 0 16px;
+  }
+  .kb-courses .head p{
+    font-family:var(--sans);font-size:17px;line-height:1.65;color:var(--stein);
+    max-width:680px;margin:0;
+  }
+  .kb-course-grid{
+    display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px;
+  }
+  .kb-course{
+    background:#fff;border:1px solid var(--hairline);
+    border-top:var(--card-accent-width) solid var(--petrol);
+    padding:var(--card-padding);
+    display:flex;flex-direction:column;gap:14px;
+    transition:transform var(--transition), box-shadow var(--transition);
+  }
+  .kb-course:hover{transform:translateY(-2px);box-shadow:0 16px 40px -22px rgba(14,77,79,0.3);}
+  @media (prefers-reduced-motion: reduce){.kb-course:hover{transform:none;}}
+  .kb-course .klasse{
+    font-family:var(--sans);font-size:11px;font-weight:600;
+    letter-spacing:0.14em;text-transform:uppercase;color:var(--petrol);
+  }
+  .kb-course h3{
+    font-family:var(--serif);font-weight:500;font-size:24px;line-height:1.2;
+    color:var(--petrol);letter-spacing:-0.01em;margin:0;
+  }
+  .kb-course h3 span.accent{font-style:italic;color:var(--bordeaux);font-weight:500;}
+  .kb-course p{
+    font-family:var(--sans);font-size:15.5px;line-height:1.65;color:var(--tinte);margin:0;
+  }
+
+  /* Partner */
+  .kb-partners{
+    background:var(--creme);padding:var(--space-section) 0;
+    border-top:1px solid var(--hairline);
+  }
+  .kb-partners .head{max-width:820px;margin:0 0 56px;}
+  .kb-partners .head .eyebrow{display:block;margin-bottom:14px;}
+  .kb-partners .head h2{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(30px,3.2vw,44px);line-height:1.15;letter-spacing:-0.015em;
+    color:var(--petrol);margin:0 0 16px;
+  }
+  .kb-partners .head p{
+    font-family:var(--sans);font-size:17px;line-height:1.65;color:var(--stein);
+    max-width:700px;margin:0;
+  }
+  .kb-partner-grid{
+    display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:32px;
+  }
+  .kb-partner{
+    background:#fff;border:1px solid var(--hairline);
+    border-top:var(--card-accent-width) solid var(--petrol);
+    display:flex;flex-direction:column;overflow:hidden;
+    transition:transform var(--transition), box-shadow var(--transition);
+  }
+  .kb-partner:hover{transform:translateY(-2px);box-shadow:0 18px 44px -24px rgba(14,77,79,0.3);}
+  @media (prefers-reduced-motion: reduce){.kb-partner:hover{transform:none;}}
+  .kb-partner .media{
+    aspect-ratio:16/10;overflow:hidden;background:var(--creme);
+    position:relative;
+  }
+  .kb-partner .media img{
+    width:100%;height:100%;object-fit:cover;display:block;
+    transition:transform .5s ease;
+  }
+  .kb-partner:hover .media img{transform:scale(1.02);}
+  .kb-partner .body{
+    padding:var(--card-padding);
+    display:flex;flex-direction:column;gap:12px;flex:1;
+  }
+  .kb-partner .mark{
+    font-family:var(--sans);font-size:11px;font-weight:600;
+    letter-spacing:0.14em;text-transform:uppercase;color:var(--petrol);
+  }
+  .kb-partner h3{
+    font-family:var(--serif);font-weight:500;font-size:22px;line-height:1.2;
+    color:var(--petrol);letter-spacing:-0.008em;margin:0;
+  }
+  .kb-partner p{
+    font-family:var(--sans);font-size:15px;line-height:1.65;color:var(--stein);margin:0;
+  }
+  .kb-partner .highlight{
+    margin-top:8px;padding:12px 14px;
+    background:rgba(212,165,116,0.14);
+    border-left:3px solid var(--gold);
+    font-family:var(--sans);font-size:14px;line-height:1.55;color:var(--tinte);
+  }
+  .kb-partner .highlight strong{color:var(--petrol);}
+
+  /* Closing statement */
+  .kb-closing{
+    background:var(--petrol);color:var(--creme);
+    padding:var(--space-section) 0;
+  }
+  .kb-closing .container{max-width:840px;text-align:center;}
+  .kb-closing .eyebrow{color:rgba(245,239,231,0.55);display:block;margin-bottom:16px;}
+  .kb-closing h2{
+    font-family:var(--serif);font-weight:500;font-style:italic;
+    font-size:clamp(28px,3.2vw,44px);line-height:1.2;
+    color:var(--creme);letter-spacing:-0.015em;margin:0 0 26px;
+  }
+  .kb-closing h2 em{color:var(--gold);font-style:italic;}
+  .kb-closing p{
+    font-family:var(--sans);font-size:17.5px;line-height:1.7;
+    color:rgba(245,239,231,0.9);max-width:720px;margin:0 auto;
+  }
+
+  @media (max-width:960px){
+    .kb-intro-grid{grid-template-columns:1fr;gap:32px;}
+    .kb-course-grid{grid-template-columns:1fr;gap:16px;}
+    .kb-partner-grid{grid-template-columns:1fr;gap:20px;}
+    .kb-intro,.kb-courses,.kb-partners,.kb-closing{padding:var(--space-section-sm) 0;}
+  }
+</style>
+
+<main id="top">
+
+<PageHero variant="feature" image="assets/kulturelle-bildung/buhne.jpg" imageAlt="" imageCredit="Bühne · UNESCO-Schule Essen">
+  <Fragment slot="eyebrow">Profil · Kulturelle Bildung und Kunst</Fragment>
+  <Fragment slot="title">Kulturelle Bildung,<br>die bei uns <em>wächst.</em></Fragment>
+  <Fragment slot="lede">Von Klasse 5 bis zur Oberstufe — kulturelle Bildung ist bei uns kein Einzelprojekt, sondern ein durchgängiges Konzept. Wir verbinden schulinterne Profile mit starken externen Partnern.</Fragment>
+</PageHero>
+
+<section class="kb-intro" aria-label="Einordnung">
+  <div class="container">
+    <div class="kb-intro-grid">
+      <div>
+        <h2>Ein Weg, der sich <em>über Jahre entfaltet.</em></h2>
+      </div>
+      <div>
+        <p>Wer uns besucht, merkt schnell: Kulturelle Bildung ist bei uns kein Einzelprojekt, sondern ein durchgängiges Konzept — von Klasse 5 bis zur Oberstufe.</p>
+        <p>Dabei verbinden wir schulinterne Profile mit starken externen Partnern. So entsteht ein Erfahrungsraum, in dem junge Menschen Ausdrucksformen entdecken, erproben und über viele Schuljahre hinweg vertiefen können — altersgerecht, anspruchsvoll und praxisnah.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="kb-courses" aria-label="Kulturelle Bildung im Schulalltag">
+  <div class="container">
+    <div class="head">
+      <span class="eyebrow">01 · Im Schulalltag</span>
+      <h2>Kulturelle Bildung im Schulalltag.</h2>
+      <p>Unsere schulinternen Angebote — ein Lernweg vom ersten kreativen Ausprobieren in Klasse 5 bis zur eigenständigen künstlerischen Arbeit in der Oberstufe.</p>
+    </div>
+
+    <div class="kb-course-grid">
+      <article class="kb-course">
+        <span class="klasse">Ab Klasse 5</span>
+        <h3>Profilkurs <span class="accent">WortArt+</span></h3>
+        <p>Bereits zu Beginn der Schulzeit können Schülerinnen und Schüler den Profilkurs „WortArt+" wählen. Hier verbinden sich Sprache, Kunst und Musik zu einem kreativen Erfahrungsraum.</p>
+        <p>Es wird geschrieben, gestaltet, gesprochen, inszeniert und musikalisch gearbeitet. Eigene Texte entstehen ebenso wie erste szenische Umsetzungen — Grundlage für Ausdrucksfähigkeit, Kreativität und Selbstvertrauen.</p>
+      </article>
+
+      <article class="kb-course">
+        <span class="klasse">Ab Klasse 8 / 9</span>
+        <h3>Wahlpflichtfach <span class="accent">Bühnenwelten</span></h3>
+        <p>In den mittleren Jahrgängen kann das Wahlpflichtfach „Bühnenwelten" gewählt werden. Schauspielerische Fähigkeiten werden systematisch vertieft: Rollenarbeit, Textanalyse, szenische Gestaltung, Stimmbildung und das Schreiben eigener Texte.</p>
+        <p>Dazu kommen spielerische Annäherungen an Oper und Deklamation. Die Schülerinnen und Schüler entwickeln Bühnenpräsenz, Teamfähigkeit und gestalterische Eigenständigkeit.</p>
+      </article>
+
+      <article class="kb-course">
+        <span class="klasse">Oberstufe</span>
+        <h3><span class="accent">Literaturkurs</span></h3>
+        <p>In der Oberstufe besteht die Möglichkeit, einen Literaturkurs zu wählen. Hier wird auf anspruchsvollem Niveau geschrieben, inszeniert und aufgeführt.</p>
+        <p>Eigene Texte werden entwickelt, überarbeitet und zur Aufführung gebracht — ein kontinuierlicher Entwicklungsweg vom ersten kreativen Ausprobieren bis zur eigenständigen künstlerischen Arbeit.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="kb-partners" aria-label="Kulturelle Bildung durch starke Partner">
+  <div class="container">
+    <div class="head">
+      <span class="eyebrow">02 · Starke Partner</span>
+      <h2>Kulturelle Bildung durch starke Partner.</h2>
+      <p>Unsere Kooperationen mit renommierten Essener und bundesweit vernetzten Kulturinstitutionen — Musik, Theater, Tanz und Konzert als regelmäßige Erfahrung.</p>
+    </div>
+
+    <div class="kb-partner-grid">
+      <article class="kb-partner">
+        <div class="media">
+          <img src="assets/kulturelle-bildung/truck.png" alt="Jamtruck der Folkwang Musikschule Essen" width="1674" height="1124" loading="lazy">
+        </div>
+        <div class="body">
+          <span class="mark">Folkwang Musikschule</span>
+          <h3>Musikpraxis mit dem Jamtruck.</h3>
+          <p>Einmal pro Woche steht der Jamtruck auf unserem Schulhof — ein voll ausgestatteter Proberaum im LKW. Zwei professionelle Coaches arbeiten mit unseren Schülerinnen und Schülern an Bandprojekten, Songs und Arrangements.</p>
+          <p>Hier wird Musik nicht theoretisch behandelt, sondern praktisch erarbeitet.</p>
+        </div>
+      </article>
+
+      <article class="kb-partner">
+        <div class="media">
+          <img src="assets/kulturelle-bildung/aalto.png" alt="Aalto-Theater Essen" width="1682" height="1468" loading="lazy">
+        </div>
+        <div class="body">
+          <span class="mark">Theater und Philharmonie Essen</span>
+          <h3>Oper, Konzert und Tanz.</h3>
+          <p>Eine besonders enge Zusammenarbeit verbindet uns mit der Theater und Philharmonie Essen. Im Schuljahr 2025/26 sind wir offizieller Kooperationspartner.</p>
+          <div class="highlight">
+            <strong>Aktuell:</strong> Über 40 Schülerinnen und Schüler arbeiten gemeinsam mit den Philharmonikern Essen an einer eigenen Opernproduktion — stellvertretend für die Tiefe dieser Partnerschaft.
+          </div>
+          <p>Darüber hinaus besuchen unsere Schülerinnen und Schüler regelmäßig Opern, Ballett- und Tanzproduktionen sowie klassische Konzerte — unterstützt durch den „Freundeskreis Theater und Philharmonie e.&nbsp;V."</p>
+        </div>
+      </article>
+
+      <article class="kb-partner">
+        <div class="media">
+          <img src="assets/kulturelle-bildung/gruppe.png" alt="Schülergruppe beim Konzertbesuch" width="1686" height="948" loading="lazy">
+        </div>
+        <div class="body">
+          <span class="mark">Klavier-Festival Ruhr</span>
+          <h3>Konzerterlebnisse, die bleiben.</h3>
+          <p>Durch unsere langjährige Partnerschaft mit dem Klavier-Festival Ruhr besucht jede Schülerin und jeder Schüler im Laufe der Schulzeit mindestens einmal ein Konzert dieses international renommierten Festivals.</p>
+          <p>Vorbereitende Einführungen und exklusive Kartenkontingente sorgen dafür, dass diese Konzerterlebnisse nachhaltig wirken.</p>
+        </div>
+      </article>
+
+      <article class="kb-partner">
+        <div class="media">
+          <img src="assets/kulturelle-bildung/buehne.png" alt="Theateraufführung" width="1540" height="1164" loading="lazy">
+        </div>
+        <div class="body">
+          <span class="mark">Grillo-Theater Essen</span>
+          <h3>Schauspiel und Workshops.</h3>
+          <p>Ein weiterer Schwerpunkt ist die Zusammenarbeit mit dem Grillo-Theater Essen. Wir besuchen Schauspielaufführungen und nehmen an Workshops teil.</p>
+          <p>Theater wird so nicht nur erlebt, sondern aktiv reflektiert und vertieft.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="kb-closing" aria-label="Zusammenfassung">
+  <div class="container">
+    <span class="eyebrow">Unser Bildungskonzept</span>
+    <h2>Altersgerecht. Anspruchsvoll.<br><em>Praxisnah.</em></h2>
+    <p>Durch die klare Verbindung von schulischen Profilangeboten und starken kulturellen Partnern entsteht bei uns ein durchgängiges Bildungskonzept. Kulturelle Bildung begleitet unsere Schülerinnen und Schüler über viele Jahre hinweg.</p>
+  </div>
+</section>
+
+</main>
+</BaseLayout>
