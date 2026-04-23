@@ -1,0 +1,67 @@
+backend:
+  name: github
+  repo: tobiaskammer-de/unesco-schule-essen-homepage
+  branch: main
+  # Sveltias gehosteter OAuth-Dienst (kein eigener Server nötig)
+  base_url: https://auth.sveltia.dev
+
+# Medien-Ordner: Bilder landen in public/assets/news/
+# public_folder enthält den GitHub-Pages-Base-Pfad, damit Bilder in Markdown-Body
+# und Frontmatter direkt funktionieren (ohne weitere URL-Transformation).
+media_folder: public/assets/news
+public_folder: /unesco-schule-essen-homepage/assets/news
+
+# UI
+site_url: https://tobiaskammer-de.github.io/unesco-schule-essen-homepage
+display_url: https://tobiaskammer-de.github.io/unesco-schule-essen-homepage
+logo_url: /unesco-schule-essen-homepage/assets/logo-mark.png
+
+publish_mode: simple
+
+locale: de
+
+collections:
+  - name: news
+    label: "Nachrichten"
+    label_singular: "Nachricht"
+    folder: src/content/news
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    extension: md
+    format: frontmatter
+    summary: "{{title}} — {{category}} ({{year}}-{{month}}-{{day}})"
+    sortable_fields: [date, title, category]
+    view_filters:
+      - label: Veröffentlicht
+        field: draft
+        pattern: false
+      - label: Entwürfe
+        field: draft
+        pattern: true
+    fields:
+      - { name: title, label: "Titel", widget: string }
+      - { name: date, label: "Datum", widget: datetime, date_format: "YYYY-MM-DD", time_format: false, picker_utc: false }
+      - name: category
+        label: "Kategorie"
+        widget: select
+        options:
+          - UNESCO-Projekttag
+          - Kooperation
+          - Ausstellung
+          - Sprachen
+          - Wettbewerb
+          - Aus dem Unterricht
+          - Termine
+          - Allgemein
+        default: Allgemein
+      - { name: excerpt, label: "Teaser (1–2 Sätze, max. 320 Zeichen)", widget: text, pattern: ['^.{40,320}$', "Bitte 40–320 Zeichen."] }
+      - { name: coverImage, label: "Coverbild", widget: image, choose_url: false, media_library: { config: { multiple: false } } }
+      - { name: coverAlt, label: "Bildbeschreibung (für Screenreader)", widget: string, hint: "Was ist auf dem Bild zu sehen? Kein 'Foto von …'." }
+      - { name: author, label: "Autorin / Autor", widget: string, required: false, default: "UNESCO-Schule Essen" }
+      - { name: draft, label: "Entwurf (nicht veröffentlichen)", widget: boolean, default: false }
+      - name: body
+        label: "Haupttext"
+        widget: markdown
+        hint: "Überschriften mit ## · Fettdruck mit **Text** · Bilder per Drag&Drop oder Bild-Button einfügen."
+        buttons: [bold, italic, link, heading-two, heading-three, quote, bulleted-list, numbered-list]
+        editor_components: [image, code-block]
