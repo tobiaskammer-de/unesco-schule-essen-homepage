@@ -1,0 +1,265 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHero from "../components/PageHero.astro";
+
+const konzepte = [
+  {
+    num: "01",
+    label: "Vertretung",
+    title: "Vertretungskonzept",
+    claim: "Kein Leerlauf — auch wenn eine Lehrkraft fehlt.",
+    body:
+      "Fällt Unterricht aus, planen wir ihn nicht einfach weg. Vertretungen laufen mit Fachaufgaben aus dem jeweiligen Kurs — keine Verwaltung von Zeit, sondern echtes Weiterarbeiten am Thema. Stundenplanänderungen sind digital für Eltern und Kinder jederzeit einsehbar.",
+    pdf: null,
+  },
+  {
+    num: "02",
+    label: "Leistung",
+    title: "Leistungskonzept",
+    claim: "Fair bewerten — und vorher sagen, was zählt.",
+    body:
+      "Wir bewerten nicht nur Klassenarbeiten, sondern den ganzen Lernweg: mündliche Beiträge, Projekte, Heftführung, individuelle Fortschritte. Welche Leistungen in welchem Fach wie gewichtet werden, erfahren Schülerinnen und Schüler zu Beginn jedes Schuljahres — transparent und nachvollziehbar.",
+    pdf: null,
+  },
+  {
+    num: "03",
+    label: "Fahrten",
+    title: "Fahrtenkonzept",
+    claim: "Klassenfahrten mit Sinn und Maß.",
+    body:
+      "Von der Kennenlernfahrt in Klasse&nbsp;5 bis zur Studienfahrt in der Q1 — jede Fahrt hat einen pädagogischen Auftrag. Wir achten auf vertretbare Kosten, klaren Lernbezug und dass das Programm zur jeweiligen Altersstufe passt. Und: Niemand bleibt aus finanziellen Gründen zurück.",
+    pdf: null,
+  },
+  {
+    num: "04",
+    label: "Lesen",
+    title: "Leseförderung",
+    claim: "Wer gut liest, lernt in allen Fächern besser.",
+    body:
+      "Lesen ist Schlüsselkompetenz — und wird bei uns systematisch gepflegt. Feste Lesezeiten, Buchpatenschaften, der Vorlesewettbewerb in Klasse&nbsp;6 und eine aktive Schulbibliothek gehören dazu. Kinder, die zusätzliche Unterstützung brauchen, bekommen sie in gezielten Förderbändern.",
+    pdf: null,
+  },
+  {
+    num: "05",
+    label: "Digitales",
+    title: "Regeln zum Umgang mit digitalen Endgeräten",
+    claim: "iPad ist Lernwerkzeug, Handy bleibt in der Tasche.",
+    body:
+      "Unser Handy- und Tablet-Konzept ist Teil der Schulordnung. Das Schultablet (iPad) kommt täglich aufgeladen mit in den Unterricht — das Handy bleibt im Unterricht ausgeschaltet oder im Flugmodus. In Pausen und in der Sek&nbsp;II gelten klare Ausnahmen. Das schafft Konzentration im Klassenraum und schützt Persönlichkeitsrechte.",
+    pdf: "assets/Handykonzept-2026.pdf",
+    pdfMeta: "PDF · 46&#8239;KB",
+  },
+];
+---
+<BaseLayout title="Pädagogische Konzepte — UNESCO-Schule Essen">
+<style is:global>
+  /* ---------- Pädagogische Konzepte ---------- */
+  .pk-intro{background:var(--creme);padding:var(--space-section) 0;}
+  .pk-intro-grid{
+    display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);
+    gap:56px;align-items:start;
+  }
+  .pk-intro h2{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(30px,3.4vw,44px);line-height:1.12;
+    color:var(--petrol);letter-spacing:-0.015em;margin:0;
+  }
+  .pk-intro p{
+    font-family:var(--sans);font-size:17px;line-height:1.7;color:var(--tinte);
+    margin:0 0 16px;
+  }
+  .pk-intro p em{font-style:italic;color:var(--bordeaux);}
+  .pk-intro p strong{color:var(--petrol);}
+
+  /* Concepts list */
+  .pk-list{background:var(--offwhite);padding:var(--space-section) 0;border-top:1px solid var(--hairline);}
+  .pk-list .head{max-width:820px;margin:0 0 48px;}
+  .pk-list .head .eyebrow{display:block;margin-bottom:14px;}
+  .pk-list .head h2{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(30px,3.2vw,44px);line-height:1.15;letter-spacing:-0.015em;
+    color:var(--petrol);margin:0 0 16px;
+  }
+  .pk-list .head p{
+    font-family:var(--sans);font-size:17px;line-height:1.65;color:var(--stein);
+    max-width:680px;margin:0;
+  }
+
+  .pk-grid{
+    display:flex;flex-direction:column;gap:20px;
+  }
+  .pk-card{
+    background:#fff;border:1px solid var(--hairline);
+    border-top:var(--card-accent-width) solid var(--petrol);
+    display:grid;
+    grid-template-columns:minmax(0,auto) minmax(0,1fr) minmax(0,auto);
+    gap:40px;align-items:center;
+    padding:32px 40px;
+    transition:transform var(--transition), box-shadow var(--transition);
+  }
+  .pk-card:hover{transform:translateY(-1px);box-shadow:0 14px 34px -22px rgba(14,77,79,0.28);}
+  @media (prefers-reduced-motion: reduce){.pk-card:hover{transform:none;}}
+
+  .pk-card .left{
+    display:flex;flex-direction:column;gap:8px;
+    min-width:140px;
+  }
+  .pk-card .num{
+    font-family:var(--serif);font-weight:500;font-size:56px;line-height:1;
+    color:var(--petrol);letter-spacing:-0.03em;font-variant-numeric:tabular-nums;
+    opacity:0.22;
+  }
+  .pk-card .label{
+    font-family:var(--sans);font-size:11px;font-weight:600;
+    letter-spacing:0.16em;text-transform:uppercase;color:var(--petrol);
+  }
+
+  .pk-card .body{display:flex;flex-direction:column;gap:10px;}
+  .pk-card h3{
+    font-family:var(--serif);font-weight:500;font-size:clamp(22px,2.2vw,28px);
+    line-height:1.2;color:var(--petrol);letter-spacing:-0.01em;margin:0;
+  }
+  .pk-card .claim{
+    font-family:var(--serif);font-style:italic;font-weight:400;
+    font-size:17px;line-height:1.4;color:var(--bordeaux);
+    margin:0;
+  }
+  .pk-card .desc{
+    font-family:var(--sans);font-size:15.5px;line-height:1.65;color:var(--tinte);
+    margin:0;max-width:68ch;
+  }
+
+  .pk-card .right{min-width:220px;display:flex;justify-content:flex-end;}
+  .pk-download{
+    display:inline-flex;align-items:center;gap:12px;
+    padding:14px 20px;text-decoration:none;
+    background:var(--petrol);color:var(--creme);
+    font-family:var(--sans);font-weight:500;font-size:14px;
+    border:1.5px solid var(--petrol);
+    transition:background var(--transition-fast), color var(--transition-fast), transform var(--transition-fast);
+    white-space:nowrap;
+  }
+  .pk-download:hover{background:var(--petrol-dark);transform:translateY(-1px);color:var(--creme);}
+  @media (prefers-reduced-motion: reduce){.pk-download:hover{transform:none;}}
+  .pk-download .icon{
+    width:16px;height:16px;flex-shrink:0;
+  }
+  .pk-download .icon svg{width:100%;height:100%;stroke:currentColor;fill:none;}
+  .pk-download .txt{display:flex;flex-direction:column;gap:2px;text-align:left;}
+  .pk-download .title{font-weight:500;}
+  .pk-download .meta{font-size:11px;color:rgba(245,239,231,0.7);letter-spacing:0.04em;}
+
+  .pk-soon{
+    display:inline-flex;align-items:center;gap:12px;
+    padding:14px 20px;
+    font-family:var(--sans);font-size:13px;color:var(--stein);
+    border:1px dashed var(--hairline);
+    background:var(--offwhite);
+    letter-spacing:0.04em;
+    white-space:nowrap;
+  }
+  .pk-soon .dot{width:7px;height:7px;border-radius:50%;background:var(--gold);flex-shrink:0;}
+
+  /* Closing */
+  .pk-close{background:var(--petrol);color:var(--creme);padding:var(--space-section) 0;}
+  .pk-close .container{max-width:820px;text-align:center;}
+  .pk-close .eyebrow{color:rgba(245,239,231,0.55);display:block;margin-bottom:14px;}
+  .pk-close h2{
+    font-family:var(--serif);font-weight:500;font-style:italic;
+    font-size:clamp(28px,3vw,40px);line-height:1.2;
+    color:var(--creme);letter-spacing:-0.015em;margin:0 0 24px;
+  }
+  .pk-close h2 em{color:var(--gold);font-style:italic;}
+  .pk-close p{
+    font-family:var(--sans);font-size:17px;line-height:1.7;
+    color:rgba(245,239,231,0.9);max-width:640px;margin:0 auto;
+  }
+
+  @media (max-width:960px){
+    .pk-intro-grid{grid-template-columns:1fr;gap:28px;}
+    .pk-card{
+      grid-template-columns:1fr;gap:18px;padding:28px 28px;
+    }
+    .pk-card .left{flex-direction:row;align-items:baseline;gap:16px;min-width:0;}
+    .pk-card .num{font-size:36px;}
+    .pk-card .right{justify-content:flex-start;min-width:0;}
+    .pk-intro,.pk-list,.pk-close{padding:var(--space-section-sm) 0;}
+  }
+</style>
+
+<main id="top">
+
+<PageHero variant="feature">
+  <Fragment slot="eyebrow">Angebote · Pädagogische Konzepte</Fragment>
+  <Fragment slot="title">Pädagogische Konzepte —<br><em>klar, transparent, gelebt.</em></Fragment>
+  <Fragment slot="lede">Hinter dem Unterrichtsalltag stehen Grundsätze, auf die Sie sich verlassen können. Hier finden Sie die wichtigsten in Kurzform — jeweils mit Download der vollständigen Fassung.</Fragment>
+</PageHero>
+
+<section class="pk-intro" aria-label="Einordnung">
+  <div class="container">
+    <div class="pk-intro-grid">
+      <div>
+        <h2>Warum Konzepte, <em>die transparent sind?</em></h2>
+      </div>
+      <div>
+        <p>Eltern und Schülerinnen und Schüler sollen <strong>wissen, wie Schule bei uns funktioniert</strong> — nicht nur an guten Tagen, sondern auch dann, wenn Unterricht vertreten wird, wenn Noten vergeben werden oder wenn eine Klassenfahrt ansteht.</p>
+        <p>Deshalb legen wir zentrale Grundsätze schriftlich fest, geben sie zu Beginn des Schuljahres bekannt — und veröffentlichen sie hier offen. So können Sie jederzeit nachlesen, welche Regeln gelten und wie wir pädagogisch arbeiten.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pk-list" aria-label="Unsere Konzepte">
+  <div class="container">
+    <div class="head">
+      <span class="eyebrow">Fünf zentrale Konzepte</span>
+      <h2>Was bei uns verbindlich geregelt ist.</h2>
+      <p>Jedes Konzept in einem Satz — und mit Download für alle Details. Die vollständigen Fassungen sind Teil der offiziellen Schuldokumentation.</p>
+    </div>
+
+    <div class="pk-grid">
+      {konzepte.map((k) => (
+        <article class="pk-card">
+          <div class="left">
+            <span class="num">{k.num}</span>
+            <span class="label">{k.label}</span>
+          </div>
+          <div class="body">
+            <h3>{k.title}</h3>
+            <p class="claim">„{k.claim}"</p>
+            <p class="desc" set:html={k.body} />
+          </div>
+          <div class="right">
+            {k.pdf ? (
+              <a href={k.pdf} class="pk-download" download>
+                <span class="icon">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
+                <span class="txt">
+                  <span class="title">Gesamtes Konzept</span>
+                  <span class="meta" set:html={k.pdfMeta || "PDF herunterladen"} />
+                </span>
+              </a>
+            ) : (
+              <span class="pk-soon" aria-label="PDF folgt">
+                <span class="dot" aria-hidden="true"></span>
+                PDF folgt
+              </span>
+            )}
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section class="pk-close" aria-label="Fragen zu unseren Konzepten">
+  <div class="container">
+    <span class="eyebrow">Gespräch statt Papier</span>
+    <h2>Etwas <em>unklar</em> oder nicht gefunden?</h2>
+    <p>Unsere Konzepte leben nicht vom Dokument, sondern vom Alltag. Wenn Sie Fragen haben oder etwas nicht auf dem Papier finden: Sprechen Sie uns an — im Sekretariat oder direkt bei der Klassenleitung.</p>
+  </div>
+</section>
+
+</main>
+</BaseLayout>
