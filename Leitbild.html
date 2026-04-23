@@ -908,16 +908,16 @@
             <div class="mega-col">
               <h4>Menschen &amp; Gremien</h4>
               <ul>
-                <li><a href="#">Schulleitung</a></li>
+                <li><a href="Schulleitung.html">Schulleitung</a></li>
                 <li><a href="#">Kollegium</a></li>
-                <li><a href="#">Förderverein</a></li>
-                <li><a href="#">Ehemalige</a></li>
+                <li><a href="Foerderverein.html">Förderverein</a></li>
+                <li><a href="Ehemalige.html">Ehemalige</a></li>
               </ul>
             </div>
             <div class="mega-col">
               <h4>Standort &amp; Netzwerk</h4>
               <ul>
-                <li><a href="#">Standort und Anfahrt</a></li>
+                <li><a href="Anfahrt.html">Standort und Anfahrt</a></li>
                 <li><a href="#">Partnerschaften</a></li>
                 <li><a href="#">Kontakt</a></li>
               </ul>
@@ -1122,34 +1122,6 @@
 </section>
 
 </main>
-          <img src="assets/sp-hero.jpg" alt="">
-          <span class="num-badge">08</span>
-        </div>
-        <div class="body">
-          <h3>Persönlichkeitsentwickelnde Schule</h3>
-          <p class="claim">Lernende und Lehrende nehmen sich gegenseitig als Individuum und als integrativer Teil einer größeren Gemeinschaft wahr — und bilden in vielfältiger Form ihre Persönlichkeit aus.</p>
-          <ul>
-          <li>Klassen- und Kursfahrten in Klasse 9 und Stufe Q1</li>
-          <li>Zahlreiche Projekttage und gemeinsame Schulveranstaltungen</li>
-          <li>Enges Beratungskonzept bei kleinen Lerngruppen („Schüler im Blick")</li>
-          <li>Klassenleiterteams · Theaterprojekte</li>
-          <li>Durchgängige Studien- und Berufsberatung, Kooperation mit Jugendberufsagentur (Jobcenter & Bundesagentur)</li>
-          <li>Kooperation mit dem Talentscouting der Universität Duisburg-Essen</li>
-          <li>Aufenthaltsräume (SV) · Schülerpatenschaften · bewegte Pause</li>
-          </ul>
-        <div class="future">
-          <h4>Schulentwicklungsziele</h4>
-          <ul>
-            <li>Ausbau der Lerninseln / freie Sitzmöglichkeiten</li>
-            <li>Kostenfreie Wasserspender</li>
-          </ul>
-        </div>
-        </div>
-      </article>
-  </div>
-</section>
-
-</main>
 <footer class="site-footer" aria-label="Seitenfuß">
   <div class="container">
     <div class="footer-grid">
@@ -1201,3 +1173,31 @@
 
     <div class="footer-bottom">
       <div>© 2026 UNESCO-Schule Essen · Gymnasium der Stadt Essen</div>
+      <div>Folgen Sie uns: <a href="#" style="color:inherit;border-bottom:1px solid rgba(245,239,231,0.4);">@unescoschule.essen</a></div>
+    </div>
+  </div>
+</footer>
+<script>
+  const hamburger = document.getElementById('hamburgerBtn');
+  const mainNav   = document.getElementById('mainNav');
+  if(hamburger){
+    hamburger.addEventListener('click',()=>{
+      const open = hamburger.classList.toggle('active');
+      mainNav.classList.toggle('open',open);
+      hamburger.setAttribute('aria-expanded', open?'true':'false');
+    });
+  }
+  document.querySelectorAll('.nav-item.has-dropdown > .nav-link').forEach(link=>{
+    link.addEventListener('click',e=>{
+      if(window.innerWidth <= 1080){
+        e.preventDefault();
+        const parent = link.parentElement;
+        const wasOpen = parent.classList.contains('open');
+        document.querySelectorAll('.nav-item.has-dropdown').forEach(i=>i.classList.remove('open'));
+        if(!wasOpen) parent.classList.add('open');
+      }
+    });
+  });
+  </script>
+</body>
+</html>
