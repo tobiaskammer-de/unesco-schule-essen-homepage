@@ -239,6 +239,15 @@ import PageHero from "../components/PageHero.astro";
     .st-intro,.st-raster,.st-table-wrap,.st-notes,.st-legend,.st-dummy{padding:var(--space-section-sm) 0;}
     .st-notes .inner{padding:24px 24px;}
   }
+  @media (max-width:400px){
+    /* Tabellen auf Mini-Screens: knapperes Padding + kleinere Schrift */
+    .st-table thead th,
+    .st-table tbody th,
+    .st-table tbody td{padding:10px 10px;font-size:13.5px;}
+    .st-table caption{padding:14px 16px 12px;font-size:12px;}
+    .raster-row{grid-template-columns:110px 1fr;}
+    .raster-row .lbl,.raster-row .time{padding:12px 14px;font-size:14px;}
+  }
 </style>
 
 <main id="top">
