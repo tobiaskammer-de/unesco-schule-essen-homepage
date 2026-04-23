@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>UNESCO-Schule Essen — Gymnasium</title>
+<title>Unser Leitbild — UNESCO-Schule Essen</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -117,14 +117,14 @@
   .logo{display:flex;align-items:center;text-decoration:none;flex-shrink:0;}
   .logo .logo-stack{
     position:relative;display:block;height:134px;
-    transition:transform .25s ease;
+    transition:transform .3s ease;
   }
   .logo .logo-stack img{
     display:block;height:134px;width:auto;
     transition:opacity .35s ease;
   }
   .logo .logo-color{position:absolute;inset:0;opacity:0;}
-  .logo:hover .logo-stack{transform:scale(1.02);}
+  .logo:hover .logo-stack{transform:scale(1.04);}
   .logo:hover .logo-bw{opacity:0;}
   .logo:hover .logo-color{opacity:1;}
 
@@ -145,11 +145,11 @@
   }
 
   .dropdown-mega{
-    position:absolute;top:calc(100% + 0px);left:50%;transform:translate(-50%,8px);
+    position:absolute;top:100%;left:50%;transform:translate(-50%,8px);
     background:#fff;
     border:1px solid var(--hairline);
     border-top:2px solid var(--petrol);
-    min-width:780px;
+    width:max-content;max-width:min(780px,calc(100vw - 40px));
     padding:28px 28px 24px;
     display:grid;grid-template-columns:1fr 1fr 1fr;gap:36px;
     opacity:0;visibility:hidden;pointer-events:none;
@@ -176,7 +176,9 @@
   }
   .mega-col li a:hover{color:var(--petrol);border-left-color:var(--petrol);}
 
-.header-actions{display:flex;align-items:center;gap:10px;flex-shrink:0;}
+
+
+  .header-actions{display:flex;align-items:center;gap:10px;flex-shrink:0;}
   .header-actions a{
     font-family:var(--sans);font-size:13.5px;font-weight:500;
     color:var(--petrol);
@@ -194,12 +196,12 @@
   .hamburger.active span:nth-child(3){transform:translateY(-8px) rotate(-45deg);}
 
   /* ---------- HERO ---------- */
-  .hero{padding:72px 0 54px;}
+  .hero{padding:72px 0 108px;}
   .hero-grid{
     display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;
   }
   .hero-photo{
-    position:relative;aspect-ratio:16/15;overflow:hidden;border-radius:2px;
+    position:relative;aspect-ratio:4/5;overflow:hidden;border-radius:2px;
     background:var(--creme);
   }
   .hero-photo img{width:100%;height:100%;object-fit:cover;}
@@ -330,7 +332,7 @@
       radial-gradient(ellipse at 15% 10%, rgba(127,176,105,0.08), transparent 45%),
       radial-gradient(ellipse at 85% 90%, rgba(212,165,116,0.10), transparent 50%),
       var(--creme);
-    padding:30px 0 35px;
+    padding:60px 0 70px;
     position:relative;
     overflow:hidden;
   }
@@ -358,12 +360,14 @@
     position:relative;overflow:hidden;isolation:isolate;
     background:var(--offwhite);
     border:1px solid var(--hairline);
+    border-radius:24px;
     padding:40px 36px;
     display:flex;flex-direction:column;gap:20px;
     box-shadow:0 10px 30px -20px rgba(14,77,79,0.22);
     transition:transform .3s ease, box-shadow .3s ease;
     min-height:280px;
   }
+  /* Background image overlay — driven by Tweaks */
   .pillars-section[data-bg-images="on"] .pillar-card::before{
     content:"";position:absolute;inset:0;z-index:-1;
     background-image:var(--card-bg, none);
@@ -373,12 +377,14 @@
     pointer-events:none;
   }
   .pillars-section[data-bg-images="on"] .pillar-card > *{position:relative;}
+  /* Assign per-card image */
   .pillar-unesco{--card-bg:url("assets/pillar-unesco.jpg");}
   .pillar-profile{--card-bg:url("assets/pillar-profil.jpg");}
   .pillar-abitur{--card-bg:url("assets/pillar-abitur.jpg");}
   .pillar-quote{--card-bg:url("assets/pillar-quote.jpg");}
+  /* Quote card: when bg image is on, darken slightly so text stays readable */
   .pillars-section[data-bg-images="on"] .pillar-quote::after{
-    content:"";position:absolute;inset:-1px;z-index:-1;
+    content:"";position:absolute;inset:0;z-index:-1;
     background:rgba(250,247,241,0.55);
     pointer-events:none;
   }
@@ -397,16 +403,6 @@
   .pillar-profile h3{color:var(--creme);}
   .pillar-profile p{color:rgba(245,239,231,0.82);}
   .pillar-profile .icon{color:var(--gold);}
-
-  .pillar-unesco{background:var(--bordeaux);color:var(--creme);border-color:var(--bordeaux);}
-  .pillar-unesco h3{color:var(--creme);}
-  .pillar-unesco p{color:rgba(245,239,231,0.88);}
-  .pillar-unesco .icon{color:var(--gold);}
-
-  .pillar-abitur{background:var(--gold);color:#3a2a10;border-color:var(--gold);}
-  .pillar-abitur h3{color:#2a1d08;}
-  .pillar-abitur p{color:rgba(58,42,16,0.85);}
-  .pillar-abitur .icon{color:var(--bordeaux);}
 
   .pillar-quote{
     background:var(--creme);
@@ -439,7 +435,7 @@
   }
 
   /* ---------- Voice (Quote) ---------- */
-  .voice-section{padding:60px 0;}
+  .voice-section{padding:30px 0;}
   .voice-grid{
     display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:72px;align-items:center;
   }
@@ -469,7 +465,7 @@
   }
 
   /* ---------- Dein Weg zu uns ---------- */
-  .path-section{background:var(--creme);padding:60px 0;}
+  .path-section{background:var(--creme);padding:120px 0 60px;}
   .path-head{margin-bottom:56px;max-width:620px;}
   .path-head .eyebrow{display:block;margin-bottom:14px;}
   .path-head h2{font-size:36px;}
@@ -532,7 +528,7 @@
   .partners-foot{margin-top:36px;}
 
   @media (max-width:960px){
-    .partners-section{padding:72px 0;}
+    .partners-section{padding:36px 0;}
     .partners-logos{grid-template-columns:repeat(3,1fr);gap:12px;}
   }
   @media (max-width:560px){
@@ -559,14 +555,15 @@
   .footer-col a{color:var(--creme);font-size:14.5px;text-decoration:none;border-bottom:1px solid transparent;transition:border-color .2s;}
   .footer-col a:hover{border-bottom-color:var(--creme);}
   .footer-brand .footer-logo{
-    margin-bottom:28px;display:inline-block;cursor:pointer;
+    margin-bottom:28px;
   }
+  .footer-brand .footer-logo{display:inline-block;cursor:pointer;}
   .footer-brand .footer-logo .logo-stack{
-    position:relative;display:block;height:78px;max-width:100%;
+    position:relative;display:block;height:117px;max-width:100%;
     transition:transform .3s ease;
   }
   .footer-brand .footer-logo .logo-stack img{
-    display:block;height:78px;width:auto;max-width:100%;
+    display:block;height:117px;width:auto;max-width:100%;
     transition:opacity .35s ease, filter .35s ease;
   }
   .footer-brand .footer-logo .logo-bw{filter:brightness(0) invert(1);}
@@ -618,7 +615,7 @@
     .hero{padding:56px 0 72px;}
     .hero-grid{grid-template-columns:1fr;gap:40px;}
     .hero-photo{aspect-ratio:4/3;max-height:480px;}
-    section{padding:72px 0;}
+    section{padding:36px 0;}
     .news-dates{grid-template-columns:1fr;gap:56px;}
     .news-list{grid-template-columns:1fr;gap:20px;}
     .news-card{
@@ -648,7 +645,7 @@
     .footer-grid{grid-template-columns:1fr 1fr;gap:28px 32px;}
     .footer-brand{grid-column:1 / -1;}
     .footer-brand .footer-logo .logo-stack,
-    .footer-brand .footer-logo .logo-stack img{height:56px;}
+    .footer-brand .footer-logo .logo-stack img{height:84px;}
     .footer-brand address{font-size:14px;}
     .footer-col h4{margin-bottom:14px;}
     .footer-col li{margin-bottom:8px;}
@@ -665,14 +662,230 @@
     .voice-quote{font-size:22px;}
   }
 
+  /* ---------- Tweaks panel ---------- */
+  .tweaks-panel{
+    position:fixed;bottom:20px;right:20px;z-index:2000;
+    background:#fff;border:1px solid var(--hairline);border-radius:6px;
+    padding:18px 20px;width:300px;
+    font-family:var(--sans);font-size:13px;
+    box-shadow:0 8px 28px rgba(14,77,79,0.12);
+    display:none;
+  }
+  .tweaks-panel.open{display:block;}
+  .tweaks-panel h5{
+    font-family:var(--sans);font-size:11px;font-weight:600;
+    letter-spacing:0.14em;text-transform:uppercase;color:var(--petrol);
+    margin:0 0 14px;
+  }
+  .tweak-row{margin-bottom:14px;}
+  .tweak-row label{display:block;font-weight:500;margin-bottom:6px;color:var(--tinte);}
+  .tweak-row select, .tweak-row input[type=text]{
+    width:100%;padding:7px 9px;border:1px solid var(--hairline);
+    border-radius:3px;background:#fff;font-family:var(--sans);font-size:13px;
+  }
 </style>
+
+
+
+<style>
+  /* ---------- Leitbild page ---------- */
+  .lb-hero{
+    position:relative;
+    min-height:460px;
+    display:flex;align-items:flex-end;
+    padding:96px 0 64px;
+    background:
+      radial-gradient(ellipse at 20% 15%, rgba(127,176,105,0.12), transparent 55%),
+      radial-gradient(ellipse at 85% 90%, rgba(212,165,116,0.14), transparent 55%),
+      var(--creme);
+    border-bottom:1px solid var(--hairline);
+    overflow:hidden;
+  }
+  .lb-hero::before{
+    content:"";position:absolute;inset:0;z-index:0;
+    background-image:
+      radial-gradient(circle at 25% 30%, rgba(14,77,79,0.04) 1px, transparent 1px),
+      radial-gradient(circle at 75% 70%, rgba(110,38,57,0.03) 1px, transparent 1px);
+    background-size:24px 24px, 32px 32px;
+    opacity:0.7;pointer-events:none;
+  }
+  .lb-hero .container{position:relative;z-index:1;}
+  .lb-hero .eyebrow{display:block;margin-bottom:18px;}
+  .lb-hero h1{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(40px,5.2vw,72px);line-height:1.05;
+    letter-spacing:-0.02em;color:var(--petrol);
+    max-width:960px;margin:0 0 22px;
+  }
+  .lb-hero h1 em{font-style:italic;color:var(--bordeaux);}
+  .lb-hero p.lede{
+    font-family:var(--sans);font-size:18px;line-height:1.6;color:var(--stein);
+    max-width:680px;margin:0;
+  }
+  .lb-hero .wip-pill{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:6px 14px;border-radius:999px;
+    background:rgba(212,165,116,0.20);color:#7a5120;
+    font-family:var(--sans);font-size:12px;font-weight:500;letter-spacing:0.08em;
+    text-transform:uppercase;margin-bottom:22px;
+  }
+  .lb-hero .wip-pill .dot{
+    width:7px;height:7px;border-radius:50%;background:#c9831c;
+  }
+
+  /* Motto band */
+  .lb-motto{
+    background:var(--petrol);color:var(--creme);
+    padding:90px 0;
+  }
+  .lb-motto .container{text-align:center;max-width:880px;}
+  .lb-motto blockquote{
+    margin:0;
+    font-family:var(--serif);font-weight:500;font-style:italic;
+    font-size:clamp(28px,3.4vw,46px);line-height:1.2;letter-spacing:-0.015em;
+    color:var(--creme);
+  }
+  .lb-motto blockquote::before{
+    content:"\201E";display:block;
+    font-family:var(--serif);font-size:84px;line-height:0.3;
+    color:var(--gold);opacity:0.7;margin-bottom:18px;
+  }
+  .lb-motto .sub{
+    font-family:var(--sans);font-size:17px;line-height:1.65;
+    color:rgba(245,239,231,0.85);
+    max-width:660px;margin:32px auto 0;
+  }
+
+  /* Three values */
+  .lb-values{
+    background:var(--offwhite);
+    padding:96px 0 72px;
+  }
+  .lb-values .head{max-width:760px;margin:0 0 56px;}
+  .lb-values .head .eyebrow{display:block;margin-bottom:14px;}
+  .lb-values .head h2{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(30px,3.2vw,44px);line-height:1.15;letter-spacing:-0.015em;
+    color:var(--petrol);margin:0;
+  }
+  .values-grid{
+    display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px;
+  }
+  .value-card{
+    background:#fff;border:1px solid var(--hairline);
+    padding:36px 32px 34px;
+    display:flex;flex-direction:column;gap:16px;
+    border-top:3px solid var(--bordeaux);
+    transition:transform .3s ease, box-shadow .3s ease;
+  }
+  .value-card:nth-child(2){border-top-color:var(--gold);}
+  .value-card:nth-child(3){border-top-color:var(--sage);}
+  .value-card:hover{transform:translateY(-2px);box-shadow:0 14px 36px -22px rgba(14,77,79,0.3);}
+  .value-card .num{
+    font-family:var(--serif);font-weight:500;font-size:28px;line-height:1;
+    color:var(--bordeaux);letter-spacing:-0.02em;
+  }
+  .value-card:nth-child(2) .num{color:#8a5a20;}
+  .value-card:nth-child(3) .num{color:#3e6b2a;}
+  .value-card h3{
+    font-family:var(--serif);font-weight:500;font-size:24px;line-height:1.2;
+    color:var(--petrol);letter-spacing:-0.01em;margin:0;
+  }
+  .value-card p{
+    font-family:var(--sans);font-size:15.5px;line-height:1.65;color:var(--tinte);margin:0;
+  }
+
+  /* Timeline / path */
+  .lb-path{
+    background:var(--creme);
+    padding:96px 0;position:relative;overflow:hidden;
+  }
+  .lb-path::before{
+    content:"";position:absolute;inset:0;
+    background-image:
+      radial-gradient(circle at 20% 20%, rgba(14,77,79,0.035) 1px, transparent 1px),
+      radial-gradient(circle at 80% 80%, rgba(110,38,57,0.025) 1px, transparent 1px);
+    background-size:28px 28px, 36px 36px;opacity:0.6;pointer-events:none;
+  }
+  .lb-path .container{position:relative;}
+  .lb-path .head{max-width:760px;margin:0 0 56px;}
+  .lb-path .head .eyebrow{display:block;margin-bottom:14px;}
+  .lb-path .head h2{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(30px,3.2vw,44px);line-height:1.15;letter-spacing:-0.015em;
+    color:var(--petrol);margin:0 0 16px;
+  }
+  .lb-path .head p{
+    font-family:var(--sans);font-size:16.5px;line-height:1.65;color:var(--stein);
+    max-width:640px;margin:0;
+  }
+  .stages{
+    display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:0;
+    border:1px solid var(--hairline);
+    background:#fff;
+  }
+  .stage{
+    padding:36px 32px 40px;
+    border-right:1px solid var(--hairline);
+    display:flex;flex-direction:column;gap:12px;
+    position:relative;
+  }
+  .stage:last-child{border-right:0;}
+  .stage .klassen{
+    font-family:var(--sans);font-size:11.5px;font-weight:600;
+    letter-spacing:0.14em;text-transform:uppercase;color:var(--bordeaux);
+  }
+  .stage h3{
+    font-family:var(--serif);font-weight:500;font-size:26px;line-height:1.15;
+    color:var(--petrol);letter-spacing:-0.01em;margin:0 0 6px;
+  }
+  .stage p{
+    font-family:var(--sans);font-size:15.5px;line-height:1.65;color:var(--tinte);margin:0;
+  }
+  .stage .num-big{
+    position:absolute;top:24px;right:28px;
+    font-family:var(--serif);font-weight:500;font-size:64px;line-height:1;
+    color:rgba(14,77,79,0.08);letter-spacing:-0.04em;pointer-events:none;
+  }
+
+  /* CTA */
+  .lb-cta{
+    background:var(--offwhite);
+    padding:88px 0 104px;
+    border-top:1px solid var(--hairline);
+  }
+  .lb-cta-grid{
+    display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:56px;align-items:center;
+  }
+  .lb-cta h2{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(28px,3vw,40px);line-height:1.15;
+    color:var(--petrol);letter-spacing:-0.015em;margin:0;
+  }
+  .lb-cta p{
+    font-family:var(--sans);font-size:17px;line-height:1.6;color:var(--stein);
+    margin:0 0 24px;max-width:62ch;
+  }
+  .lb-cta-links{display:flex;gap:14px;flex-wrap:wrap;}
+
+  @media (max-width:960px){
+    .values-grid{grid-template-columns:1fr;gap:20px;}
+    .stages{grid-template-columns:1fr;}
+    .stage{border-right:0;border-bottom:1px solid var(--hairline);}
+    .stage:last-child{border-bottom:0;}
+    .lb-cta-grid{grid-template-columns:1fr;gap:24px;}
+    .lb-motto{padding:64px 0;}
+    .lb-values,.lb-path,.lb-cta{padding:64px 0;}
+  }
+</style>
+
+
 </head>
 <body>
-
-<!-- ===================== HEADER ===================== -->
 <header class="site-header">
   <div class="header-inner">
-    <a href="index.html" class="logo" aria-label="UNESCO-Schule Essen Startseite">
+    <a href="Startseite.html" class="logo" aria-label="UNESCO-Schule Essen Startseite">
       <span class="logo-stack">
         <img class="logo-bw"    src="assets/logo-signum-wide.png" alt="UNESCO-Schule Essen">
         <img class="logo-color" src="assets/logo-signum-wide-color.jpg" alt="" aria-hidden="true">
@@ -818,281 +1031,107 @@
     </button>
   </div>
 </header>
+<main id="top">
 
-<!-- ===================== HERO ===================== -->
-<section class="hero" aria-label="Willkommen">
+<section class="lb-hero" aria-label="Unser Leitbild">
   <div class="container">
-    <div class="hero-grid">
-      <div class="hero-photo">
-        <!-- Dummy hero image: Unsplash, warm/petrol tones, editorial -->
-        <img id="heroImage"
-             src="assets/hero.jpeg"
-             alt="Bibliothek mit geschwungenen Bücherregalen">
-        <span class="cred">Platzhalter · Foto-Shoot folgt</span>
-      </div>
-      <div class="hero-text">
-        <span class="eyebrow">Deine UNESCO-Schule Essen</span>
-        <h1 class="hero-claim" id="heroClaim">Gemeinsam lernen,<br>den eigenen Weg finden.</h1>
-        <p class="hero-sub">
-          Als UNESCO-Projektschule begleiten wir junge Menschen zu einem starken Abitur —
-          und zu einer Haltung, die in der Welt trägt.
-        </p>
-        <div class="hero-cta-row">
-          <a href="#" class="btn btn-primary">Unsere Schule entdecken <span class="arrow">→</span></a>
-        </div>
-      </div>
+    <span class="eyebrow">Über Uns · Unser Leitbild</span>
+    <h1>Unser Leitbild<br>wächst <em>mit uns.</em></h1>
+    <p class="lede">Mit dem Start der Erprobungsstufe ab Klasse 5 entwickeln wir unser Schulprofil weiter. Das aktuelle Leitbild wird derzeit überarbeitet — gemeinsam mit Kollegium, Eltern und Schülerschaft. Bis dahin gilt: Was Sie hier lesen, zeigt, woher wir kommen. Wohin wir gehen, erleben Sie am besten vor Ort.</p>
+  </div>
+</section>
+
+<section class="lb-motto" aria-label="Unser Motto">
+  <div class="container">
+    <blockquote>Gemeinsam lernen —<br>den eigenen Weg finden.</blockquote>
+    <p class="sub">Im Sinne unseres Leitbildes fördern wir eine Schulgemeinschaft, die Vielfalt als Chance sieht und individuelle Lern- und Lebenswege ermöglicht. Wir leben ein Miteinander, das geprägt ist von gegenseitigem Respekt und Wertschätzung — sichtbar in unserer täglichen pädagogischen Arbeit.</p>
+  </div>
+</section>
+
+<section class="lb-values" aria-label="Unsere Werte">
+  <div class="container">
+    <div class="head">
+      <span class="eyebrow">Drei Überzeugungen</span>
+      <h2>Worauf unser Leitbild steht.</h2>
+    </div>
+    <div class="values-grid">
+      <article class="value-card">
+        <div class="num">01</div>
+        <h3>Unsere Ziele</h3>
+        <p>Wir treten dafür ein, dass jede Schülerin und jeder Schüler — unabhängig von sozialer und kultureller Herkunft — Zugang zu höherer Bildung erhält, seine Persönlichkeit entfalten, selbstständig und kritisch Entscheidungen treffen sowie Verantwortung für sich und seine Umwelt übernehmen kann.</p>
+      </article>
+      <article class="value-card">
+        <div class="num">02</div>
+        <h3>Unser Menschenbild</h3>
+        <p>Wir sehen Vielfalt als Chance, die das gemeinsame Lernen bereichert — und in jeder Schülerin und in jedem Schüler Potenzial, das gefördert werden kann.</p>
+      </article>
+      <article class="value-card">
+        <div class="num">03</div>
+        <h3>Unser Miteinander</h3>
+        <p>Respekt und Wertschätzung prägen unseren Alltag. Sie sind nicht nur Regel, sondern Haltung — und spiegeln sich in jeder pädagogischen Entscheidung, die wir treffen.</p>
+      </article>
     </div>
   </div>
 </section>
 
-<!-- ===================== AKTUELLES + TERMINE ===================== -->
-<section id="aktuelles" aria-label="Aktuelles und nächste Termine">
+<section class="lb-path" aria-label="Unser Weg">
   <div class="container">
-    <div class="news-dates">
+    <div class="head">
+      <span class="eyebrow">Unser Weg</span>
+      <h2>Vom Ankommen bis zum Abitur.</h2>
+      <p>Neun Jahre begleiten wir junge Menschen. In drei Phasen, die aufeinander aufbauen — und in jeder Phase mit einem klaren Schwerpunkt.</p>
+    </div>
+    <div class="stages">
+      <article class="stage">
+        <span class="num-big">5·6</span>
+        <span class="klassen">Klasse 5 – 6</span>
+        <h3>Erprobungsstufe</h3>
+        <p>Mit den Profilen <strong>WortArt⁺</strong> (sprachlich-kreativ) und <strong>Forscher²</strong> (naturwissenschaftlich) entdecken Kinder früh ihre Stärken — unterstützt von UNESCO-Projekttagen und einer ersten Kennenlernfahrt.</p>
+      </article>
+      <article class="stage">
+        <span class="num-big">7·10</span>
+        <span class="klassen">Klasse 7 – 10</span>
+        <h3>Mittelstufe</h3>
+        <p>Latein oder Französisch ab Klasse 7 erweitern den sprachlichen Horizont. Wahlpflichtkurse, Tablet-gestützter Unterricht, Austauschprogramme und kulturelle Kooperationen verknüpfen Fachwissen, digitale Kompetenz und interkulturelles Lernen.</p>
+      </article>
+      <article class="stage">
+        <span class="num-big">EF·Q</span>
+        <span class="klassen">Einführungs- &amp; Qualifikationsphase</span>
+        <h3>Oberstufe</h3>
+        <p>Ein breites Kursangebot mit Leistungskursen, individueller Studien- und Berufsberatung sowie praxisnahen Projekten führt gezielt zum Abitur. Internationale Kooperationen bereiten unsere Schülerinnen und Schüler darauf vor, verantwortungsbewusste Weltbürgerinnen und Weltbürger zu werden.</p>
+      </article>
+    </div>
+  </div>
+</section>
 
-      <!-- Aktuelles -->
+<section class="lb-cta" aria-label="Einladung">
+  <div class="container">
+    <div class="lb-cta-grid">
       <div>
-        <div class="section-head">
-          <h2>Aktuelles aus der Schule</h2>
-          <a href="Aktuelles.html" class="all-link">Alle Beiträge →</a>
-        </div>
-
-        <div class="news-list">
-          <!-- Featured: UNESCO-Projekttag -->
-          <a href="#" class="news-card featured">
-            <div class="thumb">
-              <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1000&q=70" alt="UNESCO-Projekttag Grenzen überwinden">
-            </div>
-            <div>
-              <div class="news-meta">
-                <span class="badge badge-unesco">UNESCO-Projekttag</span>
-                <span class="caption date">15. April 2026</span>
-              </div>
-              <h3 style="margin-top:10px;">Grenzen überwinden — UNESCO-Projekttag</h3>
-              <p class="excerpt">Im Rahmen unseres Profils als UNESCO-Projektschule haben wir den zweiten Projekttag dieses Schuljahres durchgeführt. Das Thema eröffnete einen weiten Denkraum — von persönlichen Grenzen über gesellschaftliche und politische bis hin zu globalen Herausforderungen wie Migration und Klimawandel.</p>
-            </div>
-          </a>
-
-          <!-- Aalto-Kooperation -->
-          <a href="#" class="news-card">
-            <div class="thumb">
-              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=70" alt="Aalto-Theater Essen">
-            </div>
-            <div>
-              <div class="news-meta">
-                <span class="badge badge-kunst">Kooperation</span>
-                <span class="caption date">Schuljahr 2025/26</span>
-              </div>
-              <h3 style="margin-top:10px;">Kooperation mit dem Aalto-Theater: Unsere Schülerinnen und Schüler auf der großen Bühne</h3>
-              <p class="excerpt">Gemeinsam mit dem Aalto-Musiktheater und den Essener Philharmonikern erarbeiten Schülerinnen und Schüler ein interdisziplinäres Bühnenprojekt — von der Textproduktion über Bildkomposition bis zur Musik. Aufführung im Juni 2026.</p>
-            </div>
-          </a>
-
-          <!-- DELF-Zertifikate -->
-          <a href="#" class="news-card">
-            <div class="thumb">
-              <img src="https://images.unsplash.com/photo-1568667256549-094345857637?auto=format&fit=crop&w=800&q=70" alt="DELF Französisch-Zertifikate">
-            </div>
-            <div>
-              <div class="news-meta">
-                <span class="badge badge-news">Sprachen</span>
-                <span class="caption date">08. April 2026</span>
-              </div>
-              <h3 style="margin-top:10px;">DELF scolaire: 24 Schülerinnen und Schüler mit französischem Sprachzertifikat</h3>
-              <p class="excerpt">Auf den Stufen A1 bis B2 haben Schülerinnen und Schüler der Jahrgänge 8 bis Q1 die international anerkannten DELF-Prüfungen bestanden — ein starkes Signal für unser Sprachenprofil.</p>
-            </div>
-          </a>
-        </div>
+        <h2>Am besten: vor Ort erleben.</h2>
       </div>
-
-      <!-- Termine -->
-      <aside aria-label="Nächste Termine">
-        <div class="section-head">
-          <h2>Nächste Termine</h2>
-          <a href="#" class="all-link">Alle Termine →</a>
-        </div>
-        <ul class="dates-list">
-          <li class="date-row highlight">
-            <div>
-              <div class="date-main">22. Apr</div>
-              <div class="date-sub">Mittwoch</div>
-            </div>
-            <div class="date-body">
-              <h3>Schriftl. Abiturprüfung LK/GK Biologie</h3>
-              <span class="date-cat">Abitur 2026</span>
-            </div>
-          </li>
-          <li class="date-row">
-            <div>
-              <div class="date-main">23. Apr</div>
-              <div class="date-sub">Donnerstag</div>
-            </div>
-            <div class="date-body">
-              <h3>Girls' and Boys' Day</h3>
-              <span class="date-cat">Jahrgänge 7–10</span>
-            </div>
-          </li>
-          <li class="date-row highlight">
-            <div>
-              <div class="date-main">24. Apr</div>
-              <div class="date-sub">Freitag</div>
-            </div>
-            <div class="date-body">
-              <h3>Schriftl. Abiturprüfung LK/GK Chemie</h3>
-              <span class="date-cat">Abitur 2026</span>
-            </div>
-          </li>
-        </ul>
-      </aside>
-
-    </div>
-  </div>
-</section>
-
-<!-- ===================== WAS UNS AUSZEICHNET ===================== -->
-<section class="pillars-section" data-bg-images="on" aria-label="Was uns auszeichnet">
-  <div class="container">
-    <div class="pillars-head">
-      <span class="eyebrow">Was uns auszeichnet</span>
-      <h2>Drei Gründe,<br>die einen Unterschied machen.</h2>
-    </div>
-
-    <div class="pillars-collage">
-      <article class="pillar-card pillar-unesco">
-        <svg class="icon" viewBox="0 0 56 56" fill="none" aria-hidden="true" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
-          <circle cx="28" cy="28" r="20"/>
-          <path d="M8 28h40"/>
-          <path d="M28 8c6 6 9 13 9 20s-3 14-9 20"/>
-          <path d="M28 8c-6 6-9 13-9 20s3 14 9 20"/>
-          <path d="M12 18c5 3 11 4 16 4s11-1 16-4M12 38c5-3 11-4 16-4s11 1 16 4"/>
-        </svg>
-        <div>
-          <h3>UNESCO-Projektschule</h3>
-          <p>Teil eines weltweiten Netzwerks von rund 12 000 Schulen. Frieden, Menschenrechte und nachhaltige Entwicklung sind bei uns nicht Projekttag — sie sind Lehrplan.</p>
-        </div>
-      </article>
-
-      <article class="pillar-card pillar-profile">
-        <svg class="icon" viewBox="0 0 56 56" fill="none" aria-hidden="true" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M20 44c0-10 3-18 8-26"/>
-          <path d="M20 44c-8 0-12-6-12-14 0-8 6-14 14-14 6 0 10 4 12 8-2 8-8 16-14 20z"/>
-          <path d="M36 44c0-10-3-18-8-26"/>
-          <path d="M36 44c8 0 12-6 12-14 0-8-6-14-14-14-6 0-10 4-12 8 2 8 8 16 14 20z"/>
-        </svg>
-        <div>
-          <h3>Zwei Profile<br>ab Klasse 5</h3>
-          <p>WortArt⁺ für Sprache, Literatur und darstellendes Spiel. Forscher² für Naturwissenschaften und Mathematik.</p>
-        </div>
-      </article>
-
-      <article class="pillar-card pillar-abitur">
-        <svg class="icon" viewBox="0 0 56 56" fill="none" aria-hidden="true" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M8 14h18c2 0 4 2 4 4v28c0-2-2-4-4-4H8z"/>
-          <path d="M48 14H30c-2 0-4 2-4 4v28c0-2 2-4 4-4h18z"/>
-          <path d="M28 18v28"/>
-          <path d="M14 22h10M14 28h10M34 22h8M34 28h10M34 34h6"/>
-        </svg>
-        <div>
-          <h3>Starkes Abitur</h3>
-          <p>Solide Oberstufe mit einer breiten Auswahl an Leistungskursen. Fundiertes Wissen, Methodensicherheit — und Zeit, den eigenen Weg zu finden.</p>
-        </div>
-      </article>
-
-      <div class="pillar-card pillar-quote">
-        <div>
-          <blockquote>
-            Gemeinsam Lernen<br>Den eigenen Weg finden
-          </blockquote>
-          <cite>Unser Leitbild</cite>
+      <div>
+        <p>Das Leitbild lebt im Alltag — in den Fluren, in den Pausen, im Unterricht. Kommen Sie zum Tag der offenen Tür, oder vereinbaren Sie ein Gespräch. Wir zeigen Ihnen gerne, wie „Gemeinsam lernen" bei uns konkret aussieht.</p>
+        <div class="lb-cta-links">
+          <a href="index.html#wegzuuns" class="btn btn-primary">Tag der offenen Tür <span class="arrow">→</span></a>
+          <a href="mailto:kontakt@unesco-schule-essen.de" class="btn btn-secondary">Gespräch vereinbaren <span class="arrow">→</span></a>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===================== DEIN WEG ZU UNS ===================== -->
-<section id="wegzuuns" class="path-section" aria-label="Dein Weg zu uns">
-  <div class="container">
-    <div class="path-head">
-      <h2>Dein Weg zu uns.</h2>
-      <p>Drei Wege, uns kennenzulernen. Sie sind herzlich eingeladen — kommen Sie vorbei, schreiben Sie uns, oder rufen Sie einfach an.</p>
-    </div>
-
-    <div class="path-grid">
-      <article class="path-card">
-        <span class="kicker">Tag der offenen Tür</span>
-        <div class="big-date">
-          21. November 2027
-          <small>Samstag, 10:00 – 14:00 Uhr · Steinmetzstr. 9</small>
-        </div>
-        <p>Unterricht zum Mitmachen, Gespräche mit Lehrkräften und Schülerinnen, Führungen durch die Naturwissenschafts- und Kunsträume. Eine Anmeldung ist nicht nötig.</p>
-        <a href="#" class="btn btn-secondary">Zum Programm <span class="arrow">→</span></a>
-      </article>
-
-      <article class="path-card">
-        <span class="kicker">Anmeldung zum Schuljahr 2026/27</span>
-        <h3>Jetzt anmelden.</h3>
-        <p>Anmeldezeitraum: 02. bis 13. Februar 2026. Das Anmeldeformular, benötigte Unterlagen und weitere Hinweise finden Sie in unserem Eltern-Bereich.</p>
-        <a href="#" class="btn btn-primary">Zur Anmeldung <span class="arrow">→</span></a>
-      </article>
-
-      <article class="path-card">
-        <span class="kicker">Fragen stellen</span>
-        <h3>Gespräch vereinbaren.</h3>
-        <p class="contact-line">
-          <a href="tel:+492013658040">0201 · 365 80 40</a><br>
-          <a href="mailto:kontakt@unesco-schule-essen.de">kontakt@unesco-schule-essen.de</a>
-        </p>
-        <a href="#" class="btn btn-secondary">Termin anfragen <span class="arrow">→</span></a>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- ===================== KOOPERATIONEN & PARTNER ===================== -->
-<section class="partners-section" aria-label="Kooperationen und Partner">
-  <div class="container">
-    <div class="partners-head">
-      <span class="eyebrow">Kooperationen &amp; Partner</span>
-      <h2>Wir stehen nicht allein.</h2>
-      <p>Unsere Schule lebt von Partnerschaften — mit dem UNESCO-Netzwerk, der Universität Duisburg-Essen, Theater und Philharmonie, dem Stifterverband und einer Reihe von Essener Unternehmen, Stiftungen und Vereinen, die Unterricht an echten Aufgaben möglich machen.</p>
-    </div>
-
-    <ul class="partners-logos">
-      <li><a class="partner-logo" href="https://www.unesco.de/bildung/unesco-projektschulen" target="_blank" rel="noopener" title="UNESCO-Projektschulen"><img src="assets/partners/unesco.png" alt="UNESCO-Projektschulen"></a></li>
-      <li><a class="partner-logo" href="https://www.uni-due.de" target="_blank" rel="noopener" title="Universität Duisburg-Essen"><img src="assets/partners/uni-due.png" alt="Universität Duisburg-Essen"></a></li>
-      <li><a class="partner-logo" href="https://www.theater-essen.de" target="_blank" rel="noopener" title="Theater und Philharmonie Essen"><img src="assets/partners/tup.png" alt="Theater und Philharmonie Essen"></a></li>
-      <li><a class="partner-logo" href="https://www.stifterverband.org" target="_blank" rel="noopener" title="Stifterverband"><img src="assets/partners/stifterverband.png" alt="Stifterverband"></a></li>
-      <li><a class="partner-logo" href="https://www.contact-essen.de" target="_blank" rel="noopener" title="Contact — Kommunikation · Sport · Event"><img src="assets/partners/contact.png" alt="Contact"></a></li>
-      <li><a class="partner-logo" href="https://www.arbeitsagentur.de/vor-ort/essen/startseite" target="_blank" rel="noopener" title="Agentur für Arbeit Essen"><img src="assets/partners/agentur-arbeit.png" alt="Agentur für Arbeit Essen"></a></li>
-      <li><a class="partner-logo" href="https://www.cse.de" target="_blank" rel="noopener" title="CSE"><img src="assets/partners/cse.png" alt="CSE"></a></li>
-      <li><a class="partner-logo" href="https://www.goldschmidt.com" target="_blank" rel="noopener" title="Goldschmidt Thermit Group"><img src="assets/partners/goldschmidt-thermit.png" alt="Goldschmidt Thermit Group"></a></li>
-      <li><a class="partner-logo" href="https://www.theater-essen.de/philharmonie" target="_blank" rel="noopener" title="Essener Philharmoniker"><img src="assets/partners/philharmoniker.png" alt="Essener Philharmoniker"></a></li>
-      <li><a class="partner-logo" href="https://www.jugendhilfe-essen.de" target="_blank" rel="noopener" title="Jugendhilfe Essen"><img src="assets/partners/jhe.png" alt="jhe"></a></li>
-      <li><a class="partner-logo" href="https://goldschmidt-stiftung.de" target="_blank" rel="noopener" title="Goldschmidt Stiftung"><img src="assets/partners/goldschmidt-stiftung.png" alt="Goldschmidt Stiftung"></a></li>
-      <li><a class="partner-logo" href="https://www.rotary-essen.de" target="_blank" rel="noopener" title="Rotary Club Essen"><img src="assets/partners/rotary.png" alt="Rotary Club Essen"></a></li>
-      <li><a class="partner-logo" href="https://www.archenoah-essen.de" target="_blank" rel="noopener" title="Arche Noah Essen"><img src="assets/partners/arche-noah.png" alt="Arche Noah Essen"></a></li>
-      <li><a class="partner-logo" href="https://www.wdr.de" target="_blank" rel="noopener" title="WDR"><img src="assets/partners/wdr.png" alt="WDR"></a></li>
-      <li><a class="partner-logo" href="https://www.iwc-essen-nord.de" target="_blank" rel="noopener" title="IWC Essen-Nord"><img src="assets/partners/iwc.png" alt="IWC Essen-Nord"></a></li>
-    </ul>
-
-    <p class="partners-foot">
-      <a href="#" class="inline-link">Alle Kooperationen &amp; Partnerschaften ansehen</a>
-    </p>
-  </div>
-</section>
-
-<!-- ===================== FOOTER ===================== -->
+</main>
 <footer class="site-footer" aria-label="Seitenfuß">
   <div class="container">
     <div class="footer-grid">
       <div class="footer-col footer-brand">
-        <a href="index.html" class="footer-logo" aria-label="UNESCO-Schule Essen Startseite">
+        <div class="footer-logo">
           <span class="logo-stack">
             <img class="logo-bw"    src="assets/logo-signum-wide.png" alt="UNESCO-Schule Essen">
             <img class="logo-color" src="assets/logo-signum-wide-color.jpg" alt="" aria-hidden="true">
           </span>
-        </a>
+        </div>
         <address>
           Steinmetzstraße 9<br>
           45139 Essen<br><br>
@@ -1138,15 +1177,16 @@
     </div>
   </div>
 </footer>
-
 <script>
   const hamburger = document.getElementById('hamburgerBtn');
   const mainNav   = document.getElementById('mainNav');
-  hamburger.addEventListener('click',()=>{
-    const open = hamburger.classList.toggle('active');
-    mainNav.classList.toggle('open',open);
-    hamburger.setAttribute('aria-expanded', open?'true':'false');
-  });
+  if(hamburger){
+    hamburger.addEventListener('click',()=>{
+      const open = hamburger.classList.toggle('active');
+      mainNav.classList.toggle('open',open);
+      hamburger.setAttribute('aria-expanded', open?'true':'false');
+    });
+  }
   document.querySelectorAll('.nav-item.has-dropdown > .nav-link').forEach(link=>{
     link.addEventListener('click',e=>{
       if(window.innerWidth <= 1080){
@@ -1158,7 +1198,6 @@
       }
     });
   });
-</script>
-
+  </script>
 </body>
 </html>

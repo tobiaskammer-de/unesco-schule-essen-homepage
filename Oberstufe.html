@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>UNESCO-Schule Essen — Gymnasium</title>
+<title>Oberstufe (EF · Q1 · Q2) — UNESCO-Schule Essen</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -117,14 +117,14 @@
   .logo{display:flex;align-items:center;text-decoration:none;flex-shrink:0;}
   .logo .logo-stack{
     position:relative;display:block;height:134px;
-    transition:transform .25s ease;
+    transition:transform .3s ease;
   }
   .logo .logo-stack img{
     display:block;height:134px;width:auto;
     transition:opacity .35s ease;
   }
   .logo .logo-color{position:absolute;inset:0;opacity:0;}
-  .logo:hover .logo-stack{transform:scale(1.02);}
+  .logo:hover .logo-stack{transform:scale(1.04);}
   .logo:hover .logo-bw{opacity:0;}
   .logo:hover .logo-color{opacity:1;}
 
@@ -145,11 +145,11 @@
   }
 
   .dropdown-mega{
-    position:absolute;top:calc(100% + 0px);left:50%;transform:translate(-50%,8px);
+    position:absolute;top:100%;left:50%;transform:translate(-50%,8px);
     background:#fff;
     border:1px solid var(--hairline);
     border-top:2px solid var(--petrol);
-    min-width:780px;
+    width:max-content;max-width:min(780px,calc(100vw - 40px));
     padding:28px 28px 24px;
     display:grid;grid-template-columns:1fr 1fr 1fr;gap:36px;
     opacity:0;visibility:hidden;pointer-events:none;
@@ -176,7 +176,9 @@
   }
   .mega-col li a:hover{color:var(--petrol);border-left-color:var(--petrol);}
 
-.header-actions{display:flex;align-items:center;gap:10px;flex-shrink:0;}
+
+
+  .header-actions{display:flex;align-items:center;gap:10px;flex-shrink:0;}
   .header-actions a{
     font-family:var(--sans);font-size:13.5px;font-weight:500;
     color:var(--petrol);
@@ -194,12 +196,12 @@
   .hamburger.active span:nth-child(3){transform:translateY(-8px) rotate(-45deg);}
 
   /* ---------- HERO ---------- */
-  .hero{padding:72px 0 54px;}
+  .hero{padding:72px 0 108px;}
   .hero-grid{
     display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;
   }
   .hero-photo{
-    position:relative;aspect-ratio:16/15;overflow:hidden;border-radius:2px;
+    position:relative;aspect-ratio:4/5;overflow:hidden;border-radius:2px;
     background:var(--creme);
   }
   .hero-photo img{width:100%;height:100%;object-fit:cover;}
@@ -330,7 +332,7 @@
       radial-gradient(ellipse at 15% 10%, rgba(127,176,105,0.08), transparent 45%),
       radial-gradient(ellipse at 85% 90%, rgba(212,165,116,0.10), transparent 50%),
       var(--creme);
-    padding:30px 0 35px;
+    padding:60px 0 70px;
     position:relative;
     overflow:hidden;
   }
@@ -358,12 +360,14 @@
     position:relative;overflow:hidden;isolation:isolate;
     background:var(--offwhite);
     border:1px solid var(--hairline);
+    border-radius:24px;
     padding:40px 36px;
     display:flex;flex-direction:column;gap:20px;
     box-shadow:0 10px 30px -20px rgba(14,77,79,0.22);
     transition:transform .3s ease, box-shadow .3s ease;
     min-height:280px;
   }
+  /* Background image overlay — driven by Tweaks */
   .pillars-section[data-bg-images="on"] .pillar-card::before{
     content:"";position:absolute;inset:0;z-index:-1;
     background-image:var(--card-bg, none);
@@ -373,12 +377,14 @@
     pointer-events:none;
   }
   .pillars-section[data-bg-images="on"] .pillar-card > *{position:relative;}
+  /* Assign per-card image */
   .pillar-unesco{--card-bg:url("assets/pillar-unesco.jpg");}
   .pillar-profile{--card-bg:url("assets/pillar-profil.jpg");}
   .pillar-abitur{--card-bg:url("assets/pillar-abitur.jpg");}
   .pillar-quote{--card-bg:url("assets/pillar-quote.jpg");}
+  /* Quote card: when bg image is on, darken slightly so text stays readable */
   .pillars-section[data-bg-images="on"] .pillar-quote::after{
-    content:"";position:absolute;inset:-1px;z-index:-1;
+    content:"";position:absolute;inset:0;z-index:-1;
     background:rgba(250,247,241,0.55);
     pointer-events:none;
   }
@@ -397,16 +403,6 @@
   .pillar-profile h3{color:var(--creme);}
   .pillar-profile p{color:rgba(245,239,231,0.82);}
   .pillar-profile .icon{color:var(--gold);}
-
-  .pillar-unesco{background:var(--bordeaux);color:var(--creme);border-color:var(--bordeaux);}
-  .pillar-unesco h3{color:var(--creme);}
-  .pillar-unesco p{color:rgba(245,239,231,0.88);}
-  .pillar-unesco .icon{color:var(--gold);}
-
-  .pillar-abitur{background:var(--gold);color:#3a2a10;border-color:var(--gold);}
-  .pillar-abitur h3{color:#2a1d08;}
-  .pillar-abitur p{color:rgba(58,42,16,0.85);}
-  .pillar-abitur .icon{color:var(--bordeaux);}
 
   .pillar-quote{
     background:var(--creme);
@@ -439,7 +435,7 @@
   }
 
   /* ---------- Voice (Quote) ---------- */
-  .voice-section{padding:60px 0;}
+  .voice-section{padding:30px 0;}
   .voice-grid{
     display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:72px;align-items:center;
   }
@@ -469,7 +465,7 @@
   }
 
   /* ---------- Dein Weg zu uns ---------- */
-  .path-section{background:var(--creme);padding:60px 0;}
+  .path-section{background:var(--creme);padding:120px 0 60px;}
   .path-head{margin-bottom:56px;max-width:620px;}
   .path-head .eyebrow{display:block;margin-bottom:14px;}
   .path-head h2{font-size:36px;}
@@ -532,7 +528,7 @@
   .partners-foot{margin-top:36px;}
 
   @media (max-width:960px){
-    .partners-section{padding:72px 0;}
+    .partners-section{padding:36px 0;}
     .partners-logos{grid-template-columns:repeat(3,1fr);gap:12px;}
   }
   @media (max-width:560px){
@@ -559,14 +555,15 @@
   .footer-col a{color:var(--creme);font-size:14.5px;text-decoration:none;border-bottom:1px solid transparent;transition:border-color .2s;}
   .footer-col a:hover{border-bottom-color:var(--creme);}
   .footer-brand .footer-logo{
-    margin-bottom:28px;display:inline-block;cursor:pointer;
+    margin-bottom:28px;
   }
+  .footer-brand .footer-logo{display:inline-block;cursor:pointer;}
   .footer-brand .footer-logo .logo-stack{
-    position:relative;display:block;height:78px;max-width:100%;
+    position:relative;display:block;height:117px;max-width:100%;
     transition:transform .3s ease;
   }
   .footer-brand .footer-logo .logo-stack img{
-    display:block;height:78px;width:auto;max-width:100%;
+    display:block;height:117px;width:auto;max-width:100%;
     transition:opacity .35s ease, filter .35s ease;
   }
   .footer-brand .footer-logo .logo-bw{filter:brightness(0) invert(1);}
@@ -618,7 +615,7 @@
     .hero{padding:56px 0 72px;}
     .hero-grid{grid-template-columns:1fr;gap:40px;}
     .hero-photo{aspect-ratio:4/3;max-height:480px;}
-    section{padding:72px 0;}
+    section{padding:36px 0;}
     .news-dates{grid-template-columns:1fr;gap:56px;}
     .news-list{grid-template-columns:1fr;gap:20px;}
     .news-card{
@@ -648,7 +645,7 @@
     .footer-grid{grid-template-columns:1fr 1fr;gap:28px 32px;}
     .footer-brand{grid-column:1 / -1;}
     .footer-brand .footer-logo .logo-stack,
-    .footer-brand .footer-logo .logo-stack img{height:56px;}
+    .footer-brand .footer-logo .logo-stack img{height:84px;}
     .footer-brand address{font-size:14px;}
     .footer-col h4{margin-bottom:14px;}
     .footer-col li{margin-bottom:8px;}
@@ -665,14 +662,282 @@
     .voice-quote{font-size:22px;}
   }
 
+  /* ---------- Tweaks panel ---------- */
+  .tweaks-panel{
+    position:fixed;bottom:20px;right:20px;z-index:2000;
+    background:#fff;border:1px solid var(--hairline);border-radius:6px;
+    padding:18px 20px;width:300px;
+    font-family:var(--sans);font-size:13px;
+    box-shadow:0 8px 28px rgba(14,77,79,0.12);
+    display:none;
+  }
+  .tweaks-panel.open{display:block;}
+  .tweaks-panel h5{
+    font-family:var(--sans);font-size:11px;font-weight:600;
+    letter-spacing:0.14em;text-transform:uppercase;color:var(--petrol);
+    margin:0 0 14px;
+  }
+  .tweak-row{margin-bottom:14px;}
+  .tweak-row label{display:block;font-weight:500;margin-bottom:6px;color:var(--tinte);}
+  .tweak-row select, .tweak-row input[type=text]{
+    width:100%;padding:7px 9px;border:1px solid var(--hairline);
+    border-radius:3px;background:#fff;font-family:var(--sans);font-size:13px;
+  }
 </style>
+
+
+
+<style>
+  /* ---------- Oberstufe ---------- */
+  .ob-hero{
+    position:relative;min-height:540px;
+    display:flex;align-items:flex-end;padding:96px 0 72px;
+    color:var(--creme);overflow:hidden;isolation:isolate;
+  }
+  .ob-hero::before{
+    content:"";position:absolute;inset:0;z-index:-2;
+    background:
+      linear-gradient(135deg, rgba(110,38,57,0.85) 0%, rgba(78,26,40,0.90) 50%, rgba(10,54,56,0.92) 100%),
+      url("assets/pillar-abitur.jpg") center/cover no-repeat;
+  }
+  .ob-hero::after{
+    content:"";position:absolute;inset:0;z-index:-1;
+    background-image:
+      radial-gradient(circle at 20% 30%, rgba(212,165,116,0.14) 1.5px, transparent 2px),
+      radial-gradient(circle at 70% 60%, rgba(245,239,231,0.06) 1px, transparent 1.5px);
+    background-size:44px 44px, 60px 60px;opacity:0.85;
+  }
+  .ob-hero .eyebrow{color:var(--gold);display:block;margin-bottom:18px;}
+  .ob-hero h1{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(40px,5.4vw,76px);line-height:1.05;
+    letter-spacing:-0.02em;color:var(--creme);max-width:1040px;margin:0 0 22px;
+  }
+  .ob-hero h1 em{font-style:italic;color:var(--gold);}
+  .ob-hero p.lede{
+    font-family:var(--sans);font-size:19px;line-height:1.6;
+    color:rgba(245,239,231,0.9);max-width:700px;margin:0 0 34px;
+  }
+  .ob-download{
+    display:inline-flex;align-items:center;gap:12px;
+    padding:14px 22px;border-radius:4px;
+    background:var(--gold);color:#2a1d08;
+    font-family:var(--sans);font-size:15px;font-weight:600;text-decoration:none;
+    transition:background .2s, transform .2s;
+  }
+  .ob-download:hover{background:#e0b68a;transform:translateY(-1px);color:#2a1d08;}
+  .ob-download .icon{width:18px;height:18px;fill:currentColor;}
+  .ob-download .meta{
+    font-family:var(--sans);font-size:12px;font-weight:500;color:#5e3f12;letter-spacing:0.04em;
+  }
+
+  /* DU/WIR split */
+  .ob-duwir{background:var(--creme);padding:96px 0;}
+  .duwir-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;}
+  .duwir{padding:40px 36px;background:#fff;border:1px solid var(--hairline);}
+  .duwir-du{border-top:4px solid var(--bordeaux);}
+  .duwir-wir{border-top:4px solid var(--petrol);background:var(--petrol);color:var(--creme);border-color:var(--petrol);}
+  .duwir .label{
+    font-family:var(--serif);font-weight:500;font-size:48px;line-height:1;
+    color:var(--bordeaux);letter-spacing:-0.02em;margin:0 0 6px;
+  }
+  .duwir-wir .label{color:var(--gold);}
+  .duwir h3{
+    font-family:var(--serif);font-weight:500;font-size:24px;line-height:1.2;
+    color:var(--petrol);letter-spacing:-0.01em;margin:0 0 18px;
+  }
+  .duwir-wir h3{color:var(--creme);}
+  .duwir ul{list-style:none;margin:0;padding:0;}
+  .duwir li{
+    position:relative;padding:10px 0 10px 22px;
+    font-family:var(--sans);font-size:15.5px;line-height:1.6;color:var(--tinte);
+    border-bottom:1px solid var(--hairline);
+  }
+  .duwir li::before{
+    content:"";position:absolute;left:0;top:19px;width:12px;height:1px;background:var(--bordeaux);
+  }
+  .duwir li:last-child{border-bottom:0;}
+  .duwir-wir li{color:rgba(245,239,231,0.92);border-bottom-color:rgba(245,239,231,0.16);}
+  .duwir-wir li::before{background:var(--gold);}
+  .duwir .oder{
+    text-align:center;padding:18px 0;
+    font-family:var(--serif);font-style:italic;font-size:22px;color:var(--stein);
+  }
+  .duwir-wir .oder{color:rgba(245,239,231,0.7);}
+
+  /* Stats band */
+  .ob-stats{background:var(--offwhite);padding:64px 0;}
+  .stats-row{
+    display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;
+    border:1px solid var(--hairline);
+  }
+  .ob-stat{
+    padding:28px 24px;border-right:1px solid var(--hairline);
+    display:flex;flex-direction:column;gap:6px;
+  }
+  .ob-stat:last-child{border-right:0;}
+  .ob-stat .n{
+    font-family:var(--serif);font-weight:500;font-size:clamp(32px,3.4vw,44px);line-height:1;
+    color:var(--bordeaux);letter-spacing:-0.02em;
+  }
+  .ob-stat .label{
+    font-family:var(--sans);font-size:12.5px;color:var(--stein);line-height:1.5;
+    letter-spacing:0.02em;
+  }
+
+  /* Generic section pattern */
+  .ob-sect{padding:88px 0;border-top:1px solid var(--hairline);}
+  .ob-sect.alt{background:var(--creme);}
+  .ob-sect .head{max-width:780px;margin:0 0 40px;}
+  .ob-sect .head .eyebrow{display:block;margin-bottom:14px;}
+  .ob-sect .head h2{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(28px,3vw,40px);line-height:1.15;letter-spacing:-0.015em;
+    color:var(--petrol);margin:0 0 12px;
+  }
+  .ob-sect .head p{
+    font-family:var(--sans);font-size:16.5px;line-height:1.65;color:var(--stein);margin:0;
+  }
+  .ob-check{
+    list-style:none;margin:0;padding:0;
+    display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2px 32px;
+    border-top:1px solid var(--hairline);
+  }
+  .ob-check li{
+    padding:16px 0 16px 28px;border-bottom:1px solid var(--hairline);
+    position:relative;
+    font-family:var(--sans);font-size:15.5px;line-height:1.55;color:var(--tinte);
+  }
+  .ob-check li::before{
+    content:"✓";position:absolute;left:0;top:16px;
+    color:var(--sage);font-weight:600;font-size:16px;
+  }
+  .ob-check li strong{color:var(--petrol);}
+
+  /* Six steps */
+  .ob-steps{background:var(--petrol);color:var(--creme);padding:96px 0;}
+  .ob-steps .head{max-width:780px;margin:0 0 48px;}
+  .ob-steps .head .eyebrow{color:var(--gold);display:block;margin-bottom:14px;}
+  .ob-steps .head h2{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(32px,3.6vw,48px);line-height:1.12;letter-spacing:-0.015em;
+    color:var(--creme);margin:0;
+  }
+  .steps-list{
+    list-style:none;margin:0;padding:0;
+    display:flex;flex-direction:column;gap:2px;
+    background:rgba(245,239,231,0.15);
+    border:1px solid rgba(245,239,231,0.15);
+  }
+  .steps-list li{
+    background:var(--petrol);padding:26px 32px;
+    display:grid;grid-template-columns:72px 1fr auto;gap:28px;align-items:center;
+  }
+  .steps-list .num{
+    font-family:var(--serif);font-weight:500;font-size:40px;line-height:1;
+    color:var(--gold);letter-spacing:-0.025em;
+  }
+  .steps-list .body h3{
+    font-family:var(--serif);font-weight:500;font-size:22px;line-height:1.2;
+    color:var(--creme);letter-spacing:-0.008em;margin:0 0 4px;
+  }
+  .steps-list .body p{
+    font-family:var(--sans);font-size:14.5px;line-height:1.55;
+    color:rgba(245,239,231,0.82);margin:0;
+  }
+  .steps-list .when{
+    font-family:var(--sans);font-size:12px;letter-spacing:0.1em;text-transform:uppercase;
+    color:rgba(245,239,231,0.7);text-align:right;min-width:140px;
+  }
+
+  /* Contact */
+  .ob-contact{background:var(--offwhite);padding:88px 0 104px;}
+  .contact-duo{display:grid;grid-template-columns:1fr 1fr;gap:28px;}
+  .contact-person{
+    padding:32px 32px 30px;background:#fff;border:1px solid var(--hairline);
+    display:flex;flex-direction:column;gap:8px;
+  }
+  .contact-person .role{
+    font-family:var(--sans);font-size:11px;font-weight:600;
+    letter-spacing:0.14em;text-transform:uppercase;color:var(--bordeaux);
+  }
+  .contact-person .name{
+    font-family:var(--serif);font-weight:500;font-size:24px;line-height:1.2;
+    color:var(--petrol);margin:2px 0;
+  }
+  .contact-person .title{
+    font-family:var(--sans);font-size:14.5px;color:var(--stein);margin-bottom:8px;
+  }
+  .contact-person a{
+    font-family:var(--sans);font-size:15px;color:var(--petrol);display:block;padding:2px 0;
+  }
+  .contact-person a:hover{text-decoration:underline;}
+
+
+  .ob-welcome{
+    position:relative;padding:120px 0;isolation:isolate;overflow:hidden;
+  }
+  .ob-welcome::before{
+    content:"";position:absolute;inset:0;z-index:-2;
+    background:url("assets/sp-persoenlich.jpg") center 35%/cover no-repeat;
+  }
+  .ob-welcome::after{
+    content:"";position:absolute;inset:0;z-index:-1;
+    background:linear-gradient(180deg, rgba(14,77,79,0.82) 0%, rgba(14,77,79,0.92) 100%);
+  }
+  .ob-welcome .container{max-width:880px;text-align:center;color:var(--creme);}
+  .ob-welcome .eyebrow{color:var(--gold);display:block;margin-bottom:16px;}
+  .ob-welcome h2{
+    font-family:var(--serif);font-weight:500;font-style:italic;
+    font-size:clamp(32px,3.6vw,52px);line-height:1.15;
+    color:var(--creme);letter-spacing:-0.015em;margin:0 0 20px;
+  }
+  .ob-welcome p{
+    font-family:var(--sans);font-size:17px;line-height:1.65;
+    color:rgba(245,239,231,0.9);max-width:620px;margin:0 auto;
+  }
+  .ob-welcome .cred{
+    position:absolute;bottom:16px;left:32px;
+    padding:5px 10px;background:rgba(14,77,79,0.78);
+    color:rgba(255,255,255,0.95);
+    font-family:var(--sans);font-size:10px;font-weight:500;
+    letter-spacing:0.12em;text-transform:uppercase;border-radius:2px;
+  }
+  @media (max-width:780px){.ob-welcome{padding:72px 0;}}
+
+  @media (max-width:960px){
+    .duwir-grid{grid-template-columns:1fr;gap:18px;}
+    .stats-row{grid-template-columns:1fr 1fr;}
+    .ob-stat:nth-child(2){border-right:0;}
+    .ob-stat:nth-child(-n+2){border-bottom:1px solid var(--hairline);}
+    .ob-check{grid-template-columns:1fr;}
+    .steps-list li{grid-template-columns:48px 1fr;gap:16px;padding:20px 24px;}
+    .steps-list .when{grid-column:1 / -1;text-align:left;margin-top:6px;}
+    .steps-list .num{font-size:30px;}
+    .contact-duo{grid-template-columns:1fr;gap:14px;}
+    .ob-hero{min-height:420px;padding:56px 0 48px;}
+    .ob-duwir,.ob-sect,.ob-steps,.ob-contact{padding:56px 0;}
+  }
+
+  /* ---------- Photo placeholders (to be replaced by real photos) ---------- */
+  .photo{position:relative;overflow:hidden;background:var(--creme);border-radius:2px;}
+  .photo > img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease;}
+  .photo .cred{
+    position:absolute;bottom:10px;left:12px;
+    padding:5px 10px;background:rgba(14,77,79,0.78);
+    color:rgba(255,255,255,0.95);
+    font-family:var(--sans);font-size:10px;font-weight:500;
+    letter-spacing:0.12em;text-transform:uppercase;border-radius:2px;
+    backdrop-filter:blur(4px);
+  }
+</style>
+
+
 </head>
 <body>
-
-<!-- ===================== HEADER ===================== -->
 <header class="site-header">
   <div class="header-inner">
-    <a href="index.html" class="logo" aria-label="UNESCO-Schule Essen Startseite">
+    <a href="Startseite.html" class="logo" aria-label="UNESCO-Schule Essen Startseite">
       <span class="logo-stack">
         <img class="logo-bw"    src="assets/logo-signum-wide.png" alt="UNESCO-Schule Essen">
         <img class="logo-color" src="assets/logo-signum-wide-color.jpg" alt="" aria-hidden="true">
@@ -818,281 +1083,235 @@
     </button>
   </div>
 </header>
+<main id="top">
 
-<!-- ===================== HERO ===================== -->
-<section class="hero" aria-label="Willkommen">
+<section class="ob-hero" aria-label="Oberstufe">
   <div class="container">
-    <div class="hero-grid">
-      <div class="hero-photo">
-        <!-- Dummy hero image: Unsplash, warm/petrol tones, editorial -->
-        <img id="heroImage"
-             src="assets/hero.jpeg"
-             alt="Bibliothek mit geschwungenen Bücherregalen">
-        <span class="cred">Platzhalter · Foto-Shoot folgt</span>
-      </div>
-      <div class="hero-text">
-        <span class="eyebrow">Deine UNESCO-Schule Essen</span>
-        <h1 class="hero-claim" id="heroClaim">Gemeinsam lernen,<br>den eigenen Weg finden.</h1>
-        <p class="hero-sub">
-          Als UNESCO-Projektschule begleiten wir junge Menschen zu einem starken Abitur —
-          und zu einer Haltung, die in der Welt trägt.
-        </p>
-        <div class="hero-cta-row">
-          <a href="#" class="btn btn-primary">Unsere Schule entdecken <span class="arrow">→</span></a>
-        </div>
-      </div>
-    </div>
+    <span class="eyebrow">Unterricht · Oberstufe · EF · Q1 · Q2</span>
+    <h1>Gemeinsam lernen —<br>den <em>eigenen Weg</em> finden.</h1>
+    <p class="lede">Die gymnasiale Oberstufe der UNESCO-Schule Essen. Für alle, die nach Klasse 10 zum Abitur oder zur Fachhochschulreife führen wollen — besonders für Schulwechslerinnen und Schulwechsler.</p>
+    <a href="assets/GO2026.pdf" class="ob-download" download>
+      <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Informationsbroschüre herunterladen
+      <span class="meta">PDF · 2,2&#8239;MB</span>
+    </a>
   </div>
 </section>
 
-<!-- ===================== AKTUELLES + TERMINE ===================== -->
-<section id="aktuelles" aria-label="Aktuelles und nächste Termine">
+<section class="ob-duwir" aria-label="Für wen ist die Oberstufe gedacht">
   <div class="container">
-    <div class="news-dates">
-
-      <!-- Aktuelles -->
-      <div>
-        <div class="section-head">
-          <h2>Aktuelles aus der Schule</h2>
-          <a href="Aktuelles.html" class="all-link">Alle Beiträge →</a>
-        </div>
-
-        <div class="news-list">
-          <!-- Featured: UNESCO-Projekttag -->
-          <a href="#" class="news-card featured">
-            <div class="thumb">
-              <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1000&q=70" alt="UNESCO-Projekttag Grenzen überwinden">
-            </div>
-            <div>
-              <div class="news-meta">
-                <span class="badge badge-unesco">UNESCO-Projekttag</span>
-                <span class="caption date">15. April 2026</span>
-              </div>
-              <h3 style="margin-top:10px;">Grenzen überwinden — UNESCO-Projekttag</h3>
-              <p class="excerpt">Im Rahmen unseres Profils als UNESCO-Projektschule haben wir den zweiten Projekttag dieses Schuljahres durchgeführt. Das Thema eröffnete einen weiten Denkraum — von persönlichen Grenzen über gesellschaftliche und politische bis hin zu globalen Herausforderungen wie Migration und Klimawandel.</p>
-            </div>
-          </a>
-
-          <!-- Aalto-Kooperation -->
-          <a href="#" class="news-card">
-            <div class="thumb">
-              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=70" alt="Aalto-Theater Essen">
-            </div>
-            <div>
-              <div class="news-meta">
-                <span class="badge badge-kunst">Kooperation</span>
-                <span class="caption date">Schuljahr 2025/26</span>
-              </div>
-              <h3 style="margin-top:10px;">Kooperation mit dem Aalto-Theater: Unsere Schülerinnen und Schüler auf der großen Bühne</h3>
-              <p class="excerpt">Gemeinsam mit dem Aalto-Musiktheater und den Essener Philharmonikern erarbeiten Schülerinnen und Schüler ein interdisziplinäres Bühnenprojekt — von der Textproduktion über Bildkomposition bis zur Musik. Aufführung im Juni 2026.</p>
-            </div>
-          </a>
-
-          <!-- DELF-Zertifikate -->
-          <a href="#" class="news-card">
-            <div class="thumb">
-              <img src="https://images.unsplash.com/photo-1568667256549-094345857637?auto=format&fit=crop&w=800&q=70" alt="DELF Französisch-Zertifikate">
-            </div>
-            <div>
-              <div class="news-meta">
-                <span class="badge badge-news">Sprachen</span>
-                <span class="caption date">08. April 2026</span>
-              </div>
-              <h3 style="margin-top:10px;">DELF scolaire: 24 Schülerinnen und Schüler mit französischem Sprachzertifikat</h3>
-              <p class="excerpt">Auf den Stufen A1 bis B2 haben Schülerinnen und Schüler der Jahrgänge 8 bis Q1 die international anerkannten DELF-Prüfungen bestanden — ein starkes Signal für unser Sprachenprofil.</p>
-            </div>
-          </a>
-        </div>
-      </div>
-
-      <!-- Termine -->
-      <aside aria-label="Nächste Termine">
-        <div class="section-head">
-          <h2>Nächste Termine</h2>
-          <a href="#" class="all-link">Alle Termine →</a>
-        </div>
-        <ul class="dates-list">
-          <li class="date-row highlight">
-            <div>
-              <div class="date-main">22. Apr</div>
-              <div class="date-sub">Mittwoch</div>
-            </div>
-            <div class="date-body">
-              <h3>Schriftl. Abiturprüfung LK/GK Biologie</h3>
-              <span class="date-cat">Abitur 2026</span>
-            </div>
-          </li>
-          <li class="date-row">
-            <div>
-              <div class="date-main">23. Apr</div>
-              <div class="date-sub">Donnerstag</div>
-            </div>
-            <div class="date-body">
-              <h3>Girls' and Boys' Day</h3>
-              <span class="date-cat">Jahrgänge 7–10</span>
-            </div>
-          </li>
-          <li class="date-row highlight">
-            <div>
-              <div class="date-main">24. Apr</div>
-              <div class="date-sub">Freitag</div>
-            </div>
-            <div class="date-body">
-              <h3>Schriftl. Abiturprüfung LK/GK Chemie</h3>
-              <span class="date-cat">Abitur 2026</span>
-            </div>
-          </li>
+    <div class="duwir-grid">
+      <article class="duwir duwir-du">
+        <span class="label">DU</span>
+        <h3>… wenn du dich fragst, wie es weitergeht.</h3>
+        <ul>
+          <li>besuchst zurzeit die 10. Klasse einer <strong>Realschule</strong>, <strong>Sekundarschule</strong>, <strong>Hauptschule</strong> oder eines <strong>Berufskollegs</strong> und machst am Ende dieses Schuljahres deine <strong>Fachoberschulreife mit Qualifikation</strong> zum Besuch der gymnasialen Oberstufe</li>
+          <li>überlegst dir, weiter zur Schule zu gehen und ein <strong>Abitur</strong> oder die <strong>Fachhochschulreife</strong> zu erlangen, um zu studieren oder einen Beruf zu ergreifen</li>
         </ul>
-      </aside>
-
-    </div>
-  </div>
-</section>
-
-<!-- ===================== WAS UNS AUSZEICHNET ===================== -->
-<section class="pillars-section" data-bg-images="on" aria-label="Was uns auszeichnet">
-  <div class="container">
-    <div class="pillars-head">
-      <span class="eyebrow">Was uns auszeichnet</span>
-      <h2>Drei Gründe,<br>die einen Unterschied machen.</h2>
-    </div>
-
-    <div class="pillars-collage">
-      <article class="pillar-card pillar-unesco">
-        <svg class="icon" viewBox="0 0 56 56" fill="none" aria-hidden="true" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
-          <circle cx="28" cy="28" r="20"/>
-          <path d="M8 28h40"/>
-          <path d="M28 8c6 6 9 13 9 20s-3 14-9 20"/>
-          <path d="M28 8c-6 6-9 13-9 20s3 14 9 20"/>
-          <path d="M12 18c5 3 11 4 16 4s11-1 16-4M12 38c5-3 11-4 16-4s11 1 16 4"/>
-        </svg>
-        <div>
-          <h3>UNESCO-Projektschule</h3>
-          <p>Teil eines weltweiten Netzwerks von rund 12 000 Schulen. Frieden, Menschenrechte und nachhaltige Entwicklung sind bei uns nicht Projekttag — sie sind Lehrplan.</p>
-        </div>
+        <div class="oder">— oder —</div>
+        <ul>
+          <li>möchtest an einer anderen Schule deine Schullaufbahn in der <strong>gymnasialen Oberstufe</strong> fortsetzen</li>
+        </ul>
       </article>
-
-      <article class="pillar-card pillar-profile">
-        <svg class="icon" viewBox="0 0 56 56" fill="none" aria-hidden="true" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M20 44c0-10 3-18 8-26"/>
-          <path d="M20 44c-8 0-12-6-12-14 0-8 6-14 14-14 6 0 10 4 12 8-2 8-8 16-14 20z"/>
-          <path d="M36 44c0-10-3-18-8-26"/>
-          <path d="M36 44c8 0 12-6 12-14 0-8-6-14-14-14-6 0-10 4-12 8 2 8 8 16 14 20z"/>
-        </svg>
-        <div>
-          <h3>Zwei Profile<br>ab Klasse 5</h3>
-          <p>WortArt⁺ für Sprache, Literatur und darstellendes Spiel. Forscher² für Naturwissenschaften und Mathematik.</p>
-        </div>
-      </article>
-
-      <article class="pillar-card pillar-abitur">
-        <svg class="icon" viewBox="0 0 56 56" fill="none" aria-hidden="true" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M8 14h18c2 0 4 2 4 4v28c0-2-2-4-4-4H8z"/>
-          <path d="M48 14H30c-2 0-4 2-4 4v28c0-2 2-4 4-4h18z"/>
-          <path d="M28 18v28"/>
-          <path d="M14 22h10M14 28h10M34 22h8M34 28h10M34 34h6"/>
-        </svg>
-        <div>
-          <h3>Starkes Abitur</h3>
-          <p>Solide Oberstufe mit einer breiten Auswahl an Leistungskursen. Fundiertes Wissen, Methodensicherheit — und Zeit, den eigenen Weg zu finden.</p>
-        </div>
-      </article>
-
-      <div class="pillar-card pillar-quote">
-        <div>
-          <blockquote>
-            Gemeinsam Lernen<br>Den eigenen Weg finden
-          </blockquote>
-          <cite>Unser Leitbild</cite>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===================== DEIN WEG ZU UNS ===================== -->
-<section id="wegzuuns" class="path-section" aria-label="Dein Weg zu uns">
-  <div class="container">
-    <div class="path-head">
-      <h2>Dein Weg zu uns.</h2>
-      <p>Drei Wege, uns kennenzulernen. Sie sind herzlich eingeladen — kommen Sie vorbei, schreiben Sie uns, oder rufen Sie einfach an.</p>
-    </div>
-
-    <div class="path-grid">
-      <article class="path-card">
-        <span class="kicker">Tag der offenen Tür</span>
-        <div class="big-date">
-          21. November 2027
-          <small>Samstag, 10:00 – 14:00 Uhr · Steinmetzstr. 9</small>
-        </div>
-        <p>Unterricht zum Mitmachen, Gespräche mit Lehrkräften und Schülerinnen, Führungen durch die Naturwissenschafts- und Kunsträume. Eine Anmeldung ist nicht nötig.</p>
-        <a href="#" class="btn btn-secondary">Zum Programm <span class="arrow">→</span></a>
-      </article>
-
-      <article class="path-card">
-        <span class="kicker">Anmeldung zum Schuljahr 2026/27</span>
-        <h3>Jetzt anmelden.</h3>
-        <p>Anmeldezeitraum: 02. bis 13. Februar 2026. Das Anmeldeformular, benötigte Unterlagen und weitere Hinweise finden Sie in unserem Eltern-Bereich.</p>
-        <a href="#" class="btn btn-primary">Zur Anmeldung <span class="arrow">→</span></a>
-      </article>
-
-      <article class="path-card">
-        <span class="kicker">Fragen stellen</span>
-        <h3>Gespräch vereinbaren.</h3>
-        <p class="contact-line">
-          <a href="tel:+492013658040">0201 · 365 80 40</a><br>
-          <a href="mailto:kontakt@unesco-schule-essen.de">kontakt@unesco-schule-essen.de</a>
-        </p>
-        <a href="#" class="btn btn-secondary">Termin anfragen <span class="arrow">→</span></a>
+      <article class="duwir duwir-wir">
+        <span class="label">WIR</span>
+        <h3>… warten genau auf dich.</h3>
+        <ul>
+          <li>sind ein Gymnasium mit <strong>jahrzehntelanger Erfahrung</strong> mit Schulwechslerinnen und Schulwechslern</li>
+          <li>haben unsere gymnasiale Oberstufe gezielt auf Schülerinnen und Schüler ausgerichtet, die bis Klasse 10 <strong>eine andere Schulform</strong> besucht haben</li>
+          <li>sind eine Schule, die dich <strong>intensiv begleitet</strong>, deinen eigenen Weg zu finden</li>
+          <li>bilden in der EF <strong>Klassenverbände</strong> in Deutsch, Mathematik, Englisch und Sport — als weicher Übergang in den Kurs­betrieb</li>
+        </ul>
       </article>
     </div>
   </div>
 </section>
 
-<!-- ===================== KOOPERATIONEN & PARTNER ===================== -->
-<section class="partners-section" aria-label="Kooperationen und Partner">
+<section class="ob-stats" aria-label="Die Schule in Zahlen">
   <div class="container">
-    <div class="partners-head">
-      <span class="eyebrow">Kooperationen &amp; Partner</span>
-      <h2>Wir stehen nicht allein.</h2>
-      <p>Unsere Schule lebt von Partnerschaften — mit dem UNESCO-Netzwerk, der Universität Duisburg-Essen, Theater und Philharmonie, dem Stifterverband und einer Reihe von Essener Unternehmen, Stiftungen und Vereinen, die Unterricht an echten Aufgaben möglich machen.</p>
+    <div class="stats-row">
+      <div class="ob-stat"><span class="n">~550</span><span class="label">Schülerinnen und Schüler aus fast 45 Nationen</span></div>
+      <div class="ob-stat"><span class="n">~350</span><span class="label">Schülerinnen und Schüler in der Oberstufe</span></div>
+      <div class="ob-stat"><span class="n">48</span><span class="label">Lehrerinnen und Lehrer</span></div>
+      <div class="ob-stat"><span class="n">1:1</span><span class="label">Schul­sozial­arbeit, Schul­psychologie, Berufs- und Studienberatung, Arbeits­agentur</span></div>
     </div>
+  </div>
+</section>
 
-    <ul class="partners-logos">
-      <li><a class="partner-logo" href="https://www.unesco.de/bildung/unesco-projektschulen" target="_blank" rel="noopener" title="UNESCO-Projektschulen"><img src="assets/partners/unesco.png" alt="UNESCO-Projektschulen"></a></li>
-      <li><a class="partner-logo" href="https://www.uni-due.de" target="_blank" rel="noopener" title="Universität Duisburg-Essen"><img src="assets/partners/uni-due.png" alt="Universität Duisburg-Essen"></a></li>
-      <li><a class="partner-logo" href="https://www.theater-essen.de" target="_blank" rel="noopener" title="Theater und Philharmonie Essen"><img src="assets/partners/tup.png" alt="Theater und Philharmonie Essen"></a></li>
-      <li><a class="partner-logo" href="https://www.stifterverband.org" target="_blank" rel="noopener" title="Stifterverband"><img src="assets/partners/stifterverband.png" alt="Stifterverband"></a></li>
-      <li><a class="partner-logo" href="https://www.contact-essen.de" target="_blank" rel="noopener" title="Contact — Kommunikation · Sport · Event"><img src="assets/partners/contact.png" alt="Contact"></a></li>
-      <li><a class="partner-logo" href="https://www.arbeitsagentur.de/vor-ort/essen/startseite" target="_blank" rel="noopener" title="Agentur für Arbeit Essen"><img src="assets/partners/agentur-arbeit.png" alt="Agentur für Arbeit Essen"></a></li>
-      <li><a class="partner-logo" href="https://www.cse.de" target="_blank" rel="noopener" title="CSE"><img src="assets/partners/cse.png" alt="CSE"></a></li>
-      <li><a class="partner-logo" href="https://www.goldschmidt.com" target="_blank" rel="noopener" title="Goldschmidt Thermit Group"><img src="assets/partners/goldschmidt-thermit.png" alt="Goldschmidt Thermit Group"></a></li>
-      <li><a class="partner-logo" href="https://www.theater-essen.de/philharmonie" target="_blank" rel="noopener" title="Essener Philharmoniker"><img src="assets/partners/philharmoniker.png" alt="Essener Philharmoniker"></a></li>
-      <li><a class="partner-logo" href="https://www.jugendhilfe-essen.de" target="_blank" rel="noopener" title="Jugendhilfe Essen"><img src="assets/partners/jhe.png" alt="jhe"></a></li>
-      <li><a class="partner-logo" href="https://goldschmidt-stiftung.de" target="_blank" rel="noopener" title="Goldschmidt Stiftung"><img src="assets/partners/goldschmidt-stiftung.png" alt="Goldschmidt Stiftung"></a></li>
-      <li><a class="partner-logo" href="https://www.rotary-essen.de" target="_blank" rel="noopener" title="Rotary Club Essen"><img src="assets/partners/rotary.png" alt="Rotary Club Essen"></a></li>
-      <li><a class="partner-logo" href="https://www.archenoah-essen.de" target="_blank" rel="noopener" title="Arche Noah Essen"><img src="assets/partners/arche-noah.png" alt="Arche Noah Essen"></a></li>
-      <li><a class="partner-logo" href="https://www.wdr.de" target="_blank" rel="noopener" title="WDR"><img src="assets/partners/wdr.png" alt="WDR"></a></li>
-      <li><a class="partner-logo" href="https://www.iwc-essen-nord.de" target="_blank" rel="noopener" title="IWC Essen-Nord"><img src="assets/partners/iwc.png" alt="IWC Essen-Nord"></a></li>
+<section class="ob-sect" aria-label="Wir nehmen auf">
+  <div class="container">
+    <div class="head">
+      <span class="eyebrow">Wer bei uns aufgenommen wird</span>
+      <h2>Wir nehmen in die gymnasiale Oberstufe auf.</h2>
+      <p>Für die Aufnahme ist es unerheblich, welcher Notendurchschnitt dabei erreicht wurde. Alle Schülerinnen und Schüler erhalten bei uns die Chance auf den Erwerb der Allgemeinen Hochschulreife (Abitur) oder auf den Erwerb des schulischen Teils der Fachhochschulreife.</p>
+    </div>
+    <ul class="ob-check">
+      <li>Schülerinnen und Schüler, die an einer <strong>Realschule, Sekundarschule, Hauptschule</strong> oder an einem <strong>Berufskolleg</strong> ihre Fachoberschulreife mit Qualifikationsvermerk erworben haben</li>
+      <li>Schülerinnen und Schüler, die an einem <strong>anderen Gymnasium</strong> die Berechtigung zum Eintritt in die gymnasiale Oberstufe erworben haben oder die Jahrgangsstufe EF wiederholen</li>
+      <li>Schülerinnen und Schüler, die an einem anderen Gymnasium am Ende des Schuljahres 2025/26 die Jahrgangsstufe <strong>EF wiederholen</strong> müssen oder möchten</li>
+      <li>Schülerinnen und Schüler in die Jahrgangsstufen <strong>Q1 oder Q2</strong></li>
     </ul>
-
-    <p class="partners-foot">
-      <a href="#" class="inline-link">Alle Kooperationen &amp; Partnerschaften ansehen</a>
-    </p>
   </div>
 </section>
 
-<!-- ===================== FOOTER ===================== -->
+<section class="ob-sect alt" aria-label="Wir bieten in der Oberstufe">
+  <div class="container">
+    <div class="head">
+      <span class="eyebrow">Unser Angebot</span>
+      <h2>Wir bieten in der Oberstufe.</h2>
+    </div>
+    <ul class="ob-check">
+      <li><strong>Erhaltung eines Klassenverbandes</strong> in der Einführungsphase in Mathematik, Deutsch, Englisch und Sport</li>
+      <li><strong>Klassenbildung gemäß den bisher besuchten Schulformen</strong> — Schülergruppen aus ein und derselben Schule können zusammen­bleiben</li>
+      <li><strong>Vertiefungskurse</strong> in Mathematik, Deutsch und Englisch</li>
+      <li><strong>Anfängerkurse</strong> für Französisch und Latein (ggf. Erwerb des Kleinen Latinums)</li>
+      <li><strong>Fortsetzung</strong> der Fremdsprache Französisch aus der Sekundarstufe I</li>
+      <li><strong>Leistungskurse</strong> in Deutsch, Englisch, Mathematik, Pädagogik, Sozialwissenschaft, Biologie, Chemie, Erdkunde, Geschichte</li>
+    </ul>
+  </div>
+</section>
+
+<section class="ob-sect" aria-label="Wir unterstützen und fördern">
+  <div class="container">
+    <div class="head">
+      <span class="eyebrow">Unterstützung &amp; Förderung</span>
+      <h2>Wir lassen niemanden allein.</h2>
+    </div>
+    <ul class="ob-check">
+      <li>Orientierung der Unterrichtsgestaltung an den Voraussetzungen der Schülerinnen und Schüler</li>
+      <li>Progressive (stetig ansteigende) Anforderungsprofile in Klausuren und Prüfungen</li>
+      <li>Einrichtung von <strong>Schülertutorien</strong> in Deutsch, Mathematik und Englisch</li>
+      <li>Intensive individuelle Beratung durch die Stufenleitungen</li>
+      <li>Initiierung und Betreuung von Lerngruppen</li>
+      <li>Förderung besonderer Stärken</li>
+      <li>Vermittlung von Stipendien</li>
+      <li>Unterstützung bei Beantragung von Mitteln zur Bildung und Teilhabe</li>
+      <li>Kennenlern- und Methodentage zu Beginn des Schuljahres</li>
+    </ul>
+  </div>
+</section>
+
+<section class="ob-sect alt" aria-label="Zusätzliches Angebot">
+  <div class="container">
+    <div class="head">
+      <span class="eyebrow">Zusätzlich an unserer Schule</span>
+      <h2>Mehr als Unterricht.</h2>
+    </div>
+    <ul class="ob-check">
+      <li><strong>Schülerbetriebspraktikum</strong> oder duales Praktikum in der Einführungs­phase</li>
+      <li>Berufs- und Laufbahnberatung in der Schule — wöchentliche Sprechstunden mit der Berufs-/Studienberatung</li>
+      <li>Individuelle Beratung durch Mitarbeiter des <strong>BIZ</strong> (Berufs­informations­zentrum)</li>
+      <li>Beratung und Information durch <strong>Firmen und Institutionen</strong></li>
+      <li>Teilnahme an Informationstagen — schulintern oder an den Universitäten</li>
+    </ul>
+  </div>
+</section>
+
+<section class="ob-steps" aria-label="Dein Weg zu uns in 6 Schritten">
+  <div class="container">
+    <div class="head">
+      <span class="eyebrow">Dein Weg zu uns</span>
+      <h2>In sechs Schritten<br>in die Oberstufe.</h2>
+    </div>
+    <ol class="steps-list">
+      <li>
+        <span class="num">01</span>
+        <div class="body">
+          <h3>Vor der Anmeldung</h3>
+          <p>Tag der offenen Tür, Informationsveranstaltung in der Aula und Schnuppertage. Ein Tag am Unterricht teilnehmen — mit einem „Stundenplan", der deinen Interessen entspricht.</p>
+        </div>
+        <div class="when">29.11.2025 · 20.01.2026 · 19.01.–27.02.2026</div>
+      </li>
+      <li>
+        <span class="num">02</span>
+        <div class="body">
+          <h3>Die Anmeldung</h3>
+          <p>Anmeldung online über <strong>www.schueleranmeldung.de</strong>. Danach persönlich mit unterschriebenem Anmeldebogen, Ausweis und Halbjahreszeugnis bei uns vorbeikommen. Nach der Anmeldung bist du zunächst aufgenommen.</p>
+        </div>
+        <div class="when">02.02.–06.03.2026</div>
+      </li>
+      <li>
+        <span class="num">03</span>
+        <div class="body">
+          <h3>Die Fächerwahl</h3>
+          <p>Pflicht­belegungen (Deutsch, Mathematik, Englisch, Sport), zweite Fremdsprache (Französisch oder Latein als Anfänger, wenn bisher keine zweite Fremdsprache), Religion/Philosophie, Kunst/Musik, Natur- und Gesellschafts­wissenschaften. Infoabend und Abgabe des Wahlzettels.</p>
+        </div>
+        <div class="when">21.04.2026 · Abgabe 13.05.2026</div>
+      </li>
+      <li>
+        <span class="num">04</span>
+        <div class="body">
+          <h3>Deine besonderen Wünsche</h3>
+          <p>In der EF bilden wir Klassenverbände in Deutsch, Englisch, Mathematik und Sport. Auf dem Wahlzettel gibst du an, mit wem du gerne in eine „Klasse" möchtest — wir versuchen, deine Wünsche zu berücksichtigen.</p>
+        </div>
+        <div class="when">Mit der Fächerwahl</div>
+      </li>
+      <li>
+        <span class="num">05</span>
+        <div class="body">
+          <h3>Die endgültige Aufnahme</h3>
+          <p>Mit Erhalt des Abschlusszeugnisses (Fachoberschulreife mit Qualifikationsvermerk oder Gymnasialzeugnis) schnellstmöglich vor den Sommerferien in Kopie vorlegen — und du bist endgültig UNESCO-Gymnasium.</p>
+        </div>
+        <div class="when">Vor den Sommerferien</div>
+      </li>
+      <li>
+        <span class="num">06</span>
+        <div class="body">
+          <h3>Der erste Schultag</h3>
+          <p>Dein erster Schultag an der UNESCO-Schule — am zweiten Schultag nach den Sommerferien. Der gesamte Vormittag gehört dir: Schule, Mitschüler, Stundenplan, alle Fragen an Klassenlehrer und Stufenleitung.</p>
+        </div>
+        <div class="when">Donnerstag, 03.09.2026</div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+
+
+<section class="ob-welcome" aria-label="Herzlich willkommen">
+  <div class="container">
+    <span class="eyebrow">Der erste Schultag</span>
+    <h2>Herzlich willkommen!<br>Komm herein.</h2>
+    <p>Traditionell beginnt der erste Schultag für unsere neuen Schülerinnen und Schüler der EF am zweiten Schultag nach den Sommerferien — im kommenden Schuljahr am <strong>Donnerstag, 03.09.2026</strong>.</p>
+  </div>
+  <span class="cred">Platzhalter · Foto folgt</span>
+</section>
+
+<section class="ob-contact" aria-label="Ansprechpartner Oberstufe">
+  <div class="container">
+    <div class="head" style="max-width:780px;margin:0 0 32px;">
+      <span class="eyebrow" style="font-family:var(--sans);font-weight:500;font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:var(--bordeaux);display:block;margin-bottom:14px;">Ansprechpartner Oberstufe</span>
+      <h2 style="font-family:var(--serif);font-weight:500;font-size:clamp(28px,3vw,40px);line-height:1.15;letter-spacing:-0.015em;color:var(--petrol);margin:0 0 12px;">Ihr Oberstufenbüro.</h2>
+      <p style="font-family:var(--sans);font-size:16.5px;line-height:1.65;color:var(--stein);margin:0;">Sekretariat: 0201 · 2802630 &nbsp;·&nbsp; Oberstufenbüro: 0201 · 2802643</p>
+    </div>
+    <div class="contact-duo">
+      <article class="contact-person">
+        <span class="role">Kommissarischer Oberstufenkoordinator</span>
+        <span class="name">Thorsten Omlor, OStR</span>
+        <span class="title">UNESCO-Schule Essen · Steinmetzstr. 9 · 45139 Essen</span>
+        <a href="mailto:thorsten.omlor@164835.nrw.schule">thorsten.omlor@164835.nrw.schule</a>
+      </article>
+      <article class="contact-person">
+        <span class="role">Stufenleitung EF</span>
+        <span class="name">Christoph Soyka, StR</span>
+        <span class="title">UNESCO-Schule Essen · Steinmetzstr. 9 · 45139 Essen</span>
+        <a href="mailto:christoph.soyka@164835.nrw.schule">christoph.soyka@164835.nrw.schule</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+</main>
 <footer class="site-footer" aria-label="Seitenfuß">
   <div class="container">
     <div class="footer-grid">
       <div class="footer-col footer-brand">
-        <a href="index.html" class="footer-logo" aria-label="UNESCO-Schule Essen Startseite">
+        <div class="footer-logo">
           <span class="logo-stack">
             <img class="logo-bw"    src="assets/logo-signum-wide.png" alt="UNESCO-Schule Essen">
             <img class="logo-color" src="assets/logo-signum-wide-color.jpg" alt="" aria-hidden="true">
           </span>
-        </a>
+        </div>
         <address>
           Steinmetzstraße 9<br>
           45139 Essen<br><br>
@@ -1138,15 +1357,16 @@
     </div>
   </div>
 </footer>
-
 <script>
   const hamburger = document.getElementById('hamburgerBtn');
   const mainNav   = document.getElementById('mainNav');
-  hamburger.addEventListener('click',()=>{
-    const open = hamburger.classList.toggle('active');
-    mainNav.classList.toggle('open',open);
-    hamburger.setAttribute('aria-expanded', open?'true':'false');
-  });
+  if(hamburger){
+    hamburger.addEventListener('click',()=>{
+      const open = hamburger.classList.toggle('active');
+      mainNav.classList.toggle('open',open);
+      hamburger.setAttribute('aria-expanded', open?'true':'false');
+    });
+  }
   document.querySelectorAll('.nav-item.has-dropdown > .nav-link').forEach(link=>{
     link.addEventListener('click',e=>{
       if(window.innerWidth <= 1080){
@@ -1158,7 +1378,6 @@
       }
     });
   });
-</script>
-
+  </script>
 </body>
 </html>
