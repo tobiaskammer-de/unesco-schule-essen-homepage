@@ -794,36 +794,59 @@ function link(path: string): string {
     .mega-col{padding:4px 24px;}
   }
   @media (max-width:960px){
-    .hero{padding:56px 0 72px;}
-    .hero-grid{grid-template-columns:1fr;gap:40px;}
+    /* Container-Padding auch auf Tablets reduzieren */
+    .container{padding:0 24px;}
+
+    .hero{padding:56px 0 var(--space-section-sm);}
+    .hero-grid{grid-template-columns:1fr;gap:28px;}
     .hero-photo{aspect-ratio:4/3;max-height:480px;}
-    section{padding:36px 0;}
-    .news-dates{grid-template-columns:1fr;gap:56px;}
-    .news-list{grid-template-columns:1fr;gap:20px;}
-    .news-card{
-      display:grid;
-      grid-template-columns:110px 1fr;
-      gap:16px;align-items:start;
+    .hero-sub{font-size:17px;line-height:1.55;}
+    section{padding:var(--space-section-sm) 0;}
+
+    /* News-Dates: News oben, Termine darunter */
+    .news-dates{grid-template-columns:1fr;gap:40px;}
+    .news-dates > div, .news-dates > aside{
+      padding:24px 24px 28px;
     }
-    .news-card .thumb{aspect-ratio:1/1;border-radius:2px;}
-    .news-card h3{font-size:16px;}
+
+    /* News-Cards: stacked — Bild oben, Text unten (wie Desktop, aber 1 Spalte) */
+    .news-list{grid-template-columns:1fr;gap:28px;}
+    .news-card{display:flex;flex-direction:column;gap:14px;}
+    .news-card .thumb{aspect-ratio:16/10;border-radius:2px;}
+    .news-card h3{font-size:19px;}
     .news-card .excerpt{
-      display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;
-      overflow:hidden;font-size:14px;line-height:1.45;
+      display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;
+      overflow:hidden;font-size:15px;line-height:1.55;
     }
-    /* Featured bekommt auf Mobil dasselbe Layout wie alle anderen */
+    /* Featured auf Mobile: dieselbe stacked-Struktur, leicht größerer Titel */
     .news-list .news-card.featured{
-      grid-column:auto;
-      grid-template-columns:110px 1fr;
-      gap:16px;align-items:start;
+      grid-column:auto;grid-template-columns:1fr;gap:14px;align-items:stretch;
     }
-    .news-list .news-card.featured .thumb{aspect-ratio:1/1;}
-    .news-list .news-card.featured h3{font-size:16px;font-family:var(--sans);font-weight:600;letter-spacing:0;}
-    .news-list .news-card.featured .excerpt{-webkit-line-clamp:2;font-size:14px;}
-    .pillars{grid-template-columns:1fr 1fr;gap:32px;}
+    .news-list .news-card.featured .thumb{aspect-ratio:16/10;}
+    .news-list .news-card.featured h3{
+      font-size:22px;font-family:var(--serif);font-weight:500;letter-spacing:-0.005em;
+    }
+    .news-list .news-card.featured .excerpt{-webkit-line-clamp:3;font-size:15.5px;}
+
+    /* Section-Head: Titel und „Alle Beiträge"-Link untereinander */
+    .section-head{flex-direction:column;align-items:flex-start;gap:10px;margin-bottom:24px;}
+    .section-head .all-link{white-space:normal;}
+
+    /* Pillars — eine Spalte bereits ab 960px */
+    .pillars,.pillars-collage{grid-template-columns:1fr;gap:20px;}
+    .pillar-card{padding:28px 24px;min-height:auto;}
+    .pillar-quote{transform:none;}
+    .pillar-quote:hover{transform:none;}
+
     .voice-grid{grid-template-columns:1fr;gap:32px;}
     .voice-photo{max-width:360px;aspect-ratio:4/5;}
     .path-grid{grid-template-columns:1fr;}
+    .path-section{padding:var(--space-section-sm) 0;}
+
+    /* Date-Row: knapperer Datums-Spalter */
+    .date-row{grid-template-columns:72px 1fr;gap:14px;padding:18px 0;}
+    .date-row .date-main{font-size:22px;}
+
     .footer-grid{grid-template-columns:1fr 1fr;gap:28px 32px;}
     .footer-brand{grid-column:1 / -1;}
     .footer-brand .footer-logo .logo-stack,
@@ -839,9 +862,10 @@ function link(path: string): string {
     .container{padding:0 var(--pad-mob);}
     h2{font-size:26px;}
     .pillars-head h2,.path-head h2{font-size:28px;}
-    .pillars{grid-template-columns:1fr;}
     .pillars-quote{font-size:21px;}
     .voice-quote{font-size:22px;}
+    /* Hero-CTA-Row vertikal stapeln */
+    .hero-cta-row{flex-direction:column;align-items:flex-start;gap:14px;}
   }
 
   /* ---------- Tweaks panel ---------- */
