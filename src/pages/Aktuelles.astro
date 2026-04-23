@@ -6,13 +6,16 @@ import { getAllNews, withBase, formatArticleDate, entrySlug, categoryBadgeClass 
 const news = await getAllNews();
 const BASE = import.meta.env.BASE_URL;
 
-// Eindeutige Kategorien aus den Artikeln (für die Filter-Chips)
+// Erster Artikel = Featured, Rest = Grid
+const featured = news[0];
+const rest = news.slice(1);
+
+// Eindeutige Kategorien für die Filter-Chips
 const categories = Array.from(new Set(news.map((e) => e.data.category)));
 ---
 <BaseLayout title="Aktuelles — UNESCO-Schule Essen">
 <style is:global>
-  /* ---------- Journal page ---------- */
-  /* Filter row */
+  /* ---------- Blog-Übersicht: Filter ---------- */
   .filter-row{
     display:flex;flex-wrap:wrap;gap:8px;align-items:center;
     padding:22px 0 0;
@@ -26,117 +29,167 @@ const categories = Array.from(new Set(news.map((e) => e.data.category)));
     font-family:var(--sans);font-size:13px;font-weight:500;
     padding:7px 14px;border-radius:999px;
     border:1px solid var(--hairline);background:#fff;color:var(--tinte);
-    cursor:pointer;text-decoration:none;transition:all .2s;
+    cursor:pointer;text-decoration:none;
+    transition:background var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast);
   }
   .chip:hover{border-color:var(--petrol);color:var(--petrol);}
   .chip.is-active{background:var(--petrol);border-color:var(--petrol);color:var(--creme);}
 
-  /* Articles list */
-  .journal-main{
-    padding:var(--space-section) 0;
-    background:var(--offwhite);
-  }
-  .articles{
-    display:flex;flex-direction:column;gap:0;
+  /* ---------- Blog-Feed ---------- */
+  .feed{
+    background:var(--offwhite);padding:var(--space-section) 0;
     border-top:1px solid var(--hairline);
   }
-  .article{
-    display:grid;
-    grid-template-columns:minmax(0, 7fr) minmax(0, 5fr);
-    gap:48px;
-    padding:40px 0;
-    border-bottom:1px solid var(--hairline);
-    text-decoration:none;color:inherit;
-    align-items:center;
+
+  /* Featured post */
+  .feed-featured{margin-bottom:64px;}
+  .feed-featured a{
+    display:grid;grid-template-columns:minmax(0, 7fr) minmax(0, 5fr);
+    gap:56px;align-items:center;
+    background:#fff;border:1px solid var(--hairline);
+    border-top:var(--card-accent-width) solid var(--petrol);
+    padding:36px;text-decoration:none;color:inherit;
+    transition:transform var(--transition), box-shadow var(--transition);
   }
-  .article:hover h2{color:var(--petrol-dark,#083537);}
-  .article:hover .thumb img{transform:scale(1.03);}
-  .article .meta{
-    display:flex;align-items:center;gap:12px;margin-bottom:16px;flex-wrap:wrap;
+  .feed-featured a:hover{transform:translateY(-2px);box-shadow:0 18px 44px -24px rgba(14,77,79,0.3);}
+  @media (prefers-reduced-motion: reduce){.feed-featured a:hover{transform:none;}}
+  .feed-featured .thumb{
+    aspect-ratio:5/4;overflow:hidden;background:var(--creme);
+    order:2;
   }
-  .article .date{
-    font-family:var(--sans);font-size:12.5px;color:var(--stein);
-    letter-spacing:0.04em;
-  }
-  .article h2{
-    font-family:var(--serif);font-weight:500;
-    font-size:clamp(26px,2.4vw,34px);line-height:1.18;
-    color:var(--petrol);letter-spacing:-0.012em;
-    margin:0 0 14px;transition:color .2s;
-  }
-  .article p.excerpt{
-    font-family:var(--sans);font-size:16px;line-height:1.6;color:var(--stein);
-    margin:0 0 18px;max-width:62ch;
-  }
-  .article .read-more{
-    font-family:var(--sans);font-size:13.5px;font-weight:500;color:var(--petrol);
-    letter-spacing:0.03em;
-  }
-  .article .read-more .arrow{
-    display:inline-block;margin-left:4px;transition:transform .25s;
-  }
-  .article:hover .read-more .arrow{transform:translateX(4px);}
-  .article .thumb{
-    aspect-ratio:4/3;overflow:hidden;background:var(--creme);
-    border-radius:2px;
-  }
-  .article .thumb img{
-    width:100%;height:100%;object-fit:cover;
+  .feed-featured .thumb img{
+    width:100%;height:100%;object-fit:cover;display:block;
     transition:transform .5s ease;
   }
+  .feed-featured a:hover .thumb img{transform:scale(1.02);}
+  .feed-featured .body{
+    order:1;display:flex;flex-direction:column;gap:16px;
+  }
+  .feed-featured .kicker{
+    display:inline-flex;align-items:center;gap:10px;
+    font-family:var(--sans);font-size:11px;font-weight:600;
+    letter-spacing:0.14em;text-transform:uppercase;color:var(--bordeaux);
+  }
+  .feed-featured .kicker .dot{
+    width:7px;height:7px;border-radius:50%;background:var(--bordeaux);
+  }
+  .feed-featured .meta{
+    display:flex;flex-wrap:wrap;align-items:center;gap:14px;
+  }
+  .feed-featured .date{
+    font-family:var(--sans);font-size:13.5px;color:var(--stein);letter-spacing:0.04em;
+  }
+  .feed-featured h2{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(30px,3.4vw,46px);line-height:1.1;letter-spacing:-0.02em;
+    color:var(--petrol);margin:0;
+  }
+  .feed-featured a:hover h2{color:var(--petrol-dark);}
+  .feed-featured .excerpt{
+    font-family:var(--sans);font-size:16.5px;line-height:1.65;color:var(--tinte);
+    margin:0;max-width:62ch;
+  }
+  .feed-featured .read-more{
+    display:inline-flex;align-items:center;gap:8px;margin-top:4px;
+    font-family:var(--sans);font-size:14.5px;font-weight:500;color:var(--bordeaux);
+    letter-spacing:0.02em;
+    border-bottom:1px solid currentColor;padding-bottom:2px;align-self:flex-start;
+  }
+  .feed-featured .read-more .arrow{transition:transform var(--transition-fast);}
+  .feed-featured a:hover .read-more .arrow{transform:translateX(4px);}
 
-  /* First article: feature layout */
-  .article.feature{
-    grid-template-columns:1fr;
-    gap:28px;
-    padding:56px 0 56px;
+  /* Head of regular grid */
+  .feed-head{
+    display:flex;align-items:baseline;justify-content:space-between;
+    gap:16px;flex-wrap:wrap;margin-bottom:32px;
   }
-  .article.feature .thumb{aspect-ratio:16/7;}
-  .article.feature h2{
-    font-size:clamp(32px,3.6vw,48px);
-    max-width:900px;
+  .feed-head h2{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(24px,2.6vw,32px);line-height:1.2;letter-spacing:-0.015em;
+    color:var(--petrol);margin:0;
   }
-  .article.feature p.excerpt{font-size:17px;max-width:72ch;}
+  .feed-head .count{
+    font-family:var(--sans);font-size:13.5px;color:var(--stein);letter-spacing:0.04em;
+  }
 
-  /* Alternate sides for middle articles */
-  .article.flip{grid-template-columns:minmax(0,5fr) minmax(0,7fr);}
-  .article.flip .thumb{order:-1;}
+  /* Grid of article cards */
+  .feed-grid{
+    display:grid;grid-template-columns:repeat(3, minmax(0, 1fr));gap:32px;
+  }
+  .post-card{
+    background:#fff;border:1px solid var(--hairline);
+    border-top:var(--card-accent-width) solid var(--petrol);
+    display:flex;flex-direction:column;
+    text-decoration:none;color:inherit;
+    transition:transform var(--transition), box-shadow var(--transition);
+  }
+  .post-card:hover{transform:translateY(-2px);box-shadow:0 16px 40px -24px rgba(14,77,79,0.3);}
+  @media (prefers-reduced-motion: reduce){.post-card:hover{transform:none;}}
+  .post-card .thumb{
+    aspect-ratio:4/3;overflow:hidden;background:var(--creme);
+  }
+  .post-card .thumb img{
+    width:100%;height:100%;object-fit:cover;display:block;
+    transition:transform .5s ease;
+  }
+  .post-card:hover .thumb img{transform:scale(1.03);}
+  .post-card .body{
+    padding:22px 24px 24px;
+    display:flex;flex-direction:column;gap:10px;flex:1;
+  }
+  .post-card .meta{
+    display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+  }
+  .post-card .date{
+    font-family:var(--sans);font-size:12.5px;color:var(--stein);letter-spacing:0.04em;
+  }
+  .post-card h3{
+    font-family:var(--serif);font-weight:500;font-size:21px;line-height:1.25;
+    color:var(--petrol);letter-spacing:-0.008em;margin:0;
+    display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;
+  }
+  .post-card:hover h3{color:var(--petrol-dark);}
+  .post-card .excerpt{
+    font-family:var(--sans);font-size:14.5px;line-height:1.6;color:var(--stein);margin:0;
+    display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;
+  }
+  .post-card .read-more{
+    display:inline-flex;align-items:center;gap:6px;margin-top:auto;
+    padding-top:12px;
+    font-family:var(--sans);font-size:13.5px;font-weight:500;color:var(--bordeaux);
+    letter-spacing:0.02em;align-self:flex-start;
+  }
+  .post-card .read-more .arrow{transition:transform var(--transition-fast);}
+  .post-card:hover .read-more .arrow{transform:translateX(4px);}
 
-  /* Pagination */
-  .pagination{
-    display:flex;justify-content:center;align-items:center;gap:4px;
-    margin-top:56px;
+  /* Empty state */
+  .feed-empty{
+    padding:64px 32px;text-align:center;
+    font-family:var(--sans);color:var(--stein);font-size:16.5px;line-height:1.65;
+    background:#fff;border:1px dashed var(--hairline);
   }
-  .pagination a, .pagination span{
-    font-family:var(--sans);font-size:14px;
-    padding:8px 14px;color:var(--tinte);text-decoration:none;
-    border:1px solid transparent;border-radius:2px;
-  }
-  .pagination a:hover{border-color:var(--hairline);}
-  .pagination .current{
-    background:var(--petrol);color:var(--creme);
-  }
-  .pagination .prev, .pagination .next{color:var(--stein);}
+  .feed-empty strong{color:var(--petrol);}
 
-  @media (max-width:780px){
-    .article, .article.flip{
-      grid-template-columns:1fr;gap:18px;
-    }
-    .article .thumb{order:-1;aspect-ratio:16/10;}
-    .article.flip .thumb{order:-1;}
-    .article{padding:32px 0;}
-    .article.feature{padding:32px 0;}
-    .journal-main{padding:var(--space-section-sm) 0;}
+  @media (max-width:960px){
+    .feed-featured a{grid-template-columns:1fr;gap:24px;padding:24px;}
+    .feed-featured .thumb{order:-1;aspect-ratio:16/10;}
+    .feed-grid{grid-template-columns:repeat(2, minmax(0, 1fr));gap:20px;}
+  }
+  @media (max-width:640px){
+    .feed-grid{grid-template-columns:1fr;gap:16px;}
+    .feed{padding:var(--space-section-sm) 0;}
+    .feed-featured{margin-bottom:40px;}
   }
 </style>
 
-<a id="top" tabindex="-1"></a>
+<main id="top">
+
 <PageHero variant="page">
   <Fragment slot="eyebrow">Aktuelles</Fragment>
   <Fragment slot="title">Aus unserem<br>Schulleben.</Fragment>
   <Fragment slot="lede">Berichte, Projekte und Stimmen aus dem Alltag der UNESCO-Schule Essen. Was wir machen — und warum es uns wichtig ist.</Fragment>
   <Fragment slot="extra">
-    <nav class="filter-row" aria-label="Filter">
+    <nav class="filter-row" aria-label="Nach Kategorie filtern">
       <span class="label">Filter</span>
       <button type="button" class="chip is-active" data-filter="all">Alle Beiträge</button>
       {categories.map((cat) => (
@@ -146,69 +199,117 @@ const categories = Array.from(new Set(news.map((e) => e.data.category)));
   </Fragment>
 </PageHero>
 
-
-<main class="journal-main">
+<section class="feed" aria-label="Beiträge">
   <div class="container">
-    {news.length === 0 ? (
-      <p style="font-family:var(--sans);color:var(--stein);font-size:17px;padding:48px 0;text-align:center;">
-        Noch keine Beiträge veröffentlicht. Sobald etwas passiert, findet ihr es hier.
-      </p>
-    ) : (
-      <div class="articles">
-        {news.map((entry, idx) => (
-          <a
-            href={`${BASE}/aktuelles/${entrySlug(entry)}.html`}
-            class={`article ${idx === 0 ? "feature" : idx % 2 === 0 ? "flip" : ""}`}
-            data-category={entry.data.category}
-          >
-            {idx !== 0 && (idx % 2 === 0) && (
-              <div class="thumb">
-                <img
-                  src={withBase(entry.data.coverImage, BASE)}
-                  alt={entry.data.coverAlt}
-                  width="1200" height="900" loading="lazy"
-                />
-              </div>
-            )}
-            <div>
-              <div class="meta">
-                <span class={`badge ${categoryBadgeClass(entry.data.category)}`}>{entry.data.category}</span>
-                <span class="date">{formatArticleDate(entry.data.date)}</span>
-              </div>
-              <h2>{entry.data.title}</h2>
-              <p class="excerpt">{entry.data.excerpt}</p>
-              <span class="read-more">Vollständiger Beitrag <span class="arrow">→</span></span>
-            </div>
-            {(idx === 0 || idx % 2 !== 0) && (
-              <div class="thumb">
-                <img
-                  src={withBase(entry.data.coverImage, BASE)}
-                  alt={entry.data.coverAlt}
-                  width={idx === 0 ? 1600 : 1200}
-                  height={idx === 0 ? 700 : 900}
-                  loading={idx < 2 ? "eager" : "lazy"}
-                />
-              </div>
-            )}
-          </a>
-        ))}
+
+    {news.length === 0 && (
+      <div class="feed-empty">
+        <p><strong>Noch keine Beiträge veröffentlicht.</strong><br>
+        Sobald wir den ersten Artikel publizieren, erscheint er hier.</p>
       </div>
     )}
+
+    {featured && (
+      <div class="feed-featured" data-category={featured.data.category}>
+        <a href={`${BASE}/aktuelles/${entrySlug(featured)}.html`} aria-label={`Vollständigen Beitrag „${featured.data.title}" lesen`}>
+          <div class="body">
+            <span class="kicker"><span class="dot"></span>Neuester Beitrag</span>
+            <div class="meta">
+              <span class={`badge ${categoryBadgeClass(featured.data.category)}`}>{featured.data.category}</span>
+              <span class="date">{formatArticleDate(featured.data.date)}</span>
+            </div>
+            <h2>{featured.data.title}</h2>
+            <p class="excerpt">{featured.data.excerpt}</p>
+            <span class="read-more">Vollständiger Beitrag <span class="arrow">→</span></span>
+          </div>
+          <div class="thumb">
+            <img
+              src={withBase(featured.data.coverImage, BASE)}
+              alt={featured.data.coverAlt}
+              width="1200" height="960"
+              fetchpriority="high"
+            />
+          </div>
+        </a>
+      </div>
+    )}
+
+    {rest.length > 0 && (
+      <>
+        <div class="feed-head">
+          <h2>Alle Beiträge</h2>
+          <span class="count">{news.length} {news.length === 1 ? "Beitrag" : "Beiträge"}</span>
+        </div>
+
+        <div class="feed-grid">
+          {rest.map((entry) => (
+            <a
+              href={`${BASE}/aktuelles/${entrySlug(entry)}.html`}
+              class="post-card"
+              data-category={entry.data.category}
+            >
+              <div class="thumb">
+                <img
+                  src={withBase(entry.data.coverImage, BASE)}
+                  alt={entry.data.coverAlt}
+                  width="800" height="600" loading="lazy"
+                />
+              </div>
+              <div class="body">
+                <div class="meta">
+                  <span class={`badge ${categoryBadgeClass(entry.data.category)}`}>{entry.data.category}</span>
+                  <span class="date">{formatArticleDate(entry.data.date)}</span>
+                </div>
+                <h3>{entry.data.title}</h3>
+                <p class="excerpt">{entry.data.excerpt}</p>
+                <span class="read-more">Weiterlesen <span class="arrow">→</span></span>
+              </div>
+            </a>
+          ))}
+        </div>
+      </>
+    )}
+
   </div>
-</main>
+</section>
 
 <script is:inline>
-  // Client-side filter
+  // Client-side Kategorie-Filter für Featured + Grid
   document.querySelectorAll('.filter-row .chip').forEach((btn) => {
     btn.addEventListener('click', () => {
       const filter = btn.getAttribute('data-filter');
       document.querySelectorAll('.filter-row .chip').forEach(b => b.classList.remove('is-active'));
       btn.classList.add('is-active');
-      document.querySelectorAll('.article').forEach(a => {
-        const show = filter === 'all' || a.getAttribute('data-category') === filter;
-        a.style.display = show ? '' : 'none';
+
+      // Featured und Cards filtern
+      document.querySelectorAll('[data-category]').forEach(el => {
+        const cat = el.getAttribute('data-category');
+        const show = filter === 'all' || cat === filter;
+        el.style.display = show ? '' : 'none';
       });
+
+      // Wenn der Featured-Post weggefiltert wurde, blende „Alle Beiträge"-Head
+      // eleganter aus, wenn nichts mehr sichtbar ist.
+      const visibleCards = document.querySelectorAll('.post-card:not([style*="display: none"])').length;
+      const featuredVisible = document.querySelector('.feed-featured:not([style*="display: none"])');
+      const head = document.querySelector('.feed-head');
+      if (head) head.style.display = (visibleCards > 0) ? '' : 'none';
+      // Leerer Zustand bei 0 Treffern
+      let empty = document.getElementById('filterEmpty');
+      if (!featuredVisible && visibleCards === 0) {
+        if (!empty) {
+          empty = document.createElement('div');
+          empty.id = 'filterEmpty';
+          empty.className = 'feed-empty';
+          empty.innerHTML = '<p><strong>Keine Beiträge in dieser Kategorie.</strong><br>Wähle oben einen anderen Filter.</p>';
+          document.querySelector('.feed .container').appendChild(empty);
+        }
+      } else if (empty) {
+        empty.remove();
+      }
     });
   });
 </script>
+
+</main>
 </BaseLayout>
