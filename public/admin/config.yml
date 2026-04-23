@@ -2,8 +2,11 @@ backend:
   name: github
   repo: tobiaskammer-de/unesco-schule-essen-homepage
   branch: main
-  # Sveltias gehosteter OAuth-Dienst (kein eigener Server nötig)
-  base_url: https://auth.sveltia.dev
+  # Sveltia bietet zwei Login-Wege:
+  # 1. „Sign in with GitHub"  — über den gehosteten OAuth-Dienst von Sveltia
+  # 2. „Sign in with Personal Access Token"  — 100 % lokal, zuverlässig,
+  #    kein externer Dienst nötig. Empfohlener Weg.
+  # Kein base_url hier, damit Sveltia beide Wege anbietet.
 
 # Medien-Ordner: Bilder landen in public/assets/news/
 # public_folder enthält den GitHub-Pages-Base-Pfad, damit Bilder in Markdown-Body
