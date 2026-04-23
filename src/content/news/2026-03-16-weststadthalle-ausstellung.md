@@ -1,11 +1,11 @@
 ---
-title: '„Nur ein Bild!?" — Pop-Up-Ausstellung in der Weststadthalle'
+title: „Nur ein Bild!?" — Pop-Up-Ausstellung in der Weststadthalle
 date: 2026-03-16
-category: "Ausstellung"
-excerpt: "Was für ein inspirierender Auftakt: Die Pop-Up-Ausstellung ist mit einer tollen Vernissage gestartet. Besonders stolz sind wir auf die Beiträge unserer UNESCO-Schülerinnen und -Schüler."
-coverImage: "/unesco-schule-essen-homepage/assets/news/2026-03-16-weststadthalle-cover.jpg"
-coverAlt: "Vernissage Weststadthalle Essen – Pop-Up-Ausstellung politische Kunst"
-author: "Kunst-Fachschaft"
+category: Ausstellung
+excerpt: 'Was für ein inspirierender Auftakt: Die Pop-Up-Ausstellung ist mit einer tollen Vernissage gestartet. Besonders stolz sind wir auf die Beiträge unserer UNESCO-Schülerinnen und -Schüler.'
+coverImage: /unesco-schule-essen-homepage/assets/news/phosphor.utils.elfsightcdn.com.jpeg
+coverAlt: Vernissage Weststadthalle Essen – Pop-Up-Ausstellung politische Kunst
+author: Kunst-Fachschaft
 draft: false
 ---
 
