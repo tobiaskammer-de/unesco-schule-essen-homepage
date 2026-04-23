@@ -222,8 +222,25 @@ const BASE = import.meta.env.BASE_URL;
     display:flex;align-items:center;justify-content:center;
     text-align:center;padding:40px 36px;
     transform:rotate(-1.2deg);
+    /* Drehpunkt oben, damit die Karte wie an einer Schnur baumelt */
+    transform-origin:50% 0%;
+    transition:transform .3s ease;
   }
-  .pillar-quote:hover{transform:rotate(-1.2deg) translateY(-2px);}
+  .pillar-quote:hover{
+    animation:pillar-quote-swing 1.8s cubic-bezier(0.36, 0, 0.16, 1) 1;
+  }
+  @keyframes pillar-quote-swing{
+    0%   { transform:rotate(-1.2deg); }
+    18%  { transform:rotate(-5.5deg); }
+    36%  { transform:rotate( 2.6deg); }
+    54%  { transform:rotate(-2.2deg); }
+    72%  { transform:rotate( 0.8deg); }
+    88%  { transform:rotate(-1.4deg); }
+    100% { transform:rotate(-1.2deg); }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .pillar-quote:hover{animation:none;transform:rotate(-1.2deg);}
+  }
   .pillar-quote blockquote{
     margin:0;
     font-family:var(--serif);font-weight:400;font-style:italic;
@@ -379,7 +396,7 @@ const BASE = import.meta.env.BASE_URL;
     .pillars-collage{grid-template-columns:1fr;gap:16px;}
     .pillar-card{padding:28px 24px;min-height:auto;}
     .pillar-quote{transform:none;padding:28px 24px;}
-    .pillar-quote:hover{transform:none;}
+    .pillar-quote:hover{transform:none;animation:none;}
     .pillar-quote blockquote{font-size:clamp(20px,4.5vw,24px);}
     .pillar-quote blockquote::before{font-size:56px;margin-bottom:8px;}
     .pillar-card h3{font-size:22px;}
@@ -439,7 +456,7 @@ const BASE = import.meta.env.BASE_URL;
           und zu einer Haltung, die in der Welt trägt.
         </p>
         <div class="hero-cta-row">
-          <a href="#" class="btn btn-primary">Unsere Schule entdecken <span class="arrow">→</span></a>
+          <a href="#was-uns-auszeichnet" class="btn btn-primary">Unsere Schule entdecken <span class="arrow">→</span></a>
         </div>
       </div>
     </div>
@@ -529,7 +546,7 @@ const BASE = import.meta.env.BASE_URL;
 </section>
 
 <!-- ===================== WAS UNS AUSZEICHNET ===================== -->
-<section class="pillars-section" data-bg-images="on" aria-label="Was uns auszeichnet">
+<section id="was-uns-auszeichnet" class="pillars-section" data-bg-images="on" aria-label="Was uns auszeichnet">
   <div class="container">
     <div class="pillars-head">
       <span class="eyebrow">Was uns auszeichnet</span>
@@ -605,14 +622,13 @@ const BASE = import.meta.env.BASE_URL;
           <small>Samstag, 10:00 – 14:00 Uhr · Steinmetzstr. 9</small>
         </div>
         <p>Unterricht zum Mitmachen, Gespräche mit Lehrkräften und Schülerinnen, Führungen durch die Naturwissenschafts- und Kunsträume. Eine Anmeldung ist nicht nötig.</p>
-        <a href="#" class="btn btn-secondary">Zum Programm <span class="arrow">→</span></a>
       </article>
 
       <article class="path-card">
         <span class="kicker">Anmeldung zum Schuljahr 2026/27</span>
         <h3>Jetzt anmelden.</h3>
         <p>Anmeldezeitraum: 02. bis 13. Februar 2026. Das Anmeldeformular, benötigte Unterlagen und weitere Hinweise finden Sie in unserem Eltern-Bereich.</p>
-        <a href="#" class="btn btn-primary">Zur Anmeldung <span class="arrow">→</span></a>
+        <a href="Anmeldung.html" class="btn btn-primary">Zur Anmeldung <span class="arrow">→</span></a>
       </article>
 
       <article class="path-card">
@@ -622,7 +638,7 @@ const BASE = import.meta.env.BASE_URL;
           <a href="tel:+492013658040">0201 · 365 80 40</a><br>
           <a href="mailto:kontakt@unesco-schule-essen.de">kontakt@unesco-schule-essen.de</a>
         </p>
-        <a href="#" class="btn btn-secondary">Termin anfragen <span class="arrow">→</span></a>
+        <a href="Kontakt.html" class="btn btn-secondary">Termin anfragen <span class="arrow">→</span></a>
       </article>
     </div>
   </div>
