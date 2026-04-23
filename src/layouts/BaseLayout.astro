@@ -1,4 +1,14 @@
 ---
+import "@fontsource/inter/400.css";
+import "@fontsource/inter/500.css";
+import "@fontsource/inter/600.css";
+import "@fontsource/inter/700.css";
+import "@fontsource/fraunces/400.css";
+import "@fontsource/fraunces/500.css";
+import "@fontsource/fraunces/600.css";
+import "@fontsource/fraunces/400-italic.css";
+import "@fontsource/fraunces/500-italic.css";
+
 interface Props {
   title?: string;
   description?: string;
@@ -9,15 +19,14 @@ const {
   description = "UNESCO-Projektschule in Essen. Gymnasium mit Profil ab Klasse 5. Gemeinsam lernen, den eigenen Weg finden.",
 } = Astro.props;
 
-import "@fontsource/inter/400.css";
-import "@fontsource/inter/500.css";
-import "@fontsource/inter/600.css";
-import "@fontsource/inter/700.css";
-import "@fontsource/fraunces/400.css";
-import "@fontsource/fraunces/500.css";
-import "@fontsource/fraunces/600.css";
-import "@fontsource/fraunces/400-italic.css";
-import "@fontsource/fraunces/500-italic.css";
+// Base-URL-Helper: sorgt dafür, dass alle Links + Assets auch aus
+// Unterordnern wie /aktuelles/foo.html korrekt auflösen.
+const RAW_BASE = import.meta.env.BASE_URL;
+const BASE = RAW_BASE.endsWith("/") ? RAW_BASE.slice(0, -1) : RAW_BASE;
+function link(path: string): string {
+  const clean = path.startsWith("/") ? path.slice(1) : path;
+  return BASE + "/" + clean;
+}
 ---
 <!DOCTYPE html>
 <html lang="de">
@@ -27,7 +36,7 @@ import "@fontsource/fraunces/500-italic.css";
 <title>{title}</title>
 <meta name="description" content={description}>
 <meta name="theme-color" content="#0E4D4F">
-<link rel="icon" type="image/png" href="assets/logo-mark.png">
+<link rel="icon" type="image/png" href={link("assets/logo-mark.png")}>
 <style is:global>
 :root{
     color-scheme: light;
@@ -865,16 +874,16 @@ import "@fontsource/fraunces/500-italic.css";
 
 <header class="site-header">
   <div class="header-inner">
-    <a href="index.html" class="logo" aria-label="UNESCO-Schule Essen Startseite">
+    <a href={link("index.html")} class="logo" aria-label="UNESCO-Schule Essen Startseite">
       <span class="logo-stack">
-        <img class="logo-bw"    src="assets/logo-signum-wide.png" alt="UNESCO-Schule Essen" width="400" height="134" fetchpriority="high">
-        <img class="logo-color" src="assets/logo-signum-wide-color.jpg" alt="" aria-hidden="true" width="400" height="134" loading="lazy">
+        <img class="logo-bw"    src={link("assets/logo-signum-wide.png")} alt="UNESCO-Schule Essen" width="400" height="134" fetchpriority="high">
+        <img class="logo-color" src={link("assets/logo-signum-wide-color.jpg")} alt="" aria-hidden="true" width="400" height="134" loading="lazy">
       </span>
     </a>
 
     <nav class="main-nav" id="mainNav" aria-label="Hauptnavigation">
       <ul class="nav-list">
-        <li class="nav-item"><a href="Aktuelles.html" class="nav-link">Aktuelles</a></li>
+        <li class="nav-item"><a href={link("Aktuelles.html")} class="nav-link">Aktuelles</a></li>
 
         <li class="nav-item has-dropdown">
           <a href="#" class="nav-link" aria-haspopup="true">Profil</a>
@@ -882,9 +891,9 @@ import "@fontsource/fraunces/500-italic.css";
             <div class="mega-col">
               <h4>Identität &amp; Werte</h4>
               <ul>
-                <li><a href="Schulprogramm.html">Schulprogramm</a></li>
-                <li><a href="Leitbild.html">Unser Leitbild</a></li>
-                <li><a href="UNESCO-Mission.html">UNESCO – Name und Mission</a></li>
+                <li><a href={link("Schulprogramm.html")}>Schulprogramm</a></li>
+                <li><a href={link("Leitbild.html")}>Unser Leitbild</a></li>
+                <li><a href={link("UNESCO-Mission.html")}>UNESCO – Name und Mission</a></li>
               </ul>
             </div>
             <div class="mega-col">
@@ -892,7 +901,7 @@ import "@fontsource/fraunces/500-italic.css";
               <ul>
                 <li><a href="#">Politische Bildung</a></li>
                 <li><a href="#">Erinnerungskultur</a></li>
-                <li><a href="Kulturelle-Bildung.html">Kulturelle Bildung und Kunst</a></li>
+                <li><a href={link("Kulturelle-Bildung.html")}>Kulturelle Bildung und Kunst</a></li>
                 <li><a href="#">Naturwissenschaftliches Lernen</a></li>
                 <li><a href="#">Sprachen</a></li>
               </ul>
@@ -900,8 +909,8 @@ import "@fontsource/fraunces/500-italic.css";
             <div class="mega-col">
               <h4>Gemeinschaft &amp; Netzwerk</h4>
               <ul>
-                <li><a href="Foerderverein.html">Förderverein</a></li>
-                <li><a href="Ehemalige.html">Ehemalige</a></li>
+                <li><a href={link("Foerderverein.html")}>Förderverein</a></li>
+                <li><a href={link("Ehemalige.html")}>Ehemalige</a></li>
                 <li><a href="#">Partnerschaften</a></li>
               </ul>
             </div>
@@ -924,8 +933,8 @@ import "@fontsource/fraunces/500-italic.css";
             <div class="mega-col">
               <h4>Beratung &amp; Mitbestimmung</h4>
               <ul>
-                <li><a href="Berufsorientierung.html">Studien- und Berufsorientierung</a></li>
-                <li><a href="Beratung.html">Beratung und Unterstützung</a></li>
+                <li><a href={link("Berufsorientierung.html")}>Studien- und Berufsorientierung</a></li>
+                <li><a href={link("Beratung.html")}>Beratung und Unterstützung</a></li>
                 <li><a href="#">Schülervertretung</a></li>
               </ul>
             </div>
@@ -946,25 +955,25 @@ import "@fontsource/fraunces/500-italic.css";
             <div class="mega-col">
               <h4>Unsere Schule</h4>
               <ul>
-                <li><a href="Schulleitung.html">Schulleitung</a></li>
+                <li><a href={link("Schulleitung.html")}>Schulleitung</a></li>
                 <li><a href="#">Kollegium</a></li>
-                <li><a href="Anfahrt.html">Standort und Anfahrt</a></li>
+                <li><a href={link("Anfahrt.html")}>Standort und Anfahrt</a></li>
               </ul>
             </div>
             <div class="mega-col">
               <h4>Schulstufen</h4>
               <ul>
-                <li><a href="Erprobungsstufe.html">Erprobungsstufe (Klassen 5–6)</a></li>
-                <li><a href="Mittelstufe.html">Mittelstufe (Klassen 7–10)</a></li>
-                <li><a href="Oberstufe.html">Oberstufe (Klassen 11–13)</a></li>
-                <li><a href="Stundentafel.html">Stundentafeln und Unterrichtsraster</a></li>
+                <li><a href={link("Erprobungsstufe.html")}>Erprobungsstufe (Klassen 5–6)</a></li>
+                <li><a href={link("Mittelstufe.html")}>Mittelstufe (Klassen 7–10)</a></li>
+                <li><a href={link("Oberstufe.html")}>Oberstufe (Klassen 11–13)</a></li>
+                <li><a href={link("Stundentafel.html")}>Stundentafeln und Unterrichtsraster</a></li>
               </ul>
             </div>
             <div class="mega-col">
               <h4>Für Eltern</h4>
               <ul>
-                <li><a href="Anmeldung.html">Anmeldung an die UNESCO-Schule</a></li>
-                <li><a href="Paedagogische-Konzepte.html">Pädagogische Konzepte</a></li>
+                <li><a href={link("Anmeldung.html")}>Anmeldung an die UNESCO-Schule</a></li>
+                <li><a href={link("Paedagogische-Konzepte.html")}>Pädagogische Konzepte</a></li>
                 <li><a href="#">Infos für Eltern</a></li>
               </ul>
             </div>
@@ -974,7 +983,7 @@ import "@fontsource/fraunces/500-italic.css";
     </nav>
 
     <div class="header-actions">
-      <a href="Kalender.html">Kalender</a>
+      <a href={link("Kalender.html")}>Kalender</a>
       <span class="sep">·</span>
       <a href="#">Kontakt</a>
     </div>
@@ -993,8 +1002,8 @@ import "@fontsource/fraunces/500-italic.css";
       <div class="footer-col footer-brand">
         <div class="footer-logo">
           <span class="logo-stack">
-            <img class="logo-bw"    src="assets/logo-signum-wide.png" alt="UNESCO-Schule Essen" width="400" height="134" fetchpriority="high">
-            <img class="logo-color" src="assets/logo-signum-wide-color.jpg" alt="" aria-hidden="true" width="400" height="134" loading="lazy">
+            <img class="logo-bw"    src={link("assets/logo-signum-wide.png")} alt="UNESCO-Schule Essen" width="400" height="134" fetchpriority="high">
+            <img class="logo-color" src={link("assets/logo-signum-wide-color.jpg")} alt="" aria-hidden="true" width="400" height="134" loading="lazy">
           </span>
         </div>
         <address>
@@ -1016,9 +1025,9 @@ import "@fontsource/fraunces/500-italic.css";
       <div class="footer-col">
         <h4>Schnellzugriff</h4>
         <ul>
-          <li><a href="Anmeldung.html">Anmeldung</a></li>
+          <li><a href={link("Anmeldung.html")}>Anmeldung</a></li>
           <li><a href="#">Tag der offenen Tür</a></li>
-          <li><a href="Kalender.html">Kalender</a></li>
+          <li><a href={link("Kalender.html")}>Kalender</a></li>
           <li><a href="#">Kollegium</a></li>
           <li><a href="#">Schul-ABC</a></li>
           <li><a href="#">Kontakt</a></li>

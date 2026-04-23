@@ -23,13 +23,17 @@ const berlin = new Intl.DateTimeFormat("en-CA", {
 const curYear = Number(berlin.find((p) => p.type === "year")!.value);
 const curMonth0 = Number(berlin.find((p) => p.type === "month")!.value) - 1;
 
+// 14 Monate bauen (–2 vor heute bis +11 danach). Initial sichtbar ist
+// der aktuelle Monat; Prev/Next blendet clientseitig um.
 const months = [];
-for (let offset = 0; offset < 3; offset++) {
+for (let offset = -2; offset < 12; offset++) {
   let y = curYear;
   let m = curMonth0 + offset;
   while (m > 11) { m -= 12; y += 1; }
+  while (m < 0) { m += 12; y -= 1; }
   months.push(buildMonth(y, m, allEvents));
 }
+const currentIndex = 2; // Index des „heute"-Monats in der obigen Liste
 
 const WEEKDAYS = ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"];
 
@@ -86,22 +90,44 @@ const lastUpdated = new Intl.DateTimeFormat("de-DE", {
   /* Months */
   .kl-months{background:var(--offwhite);padding:var(--space-section) 0;border-top:1px solid var(--hairline);}
   .kl-month{
-    margin-bottom:64px;
+    display:none;
   }
-  .kl-month:last-child{margin-bottom:0;}
-  .kl-month-head{
-    display:flex;align-items:baseline;justify-content:space-between;
-    margin-bottom:20px;flex-wrap:wrap;gap:10px;
+  .kl-month.is-visible{display:block;}
+  .kl-nav{
+    display:flex;align-items:center;justify-content:space-between;
+    gap:16px;flex-wrap:wrap;margin-bottom:24px;
   }
-  .kl-month-head h3{
+  .kl-nav-title{
+    display:flex;align-items:baseline;gap:18px;flex-wrap:wrap;
+  }
+  .kl-nav-title h3{
     font-family:var(--serif);font-weight:500;
     font-size:clamp(28px,3vw,42px);line-height:1.1;letter-spacing:-0.02em;
     color:var(--petrol);margin:0;
     text-transform:capitalize;
   }
-  .kl-month-head .count{
+  .kl-nav-title .count{
     font-family:var(--sans);font-size:13px;color:var(--stein);letter-spacing:0.04em;
   }
+  .kl-nav-buttons{
+    display:inline-flex;align-items:stretch;gap:0;
+    border:1px solid var(--hairline);background:#fff;
+  }
+  .kl-nav-btn{
+    background:transparent;border:0;cursor:pointer;
+    font-family:var(--sans);font-size:14px;font-weight:500;color:var(--petrol);
+    padding:10px 16px;display:inline-flex;align-items:center;gap:8px;
+    transition:background var(--transition-fast), color var(--transition-fast);
+  }
+  .kl-nav-btn:hover:not(:disabled){background:var(--creme);}
+  .kl-nav-btn:disabled{color:rgba(14,77,79,0.3);cursor:not-allowed;}
+  .kl-nav-btn.kl-today{
+    border-left:1px solid var(--hairline);
+    border-right:1px solid var(--hairline);
+    background:var(--creme);font-weight:600;
+  }
+  .kl-nav-btn.kl-today:hover:not(:disabled){background:var(--petrol);color:var(--creme);}
+  .kl-nav-btn .icon{font-size:16px;line-height:1;}
   .kl-grid{
     display:grid;grid-template-columns:repeat(7, minmax(0, 1fr));
     background:var(--hairline);
@@ -247,14 +273,33 @@ const lastUpdated = new Intl.DateTimeFormat("de-DE", {
 
 <section class="kl-months" aria-label="Monatsansicht">
   <div class="container">
-    {months.map((m) => {
+    <div class="kl-nav" role="navigation" aria-label="Monatsnavigation">
+      <div class="kl-nav-title">
+        <h3 id="klNavLabel">{months[currentIndex].monthLabel}</h3>
+        <span class="count" id="klNavCount"></span>
+      </div>
+      <div class="kl-nav-buttons">
+        <button type="button" class="kl-nav-btn" id="klPrev" aria-label="Vorheriger Monat">
+          <span class="icon" aria-hidden="true">‹</span> Zurück
+        </button>
+        <button type="button" class="kl-nav-btn kl-today" id="klToday" aria-label="Zum aktuellen Monat springen">
+          Heute
+        </button>
+        <button type="button" class="kl-nav-btn" id="klNext" aria-label="Nächster Monat">
+          Weiter <span class="icon" aria-hidden="true">›</span>
+        </button>
+      </div>
+    </div>
+
+    {months.map((m, mIdx) => {
       const inMonthCount = m.days.filter((d) => d.inMonth && d.events.length).length;
       return (
-        <div class="kl-month">
-          <div class="kl-month-head">
-            <h3>{m.monthLabel}</h3>
-            <span class="count">{inMonthCount === 0 ? "Keine Termine" : `${inMonthCount} Tag${inMonthCount === 1 ? "" : "e"} mit Terminen`}</span>
-          </div>
+        <div
+          class={`kl-month ${mIdx === currentIndex ? "is-visible" : ""}`}
+          data-month-index={mIdx}
+          data-month-label={m.monthLabel}
+          data-month-count={inMonthCount}
+        >
           <div class="kl-grid" role="grid" aria-label={`Kalender ${m.monthLabel}`}>
             {WEEKDAYS.map((wd, i) => (
               <div class={`weekday ${i >= 5 ? "we" : ""}`}>{wd}</div>
@@ -287,6 +332,46 @@ const lastUpdated = new Intl.DateTimeFormat("de-DE", {
     })}
   </div>
 </section>
+
+<script is:inline define:vars={{ currentIndex, totalMonths: months.length }}>
+  (function(){
+    var idx = currentIndex;
+    var label = document.getElementById('klNavLabel');
+    var count = document.getElementById('klNavCount');
+    var prev = document.getElementById('klPrev');
+    var next = document.getElementById('klNext');
+    var today = document.getElementById('klToday');
+    var all = document.querySelectorAll('.kl-month');
+
+    function show(i){
+      if (i < 0 || i >= totalMonths) return;
+      idx = i;
+      all.forEach(function(el){
+        var mi = parseInt(el.getAttribute('data-month-index'), 10);
+        el.classList.toggle('is-visible', mi === idx);
+      });
+      var current = all[idx];
+      if (label) label.textContent = current.getAttribute('data-month-label') || '';
+      var c = parseInt(current.getAttribute('data-month-count') || '0', 10);
+      if (count) count.textContent = c === 0 ? 'Keine Termine' : c + ' Tag' + (c === 1 ? '' : 'e') + ' mit Terminen';
+      if (prev) prev.disabled = (idx <= 0);
+      if (next) next.disabled = (idx >= totalMonths - 1);
+      if (today) today.disabled = (idx === currentIndex);
+    }
+
+    prev && prev.addEventListener('click', function(){ show(idx - 1); });
+    next && next.addEventListener('click', function(){ show(idx + 1); });
+    today && today.addEventListener('click', function(){ show(currentIndex); });
+    // Keyboard-Navigation
+    document.addEventListener('keydown', function(e){
+      if (e.target && (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA')) return;
+      if (e.key === 'ArrowLeft')  { e.preventDefault(); show(idx - 1); }
+      if (e.key === 'ArrowRight') { e.preventDefault(); show(idx + 1); }
+    });
+
+    show(idx);
+  })();
+</script>
 
 <section class="kl-list" aria-label="Liste aller kommenden Termine">
   <div class="container">
