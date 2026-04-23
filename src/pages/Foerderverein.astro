@@ -1,0 +1,281 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+<BaseLayout title="Förderverein — UNESCO-Schule Essen">
+<style is:global>
+.fv-hero{
+    position:relative;min-height:420px;
+    display:flex;align-items:flex-end;padding:96px 0 56px;
+    background:
+      radial-gradient(ellipse at 20% 10%, rgba(127,176,105,0.14), transparent 50%),
+      radial-gradient(ellipse at 85% 90%, rgba(212,165,116,0.14), transparent 50%),
+      var(--creme);
+    border-bottom:1px solid var(--hairline);
+  }
+  .fv-hero .eyebrow{display:block;margin-bottom:16px;}
+  .fv-hero h1{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(40px,5.2vw,72px);line-height:1.05;
+    letter-spacing:-0.02em;color:var(--petrol);max-width:980px;margin:0 0 22px;
+  }
+  .fv-hero h1 em{font-style:italic;color:var(--bordeaux);}
+  .fv-hero p.lede{
+    font-family:var(--sans);font-size:18px;line-height:1.6;color:var(--stein);
+    max-width:660px;margin:0;
+  }
+  .fv-hero .meta{
+    display:inline-flex;align-items:center;gap:10px;
+    padding:6px 14px;border-radius:999px;
+    background:rgba(127,176,105,0.18);color:#3e6b2a;
+    font-family:var(--sans);font-size:12px;font-weight:500;
+    letter-spacing:0.1em;text-transform:uppercase;margin-bottom:22px;
+  }
+  .fv-hero .meta .dot{width:7px;height:7px;border-radius:50%;background:#3e6b2a;}
+
+  /* Purpose */
+  .fv-purpose{background:var(--offwhite);padding:88px 0;}
+  .fv-purpose-grid{
+    display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:56px;align-items:start;
+  }
+  .fv-purpose h2{
+    font-family:var(--serif);font-weight:500;font-size:clamp(30px,3.2vw,42px);
+    line-height:1.15;color:var(--petrol);letter-spacing:-0.015em;margin:0;
+  }
+  .fv-purpose p{
+    font-family:var(--sans);font-size:17px;line-height:1.7;color:var(--tinte);margin:0 0 14px;
+  }
+
+  /* Goals */
+  .fv-goals{background:var(--creme);padding:88px 0;border-top:1px solid var(--hairline);}
+  .fv-goals .head{max-width:760px;margin:0 0 48px;}
+  .fv-goals .head .eyebrow{display:block;margin-bottom:14px;}
+  .fv-goals .head h2{
+    font-family:var(--serif);font-weight:500;font-size:clamp(28px,3vw,40px);
+    line-height:1.15;color:var(--petrol);letter-spacing:-0.015em;margin:0;
+  }
+  .goals-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;}
+  .goal{
+    background:#fff;border:1px solid var(--hairline);padding:26px 28px;
+    display:flex;flex-direction:column;gap:10px;border-top:3px solid var(--sage);
+  }
+  .goal .n{
+    font-family:var(--serif);font-weight:500;font-size:22px;color:#3e6b2a;letter-spacing:-0.02em;line-height:1;
+  }
+  .goal h3{
+    font-family:var(--sans);font-weight:600;font-size:16px;line-height:1.35;
+    color:var(--petrol);margin:0;
+  }
+  .goal p{
+    font-family:var(--sans);font-size:14.5px;line-height:1.55;color:var(--stein);margin:0;
+  }
+
+  /* Board */
+  .fv-board{background:var(--offwhite);padding:88px 0;}
+  .fv-board .head{max-width:760px;margin:0 0 40px;}
+  .fv-board .head .eyebrow{display:block;margin-bottom:14px;}
+  .fv-board .head h2{
+    font-family:var(--serif);font-weight:500;font-size:clamp(28px,3vw,40px);
+    line-height:1.15;color:var(--petrol);letter-spacing:-0.015em;margin:0;
+  }
+  .board-duo{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+  .board-person{
+    background:#fff;border:1px solid var(--hairline);padding:32px 32px 28px;
+    display:flex;flex-direction:column;gap:14px;border-top:3px solid var(--bordeaux);
+  }
+  .board-person:nth-child(2){border-top-color:#8f3a4e;}
+  .board-person .role{
+    font-family:var(--sans);font-size:11px;font-weight:600;
+    letter-spacing:0.14em;text-transform:uppercase;color:var(--bordeaux);
+  }
+  .board-person .name{
+    font-family:var(--serif);font-weight:500;font-size:26px;line-height:1.15;
+    color:var(--petrol);letter-spacing:-0.01em;margin:0;
+  }
+  .board-person .contact{
+    font-family:var(--sans);font-size:14.5px;line-height:1.6;color:var(--stein);
+    padding-top:12px;border-top:1px solid var(--hairline);
+  }
+  .board-person .contact a{color:var(--petrol);}
+
+  /* Projects showcase */
+  .fv-projects{background:var(--petrol);color:var(--creme);padding:88px 0;}
+  .fv-projects .head{max-width:760px;margin:0 0 40px;}
+  .fv-projects .head .eyebrow{color:var(--gold);display:block;margin-bottom:14px;}
+  .fv-projects .head h2{
+    font-family:var(--serif);font-weight:500;font-size:clamp(28px,3vw,40px);
+    line-height:1.15;color:var(--creme);letter-spacing:-0.015em;margin:0;
+  }
+  .projects-row{
+    display:grid;grid-template-columns:repeat(5,minmax(0,1fr));
+    gap:1px;background:rgba(245,239,231,0.15);
+    border:1px solid rgba(245,239,231,0.15);
+  }
+  .project{
+    background:var(--petrol);padding:26px 22px 28px;
+    display:flex;flex-direction:column;gap:8px;
+  }
+  .project .n{
+    font-family:var(--serif);font-weight:500;font-size:20px;
+    color:var(--gold);letter-spacing:-0.015em;line-height:1;
+  }
+  .project .text{
+    font-family:var(--sans);font-size:14.5px;line-height:1.5;
+    color:rgba(245,239,231,0.9);
+  }
+
+  /* Join CTA */
+  .fv-join{background:var(--creme);padding:88px 0 104px;border-top:1px solid var(--hairline);}
+  .fv-join-grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:56px;align-items:center;}
+  .fv-join h2{
+    font-family:var(--serif);font-weight:500;font-size:clamp(28px,3vw,40px);
+    line-height:1.15;color:var(--petrol);letter-spacing:-0.015em;margin:0;
+  }
+  .fv-join p{
+    font-family:var(--sans);font-size:17px;line-height:1.6;color:var(--stein);margin:0 0 20px;
+  }
+  .fv-join .note{
+    background:#fff;border:1px solid var(--hairline);border-left:3px solid var(--gold);
+    padding:18px 22px;font-family:var(--sans);font-size:14.5px;line-height:1.55;color:var(--tinte);
+    margin:0 0 22px;
+  }
+  .fv-join .cta-row{display:flex;gap:14px;flex-wrap:wrap;}
+
+  @media (max-width:960px){
+    .fv-purpose-grid,.fv-join-grid{grid-template-columns:1fr;gap:28px;}
+    .goals-grid{grid-template-columns:1fr;gap:14px;}
+    .board-duo{grid-template-columns:1fr;gap:14px;}
+    .projects-row{grid-template-columns:1fr 1fr;}
+    .fv-hero{min-height:340px;padding:56px 0 40px;}
+    .fv-purpose,.fv-goals,.fv-board,.fv-projects,.fv-join{padding:56px 0;}
+  }
+  @media (max-width:560px){
+    .projects-row{grid-template-columns:1fr;}
+  }
+</style>
+
+<main id="top">
+
+<section class="fv-hero" aria-label="Förderverein">
+  <div class="container">
+    <span class="meta"><span class="dot"></span>Gemeinnützig · gegründet 2007</span>
+    <span class="eyebrow">Über Uns · Förderverein</span>
+    <h1>Der Förderverein —<br><em>mehr möglich machen.</em></h1>
+    <p class="lede">Als gemeinnützig anerkannter Verein unterstützt der Förderverein die pädagogische Arbeit an der UNESCO-Schule und macht Projekte möglich, die über das reguläre Schulbudget hinausgehen.</p>
+  </div>
+</section>
+
+<section class="fv-purpose" aria-label="Zweck des Fördervereins">
+  <div class="container">
+    <div class="fv-purpose-grid">
+      <div>
+        <h2>Warum wir<br>diesen Verein<br>brauchen.</h2>
+      </div>
+      <div>
+        <p>Ein Gymnasium mit UNESCO-Auftrag braucht mehr als Standardausstattung. Der Förderverein verbessert die Schule als Lebensraum — mit Musikinstrumenten, wissenschaftlicher Ausrüstung, kulturellen Veranstaltungen und ganz konkreter finanzieller Hilfe, wenn Familien sie brauchen.</p>
+        <p>Jedes Mitglied trägt dazu bei, dass unsere Schülerinnen und Schüler nicht nur lernen, sondern erleben, experimentieren, auftreten, reisen — und dass niemand zurückbleibt, weil die Mittel fehlen.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="fv-goals" aria-label="Unsere Ziele">
+  <div class="container">
+    <div class="head">
+      <span class="eyebrow">Fünf Arbeitsfelder</span>
+      <h2>Was wir konkret fördern.</h2>
+    </div>
+    <div class="goals-grid">
+      <article class="goal">
+        <span class="n">01</span>
+        <h3>Unterrichtsmaterial &amp; Fachbücher</h3>
+        <p>Anschaffung von Unterrichtsmaterialien und Fachbüchern, die Standardetats nicht abdecken.</p>
+      </article>
+      <article class="goal">
+        <span class="n">02</span>
+        <h3>Kulturelle Veranstaltungen</h3>
+        <p>Unterstützung von Aufführungen, Ausstellungen, Lesungen und Projekttagen.</p>
+      </article>
+      <article class="goal">
+        <span class="n">03</span>
+        <h3>Schulsport</h3>
+        <p>Förderung sportlicher Angebote — von Ausrüstung bis zu Wettkampf-Teilnahmen.</p>
+      </article>
+      <article class="goal">
+        <span class="n">04</span>
+        <h3>Schüler in Not</h3>
+        <p>Individuelle finanzielle Hilfe, damit keine Schülerin und kein Schüler aus Geldgründen zurückbleibt.</p>
+      </article>
+      <article class="goal">
+        <span class="n">05</span>
+        <h3>Eltern- und Schülervertretung</h3>
+        <p>Förderung der Arbeit von Elternvertretung und Schülervertretung.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="fv-board" aria-label="Vorstand">
+  <div class="container">
+    <div class="head">
+      <span class="eyebrow">Vorstand</span>
+      <h2>Wer den Verein trägt.</h2>
+    </div>
+    <div class="board-duo">
+      <article class="board-person">
+        <span class="role">Vorsitzende</span>
+        <h3 class="name">Khadra Azboy</h3>
+        <p class="contact">
+          <a href="mailto:Khadraazboy@yahoo.com">Khadraazboy@yahoo.com</a><br>
+          <a href="tel:+492012802630">0201 · 280 26 30</a> · über das Sekretariat
+        </p>
+      </article>
+      <article class="board-person">
+        <span class="role">Stellvertreter</span>
+        <h3 class="name">André Pittelkau</h3>
+        <p class="contact">
+          Über das Sekretariat erreichbar:<br>
+          <a href="mailto:info@unesco-schule-essen.de">info@unesco-schule-essen.de</a>
+        </p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="fv-projects" aria-label="Geförderte Projekte">
+  <div class="container">
+    <div class="head">
+      <span class="eyebrow">Geförderte Projekte</span>
+      <h2>Ein Ausschnitt dessen,<br>was möglich wurde.</h2>
+    </div>
+    <div class="projects-row">
+      <div class="project"><span class="n">♪</span><span class="text"><strong style="color:var(--creme);">Musik­instrumente</strong><br>für Unterricht &amp; AGs</span></div>
+      <div class="project"><span class="n">⚗</span><span class="text"><strong style="color:var(--creme);">Biologie-Ausstattung</strong><br>Mikroskope, Präparate</span></div>
+      <div class="project"><span class="n">☕</span><span class="text"><strong style="color:var(--creme);">Schülercafé</strong><br>Verschönerung, Möbel</span></div>
+      <div class="project"><span class="n">✦</span><span class="text"><strong style="color:var(--creme);">Schulhof</strong><br>Neugestaltung</span></div>
+      <div class="project"><span class="n">♥</span><span class="text"><strong style="color:var(--creme);">Familien­unterstützung</strong><br>individuell, still</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="fv-join" aria-label="Mitglied werden">
+  <div class="container">
+    <div class="fv-join-grid">
+      <div>
+        <h2>Mitglied werden.<br>Mit dabei sein.</h2>
+      </div>
+      <div>
+        <p>Sie möchten den Förderverein unterstützen — als Eltern, als Ehemalige, als Freundinnen und Freunde unserer Schule? Wir freuen uns über jedes Mitglied und jede Spende.</p>
+        <div class="note">
+          <strong>Bankverbindung, Beitragshöhe und Mitgliedsantrag</strong> senden wir Ihnen auf Anfrage gerne zu — die Informationen liegen aktuell beim Vorstand und im Sekretariat.
+        </div>
+        <div class="cta-row">
+          <a href="mailto:Khadraazboy@yahoo.com?subject=Mitglied%20im%20F%C3%B6rderverein" class="btn btn-primary">Beitreten oder Infos anfragen <span class="arrow">→</span></a>
+          <a href="mailto:info@unesco-schule-essen.de?subject=F%C3%B6rderverein%20%E2%80%93%20Sekretariat" class="btn btn-secondary">Über Sekretariat <span class="arrow">→</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+</BaseLayout>

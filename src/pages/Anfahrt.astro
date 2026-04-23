@@ -1,0 +1,210 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+<BaseLayout title="Adresse und Anfahrt — UNESCO-Schule Essen">
+<style is:global>
+.an-hero{
+    position:relative;padding:96px 0 56px;
+    background:
+      radial-gradient(ellipse at 15% 20%, rgba(14,77,79,0.10), transparent 50%),
+      radial-gradient(ellipse at 85% 85%, rgba(212,165,116,0.12), transparent 50%),
+      var(--creme);
+    border-bottom:1px solid var(--hairline);
+  }
+  .an-hero .eyebrow{display:block;margin-bottom:16px;}
+  .an-hero h1{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(40px,5vw,68px);line-height:1.05;
+    letter-spacing:-0.02em;color:var(--petrol);max-width:900px;margin:0 0 20px;
+  }
+  .an-hero p.lede{
+    font-family:var(--sans);font-size:18px;line-height:1.6;color:var(--stein);
+    max-width:640px;margin:0;
+  }
+
+  .an-main{background:var(--offwhite);padding:72px 0 96px;}
+  .an-grid{
+    display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:56px;align-items:start;
+  }
+  .an-col h2{
+    font-family:var(--serif);font-weight:500;font-size:28px;line-height:1.2;
+    color:var(--petrol);letter-spacing:-0.01em;margin:0 0 18px;
+  }
+  .an-col .address{
+    background:#fff;border:1px solid var(--hairline);
+    border-left:3px solid var(--petrol);
+    padding:28px 32px;
+    font-family:var(--sans);font-size:16px;line-height:1.65;color:var(--tinte);
+    margin:0 0 24px;
+  }
+  .an-col .address strong{
+    font-family:var(--serif);font-weight:500;font-size:20px;
+    color:var(--petrol);display:block;margin-bottom:6px;letter-spacing:-0.005em;
+  }
+  .an-col .address a{color:var(--petrol);font-weight:500;}
+  .an-col .address a:hover{text-decoration:underline;}
+  .an-col .contact-row{
+    display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:8px;
+  }
+  .an-col .contact-row .cell{
+    padding:14px 16px;background:#fff;border:1px solid var(--hairline);
+    font-family:var(--sans);font-size:14.5px;color:var(--tinte);
+  }
+  .an-col .contact-row .cell .lbl{
+    display:block;font-size:10.5px;font-weight:600;letter-spacing:0.14em;
+    text-transform:uppercase;color:var(--stein);margin-bottom:4px;
+  }
+
+  /* Map */
+  .map-wrap{
+    position:relative;aspect-ratio:4/3;background:var(--creme);
+    border:1px solid var(--hairline);overflow:hidden;
+  }
+  .map-wrap iframe{width:100%;height:100%;border:0;display:block;}
+  .map-link{
+    display:inline-flex;align-items:center;gap:8px;margin-top:14px;
+    font-family:var(--sans);font-size:14px;font-weight:500;color:var(--bordeaux);
+  }
+  .map-link:hover{color:var(--petrol-dark);}
+
+  /* Transport options */
+  .an-transport{background:var(--creme);padding:88px 0;border-top:1px solid var(--hairline);}
+  .an-transport .head{max-width:780px;margin:0 0 40px;}
+  .an-transport .head .eyebrow{display:block;margin-bottom:14px;}
+  .an-transport .head h2{
+    font-family:var(--serif);font-weight:500;font-size:clamp(28px,3vw,40px);line-height:1.15;
+    color:var(--petrol);letter-spacing:-0.015em;margin:0;
+  }
+  .transport-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;}
+  .transport-card{
+    background:#fff;border:1px solid var(--hairline);padding:32px 32px 30px;
+    display:flex;flex-direction:column;gap:14px;
+    border-top:3px solid var(--bordeaux);
+  }
+  .transport-card:nth-child(2){border-top-color:var(--petrol);}
+  .transport-card:nth-child(3){border-top-color:var(--sage);}
+  .transport-card .mode{
+    font-family:var(--sans);font-size:11px;font-weight:600;
+    letter-spacing:0.14em;text-transform:uppercase;color:var(--bordeaux);
+  }
+  .transport-card:nth-child(2) .mode{color:var(--petrol);}
+  .transport-card:nth-child(3) .mode{color:#3e6b2a;}
+  .transport-card h3{
+    font-family:var(--serif);font-weight:500;font-size:22px;line-height:1.2;
+    color:var(--petrol);letter-spacing:-0.008em;margin:0;
+  }
+  .transport-card p{
+    font-family:var(--sans);font-size:15px;line-height:1.6;color:var(--tinte);margin:0;
+  }
+  .transport-card .lines{
+    display:flex;flex-wrap:wrap;gap:6px;margin-top:4px;
+  }
+  .transport-card .line{
+    display:inline-block;padding:4px 10px;
+    font-family:var(--sans);font-weight:600;font-size:12.5px;
+    letter-spacing:0.04em;
+    background:var(--creme);border:1px solid var(--hairline);color:var(--petrol);
+    border-radius:2px;
+  }
+  .transport-card .line.tram{background:#ffefd5;color:#7a5120;border-color:#e8d3a3;}
+  .transport-card .line.bus{background:#e0ebe8;color:#0a3638;border-color:#b9d3cd;}
+
+  @media (max-width:960px){
+    .an-grid{grid-template-columns:1fr;gap:32px;}
+    .transport-grid{grid-template-columns:1fr;gap:16px;}
+    .an-hero{padding:56px 0 40px;}
+    .an-main,.an-transport{padding:56px 0;}
+  }
+  @media (max-width:560px){
+    .an-col .contact-row{grid-template-columns:1fr;}
+  }
+</style>
+
+<main id="top">
+
+<section class="an-hero" aria-label="Adresse und Anfahrt">
+  <div class="container">
+    <span class="eyebrow">Über Uns · Adresse und Anfahrt</span>
+    <h1>So finden Sie uns.</h1>
+    <p class="lede">Zentral in Essen, in der Nähe des Steeler Wasserturms — fünfzehn Minuten fußläufig vom Hauptbahnhof.</p>
+  </div>
+</section>
+
+<section class="an-main" aria-label="Adresse und Karte">
+  <div class="container">
+    <div class="an-grid">
+      <div class="an-col">
+        <h2>Adresse &amp; Kontakt</h2>
+        <div class="address">
+          <strong>UNESCO-Schule Essen</strong>
+          Steinmetzstr. 9<br>
+          45139 Essen<br><br>
+          <a href="tel:+492012802630">Telefon · 0201 · 280 26 30</a><br>
+          <a href="mailto:info@unesco-schule-essen.de">info@unesco-schule-essen.de</a>
+        </div>
+        <div class="contact-row">
+          <div class="cell">
+            <span class="lbl">Telefon</span>
+            0201 · 280 26 30
+          </div>
+          <div class="cell">
+            <span class="lbl">Fax</span>
+            0201 · 280 26 31
+          </div>
+        </div>
+        <p style="font-family:var(--sans);font-size:14.5px;line-height:1.6;color:var(--stein);margin:24px 0 0;max-width:40ch;">
+          Wir freuen uns, wenn Sie sich vor einem Besuch kurz anmelden — so können wir uns Zeit für Sie nehmen.
+        </p>
+      </div>
+      <div class="an-col">
+        <h2>Auf der Karte</h2>
+        <div class="map-wrap">
+          <iframe
+            src="https://www.openstreetmap.org/export/embed.html?bbox=7.0370%2C51.4481%2C7.0570%2C51.4580&amp;layer=mapnik&amp;marker=51.4529%2C7.0470"
+            title="UNESCO-Schule Essen auf OpenStreetMap"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+        <a class="map-link" href="https://www.openstreetmap.org/?mlat=51.4529&amp;mlon=7.0470#map=17/51.4529/7.0470" target="_blank" rel="noopener">
+          Auf OpenStreetMap öffnen <span aria-hidden="true">↗</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="an-transport" aria-label="So kommen Sie zu uns">
+  <div class="container">
+    <div class="head">
+      <span class="eyebrow">Anfahrt</span>
+      <h2>So kommen Sie zu uns.</h2>
+    </div>
+    <div class="transport-grid">
+      <article class="transport-card">
+        <span class="mode">Zu Fuß</span>
+        <h3>15 Minuten<br>vom Hauptbahnhof.</h3>
+        <p>Vom Essener Hauptbahnhof ist die Schule in etwa 15 Minuten fußläufig erreichbar — ideal für Besucherinnen und Besucher mit dem Zug.</p>
+      </article>
+
+      <article class="transport-card">
+        <span class="mode">Öffentlich (ÖPNV)</span>
+        <h3>Haltestelle<br>Wasserturm.</h3>
+        <p>Von der Haltestelle „Wasserturm" sind es noch rund drei Minuten Fußweg. Die Ruhrbahn bedient uns mit mehreren Linien:</p>
+        <div class="lines">
+          <span class="line tram">Straßenbahn 109</span>
+          <span class="line bus">Bus 146</span>
+          <span class="line bus">Bus 147</span>
+        </div>
+      </article>
+
+      <article class="transport-card">
+        <span class="mode">Mit dem Auto</span>
+        <h3>Zentral,<br>leicht zu finden.</h3>
+        <p>Die Schule liegt zentral in Essen-Huttrop, in der Nähe des Steeler Wasserturms. Bitte beachten Sie: in der Steinmetzstraße sind Parkplätze begrenzt — öffentliche Parkflächen finden Sie in den angrenzenden Straßen.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+</main>
+</BaseLayout>

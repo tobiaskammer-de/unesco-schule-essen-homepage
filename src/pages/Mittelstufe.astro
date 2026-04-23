@@ -1,0 +1,241 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+<BaseLayout title="Mittelstufe (Klassen 7–10) — UNESCO-Schule Essen">
+<style is:global>
+/* ---------- Mittelstufe ---------- */
+  .mi-hero{
+    position:relative;min-height:420px;
+    display:flex;align-items:flex-end;padding:88px 0 56px;
+    background:
+      radial-gradient(ellipse at 20% 10%, rgba(212,165,116,0.16), transparent 50%),
+      radial-gradient(ellipse at 80% 90%, rgba(110,38,57,0.10), transparent 50%),
+      var(--creme);
+    border-bottom:1px solid var(--hairline);overflow:hidden;
+  }
+  .mi-hero::before{
+    content:"";position:absolute;inset:0;
+    background-image:
+      radial-gradient(circle at 25% 30%, rgba(14,77,79,0.04) 1px, transparent 1px),
+      radial-gradient(circle at 75% 70%, rgba(110,38,57,0.03) 1px, transparent 1px);
+    background-size:26px 26px, 34px 34px;opacity:0.7;pointer-events:none;
+  }
+  .mi-hero .container{position:relative;}
+  .mi-hero-grid{
+    display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);
+    gap:56px;align-items:center;
+  }
+  .mi-hero-grid .photo{aspect-ratio:4/5;max-height:440px;}
+  @media (max-width:960px){
+    .mi-hero-grid{grid-template-columns:1fr;gap:32px;}
+    .mi-hero-grid .photo{aspect-ratio:3/2;max-height:260px;}
+  }
+  .mi-hero .eyebrow{display:block;margin-bottom:18px;}
+  .mi-hero h1{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(40px,5.2vw,72px);line-height:1.05;letter-spacing:-0.02em;
+    color:var(--petrol);max-width:980px;margin:0 0 20px;
+  }
+  .mi-hero h1 em{font-style:italic;color:var(--bordeaux);}
+  .mi-hero p.lede{
+    font-family:var(--sans);font-size:18px;line-height:1.6;color:var(--stein);
+    max-width:640px;margin:0;
+  }
+
+  /* Alert (wichtige Info) */
+  .mi-alert{background:var(--offwhite);padding:96px 0 64px;}
+  .alert-box{
+    background:#fff;border:1px solid var(--hairline);
+    border-left:4px solid var(--bordeaux);
+    padding:44px 48px;
+    display:grid;grid-template-columns:160px 1fr;gap:40px;align-items:start;
+  }
+  .alert-icon{
+    width:88px;height:88px;border-radius:50%;
+    background:rgba(110,38,57,0.10);color:var(--bordeaux);
+    display:flex;align-items:center;justify-content:center;
+    font-family:var(--serif);font-weight:500;font-size:44px;line-height:1;
+  }
+  .alert-body .label{
+    font-family:var(--sans);font-size:11px;font-weight:600;
+    letter-spacing:0.14em;text-transform:uppercase;color:var(--bordeaux);
+  }
+  .alert-body h2{
+    font-family:var(--serif);font-weight:500;font-size:clamp(28px,3vw,36px);
+    line-height:1.15;color:var(--petrol);letter-spacing:-0.012em;
+    margin:8px 0 18px;
+  }
+  .alert-body p{
+    font-family:var(--sans);font-size:17px;line-height:1.65;color:var(--tinte);
+    max-width:65ch;margin:0 0 14px;
+  }
+  .alert-body p strong{color:var(--petrol);}
+
+  /* Rules list */
+  .mi-rules{background:var(--offwhite);padding:24px 0 96px;}
+  .rules-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px;}
+  .rule{
+    background:#fff;border:1px solid var(--hairline);
+    padding:36px 36px 32px;display:flex;flex-direction:column;gap:14px;
+    border-top:3px solid var(--bordeaux);
+  }
+  .rule.is-ok{border-top-color:var(--sage);}
+  .rule .badge{
+    font-family:var(--sans);font-size:11px;font-weight:600;
+    letter-spacing:0.14em;text-transform:uppercase;
+    color:var(--bordeaux);
+    display:inline-flex;align-items:center;gap:8px;
+  }
+  .rule.is-ok .badge{color:#3e6b2a;}
+  .rule .badge .dot{width:8px;height:8px;border-radius:50%;background:currentColor;}
+  .rule h3{
+    font-family:var(--serif);font-weight:500;font-size:24px;line-height:1.2;
+    color:var(--petrol);letter-spacing:-0.01em;margin:0;
+  }
+  .rule p{
+    font-family:var(--sans);font-size:15.5px;line-height:1.65;color:var(--tinte);margin:0;
+  }
+  .rule p + p{margin-top:10px;}
+  .rule .requirement{
+    background:rgba(212,165,116,0.16);border-left:3px solid var(--gold);
+    padding:14px 16px;margin-top:4px;
+    font-family:var(--sans);font-size:14.5px;line-height:1.5;color:#5e3f12;
+  }
+  .rule .requirement strong{color:#3a2a10;}
+
+  /* Path section */
+  .mi-path{background:var(--creme);padding:96px 0;border-top:1px solid var(--hairline);}
+  .mi-path-grid{
+    display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);
+    gap:56px;align-items:start;
+  }
+  .mi-path-grid .photo{aspect-ratio:4/5;margin:0 0 24px;}
+  .mi-path h2{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(30px,3.2vw,44px);line-height:1.15;letter-spacing:-0.015em;
+    color:var(--petrol);margin:0;
+  }
+  .mi-path .body p{
+    font-family:var(--sans);font-size:17px;line-height:1.7;color:var(--tinte);margin:0 0 18px;
+  }
+  .mi-path .contact-card{
+    margin-top:28px;padding:28px 32px;background:#fff;
+    border:1px solid var(--hairline);border-left:3px solid var(--petrol);
+  }
+  .mi-path .contact-card .role{
+    font-family:var(--sans);font-size:11px;font-weight:600;
+    letter-spacing:0.14em;text-transform:uppercase;color:var(--bordeaux);margin-bottom:6px;
+  }
+  .mi-path .contact-card .title-line{
+    font-family:var(--sans);font-size:14px;color:var(--stein);margin-bottom:14px;
+  }
+  .mi-path .contact-card a{
+    font-family:var(--sans);font-weight:500;font-size:16.5px;color:var(--petrol);
+    display:block;margin:2px 0;text-decoration:none;
+  }
+  .mi-path .contact-card a:hover{text-decoration:underline;}
+  .mi-path .cta-row{display:flex;gap:14px;flex-wrap:wrap;margin-top:24px;}
+
+  @media (max-width:780px){
+    .alert-box{grid-template-columns:1fr;gap:20px;padding:28px 24px;}
+    .alert-icon{width:60px;height:60px;font-size:30px;}
+    .rules-grid{grid-template-columns:1fr;gap:16px;}
+    .mi-path-grid{grid-template-columns:1fr;gap:28px;}
+    .mi-alert,.mi-rules,.mi-path{padding:56px 0;}
+    .mi-hero{min-height:340px;padding:48px 0 32px;}
+  }
+
+  /* ---------- Photo placeholders (to be replaced by real photos) ---------- */
+  .photo{position:relative;overflow:hidden;background:var(--creme);border-radius:2px;}
+  .photo > img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease;}
+  .photo .cred{
+    position:absolute;bottom:10px;left:12px;
+    padding:5px 10px;background:rgba(14,77,79,0.78);
+    color:rgba(255,255,255,0.95);
+    font-family:var(--sans);font-size:10px;font-weight:500;
+    letter-spacing:0.12em;text-transform:uppercase;border-radius:2px;
+    backdrop-filter:blur(4px);
+  }
+</style>
+
+<main id="top">
+
+<section class="mi-hero" aria-label="Mittelstufe">
+  <div class="container">
+    <div class="mi-hero-grid">
+      <div>
+        <span class="eyebrow">Unterricht · Mittelstufe · Klasse 7 – 10</span>
+        <h1>Die <em>Mittelstufe.</em><br>Klasse 7 bis 10.</h1>
+        <p class="lede">Fundiertes Wissen, methodische Klarheit und Zeit, den eigenen Weg zu finden — die Mittelstufe ist die tragende Phase zwischen Ankommen und Oberstufe.</p>
+      </div>
+      <div class="photo">
+        <img src="assets/sp-lernend.jpg" alt="Mittelstufe der UNESCO-Schule Essen">
+        <span class="cred">Platzhalter · Foto folgt</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="mi-alert" aria-label="Wichtige Information zur Aufnahme">
+  <div class="container">
+    <div class="alert-box">
+      <div class="alert-icon">!</div>
+      <div class="alert-body">
+        <span class="label">Bitte beachten</span>
+        <h2>Wichtige Information zur Aufnahme.</h2>
+        <p>Mit der Einführung unserer neuen <strong>Erprobungsstufe ab dem Schuljahr 2026/27</strong> ändern sich die Aufnahmemöglichkeiten in die Mittelstufe. Lesen Sie die beiden Regeln unten aufmerksam — oder sprechen Sie uns direkt an.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="mi-rules" aria-label="Aufnahmeregeln">
+  <div class="container">
+    <div class="rules-grid">
+      <article class="rule">
+        <span class="badge"><span class="dot"></span>Keine Aufnahme in Klasse 7</span>
+        <h3>In 2026/27 und 2028/29<br>keine 7. Klassen.</h3>
+        <p>In diesen Schuljahren führen wir keine 7. Klassen — die entsprechenden Jahrgänge, die regulär in die Klasse 7 eintreten würden, können in diesen Jahren leider nicht an der UNESCO-Schule aufgenommen werden.</p>
+      </article>
+      <article class="rule is-ok">
+        <span class="badge"><span class="dot"></span>Aufnahme ab Klasse 8 möglich</span>
+        <h3>Ab Schuljahr 2026/27<br>in Klasse 8 und höher.</h3>
+        <p>Eine Aufnahme in die Klasse 8 (und höher) ist ab dem Schuljahr 2026/27 möglich.</p>
+        <div class="requirement">
+          <strong>Voraussetzung:</strong> Die Schülerin oder der Schüler muss Latein als zweite Fremdsprache mitbringen, da Latein an der UNESCO-Schule ab Klasse 7 als verbindliche zweite Fremdsprache unterrichtet wird.
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="mi-path" aria-label="Ihr Weg zu uns">
+  <div class="container">
+    <div class="mi-path-grid">
+      <div>
+        <div class="photo">
+          <img src="assets/sp-demokratie.jpg" alt="Beratungsgespräch an der UNESCO-Schule Essen">
+          <span class="cred">Platzhalter · Foto folgt</span>
+        </div>
+        <h2>Ihr Weg zu uns.</h2>
+      </div>
+      <div class="body">
+        <p>Jeder Anmeldung geht ein persönliches Beratungs- und Informationsgespräch voraus. Wir nehmen uns gerne Zeit, um Ihre individuelle Situation zu besprechen und gemeinsam den besten Weg zu finden.</p>
+        <p>Kontaktieren Sie uns telefonisch oder per E-Mail — wir melden uns zeitnah mit einem Terminvorschlag.</p>
+        <div class="contact-card">
+          <div class="role">Kontakt Mittelstufe</div>
+          <div class="title-line">UNESCO-Schule Essen · Steinmetzstr. 9 · 45139 Essen</div>
+          <a href="tel:+492012802630">0201 · 280 26 30</a>
+          <a href="mailto:carmen.wilbat@164835.nrw.schule">carmen.wilbat@164835.nrw.schule</a>
+        </div>
+        <div class="cta-row">
+          <a href="mailto:carmen.wilbat@164835.nrw.schule" class="btn btn-primary">Beratung anfragen <span class="arrow">→</span></a>
+          <a href="index.html#wegzuuns" class="btn btn-secondary">Tag der offenen Tür <span class="arrow">→</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+</BaseLayout>

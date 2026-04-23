@@ -1,0 +1,199 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+<BaseLayout title="Ehemalige — UNESCO-Schule Essen">
+<style is:global>
+.eh-hero{
+    position:relative;min-height:480px;
+    display:flex;align-items:flex-end;padding:96px 0 64px;
+    color:var(--creme);overflow:hidden;isolation:isolate;
+  }
+  .eh-hero::before{
+    content:"";position:absolute;inset:0;z-index:-2;
+    background:
+      linear-gradient(135deg, var(--bordeaux) 0%, #5a1e2e 55%, var(--petrol-dark) 100%);
+  }
+  .eh-hero::after{
+    content:"";position:absolute;inset:0;z-index:-1;
+    background-image:
+      radial-gradient(circle at 20% 30%, rgba(212,165,116,0.14) 1.5px, transparent 2px),
+      radial-gradient(circle at 75% 65%, rgba(245,239,231,0.07) 1px, transparent 1.5px);
+    background-size:40px 40px, 56px 56px;opacity:0.9;
+  }
+  .eh-hero .eyebrow{color:var(--gold);display:block;margin-bottom:18px;}
+  .eh-hero h1{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(42px,5.4vw,76px);line-height:1.05;letter-spacing:-0.02em;
+    color:var(--creme);max-width:1000px;margin:0 0 22px;
+  }
+  .eh-hero h1 em{font-style:italic;color:var(--gold);}
+  .eh-hero p.lede{
+    font-family:var(--sans);font-size:19px;line-height:1.6;
+    color:rgba(245,239,231,0.9);max-width:720px;margin:0;
+  }
+
+  /* Statement */
+  .eh-statement{background:var(--creme);padding:96px 0;}
+  .eh-statement .container{max-width:880px;text-align:center;}
+  .eh-statement blockquote{
+    margin:0;
+    font-family:var(--serif);font-weight:400;font-style:italic;
+    font-size:clamp(26px,3vw,40px);line-height:1.25;letter-spacing:-0.01em;
+    color:var(--petrol);
+  }
+  .eh-statement blockquote::before{
+    content:"\201E";display:block;
+    font-family:var(--serif);font-size:88px;line-height:0.3;
+    color:var(--bordeaux);opacity:0.55;margin-bottom:22px;
+  }
+  .eh-statement .sub{
+    font-family:var(--sans);font-size:17px;line-height:1.65;color:var(--stein);
+    max-width:640px;margin:34px auto 0;
+  }
+
+  /* Offer cards */
+  .eh-offer{background:var(--offwhite);padding:88px 0;}
+  .eh-offer .head{max-width:760px;margin:0 0 48px;}
+  .eh-offer .head .eyebrow{display:block;margin-bottom:14px;}
+  .eh-offer .head h2{
+    font-family:var(--serif);font-weight:500;font-size:clamp(28px,3vw,40px);
+    line-height:1.15;color:var(--petrol);letter-spacing:-0.015em;margin:0;
+  }
+  .offer-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;}
+  .offer-card{
+    background:#fff;border:1px solid var(--hairline);padding:32px 32px 30px;
+    display:flex;flex-direction:column;gap:12px;
+    border-top:3px solid var(--bordeaux);
+  }
+  .offer-card:nth-child(2){border-top-color:var(--gold);}
+  .offer-card:nth-child(3){border-top-color:var(--sage);}
+  .offer-card .mark{
+    font-family:var(--sans);font-size:11px;font-weight:600;
+    letter-spacing:0.14em;text-transform:uppercase;color:var(--bordeaux);
+  }
+  .offer-card:nth-child(2) .mark{color:#8a5a20;}
+  .offer-card:nth-child(3) .mark{color:#3e6b2a;}
+  .offer-card h3{
+    font-family:var(--serif);font-weight:500;font-size:22px;line-height:1.2;
+    color:var(--petrol);letter-spacing:-0.008em;margin:0;
+  }
+  .offer-card p{
+    font-family:var(--sans);font-size:15px;line-height:1.6;color:var(--stein);margin:0;
+  }
+
+  /* Signup band */
+  .eh-signup{
+    background:var(--petrol);color:var(--creme);padding:96px 0;
+    position:relative;
+  }
+  .eh-signup .container{max-width:880px;text-align:center;}
+  .eh-signup .eyebrow{color:rgba(245,239,231,0.6);display:block;margin-bottom:16px;}
+  .eh-signup h2{
+    font-family:var(--serif);font-weight:500;font-size:clamp(30px,3.4vw,48px);
+    line-height:1.15;color:var(--creme);letter-spacing:-0.015em;margin:0 0 22px;
+  }
+  .eh-signup p{
+    font-family:var(--sans);font-size:17px;line-height:1.65;
+    color:rgba(245,239,231,0.9);max-width:640px;margin:0 auto 32px;
+  }
+  .eh-signup .btn{background:var(--gold);color:#2a1d08;border-color:var(--gold);}
+  .eh-signup .btn:hover{background:#e0b68a;color:#2a1d08;}
+  .eh-signup .meta{
+    margin-top:28px;font-family:var(--sans);font-size:13px;
+    color:rgba(245,239,231,0.65);letter-spacing:0.02em;
+  }
+
+  /* Contact */
+  .eh-contact{background:var(--offwhite);padding:80px 0 96px;}
+  .eh-contact-grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:48px;align-items:center;}
+  .eh-contact h2{
+    font-family:var(--serif);font-weight:500;font-size:clamp(26px,2.8vw,36px);
+    line-height:1.15;color:var(--petrol);letter-spacing:-0.01em;margin:0;
+  }
+  .eh-contact .contact-card{
+    background:#fff;border:1px solid var(--hairline);
+    border-left:3px solid var(--petrol);padding:28px 32px;
+    font-family:var(--sans);font-size:16px;line-height:1.7;color:var(--tinte);
+  }
+  .eh-contact .contact-card strong{color:var(--petrol);display:block;margin-bottom:4px;}
+  .eh-contact .contact-card a{color:var(--petrol);font-weight:500;}
+
+  @media (max-width:960px){
+    .offer-grid{grid-template-columns:1fr;gap:14px;}
+    .eh-contact-grid{grid-template-columns:1fr;gap:24px;}
+    .eh-hero{min-height:360px;padding:56px 0 48px;}
+    .eh-statement,.eh-offer,.eh-signup,.eh-contact{padding:56px 0;}
+  }
+</style>
+
+<main id="top">
+
+<section class="eh-hero" aria-label="Ehemalige">
+  <div class="container">
+    <span class="eyebrow">Über Uns · Ehemalige</span>
+    <h1>Einmal UNESCO —<br>immer <em>verbunden.</em></h1>
+    <p class="lede">Egal, ob dein Abitur ein Jahr oder fünfzig Jahre zurückliegt — ein Wiedersehen macht Freude. Bleib in Kontakt mit deiner alten Schule.</p>
+  </div>
+</section>
+
+<section class="eh-statement" aria-label="Unser Versprechen">
+  <div class="container">
+    <blockquote>Egal, ob dein Abitur ein Jahr oder 50 Jahre zurückliegt — ein Wiedersehen macht Freude.</blockquote>
+    <p class="sub">Unsere Schule verändert sich, aber die Menschen bleiben. Wir möchten mit unseren Ehemaligen in Kontakt bleiben — nicht, um zu werben, sondern weil uns eure Geschichten wichtig sind.</p>
+  </div>
+</section>
+
+<section class="eh-offer" aria-label="Was wir bieten">
+  <div class="container">
+    <div class="head">
+      <span class="eyebrow">Was wir für Ehemalige tun</span>
+      <h2>Drei Wege, verbunden zu bleiben.</h2>
+    </div>
+    <div class="offer-grid">
+      <article class="offer-card">
+        <span class="mark">Newsletter</span>
+        <h3>Einmal im Jahr<br>ein Rückblick.</h3>
+        <p>Etwa einmal jährlich schicken wir einen Newsletter mit Neuigkeiten aus der Schule, wichtigen Entwicklungen und Einladungen zu Treffen. Kein Marketing, kein Spam.</p>
+      </article>
+      <article class="offer-card">
+        <span class="mark">Wiedersehen</span>
+        <h3>Türen stehen<br>immer offen.</h3>
+        <p>Du warst lange nicht mehr da? Ruf an, schreib uns. Wir freuen uns, wenn ehemalige Schülerinnen und Schüler zu Besuch kommen — spontan oder zum Tag der offenen Tür.</p>
+      </article>
+      <article class="offer-card">
+        <span class="mark">Beitrag leisten</span>
+        <h3>Dein Wissen.<br>Unsere Schule.</h3>
+        <p>Du hast einen Beruf, von dem unsere Schülerinnen und Schüler etwas lernen können? Melde dich — wir vermitteln gerne Kontakte für Berufsorientierung und Praktika.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="eh-signup" aria-label="Newsletter-Anmeldung">
+  <div class="container">
+    <span class="eyebrow">Newsletter für Ehemalige</span>
+    <h2>Anmelden — und auf dem Laufenden bleiben.</h2>
+    <p>Ein kurzer E-Mail-Kontakt reicht uns. Nenne uns deinen Namen, dein Abiturjahr (oder ungefähr), und wir nehmen dich in den Verteiler auf. Austragen kannst du dich jederzeit mit einer einzigen Mail.</p>
+    <a href="mailto:info@unesco-schule-essen.de?subject=Newsletter%20f%C3%BCr%20Ehemalige&amp;body=Hallo%2C%0A%0Aich%20m%C3%B6chte%20mich%20f%C3%BCr%20den%20Ehemaligen-Newsletter%20anmelden.%0A%0AName%3A%0AAbiturjahr%3A%0A%0AVielen%20Dank!" class="btn btn-primary">Newsletter abonnieren <span class="arrow">→</span></a>
+    <p class="meta">ca. 1 Mail pro Jahr · jederzeit kündbar</p>
+  </div>
+</section>
+
+<section class="eh-contact" aria-label="Kontakt">
+  <div class="container">
+    <div class="eh-contact-grid">
+      <div>
+        <h2>Lieber direkt anrufen?</h2>
+      </div>
+      <div class="contact-card">
+        <strong>UNESCO-Schule Essen</strong>
+        Steinmetzstr. 9 · 45139 Essen<br><br>
+        <a href="tel:+492012802630">0201 · 280 26 30</a><br>
+        <a href="mailto:info@unesco-schule-essen.de">info@unesco-schule-essen.de</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+</BaseLayout>
