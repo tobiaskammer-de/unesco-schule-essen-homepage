@@ -33,4 +33,30 @@ const news = defineCollection({
   }),
 });
 
-export const collections = { news };
+/**
+ * Teachers Collection.
+ *
+ * Jede Lehrkraft ist eine Markdown-Datei unter src/content/teachers/.
+ * Dateiname-Konvention: nachname-vorname.md (z. B. boehm-viola.md) —
+ * funktioniert als URL-Slug und sortiert natürlich alphabetisch.
+ *
+ * Zentrale Datenquelle für Kollegium-Seite UND andere Seiten, die
+ * Lehrkraft-Karten darstellen (Schulleitung, Oberstufe etc.).
+ */
+const teachers = defineCollection({
+  loader: glob({ pattern: "**/*.md", base: "./src/content/teachers" }),
+  schema: z.object({
+    firstName: z.string(),
+    lastName: z.string(),
+    title: z.string().optional(),
+    subjects: z.array(z.string()).default([]),
+    roles: z.array(z.string()).default([]),
+    email: z.string().email(),
+    phone: z.string().optional(),
+    photo: z.string().optional(),
+    isTrainee: z.boolean().default(false),
+    order: z.number().optional(),
+  }),
+});
+
+export const collections = { news, teachers };

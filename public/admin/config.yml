@@ -68,3 +68,35 @@ collections:
         hint: "Überschriften mit ## · Fettdruck mit **Text** · Bilder per Drag&Drop oder Bild-Button einfügen."
         buttons: [bold, italic, link, heading-two, heading-three, quote, bulleted-list, numbered-list]
         editor_components: [image, code-block]
+
+  - name: teachers
+    label: "Lehrkräfte"
+    label_singular: "Lehrkraft"
+    folder: src/content/teachers
+    create: true
+    slug: "{{fields.lastName | slug}}-{{fields.firstName | slug}}"
+    extension: md
+    format: frontmatter
+    # Kollegiums-Fotos landen separat von News-Bildern
+    media_folder: "/public/assets/kollegium"
+    public_folder: "/unesco-schule-essen-homepage/assets/kollegium"
+    summary: "{{lastName}}, {{firstName}} — {{subjects}}"
+    sortable_fields: [lastName, firstName]
+    view_filters:
+      - label: "Im Referendariat"
+        field: isTrainee
+        pattern: true
+      - label: "Festes Kollegium"
+        field: isTrainee
+        pattern: false
+    fields:
+      - { name: firstName, label: "Vorname", widget: string }
+      - { name: lastName, label: "Nachname", widget: string }
+      - { name: title, label: "Titel (z. B. Dr.)", widget: string, required: false }
+      - { name: subjects, label: "Fächer", widget: list, required: false, default: [] }
+      - { name: roles, label: "Funktionen / Sonderrollen", widget: list, required: false, default: [], hint: "z. B. Schulleitung, Oberstufenkoordination, Klassenleitung 7a" }
+      - { name: email, label: "E-Mail", widget: string, pattern: ['^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$', "Bitte eine gültige E-Mail."] }
+      - { name: phone, label: "Telefon (optional)", widget: string, required: false }
+      - { name: photo, label: "Portrait-Foto", widget: image, required: false, choose_url: false, media_library: { config: { multiple: false } } }
+      - { name: isTrainee, label: "Im Referendariat (nicht festangestellt)", widget: boolean, default: false }
+      - { name: order, label: "Manuelle Reihenfolge (optional)", widget: number, required: false, hint: "Niedrige Zahlen kommen zuerst. Leer lassen für alphabetische Sortierung." }
