@@ -706,6 +706,15 @@
     background-size:26px 26px, 34px 34px;opacity:0.7;pointer-events:none;
   }
   .mi-hero .container{position:relative;}
+  .mi-hero-grid{
+    display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);
+    gap:56px;align-items:center;
+  }
+  .mi-hero-grid .photo{aspect-ratio:4/5;max-height:440px;}
+  @media (max-width:960px){
+    .mi-hero-grid{grid-template-columns:1fr;gap:32px;}
+    .mi-hero-grid .photo{aspect-ratio:3/2;max-height:260px;}
+  }
   .mi-hero .eyebrow{display:block;margin-bottom:18px;}
   .mi-hero h1{
     font-family:var(--serif);font-weight:500;
@@ -785,6 +794,7 @@
     display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);
     gap:56px;align-items:start;
   }
+  .mi-path-grid .photo{aspect-ratio:4/5;margin:0 0 24px;}
   .mi-path h2{
     font-family:var(--serif);font-weight:500;
     font-size:clamp(30px,3.2vw,44px);line-height:1.15;letter-spacing:-0.015em;
@@ -818,6 +828,18 @@
     .mi-path-grid{grid-template-columns:1fr;gap:28px;}
     .mi-alert,.mi-rules,.mi-path{padding:56px 0;}
     .mi-hero{min-height:340px;padding:48px 0 32px;}
+  }
+
+  /* ---------- Photo placeholders (to be replaced by real photos) ---------- */
+  .photo{position:relative;overflow:hidden;background:var(--creme);border-radius:2px;}
+  .photo > img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease;}
+  .photo .cred{
+    position:absolute;bottom:10px;left:12px;
+    padding:5px 10px;background:rgba(14,77,79,0.78);
+    color:rgba(255,255,255,0.95);
+    font-family:var(--sans);font-size:10px;font-weight:500;
+    letter-spacing:0.12em;text-transform:uppercase;border-radius:2px;
+    backdrop-filter:blur(4px);
   }
 </style>
 
@@ -976,9 +998,17 @@
 
 <section class="mi-hero" aria-label="Mittelstufe">
   <div class="container">
-    <span class="eyebrow">Unterricht · Mittelstufe · Klasse 7 – 10</span>
-    <h1>Die <em>Mittelstufe.</em><br>Klasse 7 bis 10.</h1>
-    <p class="lede">Fundiertes Wissen, methodische Klarheit und Zeit, den eigenen Weg zu finden — die Mittelstufe ist die tragende Phase zwischen Ankommen und Oberstufe.</p>
+    <div class="mi-hero-grid">
+      <div>
+        <span class="eyebrow">Unterricht · Mittelstufe · Klasse 7 – 10</span>
+        <h1>Die <em>Mittelstufe.</em><br>Klasse 7 bis 10.</h1>
+        <p class="lede">Fundiertes Wissen, methodische Klarheit und Zeit, den eigenen Weg zu finden — die Mittelstufe ist die tragende Phase zwischen Ankommen und Oberstufe.</p>
+      </div>
+      <div class="photo">
+        <img src="assets/sp-lernend.jpg" alt="Mittelstufe der UNESCO-Schule Essen">
+        <span class="cred">Platzhalter · Foto folgt</span>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -1019,6 +1049,10 @@
   <div class="container">
     <div class="mi-path-grid">
       <div>
+        <div class="photo">
+          <img src="assets/sp-demokratie.jpg" alt="Beratungsgespräch an der UNESCO-Schule Essen">
+          <span class="cred">Platzhalter · Foto folgt</span>
+        </div>
         <h2>Ihr Weg zu uns.</h2>
       </div>
       <div class="body">

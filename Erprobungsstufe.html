@@ -698,7 +698,8 @@
   .er-hero::before{
     content:"";position:absolute;inset:0;z-index:-2;
     background:
-      linear-gradient(140deg, var(--petrol) 0%, #0a3a3c 55%, var(--petrol-dark) 100%);
+      linear-gradient(140deg, rgba(14,77,79,0.82) 0%, rgba(10,58,60,0.88) 55%, rgba(10,54,56,0.92) 100%),
+      url("assets/sp-divers.jpg") center/cover no-repeat;
   }
   .er-hero::after{
     content:"";position:absolute;inset:0;z-index:-1;
@@ -734,6 +735,7 @@
     display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);
     gap:64px;align-items:start;
   }
+  .er-intro-grid .photo{aspect-ratio:4/5;margin-top:8px;}
   .er-intro h2{
     font-family:var(--serif);font-weight:500;
     font-size:clamp(32px,3.4vw,48px);line-height:1.1;
@@ -784,6 +786,8 @@
   .profile-card p{
     font-family:var(--sans);font-size:16px;line-height:1.7;color:var(--tinte);margin:0;
   }
+  .profile-card .photo{aspect-ratio:5/3;margin:-44px -40px 8px;border-radius:0;}
+  @media (max-width:960px){.profile-card .photo{margin:-44px -40px 4px;}}
 
   /* Pillars row */
   .er-pillars{background:var(--creme);padding:96px 0;border-top:1px solid var(--hairline);}
@@ -810,6 +814,7 @@
   .er-pillar p{
     font-family:var(--sans);font-size:15.5px;line-height:1.6;color:var(--stein);margin:0;
   }
+  .er-pillar .photo{aspect-ratio:3/2;margin:-30px -30px 14px;border-radius:0;}
 
   /* Values grid — 7 traits */
   .er-values{background:var(--petrol);color:var(--creme);padding:96px 0;}
@@ -844,8 +849,25 @@
   }
 
   /* Pull quote */
-  .er-quote{background:var(--offwhite);padding:96px 0;}
-  .er-quote .container{max-width:900px;text-align:center;}
+  .er-quote{
+    position:relative;padding:140px 0;isolation:isolate;overflow:hidden;
+  }
+  .er-quote::before{
+    content:"";position:absolute;inset:0;z-index:-2;
+    background:url("assets/pillar-quote.jpg") center 30%/cover no-repeat;
+  }
+  .er-quote::after{
+    content:"";position:absolute;inset:0;z-index:-1;
+    background:linear-gradient(180deg, rgba(245,239,231,0.72) 0%, rgba(245,239,231,0.92) 70%, var(--offwhite) 100%);
+  }
+  .er-quote .container{max-width:900px;text-align:center;position:relative;}
+  .er-quote .cred-full{
+    position:absolute;bottom:-108px;left:32px;
+    padding:5px 10px;background:rgba(14,77,79,0.78);
+    color:rgba(255,255,255,0.95);
+    font-family:var(--sans);font-size:10px;font-weight:500;
+    letter-spacing:0.12em;text-transform:uppercase;border-radius:2px;
+  }
   .er-quote blockquote{
     margin:0;
     font-family:var(--serif);font-weight:400;font-style:italic;
@@ -901,6 +923,18 @@
     .values-list{grid-template-columns:1fr;}
     .er-hero{min-height:420px;padding:56px 0 48px;}
     .er-intro,.er-profiles,.er-pillars,.er-values,.er-quote,.er-cta{padding:64px 0;}
+  }
+
+  /* ---------- Photo placeholders (to be replaced by real photos) ---------- */
+  .photo{position:relative;overflow:hidden;background:var(--creme);border-radius:2px;}
+  .photo > img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease;}
+  .photo .cred{
+    position:absolute;bottom:10px;left:12px;
+    padding:5px 10px;background:rgba(14,77,79,0.78);
+    color:rgba(255,255,255,0.95);
+    font-family:var(--sans);font-size:10px;font-weight:500;
+    letter-spacing:0.12em;text-transform:uppercase;border-radius:2px;
+    backdrop-filter:blur(4px);
   }
 </style>
 
@@ -1069,9 +1103,13 @@
   <div class="container">
     <div class="er-intro-grid">
       <div>
-        <h2>Unser Start<br>mit Klasse 5.</h2>
+        <div class="photo">
+          <img src="assets/sp-lernend.jpg" alt="Schülerinnen und Schüler beim gemeinsamen Lernen">
+          <span class="cred">Platzhalter · Foto folgt</span>
+        </div>
       </div>
       <div>
+        <h2 style="margin:0 0 24px;">Unser Start<br>mit Klasse 5.</h2>
         <p class="lead">Schon in den Einführungstagen lernen sich die Kinder kennen, entdecken neue Lernmethoden und finden sich behutsam in den Schulalltag ein. Bereits zum Start wählen sie einen von zwei Profilschwerpunkten, die ihre Stärken früh sichtbar machen.</p>
         <p>Als UNESCO-Projektschule durchziehen Demokratieerziehung, globales Lernen und interkulturelle Kompetenz unseren Unterricht — vertieft durch internationale Austauschprogramme und Kooperationen mit dem Aalto-Theater und der Philharmonie Essen.</p>
         <p>Ein durchdachtes digitales Lernkonzept ab Klasse 6, eine starke Schulgemeinschaft und ein strukturiertes Beratungsangebot sorgen dafür, dass jede Schülerin und jeder Schüler gezielt gefordert und gefördert wird.</p>
@@ -1089,12 +1127,20 @@
     </div>
     <div class="profile-duo">
       <article class="profile-card">
+        <div class="photo">
+          <img src="assets/pillar-quote.jpg" alt="Sprache, Ausdruck, darstellendes Spiel">
+          <span class="cred">Platzhalter · Foto folgt</span>
+        </div>
         <span class="mark">Profil · Sprachlich-kreativ</span>
         <h3>WortArt⁺</h3>
         <p class="tag">Geschichten entwerfen · Sprache erforschen · Ideen in Szene setzen</p>
         <p>Hier zählt die Kraft von Worten, Ausdruck und Musik. Ob Melodie, Theater, Poetry Slam oder Präsentationen: Kreativität wird zur Bühne für Ausdruckskraft und sicheres Auftreten. Das Profil für alle, die Freude an Texten, Sprache und darstellendem Spiel haben.</p>
       </article>
       <article class="profile-card">
+        <div class="photo">
+          <img src="assets/sp-nachhaltig.jpg" alt="Experimente, Naturwissenschaften, Forschung">
+          <span class="cred">Platzhalter · Foto folgt</span>
+        </div>
         <span class="mark">Profil · Forschend-naturwissenschaftlich</span>
         <h3>Forscher²</h3>
         <p class="tag">Fragen stellen · Phänomene erforschen · Experimente entwickeln</p>
@@ -1112,16 +1158,28 @@
     </div>
     <div class="pillar-row">
       <article class="er-pillar">
+        <div class="photo">
+          <img src="assets/sp-weltoffen.jpg" alt="Weltoffen, interkulturell, Erasmus+ Paris">
+          <span class="cred">Platzhalter · Foto folgt</span>
+        </div>
         <span class="label">Gelebte UNESCO-Werte</span>
         <h3>Toleranz, Verantwortung, Respekt.</h3>
         <p>Projekttage, internationale Austausche und diverse Kooperationen fördern interkulturelle Kompetenz und stärken das Miteinander. Mit Erasmus+ öffnen wir den Blick über Grenzen hinweg — unsere Schülerinnen und Schüler besuchten bereits den UNESCO-Hauptsitz in Paris und unsere Partnerschule, das Lycée Professionnel Léonard de Vinci.</p>
       </article>
       <article class="er-pillar">
+        <div class="photo">
+          <img src="assets/sp-persoenlich.jpg" alt="Gemeinschaft, Klassenfahrt, Zusammenhalt">
+          <span class="cred">Platzhalter · Foto folgt</span>
+        </div>
         <span class="label">Ankommen &amp; Kennenlernen</span>
         <h3>Zusammenhalt von Anfang an.</h3>
         <p>Klassenfahrten in den Stufen 7 und 9 stärken Zusammenhalt und Selbstständigkeit. In der Streitschlichter-AG übernehmen Schülerinnen und Schüler Verantwortung für ihre Schulgemeinschaft. Sozialarbeit und Berufsorientierung begleiten die gesamte Schullaufbahn.</p>
       </article>
       <article class="er-pillar">
+        <div class="photo">
+          <img src="assets/sp-digital.jpg" alt="Digitales Lernen, iPads, Informatik">
+          <span class="cred">Platzhalter · Foto folgt</span>
+        </div>
         <span class="label">Digitale Bildung</span>
         <h3>Sicher, kreativ, verantwortungsvoll.</h3>
         <p>Mit Informatik ab Klasse 6, kreativen Programmierprojekten in der „Hacker School" und moderner technischer Ausstattung lernen unsere Schülerinnen und Schüler, sich sicher, kreativ und verantwortungsbewusst in der digitalen Welt zu bewegen.</p>
@@ -1153,6 +1211,7 @@
   <div class="container">
     <blockquote>Wenn Kinder hier Mut entwickeln, neugierig bleiben und spüren, dass sie ihren Weg selbst gestalten können — das ist für mich das Größte.</blockquote>
     <cite>Lehrkraft der UNESCO-Schule</cite>
+    <span class="cred-full">Platzhalter · Foto folgt</span>
   </div>
 </section>
 

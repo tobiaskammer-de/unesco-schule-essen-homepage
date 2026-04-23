@@ -697,7 +697,8 @@
   .ob-hero::before{
     content:"";position:absolute;inset:0;z-index:-2;
     background:
-      linear-gradient(135deg, var(--bordeaux) 0%, #4e1a28 50%, var(--petrol-dark) 100%);
+      linear-gradient(135deg, rgba(110,38,57,0.85) 0%, rgba(78,26,40,0.90) 50%, rgba(10,54,56,0.92) 100%),
+      url("assets/pillar-abitur.jpg") center/cover no-repeat;
   }
   .ob-hero::after{
     content:"";position:absolute;inset:0;z-index:-1;
@@ -872,6 +873,38 @@
   }
   .contact-person a:hover{text-decoration:underline;}
 
+
+  .ob-welcome{
+    position:relative;padding:120px 0;isolation:isolate;overflow:hidden;
+  }
+  .ob-welcome::before{
+    content:"";position:absolute;inset:0;z-index:-2;
+    background:url("assets/sp-persoenlich.jpg") center 35%/cover no-repeat;
+  }
+  .ob-welcome::after{
+    content:"";position:absolute;inset:0;z-index:-1;
+    background:linear-gradient(180deg, rgba(14,77,79,0.82) 0%, rgba(14,77,79,0.92) 100%);
+  }
+  .ob-welcome .container{max-width:880px;text-align:center;color:var(--creme);}
+  .ob-welcome .eyebrow{color:var(--gold);display:block;margin-bottom:16px;}
+  .ob-welcome h2{
+    font-family:var(--serif);font-weight:500;font-style:italic;
+    font-size:clamp(32px,3.6vw,52px);line-height:1.15;
+    color:var(--creme);letter-spacing:-0.015em;margin:0 0 20px;
+  }
+  .ob-welcome p{
+    font-family:var(--sans);font-size:17px;line-height:1.65;
+    color:rgba(245,239,231,0.9);max-width:620px;margin:0 auto;
+  }
+  .ob-welcome .cred{
+    position:absolute;bottom:16px;left:32px;
+    padding:5px 10px;background:rgba(14,77,79,0.78);
+    color:rgba(255,255,255,0.95);
+    font-family:var(--sans);font-size:10px;font-weight:500;
+    letter-spacing:0.12em;text-transform:uppercase;border-radius:2px;
+  }
+  @media (max-width:780px){.ob-welcome{padding:72px 0;}}
+
   @media (max-width:960px){
     .duwir-grid{grid-template-columns:1fr;gap:18px;}
     .stats-row{grid-template-columns:1fr 1fr;}
@@ -884,6 +917,18 @@
     .contact-duo{grid-template-columns:1fr;gap:14px;}
     .ob-hero{min-height:420px;padding:56px 0 48px;}
     .ob-duwir,.ob-sect,.ob-steps,.ob-contact{padding:56px 0;}
+  }
+
+  /* ---------- Photo placeholders (to be replaced by real photos) ---------- */
+  .photo{position:relative;overflow:hidden;background:var(--creme);border-radius:2px;}
+  .photo > img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease;}
+  .photo .cred{
+    position:absolute;bottom:10px;left:12px;
+    padding:5px 10px;background:rgba(14,77,79,0.78);
+    color:rgba(255,255,255,0.95);
+    font-family:var(--sans);font-size:10px;font-weight:500;
+    letter-spacing:0.12em;text-transform:uppercase;border-radius:2px;
+    backdrop-filter:blur(4px);
   }
 </style>
 
@@ -1219,6 +1264,17 @@
       </li>
     </ol>
   </div>
+</section>
+
+
+
+<section class="ob-welcome" aria-label="Herzlich willkommen">
+  <div class="container">
+    <span class="eyebrow">Der erste Schultag</span>
+    <h2>Herzlich willkommen!<br>Komm herein.</h2>
+    <p>Traditionell beginnt der erste Schultag für unsere neuen Schülerinnen und Schüler der EF am zweiten Schultag nach den Sommerferien — im kommenden Schuljahr am <strong>Donnerstag, 03.09.2026</strong>.</p>
+  </div>
+  <span class="cred">Platzhalter · Foto folgt</span>
 </section>
 
 <section class="ob-contact" aria-label="Ansprechpartner Oberstufe">
