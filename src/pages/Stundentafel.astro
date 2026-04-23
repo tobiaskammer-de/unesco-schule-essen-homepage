@@ -1,0 +1,418 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHero from "../components/PageHero.astro";
+---
+<BaseLayout title="Stundentafeln und Unterrichtsraster — UNESCO-Schule Essen">
+<style is:global>
+  /* ---------- Stundentafel ---------- */
+  .st-intro{background:var(--creme);padding:var(--space-section) 0;}
+  .st-intro-grid{
+    display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);
+    gap:56px;align-items:start;
+  }
+  .st-intro h2{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(30px,3.4vw,44px);line-height:1.12;
+    color:var(--petrol);letter-spacing:-0.015em;margin:0;
+  }
+  .st-intro p{
+    font-family:var(--sans);font-size:17px;line-height:1.7;color:var(--tinte);
+    margin:0 0 16px;
+  }
+  .st-intro p em{font-style:italic;color:var(--bordeaux);}
+
+  /* Unterrichtsraster — shared time table */
+  .st-raster{background:var(--offwhite);padding:var(--space-section) 0;}
+  .st-raster .head{max-width:780px;margin:0 0 48px;}
+  .st-raster .head .eyebrow{display:block;margin-bottom:14px;}
+  .st-raster .head h2{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(30px,3.2vw,44px);line-height:1.15;letter-spacing:-0.015em;
+    color:var(--petrol);margin:0 0 16px;
+  }
+  .st-raster .head p{
+    font-family:var(--sans);font-size:17px;line-height:1.65;color:var(--stein);
+    max-width:640px;margin:0;
+  }
+  .raster-table{
+    background:#fff;border:1px solid var(--hairline);
+    border-top:var(--card-accent-width) solid var(--petrol);
+    max-width:680px;
+    font-variant-numeric:tabular-nums;
+  }
+  .raster-row{
+    display:grid;grid-template-columns:minmax(140px,1fr) 2fr;
+    border-bottom:1px solid var(--hairline);
+  }
+  .raster-row:last-child{border-bottom:0;}
+  .raster-row .lbl{
+    padding:14px 22px;font-family:var(--sans);font-weight:500;font-size:15px;
+    color:var(--tinte);
+  }
+  .raster-row .time{
+    padding:14px 22px;font-family:var(--sans);font-size:15px;
+    color:var(--stein);border-left:1px solid var(--hairline);
+  }
+  .raster-row.pause{
+    grid-template-columns:1fr;
+    background:var(--creme);
+    border-top:1px solid var(--hairline);
+    border-bottom:1px solid var(--hairline);
+  }
+  .raster-row.pause .lbl{
+    color:var(--petrol);font-weight:500;font-size:13px;
+    letter-spacing:0.08em;text-transform:uppercase;text-align:center;
+    padding:10px 16px;
+  }
+
+  /* Stundentafel — big subject table */
+  .st-table-wrap{background:var(--creme);padding:var(--space-section) 0;border-top:1px solid var(--hairline);}
+  .st-table-wrap .head{max-width:820px;margin:0 0 40px;}
+  .st-table-wrap .head .eyebrow{display:block;margin-bottom:14px;}
+  .st-table-wrap .head h2{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(30px,3.2vw,44px);line-height:1.15;letter-spacing:-0.015em;
+    color:var(--petrol);margin:0 0 16px;
+  }
+  .st-table-wrap .head .tag{
+    font-family:var(--sans);font-size:12px;font-weight:500;
+    letter-spacing:0.1em;text-transform:uppercase;color:var(--stein);
+  }
+  .st-table-wrap .head p{
+    font-family:var(--sans);font-size:17px;line-height:1.65;color:var(--stein);
+    max-width:640px;margin:14px 0 0;
+  }
+
+  .st-table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+  .st-table{
+    width:100%;min-width:760px;
+    border-collapse:collapse;
+    background:#fff;border:1px solid var(--hairline);
+    border-top:var(--card-accent-width) solid var(--petrol);
+    font-variant-numeric:tabular-nums;
+  }
+  .st-table caption{
+    caption-side:top;text-align:left;
+    padding:18px 22px 14px;
+    font-family:var(--sans);font-size:13px;font-weight:600;
+    letter-spacing:0.1em;text-transform:uppercase;color:var(--petrol);
+    background:#fff;border-bottom:1px solid var(--hairline);
+  }
+  .st-table thead th{
+    background:var(--offwhite);
+    font-family:var(--sans);font-weight:600;font-size:13px;
+    letter-spacing:0.08em;text-transform:uppercase;color:var(--petrol);
+    padding:14px 16px;text-align:center;
+    border-bottom:1px solid var(--hairline);
+    white-space:nowrap;
+  }
+  .st-table thead th.subject{text-align:left;}
+  .st-table tbody th{
+    text-align:left;font-family:var(--sans);font-weight:500;font-size:15px;
+    color:var(--tinte);padding:12px 16px;
+    border-bottom:1px solid var(--hairline);
+  }
+  .st-table tbody td{
+    text-align:center;font-family:var(--sans);font-size:15px;
+    color:var(--tinte);padding:12px 16px;
+    border-bottom:1px solid var(--hairline);
+  }
+  .st-table tbody td.vorgabe{
+    text-align:left;font-size:13.5px;color:var(--stein);
+  }
+  .st-table tbody td.sum{
+    font-weight:600;color:var(--petrol);
+  }
+  .st-table tbody tr.group-head th,
+  .st-table tbody tr.group-head td{
+    background:var(--creme);
+    font-family:var(--serif);font-weight:500;font-size:16px;
+    color:var(--petrol);letter-spacing:-0.005em;
+    padding:14px 16px;
+  }
+  .st-table tbody tr.group-head th{text-align:left;}
+  .st-table tbody tr.total th,
+  .st-table tbody tr.total td{
+    background:var(--petrol);color:var(--creme);
+    font-weight:600;font-size:15px;
+    padding:14px 16px;
+  }
+  .st-table tbody tr.total th{font-family:var(--sans);}
+  .st-table tbody tr.subtotal th,
+  .st-table tbody tr.subtotal td{
+    background:var(--offwhite);
+    font-weight:600;color:var(--petrol);
+  }
+  .st-table sup{
+    font-size:10px;font-weight:600;color:var(--bordeaux);
+    vertical-align:super;line-height:0;margin-left:2px;
+  }
+  .st-table .em{font-style:italic;color:var(--stein);}
+
+  .st-scroll-hint{
+    display:none;
+    font-family:var(--sans);font-size:12.5px;color:var(--stein);
+    margin:10px 0 0;letter-spacing:0.02em;
+  }
+  @media (max-width:900px){
+    .st-scroll-hint{display:block;}
+  }
+
+  /* Footnotes */
+  .st-notes{background:var(--offwhite);padding:var(--space-section) 0;}
+  .st-notes .inner{
+    background:#fff;border:1px solid var(--hairline);
+    border-left:var(--card-accent-width) solid var(--gold);
+    padding:32px 40px;max-width:820px;
+  }
+  .st-notes h3{
+    font-family:var(--sans);font-weight:600;font-size:12px;
+    letter-spacing:0.14em;text-transform:uppercase;color:#8a5a20;
+    margin:0 0 14px;
+  }
+  .st-notes ol{
+    list-style:none;margin:0;padding:0;counter-reset:fn;
+    display:flex;flex-direction:column;gap:8px;
+  }
+  .st-notes ol li{
+    counter-increment:fn;
+    position:relative;padding-left:28px;
+    font-family:var(--sans);font-size:14.5px;line-height:1.6;color:var(--tinte);
+  }
+  .st-notes ol li::before{
+    content:counter(fn);
+    position:absolute;left:0;top:0;
+    font-size:10px;font-weight:600;color:var(--bordeaux);
+    line-height:1.3;
+  }
+
+  /* Legend / subject keys */
+  .st-legend{background:var(--creme);padding:var(--space-section) 0;border-top:1px solid var(--hairline);}
+  .st-legend .head{max-width:780px;margin:0 0 40px;}
+  .st-legend .head .eyebrow{display:block;margin-bottom:14px;}
+  .st-legend .head h2{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(28px,3vw,40px);line-height:1.15;letter-spacing:-0.015em;
+    color:var(--petrol);margin:0;
+  }
+  .legend-grid{
+    display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:2px;
+    background:var(--hairline);border:1px solid var(--hairline);
+  }
+  .legend-grid .cell{
+    background:#fff;padding:16px 20px;
+    display:grid;grid-template-columns:56px 1fr;gap:14px;align-items:baseline;
+  }
+  .legend-grid .key{
+    font-family:var(--serif);font-weight:500;font-size:20px;line-height:1;
+    color:var(--petrol);letter-spacing:-0.01em;
+  }
+  .legend-grid .name{
+    font-family:var(--sans);font-size:14px;line-height:1.45;color:var(--tinte);
+  }
+
+  /* Dummy preview (placeholder for SII / Stundenplan-Grafik) */
+  .st-dummy{background:var(--offwhite);padding:var(--space-section) 0;border-top:1px solid var(--hairline);}
+  .st-dummy .head{max-width:780px;margin:0 0 32px;}
+  .st-dummy .head .eyebrow{display:block;margin-bottom:14px;}
+  .st-dummy .head h2{
+    font-family:var(--serif);font-weight:500;font-size:clamp(28px,3vw,40px);
+    line-height:1.15;color:var(--petrol);letter-spacing:-0.015em;margin:0 0 14px;
+  }
+  .st-dummy .head p{
+    font-family:var(--sans);font-size:16.5px;line-height:1.65;color:var(--stein);
+    max-width:640px;margin:0;
+  }
+  .st-dummy .placeholder{
+    background:#fff;border:1px dashed var(--hairline);
+    aspect-ratio:16/6;
+    display:flex;align-items:center;justify-content:center;
+    font-family:var(--sans);font-size:13.5px;letter-spacing:0.08em;
+    text-transform:uppercase;color:var(--stein);
+    max-width:960px;
+  }
+
+  @media (max-width:960px){
+    .st-intro-grid{grid-template-columns:1fr;gap:32px;}
+    .raster-row{grid-template-columns:140px 1fr;}
+    .legend-grid{grid-template-columns:1fr;}
+    .st-intro,.st-raster,.st-table-wrap,.st-notes,.st-legend,.st-dummy{padding:var(--space-section-sm) 0;}
+    .st-notes .inner{padding:24px 24px;}
+  }
+</style>
+
+<main id="top">
+
+<PageHero variant="feature">
+  <Fragment slot="eyebrow">Informieren · Schulstufen</Fragment>
+  <Fragment slot="title">Stundentafeln<br>und <em>Unterrichtsraster.</em></Fragment>
+  <Fragment slot="lede">Welche Fächer werden in welcher Klasse wie lange unterrichtet? Und wann beginnt die erste Stunde? Hier finden Sie alle organisatorischen Rahmendaten der Sekundarstufe I.</Fragment>
+</PageHero>
+
+<section class="st-intro" aria-label="Einordnung">
+  <div class="container">
+    <div class="st-intro-grid">
+      <div>
+        <h2>Ein klarer Rahmen — für ein <em>vielseitiges</em> Lernen.</h2>
+      </div>
+      <div>
+        <p>Die Stundentafel legt fest, mit wie vielen Wochenstunden jedes Fach in der Sekundarstufe I unterrichtet wird. Grundlage ist die <strong>APO-SI (Anlage 6)</strong>, ergänzt um das Profil unserer UNESCO-Schule.</p>
+        <p>Zusätzlich erhalten Sie hier einen Überblick über das aktuelle Unterrichtsraster — also die Zeiten, in denen unsere Schülerinnen und Schüler lernen, Pause machen und nach Hause gehen.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="st-raster" aria-label="Unterrichtsraster">
+  <div class="container">
+    <div class="head">
+      <span class="eyebrow">Tagesstruktur</span>
+      <h2>Das aktuelle Unterrichtsraster.</h2>
+      <p>45-Minuten-Stunden mit zwei großen Pausen am Vormittag und einer Mittagspause vor dem Nachmittagsunterricht.</p>
+    </div>
+
+    <div class="raster-table" role="table" aria-label="Unterrichtsraster nach Stunden">
+      <div class="raster-row"><span class="lbl">1.&nbsp;Stunde</span><span class="time">08:05&nbsp;–&nbsp;08:50</span></div>
+      <div class="raster-row"><span class="lbl">2.&nbsp;Stunde</span><span class="time">08:55&nbsp;–&nbsp;09:40</span></div>
+      <div class="raster-row pause"><span class="lbl">1.&nbsp;große Pause</span></div>
+      <div class="raster-row"><span class="lbl">3.&nbsp;Stunde</span><span class="time">10:00&nbsp;–&nbsp;10:45</span></div>
+      <div class="raster-row"><span class="lbl">4.&nbsp;Stunde</span><span class="time">10:50&nbsp;–&nbsp;11:35</span></div>
+      <div class="raster-row pause"><span class="lbl">2.&nbsp;große Pause</span></div>
+      <div class="raster-row"><span class="lbl">5.&nbsp;Stunde</span><span class="time">11:55&nbsp;–&nbsp;12:40</span></div>
+      <div class="raster-row"><span class="lbl">6.&nbsp;Stunde</span><span class="time">12:45&nbsp;–&nbsp;13:30</span></div>
+      <div class="raster-row pause"><span class="lbl">Mittagspause</span></div>
+      <div class="raster-row"><span class="lbl">7.&nbsp;Stunde</span><span class="time">13:50&nbsp;–&nbsp;14:35</span></div>
+      <div class="raster-row"><span class="lbl">8.&nbsp;Stunde</span><span class="time">14:40&nbsp;–&nbsp;15:25</span></div>
+      <div class="raster-row"><span class="lbl">9.&nbsp;Stunde</span><span class="time">15:25&nbsp;–&nbsp;16:10</span></div>
+      <div class="raster-row"><span class="lbl">10.&nbsp;Stunde</span><span class="time">16:10&nbsp;–&nbsp;16:55</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="st-table-wrap" aria-label="Stundentafel Sekundarstufe I">
+  <div class="container">
+    <div class="head">
+      <span class="eyebrow">Wochenstunden je Fach</span>
+      <h2>Stundentafel Sekundarstufe&nbsp;I.</h2>
+      <span class="tag">Ab Schuljahr 2020/21 · APO-SI, Anlage&nbsp;6</span>
+      <p>Die Tabelle zeigt die Wochenstunden pro Fach in den Klassen&nbsp;7 bis 10. Bedeutung der Fachkürzel findet sich weiter unten auf der Seite.</p>
+    </div>
+
+    <div class="st-table-scroll">
+      <table class="st-table">
+        <caption>UNESCO-Schule Essen · Stundentafel SI ab 2020/21</caption>
+        <thead>
+          <tr>
+            <th scope="col" class="subject">Lernbereich / Fach</th>
+            <th scope="col">Vorgabe APO-SI</th>
+            <th scope="col">Klasse 7</th>
+            <th scope="col">Klasse 8</th>
+            <th scope="col">Klasse 9</th>
+            <th scope="col">Klasse 10</th>
+            <th scope="col">Summe</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">Deutsch (D)</th><td class="vorgabe">13</td><td>4</td><td>3</td><td>3</td><td>3</td><td class="sum">13</td></tr>
+
+          <tr class="group-head"><th scope="row" colspan="6">Gesellschaftslehre &mdash; insgesamt 17</th></tr>
+          <tr><th scope="row">Geschichte (GE)</th><td class="vorgabe">mind. 5</td><td>2</td><td>—</td><td>2</td><td>1</td><td class="sum">5</td></tr>
+          <tr><th scope="row">Erdkunde (EK)</th><td class="vorgabe">mind. 5</td><td>2</td><td>2</td><td>—</td><td>1</td><td class="sum">5</td></tr>
+          <tr><th scope="row">Politik &amp; Wirtschaft (WI-PK)</th><td class="vorgabe">mind. 5 + 2 ökon.&nbsp;Bildung</td><td>1</td><td>2</td><td>2</td><td>2</td><td class="sum">7</td></tr>
+
+          <tr><th scope="row">Mathematik (M)</th><td class="vorgabe">13</td><td>4</td><td>3</td><td>3</td><td>3</td><td class="sum">13</td></tr>
+
+          <tr class="group-head"><th scope="row" colspan="6">Naturwissenschaften &mdash; insgesamt 17</th></tr>
+          <tr><th scope="row">Biologie (BI)</th><td class="vorgabe">mind. 5</td><td>1</td><td>2</td><td>2</td><td>1<sup>1</sup></td><td class="sum">6</td></tr>
+          <tr><th scope="row">Chemie (CH)</th><td class="vorgabe">mind. 5, ab 7</td><td>—</td><td>2</td><td>2</td><td>2</td><td class="sum">6</td></tr>
+          <tr><th scope="row">Physik (PH)</th><td class="vorgabe">mind. 5</td><td>1</td><td>2</td><td>1<sup>2</sup></td><td>1<sup>3</sup></td><td class="sum">5</td></tr>
+
+          <tr><th scope="row">Englisch (E)</th><td class="vorgabe">13</td><td>4</td><td>3</td><td>3</td><td>3</td><td class="sum">13</td></tr>
+          <tr><th scope="row">FUD<sup>4</sup> <span class="em">(anstelle L7)</span></th><td class="vorgabe">—</td><td>—</td><td>—</td><td>[3]</td><td>[3]</td><td class="sum em">—</td></tr>
+          <tr><th scope="row">Latein / 2.&nbsp;FS (L7)</th><td class="vorgabe">15</td><td>3</td><td>4</td><td>4</td><td>4</td><td class="sum">15</td></tr>
+
+          <tr class="group-head"><th scope="row" colspan="6">Kunst und Musik &mdash; insgesamt 10</th></tr>
+          <tr><th scope="row">Kunst (KU)</th><td class="vorgabe">—</td><td>1</td><td>2</td><td>—</td><td>2</td><td class="sum">5</td></tr>
+          <tr><th scope="row">Musik (MU)</th><td class="vorgabe">—</td><td>2</td><td>—</td><td>2</td><td>1</td><td class="sum">5</td></tr>
+
+          <tr><th scope="row">Religion / Philosophie (ER/KR/PL)</th><td class="vorgabe">8</td><td>2</td><td>2</td><td>2</td><td>2</td><td class="sum">8</td></tr>
+          <tr><th scope="row">Sport (SP)</th><td class="vorgabe">11</td><td>3</td><td>3</td><td>3</td><td>2</td><td class="sum">11</td></tr>
+
+          <tr class="group-head"><th scope="row" colspan="6">Wahlpflicht (WP) &mdash; insgesamt 6</th></tr>
+          <tr><th scope="row">DIFF&nbsp;IF / DIFF&nbsp;Nachhaltige Gesellschaft / 3.&nbsp;FS Französisch</th><td class="vorgabe">—</td><td>—</td><td>—</td><td>3</td><td>3</td><td class="sum">6</td></tr>
+          <tr><th scope="row">3.&nbsp;Fremdsprache<sup>5</sup></th><td class="vorgabe">+2 Erg.-Std. in 9+10</td><td>—</td><td>—</td><td>+1</td><td>+1</td><td class="sum">+2</td></tr>
+
+          <tr class="subtotal"><th scope="row">Summe Kernstunden</th><td>123</td><td>—</td><td>—</td><td>—</td><td>—</td><td>123</td></tr>
+          <tr><th scope="row">Ergänzungsstunden</th><td class="vorgabe">+6 (4+2, s. 3.&nbsp;FS)</td><td>+1<sup>6</sup></td><td>+1</td><td>+1</td><td>+1</td><td class="sum">+6 EGS</td></tr>
+          <tr><th scope="row">Wochenstundenrahmen</th><td class="vorgabe">30–33</td><td>30+1</td><td>31+1</td><td>31+2</td><td>31+2</td><td class="sum">—</td></tr>
+          <tr class="total"><th scope="row">Gesamtwochenstunden</th><td>129</td><td>—</td><td>—</td><td>—</td><td>—</td><td>129</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="st-scroll-hint">Tabelle seitlich scrollen →</p>
+  </div>
+</section>
+
+<section class="st-notes" aria-label="Fußnoten zur Stundentafel">
+  <div class="container">
+    <div class="inner">
+      <h3>Anmerkungen zur Stundentafel</h3>
+      <ol>
+        <li>Epochenunterricht in Biologie — s.&nbsp;Erläuterung oben.</li>
+        <li>Epochenunterricht in Physik — s.&nbsp;Erläuterung oben.</li>
+        <li>Epochenunterricht in Physik — s.&nbsp;Erläuterung oben.</li>
+        <li>FUD (Fach-Unterricht Deutsch) gilt nur für seiteneinsteigende Schülerinnen und Schüler mit Sprachfeststellungsprüfung in der Herkunftssprache.</li>
+        <li>3.&nbsp;Fremdsprache = 4-stündig.</li>
+        <li>Förderung / Forderung in Deutsch, Englisch oder Mathematik in den Klassen 7+8 sowie 9+10, jahrgangsstufenübergreifend organisiert.</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section class="st-legend" aria-label="Abkürzungen und Fachkürzel">
+  <div class="container">
+    <div class="head">
+      <span class="eyebrow">Legende</span>
+      <h2>Abkürzungen und Fachkürzel.</h2>
+    </div>
+    <div class="legend-grid">
+      <div class="cell"><span class="key">D</span><span class="name">Deutsch</span></div>
+      <div class="cell"><span class="key">E</span><span class="name">Englisch</span></div>
+      <div class="cell"><span class="key">M</span><span class="name">Mathematik</span></div>
+      <div class="cell"><span class="key">GE</span><span class="name">Geschichte</span></div>
+      <div class="cell"><span class="key">EK</span><span class="name">Erdkunde</span></div>
+      <div class="cell"><span class="key">WI-PK</span><span class="name">Wirtschaft / Politik</span></div>
+      <div class="cell"><span class="key">BI</span><span class="name">Biologie</span></div>
+      <div class="cell"><span class="key">CH</span><span class="name">Chemie</span></div>
+      <div class="cell"><span class="key">PH</span><span class="name">Physik</span></div>
+      <div class="cell"><span class="key">KU</span><span class="name">Kunst</span></div>
+      <div class="cell"><span class="key">MU</span><span class="name">Musik</span></div>
+      <div class="cell"><span class="key">SP</span><span class="name">Sport</span></div>
+      <div class="cell"><span class="key">ER</span><span class="name">Evangelische Religion</span></div>
+      <div class="cell"><span class="key">KR</span><span class="name">Katholische Religion</span></div>
+      <div class="cell"><span class="key">PL</span><span class="name">Praktische Philosophie</span></div>
+      <div class="cell"><span class="key">L7</span><span class="name">Latein (ab Klasse&nbsp;7)</span></div>
+      <div class="cell"><span class="key">FS</span><span class="name">Fremdsprache</span></div>
+      <div class="cell"><span class="key">WP</span><span class="name">Wahlpflicht</span></div>
+      <div class="cell"><span class="key">IF</span><span class="name">Informatik (Differenzierung)</span></div>
+      <div class="cell"><span class="key">FUD</span><span class="name">Fachunterricht Deutsch</span></div>
+      <div class="cell"><span class="key">EGS</span><span class="name">Ergänzungsstunden</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="st-dummy" aria-label="Stundentafel Sekundarstufe II">
+  <div class="container">
+    <div class="head">
+      <span class="eyebrow">In Vorbereitung</span>
+      <h2>Stundentafel Sekundarstufe&nbsp;II.</h2>
+      <p>Eine entsprechende Übersicht zur gymnasialen Oberstufe (EF · Q1 · Q2) folgt an dieser Stelle in Kürze.</p>
+    </div>
+    <div class="placeholder">
+      Platzhalter · Stundentafel SII folgt
+    </div>
+  </div>
+</section>
+
+</main>
+</BaseLayout>
