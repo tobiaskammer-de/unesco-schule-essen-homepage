@@ -107,13 +107,14 @@ function link(path: string): string {
   /* Heading anchor offset for sticky header */
   h1[id], h2[id], h3[id]{scroll-margin-top:120px;}
 
-  /* Skip link */
+  /* Skip link — erscheint über dem Sticky-Header bei Tab-Fokus */
   .skip-link{
-    position:absolute;left:0;top:0;
-    transform:translateY(-110%);
+    position:fixed;left:16px;top:16px;
+    transform:translateY(-200%);
     background:var(--petrol);color:#fff;
     padding:12px 18px;font-family:var(--sans);font-weight:500;
-    z-index:3000;
+    z-index:3000;border-radius:4px;
+    box-shadow:0 6px 18px -6px rgba(14,77,79,0.45);
     transition:transform .2s ease;
   }
   .skip-link:focus{transform:translateY(0);}
@@ -773,22 +774,33 @@ function link(path: string): string {
 
   /* ---------- Responsive ---------- */
   @media (max-width:1080px){
-    .header-inner{height:72px;gap:16px;padding:0 var(--pad-mob);}
+    /* Kompakter Header: 64px Höhe, Logo proportional */
+    .header-inner{height:64px;gap:16px;padding:0 var(--pad-mob);}
+    .logo .logo-stack,
+    .logo .logo-stack img{height:44px;}
     .hamburger{display:block;}
     .header-actions{display:none;}
     .main-nav{
-      position:fixed;top:72px;left:0;right:0;bottom:0;
+      position:fixed;top:64px;left:0;right:0;bottom:0;
       background:var(--offwhite);flex-direction:column;align-items:stretch;
       height:auto;max-height:0;overflow:hidden;
       transition:max-height .3s ease;
       border-top:1px solid var(--hairline);
     }
-    .main-nav.open{max-height:calc(100vh - 72px);overflow-y:auto;}
+    .main-nav.open{max-height:calc(100vh - 64px);overflow-y:auto;}
     .nav-list{flex-direction:column;height:auto;gap:0;padding:8px 0;}
     .nav-item{display:block;border-bottom:1px solid var(--hairline);}
     .nav-link{height:auto;padding:18px 24px;justify-content:space-between;border-bottom:0;width:100%;}
-    .nav-item.has-dropdown > .nav-link::after{content:"+";font-size:22px;color:var(--petrol);font-weight:300;}
-    .nav-item.has-dropdown.open > .nav-link::after{content:"−";}
+    /* Chevron statt „+ / −" — dezenter und weniger „Formular-mäßig" */
+    .nav-item.has-dropdown > .nav-link::after{
+      content:"";display:inline-block;width:10px;height:10px;
+      border-right:1.5px solid var(--petrol);border-bottom:1.5px solid var(--petrol);
+      transform:rotate(45deg) translate(-2px,-2px);
+      transition:transform .2s ease;margin-right:6px;
+    }
+    .nav-item.has-dropdown.open > .nav-link::after{
+      transform:rotate(-135deg) translate(-4px,-4px);
+    }
     .dropdown-mega{position:static;display:block;grid-template-columns:1fr;opacity:1;visibility:visible;pointer-events:auto;transform:none;border:0;min-width:0;padding:0;max-height:0;overflow:hidden;background:#fff;transition:max-height .3s ease;}
     .nav-item.open > .dropdown-mega{max-height:2000px;padding:8px 0 16px;}
     .mega-col{padding:4px 24px;}
@@ -1061,10 +1073,9 @@ function link(path: string): string {
       <div class="footer-col">
         <h4>Rechtliches</h4>
         <ul>
-          <li><a href="#">Impressum</a></li>
-          <li><a href="#">Datenschutz</a></li>
-          <li><a href="#">Barrierefreiheit</a></li>
-          <li><a href="#">Schulträger: Stadt Essen</a></li>
+          <li><a href={link("Impressum.html")}>Impressum</a></li>
+          <li><a href={link("Datenschutz.html")}>Datenschutz</a></li>
+          <li><a href="https://www.essen.de" target="_blank" rel="noopener">Schulträger: Stadt Essen ↗</a></li>
         </ul>
       </div>
     </div>

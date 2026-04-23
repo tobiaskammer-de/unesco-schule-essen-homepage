@@ -235,11 +235,24 @@ const lastUpdated = new Intl.DateTimeFormat("de-DE", {
   }
   @media (max-width:640px){
     .kl-grid .weekday{font-size:10px;padding:6px 4px;letter-spacing:0.08em;}
-    .kl-day{min-height:68px;}
+    .kl-day{min-height:68px;cursor:pointer;}
     .kl-day .num{font-size:14px;}
     .kl-evlist{gap:2px;}
+    /* Eingeklappt: Events sind farbige Streifen */
     .kl-event{font-size:0;line-height:0;height:4px;padding:0;border-radius:2px;}
     .kl-event.more{display:none;}
+    /* Tap-to-expand: Tag voll sichtbar, Events wieder lesbar */
+    .kl-day.is-open{
+      min-height:auto;
+      box-shadow:0 0 0 2px var(--petrol);z-index:2;position:relative;
+      grid-column:1 / -1;
+    }
+    .kl-day.is-open .kl-evlist{gap:4px;}
+    .kl-day.is-open .kl-event{
+      font-size:12.5px;line-height:1.3;height:auto;padding:4px 8px;white-space:normal;
+    }
+    .kl-day.is-open .kl-event.more{display:block;}
+    .kl-day.is-open .num{font-size:22px;margin-bottom:4px;}
   }
 </style>
 
@@ -362,6 +375,17 @@ const lastUpdated = new Intl.DateTimeFormat("de-DE", {
     prev && prev.addEventListener('click', function(){ show(idx - 1); });
     next && next.addEventListener('click', function(){ show(idx + 1); });
     today && today.addEventListener('click', function(){ show(currentIndex); });
+
+    // Tag tappen auf Mobile: Events expandieren (nur bei Tagen mit Events)
+    document.querySelectorAll('.kl-day').forEach(function(day){
+      if (!day.querySelector('.kl-event')) return;
+      day.addEventListener('click', function(){
+        var wasOpen = day.classList.contains('is-open');
+        document.querySelectorAll('.kl-day.is-open').forEach(function(o){ o.classList.remove('is-open'); });
+        if (!wasOpen) day.classList.add('is-open');
+      });
+    });
+
     // Keyboard-Navigation
     document.addEventListener('keydown', function(e){
       if (e.target && (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA')) return;
