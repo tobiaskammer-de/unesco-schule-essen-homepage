@@ -1,0 +1,308 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHero from "../components/PageHero.astro";
+
+/**
+ * Partner-Seite. Gruppiert nach Art der Partnerschaft.
+ */
+const categories = [
+  {
+    label: "Netzwerk & Bildungsauftrag",
+    intro: "Verbände und Organisationen, in deren Auftrag wir unseren Bildungsauftrag verstehen und weitertragen.",
+    items: [
+      {
+        name: "UNESCO-Projektschulen",
+        url: "https://www.unesco.de/bildung/unesco-projektschulen",
+        logo: "assets/partners/unesco.png",
+        desc: "Als eine von rund 300 deutschen UNESCO-Projektschulen sind wir Teil eines weltweiten Netzwerks — verpflichtet auf Frieden, Menschenrechte, kulturelle Vielfalt und nachhaltige Entwicklung.",
+      },
+      {
+        name: "Stifterverband",
+        url: "https://www.stifterverband.org",
+        logo: "assets/partners/stifterverband.png",
+        desc: "Einer der wichtigsten privaten Förderer für Bildung, Wissenschaft und Innovation in Deutschland. Partner u.a. beim MINT-Engagement.",
+      },
+    ],
+  },
+  {
+    label: "Hochschule & Studienorientierung",
+    intro: "Mit wem wir zusammenarbeiten, wenn es um den Übergang in Studium und Beruf geht.",
+    items: [
+      {
+        name: "Universität Duisburg-Essen",
+        url: "https://www.uni-due.de",
+        logo: "assets/partners/uni-due.png",
+        desc: "UniTrainees-Programm, Studienfeld-Eignungstests, Talentscouting — und regelmäßige Informationsveranstaltungen direkt bei uns vor Ort.",
+      },
+      {
+        name: "Agentur für Arbeit Essen",
+        url: "https://www.arbeitsagentur.de/vor-ort/essen/startseite",
+        logo: "assets/partners/agentur-arbeit.png",
+        desc: 'Berufsorientierung, Beratungstermine in Klasse 10 und der Sekundarstufe II sowie die Veranstaltungsreihe „Wege ins Berufsleben".',
+      },
+    ],
+  },
+  {
+    label: "Kultur",
+    intro: "Unsere Partner für kulturelle Bildung — von der Oper bis zum Schauspiel.",
+    items: [
+      {
+        name: "Theater und Philharmonie Essen",
+        url: "https://www.theater-essen.de",
+        logo: "assets/partners/tup.png",
+        desc: "Offizielle Kooperationspartnerschaft 2025/26 — aktuelle Opernproduktion mit über 40 Schülerinnen und Schülern und den Essener Philharmonikern.",
+      },
+      {
+        name: "Essener Philharmoniker",
+        url: "https://www.theater-essen.de/philharmonie",
+        logo: "assets/partners/philharmoniker.png",
+        desc: "Gemeinsame Bühnenprojekte, Proben und Konzerterlebnisse.",
+      },
+      {
+        name: "Freundeskreis Theater und Philharmonie",
+        logo: "assets/partners/tup.png",
+        desc: "Unterstützt unsere Schülerschaft mit Kartenkontingenten zu Oper, Ballett und klassischen Konzerten.",
+      },
+    ],
+  },
+  {
+    label: "Gemeinschaft vor Ort",
+    intro: "Essener Partner, mit denen wir im Stadtteil und darüber hinaus Schule leben.",
+    items: [
+      {
+        name: "Jugendhilfe Essen",
+        url: "https://www.jugendhilfe-essen.de",
+        logo: "assets/partners/jhe.png",
+        desc: 'Partner u.a. bei der Pop-Up-Ausstellung „Nur ein Bild!?" und weiteren kulturell-politischen Projekten.',
+      },
+      {
+        name: "Contact · Kommunikation · Sport · Event",
+        url: "https://www.contact-essen.de",
+        logo: "assets/partners/contact.png",
+        desc: "Begleitung bei sportlichen Großveranstaltungen und Schulprojekten im öffentlichen Raum.",
+      },
+      {
+        name: "Arche Noah Essen",
+        url: "https://www.archenoah-essen.de",
+        logo: "assets/partners/arche-noah.png",
+        desc: "Soziales Engagement im Stadtteil und wiederkehrende Projekte zur gelebten Vielfalt.",
+      },
+      {
+        name: "CSE",
+        url: "https://www.cse.de",
+        logo: "assets/partners/cse.png",
+        desc: "Kooperation im Bereich Ausbildung, Berufsorientierung und Nachhaltigkeit.",
+      },
+      {
+        name: "WDR",
+        url: "https://www.wdr.de",
+        logo: "assets/partners/wdr.png",
+        desc: "Medienbildung und Zusammenarbeit bei dokumentarischen Schulprojekten.",
+      },
+    ],
+  },
+  {
+    label: "Stiftungen & Förderer",
+    intro: "Private Stiftungen und Service-Clubs, deren Förderung vieles möglich macht.",
+    items: [
+      {
+        name: "Goldschmidt Stiftung",
+        url: "https://goldschmidt-stiftung.de",
+        logo: "assets/partners/goldschmidt-stiftung.png",
+        desc: "Unterstützt Bildungs- und Kulturprojekte der UNESCO-Schule Essen.",
+      },
+      {
+        name: "Goldschmidt Thermit Group",
+        url: "https://www.goldschmidt.com",
+        logo: "assets/partners/goldschmidt-thermit.png",
+        desc: "Wirtschaftspartner mit Fokus auf MINT-Bildung, Praktika und Berufsorientierung.",
+      },
+      {
+        name: "Rotary Club Essen",
+        url: "https://www.rotary-essen.de",
+        logo: "assets/partners/rotary.png",
+        desc: "Intensive Förderung mit Arbeitsmaterialien, Schulhofgestaltung und Auslandsaufenthalten — über viele Jahre ein verlässlicher Partner.",
+      },
+      {
+        name: "IWC Essen-Nord",
+        url: "https://www.iwc-essen-nord.de",
+        logo: "assets/partners/iwc.png",
+        desc: "Frauenförderung und Mentoring für Schülerinnen.",
+      },
+    ],
+  },
+];
+---
+<BaseLayout title="Partnerschaften — UNESCO-Schule Essen" description="Mit wem wir zusammenarbeiten: UNESCO, Universität Duisburg-Essen, Theater und Philharmonie, Stiftungen, lokale Partner und Service-Clubs.">
+<style is:global>
+  /* ---------- Partner-Seite ---------- */
+  .pt-intro{background:var(--creme);padding:var(--space-section) 0;}
+  .pt-intro-grid{
+    display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);
+    gap:56px;align-items:start;
+  }
+  .pt-intro h2{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(30px,3.4vw,44px);line-height:1.1;
+    color:var(--petrol);letter-spacing:-0.015em;margin:0;
+  }
+  .pt-intro h2 em{font-style:italic;color:var(--bordeaux);}
+  .pt-intro p{
+    font-family:var(--sans);font-size:17px;line-height:1.7;color:var(--tinte);
+    margin:0 0 14px;
+  }
+
+  /* Category blocks */
+  .pt-category{
+    padding:var(--space-section) 0;
+    border-top:1px solid var(--hairline);
+  }
+  .pt-category.alt{background:var(--offwhite);}
+  .pt-category.light{background:var(--creme);}
+  .pt-category .head{max-width:820px;margin:0 0 40px;}
+  .pt-category .head .eyebrow{display:block;margin-bottom:14px;}
+  .pt-category .head h2{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(28px,3vw,40px);line-height:1.15;letter-spacing:-0.015em;
+    color:var(--petrol);margin:0 0 14px;
+  }
+  .pt-category .head p{
+    font-family:var(--sans);font-size:16.5px;line-height:1.65;color:var(--stein);
+    max-width:680px;margin:0;
+  }
+
+  .pt-grid{
+    display:grid;grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));gap:24px;
+  }
+  .pt-card{
+    background:#fff;border:1px solid var(--hairline);
+    border-top:var(--card-accent-width) solid var(--petrol);
+    display:flex;flex-direction:column;gap:16px;
+    padding:28px 28px 24px;
+    text-decoration:none;color:inherit;
+    transition:transform var(--transition), box-shadow var(--transition);
+  }
+  .pt-card:hover{transform:translateY(-2px);box-shadow:0 16px 40px -24px rgba(14,77,79,0.28);}
+  @media (prefers-reduced-motion: reduce){.pt-card:hover{transform:none;}}
+
+  .pt-card .logo-box{
+    height:72px;display:flex;align-items:center;justify-content:flex-start;
+    padding:4px 0;border-bottom:1px solid var(--hairline);padding-bottom:16px;
+  }
+  .pt-card .logo-box img{
+    max-height:100%;max-width:180px;width:auto;height:auto;object-fit:contain;
+    filter:grayscale(100%);opacity:0.82;
+    transition:filter .3s ease, opacity .3s ease;
+  }
+  .pt-card:hover .logo-box img{filter:grayscale(0);opacity:1;}
+
+  .pt-card h3{
+    font-family:var(--serif);font-weight:500;font-size:20px;line-height:1.25;
+    color:var(--petrol);letter-spacing:-0.008em;margin:0;
+  }
+  .pt-card .desc{
+    font-family:var(--sans);font-size:14.5px;line-height:1.6;color:var(--stein);
+    margin:0;flex:1;
+  }
+  .pt-card .go{
+    align-self:flex-start;display:inline-flex;align-items:center;gap:6px;
+    font-family:var(--sans);font-size:13px;font-weight:500;color:var(--bordeaux);
+    letter-spacing:0.02em;
+  }
+  .pt-card .go .arrow{transition:transform var(--transition-fast);}
+  .pt-card:hover .go .arrow{transform:translate(3px,-3px);}
+  .pt-card.no-link{cursor:default;}
+  .pt-card.no-link:hover{transform:none;box-shadow:none;}
+
+  /* Closing CTA */
+  .pt-cta{background:var(--petrol);color:var(--creme);padding:var(--space-section) 0;border-top:1px solid var(--hairline);}
+  .pt-cta .container{max-width:820px;text-align:center;}
+  .pt-cta .eyebrow{color:rgba(245,239,231,0.55);display:block;margin-bottom:14px;}
+  .pt-cta h2{
+    font-family:var(--serif);font-weight:500;font-style:italic;
+    font-size:clamp(28px,3vw,40px);line-height:1.2;
+    color:var(--creme);letter-spacing:-0.015em;margin:0 0 22px;
+  }
+  .pt-cta h2 em{color:var(--gold);font-style:italic;}
+  .pt-cta p{
+    font-family:var(--sans);font-size:17px;line-height:1.7;
+    color:rgba(245,239,231,0.9);max-width:640px;margin:0 auto;
+  }
+
+  @media (max-width:960px){
+    .pt-intro-grid{grid-template-columns:1fr;gap:28px;}
+    .pt-intro,.pt-category,.pt-cta{padding:var(--space-section-sm) 0;}
+  }
+  @media (max-width:560px){
+    .pt-grid{grid-template-columns:1fr;gap:16px;}
+    .pt-card{padding:22px 22px 20px;}
+  }
+</style>
+
+<main id="top">
+
+<PageHero variant="feature">
+  <Fragment slot="eyebrow">Über Uns · Gemeinschaft &amp; Netzwerk</Fragment>
+  <Fragment slot="title">Mit wem wir<br><em>zusammenarbeiten.</em></Fragment>
+  <Fragment slot="lede">Schule funktioniert nicht allein. Unsere Partnerschaften reichen von weltweiten Netzwerken bis zu Essener Institutionen — und machen vieles von dem möglich, was unseren Alltag prägt.</Fragment>
+</PageHero>
+
+<section class="pt-intro" aria-label="Einordnung">
+  <div class="container">
+    <div class="pt-intro-grid">
+      <div>
+        <h2>Partner, <em>auf die wir bauen.</em></h2>
+      </div>
+      <div>
+        <p>Über fünfzehn feste Partnerschaften tragen unser Schulprofil: das UNESCO-Netzwerk, die Universität Duisburg-Essen, Kultureinrichtungen wie die Theater und Philharmonie Essen sowie Stiftungen und Service-Clubs, die Projekte finanziell ermöglichen.</p>
+        <p>Dazu kommen Essener Institutionen aus Sozialarbeit, Medien und Berufsorientierung. Auf dieser Seite haben wir sie sortiert, damit man sieht, wer uns in welchem Bereich begleitet.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+{categories.map((cat, idx) => (
+  <section class={`pt-category ${idx % 2 === 0 ? "alt" : "light"}`} aria-label={cat.label}>
+    <div class="container">
+      <div class="head">
+        <span class="eyebrow">{String(idx + 1).padStart(2, "0")} · {cat.label}</span>
+        <h2>{cat.label}</h2>
+        <p>{cat.intro}</p>
+      </div>
+
+      <div class="pt-grid">
+        {cat.items.map((p) => {
+          const CardTag = p.url ? "a" : "div";
+          return (
+            <CardTag
+              class={`pt-card ${p.url ? "" : "no-link"}`}
+              href={p.url}
+              target={p.url ? "_blank" : undefined}
+              rel={p.url ? "noopener" : undefined}
+            >
+              <div class="logo-box">
+                <img src={p.logo} alt={`${p.name} Logo`} width="180" height="72" loading="lazy" />
+              </div>
+              <h3>{p.name}</h3>
+              <p class="desc">{p.desc}</p>
+              {p.url && (
+                <span class="go">Website besuchen <span class="arrow" aria-hidden="true">↗</span></span>
+              )}
+            </CardTag>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+))}
+
+<section class="pt-cta" aria-label="Partner werden">
+  <div class="container">
+    <span class="eyebrow">Interesse an einer Kooperation?</span>
+    <h2>Gemeinsam <em>mehr bewegen.</em></h2>
+    <p>Wenn Sie als Institution, Stiftung oder Unternehmen eine Kooperation mit uns aufbauen möchten: Wir freuen uns auf Ihre Nachricht. Die besten Partnerschaften entstehen dort, wo sich beide Seiten engagieren.</p>
+  </div>
+</section>
+
+</main>
+</BaseLayout>
