@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Schulprogramm — UNESCO-Schule Essen</title>
+<title>UNESCO – Name und Mission — UNESCO-Schule Essen</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -685,219 +685,270 @@
   }
 </style>
 
+
+
 <style>
-  /* ---------- Schulprogramm page ---------- */
-  .sp-hero{
+  /* ---------- UNESCO-Mission page ---------- */
+  .un-hero{
     position:relative;
-    min-height:520px;
+    min-height:560px;
     display:flex;align-items:flex-end;
-    padding:72px 0 64px;
+    padding:96px 0 72px;
     color:var(--creme);
     overflow:hidden;
     isolation:isolate;
   }
-  .sp-hero::before{
+  .un-hero::before{
     content:"";position:absolute;inset:0;z-index:-2;
-    background:url('assets/sp-hero.jpg') center/cover no-repeat;
+    background:
+      linear-gradient(135deg, var(--petrol-dark) 0%, var(--petrol) 50%, #0f5f62 100%);
   }
-  .sp-hero::after{
+  .un-hero::after{
     content:"";position:absolute;inset:0;z-index:-1;
-    background:linear-gradient(180deg, rgba(14,77,79,0.55) 0%, rgba(14,77,79,0.85) 80%);
+    background-image:
+      radial-gradient(circle at 20% 30%, rgba(212,165,116,0.12) 1.5px, transparent 2px),
+      radial-gradient(circle at 70% 60%, rgba(245,239,231,0.08) 1px, transparent 1.5px);
+    background-size:40px 40px, 56px 56px;opacity:0.8;
   }
-  .sp-hero .eyebrow{
-    color:rgba(245,239,231,0.75);display:block;margin-bottom:18px;
-  }
-  .sp-hero h1{
+  .un-hero .eyebrow{color:var(--gold);display:block;margin-bottom:20px;}
+  .un-hero h1{
     font-family:var(--serif);font-weight:500;
-    font-size:clamp(44px,6vw,84px);line-height:1.02;
-    letter-spacing:-0.02em;
-    max-width:1000px;margin:0 0 20px;
-    color:var(--creme);
+    font-size:clamp(42px,5.6vw,80px);line-height:1.02;
+    letter-spacing:-0.02em;color:var(--creme);
+    max-width:1040px;margin:0 0 22px;
   }
-  .sp-hero p.lede{
-    font-family:var(--sans);font-size:18px;line-height:1.6;
-    color:rgba(245,239,231,0.9);
-    max-width:640px;margin:0;
+  .un-hero h1 em{font-style:italic;color:var(--gold);}
+  .un-hero p.lede{
+    font-family:var(--sans);font-size:19px;line-height:1.6;
+    color:rgba(245,239,231,0.9);max-width:720px;margin:0;
+  }
+  .un-hero .badge-tier{
+    display:inline-flex;align-items:center;gap:10px;
+    padding:8px 16px;border-radius:999px;
+    background:rgba(245,239,231,0.10);border:1px solid rgba(245,239,231,0.25);
+    color:var(--creme);
+    font-family:var(--sans);font-size:12px;font-weight:500;letter-spacing:0.12em;
+    text-transform:uppercase;margin-bottom:26px;
+  }
+  .un-hero .badge-tier .dot{
+    width:8px;height:8px;border-radius:50%;background:var(--gold);
   }
 
-  /* ---------- Intro ---------- */
-  .sp-intro{
+  /* Intro statement */
+  .un-statement{
+    background:var(--creme);
+    padding:104px 0;
+  }
+  .un-statement .container{max-width:960px;}
+  .un-statement h2{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(32px,4vw,56px);line-height:1.12;
+    color:var(--petrol);letter-spacing:-0.018em;margin:0 0 28px;
+  }
+  .un-statement h2 em{font-style:italic;color:var(--bordeaux);}
+  .un-statement p{
+    font-family:var(--sans);font-size:18px;line-height:1.7;color:var(--tinte);
+    max-width:72ch;margin:0 0 18px;
+  }
+  .un-statement p.highlight{
+    font-family:var(--serif);font-style:italic;font-weight:400;
+    font-size:22px;line-height:1.5;color:var(--bordeaux);
+    border-left:3px solid var(--bordeaux);padding:6px 0 6px 24px;
+    margin-top:32px;
+  }
+
+  /* ASPnet explainer */
+  .un-aspnet{
+    background:var(--offwhite);
+    padding:96px 0 72px;
+  }
+  .un-aspnet .head{max-width:780px;margin:0 0 56px;}
+  .un-aspnet .head .eyebrow{display:block;margin-bottom:14px;}
+  .un-aspnet .head h2{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(30px,3.2vw,44px);line-height:1.15;letter-spacing:-0.015em;
+    color:var(--petrol);margin:0 0 18px;
+  }
+  .un-aspnet .head p{
+    font-family:var(--sans);font-size:17px;line-height:1.65;color:var(--stein);
+    max-width:640px;margin:0;
+  }
+  .stats{
+    display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;
+    border-top:1px solid var(--hairline);border-bottom:1px solid var(--hairline);
+  }
+  .stat{
+    padding:40px 32px;border-right:1px solid var(--hairline);
+    display:flex;flex-direction:column;gap:10px;
+  }
+  .stat:last-child{border-right:0;}
+  .stat .n{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(38px,4.2vw,60px);line-height:1;
+    color:var(--bordeaux);letter-spacing:-0.025em;
+  }
+  .stat .label{
+    font-family:var(--sans);font-size:13px;color:var(--stein);line-height:1.55;
+  }
+
+  /* Tier ladder */
+  .un-tiers{
     background:var(--creme);
     padding:96px 0;
   }
-  .sp-intro-grid{
-    display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);
-    gap:72px;align-items:start;
-  }
-  .sp-intro h2{
+  .un-tiers .head{max-width:780px;margin:0 0 56px;}
+  .un-tiers .head .eyebrow{display:block;margin-bottom:14px;}
+  .un-tiers .head h2{
     font-family:var(--serif);font-weight:500;
-    font-size:clamp(32px,3.4vw,48px);line-height:1.1;
-    color:var(--petrol);letter-spacing:-0.012em;margin:0;
+    font-size:clamp(30px,3.2vw,44px);line-height:1.15;letter-spacing:-0.015em;
+    color:var(--petrol);margin:0 0 18px;
   }
-  .sp-intro .lead{
-    font-family:var(--sans);font-size:17px;line-height:1.7;color:var(--tinte);
-    margin:0 0 18px;
+  .un-tiers .head p{
+    font-family:var(--sans);font-size:17px;line-height:1.65;color:var(--stein);
+    max-width:640px;margin:0;
   }
-  .sp-intro p + p{margin-top:14px;}
-  .sp-intro p em{font-style:italic;color:var(--bordeaux);}
-
-  /* ---------- Pledge (Selbstverpflichtung) ---------- */
-  .sp-pledge{
-    background:var(--petrol);color:var(--creme);
-    padding:96px 0;position:relative;overflow:hidden;
-  }
-  .sp-pledge .eyebrow{
-    color:rgba(245,239,231,0.6);display:block;margin-bottom:16px;
-  }
-  .sp-pledge h2{
-    font-family:var(--serif);font-weight:500;
-    font-size:clamp(30px,3.2vw,44px);line-height:1.12;
-    color:var(--creme);margin:0 0 36px;max-width:780px;letter-spacing:-0.012em;
-  }
-  .sp-pledge .intro{
-    font-family:var(--sans);font-size:17px;line-height:1.65;
-    color:rgba(245,239,231,0.9);max-width:760px;margin:0 0 40px;
-  }
-  .pledge-list{
+  .tier-list{
     list-style:none;margin:0;padding:0;
-    display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
-    gap:1px;
-    background:rgba(245,239,231,0.15);
-    border:1px solid rgba(245,239,231,0.15);
+    display:flex;flex-direction:column;gap:18px;
   }
-  .pledge-list li{
-    background:var(--petrol);
-    padding:26px 28px;
-    display:flex;gap:18px;align-items:flex-start;
+  .tier{
+    display:grid;grid-template-columns:80px 1fr auto;gap:28px;align-items:center;
+    padding:28px 32px;background:#fff;border:1px solid var(--hairline);
+    position:relative;
   }
-  .pledge-list .num{
-    font-family:var(--serif);font-weight:500;font-size:32px;line-height:1;
-    color:var(--gold);flex-shrink:0;letter-spacing:-0.02em;
+  .tier .step{
+    font-family:var(--serif);font-weight:500;font-size:42px;line-height:1;
+    color:var(--stein);letter-spacing:-0.025em;opacity:0.45;
   }
-  .pledge-list .text{
-    font-family:var(--sans);font-size:15px;line-height:1.55;
-    color:rgba(245,239,231,0.95);
+  .tier .body h3{
+    font-family:var(--serif);font-weight:500;font-size:22px;line-height:1.2;
+    color:var(--petrol);letter-spacing:-0.008em;margin:0 0 6px;
   }
-  .pledge-outro{
-    font-family:var(--sans);font-size:15px;line-height:1.7;color:rgba(245,239,231,0.8);
-    max-width:780px;margin:40px 0 0;font-style:italic;
+  .tier .body p{
+    font-family:var(--sans);font-size:15px;line-height:1.55;color:var(--stein);margin:0;
+  }
+  .tier .marker{
+    font-family:var(--sans);font-size:11px;font-weight:600;
+    letter-spacing:0.14em;text-transform:uppercase;color:var(--stein);
+  }
+  .tier.is-us{
+    background:var(--petrol);color:var(--creme);border-color:var(--petrol);
+  }
+  .tier.is-us .step{color:var(--gold);opacity:0.85;}
+  .tier.is-us h3{color:var(--creme);}
+  .tier.is-us p{color:rgba(245,239,231,0.85);}
+  .tier.is-us .marker{
+    color:var(--petrol);background:var(--gold);
+    padding:5px 12px;border-radius:999px;letter-spacing:0.1em;
   }
 
-  /* ---------- Leitsätze Intro ---------- */
-  .sp-pillars-intro{
+  /* Five themes */
+  .un-themes{
     background:var(--offwhite);
-    padding:96px 0 48px;
+    padding:96px 0;
   }
-  .sp-pillars-intro .eyebrow{display:block;margin-bottom:16px;}
-  .sp-pillars-intro h2{
-    font-family:var(--serif);font-weight:500;font-size:clamp(30px,3.2vw,42px);
-    line-height:1.12;color:var(--petrol);margin:0 0 20px;letter-spacing:-0.012em;
-    max-width:760px;
+  .un-themes .head{max-width:780px;margin:0 0 56px;}
+  .un-themes .head .eyebrow{display:block;margin-bottom:14px;}
+  .un-themes .head h2{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(30px,3.2vw,44px);line-height:1.15;letter-spacing:-0.015em;
+    color:var(--petrol);margin:0;
   }
-  .sp-pillars-intro p{
-    font-family:var(--sans);font-size:16.5px;line-height:1.7;color:var(--stein);
-    max-width:72ch;margin:0 0 14px;
+  .themes-grid{
+    display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px;
   }
-  .sp-pillars-intro .two-cols{
-    display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-top:32px;
+  .theme{
+    padding:30px 32px;background:#fff;border:1px solid var(--hairline);
+    display:flex;flex-direction:column;gap:12px;
+    border-left:3px solid var(--bordeaux);
   }
-  .sp-pillars-intro .two-cols .card{
-    padding:28px 30px;background:#fff;border:1px solid var(--hairline);
-    border-top:3px solid var(--bordeaux);
+  .theme:nth-child(2){border-left-color:var(--gold);}
+  .theme:nth-child(3){border-left-color:var(--sage);}
+  .theme:nth-child(4){border-left-color:var(--petrol);}
+  .theme:nth-child(5){border-left-color:#8a5a20;}
+  .theme .n{
+    font-family:var(--serif);font-weight:500;font-size:22px;line-height:1;
+    color:var(--bordeaux);letter-spacing:-0.015em;
   }
-  .sp-pillars-intro .two-cols .card:last-child{border-top-color:var(--gold);}
-  .sp-pillars-intro .two-cols h3{
-    font-family:var(--serif);font-weight:500;font-size:22px;color:var(--petrol);
-    margin:0 0 10px;letter-spacing:-0.01em;
+  .theme:nth-child(2) .n{color:#8a5a20;}
+  .theme:nth-child(3) .n{color:#3e6b2a;}
+  .theme:nth-child(4) .n{color:var(--petrol);}
+  .theme:nth-child(5) .n{color:#8a5a20;}
+  .theme h3{
+    font-family:var(--serif);font-weight:500;font-size:21px;line-height:1.25;
+    color:var(--petrol);letter-spacing:-0.008em;margin:0;
   }
-  .sp-pillars-intro .two-cols p{font-size:15px;margin:0;}
+  .theme p{
+    font-family:var(--sans);font-size:15px;line-height:1.6;color:var(--stein);margin:0;
+  }
 
-  /* ---------- 8 Leitsätze ---------- */
-  .sp-leitsaetze{
-    background:var(--offwhite);
-    padding:24px 0 120px;
+  /* Alltag / examples */
+  .un-alltag{
+    background:var(--creme);
+    padding:96px 0;border-top:1px solid var(--hairline);
   }
-  .leitsatz{
-    display:grid;
-    grid-template-columns:minmax(0,5fr) minmax(0,7fr);
-    gap:56px;
-    padding:56px 0;
+  .un-alltag .head{max-width:780px;margin:0 0 48px;}
+  .un-alltag .head .eyebrow{display:block;margin-bottom:14px;}
+  .un-alltag .head h2{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(30px,3.2vw,44px);line-height:1.15;letter-spacing:-0.015em;
+    color:var(--petrol);margin:0 0 18px;
+  }
+  .un-alltag .head p{
+    font-family:var(--sans);font-size:17px;line-height:1.65;color:var(--stein);margin:0;
+  }
+  .alltag-list{
+    list-style:none;margin:0;padding:0;
+    display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 32px;
     border-top:1px solid var(--hairline);
-    align-items:start;
   }
-  .leitsatz:last-child{border-bottom:1px solid var(--hairline);}
-  .leitsatz.flip{grid-template-columns:minmax(0,7fr) minmax(0,5fr);}
-  .leitsatz.flip .media{order:2;}
-  .leitsatz .media{
-    aspect-ratio:5/4;overflow:hidden;background:var(--creme);
-    border-radius:2px;position:relative;
+  .alltag-list li{
+    display:grid;grid-template-columns:28px 1fr;gap:12px;align-items:start;
+    padding:18px 0;border-bottom:1px solid var(--hairline);
+    font-family:var(--sans);font-size:15.5px;line-height:1.55;color:var(--tinte);
   }
-  .leitsatz .media img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease;}
-  .leitsatz:hover .media img{transform:scale(1.02);}
-  .leitsatz .media .num-badge{
-    position:absolute;top:16px;left:16px;
-    width:48px;height:48px;border-radius:50%;
-    background:var(--creme);color:var(--petrol);
-    display:flex;align-items:center;justify-content:center;
-    font-family:var(--serif);font-weight:500;font-size:22px;
-    letter-spacing:-0.02em;
-    box-shadow:0 4px 12px -4px rgba(0,0,0,0.2);
-  }
-  .leitsatz h3{
-    font-family:var(--serif);font-weight:500;font-size:clamp(26px,2.6vw,36px);
-    line-height:1.15;color:var(--petrol);letter-spacing:-0.012em;
-    margin:0 0 20px;
-  }
-  .leitsatz .claim{
-    font-family:var(--sans);font-size:16.5px;line-height:1.65;
-    color:var(--tinte);margin:0 0 24px;max-width:60ch;
-  }
-  .leitsatz ul{
-    list-style:none;margin:0 0 24px;padding:0;
-  }
-  .leitsatz ul li{
-    position:relative;padding:8px 0 8px 22px;
-    font-family:var(--sans);font-size:15px;line-height:1.55;color:var(--stein);
-    border-bottom:1px solid var(--hairline);
-  }
-  .leitsatz ul li:first-child{border-top:1px solid var(--hairline);}
-  .leitsatz ul li::before{
-    content:"";position:absolute;left:0;top:16px;
-    width:10px;height:1px;background:var(--bordeaux);
-  }
-  .leitsatz .future{
-    margin-top:18px;padding:16px 18px;
-    background:rgba(212,165,116,0.14);
-    border-left:3px solid var(--gold);
-  }
-  .leitsatz .future h4{
-    font-family:var(--sans);font-weight:600;font-size:11px;
-    letter-spacing:0.14em;text-transform:uppercase;color:#8a5a20;
-    margin:0 0 8px;
-  }
-  .leitsatz .future ul{margin:0;}
-  .leitsatz .future li{
-    border:0;padding:4px 0 4px 18px;font-size:14px;color:var(--tinte);
-  }
-  .leitsatz .future li::before{
-    top:13px;background:var(--gold);
+  .alltag-list li::before{
+    content:"✦";color:var(--gold);font-size:16px;line-height:1.55;
+    grid-column:1;
   }
 
-  @media (max-width:980px){
-    .sp-intro-grid{grid-template-columns:1fr;gap:32px;}
-    .pledge-list{grid-template-columns:1fr;}
-    .sp-pillars-intro .two-cols{grid-template-columns:1fr;gap:24px;}
-    .leitsatz, .leitsatz.flip{grid-template-columns:1fr;gap:24px;}
-    .leitsatz.flip .media{order:-1;}
-    .leitsatz .media{order:-1;aspect-ratio:16/10;}
+  /* Commitment pledge */
+  .un-pledge{
+    background:var(--petrol);color:var(--creme);
+    padding:96px 0;
   }
-  @media (max-width:620px){
-    .sp-hero{min-height:420px;padding:48px 0 40px;}
-    .sp-intro,.sp-pledge,.sp-pillars-intro{padding:56px 0;}
-    .sp-leitsaetze{padding:12px 0 72px;}
-    .leitsatz{padding:36px 0;}
+  .un-pledge .container{max-width:880px;text-align:center;}
+  .un-pledge .eyebrow{color:rgba(245,239,231,0.55);display:block;margin-bottom:16px;}
+  .un-pledge h2{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(28px,3.4vw,44px);line-height:1.18;
+    color:var(--creme);margin:0 0 28px;letter-spacing:-0.015em;
+  }
+  .un-pledge p{
+    font-family:var(--sans);font-size:17.5px;line-height:1.65;
+    color:rgba(245,239,231,0.9);max-width:720px;margin:0 auto 16px;
+  }
+  .un-pledge .sig{
+    margin-top:36px;padding-top:28px;
+    border-top:1px solid rgba(245,239,231,0.18);
+    font-family:var(--sans);font-size:13px;letter-spacing:0.1em;
+    text-transform:uppercase;color:rgba(245,239,231,0.55);
+  }
+
+  @media (max-width:960px){
+    .stats{grid-template-columns:1fr;}
+    .stat{border-right:0;border-bottom:1px solid var(--hairline);}
+    .stat:last-child{border-bottom:0;}
+    .tier{grid-template-columns:56px 1fr;gap:18px;padding:22px 24px;}
+    .tier .marker{grid-column:1 / -1;margin-top:8px;}
+    .tier .step{font-size:32px;}
+    .themes-grid{grid-template-columns:1fr;gap:16px;}
+    .alltag-list{grid-template-columns:1fr;}
+    .un-statement,.un-aspnet,.un-tiers,.un-themes,.un-alltag,.un-pledge{padding:64px 0;}
+    .un-hero{min-height:420px;padding:56px 0 48px;}
   }
 </style>
+
 
 </head>
 <body>
@@ -1051,241 +1102,153 @@
 </header>
 <main id="top">
 
-<section class="sp-hero" aria-label="Schulprogramm">
+<section class="un-hero" aria-label="UNESCO-Schule Essen">
   <div class="container">
-    <span class="eyebrow">Profil · Schulprogramm</span>
-    <h1>Gemeinsam lernen,<br>den eigenen Weg finden.</h1>
-    <p class="lede">Unser Schulprogramm — das, was uns trägt. Ein Leitbild, das aus einer Überzeugung wächst: Schule muss beides sein — ein Ort der Sicherheit für die Zukunft und ein Freiraum, in dem junge Menschen heute schon ganz sie selbst sein dürfen.</p>
+    <span class="eyebrow">Über Uns · UNESCO – Name und Mission</span>
+    <span class="badge-tier"><span class="dot"></span>Anerkannte UNESCO-Projektschule · Stufe 3</span>
+    <h1>Wir sind nicht <em>irgendeine</em><br>UNESCO-Schule.</h1>
+    <p class="lede">Wir sind das einzige Gymnasium in Deutschland, das den Namen der UNESCO trägt — nach einem intensiven, mehrjährigen Prüfungsverfahren der Deutschen UNESCO-Kommission. Der Name ist für uns Auftrag, nicht Auszeichnung.</p>
   </div>
 </section>
 
-
-<section class="sp-intro">
+<section class="un-statement" aria-label="Unser Selbstverständnis">
   <div class="container">
-    <div class="sp-intro-grid">
-      <div>
-        <h2>Mehr als gute Noten.</h2>
+    <h2>Den Namen zu tragen<br>heißt, ihn zu <em>leben.</em></h2>
+    <p>Die UNESCO-Schule Essen trägt nicht nur den Namen der UNESCO — sie setzt sich aktiv dafür ein, deren Werte und Ziele zu vermitteln. Dazu gehören <strong>Erziehung zur Demokratie auf Basis der Menschenrechte</strong>, die <strong>Förderung des globalen Lernens</strong>, der <strong>Erwerb interkultureller Kompetenz</strong> durch vielfältige Begegnungen sowie <strong>Umwelterziehung im Sinne der Agenda 21</strong> und der 17 Ziele für nachhaltige Entwicklung.</p>
+    <p>Diese Ziele sind bei uns nicht Projekttag, sondern Lehrplan. Sie prägen, was wir unterrichten, wie wir Konflikte lösen, welche Partnerschaften wir eingehen und welche Projekte wir möglich machen.</p>
+    <p class="highlight">Inwiefern der Schulalltag unserer Schülerinnen und Schüler zum Erreichen dieser Ziele geprägt ist, erfahren Sie weiter unten.</p>
+  </div>
+</section>
+
+<section class="un-aspnet" aria-label="Was ist eine UNESCO-Projektschule">
+  <div class="container">
+    <div class="head">
+      <span class="eyebrow">Ein weltweites Netzwerk</span>
+      <h2>Was eine UNESCO-Projektschule ist.</h2>
+      <p>Seit 1953 verbindet das UNESCO-Projektschul-Netzwerk (ASPnet — Associated Schools Project Network) Schulen, die sich den Zielen der UNESCO verpflichten: Frieden, Menschenrechte, Nachhaltigkeit, interkultureller Dialog. Koordiniert wird das deutsche Netzwerk von der Deutschen UNESCO-Kommission.</p>
+    </div>
+    <div class="stats">
+      <div class="stat">
+        <span class="n">~12&#8239;000</span>
+        <span class="label">UNESCO-Projektschulen weltweit, in über 180 Ländern — eines der ältesten und größten bildungspolitischen Netzwerke der Vereinten Nationen.</span>
       </div>
-      <div>
-        <p class="lead">Gute Noten, fundiertes Wissen und ein starkes Abitur sind für uns selbstverständlich. Doch als UNESCO-Projektschule blicken wir darüber hinaus: Wir sind Teil eines weltweiten Netzwerks, das sich für Frieden, Menschenrechte, kulturelle Vielfalt und nachhaltige Entwicklung einsetzt.</p>
-        <p>Unsere Schule lebt diese Ziele im Alltag — mit Projekten zu Demokratie, nachhaltigem Handeln und kulturellem Austausch, und mit einer Haltung, die junge Menschen zu verantwortungsvollen Gestaltern von morgen macht.</p>
-        <p>Wir sehen Kinder und Jugendliche als <em>ganze Persönlichkeiten</em>. Darum schaffen wir Raum für Musik und Kreativität, für Verantwortung und echtes Miteinander. Unser Ziel ist klar: junge Menschen zu stärken — für das Leben, das vor ihnen liegt.</p>
+      <div class="stat">
+        <span class="n">~300</span>
+        <span class="label">Anerkannte UNESCO-Projektschulen in Deutschland. Alle Schulformen, alle Bundesländer.</span>
+      </div>
+      <div class="stat">
+        <span class="n">1</span>
+        <span class="label">Einziges Gymnasium in Deutschland, das den Namen der UNESCO im eigenen Schulnamen führt — nach intensivem Prüfungsverfahren.</span>
       </div>
     </div>
   </div>
 </section>
 
-
-<section class="sp-pledge">
+<section class="un-tiers" aria-label="Die drei Stufen">
   <div class="container">
-    <span class="eyebrow">Selbstverpflichtung des Kollegiums</span>
-    <h2>Unser Auftrag: Schülerinnen und Schüler auf ihren Lern- und Lebenswegen zu begleiten.</h2>
-    <p class="intro">Wir, das Kollegium der UNESCO-Schule Essen, empfinden es als unseren Auftrag, alle Schülerinnen und Schüler unserer Schule bestmöglich auf ein Leben in unserer demokratischen Gesellschaft vorzubereiten. Deswegen wollen wir …</p>
-    <ol class="pledge-list">
-      <li><span class="num">01</span><span class="text">Vielfalt leben, Gemeinschaft stiften und Möglichkeiten der persönlichen Entfaltung bieten.</span></li>
-      <li><span class="num">02</span><span class="text">Vorbildlich handeln.</span></li>
-      <li><span class="num">03</span><span class="text">Auf gewaltfreie und respektvolle Kommunikation achten.</span></li>
-      <li><span class="num">04</span><span class="text">Fähigkeiten fördern und helfen, aus Fehlern zu lernen.</span></li>
-      <li><span class="num">05</span><span class="text">Allen Schülerinnen und Schülern fair, gerecht und wertschätzend begegnen.</span></li>
-      <li><span class="num">06</span><span class="text">Durch Transparenz und Konsequenz im Handeln verlässlich sein.</span></li>
-      <li><span class="num">07</span><span class="text">Mit Eltern und Betreuenden zusammenarbeiten, um junge Menschen gemeinsam ins Erwachsenenleben zu begleiten.</span></li>
-      <li><span class="num">08</span><span class="text">Uns an den Verhaltenskodex unserer Schule im Rahmen des Schutzkonzeptes halten.</span></li>
+    <div class="head">
+      <span class="eyebrow">Drei Stufen, ein Weg</span>
+      <h2>Wie Schulen zu UNESCO-Projektschulen werden.</h2>
+      <p>Der Weg in das Netzwerk verläuft in drei Stufen. Er ist lang, die Prüfung streng — und das ist gut so. Wir sind auf der dritten und höchsten Stufe angekommen.</p>
+    </div>
+    <ol class="tier-list">
+      <li class="tier">
+        <span class="step">01</span>
+        <div class="body">
+          <h3>Interessierte Schule</h3>
+          <p>Erste Annäherung an das Netzwerk. Die Schule zeigt Interesse, nimmt an Veranstaltungen teil, erprobt erste Projekte im UNESCO-Kontext.</p>
+        </div>
+        <span class="marker">Einstieg</span>
+      </li>
+      <li class="tier">
+        <span class="step">02</span>
+        <div class="body">
+          <h3>Mitarbeitende Schule</h3>
+          <p>Mehrjährige Mitarbeit: kontinuierliche Projekte, Ausrichtung des Schulprogramms an UNESCO-Werten, Vernetzung mit anderen Projektschulen. Dokumentationspflicht gegenüber der Deutschen UNESCO-Kommission.</p>
+        </div>
+        <span class="marker">Aufbau</span>
+      </li>
+      <li class="tier is-us">
+        <span class="step">03</span>
+        <div class="body">
+          <h3>Anerkannte UNESCO-Projektschule</h3>
+          <p>Die höchste Stufe. Nach intensiver Prüfung bestätigt die Deutsche UNESCO-Kommission, dass die Schule die Werte der UNESCO im gesamten Schulleben verankert hat — in Unterricht, Schulprogramm, Alltag und Partnerschaften. Nur Schulen dieser Stufe dürfen den Namen „UNESCO-Projektschule" führen.</p>
+        </div>
+        <span class="marker">Hier sind wir</span>
+      </li>
     </ol>
-    <p class="pledge-outro">Wir betrachten es als Selbstverständlichkeit, unsere Schülerinnen und Schüler als Menschen wahrzunehmen, die Stärken und Schwächen haben — und möchten sie im Rahmen ihrer spezifischen Lebenswirklichkeiten begleiten.</p>
   </div>
 </section>
 
-
-<section class="sp-pillars-intro">
+<section class="un-themes" aria-label="Die fünf Themenfelder">
   <div class="container">
-    <span class="eyebrow">Leitsätze und Ziele</span>
-    <h2>Zwei Säulen, acht Leitsätze.</h2>
-    <p>Unser Schulprogramm stützt sich entsprechend unseres Leitbildes auf zwei Säulen: das individuelle, akademische Lernen und die sozial-affektive Persönlichkeitsentwicklung innerhalb einer gesellschaftsrelevanten Gemeinschaft.</p>
-    <div class="two-cols">
-      <div class="card">
-        <h3>Gemeinsam lernen</h3>
-        <p>Individuelles, akademisches Lernen — mit hohem fachlichen Anspruch und enger pädagogischer Begleitung auf dem Weg zum Abitur.</p>
-      </div>
-      <div class="card">
-        <h3>Den eigenen Weg finden</h3>
-        <p>Sozial-affektive Persönlichkeitsentwicklung innerhalb einer demokratischen, weltoffenen und vielfältigen Schulgemeinschaft.</p>
-      </div>
+    <div class="head">
+      <span class="eyebrow">Fünf Themenfelder der UNESCO</span>
+      <h2>Woran wir arbeiten.</h2>
+    </div>
+    <div class="themes-grid">
+      <article class="theme">
+        <span class="n">01</span>
+        <h3>Menschenrechte, Frieden und Demokratie</h3>
+        <p>Demokratieerziehung, Klassenrat, Schülervertretung, Gedenkstättenfahrten, Projekte zur Erinnerungskultur. Konflikte gewaltfrei lösen — und junge Menschen als mündige Mitgestalterinnen und Mitgestalter ernst nehmen.</p>
+      </article>
+      <article class="theme">
+        <span class="n">02</span>
+        <h3>Interkulturelles Lernen</h3>
+        <p>Über 30 Erstsprachen in unserer Schülerschaft. Austauschprogramme, bilinguale Projekte, kulturelle Feste, Arche-Noah-Projekt. Vielfalt ist bei uns Realität, nicht Lehrplan-Thema.</p>
+      </article>
+      <article class="theme">
+        <span class="n">03</span>
+        <h3>UNESCO-Welterbe</h3>
+        <p>Projekte und Exkursionen zu Welterbestätten in der Region — Zollverein vor der Haustür, Industriekultur als Lernort. Sensibilisierung für den Schutz kulturellen und natürlichen Erbes.</p>
+      </article>
+      <article class="theme">
+        <span class="n">04</span>
+        <h3>Globales Lernen &amp; nachhaltige Entwicklung</h3>
+        <p>Die 17 Ziele für nachhaltige Entwicklung (SDGs) als Kompass: Schulgarten, Differenzierungskurs „Nachhaltige Gesellschaft", UNESCO-Projekttage zu Klima, Ressourcen und globaler Gerechtigkeit.</p>
+      </article>
+      <article class="theme">
+        <span class="n">05</span>
+        <h3>Bildung für alle &amp; Literacy</h3>
+        <p>Leseförderung, Begabtenförderung, Inklusion. Wir treten dafür ein, dass jede Schülerin und jeder Schüler — unabhängig von Herkunft — Zugang zu höherer Bildung und einem starken Abitur findet.</p>
+      </article>
     </div>
   </div>
 </section>
 
-
-<section class="sp-leitsaetze">
+<section class="un-alltag" aria-label="UNESCO im Alltag">
   <div class="container">
-    
-      <article class="leitsatz">
-        <div class="media">
-          <img src="assets/sp-lernend.jpg" alt="">
-          <span class="num-badge">01</span>
-        </div>
-        <div class="body">
-          <h3>Lernende Schule</h3>
-          <p class="claim">Unabhängig von der bisherigen Schullaufbahn erhalten unsere Schülerinnen und Schüler bei entsprechender Qualifizierung die individuell bestmögliche gymnasiale Ausbildung — mit enger Unterstützung auf dem Weg dorthin.</p>
-          <ul>
-          <li>In Klasse 5 Wahl zwischen zwei neigungsdifferenzierten Ergänzungsfächern: Forscher² (naturwissenschaftlich-experimentell) und WortArt+ (sprachlich-künstlerisch)</li>
-          <li>Behutsamer Aufbau von Schulformwechselnden in Sek II durch gestaffelte, progressive Annäherung an gymnasiale Standards</li>
-          <li>Kennenlern- und Methodenfahrt für Neuzugänge in der EF</li>
-          <li>Regelmäßige pädagogische Konferenzen (zusätzlich zu Notenkonferenzen) pro Klasse und Jahrgang</li>
-          <li>Intensive Förderung durch den Rotary Club Essen (Arbeitsmaterialien, Schulhofgestaltung, Auslandsaufenthalte)</li>
-          </ul>
-        <div class="future">
-          <h4>Schulentwicklungsziele</h4>
-          <ul>
-            <li>Auszeichnung als „MINT-freundliche Schule" (in Arbeit)</li>
-          </ul>
-        </div>
-        </div>
-      </article>
+    <div class="head">
+      <span class="eyebrow">UNESCO im Schulalltag</span>
+      <h2>Was das konkret bedeutet.</h2>
+      <p>Der Name verpflichtet uns zu einer Vielzahl an Aktivitäten, die über den regulären Unterricht hinausgehen — zwölf Monate im Jahr, in allen Jahrgängen.</p>
+    </div>
+    <ul class="alltag-list">
+      <li>Zwei UNESCO-Projekttage pro Schuljahr mit jahrgangsübergreifenden Themen</li>
+      <li>UNESCO-Führerschein in der Sekundarstufe I</li>
+      <li>Ausstellungen zu Welttagen der Vereinten Nationen (2 – 3 pro Monat)</li>
+      <li>Ein hauptamtlicher UNESCO-Beauftragter im Kollegium</li>
+      <li>Aktive Mitarbeit in regionalen und bundesweiten UNESCO-Arbeitskreisen</li>
+      <li>Jährliche Berichte und Dokumentationen an die Deutsche UNESCO-Kommission</li>
+      <li>Partnerschaften mit Kulturinstitutionen (Theater und Philharmonie Essen, Aalto-Theater, Museen)</li>
+      <li>Erasmus-Plus-Programm und internationale Schüleraustausche</li>
+      <li>Orientierung an den 17 Zielen für nachhaltige Entwicklung (SDGs) im Unterricht</li>
+      <li>Zusammenarbeit mit der Deutschen UNESCO-Kommission und dem Schulnetzwerk ASPnet</li>
+    </ul>
+  </div>
+</section>
 
-      <article class="leitsatz flip">
-        <div class="media">
-          <img src="assets/sp-persoenlich.jpg" alt="">
-          <span class="num-badge">02</span>
-        </div>
-        <div class="body">
-          <h3>Diskriminierungsfreie Schule</h3>
-          <p class="claim">In einem wertschätzenden, sicheren Umfeld können sich unsere Schülerinnen und Schüler frei von rassistischer, sexualisierter oder kulturell-religiöser Diskriminierung entwickeln und unbelastet lernen.</p>
-          <ul>
-          <li>Regelmäßige UNESCO-Projekttage (2 × pro Schuljahr)</li>
-          <li>Kooperation mit der Polizei Essen und dem Franz-Sales-Haus Essen</li>
-          <li>Kooperation mit dem CSE Ruhr und Together Education</li>
-          <li>Selbstverpflichtung zum Verhaltenskodex als Bestandteil des Schutzkonzeptes</li>
-          <li>Enges Beratungskonzept mit Vertrauenslehrern und Schulsozialarbeitern</li>
-          <li>Schuleigenes Schutzkonzept</li>
-          </ul>
-        <div class="future">
-          <h4>Schulentwicklungsziele</h4>
-          <ul>
-            <li>Auszeichnung „Schule ohne Rassismus – Schule mit Courage"</li>
-          </ul>
-        </div>
-        </div>
-      </article>
+<section class="un-pledge" aria-label="Unsere Selbstverpflichtung">
+  <div class="container">
+    <span class="eyebrow">Unsere Selbstverpflichtung</span>
+    <h2>Den Namen zu tragen heißt, ihm gerecht zu werden — jeden Tag.</h2>
+    <p>Die Aufnahme ins Netzwerk der anerkannten UNESCO-Projektschulen ist kein Schlusspunkt, sondern Versprechen. Wir verpflichten uns, die Werte der UNESCO nicht nur zu unterrichten, sondern zu leben — und unsere Arbeit regelmäßig zur Prüfung zu stellen.</p>
+    <p>Das bedeutet: Wer unsere Schule verlässt, soll nicht nur ein starkes Abitur in der Hand halten — sondern eine Haltung im Kopf, die in der Welt trägt.</p>
+    <div class="sig">Kollegium der UNESCO-Schule Essen</div>
+  </div>
+</section>
 
-      <article class="leitsatz">
-        <div class="media">
-          <img src="assets/sp-divers.jpg" alt="">
-          <span class="num-badge">03</span>
-        </div>
-        <div class="body">
-          <h3>Diverse Schule</h3>
-          <p class="claim">Unsere Schülerinnen und Schüler kommunizieren mit großer Selbstverständlichkeit in vielerlei Sprachen und bringen ihre jeweilige kulturelle Lebens- und Erfahrungswelt kreativ in den Schulalltag ein.</p>
-          <ul>
-          <li>Internationale Schülerschaft</li>
-          <li>Darstellung kultureller Identitäten bei Veranstaltungen und Projekten (Tanz, Theater, Musik, Kochkunst)</li>
-          <li>Bilinguale Alltagskommunikation (Schulradio, Schülerzeitung), schulinterne Dolmetscher</li>
-          <li>Kooperation mit dem „Freundeskreis Theater und Philharmonie" (Opernprojekte, Konzert-Sponsoring)</li>
-          <li>Erasmus-Plus-Programm</li>
-          <li>„Arche Noah"-Projekt · KokoRu in der Sek I · Kooperation mit Together Education</li>
-          </ul>
-        <div class="future">
-          <h4>Schulentwicklungsziele</h4>
-          <ul>
-            <li>Englisches Theater und Schülerzeitung</li>
-          </ul>
-        </div>
-        </div>
-      </article>
-
-      <article class="leitsatz flip">
-        <div class="media">
-          <img src="assets/sp-demokratie.jpg" alt="">
-          <span class="num-badge">04</span>
-        </div>
-        <div class="body">
-          <h3>Demokratische Schule</h3>
-          <p class="claim">Unsere Schülerinnen und Schüler können Ideen und gesellschaftliche Entwicklungen als gefestigte und mündige Persönlichkeiten innerhalb demokratischer Grundstrukturen entwerfen, umsetzen und bewerten.</p>
-          <ul>
-          <li>Klassenrat und Lion's Quest</li>
-          <li>Aktive Schülervertretung</li>
-          <li>Schülerpartizipation in Gremien (Fachkonferenzen, Steuergruppe, Arbeitskreise) und bei der Unterrichtsgestaltung</li>
-          <li>Gedenkstättenfahrt in der Q2 (Geschichtskurs)</li>
-          <li>Regelmäßige UNESCO-Projekttage zur Demokratieerziehung</li>
-          <li>Teilnahme am Projekt „Juniorwahl" · Streitschlichterprogramm im Aufbau · Schülerpatenschaften</li>
-          </ul>
-        <div class="future">
-          <h4>Schulentwicklungsziele</h4>
-          <ul>
-            <li>Auszeichnung „Schule der Zukunft"</li>
-          </ul>
-        </div>
-        </div>
-      </article>
-
-      <article class="leitsatz">
-        <div class="media">
-          <img src="assets/sp-nachhaltig.jpg" alt="">
-          <span class="num-badge">05</span>
-        </div>
-        <div class="body">
-          <h3>Nachhaltige Schule</h3>
-          <p class="claim">Unsere Schülerinnen und Schüler entwickeln ein Bewusstsein für ein auf Nachhaltigkeit angelegtes Leben und übernehmen Verantwortung für Umwelt und Gesellschaft.</p>
-          <ul>
-          <li>Schulgarten-AG</li>
-          <li>Fachübergreifende Nutzung des Schulgartens</li>
-          <li>UNESCO-Projekttage zu „Umwelt/Klimawandel" und „Zukunft"</li>
-          <li>Differenzierungskurs „Nachhaltige Gesellschaft"</li>
-          <li>Bücherschrank</li>
-          </ul>
-        <div class="future">
-          <h4>Schulentwicklungsziele</h4>
-          <ul>
-            <li>Auszeichnung „Schule der Zukunft"</li>
-            <li>Dachbegrünung</li>
-          </ul>
-        </div>
-        </div>
-      </article>
-
-      <article class="leitsatz flip">
-        <div class="media">
-          <img src="assets/sp-weltoffen.jpg" alt="">
-          <span class="num-badge">06</span>
-        </div>
-        <div class="body">
-          <h3>Weltoffene Schule</h3>
-          <p class="claim">Lernende und Lehrende orientieren sich im Schulalltag an den Zielen und Werten der UNESCO sowie den 17 Zielen für nachhaltige Entwicklung (SDGs) und setzen sich für Frieden, Nachhaltigkeit und Weltoffenheit ein.</p>
-          <ul>
-          <li>Thematisch wechselnde Ausstellungen zu Welttagen der Vereinten Nationen (2–3 pro Monat) in Eigenverantwortung der EF-Kurse und LKs in Q1/Q2</li>
-          <li>UNESCO-Führerschein in der Sek I</li>
-          <li>Organisation von UNESCO-Projekttagen (2 × pro Jahr) und Netzwerkpflege durch den UNESCO-Beauftragten</li>
-          <li>UNESCO ist Namensgeber der Schule — Orientierung an ihren Zielen und Werten</li>
-          </ul>
-        </div>
-      </article>
-
-      <article class="leitsatz">
-        <div class="media">
-          <img src="assets/sp-digital.jpg" alt="">
-          <span class="num-badge">07</span>
-        </div>
-        <div class="body">
-          <h3>Digitale Schule</h3>
-          <p class="claim">Unsere Schülerinnen und Schüler erleben, erproben und bewerten aktuelle Entwicklungen ihrer digitalen Lebensrealität bei einem zunehmend selbstverständlichen Umgang mit digitalen Medien im Unterricht.</p>
-          <ul>
-          <li>UNESCO-Projekttage zu „Internet/Hatespeech"</li>
-          <li>Vollausstattung der Schülerschaft und des Lehrkollegiums mit iPads</li>
-          <li>Kabellose Kommunikations- und Präsentationsmöglichkeiten in allen Klassenräumen (Beamer / Whiteboards)</li>
-          <li>Handy- und Tabletkonzept der UNESCO-Schule</li>
-          <li>Kooperation mit Hacker School</li>
-          </ul>
-        <div class="future">
-          <h4>Schulentwicklungsziele</h4>
-          <ul>
-            <li>Auszeichnung „Digitale Schule"</li>
-            <li>Digitales Klassenbuch</li>
-          </ul>
-        </div>
-        </div>
-      </article>
-
-      <article class="leitsatz flip">
-        <div class="media">
+</main>
           <img src="assets/sp-hero.jpg" alt="">
           <span class="num-badge">08</span>
         </div>
@@ -1365,31 +1328,3 @@
 
     <div class="footer-bottom">
       <div>© 2026 UNESCO-Schule Essen · Gymnasium der Stadt Essen</div>
-      <div>Folgen Sie uns: <a href="#" style="color:inherit;border-bottom:1px solid rgba(245,239,231,0.4);">@unescoschule.essen</a></div>
-    </div>
-  </div>
-</footer>
-<script>
-  const hamburger = document.getElementById('hamburgerBtn');
-  const mainNav   = document.getElementById('mainNav');
-  if(hamburger){
-    hamburger.addEventListener('click',()=>{
-      const open = hamburger.classList.toggle('active');
-      mainNav.classList.toggle('open',open);
-      hamburger.setAttribute('aria-expanded', open?'true':'false');
-    });
-  }
-  document.querySelectorAll('.nav-item.has-dropdown > .nav-link').forEach(link=>{
-    link.addEventListener('click',e=>{
-      if(window.innerWidth <= 1080){
-        e.preventDefault();
-        const parent = link.parentElement;
-        const wasOpen = parent.classList.contains('open');
-        document.querySelectorAll('.nav-item.has-dropdown').forEach(i=>i.classList.remove('open'));
-        if(!wasOpen) parent.classList.add('open');
-      }
-    });
-  });
-  </script>
-</body>
-</html>
