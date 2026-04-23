@@ -1,0 +1,319 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHero from "../components/PageHero.astro";
+import {
+  getStaffTeachers,
+  getTrainees,
+  getAllSubjects,
+  displayName,
+  initials,
+} from "../lib/teachers";
+
+const staff = await getStaffTeachers();
+const trainees = await getTrainees();
+const subjects = await getAllSubjects();
+
+// Eindeutige Rollen für Filter
+const rolesSet = new Set<string>();
+for (const t of staff) for (const r of t.data.roles) rolesSet.add(r);
+const roles = Array.from(rolesSet).sort((a, b) => a.localeCompare(b, "de"));
+
+const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
+const placeholder = `${BASE}/assets/kollegium/_placeholder.svg`;
+
+function asset(p: string): string {
+  if (!p) return placeholder;
+  if (p.startsWith("http")) return p;
+  if (p.startsWith("/")) return p; // schon mit BASE präfixiert
+  return `${BASE}/${p}`;
+}
+---
+<BaseLayout title="Kollegium — UNESCO-Schule Essen" description="Die Lehrerinnen und Lehrer der UNESCO-Schule Essen mit Fächern und Kontaktmöglichkeiten.">
+<style is:global>
+  /* ---------- Kollegium ---------- */
+  .ko-intro{background:var(--creme);padding:var(--space-section) 0;}
+  .ko-intro-grid{
+    display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);
+    gap:56px;align-items:start;
+  }
+  .ko-intro h2{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(30px,3.4vw,44px);line-height:1.1;
+    color:var(--petrol);letter-spacing:-0.015em;margin:0;
+  }
+  .ko-intro p{
+    font-family:var(--sans);font-size:17px;line-height:1.7;color:var(--tinte);
+    margin:0 0 14px;
+  }
+  .ko-intro p em{font-style:italic;color:var(--bordeaux);}
+
+  /* Toolbar: Filter + Count */
+  .ko-section{background:var(--offwhite);padding:var(--space-section) 0;border-top:1px solid var(--hairline);}
+  .ko-toolbar{
+    display:flex;align-items:center;gap:20px;flex-wrap:wrap;
+    margin-bottom:40px;
+  }
+  .ko-toolbar label{
+    font-family:var(--sans);font-size:12px;font-weight:600;
+    letter-spacing:0.14em;text-transform:uppercase;color:var(--petrol);
+    margin-right:-10px;
+  }
+  .ko-toolbar select{
+    font-family:var(--sans);font-size:15px;
+    padding:11px 36px 11px 16px;
+    background:#fff;border:1.5px solid var(--hairline);
+    color:var(--tinte);cursor:pointer;
+    appearance:none;-webkit-appearance:none;
+    background-image:
+      linear-gradient(45deg, transparent 50%, var(--petrol) 50%),
+      linear-gradient(-45deg, transparent 50%, var(--petrol) 50%);
+    background-position: right 16px top 50%, right 10px top 50%;
+    background-size: 6px 6px;
+    background-repeat:no-repeat;
+    transition:border-color var(--transition-fast);
+  }
+  .ko-toolbar select:focus{outline:none;border-color:var(--petrol);box-shadow:0 0 0 3px rgba(14,77,79,0.15);}
+  .ko-count{
+    font-family:var(--sans);font-size:14px;color:var(--stein);letter-spacing:0.02em;
+    margin-left:auto;
+  }
+
+  /* Grid */
+  .ko-grid{
+    display:grid;grid-template-columns:repeat(4, minmax(0, 1fr));gap:22px;
+  }
+  .ko-card{
+    background:#fff;border:1px solid var(--hairline);
+    display:flex;flex-direction:column;
+    transition:transform var(--transition), box-shadow var(--transition);
+  }
+  .ko-card:hover{transform:translateY(-2px);box-shadow:0 14px 32px -20px rgba(14,77,79,0.28);}
+  @media (prefers-reduced-motion: reduce){.ko-card:hover{transform:none;}}
+  .ko-card.is-hidden{display:none;}
+
+  .ko-card .photo{
+    aspect-ratio:4/3;overflow:hidden;background:var(--creme);
+    border-bottom:1px solid var(--hairline);
+  }
+  .ko-card .photo img{width:100%;height:100%;object-fit:cover;display:block;}
+
+  .ko-card .body{padding:18px 18px 16px;display:flex;flex-direction:column;gap:8px;flex:1;}
+  .ko-card .name{
+    font-family:var(--serif);font-weight:500;font-size:18px;line-height:1.2;
+    color:var(--petrol);letter-spacing:-0.005em;margin:0;
+    text-wrap:balance;
+  }
+  .ko-card .subjects{
+    font-family:var(--sans);font-size:13.5px;line-height:1.5;color:var(--stein);
+    margin:0;
+  }
+  .ko-card .roles{
+    margin-top:4px;display:flex;flex-wrap:wrap;gap:4px;
+  }
+  .ko-card .role-chip{
+    font-family:var(--sans);font-size:10.5px;font-weight:500;
+    letter-spacing:0.04em;
+    padding:3px 8px;background:var(--creme);color:var(--petrol);
+    border:1px solid var(--hairline);
+  }
+
+  .ko-card .contact{
+    margin-top:auto;padding:10px 18px 16px;display:flex;gap:8px;
+  }
+  .ko-card .btn-mail{
+    display:inline-flex;align-items:center;gap:6px;
+    padding:8px 12px;
+    background:var(--creme);color:var(--petrol);
+    font-family:var(--sans);font-size:12.5px;font-weight:500;
+    text-decoration:none;
+    border:1px solid var(--hairline);
+    transition:background var(--transition-fast), color var(--transition-fast);
+  }
+  .ko-card .btn-mail:hover{background:var(--petrol);color:var(--creme);border-color:var(--petrol);}
+  .ko-card .btn-mail svg{width:14px;height:14px;}
+
+  /* Trainee-Sektion */
+  .ko-trainees{background:var(--creme);padding:var(--space-section) 0;border-top:1px solid var(--hairline);}
+  .ko-trainees .head{max-width:820px;margin:0 0 32px;}
+  .ko-trainees .head .eyebrow{display:block;margin-bottom:14px;}
+  .ko-trainees .head h2{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(26px,2.8vw,36px);line-height:1.15;letter-spacing:-0.015em;
+    color:var(--petrol);margin:0 0 12px;
+  }
+  .ko-trainees .head p{
+    font-family:var(--sans);font-size:16px;line-height:1.6;color:var(--stein);
+    max-width:640px;margin:0;
+  }
+  .ko-trainees-grid{
+    display:grid;grid-template-columns:repeat(4, minmax(0, 1fr));gap:22px;
+    max-width:600px;
+  }
+
+  /* Empty state */
+  .ko-empty{
+    padding:64px 32px;text-align:center;
+    font-family:var(--sans);color:var(--stein);font-size:16px;
+    background:#fff;border:1px dashed var(--hairline);
+    display:none;
+  }
+  .ko-empty.is-active{display:block;}
+
+  @media (max-width:1080px){
+    .ko-grid,.ko-trainees-grid{grid-template-columns:repeat(3, minmax(0, 1fr));gap:18px;}
+  }
+  @media (max-width:780px){
+    .ko-intro-grid{grid-template-columns:1fr;gap:28px;}
+    .ko-grid,.ko-trainees-grid{grid-template-columns:repeat(2, minmax(0, 1fr));gap:14px;}
+    .ko-intro,.ko-section,.ko-trainees{padding:var(--space-section-sm) 0;}
+    .ko-toolbar{gap:12px;margin-bottom:28px;}
+    .ko-count{margin-left:0;width:100%;}
+  }
+  @media (max-width:480px){
+    .ko-toolbar select{flex:1;}
+  }
+</style>
+
+<main id="top">
+
+<PageHero variant="feature">
+  <Fragment slot="eyebrow">Informieren · Unsere Schule</Fragment>
+  <Fragment slot="title">Unser <em>Kollegium.</em></Fragment>
+  <Fragment slot="lede">Die Menschen, die unsere Schule tragen — mit ihren Fächern, Funktionen und offenen Türen für Gespräche.</Fragment>
+</PageHero>
+
+<section class="ko-intro" aria-label="Einordnung">
+  <div class="container">
+    <div class="ko-intro-grid">
+      <div>
+        <h2>{staff.length}&nbsp;Lehrerinnen und Lehrer.</h2>
+      </div>
+      <div>
+        <p>Alle Lehrkräfte besitzen eine schulinterne E-Mail-Adresse nach dem Schema <code>nachname@unesco-schule-essen.de</code>. Für die direkte Kontaktaufnahme nutzen Sie einfach den E-Mail-Button auf der jeweiligen Karte.</p>
+        <p>Hinweis: Umlaute werden in E-Mail-Adressen als ae/oe/ue/ss geschrieben — z.&nbsp;B. <em>boehm@…</em> statt <em>böhm@…</em></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ko-section" aria-label="Alle Lehrkräfte">
+  <div class="container">
+    <div class="ko-toolbar">
+      <label for="ko-filter-subject">Fach</label>
+      <select id="ko-filter-subject">
+        <option value="">Alle Fächer</option>
+        {subjects.map((s) => <option value={s}>{s}</option>)}
+      </select>
+
+      <label for="ko-filter-role">Funktion</label>
+      <select id="ko-filter-role">
+        <option value="">Alle Funktionen</option>
+        {roles.map((r) => <option value={r}>{r}</option>)}
+      </select>
+
+      <span class="ko-count" id="ko-count">{staff.length} Personen</span>
+    </div>
+
+    <div class="ko-grid" id="ko-grid">
+      {staff.map((t, i) => (
+        <article
+          class="ko-card"
+          data-subjects={t.data.subjects.join("|")}
+          data-roles={t.data.roles.join("|")}
+        >
+          <div class="photo">
+            <img
+              src={asset(t.data.photo || "")}
+              alt={`Porträt von ${displayName(t)}`}
+              width="400" height="300"
+              loading={i < 8 ? "eager" : "lazy"}
+              onerror={`this.src='${placeholder}'`}
+            />
+          </div>
+          <div class="body">
+            <p class="name">{displayName(t)}</p>
+            {t.data.subjects.length > 0 && (
+              <p class="subjects">{t.data.subjects.join(" · ")}</p>
+            )}
+            {t.data.roles.length > 0 && (
+              <div class="roles">
+                {t.data.roles.map((r) => <span class="role-chip">{r}</span>)}
+              </div>
+            )}
+          </div>
+          <div class="contact">
+            <a href={`mailto:${t.data.email}`} class="btn-mail" aria-label={`E-Mail an ${displayName(t)}`}>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                <rect x="3" y="5" width="18" height="14" rx="1"/>
+                <path d="M3 7l9 6 9-6"/>
+              </svg>
+              E-Mail schreiben
+            </a>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <div class="ko-empty" id="ko-empty">
+      Keine Lehrkräfte mit dieser Kombination. Wähle einen anderen Filter.
+    </div>
+  </div>
+</section>
+
+{trainees.length > 0 && (
+  <section class="ko-trainees" aria-label="Referendarinnen und Referendare">
+    <div class="container">
+      <div class="head">
+        <span class="eyebrow">Im Referendariat</span>
+        <h2>Referendar*innen.</h2>
+        <p>Angehende Lehrkräfte, die bei uns den Vorbereitungsdienst absolvieren.</p>
+      </div>
+      <div class="ko-trainees-grid">
+        {trainees.map((t) => (
+          <article class="ko-card">
+            <div class="photo">
+              <img src={asset(t.data.photo || "")} alt={`Porträt von ${displayName(t)}`} width="400" height="300" loading="lazy" onerror={`this.src='${placeholder}'`}/>
+            </div>
+            <div class="body">
+              <p class="name">{displayName(t)}</p>
+              <p class="subjects">Referendariat</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+)}
+
+<script is:inline>
+  (function(){
+    const sel1 = document.getElementById('ko-filter-subject');
+    const sel2 = document.getElementById('ko-filter-role');
+    const grid = document.getElementById('ko-grid');
+    const empty = document.getElementById('ko-empty');
+    const count = document.getElementById('ko-count');
+    if(!sel1 || !grid) return;
+
+    function apply(){
+      const s = sel1.value;
+      const r = sel2.value;
+      let visible = 0;
+      grid.querySelectorAll('.ko-card').forEach(function(card){
+        const subs = (card.getAttribute('data-subjects') || '').split('|');
+        const rls  = (card.getAttribute('data-roles') || '').split('|');
+        const okS = !s || subs.includes(s);
+        const okR = !r || rls.includes(r);
+        const show = okS && okR;
+        card.classList.toggle('is-hidden', !show);
+        if(show) visible++;
+      });
+      count.textContent = visible + (visible === 1 ? ' Person' : ' Personen');
+      empty.classList.toggle('is-active', visible === 0);
+    }
+    sel1.addEventListener('change', apply);
+    sel2.addEventListener('change', apply);
+  })();
+</script>
+
+</main>
+</BaseLayout>

@@ -1,0 +1,200 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHero from "../components/PageHero.astro";
+
+// Farbpalette für die Schließfach-Illustration (12 Kacheln, 2 Reihen à 6).
+const lockers = [
+  "#A399AE", "#3B7968", "#8B2B7F", "#7A9E6A", "#C7C8BE", "#7FC7BF",
+  "#1E2D4A", "#6FA2DE", "#E8DFBE", "#21428E", "#E2C13A", "#9B2733",
+];
+---
+<BaseLayout title="Schließfächer mieten — UNESCO-Schule Essen" description="So mietet dein Kind ein Schließfach im Schulgebäude: direkt online beim Betreiber AstraDirect.">
+<style is:global>
+  /* ---------- Schließfächer ---------- */
+  .sf-intro{background:var(--creme);padding:var(--space-section) 0;}
+  .sf-grid{
+    display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);
+    gap:56px;align-items:start;
+  }
+  .sf-grid h2{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(30px,3.4vw,44px);line-height:1.1;
+    color:var(--petrol);letter-spacing:-0.015em;margin:0;
+  }
+  .sf-grid h2 em{font-style:italic;color:var(--bordeaux);}
+  .sf-grid p{
+    font-family:var(--sans);font-size:17px;line-height:1.7;color:var(--tinte);
+    margin:0 0 16px;
+  }
+
+  /* Steps */
+  .sf-steps{background:var(--offwhite);padding:var(--space-section) 0;border-top:1px solid var(--hairline);}
+  .sf-steps .head{max-width:820px;margin:0 0 48px;}
+  .sf-steps .head .eyebrow{display:block;margin-bottom:14px;}
+  .sf-steps .head h2{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(28px,3vw,40px);line-height:1.15;letter-spacing:-0.015em;
+    color:var(--petrol);margin:0 0 14px;
+  }
+  .sf-steps .head p{
+    font-family:var(--sans);font-size:16.5px;line-height:1.65;color:var(--stein);max-width:640px;margin:0;
+  }
+
+  .sf-steps-grid{display:grid;grid-template-columns:repeat(3, minmax(0, 1fr));gap:24px;}
+  .sf-step{
+    background:#fff;border:1px solid var(--hairline);
+    border-top:var(--card-accent-width) solid var(--petrol);
+    padding:var(--card-padding);
+    display:flex;flex-direction:column;gap:14px;
+  }
+  .sf-step .n{
+    font-family:var(--serif);font-weight:500;font-size:40px;line-height:1;
+    color:var(--petrol);letter-spacing:-0.02em;font-variant-numeric:tabular-nums;
+  }
+  .sf-step h3{
+    font-family:var(--serif);font-weight:500;font-size:22px;line-height:1.2;
+    color:var(--petrol);letter-spacing:-0.008em;margin:0;
+  }
+  .sf-step p{
+    font-family:var(--sans);font-size:15px;line-height:1.65;color:var(--tinte);margin:0;
+  }
+
+  /* Action */
+  .sf-action{
+    background:var(--petrol);color:var(--creme);
+    padding:var(--space-section) 0;
+  }
+  .sf-action .container{max-width:840px;text-align:center;}
+  .sf-action .eyebrow{color:rgba(245,239,231,0.55);display:block;margin-bottom:14px;}
+  .sf-action h2{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(28px,3vw,42px);line-height:1.2;
+    color:var(--creme);letter-spacing:-0.015em;margin:0 0 18px;
+  }
+  .sf-action p{
+    font-family:var(--sans);font-size:17px;line-height:1.7;
+    color:rgba(245,239,231,0.9);max-width:640px;margin:0 auto 28px;
+  }
+  .sf-btn{
+    display:inline-flex;align-items:center;gap:10px;
+    padding:16px 28px;
+    background:var(--gold);color:#2a1d08;
+    font-family:var(--sans);font-weight:600;font-size:15px;
+    text-decoration:none;letter-spacing:0.02em;
+    transition:background var(--transition-fast), transform var(--transition-fast);
+  }
+  .sf-btn:hover{background:#e0b68a;transform:translateY(-1px);color:#2a1d08;}
+  @media (prefers-reduced-motion: reduce){.sf-btn:hover{transform:none;}}
+  .sf-btn svg{width:16px;height:16px;}
+  .sf-action .hint{
+    font-family:var(--sans);font-size:13px;color:rgba(245,239,231,0.65);
+    margin-top:18px;
+  }
+
+  /* Schließfach-Illustration */
+  .sf-illu{
+    width:100%;aspect-ratio:3/1.2;
+    background:var(--creme);
+    padding:18px;
+    display:grid;grid-template-columns:repeat(6, 1fr);grid-template-rows:1fr 1fr;gap:10px;
+    border:1px solid var(--hairline);
+  }
+  .sf-locker{
+    position:relative;border-radius:2px;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .sf-locker::before{
+    content:"";position:absolute;top:18%;left:50%;transform:translateX(-50%);
+    width:32px;height:22px;border-radius:2px;
+    background:rgba(255,255,255,0.9);
+    box-shadow:0 1px 2px rgba(0,0,0,0.1);
+  }
+  .sf-locker::after{
+    content:"";position:absolute;top:calc(18% + 3px);left:50%;transform:translateX(-50%);
+    width:6px;height:6px;border-radius:50%;
+    background:var(--stein);opacity:0.5;
+  }
+
+  @media (max-width:960px){
+    .sf-grid{grid-template-columns:1fr;gap:28px;}
+    .sf-steps-grid{grid-template-columns:1fr;gap:14px;}
+    .sf-intro,.sf-steps,.sf-action{padding:var(--space-section-sm) 0;}
+    .sf-illu{aspect-ratio:3/1.4;padding:12px;gap:6px;}
+  }
+  @media (max-width:520px){
+    .sf-illu{grid-template-columns:repeat(4, 1fr);grid-template-rows:repeat(3, 1fr);aspect-ratio:4/3;}
+    .sf-locker::before{top:22%;width:22px;height:16px;}
+    .sf-locker::after{top:calc(22% + 2px);width:4px;height:4px;}
+  }
+</style>
+
+<main id="top">
+
+<PageHero variant="feature">
+  <Fragment slot="eyebrow">Service · Digitales &amp; Alltag</Fragment>
+  <Fragment slot="title">Schließfächer <em>mieten.</em></Fragment>
+  <Fragment slot="lede">Ein eigenes Schließfach im Schulgebäude — unkompliziert und direkt beim Betreiber. Hier findest du alle Infos.</Fragment>
+</PageHero>
+
+<section class="sf-intro" aria-label="Überblick">
+  <div class="container">
+    <div class="sf-grid">
+      <div>
+        <h2>Dein eigener Platz <em>in der Schule.</em></h2>
+      </div>
+      <div>
+        <p>Bei Interesse hat jede Schülerin und jeder Schüler die Möglichkeit, ein Schließfach im Schulgebäude zu mieten.</p>
+        <p>Der Vertrag läuft nicht über die Schule, sondern direkt zwischen dir (beziehungsweise den Erziehungsberechtigten) und dem Betreiber <strong>AstraDirect</strong>. Das heißt: wenige Klicks online, und dein Schließfach ist reserviert.</p>
+        <div class="sf-illu" aria-label="Farbige Schließfächer in der Schule">
+          {lockers.map((color) => (
+            <div class="sf-locker" style={`background:${color};`}></div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sf-steps" aria-label="Ablauf">
+  <div class="container">
+    <div class="head">
+      <span class="eyebrow">So funktioniert's</span>
+      <h2>Drei Schritte zum eigenen Schließfach.</h2>
+      <p>Die Anmeldung läuft komplett online beim Betreiber AstraDirect — Schule ist hier nur Vermittler.</p>
+    </div>
+
+    <div class="sf-steps-grid">
+      <article class="sf-step">
+        <span class="n">01</span>
+        <h3>Website öffnen</h3>
+        <p>Rufe die Website von AstraDirect auf und wähle unsere Schule aus. Dort siehst du verfügbare Schließfächer und Preise.</p>
+      </article>
+      <article class="sf-step">
+        <span class="n">02</span>
+        <h3>Vertrag abschließen</h3>
+        <p>Die Anmeldung erfolgt online. AstraDirect schließt den Vertrag direkt mit dir bzw. den Erziehungsberechtigten.</p>
+      </article>
+      <article class="sf-step">
+        <span class="n">03</span>
+        <h3>Schlüssel erhalten</h3>
+        <p>Nach der Zahlung bekommst du Zugang zum reservierten Fach. Der Betreiber informiert dich über alle Details zur Abholung des Schlüssels.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="sf-action" aria-label="Zum Betreiber">
+  <div class="container">
+    <span class="eyebrow">Direkt anmelden</span>
+    <h2>Bereit für dein eigenes Schließfach?</h2>
+    <p>Nutze einfach die Website von AstraDirect. Bei Fragen zur Anmeldung oder zum Fach selbst ist AstraDirect die richtige Adresse.</p>
+    <a href="https://www.astradirect.de/index.html" class="sf-btn" target="_blank" rel="noopener">
+      Zur Anmeldung bei AstraDirect
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17L17 7M17 7H9M17 7v8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+    <p class="hint">Externer Link — öffnet in einem neuen Tab. Vertragspartner ist AstraDirect, nicht die Schule.</p>
+  </div>
+</section>
+
+</main>
+</BaseLayout>
