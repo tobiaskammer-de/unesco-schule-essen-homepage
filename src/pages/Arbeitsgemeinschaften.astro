@@ -1,0 +1,278 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHero from "../components/PageHero.astro";
+
+/**
+ * Arbeitsgemeinschaften-Seite.
+ * Jede AG = eine Karte mit kurzer Beschreibung, optionalem Foto-Platzhalter
+ * und einer Ansprechpartner-Mini-Card.
+ */
+const ags = [
+  {
+    title: "Philharmonie- und Theaterbesuche",
+    kicker: "Kulturelle Bildung",
+    desc: "Regelmäßige gemeinsame Abende in der Philharmonie und im Theater Essen — von Konzerten bis zu Schauspielaufführungen. Kartenkontingente und Einführungen helfen, Kultur als lebendigen Teil des Schullebens zu erleben.",
+    contact: { name: "Herr Pittelkau", role: "Leitung", initials: "P" },
+    state: "aktiv",
+    accent: "petrol",
+    photo: null,
+  },
+  {
+    title: "Schulsanitätsdienst",
+    kicker: "Erste Hilfe & Verantwortung",
+    desc:
+      "Gemeinsam mit dem ASB Essen werden interessierte Schülerinnen und Schüler zu Schulsanitäter*innen ausgebildet. Sie lernen, in Notsituationen schnell und kompetent Erste Hilfe zu leisten — und engagieren sich danach ehrenamtlich im Schulalltag: bei Verletzungen in Pausen, im Sport und bei Veranstaltungen.",
+    contact: { name: "Frau Engelke", role: "Schulische Betreuung", initials: "E" },
+    extra: "Ausbildung durch Henning Handschke · ASB Essen",
+    quote: '„Leben retten ist keine Frage des Alters — aber je früher man anfängt, desto mehr festigt sich das Wissen."',
+    state: "aktiv",
+    accent: "bordeaux",
+    photo: null,
+  },
+  {
+    title: "Makerspace",
+    kicker: "Im Aufbau",
+    desc:
+      "Unser neuer Makerspace unterhalb des Selbstlernzentrums nimmt Gestalt an. Ausgestattet mit 3D-Drucker und weiterem Werkzeug entsteht ein Raum, in dem Schülerinnen und Schüler eigene Ideen prototypen, modellieren und herstellen können — fachübergreifend und projektbasiert.",
+    contact: { name: "Herr Kammer", role: "Leitung", initials: "K" },
+    extra: "Raum unter dem Selbstlernzentrum · Eröffnung folgt",
+    state: "im-aufbau",
+    accent: "gold",
+    photo: null,
+  },
+  {
+    title: "Spanisch-AG",
+    kicker: "Sprachen",
+    desc:
+      "Hola! In der Spanisch-AG lernen Schülerinnen und Schüler spielerisch die spanische Sprache und Kultur kennen — mit Liedern, Gesprächen und kleinen Projekten. Ideal als Ergänzung zum regulären Sprachenangebot oder als erster Einstieg.",
+    contact: { name: "Frau Rhimi", role: "Leitung", initials: "R" },
+    state: "aktiv",
+    accent: "petrol",
+    photo: null,
+  },
+  {
+    title: "Lese-AG",
+    kicker: "Leseförderung",
+    desc:
+      "Lesen schafft Welten. In der Lese-AG treffen sich Schülerinnen und Schüler, die gerne in Bücher eintauchen — zum Austausch über aktuelle Lieblingslektüren, gemeinsame Leseabende und die Vorbereitung auf den Vorlesewettbewerb.",
+    contact: { name: "Frau Cheshmberah", role: "Leitung", initials: "C" },
+    state: "aktiv",
+    accent: "petrol",
+    photo: null,
+  },
+];
+---
+<BaseLayout title="Arbeitsgemeinschaften — UNESCO-Schule Essen" description="Unsere Arbeitsgemeinschaften: Schulsanitätsdienst, Makerspace, Kulturbesuche, Sprachen und Leseförderung.">
+<style is:global>
+  /* ---------- Arbeitsgemeinschaften ---------- */
+  .ag-intro{background:var(--creme);padding:var(--space-section) 0;}
+  .ag-intro-grid{
+    display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);
+    gap:56px;align-items:start;
+  }
+  .ag-intro h2{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(30px,3.4vw,44px);line-height:1.1;
+    color:var(--petrol);letter-spacing:-0.015em;margin:0;
+  }
+  .ag-intro h2 em{font-style:italic;color:var(--bordeaux);}
+  .ag-intro p{
+    font-family:var(--sans);font-size:17px;line-height:1.7;color:var(--tinte);
+    margin:0 0 14px;
+  }
+
+  .ag-list{background:var(--offwhite);padding:var(--space-section) 0;border-top:1px solid var(--hairline);}
+  .ag-list .head{max-width:820px;margin:0 0 48px;}
+  .ag-list .head .eyebrow{display:block;margin-bottom:14px;}
+  .ag-list .head h2{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(30px,3.2vw,44px);line-height:1.15;letter-spacing:-0.015em;
+    color:var(--petrol);margin:0 0 16px;
+  }
+  .ag-list .head p{
+    font-family:var(--sans);font-size:17px;line-height:1.65;color:var(--stein);
+    max-width:680px;margin:0;
+  }
+
+  .ag-grid{
+    display:grid;grid-template-columns:repeat(auto-fit, minmax(320px, 1fr));gap:28px;
+  }
+  .ag-card{
+    background:#fff;border:1px solid var(--hairline);
+    border-top:var(--card-accent-width) solid var(--petrol);
+    display:grid;grid-template-rows:auto 1fr auto;
+    transition:transform var(--transition), box-shadow var(--transition);
+  }
+  .ag-card.accent-bordeaux{border-top-color:var(--bordeaux);}
+  .ag-card.accent-gold{border-top-color:var(--gold);}
+  .ag-card:hover{transform:translateY(-2px);box-shadow:0 16px 40px -24px rgba(14,77,79,0.28);}
+  @media (prefers-reduced-motion: reduce){.ag-card:hover{transform:none;}}
+
+  .ag-card .photo{
+    aspect-ratio:16/10;overflow:hidden;background:var(--creme);
+    display:flex;align-items:center;justify-content:center;
+    border-bottom:1px solid var(--hairline);
+    position:relative;
+  }
+  .ag-card .photo img{width:100%;height:100%;object-fit:cover;display:block;}
+  .ag-card .photo .placeholder{
+    font-family:var(--sans);font-size:11.5px;font-weight:500;
+    letter-spacing:0.14em;text-transform:uppercase;color:var(--stein);
+    background:
+      repeating-linear-gradient(45deg,
+        rgba(14,77,79,0.04) 0,
+        rgba(14,77,79,0.04) 10px,
+        rgba(14,77,79,0.07) 10px,
+        rgba(14,77,79,0.07) 20px);
+    width:100%;height:100%;
+    display:flex;align-items:center;justify-content:center;gap:10px;
+  }
+  .ag-card .photo .placeholder .dot{
+    width:8px;height:8px;border-radius:50%;background:var(--hairline);
+  }
+
+  .ag-card .body{padding:28px 28px 22px;display:flex;flex-direction:column;gap:14px;}
+  .ag-card .kicker{
+    font-family:var(--sans);font-size:11px;font-weight:600;
+    letter-spacing:0.14em;text-transform:uppercase;color:var(--petrol);
+    display:inline-flex;align-items:center;gap:8px;
+  }
+  .ag-card.accent-bordeaux .kicker{color:var(--bordeaux);}
+  .ag-card.accent-gold .kicker{color:#8a5a20;}
+  .ag-card .kicker .state-dot{
+    width:6px;height:6px;border-radius:50%;background:var(--sage);display:inline-block;
+  }
+  .ag-card.state-im-aufbau .kicker .state-dot{background:var(--gold);}
+  .ag-card h3{
+    font-family:var(--serif);font-weight:500;font-size:24px;line-height:1.2;
+    color:var(--petrol);letter-spacing:-0.008em;margin:0;
+  }
+  .ag-card .desc{
+    font-family:var(--sans);font-size:15.5px;line-height:1.65;color:var(--tinte);margin:0;
+  }
+  .ag-card .extra{
+    font-family:var(--sans);font-size:13.5px;line-height:1.55;color:var(--stein);
+    padding:10px 14px;background:var(--creme);border-left:2px solid var(--hairline);
+  }
+  .ag-card .quote{
+    font-family:var(--serif);font-style:italic;font-size:15px;line-height:1.5;
+    color:var(--stein);padding-left:16px;border-left:2px solid var(--bordeaux);margin:2px 0;
+  }
+
+  /* Ansprechpartner-Mini-Card unten in jeder Karte */
+  .ag-card .contact{
+    margin-top:auto;padding:18px 28px 24px;
+    display:grid;grid-template-columns:44px 1fr;gap:14px;align-items:center;
+    border-top:1px solid var(--hairline);background:var(--offwhite);
+  }
+  .ag-card .contact .avatar{
+    width:44px;height:44px;border-radius:50%;
+    background:var(--petrol);color:var(--creme);
+    display:flex;align-items:center;justify-content:center;
+    font-family:var(--serif);font-weight:500;font-size:18px;letter-spacing:-0.01em;
+  }
+  .ag-card.accent-bordeaux .contact .avatar{background:var(--bordeaux);}
+  .ag-card.accent-gold .contact .avatar{background:var(--gold);color:#2a1d08;}
+  .ag-card .contact .info{display:flex;flex-direction:column;gap:2px;}
+  .ag-card .contact .role{
+    font-family:var(--sans);font-size:10.5px;font-weight:600;
+    letter-spacing:0.14em;text-transform:uppercase;color:var(--stein);
+  }
+  .ag-card .contact .name{
+    font-family:var(--sans);font-weight:500;font-size:15px;color:var(--petrol);
+  }
+
+  /* Call-to-action unten */
+  .ag-cta{background:var(--petrol);color:var(--creme);padding:var(--space-section) 0;}
+  .ag-cta .container{max-width:820px;text-align:center;}
+  .ag-cta .eyebrow{color:rgba(245,239,231,0.55);display:block;margin-bottom:14px;}
+  .ag-cta h2{
+    font-family:var(--serif);font-weight:500;font-style:italic;
+    font-size:clamp(28px,3vw,40px);line-height:1.2;
+    color:var(--creme);letter-spacing:-0.015em;margin:0 0 22px;
+  }
+  .ag-cta h2 em{color:var(--gold);font-style:italic;}
+  .ag-cta p{
+    font-family:var(--sans);font-size:17px;line-height:1.7;
+    color:rgba(245,239,231,0.9);max-width:640px;margin:0 auto 26px;
+  }
+
+  @media (max-width:960px){
+    .ag-intro-grid{grid-template-columns:1fr;gap:28px;}
+    .ag-intro,.ag-list,.ag-cta{padding:var(--space-section-sm) 0;}
+  }
+  @media (max-width:560px){
+    .ag-grid{grid-template-columns:1fr;gap:20px;}
+    .ag-card .body{padding:24px 24px 20px;}
+    .ag-card .contact{padding:16px 24px 20px;}
+  }
+</style>
+
+<main id="top">
+
+<PageHero variant="feature">
+  <Fragment slot="eyebrow">Angebote · Lernen &amp; Förderung</Fragment>
+  <Fragment slot="title">Arbeits­gemein­schaften.</Fragment>
+  <Fragment slot="lede">Nach dem Unterricht geht's weiter: In unseren AGs entdecken Schülerinnen und Schüler eigene Interessen, übernehmen Verantwortung und lernen Neues — freiwillig, engagiert und mit Freude.</Fragment>
+</PageHero>
+
+<section class="ag-intro" aria-label="Einordnung">
+  <div class="container">
+    <div class="ag-intro-grid">
+      <div>
+        <h2>Mehr als Unterricht — <em>eine Auswahl.</em></h2>
+      </div>
+      <div>
+        <p>Arbeitsgemeinschaften ergänzen den regulären Unterricht — mal praktisch, mal kreativ, mal engagiert. Sie sind freiwillig, kostenlos und offen für alle interessierten Schülerinnen und Schüler.</p>
+        <p>Manche AGs sind seit Jahren fester Bestandteil unseres Schullebens, andere entstehen gerade frisch. Auf dieser Seite findet sich ein aktueller Überblick — plus Ansprechpartner*innen, bei denen man sich melden kann.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ag-list" aria-label="Unsere Arbeitsgemeinschaften">
+  <div class="container">
+    <div class="head">
+      <span class="eyebrow">Aktuelles Angebot</span>
+      <h2>Unsere Arbeits­gemein­schaften.</h2>
+      <p>Mitmachen jederzeit möglich — sprecht einfach die jeweilige Ansprechperson an.</p>
+    </div>
+
+    <div class="ag-grid">
+      {ags.map((ag) => (
+        <article class={`ag-card accent-${ag.accent} state-${ag.state}`}>
+          <div class="photo" aria-hidden="true">
+            <div class="placeholder"><span class="dot"></span>Foto folgt</div>
+          </div>
+
+          <div class="body">
+            <span class="kicker"><span class="state-dot"></span>{ag.kicker}</span>
+            <h3>{ag.title}</h3>
+            <p class="desc">{ag.desc}</p>
+            {ag.quote && <p class="quote">{ag.quote}</p>}
+            {ag.extra && <div class="extra">{ag.extra}</div>}
+          </div>
+
+          <div class="contact">
+            <span class="avatar" aria-hidden="true">{ag.contact.initials}</span>
+            <div class="info">
+              <span class="role">{ag.contact.role}</span>
+              <span class="name">{ag.contact.name}</span>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section class="ag-cta" aria-label="Eigene AG vorschlagen">
+  <div class="container">
+    <span class="eyebrow">Eigene Idee?</span>
+    <h2>Eine AG ist <em>kein fertiges Angebot.</em></h2>
+    <p>AGs entstehen aus Interesse. Wenn dir ein Angebot fehlt oder du selbst Lust hast, etwas aufzuziehen — sprich uns an. Wir unterstützen gern beim Start.</p>
+  </div>
+</section>
+
+</main>
+</BaseLayout>
