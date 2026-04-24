@@ -3,6 +3,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
 
 // Ansprechpartner*innen
+const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
 const people = [
   {
     role: "Sekretariat · Erste Anlaufstelle",
@@ -12,6 +13,7 @@ const people = [
     telDisplay: "0201 · 280 26 30",
     mail: "164835@schule.nrw.de",
     initials: "A",
+    photo: `${BASE}/assets/kollegium/axer-kristina.png`,
     primary: true,
   },
   {
@@ -22,6 +24,7 @@ const people = [
     telDisplay: "0201 · 280 26 30 (Sekretariat)",
     mail: "sven.scheding@164835.nrw.schule",
     initials: "S",
+    photo: `${BASE}/assets/kollegium/scheding-sven.jpg`,
   },
   {
     role: "Ansprechpartnerin Sekundarstufe I",
@@ -31,6 +34,7 @@ const people = [
     telDisplay: "0201 · 280 26 30 (Sekretariat)",
     mail: "164835@schule.nrw.de",
     initials: "W",
+    photo: `${BASE}/assets/kollegium/wilbat-carmen.jpg`,
   },
   {
     role: "Ansprechpartner Sekundarstufe II",
@@ -40,6 +44,7 @@ const people = [
     telDisplay: "0201 · 280 26 30 (Sekretariat)",
     mail: "oberstufe@unesco-schule-essen.de",
     initials: "O",
+    photo: null,
   },
 ];
 ---
@@ -118,12 +123,15 @@ const people = [
   .kt-person.is-primary:hover{box-shadow:0 0 0 1px var(--bordeaux), 0 16px 40px -24px rgba(110,38,57,0.3);}
   @media (prefers-reduced-motion: reduce){.kt-person:hover{transform:none;}}
   .kt-person .avatar{
-    width:84px;height:84px;border-radius:50%;
+    width:84px;height:84px;border-radius:50%;overflow:hidden;
     background:var(--petrol);color:var(--creme);
     display:flex;align-items:center;justify-content:center;
     font-family:var(--serif);font-weight:500;font-size:32px;letter-spacing:-0.01em;
   }
   .kt-person.is-primary .avatar{background:var(--bordeaux);}
+  .kt-person .avatar img{
+    width:100%;height:100%;object-fit:cover;display:block;
+  }
   .kt-person .role{
     font-family:var(--sans);font-size:11px;font-weight:600;
     letter-spacing:0.14em;text-transform:uppercase;color:var(--petrol);
@@ -304,7 +312,9 @@ const people = [
     <div class="kt-people-grid">
       {people.map((p) => (
         <article class={`kt-person ${p.primary ? "is-primary" : ""}`}>
-          <span class="avatar" aria-hidden="true">{p.initials}</span>
+          <span class="avatar" aria-hidden="true">
+            {p.photo ? <img src={p.photo} alt="" loading="lazy" width="168" height="168"/> : p.initials}
+          </span>
           <div class="role">{p.role}</div>
           <p class="name">{p.name}</p>
           <p class="sub">{p.sub}</p>

@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
+const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
 ---
 <BaseLayout title="Schulleitung und Sekretariat — UNESCO-Schule Essen">
 <style is:global>
@@ -46,14 +47,14 @@ import PageHero from "../components/PageHero.astro";
   .person:hover{transform:translateY(-2px);box-shadow:0 16px 36px -22px rgba(14,77,79,0.3);}
   @media (prefers-reduced-motion: reduce){.person:hover{transform:none;}}
   .avatar{
-    width:100px;height:100px;border-radius:50%;
+    width:100px;height:100px;border-radius:50%;overflow:hidden;
     display:flex;align-items:center;justify-content:center;
     font-family:var(--serif);font-weight:500;font-size:36px;line-height:1;
     letter-spacing:-0.02em;color:var(--creme);
     background:var(--petrol);
     position:relative;
   }
-  .avatar::after{
+  .avatar:not(.has-photo)::after{
     content:"Platzhalter";
     position:absolute;bottom:-6px;right:-6px;
     font-family:var(--sans);font-size:8px;font-weight:500;
@@ -61,6 +62,7 @@ import PageHero from "../components/PageHero.astro";
     padding:3px 6px;border-radius:2px;
     background:var(--gold);color:#3a2a10;
   }
+  .avatar img{width:100%;height:100%;object-fit:cover;display:block;}
   .person.lead .avatar{background:var(--bordeaux);}
   .person.deputy .avatar{background:#8f3a4e;}
   .person.coord .avatar{background:var(--petrol);}
@@ -182,7 +184,9 @@ import PageHero from "../components/PageHero.astro";
       </article>
 
       <article class="person coord">
-        <div class="avatar" aria-hidden="true">CW</div>
+        <div class="avatar has-photo" aria-hidden="true">
+          <img src={`${BASE}/assets/kollegium/wilbat-carmen.jpg`} alt="" loading="lazy" width="200" height="200"/>
+        </div>
         <div>
           <p class="role">Koordinatorin · Sekundarstufe I</p>
           <h3 class="name">Carmen Wilbat</h3>
@@ -194,7 +198,9 @@ import PageHero from "../components/PageHero.astro";
       </article>
 
       <article class="person coord">
-        <div class="avatar" aria-hidden="true">SS</div>
+        <div class="avatar has-photo" aria-hidden="true">
+          <img src={`${BASE}/assets/kollegium/scheding-sven.jpg`} alt="" loading="lazy" width="200" height="200"/>
+        </div>
         <div>
           <p class="role">Koordination · Erprobungsstufe</p>
           <h3 class="name">Sven Scheding</h3>
@@ -206,7 +212,9 @@ import PageHero from "../components/PageHero.astro";
       </article>
 
       <article class="person office">
-        <div class="avatar" aria-hidden="true">KA</div>
+        <div class="avatar has-photo" aria-hidden="true">
+          <img src={`${BASE}/assets/kollegium/axer-kristina.png`} alt="" loading="lazy" width="200" height="200"/>
+        </div>
         <div>
           <p class="role">Sekretariat</p>
           <h3 class="name">Kristina Axer</h3>
