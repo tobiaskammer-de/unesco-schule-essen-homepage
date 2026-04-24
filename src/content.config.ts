@@ -59,4 +59,20 @@ const teachers = defineCollection({
   }),
 });
 
-export const collections = { news, teachers };
+/**
+ * Demo Pages Collection (TinaCMS Block-Editor Demo).
+ *
+ * Block-basierte Seiten, deren Inhalt als Array im Frontmatter liegt.
+ * Felder wie Titel/Text sind optional, weil jeder Blocktyp andere
+ * Properties mitbringt. Die Validierung erfolgt über das Tina-Schema.
+ */
+const demoPages = defineCollection({
+  loader: glob({ pattern: "**/*.md", base: "./src/content/demo" }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string().optional(),
+    blocks: z.array(z.record(z.any())).default([]),
+  }),
+});
+
+export const collections = { news, teachers, demoPages };

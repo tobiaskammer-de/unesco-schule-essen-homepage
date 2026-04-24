@@ -11,3 +11,7 @@ dist/
 .env
 .env.local
 .env.*.local
+
+# TinaCMS (generiert beim Build, nicht committen)
+tina/__generated__/
+public/admin-tina/

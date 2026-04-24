@@ -1,0 +1,210 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import PageHero from "../../components/PageHero.astro";
+import { getCollection, getEntry } from "astro:content";
+
+export async function getStaticPaths() {
+  const entries = await getCollection("demoPages");
+  return entries.map((e) => ({
+    params: { slug: e.id.replace(/\.md$/, "") },
+    props: { entry: e },
+  }));
+}
+
+const { entry } = Astro.props;
+const { title, description, blocks } = entry.data as {
+  title: string;
+  description?: string;
+  blocks: Array<any>;
+};
+
+const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
+function asset(p: string): string {
+  if (!p) return "";
+  if (p.startsWith("http")) return p;
+  if (p.startsWith(BASE + "/")) return p;
+  if (p.startsWith("/")) return BASE + p;
+  return BASE + "/" + p;
+}
+---
+<BaseLayout title={`${title} — UNESCO-Schule Essen`} description={description}>
+<style is:global>
+  /* ---------- Demo-Block-Styles ---------- */
+  .blk-two{background:var(--creme);padding:var(--space-section) 0;}
+  .blk-two .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:56px;align-items:start;}
+  .blk-two h2{
+    grid-column:1 / -1;margin:0 0 16px;
+    font-family:var(--serif);font-weight:500;font-size:clamp(28px,3vw,40px);line-height:1.1;
+    color:var(--petrol);letter-spacing:-0.015em;
+  }
+  .blk-two p{font-family:var(--sans);font-size:17px;line-height:1.7;color:var(--tinte);margin:0;}
+
+  .blk-cards{background:var(--offwhite);padding:var(--space-section) 0;border-top:1px solid var(--hairline);}
+  .blk-cards h2{
+    font-family:var(--serif);font-weight:500;font-size:clamp(28px,3vw,40px);
+    color:var(--petrol);letter-spacing:-0.015em;margin:0 0 40px;line-height:1.1;
+  }
+  .blk-cards .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;}
+  .blk-cards .card{
+    background:#fff;border:1px solid var(--hairline);
+    border-top:var(--card-accent-width) solid var(--petrol);
+    padding:28px 28px 24px;display:flex;flex-direction:column;gap:10px;
+  }
+  .blk-cards .card .kicker{
+    font-family:var(--sans);font-size:11px;font-weight:600;
+    letter-spacing:0.14em;text-transform:uppercase;color:var(--petrol);
+  }
+  .blk-cards .card h3{
+    font-family:var(--serif);font-weight:500;font-size:22px;line-height:1.2;
+    color:var(--petrol);letter-spacing:-0.008em;margin:0;
+  }
+  .blk-cards .card p{font-family:var(--sans);font-size:15px;line-height:1.6;color:var(--stein);margin:0;}
+
+  .blk-quote{background:var(--petrol);color:var(--creme);padding:var(--space-section) 0;}
+  .blk-quote .container{max-width:860px;text-align:center;}
+  .blk-quote blockquote{
+    margin:0;font-family:var(--serif);font-style:italic;font-weight:400;
+    font-size:clamp(24px,3vw,36px);line-height:1.3;
+    color:var(--creme);letter-spacing:-0.01em;
+  }
+  .blk-quote blockquote::before{
+    content:"„";display:block;font-family:var(--serif);font-size:72px;line-height:.3;
+    color:var(--gold);opacity:.6;margin-bottom:18px;
+  }
+  .blk-quote cite{
+    display:block;margin-top:28px;
+    font-family:var(--sans);font-style:normal;font-size:12px;
+    letter-spacing:0.2em;text-transform:uppercase;color:rgba(245,239,231,0.65);
+  }
+
+  .blk-cta{background:var(--creme);padding:var(--space-section) 0;border-top:1px solid var(--hairline);}
+  .blk-cta .container{max-width:860px;text-align:center;}
+  .blk-cta h2{
+    font-family:var(--serif);font-weight:500;font-style:italic;
+    font-size:clamp(28px,3vw,40px);line-height:1.2;
+    color:var(--petrol);letter-spacing:-0.015em;margin:0 0 18px;
+  }
+  .blk-cta p{font-family:var(--sans);font-size:17px;line-height:1.6;color:var(--tinte);max-width:620px;margin:0 auto 24px;}
+
+  .blk-gallery{background:var(--offwhite);padding:var(--space-section) 0;border-top:1px solid var(--hairline);}
+  .blk-gallery h2{
+    font-family:var(--serif);font-weight:500;font-size:clamp(28px,3vw,40px);
+    color:var(--petrol);letter-spacing:-0.015em;margin:0 0 36px;line-height:1.1;
+  }
+  .blk-gallery .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;}
+  .blk-gallery figure{margin:0;display:flex;flex-direction:column;gap:8px;}
+  .blk-gallery .img-wrap{aspect-ratio:4/3;overflow:hidden;background:var(--creme);border:1px solid var(--hairline);}
+  .blk-gallery img{width:100%;height:100%;object-fit:cover;display:block;}
+  .blk-gallery figcaption{
+    font-family:var(--sans);font-size:13px;color:var(--stein);letter-spacing:0.02em;
+  }
+
+  @media (max-width:780px){
+    .blk-two .wrap{grid-template-columns:1fr;gap:28px;}
+    .blk-cards .grid,.blk-gallery .grid{grid-template-columns:1fr;gap:16px;}
+    .blk-two,.blk-cards,.blk-quote,.blk-cta,.blk-gallery{padding:var(--space-section-sm) 0;}
+  }
+</style>
+
+<main id="top">
+
+{blocks.map((block) => {
+  const type = block._template;
+
+  if (type === "hero") {
+    return (
+      <PageHero
+        variant={block.variant || "feature"}
+        image={block.image ? asset(block.image) : undefined}
+        imageAlt=""
+      >
+        {block.eyebrow && <Fragment slot="eyebrow">{block.eyebrow}</Fragment>}
+        <Fragment slot="title">{block.title}</Fragment>
+        {block.lede && <Fragment slot="lede">{block.lede}</Fragment>}
+      </PageHero>
+    );
+  }
+
+  if (type === "textTwoCol") {
+    return (
+      <section class="blk-two">
+        <div class="container">
+          <div class="wrap">
+            {block.heading && <h2>{block.heading}</h2>}
+            {block.left && <p>{block.left}</p>}
+            {block.right && <p>{block.right}</p>}
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  if (type === "cardGrid") {
+    return (
+      <section class="blk-cards">
+        <div class="container">
+          {block.heading && <h2>{block.heading}</h2>}
+          <div class="grid">
+            {(block.cards || []).map((c: any) => (
+              <article class="card">
+                {c.kicker && <span class="kicker">{c.kicker}</span>}
+                {c.title && <h3>{c.title}</h3>}
+                {c.text && <p>{c.text}</p>}
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  if (type === "quote") {
+    return (
+      <section class="blk-quote">
+        <div class="container">
+          <blockquote>{block.quote}</blockquote>
+          {block.cite && <cite>— {block.cite}</cite>}
+        </div>
+      </section>
+    );
+  }
+
+  if (type === "cta") {
+    return (
+      <section class="blk-cta">
+        <div class="container">
+          {block.heading && <h2>{block.heading}</h2>}
+          {block.text && <p>{block.text}</p>}
+          {block.buttonText && block.buttonUrl && (
+            <a href={asset(block.buttonUrl)} class="btn btn-primary">{block.buttonText} <span class="arrow">→</span></a>
+          )}
+        </div>
+      </section>
+    );
+  }
+
+  if (type === "gallery") {
+    return (
+      <section class="blk-gallery">
+        <div class="container">
+          {block.heading && <h2>{block.heading}</h2>}
+          <div class="grid">
+            {(block.images || []).map((img: any) => (
+              <figure>
+                <div class="img-wrap">
+                  {img.src && <img src={asset(img.src)} alt={img.alt || ""} loading="lazy" width="800" height="600" />}
+                </div>
+                {img.caption && <figcaption>{img.caption}</figcaption>}
+              </figure>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  return null;
+})}
+
+</main>
+</BaseLayout>
