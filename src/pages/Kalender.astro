@@ -335,7 +335,7 @@ const lastUpdated = new Intl.DateTimeFormat("de-DE", {
               const visible = d.events.slice(0, maxVisible);
               const rest = d.events.length - visible.length;
               return (
-                <div class={`kl-day ${d.inMonth ? "" : "out"} ${isWeekend ? "we" : ""} ${d.isToday ? "today" : ""}`}>
+                <div class={`kl-day ${d.inMonth ? "" : "out"} ${isWeekend ? "we" : ""}`} data-iso={d.iso}>
                   <span class="num">{d.day}</span>
                   {visible.length > 0 && (
                     <div class="kl-evlist">
@@ -357,8 +357,40 @@ const lastUpdated = new Intl.DateTimeFormat("de-DE", {
   </div>
 </section>
 
-<script is:inline define:vars={{ currentIndex, totalMonths: months.length }}>
+<script is:inline define:vars={{ serverCurrentIndex: currentIndex, totalMonths: months.length }}>
   (function(){
+    // Clientseitig echtes "heute" in Berliner Zeit bestimmen — nicht Build-Zeit.
+    var todayISO = new Date().toLocaleDateString('en-CA', { timeZone: 'Europe/Berlin' });
+
+    // 1) .today-Markierung auf den aktuellen Tag setzen (alte vom Build entfernen)
+    document.querySelectorAll('.kl-day').forEach(function(d){
+      var iso = d.getAttribute('data-iso');
+      var inMonth = !d.classList.contains('out');
+      d.classList.toggle('today', inMonth && iso === todayISO);
+    });
+
+    // 2) Aktuellen Monat-Index aus tatsächlichem Heute ableiten
+    var currentIndex = serverCurrentIndex;
+    var months = document.querySelectorAll('.kl-month');
+    for (var i = 0; i < months.length; i++){
+      var todayCell = months[i].querySelector('.kl-day.today');
+      if (todayCell){ currentIndex = i; break; }
+    }
+
+    // 3) Veraltete Termine in der Listenansicht ausblenden
+    var countVisible = 0;
+    document.querySelectorAll('.kl-item[data-end-date]').forEach(function(li){
+      if (li.getAttribute('data-end-date') < todayISO){
+        li.style.display = 'none';
+      } else {
+        countVisible++;
+      }
+    });
+    var listHeadCount = document.querySelector('.kl-list .head p');
+    if (listHeadCount){
+      listHeadCount.textContent = 'Chronologisch sortiert — ab heute und in die Zukunft. Insgesamt ' + countVisible + ' Einträge.';
+    }
+
     var idx = currentIndex;
     var label = document.getElementById('klNavLabel');
     var count = document.getElementById('klNavCount');
@@ -381,6 +413,11 @@ const lastUpdated = new Intl.DateTimeFormat("de-DE", {
       if (prev) prev.disabled = (idx <= 0);
       if (next) next.disabled = (idx >= totalMonths - 1);
       if (today) today.disabled = (idx === currentIndex);
+    }
+
+    // Wenn der aktuell sichtbare Monat nicht mehr der aktuelle ist, auf Heute umschalten
+    if (currentIndex !== serverCurrentIndex){
+      show(currentIndex);
     }
 
     prev && prev.addEventListener('click', function(){ show(idx - 1); });
@@ -421,7 +458,7 @@ const lastUpdated = new Intl.DateTimeFormat("de-DE", {
     ) : (
       <ul class="kl-items">
         {upcoming.slice(0, 80).map((e) => (
-          <li class="kl-item">
+          <li class="kl-item" data-end-date={e.endDate}>
             <div class="date">
               {formatDayNum(e.startDate)}&nbsp;{formatMonthShort(e.startDate)}
               <small>{new Intl.DateTimeFormat("de-DE", { weekday: "long", timeZone: "Europe/Berlin" }).format(new Date(e.startDate + "T12:00:00Z"))}</small>
