@@ -3,8 +3,10 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import { upcomingEvents, formatDayNum, formatMonthShort, formatWeekdayShort } from "../lib/calendar";
 import { getLatestNews, withBase, formatArticleDate, entrySlug, categoryBadgeClass } from "../lib/news";
 
-// Nächste 5 Termine für die Startseite
-const nextDates = await upcomingEvents(5);
+// Nächste Termine für die Startseite: 20 holen, damit auch bei spätem
+// Seitenaufruf nach dem letzten Build genug aktuelle übrig bleiben.
+// Clientseitiges Skript unten filtert Vergangenes und begrenzt auf 5.
+const nextDates = await upcomingEvents(20);
 
 // Drei neueste News-Artikel
 const latestNews = await getLatestNews(3);
@@ -513,9 +515,9 @@ const BASE = import.meta.env.BASE_URL;
         {nextDates.length === 0 ? (
           <p style="font-family:var(--sans);color:var(--stein);font-size:15px;">Derzeit keine anstehenden Termine.</p>
         ) : (
-          <ul class="dates-list">
+          <ul class="dates-list" id="homeDatesList">
             {nextDates.map((e) => (
-              <li class={`date-row ${e.category === "highlight" || e.category === "exam" ? "highlight" : ""}`}>
+              <li class={`date-row ${e.category === "highlight" || e.category === "exam" ? "highlight" : ""}`} data-end-date={e.endDate}>
                 <div>
                   <div class="date-main">{formatDayNum(e.startDate)}&nbsp;{formatMonthShort(e.startDate)}</div>
                   <div class="date-sub">{formatWeekdayShort(e.startDate)}</div>
@@ -678,5 +680,27 @@ const BASE = import.meta.env.BASE_URL;
 </section>
 
 <!-- ===================== FOOTER ===================== -->
+
+<script is:inline>
+  // Termine-Liste tagesaktuell halten — unabhängig vom letzten Build.
+  // Filtert veraltete Einträge (endDate < heute in Berliner Zeit) und
+  // zeigt höchstens 5 kommende Termine an.
+  (function(){
+    var list = document.getElementById('homeDatesList');
+    if (!list) return;
+    var todayISO = new Date().toLocaleDateString('en-CA', { timeZone: 'Europe/Berlin' });
+    var rows = list.querySelectorAll('.date-row');
+    var shown = 0;
+    rows.forEach(function(row){
+      var endDate = row.getAttribute('data-end-date') || '';
+      if (endDate < todayISO || shown >= 5){
+        row.style.display = 'none';
+      } else {
+        shown++;
+      }
+    });
+  })();
+</script>
+
 </main>
 </BaseLayout>
