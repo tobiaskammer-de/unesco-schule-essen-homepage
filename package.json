@@ -8,12 +8,18 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "tina:dev": "tinacms dev -c \"astro dev\"",
+    "tina:build": "tinacms build"
   },
   "dependencies": {
     "@fontsource/fraunces": "^5.1.0",
     "@fontsource/inter": "^5.1.0",
     "astro": "^5.0.0",
     "node-ical": "^0.26.0"
+  },
+  "devDependencies": {
+    "@tinacms/cli": "^2.2.3",
+    "tinacms": "^3.7.3"
   }
 }
