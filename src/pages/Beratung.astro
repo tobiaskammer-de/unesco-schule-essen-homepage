@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
+const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
 ---
 <BaseLayout title="Beratung und Unterstützung — UNESCO-Schule Essen">
 <style is:global>
@@ -140,11 +141,12 @@ import PageHero from "../components/PageHero.astro";
     border-top-color:var(--gold);
   }
   .br-person .avatar{
-    width:84px;height:84px;border-radius:50%;background:var(--petrol);
+    width:84px;height:84px;border-radius:50%;overflow:hidden;background:var(--petrol);
     display:flex;align-items:center;justify-content:center;
     font-family:var(--serif);font-weight:500;font-size:28px;color:var(--creme);
     letter-spacing:-0.01em;
   }
+  .br-person .avatar img{width:100%;height:100%;object-fit:cover;display:block;}
   .br-section.dark .br-person .avatar{background:var(--gold);color:#2a1d08;}
   .br-person .role{
     font-family:var(--sans);font-size:11px;font-weight:600;
@@ -366,7 +368,9 @@ import PageHero from "../components/PageHero.astro";
       </ul>
 
       <article class="br-person">
-        <span class="avatar" aria-hidden="true">FS</span>
+        <span class="avatar" aria-hidden="true">
+          <img src={`${BASE}/assets/kollegium/spiegel-ruth.png`} alt="" loading="lazy" width="168" height="168"/>
+        </span>
         <div class="role">Schulsozialarbeit</div>
         <p class="name">Frau Spiegel</p>
         <p class="sub">Schulsozialarbeiterin · Schweigepflicht gilt</p>
