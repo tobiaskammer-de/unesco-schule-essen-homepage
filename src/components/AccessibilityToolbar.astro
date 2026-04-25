@@ -1,0 +1,524 @@
+---
+/**
+ * Barrierefreiheits-Werkzeugleiste.
+ *
+ * Schwebender Button unten links, der ein Panel öffnet:
+ *  - Schriftgröße: 100 % / 115 % / 130 % / 150 %
+ *  - Hoher Kontrast: aus / ein
+ *  - Bewegungen reduzieren (Animationen aus): aus / ein
+ *  - Linkunterstreichung verstärkt: aus / ein
+ *  - Reset
+ *
+ * Einstellungen werden in localStorage gespeichert und bleiben
+ * über Seitenwechsel hinweg erhalten. ARIA-konform und tastaturbedienbar.
+ */
+---
+
+<div class="a11y-root" data-a11y-root>
+  <button
+    type="button"
+    class="a11y-toggle"
+    aria-haspopup="dialog"
+    aria-expanded="false"
+    aria-controls="a11yPanel"
+    aria-label="Barrierefreiheits-Einstellungen öffnen"
+    data-a11y-toggle
+  >
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+      <circle cx="12" cy="12" r="10" />
+      <circle cx="12" cy="7.5" r="1.4" fill="currentColor" stroke="none" />
+      <path d="M8 11h8" />
+      <path d="M12 11v4l-2.5 4M12 15l2.5 4" />
+    </svg>
+    <span class="a11y-toggle-label">Barrierefreiheit</span>
+  </button>
+
+  <div
+    id="a11yPanel"
+    class="a11y-panel"
+    role="dialog"
+    aria-label="Einstellungen für Barrierefreiheit"
+    aria-modal="false"
+    hidden
+  >
+    <div class="a11y-panel-head">
+      <h2 class="a11y-panel-title">Anzeige anpassen</h2>
+      <button
+        type="button"
+        class="a11y-close"
+        aria-label="Panel schließen"
+        data-a11y-close
+      >
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="M6 6l12 12M18 6L6 18" />
+        </svg>
+      </button>
+    </div>
+
+    <fieldset class="a11y-group">
+      <legend>Schriftgröße</legend>
+      <div class="a11y-segment" role="radiogroup" aria-label="Schriftgröße">
+        <button type="button" role="radio" aria-checked="true" data-a11y-fontsize="100">A<small>100&nbsp;%</small></button>
+        <button type="button" role="radio" aria-checked="false" data-a11y-fontsize="115">A<small>115&nbsp;%</small></button>
+        <button type="button" role="radio" aria-checked="false" data-a11y-fontsize="130">A<small>130&nbsp;%</small></button>
+        <button type="button" role="radio" aria-checked="false" data-a11y-fontsize="150">A<small>150&nbsp;%</small></button>
+      </div>
+    </fieldset>
+
+    <div class="a11y-group">
+      <label class="a11y-toggle-row">
+        <span class="a11y-toggle-text">
+          <strong>Hoher Kontrast</strong>
+          <small>Stärkere Farbunterschiede für bessere Lesbarkeit.</small>
+        </span>
+        <span class="a11y-switch">
+          <input type="checkbox" data-a11y-toggle-feature="contrast" />
+          <span class="a11y-switch-track" aria-hidden="true"></span>
+        </span>
+      </label>
+
+      <label class="a11y-toggle-row">
+        <span class="a11y-toggle-text">
+          <strong>Bewegungen reduzieren</strong>
+          <small>Schaltet Animationen und Übergänge aus.</small>
+        </span>
+        <span class="a11y-switch">
+          <input type="checkbox" data-a11y-toggle-feature="motion" />
+          <span class="a11y-switch-track" aria-hidden="true"></span>
+        </span>
+      </label>
+
+      <label class="a11y-toggle-row">
+        <span class="a11y-toggle-text">
+          <strong>Links deutlich unterstreichen</strong>
+          <small>Macht Verlinkungen im Fließtext besser sichtbar.</small>
+        </span>
+        <span class="a11y-switch">
+          <input type="checkbox" data-a11y-toggle-feature="links" />
+          <span class="a11y-switch-track" aria-hidden="true"></span>
+        </span>
+      </label>
+    </div>
+
+    <button type="button" class="a11y-reset" data-a11y-reset>
+      Alle Einstellungen zurücksetzen
+    </button>
+
+    <p class="a11y-hint">
+      Hinweis: Die Einstellungen werden lokal in Ihrem Browser gespeichert und bleiben beim nächsten Besuch erhalten.
+    </p>
+  </div>
+
+  <span class="a11y-live" aria-live="polite" data-a11y-live></span>
+</div>
+
+<style is:global>
+  /* ---------- Floating toggle button ---------- */
+  .a11y-toggle {
+    position: fixed;
+    left: 16px;
+    bottom: 16px;
+    z-index: 1500;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 16px;
+    background: var(--petrol);
+    color: var(--creme);
+    border: 2px solid var(--petrol);
+    border-radius: 999px;
+    font-family: var(--sans);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 6px 20px -6px rgba(14, 77, 79, 0.45);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  }
+  .a11y-toggle:hover { background: var(--petrol-dark); transform: translateY(-1px); }
+  .a11y-toggle:focus-visible {
+    outline: 3px solid var(--gold);
+    outline-offset: 3px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .a11y-toggle:hover { transform: none; }
+  }
+  .a11y-toggle svg { width: 22px; height: 22px; flex-shrink: 0; }
+  .a11y-toggle-label {
+    display: inline-block;
+  }
+  @media (max-width: 560px) {
+    .a11y-toggle { padding: 12px; }
+    .a11y-toggle-label { display: none; }
+  }
+
+  /* ---------- Panel ---------- */
+  .a11y-panel {
+    position: fixed;
+    left: 16px;
+    bottom: 76px;
+    z-index: 1600;
+    width: min(360px, calc(100vw - 32px));
+    background: #fff;
+    border: 1px solid var(--hairline);
+    border-radius: 8px;
+    padding: 22px 22px 18px;
+    box-shadow: 0 16px 40px -10px rgba(14, 77, 79, 0.32),
+                0 4px 12px -4px rgba(14, 77, 79, 0.18);
+    font-family: var(--sans);
+    color: var(--tinte);
+  }
+  .a11y-panel[hidden] { display: none; }
+  .a11y-panel-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+  .a11y-panel-title {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 20px;
+    color: var(--petrol);
+    margin: 0;
+    letter-spacing: -0.005em;
+  }
+  .a11y-close {
+    background: transparent;
+    border: 0;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    cursor: pointer;
+    color: var(--stein);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s, color 0.15s;
+  }
+  .a11y-close:hover { background: var(--creme); color: var(--petrol); }
+  .a11y-close svg { width: 18px; height: 18px; }
+
+  .a11y-group {
+    border: 0;
+    padding: 0;
+    margin: 0 0 14px;
+  }
+  .a11y-group legend {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--bordeaux);
+    margin-bottom: 10px;
+    padding: 0;
+  }
+
+  /* Segmented control für Schriftgröße */
+  .a11y-segment {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 4px;
+    background: var(--creme);
+    border: 1px solid var(--hairline);
+    border-radius: 6px;
+    padding: 4px;
+  }
+  .a11y-segment button {
+    background: transparent;
+    border: 0;
+    padding: 8px 4px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 18px;
+    color: var(--petrol);
+    line-height: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    transition: background 0.15s;
+  }
+  .a11y-segment button small {
+    font-family: var(--sans);
+    font-weight: 500;
+    font-size: 10.5px;
+    letter-spacing: 0.06em;
+    color: var(--stein);
+  }
+  .a11y-segment button:hover { background: rgba(14, 77, 79, 0.08); }
+  .a11y-segment button[aria-checked="true"] {
+    background: var(--petrol);
+    color: var(--creme);
+  }
+  .a11y-segment button[aria-checked="true"] small { color: rgba(245, 239, 231, 0.8); }
+  .a11y-segment button:nth-child(1) { font-size: 14px; }
+  .a11y-segment button:nth-child(2) { font-size: 16px; }
+  .a11y-segment button:nth-child(3) { font-size: 18px; }
+  .a11y-segment button:nth-child(4) { font-size: 20px; }
+  .a11y-segment button:focus-visible {
+    outline: 2px solid var(--petrol);
+    outline-offset: 2px;
+  }
+
+  /* Switch-Zeilen */
+  .a11y-toggle-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--hairline);
+    cursor: pointer;
+  }
+  .a11y-toggle-row:last-child { border-bottom: 0; }
+  .a11y-toggle-text strong {
+    display: block;
+    font-size: 14.5px;
+    font-weight: 600;
+    color: var(--tinte);
+    margin-bottom: 2px;
+  }
+  .a11y-toggle-text small {
+    display: block;
+    font-size: 12.5px;
+    color: var(--stein);
+    line-height: 1.4;
+  }
+  .a11y-switch {
+    position: relative;
+    width: 44px;
+    height: 24px;
+    flex-shrink: 0;
+  }
+  .a11y-switch input {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+    margin: 0;
+  }
+  .a11y-switch-track {
+    position: absolute;
+    inset: 0;
+    background: var(--hairline);
+    border-radius: 999px;
+    transition: background 0.2s;
+  }
+  .a11y-switch-track::before {
+    content: "";
+    position: absolute;
+    top: 2px; left: 2px;
+    width: 20px; height: 20px;
+    background: #fff;
+    border-radius: 50%;
+    transition: transform 0.2s;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  }
+  .a11y-switch input:checked + .a11y-switch-track { background: var(--petrol); }
+  .a11y-switch input:checked + .a11y-switch-track::before { transform: translateX(20px); }
+  .a11y-switch input:focus-visible + .a11y-switch-track {
+    box-shadow: 0 0 0 3px rgba(14, 77, 79, 0.35);
+  }
+
+  .a11y-reset {
+    width: 100%;
+    margin-top: 14px;
+    padding: 11px 14px;
+    background: transparent;
+    border: 1px solid var(--hairline);
+    border-radius: 4px;
+    color: var(--bordeaux);
+    font-family: var(--sans);
+    font-size: 13.5px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s;
+  }
+  .a11y-reset:hover { background: var(--creme); border-color: var(--bordeaux); }
+  .a11y-reset:focus-visible { outline: 2px solid var(--petrol); outline-offset: 2px; }
+
+  .a11y-hint {
+    font-size: 11.5px;
+    line-height: 1.5;
+    color: var(--stein);
+    margin: 12px 0 0;
+  }
+  .a11y-live {
+    position: absolute;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px;
+    overflow: hidden; clip: rect(0,0,0,0);
+    white-space: nowrap; border: 0;
+  }
+
+  /* ---------- Globale a11y-Effekte (auf <html data-a11y-*>) ---------- */
+  /* Schriftgröße: setzt die Wurzel-rem-Basis hoch.
+     Da die meisten Größen in px notiert sind, kombinieren wir mit
+     einem Skalierungsfaktor auf body-font-size (rem nutzen wir nicht
+     überall). Der Effekt: Texte werden über zoom proportional größer.
+     Wir nutzen text-spacing-friendly transform via font-size-adjust nicht;
+     stattdessen wirken wir über CSS-Variablen + font-size. */
+  html[data-a11y-fontsize="100"] body { font-size: 16px; }
+  html[data-a11y-fontsize="115"] body { font-size: 18.4px; }
+  html[data-a11y-fontsize="130"] body { font-size: 20.8px; }
+  html[data-a11y-fontsize="150"] body { font-size: 24px; }
+
+  /* Hoher Kontrast: kräftigere Farbpalette + dickere Outlines */
+  html[data-a11y-contrast="on"] {
+    --petrol: #003D40;
+    --petrol-dark: #001E20;
+    --bordeaux: #4A0F1F;
+    --stein: #2A2A28;
+    --hairline: #5A5A55;
+    --tinte: #000;
+    --creme: #FFFFF0;
+    --offwhite: #FFFFFF;
+  }
+  html[data-a11y-contrast="on"] body { background: #fff; color: #000; }
+  html[data-a11y-contrast="on"] :focus-visible {
+    outline: 3px solid #FFD000;
+    outline-offset: 3px;
+    box-shadow: 0 0 0 6px #000;
+  }
+  html[data-a11y-contrast="on"] a { text-decoration: underline; text-underline-offset: 3px; }
+  html[data-a11y-contrast="on"] .badge { border: 1.5px solid currentColor; }
+
+  /* Bewegung reduzieren (User-Override, unabhängig vom System) */
+  html[data-a11y-motion="reduce"] *,
+  html[data-a11y-motion="reduce"] *::before,
+  html[data-a11y-motion="reduce"] *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* Links deutlich unterstreichen */
+  html[data-a11y-links="on"] main a:not(.btn):not(.btn-mail):not(.cc-btn-mail):not(.cc-btn-phone):not(.skip-link):not(.a11y-toggle):not(.nav-link),
+  html[data-a11y-links="on"] footer a:not(.skip-link) {
+    text-decoration: underline;
+    text-decoration-thickness: 1.5px;
+    text-underline-offset: 3px;
+  }
+</style>
+
+<script is:inline>
+  (function () {
+    const STORAGE_KEY = 'unesco-a11y-prefs-v1';
+    const root  = document.documentElement;
+    const panel = document.getElementById('a11yPanel');
+    const toggle = document.querySelector('[data-a11y-toggle]');
+    const closeBtn = document.querySelector('[data-a11y-close]');
+    const live = document.querySelector('[data-a11y-live]');
+    const segmentBtns = panel.querySelectorAll('[data-a11y-fontsize]');
+    const featureToggles = panel.querySelectorAll('[data-a11y-toggle-feature]');
+    const resetBtn = panel.querySelector('[data-a11y-reset]');
+
+    const DEFAULTS = { fontsize: '100', contrast: false, motion: false, links: false };
+    let prefs = { ...DEFAULTS };
+
+    // Settings laden
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (raw) prefs = { ...DEFAULTS, ...JSON.parse(raw) };
+    } catch (e) {}
+
+    function save() {
+      try { localStorage.setItem(STORAGE_KEY, JSON.stringify(prefs)); } catch (e) {}
+    }
+
+    function announce(msg) {
+      if (live) {
+        live.textContent = '';
+        // kleine Verzögerung, damit Screenreader die Änderung erkennen
+        setTimeout(() => { live.textContent = msg; }, 60);
+      }
+    }
+
+    function apply() {
+      root.setAttribute('data-a11y-fontsize', prefs.fontsize);
+      root.setAttribute('data-a11y-contrast', prefs.contrast ? 'on' : 'off');
+      root.setAttribute('data-a11y-motion', prefs.motion ? 'reduce' : 'normal');
+      root.setAttribute('data-a11y-links', prefs.links ? 'on' : 'off');
+
+      segmentBtns.forEach((b) => {
+        const checked = b.getAttribute('data-a11y-fontsize') === prefs.fontsize;
+        b.setAttribute('aria-checked', String(checked));
+      });
+      featureToggles.forEach((cb) => {
+        const key = cb.getAttribute('data-a11y-toggle-feature');
+        cb.checked = !!prefs[key];
+      });
+    }
+
+    function setFontsize(v) {
+      prefs.fontsize = v;
+      save(); apply();
+      announce('Schriftgröße auf ' + v + ' Prozent gesetzt.');
+    }
+
+    function setFeature(key, on) {
+      prefs[key] = !!on;
+      save(); apply();
+      const labels = {
+        contrast: on ? 'Hoher Kontrast aktiviert.' : 'Hoher Kontrast deaktiviert.',
+        motion: on ? 'Bewegungen reduziert.' : 'Bewegungen wieder aktiviert.',
+        links: on ? 'Links werden deutlich unterstrichen.' : 'Linkdarstellung normal.',
+      };
+      announce(labels[key] || 'Einstellung geändert.');
+    }
+
+    function reset() {
+      prefs = { ...DEFAULTS };
+      save(); apply();
+      announce('Alle Einstellungen zurückgesetzt.');
+    }
+
+    function openPanel() {
+      panel.hidden = false;
+      toggle.setAttribute('aria-expanded', 'true');
+      // Fokus auf Schließen-Button
+      closeBtn.focus();
+    }
+    function closePanel() {
+      panel.hidden = true;
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.focus();
+    }
+
+    // Initial anwenden
+    apply();
+
+    // Events
+    toggle.addEventListener('click', () => {
+      if (panel.hidden) openPanel(); else closePanel();
+    });
+    closeBtn.addEventListener('click', closePanel);
+
+    segmentBtns.forEach((b) => {
+      b.addEventListener('click', () => setFontsize(b.getAttribute('data-a11y-fontsize')));
+    });
+    featureToggles.forEach((cb) => {
+      cb.addEventListener('change', () => {
+        setFeature(cb.getAttribute('data-a11y-toggle-feature'), cb.checked);
+      });
+    });
+    resetBtn.addEventListener('click', reset);
+
+    // Esc schließt
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !panel.hidden) closePanel();
+    });
+
+    // Klick außerhalb schließt das Panel
+    document.addEventListener('click', (e) => {
+      if (panel.hidden) return;
+      const inside = e.target.closest('[data-a11y-root]');
+      if (!inside) closePanel();
+    });
+  })();
+</script>

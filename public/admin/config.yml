@@ -94,9 +94,188 @@ collections:
       - { name: lastName, label: "Nachname", widget: string }
       - { name: title, label: "Titel (z. B. Dr.)", widget: string, required: false }
       - { name: subjects, label: "Fächer", widget: list, required: false, default: [] }
-      - { name: roles, label: "Funktionen / Sonderrollen", widget: list, required: false, default: [], hint: "z. B. Schulleitung, Oberstufenkoordination, Klassenleitung 7a" }
+      - { name: roles, label: "Funktionen / Sonderrollen", widget: list, required: false, default: [], hint: "Wichtig — diese Schreibweisen sind verknüpft mit den Seiten Schulleitung/Beratung/Mittelstufe/Oberstufe und werden dort automatisch angezeigt: Schulleitung · Stellvertretende Schulleitung · Koordination Sek I · Koordination Sek II · Koordination Erprobungsstufe · Stufenleitung EF · Sekretariat · Beratungslehrer · Schulsozialarbeit. Weitere freie Rollen (z. B. Klassenleitung 7a) sind möglich." }
       - { name: email, label: "E-Mail", widget: string, pattern: ['^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$', "Bitte eine gültige E-Mail."] }
       - { name: phone, label: "Telefon (optional)", widget: string, required: false }
       - { name: photo, label: "Portrait-Foto", widget: image, required: false, choose_url: false, media_library: { config: { multiple: false } } }
       - { name: isTrainee, label: "Im Referendariat (nicht festangestellt)", widget: boolean, default: false }
       - { name: order, label: "Manuelle Reihenfolge (optional)", widget: number, required: false, hint: "Niedrige Zahlen kommen zuerst. Leer lassen für alphabetische Sortierung." }
+
+  # =====================================================================
+  # Schul-Stammdaten — wirken auf alle Seiten, die diese Werte beziehen
+  # =====================================================================
+  - name: site
+    label: "Schul-Stammdaten"
+    label_singular: "Schul-Stammdaten"
+    editor:
+      preview: false
+    files:
+      - file: src/content/site/school.yml
+        label: "Adresse, Kontakte, Schuljahr"
+        name: school
+        format: yaml
+        fields:
+          - { name: name, label: "Schulname (kurz)", widget: string }
+          - { name: nameLong, label: "Schulname (lang)", widget: string }
+          - { name: schoolYear, label: "Aktuelles Schuljahr", widget: string, hint: "z. B. 2026/27 — wird auf mehreren Seiten verwendet." }
+          - name: address
+            label: "Anschrift"
+            widget: object
+            fields:
+              - { name: street, label: "Straße + Hausnr.", widget: string }
+              - { name: postal, label: "PLZ", widget: string }
+              - { name: city, label: "Ort", widget: string }
+          - { name: phone, label: "Telefon Sekretariat", widget: string }
+          - { name: phoneOberstufe, label: "Telefon Oberstufenbüro", widget: string, required: false }
+          - { name: fax, label: "Telefax", widget: string, required: false }
+          - { name: emailGeneral, label: "E-Mail allgemein", widget: string, pattern: ['^[^@\s]+@[^@\s]+\.[^@\s]+$', "Bitte gültige E-Mail."] }
+          - { name: emailContact, label: "E-Mail Kontaktformular", widget: string, required: false }
+          - { name: emailOberstufe, label: "E-Mail Oberstufe", widget: string, required: false }
+
+  # =====================================================================
+  # Seiten-Inhalte — Texte, Hero-Bereiche, Listen pro Seite
+  # =====================================================================
+  - name: pages
+    label: "Seiten"
+    label_singular: "Seite"
+    editor:
+      preview: false
+    files:
+      # ---------------- STARTSEITE ----------------
+      - file: src/content/pages/home.yml
+        label: "Startseite"
+        name: home
+        format: yaml
+        fields:
+          - name: hero
+            label: "Hero (oberer Bereich)"
+            widget: object
+            collapsed: false
+            fields:
+              - { name: eyebrow, label: "Eyebrow (kleine Überschrift)", widget: string }
+              - { name: title, label: "Titel — Zeile 1", widget: string }
+              - { name: titleHighlight, label: "Titel — Zeile 2 (Akzent)", widget: string, required: false }
+              - { name: sub, label: "Untertext", widget: text }
+              - { name: ctaLabel, label: "Button-Text", widget: string }
+              - { name: ctaHref, label: "Button-Link", widget: string, hint: "z. B. #was-uns-auszeichnet oder Anmeldung.html" }
+              - { name: imageSrc, label: "Hero-Bild", widget: image, choose_url: false }
+              - { name: imageAlt, label: "Bildbeschreibung (für Screenreader)", widget: string }
+          - name: path
+            label: "„Dein Weg zu uns"-Sektion"
+            widget: object
+            collapsed: true
+            fields:
+              - { name: title, label: "Überschrift", widget: string }
+              - { name: intro, label: "Einleitung", widget: text }
+              - name: cards
+                label: "Drei Karten"
+                widget: list
+                fields:
+                  - { name: kicker, label: "Kicker (Mini-Label oben)", widget: string }
+                  - { name: title, label: "Karten-Titel (optional)", widget: string, required: false }
+                  - { name: bigDate, label: "Großes Datum (optional)", widget: string, required: false }
+                  - { name: bigDateSub, label: "Datum-Untertitel", widget: string, required: false }
+                  - { name: text, label: "Text", widget: text, required: false }
+                  - { name: ctaLabel, label: "Button-Text (optional)", widget: string, required: false }
+                  - { name: ctaHref, label: "Button-Link", widget: string, required: false }
+          - name: partners
+            label: "Partner-Sektion"
+            widget: object
+            collapsed: true
+            fields:
+              - { name: eyebrow, label: "Eyebrow", widget: string }
+              - { name: title, label: "Überschrift", widget: string }
+              - { name: intro, label: "Einleitung", widget: text }
+
+      # ---------------- ANMELDUNG ----------------
+      - file: src/content/pages/anmeldung.yml
+        label: "Anmeldung"
+        name: anmeldung
+        format: yaml
+        fields:
+          - name: hero
+            label: "Hero"
+            widget: object
+            collapsed: false
+            fields:
+              - { name: eyebrow, label: "Eyebrow", widget: string }
+              - { name: title, label: "Titel — Zeile 1", widget: string }
+              - { name: titleHighlight, label: "Titel — Zeile 2 (kursiv)", widget: string, required: false }
+              - { name: lede, label: "Einleitungstext", widget: text }
+          - name: klasse5
+            label: "Klasse-5-Block"
+            widget: object
+            collapsed: true
+            fields:
+              - { name: eyebrow, label: "Eyebrow", widget: string }
+              - { name: title, label: "Überschrift Zeile 1", widget: string }
+              - { name: titleHighlight, label: "Überschrift Zeile 2 (kursiv)", widget: string, required: false }
+              - { name: intro, label: "Einleitung", widget: text }
+          - name: termine
+            label: "Anmeldetermine"
+            widget: object
+            collapsed: false
+            fields:
+              - { name: kicker, label: "Kicker (Mini-Label)", widget: string }
+              - { name: title, label: "Überschrift", widget: string }
+              - { name: intro, label: "Hinweis-Text", widget: text }
+              - name: list
+                label: "Termin-Liste"
+                widget: list
+                hint: "Diese Tabelle ist die wichtigste jährliche Änderung — bitte aktuell halten."
+                fields:
+                  - { name: date, label: "Datum (TT.MM.JJJJ)", widget: string }
+                  - { name: day, label: "Wochentag", widget: string }
+                  - { name: time, label: "Uhrzeit", widget: string }
+          - name: closing
+            label: "Abschluss-Block"
+            widget: object
+            collapsed: true
+            fields:
+              - { name: title, label: "Überschrift", widget: string }
+              - { name: text, label: "Text", widget: text }
+
+      # ---------------- LEITBILD ----------------
+      - file: src/content/pages/leitbild.yml
+        label: "Leitbild"
+        name: leitbild
+        format: yaml
+        fields:
+          - name: hero
+            label: "Hero"
+            widget: object
+            collapsed: false
+            fields:
+              - { name: badge, label: "Hinweis-Badge (optional)", widget: string, required: false }
+              - { name: eyebrow, label: "Eyebrow", widget: string }
+              - { name: title, label: "Titel — Zeile 1", widget: string }
+              - { name: titleHighlight, label: "Titel — Zeile 2 (kursiv)", widget: string, required: false }
+              - { name: lede, label: "Einleitungstext", widget: text }
+          - name: motto
+            label: "Motto-Block"
+            widget: object
+            collapsed: true
+            fields:
+              - { name: quote, label: "Zitat", widget: string }
+              - { name: sub, label: "Begleittext", widget: text }
+          - name: values
+            label: "„Drei Überzeugungen"-Sektion"
+            widget: object
+            collapsed: true
+            fields:
+              - { name: eyebrow, label: "Eyebrow", widget: string }
+              - { name: title, label: "Überschrift", widget: string }
+              - name: cards
+                label: "Drei Karten"
+                widget: list
+                fields:
+                  - { name: num, label: "Nummer (z. B. 01)", widget: string }
+                  - { name: title, label: "Titel", widget: string }
+                  - { name: text, label: "Text", widget: text }
+          - name: closing
+            label: "Abschluss-Block"
+            widget: object
+            collapsed: true
+            fields:
+              - { name: title, label: "Überschrift", widget: string }
+              - { name: text, label: "Text", widget: text }

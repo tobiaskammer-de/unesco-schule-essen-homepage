@@ -75,4 +75,142 @@ const demoPages = defineCollection({
   }),
 });
 
-export const collections = { news, teachers, demoPages };
+/**
+ * Schul-Stammdaten (Single-File Collection).
+ *
+ * Zentral gepflegte Daten, die seitenübergreifend benutzt werden:
+ * Adresse, Telefon, E-Mail, aktuelles Schuljahr.
+ *
+ * Bearbeitbar in Sveltia unter „Schul-Stammdaten".
+ */
+const siteSchool = defineCollection({
+  loader: glob({ pattern: "school.yml", base: "./src/content/site" }),
+  schema: z.object({
+    name: z.string(),
+    nameLong: z.string(),
+    schoolYear: z.string(),
+    address: z.object({
+      street: z.string(),
+      postal: z.string(),
+      city: z.string(),
+    }),
+    phone: z.string(),
+    phoneOberstufe: z.string().optional(),
+    fax: z.string().optional(),
+    emailGeneral: z.string().email(),
+    emailContact: z.string().email().optional(),
+    emailOberstufe: z.string().email().optional(),
+  }),
+});
+
+/**
+ * Seiten-Inhalte (Single-File Collections, eine pro Seite).
+ *
+ * Pro Seite eine YAML-Datei mit klar benannten Feldern. Layout bleibt
+ * im Astro-Code, nur Texte/Listen werden über Sveltia editierbar.
+ */
+const pageHome = defineCollection({
+  loader: glob({ pattern: "home.yml", base: "./src/content/pages" }),
+  schema: z.object({
+    hero: z.object({
+      eyebrow: z.string(),
+      title: z.string(),
+      titleHighlight: z.string().optional(),
+      sub: z.string(),
+      ctaLabel: z.string(),
+      ctaHref: z.string(),
+      imageSrc: z.string(),
+      imageAlt: z.string(),
+    }),
+    path: z.object({
+      title: z.string(),
+      intro: z.string(),
+      cards: z.array(z.object({
+        kicker: z.string(),
+        title: z.string().optional(),
+        bigDate: z.string().optional(),
+        bigDateSub: z.string().optional(),
+        text: z.string().optional(),
+        ctaLabel: z.string().optional(),
+        ctaHref: z.string().optional(),
+      })),
+    }),
+    partners: z.object({
+      eyebrow: z.string(),
+      title: z.string(),
+      intro: z.string(),
+    }),
+  }),
+});
+
+const pageAnmeldung = defineCollection({
+  loader: glob({ pattern: "anmeldung.yml", base: "./src/content/pages" }),
+  schema: z.object({
+    hero: z.object({
+      eyebrow: z.string(),
+      title: z.string(),
+      titleHighlight: z.string().optional(),
+      lede: z.string(),
+    }),
+    klasse5: z.object({
+      eyebrow: z.string(),
+      title: z.string(),
+      titleHighlight: z.string().optional(),
+      intro: z.string(),
+    }),
+    termine: z.object({
+      kicker: z.string(),
+      title: z.string(),
+      intro: z.string(),
+      list: z.array(z.object({
+        date: z.string(),
+        day: z.string(),
+        time: z.string(),
+      })),
+    }),
+    closing: z.object({
+      title: z.string(),
+      text: z.string(),
+    }),
+  }),
+});
+
+const pageLeitbild = defineCollection({
+  loader: glob({ pattern: "leitbild.yml", base: "./src/content/pages" }),
+  schema: z.object({
+    hero: z.object({
+      badge: z.string().optional(),
+      eyebrow: z.string(),
+      title: z.string(),
+      titleHighlight: z.string().optional(),
+      lede: z.string(),
+    }),
+    motto: z.object({
+      quote: z.string(),
+      sub: z.string(),
+    }),
+    values: z.object({
+      eyebrow: z.string(),
+      title: z.string(),
+      cards: z.array(z.object({
+        num: z.string(),
+        title: z.string(),
+        text: z.string(),
+      })),
+    }),
+    closing: z.object({
+      title: z.string(),
+      text: z.string(),
+    }),
+  }),
+});
+
+export const collections = {
+  news,
+  teachers,
+  demoPages,
+  siteSchool,
+  pageHome,
+  pageAnmeldung,
+  pageLeitbild,
+};

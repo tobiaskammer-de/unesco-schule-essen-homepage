@@ -2,6 +2,10 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { upcomingEvents, formatDayNum, formatMonthShort, formatWeekdayShort } from "../lib/calendar";
 import { getLatestNews, withBase, formatArticleDate, entrySlug, categoryBadgeClass } from "../lib/news";
+import { getSingle } from "../lib/pageContent";
+
+// Editierbare Inhalte aus src/content/pages/home.yml (Sveltia)
+const home = await getSingle("pageHome");
 
 // Nächste Termine für die Startseite: 20 holen, damit auch bei spätem
 // Seitenaufruf nach dem letzten Build genug aktuelle übrig bleiben.
@@ -447,22 +451,20 @@ const BASE = import.meta.env.BASE_URL;
   <div class="container">
     <div class="hero-grid">
       <div class="hero-photo">
-        <!-- Dummy hero image: Unsplash, warm/petrol tones, editorial -->
         <img id="heroImage"
-             src="assets/hero.jpeg"
-             alt="Bibliothek mit geschwungenen Bücherregalen"
+             src={home.hero.imageSrc}
+             alt={home.hero.imageAlt}
              width="960" height="900" fetchpriority="high">
         <span class="cred">Platzhalter · Foto-Shoot folgt</span>
       </div>
       <div class="hero-text">
-        <span class="eyebrow">UNESCO-Schule Essen · Dein Gymnasium</span>
-        <h1 class="hero-claim" id="heroClaim">Gemeinsam lernen,<br>den eigenen Weg finden.</h1>
-        <p class="hero-sub">
-          Als UNESCO-Projektschule begleiten wir junge Menschen zu einem starken Abitur —
-          und zu einer Haltung, die in der Welt trägt.
-        </p>
+        <span class="eyebrow">{home.hero.eyebrow}</span>
+        <h1 class="hero-claim" id="heroClaim">
+          {home.hero.title}{home.hero.titleHighlight && <><br />{home.hero.titleHighlight}</>}
+        </h1>
+        <p class="hero-sub">{home.hero.sub}</p>
         <div class="hero-cta-row">
-          <a href="#was-uns-auszeichnet" class="btn btn-primary">Unsere Schule entdecken <span class="arrow">→</span></a>
+          <a href={home.hero.ctaHref} class="btn btn-primary">{home.hero.ctaLabel} <span class="arrow">→</span></a>
         </div>
       </div>
     </div>
@@ -616,36 +618,27 @@ const BASE = import.meta.env.BASE_URL;
 <section id="wegzuuns" class="path-section" aria-label="Dein Weg zu uns">
   <div class="container">
     <div class="path-head">
-      <h2>Dein Weg zu uns.</h2>
-      <p>Drei Wege, uns kennenzulernen. Sie sind herzlich eingeladen — kommen Sie vorbei, schreiben Sie uns, oder rufen Sie einfach an.</p>
+      <h2>{home.path.title}</h2>
+      <p>{home.path.intro}</p>
     </div>
 
     <div class="path-grid">
-      <article class="path-card">
-        <span class="kicker">Tag der offenen Tür</span>
-        <div class="big-date">
-          21. November 2027
-          <small>Samstag, 10:00 – 14:00 Uhr · Steinmetzstr. 9</small>
-        </div>
-        <p>Unterricht zum Mitmachen, Gespräche mit Lehrkräften und Schülerinnen, Führungen durch die Naturwissenschafts- und Kunsträume. Eine Anmeldung ist nicht nötig.</p>
-      </article>
-
-      <article class="path-card">
-        <span class="kicker">Anmeldung zum Schuljahr 2026/27</span>
-        <h3>Jetzt anmelden.</h3>
-        <p>Anmeldezeitraum: 02. bis 13. Februar 2026. Das Anmeldeformular, benötigte Unterlagen und weitere Hinweise finden Sie in unserem Eltern-Bereich.</p>
-        <a href="Anmeldung.html" class="btn btn-primary">Zur Anmeldung <span class="arrow">→</span></a>
-      </article>
-
-      <article class="path-card">
-        <span class="kicker">Fragen stellen</span>
-        <h3>Gespräch vereinbaren.</h3>
-        <p class="contact-line">
-          <a href="tel:+492013658040">0201 · 365 80 40</a><br>
-          <a href="mailto:kontakt@unesco-schule-essen.de">kontakt@unesco-schule-essen.de</a>
-        </p>
-        <a href="Kontakt.html" class="btn btn-secondary">Termin anfragen <span class="arrow">→</span></a>
-      </article>
+      {home.path.cards.map((card) => (
+        <article class="path-card">
+          <span class="kicker">{card.kicker}</span>
+          {card.bigDate && (
+            <div class="big-date">
+              {card.bigDate}
+              {card.bigDateSub && <small>{card.bigDateSub}</small>}
+            </div>
+          )}
+          {card.title && <h3>{card.title}</h3>}
+          {card.text && <p>{card.text}</p>}
+          {card.ctaLabel && card.ctaHref && (
+            <a href={card.ctaHref} class="btn btn-primary">{card.ctaLabel} <span class="arrow">→</span></a>
+          )}
+        </article>
+      ))}
     </div>
   </div>
 </section>
@@ -654,9 +647,9 @@ const BASE = import.meta.env.BASE_URL;
 <section class="partners-section" aria-label="Kooperationen und Partner">
   <div class="container">
     <div class="partners-head">
-      <span class="eyebrow">Kooperationen &amp; Partner</span>
-      <h2>Wir stehen nicht allein.</h2>
-      <p>Unsere Schule lebt von Partnerschaften — mit dem UNESCO-Netzwerk, der Universität Duisburg-Essen, Theater und Philharmonie, dem Stifterverband und einer Reihe von Essener Unternehmen, Stiftungen und Vereinen, die Unterricht an echten Aufgaben möglich machen.</p>
+      <span class="eyebrow">{home.partners.eyebrow}</span>
+      <h2>{home.partners.title}</h2>
+      <p>{home.partners.intro}</p>
     </div>
 
     <ul class="partners-logos">

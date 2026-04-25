@@ -1,0 +1,36 @@
+hero:
+  eyebrow: "Für Eltern · Anmeldung an die UNESCO-Schule"
+  title: "Willkommen — und dann"
+  titleHighlight: "ganz unkompliziert."
+  lede: "Zwei Wege führen an unsere Schule: der Einstieg ab Klasse 5 und der Wechsel in die gymnasiale Oberstufe. Wir begleiten Sie und Ihr Kind Schritt für Schritt."
+
+klasse5:
+  eyebrow: "Weg A · Klasse 5"
+  title: "Schuljahr 2026/27 —"
+  titleHighlight: "jetzt anmelden."
+  intro: "Wenn Sie für Ihr Kind ein Gymnasium suchen, das anspruchsvollen Unterricht mit einer internationalen Denkweise verbindet, sind Sie bei uns richtig. So einfach geht's."
+
+termine:
+  kicker: "Koordinierungs­verfahren"
+  title: "Anmelde­termine"
+  intro: "An allen Terminen jeweils von 09:00 bis 14:00 Uhr. Bitte vereinbaren Sie vorab einen verbindlichen Termin telefonisch oder online."
+  list:
+    - date: "26.02.2026"
+      day: "Donnerstag"
+      time: "09:00 – 14:00"
+    - date: "27.02.2026"
+      day: "Freitag"
+      time: "09:00 – 14:00"
+    - date: "02.03.2026"
+      day: "Montag"
+      time: "09:00 – 14:00"
+    - date: "03.03.2026"
+      day: "Dienstag"
+      time: "09:00 – 14:00"
+    - date: "04.03.2026"
+      day: "Mittwoch"
+      time: "09:00 – 14:00"
+
+closing:
+  title: "Noch Fragen offen?"
+  text: "Anmeldung ist mehr als Papierkram — sie ist der erste persönliche Kontakt. Rufen Sie uns einfach an, wir nehmen uns Zeit."

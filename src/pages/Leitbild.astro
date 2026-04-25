@@ -1,6 +1,10 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
+import { getSingle } from "../lib/pageContent";
+
+// Editierbare Inhalte aus src/content/pages/leitbild.yml (Sveltia)
+const lb = await getSingle("pageLeitbild");
 ---
 <BaseLayout title="Unser Leitbild — UNESCO-Schule Essen">
 <style is:global>
@@ -151,41 +155,33 @@ import PageHero from "../components/PageHero.astro";
 <main id="top">
 
 <PageHero variant="feature" image="assets/schulhof-hero.jpg" imageAlt="Gesamtes Kollegium und die Schülerschaft der UNESCO-Schule Essen auf dem Schulhof">
-  <Fragment slot="badge">Work in Progress · Leitbild in Überarbeitung</Fragment>
-  <Fragment slot="eyebrow">Über Uns · Unser Leitbild</Fragment>
-  <Fragment slot="title">Unser Leitbild<br>wächst <em>mit uns.</em></Fragment>
-  <Fragment slot="lede">Mit dem Start der Erprobungsstufe ab Klasse 5 entwickeln wir unser Schulprofil weiter. Das aktuelle Leitbild wird derzeit überarbeitet — gemeinsam mit Kollegium, Eltern und Schülerschaft. Bis dahin gilt: Was Sie hier lesen, zeigt, woher wir kommen. Wohin wir gehen, erleben Sie am besten vor Ort.</Fragment>
+  {lb.hero.badge && <Fragment slot="badge">{lb.hero.badge}</Fragment>}
+  <Fragment slot="eyebrow">{lb.hero.eyebrow}</Fragment>
+  <Fragment slot="title">{lb.hero.title}{lb.hero.titleHighlight && <><br /><em>{lb.hero.titleHighlight}</em></>}</Fragment>
+  <Fragment slot="lede">{lb.hero.lede}</Fragment>
 </PageHero>
 
 <section class="lb-motto" aria-label="Unser Motto">
   <div class="container">
-    <blockquote>Gemeinsam lernen —<br>den eigenen Weg finden.</blockquote>
-    <p class="sub">Im Sinne unseres Leitbildes fördern wir eine Schulgemeinschaft, die Vielfalt als Chance sieht und individuelle Lern- und Lebenswege ermöglicht. Wir leben ein Miteinander, das geprägt ist von gegenseitigem Respekt und Wertschätzung — sichtbar in unserer täglichen pädagogischen Arbeit.</p>
+    <blockquote>{lb.motto.quote}</blockquote>
+    <p class="sub">{lb.motto.sub}</p>
   </div>
 </section>
 
 <section class="lb-values" aria-label="Unsere Werte">
   <div class="container">
     <div class="head">
-      <span class="eyebrow">Drei Überzeugungen</span>
-      <h2>Worauf unser Leitbild steht.</h2>
+      <span class="eyebrow">{lb.values.eyebrow}</span>
+      <h2>{lb.values.title}</h2>
     </div>
     <div class="values-grid">
-      <article class="value-card">
-        <div class="num">01</div>
-        <h3>Unsere Ziele</h3>
-        <p>Wir treten dafür ein, dass jede Schülerin und jeder Schüler — unabhängig von sozialer und kultureller Herkunft — Zugang zu höherer Bildung erhält, seine Persönlichkeit entfalten, selbstständig und kritisch Entscheidungen treffen sowie Verantwortung für sich und seine Umwelt übernehmen kann.</p>
-      </article>
-      <article class="value-card">
-        <div class="num">02</div>
-        <h3>Unser Menschenbild</h3>
-        <p>Wir sehen Vielfalt als Chance, die das gemeinsame Lernen bereichert — und in jeder Schülerin und in jedem Schüler Potenzial, das gefördert werden kann.</p>
-      </article>
-      <article class="value-card">
-        <div class="num">03</div>
-        <h3>Unser Miteinander</h3>
-        <p>Respekt und Wertschätzung prägen unseren Alltag. Sie sind nicht nur Regel, sondern Haltung — und spiegeln sich in jeder pädagogischen Entscheidung, die wir treffen.</p>
-      </article>
+      {lb.values.cards.map((card) => (
+        <article class="value-card">
+          <div class="num">{card.num}</div>
+          <h3>{card.title}</h3>
+          <p>{card.text}</p>
+        </article>
+      ))}
     </div>
   </div>
 </section>

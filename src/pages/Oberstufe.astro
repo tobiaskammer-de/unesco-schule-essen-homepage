@@ -1,6 +1,14 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
+import { getTeacherByRole, ROLES } from "../lib/roles";
+import { displayName } from "../lib/teachers";
+
+// Oberstufenkoordination und Stufenleitung EF: zentrale Lehrkraft-DB.
+const [koordSekII, stufeEF] = await Promise.all([
+  getTeacherByRole(ROLES.KOORD_SEK_II),
+  getTeacherByRole(ROLES.STUFENLEITUNG_EF),
+]);
 ---
 <BaseLayout title="Oberstufe (EF · Q1 · Q2) — UNESCO-Schule Essen">
 <style is:global>
@@ -425,18 +433,36 @@ import PageHero from "../components/PageHero.astro";
       <p style="font-family:var(--sans);font-size:16.5px;line-height:1.65;color:var(--stein);margin:0;">Sekretariat: 0201 · 2802630 &nbsp;·&nbsp; Oberstufenbüro: 0201 · 2802643</p>
     </div>
     <div class="contact-duo">
-      <article class="contact-person">
-        <span class="role">Kommissarischer Oberstufenkoordinator</span>
-        <span class="name">Thorsten Omlor, OStR</span>
-        <span class="title">UNESCO-Schule Essen · Steinmetzstr. 9 · 45139 Essen</span>
-        <a href="mailto:thorsten.omlor@164835.nrw.schule">thorsten.omlor@164835.nrw.schule</a>
-      </article>
-      <article class="contact-person">
-        <span class="role">Stufenleitung EF</span>
-        <span class="name">Christoph Soyka, StR</span>
-        <span class="title">UNESCO-Schule Essen · Steinmetzstr. 9 · 45139 Essen</span>
-        <a href="mailto:christoph.soyka@164835.nrw.schule">christoph.soyka@164835.nrw.schule</a>
-      </article>
+      {koordSekII ? (
+        <article class="contact-person">
+          <span class="role">Oberstufenkoordination</span>
+          <span class="name">{displayName(koordSekII)}</span>
+          <span class="title">UNESCO-Schule Essen · Steinmetzstr. 9 · 45139 Essen</span>
+          <a href={`mailto:${koordSekII.data.email}`}>{koordSekII.data.email}</a>
+        </article>
+      ) : (
+        <article class="contact-person">
+          <span class="role">Oberstufenkoordination</span>
+          <span class="name">Stelle aktuell vakant</span>
+          <span class="title">Bitte über das Sekretariat anfragen.</span>
+          <a href="mailto:info@unesco-schule-essen.de">info@unesco-schule-essen.de</a>
+        </article>
+      )}
+      {stufeEF ? (
+        <article class="contact-person">
+          <span class="role">Stufenleitung EF</span>
+          <span class="name">{displayName(stufeEF)}</span>
+          <span class="title">UNESCO-Schule Essen · Steinmetzstr. 9 · 45139 Essen</span>
+          <a href={`mailto:${stufeEF.data.email}`}>{stufeEF.data.email}</a>
+        </article>
+      ) : (
+        <article class="contact-person">
+          <span class="role">Stufenleitung EF</span>
+          <span class="name">Stelle aktuell vakant</span>
+          <span class="title">Bitte über das Sekretariat anfragen.</span>
+          <a href="mailto:info@unesco-schule-essen.de">info@unesco-schule-essen.de</a>
+        </article>
+      )}
     </div>
   </div>
 </section>

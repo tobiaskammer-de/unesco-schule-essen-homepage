@@ -1,6 +1,11 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
+import { getSingle } from "../lib/pageContent";
+
+// Editierbare Inhalte aus src/content/pages/anmeldung.yml (Sveltia)
+const an = await getSingle("pageAnmeldung");
+const school = await getSingle("siteSchool");
 ---
 <BaseLayout title="Anmeldung — UNESCO-Schule Essen">
 <style is:global>
@@ -333,9 +338,9 @@ import PageHero from "../components/PageHero.astro";
 <main id="top">
 
 <PageHero variant="feature">
-  <Fragment slot="eyebrow">Für Eltern · Anmeldung an die UNESCO-Schule</Fragment>
-  <Fragment slot="title">Willkommen — und dann<br><em>ganz unkompliziert.</em></Fragment>
-  <Fragment slot="lede">Zwei Wege führen an unsere Schule: der Einstieg ab Klasse&nbsp;5 und der Wechsel in die gymnasiale Oberstufe. Wir begleiten Sie und Ihr Kind Schritt für Schritt.</Fragment>
+  <Fragment slot="eyebrow">{an.hero.eyebrow}</Fragment>
+  <Fragment slot="title">{an.hero.title}{an.hero.titleHighlight && <><br /><em>{an.hero.titleHighlight}</em></>}</Fragment>
+  <Fragment slot="lede">{an.hero.lede}</Fragment>
 </PageHero>
 
 <section class="an-choose" aria-label="Welcher Weg passt für Sie">
@@ -368,24 +373,22 @@ import PageHero from "../components/PageHero.astro";
 <section class="an-k5" id="klasse-5" aria-label="Anmeldung Klasse 5">
   <div class="container">
     <div class="head">
-      <span class="eyebrow">Weg A · Klasse 5</span>
-      <h2>Schuljahr 2026/27 —<br><em>jetzt anmelden.</em></h2>
-      <p>Wenn Sie für Ihr Kind ein Gymnasium suchen, das anspruchsvollen Unterricht mit einer internationalen Denkweise verbindet, sind Sie bei uns richtig. So einfach geht's.</p>
+      <span class="eyebrow">{an.klasse5.eyebrow}</span>
+      <h2>{an.klasse5.title}{an.klasse5.titleHighlight && <><br /><em>{an.klasse5.titleHighlight}</em></>}</h2>
+      <p>{an.klasse5.intro}</p>
     </div>
 
     <!-- Termine -->
     <div class="termine">
       <div class="intro">
-        <span class="kicker">Koordinierungs­verfahren</span>
-        <h3>Anmelde­termine</h3>
-        <p>An allen Terminen jeweils von 09:00 bis 14:00&nbsp;Uhr. Bitte vereinbaren Sie vorab einen verbindlichen Termin telefonisch oder online.</p>
+        <span class="kicker">{an.termine.kicker}</span>
+        <h3>{an.termine.title}</h3>
+        <p>{an.termine.intro}</p>
       </div>
       <ol>
-        <li><span class="date">26.02.2026</span><span class="day">Donnerstag</span><span class="time">09:00 – 14:00</span></li>
-        <li><span class="date">27.02.2026</span><span class="day">Freitag</span><span class="time">09:00 – 14:00</span></li>
-        <li><span class="date">02.03.2026</span><span class="day">Montag</span><span class="time">09:00 – 14:00</span></li>
-        <li><span class="date">03.03.2026</span><span class="day">Dienstag</span><span class="time">09:00 – 14:00</span></li>
-        <li><span class="date">04.03.2026</span><span class="day">Mittwoch</span><span class="time">09:00 – 14:00</span></li>
+        {an.termine.list.map((t) => (
+          <li><span class="date">{t.date}</span><span class="day">{t.day}</span><span class="time">{t.time}</span></li>
+        ))}
       </ol>
     </div>
 
@@ -520,13 +523,13 @@ import PageHero from "../components/PageHero.astro";
   <div class="container">
     <div class="an-closing-grid">
       <div>
-        <h2>Noch Fragen offen?</h2>
+        <h2>{an.closing.title}</h2>
       </div>
       <div>
-        <p>Anmeldung ist mehr als Papierkram — sie ist der erste persönliche Kontakt. Rufen Sie uns einfach an, wir nehmen uns Zeit.</p>
+        <p>{an.closing.text}</p>
         <div class="cta-row">
-          <a href="tel:+492012802630" class="btn btn-primary">0201 · 280&nbsp;26&nbsp;30</a>
-          <a href="mailto:info@unesco-schule-essen.de" class="btn btn-secondary">E-Mail senden</a>
+          <a href={`tel:+49${school.phone.replace(/\D/g, "").replace(/^0/, "")}`} class="btn btn-primary">{school.phone}</a>
+          <a href={`mailto:${school.emailGeneral}`} class="btn btn-secondary">E-Mail senden</a>
         </div>
       </div>
     </div>

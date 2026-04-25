@@ -1,0 +1,28 @@
+hero:
+  badge: "Work in Progress · Leitbild in Überarbeitung"
+  eyebrow: "Über Uns · Unser Leitbild"
+  title: "Unser Leitbild wächst"
+  titleHighlight: "mit uns."
+  lede: "Mit dem Start der Erprobungsstufe ab Klasse 5 entwickeln wir unser Schulprofil weiter. Das aktuelle Leitbild wird derzeit überarbeitet — gemeinsam mit Kollegium, Eltern und Schülerschaft. Bis dahin gilt: Was Sie hier lesen, zeigt, woher wir kommen. Wohin wir gehen, erleben Sie am besten vor Ort."
+
+motto:
+  quote: "Gemeinsam lernen — den eigenen Weg finden."
+  sub: "Im Sinne unseres Leitbildes fördern wir eine Schulgemeinschaft, die Vielfalt als Chance sieht und individuelle Lern- und Lebenswege ermöglicht. Wir leben ein Miteinander, das geprägt ist von gegenseitigem Respekt und Wertschätzung — sichtbar in unserer täglichen pädagogischen Arbeit."
+
+values:
+  eyebrow: "Drei Überzeugungen"
+  title: "Worauf unser Leitbild steht."
+  cards:
+    - num: "01"
+      title: "Unsere Ziele"
+      text: "Wir treten dafür ein, dass jede Schülerin und jeder Schüler — unabhängig von sozialer und kultureller Herkunft — Zugang zu höherer Bildung erhält, seine Persönlichkeit entfalten, selbstständig und kritisch Entscheidungen treffen sowie Verantwortung für sich und seine Umwelt übernehmen kann."
+    - num: "02"
+      title: "Unser Menschenbild"
+      text: "Wir sehen Vielfalt als Chance, die das gemeinsame Lernen bereichert — und in jeder Schülerin und in jedem Schüler Potenzial, das gefördert werden kann."
+    - num: "03"
+      title: "Unser Miteinander"
+      text: "Respekt und Wertschätzung prägen unseren Alltag. Sie sind nicht nur Regel, sondern Haltung — und spiegeln sich in jeder pädagogischen Entscheidung, die wir treffen."
+
+closing:
+  title: "Am besten: vor Ort erleben."
+  text: "Das Leitbild lebt im Alltag — in den Fluren, in den Pausen, im Unterricht. Kommen Sie zum Tag der offenen Tür, oder vereinbaren Sie ein Gespräch. Wir zeigen Ihnen gerne, wie „Gemeinsam lernen\" bei uns konkret aussieht."
