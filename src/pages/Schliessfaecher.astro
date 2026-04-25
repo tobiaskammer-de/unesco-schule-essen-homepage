@@ -1,8 +1,10 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
+import { getSingle } from "../lib/pageContent";
 
-// Farbpalette für die Schließfach-Illustration (12 Kacheln, 2 Reihen à 6).
+const page: any = await getSingle("pageSchliessfaecher");
+
 const lockers = [
   "#A399AE", "#3B7968", "#8B2B7F", "#7A9E6A", "#C7C8BE", "#7FC7BF",
   "#1E2D4A", "#6FA2DE", "#E8DFBE", "#21428E", "#E2C13A", "#9B2733",
@@ -131,9 +133,9 @@ const lockers = [
 <main id="top">
 
 <PageHero variant="feature">
-  <Fragment slot="eyebrow">Service · Digitales &amp; Alltag</Fragment>
-  <Fragment slot="title">Schließfächer <em>mieten.</em></Fragment>
-  <Fragment slot="lede">Ein eigenes Schließfach im Schulgebäude — unkompliziert und direkt beim Betreiber. Hier findest du alle Infos.</Fragment>
+  <Fragment slot="eyebrow">{page.hero.eyebrow}</Fragment>
+  <Fragment slot="title">{page.hero.title}{page.hero.titleHighlight && <> <em>{page.hero.titleHighlight}</em></>}</Fragment>
+  <Fragment slot="lede">{page.hero.lede}</Fragment>
 </PageHero>
 
 <section class="sf-intro" aria-label="Überblick">

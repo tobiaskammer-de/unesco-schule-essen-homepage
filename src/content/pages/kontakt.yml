@@ -1,0 +1,29 @@
+hero:
+  eyebrow: "Service · Kontakt"
+  title: "Wir sind"
+  titleHighlight: "für Sie da."
+  lede: "Ob Anmeldung, Beratung oder einfach eine Frage zum Schulalltag — so erreichen Sie uns am besten."
+  image: "assets/kontakt-hero.webp"
+  imageAlt: "Eingang der UNESCO-Schule Essen, Steinmetzstr. 9"
+
+school:
+  title: "So erreichen Sie uns."
+
+people:
+  eyebrow: "Ansprechpartner*innen"
+  title: "Vier persönliche Kontakte."
+  body: "Frau Axer im Sekretariat ist Ihre **erste Anlaufstelle**. Für spezifische Fragen zur Erprobungsstufe (Klassen 5 – 6), zur Sekundarstufe I oder zur Oberstufe gibt es jeweils eine feste Ansprechperson."
+
+form:
+  title: "Schreiben Sie uns."
+  lede: "Dieses Formular geht direkt an unser Sekretariat. Wir melden uns werktags in der Regel innerhalb von 24 Stunden zurück."
+  hint: "Ihre Angaben verwenden wir ausschließlich zur Beantwortung Ihrer Anfrage. Details in unserer Datenschutzerklärung."
+  submitLabel: "Nachricht senden →"
+  topics:
+    - "Allgemeine Anfrage"
+    - "Anmeldung Klasse 5"
+    - "Wechsel in die Oberstufe"
+    - "Elternanfrage"
+    - "Presse / Medien"
+    - "Kooperation / Partnerschaft"
+    - "Etwas anderes"

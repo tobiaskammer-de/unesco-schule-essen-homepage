@@ -1,9 +1,11 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
+import { getSingle } from "../lib/pageContent";
 
-// Testimonials — Stimmen von Ehemaligen
-const testimonials = [
+const page: any = await getSingle("pageEhemalige");
+
+const _testimonialsFallback = [
   {
     name: "Valentina",
     photo: "assets/ehemalige/Valentina.png",
@@ -36,6 +38,8 @@ const testimonials = [
       "Die UNESCO-Schule nimmt jeden Schüler unabhängig seines Hintergrundes herzlich auf — das macht diese Schule wirklich aus. Ich bin froh und gleichzeitig auch stolz darüber, ein Teil dieser Schule gewesen zu sein und eine tolle Oberstufenzeit gehabt zu haben. Heute, in der Uni, vermisse ich nicht nur die Pausen und Zeiten mit den Freunden, sondern auch den Unterricht!",
   },
 ];
+
+const testimonials = page.testimonials.list;
 
 const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
 function asset(p: string): string {
@@ -198,10 +202,10 @@ function asset(p: string): string {
 
 <main id="top">
 
-<PageHero variant="feature" image="assets/ehemalige/banner.png" imageAlt="UNESCO-Schule Essen — Ehemalige">
-  <Fragment slot="eyebrow">Über Uns · Ehemalige</Fragment>
-  <Fragment slot="title">Einmal UNESCO —<br>immer <em>verbunden.</em></Fragment>
-  <Fragment slot="lede">Egal, ob dein Abitur ein Jahr oder fünfzig Jahre zurückliegt — ein Wiedersehen macht Freude. Bleib in Kontakt mit deiner alten Schule.</Fragment>
+<PageHero variant="feature" image={page.hero.image || "assets/ehemalige/banner.png"} imageAlt={page.hero.imageAlt || "UNESCO-Schule Essen — Ehemalige"}>
+  <Fragment slot="eyebrow">{page.hero.eyebrow}</Fragment>
+  <Fragment slot="title">{page.hero.title}{page.hero.titleHighlight && <><br />immer <em>{page.hero.titleHighlight.replace(/^immer /, "")}</em></>}</Fragment>
+  <Fragment slot="lede">{page.hero.lede}</Fragment>
 </PageHero>
 
 <section class="eh-statement" aria-label="Unser Versprechen">

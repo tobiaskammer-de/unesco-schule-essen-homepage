@@ -1,6 +1,9 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
+import { getSingle } from "../lib/pageContent";
+
+const page: any = await getSingle("pageFoerderverein");
 ---
 <BaseLayout title="Förderverein — UNESCO-Schule Essen">
 <style is:global>
@@ -128,10 +131,10 @@ import PageHero from "../components/PageHero.astro";
 <main id="top">
 
 <PageHero variant="page">
-  <Fragment slot="badge">Gemeinnützig · gegründet 2007</Fragment>
-  <Fragment slot="eyebrow">Über Uns · Förderverein</Fragment>
-  <Fragment slot="title">Der Förderverein —<br><em>mehr möglich machen.</em></Fragment>
-  <Fragment slot="lede">Als gemeinnützig anerkannter Verein unterstützt der Förderverein die pädagogische Arbeit an der UNESCO-Schule und macht Projekte möglich, die über das reguläre Schulbudget hinausgehen.</Fragment>
+  {page.hero.badge && <Fragment slot="badge">{page.hero.badge}</Fragment>}
+  <Fragment slot="eyebrow">{page.hero.eyebrow}</Fragment>
+  <Fragment slot="title">{page.hero.title}{page.hero.titleHighlight && <><br /><em>{page.hero.titleHighlight}</em></>}</Fragment>
+  <Fragment slot="lede">{page.hero.lede}</Fragment>
 </PageHero>
 
 <section class="fv-purpose" aria-label="Zweck des Fördervereins">

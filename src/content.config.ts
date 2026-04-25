@@ -205,6 +205,46 @@ const pageLeitbild = defineCollection({
   }),
 });
 
+/**
+ * Weitere Seiten-Collections (Variante B: alle Inhalte editierbar).
+ *
+ * Aus Pragmatismus nutzen die folgenden Seiten ein flexibles Schema
+ * (z.record(z.any())). Die strukturierte Validierung übernimmt das
+ * Sveltia-Editor-Schema in public/admin/config.yml — dort sind die
+ * Felder pro Seite klar definiert. Im Astro-Code lesen wir die Daten
+ * über typisierte Helper aus src/lib/pageContent.ts.
+ *
+ * Diese Lockerung ist bewusst — sonst wären 16+ vollständig getypte
+ * Schemas in dieser Datei zu wartender Overhead, ohne dass die Type-
+ * Safety im UI-Code echten Mehrwert brächte (Texte sind Texte).
+ */
+const flexibleSchema = z.record(z.string(), z.any());
+
+const pageUnescoMission   = defineCollection({ loader: glob({ pattern: "unesco-mission.yml",       base: "./src/content/pages" }), schema: flexibleSchema });
+const pageSchulprogramm   = defineCollection({ loader: glob({ pattern: "schulprogramm.yml",        base: "./src/content/pages" }), schema: flexibleSchema });
+const pageErprobungsstufe = defineCollection({ loader: glob({ pattern: "erprobungsstufe.yml",      base: "./src/content/pages" }), schema: flexibleSchema });
+const pageMittelstufe     = defineCollection({ loader: glob({ pattern: "mittelstufe.yml",          base: "./src/content/pages" }), schema: flexibleSchema });
+const pageOberstufe       = defineCollection({ loader: glob({ pattern: "oberstufe.yml",            base: "./src/content/pages" }), schema: flexibleSchema });
+const pageSchulleitung    = defineCollection({ loader: glob({ pattern: "schulleitung.yml",         base: "./src/content/pages" }), schema: flexibleSchema });
+const pageBeratung        = defineCollection({ loader: glob({ pattern: "beratung.yml",             base: "./src/content/pages" }), schema: flexibleSchema });
+const pageBerufsorientierung = defineCollection({ loader: glob({ pattern: "berufsorientierung.yml", base: "./src/content/pages" }), schema: flexibleSchema });
+const pageKulturelleBildung = defineCollection({ loader: glob({ pattern: "kulturelle-bildung.yml", base: "./src/content/pages" }), schema: flexibleSchema });
+const pagePaedagogischeKonzepte = defineCollection({ loader: glob({ pattern: "paedagogische-konzepte.yml", base: "./src/content/pages" }), schema: flexibleSchema });
+const pageAnfahrt         = defineCollection({ loader: glob({ pattern: "anfahrt.yml",              base: "./src/content/pages" }), schema: flexibleSchema });
+const pageSchliessfaecher = defineCollection({ loader: glob({ pattern: "schliessfaecher.yml",      base: "./src/content/pages" }), schema: flexibleSchema });
+const pageFoerderverein   = defineCollection({ loader: glob({ pattern: "foerderverein.yml",        base: "./src/content/pages" }), schema: flexibleSchema });
+const pageEhemalige       = defineCollection({ loader: glob({ pattern: "ehemalige.yml",            base: "./src/content/pages" }), schema: flexibleSchema });
+const pagePartner         = defineCollection({ loader: glob({ pattern: "partner.yml",              base: "./src/content/pages" }), schema: flexibleSchema });
+const pageEltern          = defineCollection({ loader: glob({ pattern: "eltern.yml",               base: "./src/content/pages" }), schema: flexibleSchema });
+const pageKontakt         = defineCollection({ loader: glob({ pattern: "kontakt.yml",              base: "./src/content/pages" }), schema: flexibleSchema });
+const pageArbeitsgemeinschaften = defineCollection({ loader: glob({ pattern: "arbeitsgemeinschaften.yml", base: "./src/content/pages" }), schema: flexibleSchema });
+const pageStundentafel    = defineCollection({ loader: glob({ pattern: "stundentafel.yml",         base: "./src/content/pages" }), schema: flexibleSchema });
+const pageAktuelles       = defineCollection({ loader: glob({ pattern: "aktuelles.yml",            base: "./src/content/pages" }), schema: flexibleSchema });
+const pageKollegium       = defineCollection({ loader: glob({ pattern: "kollegium.yml",            base: "./src/content/pages" }), schema: flexibleSchema });
+const pageKalender        = defineCollection({ loader: glob({ pattern: "kalender.yml",             base: "./src/content/pages" }), schema: flexibleSchema });
+const pageImpressum       = defineCollection({ loader: glob({ pattern: "impressum.yml",            base: "./src/content/pages" }), schema: flexibleSchema });
+const pageDatenschutz     = defineCollection({ loader: glob({ pattern: "datenschutz.yml",          base: "./src/content/pages" }), schema: flexibleSchema });
+
 export const collections = {
   news,
   teachers,
@@ -213,4 +253,28 @@ export const collections = {
   pageHome,
   pageAnmeldung,
   pageLeitbild,
+  pageUnescoMission,
+  pageSchulprogramm,
+  pageErprobungsstufe,
+  pageMittelstufe,
+  pageOberstufe,
+  pageSchulleitung,
+  pageBeratung,
+  pageBerufsorientierung,
+  pageKulturelleBildung,
+  pagePaedagogischeKonzepte,
+  pageAnfahrt,
+  pageSchliessfaecher,
+  pageFoerderverein,
+  pageEhemalige,
+  pagePartner,
+  pageEltern,
+  pageKontakt,
+  pageArbeitsgemeinschaften,
+  pageStundentafel,
+  pageAktuelles,
+  pageKollegium,
+  pageKalender,
+  pageImpressum,
+  pageDatenschutz,
 };

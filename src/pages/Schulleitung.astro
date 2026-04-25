@@ -3,10 +3,12 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
 import ContactCard from "../components/ContactCard.astro";
 import { getTeacherByRole, ROLES } from "../lib/roles";
+import { getSingle } from "../lib/pageContent";
+
+const page: any = await getSingle("pageSchulleitung");
+const school: any = await getSingle("siteSchool");
 
 // Zentrale Datenbindung: alle Personen kommen aus src/content/teachers/.
-// Wechsel der Person? Nur die roles[]-Liste in der jeweiligen Lehrkraft-Markdown
-// anpassen — diese Seite zieht automatisch nach.
 const [
   schulleiterin,
   stellv,
@@ -23,7 +25,6 @@ const [
   getTeacherByRole(ROLES.SEKRETARIAT),
 ]);
 
-// Hinweis-Sektion zur Erprobungsstufe nutzt denselben Datensatz
 const erprobName = koordEprob
   ? `${koordEprob.data.firstName} ${koordEprob.data.lastName}`
   : null;
@@ -97,26 +98,26 @@ const erprobName = koordEprob
 <main id="top">
 
 <PageHero variant="page">
-  <Fragment slot="eyebrow">Über Uns · Schulleitung und Sekretariat</Fragment>
-  <Fragment slot="title">Ihre Ansprechpartner in Schulleitung und Sekretariat.</Fragment>
-  <Fragment slot="lede">Das Team, das unsere Schule trägt — mit offenen Türen für Schülerinnen und Schüler, Eltern und Kolleginnen und Kollegen.</Fragment>
+  <Fragment slot="eyebrow">{page.hero.eyebrow}</Fragment>
+  <Fragment slot="title">{page.hero.title}</Fragment>
+  <Fragment slot="lede">{page.hero.lede}</Fragment>
 </PageHero>
 
 <section class="sl-office" aria-label="Kontaktdaten">
   <div class="container">
     <div class="office-card">
-      <div class="brand">UNESCO-Schule Essen<br>Steinmetzstr. 9 · 45139 Essen</div>
+      <div class="brand">{school.name}<br>{school.address.street} · {school.address.postal} {school.address.city}</div>
       <div class="col">
         <span class="lbl">Telefon</span>
-        <a href="tel:+492012802630">0201 · 280 26 30</a>
+        <a href={`tel:+49${school.phone.replace(/\D/g, "").replace(/^0/, "")}`}>{school.phone}</a>
       </div>
       <div class="col">
         <span class="lbl">Telefax</span>
-        <span class="val">0201 · 280 26 31</span>
+        <span class="val">{school.fax}</span>
       </div>
       <div class="col">
         <span class="lbl">E-Mail</span>
-        <a href="mailto:info@unesco-schule-essen.de">info@unesco-schule-essen.de</a>
+        <a href={`mailto:${school.emailGeneral}`}>{school.emailGeneral}</a>
       </div>
     </div>
   </div>
@@ -125,8 +126,8 @@ const erprobName = koordEprob
 <section class="sl-team" aria-label="Das Team">
   <div class="container">
     <div class="head">
-      <span class="eyebrow">Unser Team</span>
-      <h2>Schulleitung, Koordination, Sekretariat.</h2>
+      <span class="eyebrow">{page.team.eyebrow}</span>
+      <h2>{page.team.title}</h2>
     </div>
     <div class="sl-people">
       <ContactCard teacher={schulleiterin} roleLabel="Schulleiterin" />
@@ -144,12 +145,12 @@ const erprobName = koordEprob
     <div class="inner">
       <div class="icon">★</div>
       <div>
-        <h3>Erprobungsstufe ab 2026/27</h3>
+        <h3>{page.note.title}</h3>
         <p>
-          Für Fragen zur Erprobungsstufe (Klassen 5 und 6) ist
-          {erprobName ? <strong>{erprobName}</strong> : <em>derzeit eine kommissarische Leitung</em>}
-          {erprobName && " als Erprobungsstufenleitung"} Ansprechpartner.
-          <a class="inline-link" href="Erprobungsstufe.html">Mehr zur Erprobungsstufe →</a>
+          {page.note.prefix}
+          {erprobName ? <strong>{erprobName}</strong> : <em>{page.note.vacantText}</em>}
+          {erprobName && " " + page.note.suffix}
+          <a class="inline-link" href={page.note.linkHref}>{page.note.linkLabel}</a>
         </p>
       </div>
     </div>

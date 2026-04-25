@@ -1,0 +1,87 @@
+hero:
+  eyebrow: "Profil · Kulturelle Bildung und Kunst"
+  title: "Kulturelle Bildung,"
+  titleHighlight: "die bei uns wächst."
+  lede: "Von Klasse 5 bis zur Oberstufe — kulturelle Bildung ist bei uns kein Einzelprojekt, sondern ein durchgängiges Konzept. Wir verbinden schulinterne Profile mit starken externen Partnern."
+  image: "assets/kulturelle-bildung/buhne.jpg"
+  imageAlt: ""
+
+intro:
+  title: "Ein Weg, der sich"
+  titleHighlight: "über Jahre entfaltet."
+  body: |
+    Wer uns besucht, merkt schnell: Kulturelle Bildung ist bei uns kein Einzelprojekt, sondern ein durchgängiges Konzept — von Klasse 5 bis zur Oberstufe.
+
+    Dabei verbinden wir schulinterne Profile mit starken externen Partnern. So entsteht ein Erfahrungsraum, in dem junge Menschen Ausdrucksformen entdecken, erproben und über viele Schuljahre hinweg vertiefen können — altersgerecht, anspruchsvoll und praxisnah.
+
+courses:
+  eyebrow: "01 · Im Schulalltag"
+  title: "Kulturelle Bildung im Schulalltag."
+  body: "Unsere schulinternen Angebote — ein Lernweg vom ersten kreativen Ausprobieren in Klasse 5 bis zur eigenständigen künstlerischen Arbeit in der Oberstufe."
+  list:
+    - klasse: "Ab Klasse 5"
+      title: "Profilkurs WortArt+"
+      body: |
+        Bereits zu Beginn der Schulzeit können Schülerinnen und Schüler den Profilkurs „WortArt+\" wählen. Hier verbinden sich Sprache, Kunst und Musik zu einem kreativen Erfahrungsraum.
+
+        Es wird geschrieben, gestaltet, gesprochen, inszeniert und musikalisch gearbeitet. Eigene Texte entstehen ebenso wie erste szenische Umsetzungen — Grundlage für Ausdrucksfähigkeit, Kreativität und Selbstvertrauen.
+    - klasse: "Ab Klasse 8 / 9"
+      title: "Wahlpflichtfach Bühnenwelten"
+      body: |
+        In den mittleren Jahrgängen kann das Wahlpflichtfach „Bühnenwelten\" gewählt werden. Schauspielerische Fähigkeiten werden systematisch vertieft: Rollenarbeit, Textanalyse, szenische Gestaltung, Stimmbildung und das Schreiben eigener Texte.
+
+        Dazu kommen spielerische Annäherungen an Oper und Deklamation. Die Schülerinnen und Schüler entwickeln Bühnenpräsenz, Teamfähigkeit und gestalterische Eigenständigkeit.
+    - klasse: "Oberstufe"
+      title: "Literaturkurs"
+      body: |
+        In der Oberstufe besteht die Möglichkeit, einen Literaturkurs zu wählen. Hier wird auf anspruchsvollem Niveau geschrieben, inszeniert und aufgeführt.
+
+        Eigene Texte werden entwickelt, überarbeitet und zur Aufführung gebracht — ein kontinuierlicher Entwicklungsweg vom ersten kreativen Ausprobieren bis zur eigenständigen künstlerischen Arbeit.
+
+partners:
+  eyebrow: "02 · Starke Partner"
+  title: "Kulturelle Bildung durch starke Partner."
+  body: "Unsere Kooperationen mit renommierten Essener und bundesweit vernetzten Kulturinstitutionen — Musik, Theater, Tanz und Konzert als regelmäßige Erfahrung."
+  list:
+    - mark: "Folkwang Musikschule"
+      title: "Musikpraxis mit dem Jamtruck."
+      body: |
+        Einmal pro Woche steht der Jamtruck auf unserem Schulhof — ein voll ausgestatteter Proberaum im LKW. Zwei professionelle Coaches arbeiten mit unseren Schülerinnen und Schülern an Bandprojekten, Songs und Arrangements.
+
+        Hier wird Musik nicht theoretisch behandelt, sondern praktisch erarbeitet.
+      image: "assets/kulturelle-bildung/truck.png"
+      imageAlt: "Jamtruck der Folkwang Musikschule Essen"
+      highlight: ""
+    - mark: "Theater und Philharmonie Essen"
+      title: "Oper, Konzert und Tanz."
+      body: |
+        Eine besonders enge Zusammenarbeit verbindet uns mit der Theater und Philharmonie Essen. Im Schuljahr 2025/26 sind wir offizieller Kooperationspartner.
+
+        Darüber hinaus besuchen unsere Schülerinnen und Schüler regelmäßig Opern, Ballett- und Tanzproduktionen sowie klassische Konzerte — unterstützt durch den „Freundeskreis Theater und Philharmonie e. V.\"
+      image: "assets/kulturelle-bildung/aalto.png"
+      imageAlt: "Aalto-Theater Essen"
+      highlight: "**Aktuell:** Über 40 Schülerinnen und Schüler arbeiten gemeinsam mit den Philharmonikern Essen an einer eigenen Opernproduktion — stellvertretend für die Tiefe dieser Partnerschaft."
+    - mark: "Klavier-Festival Ruhr"
+      title: "Konzerterlebnisse, die bleiben."
+      body: |
+        Durch unsere langjährige Partnerschaft mit dem Klavier-Festival Ruhr besucht jede Schülerin und jeder Schüler im Laufe der Schulzeit mindestens einmal ein Konzert dieses international renommierten Festivals.
+
+        Vorbereitende Einführungen und exklusive Kartenkontingente sorgen dafür, dass diese Konzerterlebnisse nachhaltig wirken.
+      image: "assets/kulturelle-bildung/gruppe.png"
+      imageAlt: "Schülergruppe beim Konzertbesuch"
+      highlight: ""
+    - mark: "Grillo-Theater Essen"
+      title: "Schauspiel und Workshops."
+      body: |
+        Ein weiterer Schwerpunkt ist die Zusammenarbeit mit dem Grillo-Theater Essen. Wir besuchen Schauspielaufführungen und nehmen an Workshops teil.
+
+        Theater wird so nicht nur erlebt, sondern aktiv reflektiert und vertieft.
+      image: "assets/kulturelle-bildung/buehne.png"
+      imageAlt: "Theateraufführung"
+      highlight: ""
+
+closing:
+  eyebrow: "Unser Bildungskonzept"
+  title: "Altersgerecht. Anspruchsvoll."
+  titleHighlight: "Praxisnah."
+  body: "Durch die klare Verbindung von schulischen Profilangeboten und starken kulturellen Partnern entsteht bei uns ein durchgängiges Bildungskonzept. Kulturelle Bildung begleitet unsere Schülerinnen und Schüler über viele Jahre hinweg."

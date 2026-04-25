@@ -1,0 +1,92 @@
+hero:
+  badge: "Anerkannte UNESCO-Projektschule · Stufe 3"
+  eyebrow: "Über Uns · UNESCO – Name und Mission"
+  title: "Wir sind nicht irgendeine"
+  titleHighlight: "UNESCO-Schule."
+  lede: "Wir sind das einzige Gymnasium in Deutschland, das den Namen der UNESCO trägt — nach einem intensiven, mehrjährigen Prüfungsverfahren der Deutschen UNESCO-Kommission. Der Name ist für uns Auftrag, nicht Auszeichnung."
+
+statement:
+  title: "Den Namen zu tragen heißt, ihn zu leben."
+  body: |
+    Die UNESCO-Schule Essen trägt nicht nur den Namen der UNESCO — sie setzt sich aktiv dafür ein, deren Werte und Ziele zu vermitteln. Dazu gehören **Erziehung zur Demokratie auf Basis der Menschenrechte**, die **Förderung des globalen Lernens**, der **Erwerb interkultureller Kompetenz** durch vielfältige Begegnungen sowie **Umwelterziehung im Sinne der Agenda 21** und der 17 Ziele für nachhaltige Entwicklung.
+
+    Diese Ziele sind bei uns nicht Projekttag, sondern Lehrplan. Sie prägen, was wir unterrichten, wie wir Konflikte lösen, welche Partnerschaften wir eingehen und welche Projekte wir möglich machen.
+  highlight: "Inwiefern der Schulalltag unserer Schülerinnen und Schüler zum Erreichen dieser Ziele geprägt ist, erfahren Sie weiter unten."
+
+aspnet:
+  eyebrow: "Ein weltweites Netzwerk"
+  title: "Was eine UNESCO-Projektschule ist."
+  body: "Seit 1953 verbindet das UNESCO-Projektschul-Netzwerk (ASPnet — Associated Schools Project Network) Schulen, die sich den Zielen der UNESCO verpflichten: Frieden, Menschenrechte, Nachhaltigkeit, interkultureller Dialog. Koordiniert wird das deutsche Netzwerk von der Deutschen UNESCO-Kommission."
+  stats:
+    - n: "~12 000"
+      label: "UNESCO-Projektschulen weltweit, in über 180 Ländern — eines der ältesten und größten bildungspolitischen Netzwerke der Vereinten Nationen."
+    - n: "~300"
+      label: "Anerkannte UNESCO-Projektschulen in Deutschland. Alle Schulformen, alle Bundesländer."
+    - n: "1"
+      label: "Einziges Gymnasium in Deutschland, das den Namen der UNESCO im eigenen Schulnamen führt — nach intensivem Prüfungsverfahren."
+
+tiers:
+  eyebrow: "Drei Stufen, ein Weg"
+  title: "Wie Schulen zu UNESCO-Projektschulen werden."
+  body: "Der Weg in das Netzwerk verläuft in drei Stufen. Er ist lang, die Prüfung streng — und das ist gut so. Wir sind auf der dritten und höchsten Stufe angekommen."
+  list:
+    - step: "01"
+      title: "Interessierte Schule"
+      body: "Erste Annäherung an das Netzwerk. Die Schule zeigt Interesse, nimmt an Veranstaltungen teil, erprobt erste Projekte im UNESCO-Kontext."
+      marker: "Einstieg"
+      isUs: false
+    - step: "02"
+      title: "Mitarbeitende Schule"
+      body: "Mehrjährige Mitarbeit: kontinuierliche Projekte, Ausrichtung des Schulprogramms an UNESCO-Werten, Vernetzung mit anderen Projektschulen. Dokumentationspflicht gegenüber der Deutschen UNESCO-Kommission."
+      marker: "Aufbau"
+      isUs: false
+    - step: "03"
+      title: "Anerkannte UNESCO-Projektschule"
+      body: "Die höchste Stufe. Nach intensiver Prüfung bestätigt die Deutsche UNESCO-Kommission, dass die Schule die Werte der UNESCO im gesamten Schulleben verankert hat — in Unterricht, Schulprogramm, Alltag und Partnerschaften. Nur Schulen dieser Stufe dürfen den Namen „UNESCO-Projektschule\" führen."
+      marker: "Hier sind wir"
+      isUs: true
+
+themes:
+  eyebrow: "Fünf Themenfelder der UNESCO"
+  title: "Woran wir arbeiten."
+  list:
+    - n: "01"
+      title: "Menschenrechte, Frieden und Demokratie"
+      body: "Demokratieerziehung, Klassenrat, Schülervertretung, Gedenkstättenfahrten, Projekte zur Erinnerungskultur. Konflikte gewaltfrei lösen — und junge Menschen als mündige Mitgestalterinnen und Mitgestalter ernst nehmen."
+    - n: "02"
+      title: "Interkulturelles Lernen"
+      body: "Über 30 Erstsprachen in unserer Schülerschaft. Austauschprogramme, bilinguale Projekte, kulturelle Feste, Arche-Noah-Projekt. Vielfalt ist bei uns Realität, nicht Lehrplan-Thema."
+    - n: "03"
+      title: "UNESCO-Welterbe"
+      body: "Projekte und Exkursionen zu Welterbestätten in der Region — Zollverein vor der Haustür, Industriekultur als Lernort. Sensibilisierung für den Schutz kulturellen und natürlichen Erbes."
+    - n: "04"
+      title: "Globales Lernen & nachhaltige Entwicklung"
+      body: "Die 17 Ziele für nachhaltige Entwicklung (SDGs) als Kompass: Schulgarten, Differenzierungskurs „Nachhaltige Gesellschaft\", UNESCO-Projekttage zu Klima, Ressourcen und globaler Gerechtigkeit."
+    - n: "05"
+      title: "Bildung für alle & Literacy"
+      body: "Leseförderung, Begabtenförderung, Inklusion. Wir treten dafür ein, dass jede Schülerin und jeder Schüler — unabhängig von Herkunft — Zugang zu höherer Bildung und einem starken Abitur findet."
+
+alltag:
+  eyebrow: "UNESCO im Schulalltag"
+  title: "Was das konkret bedeutet."
+  body: "Der Name verpflichtet uns zu einer Vielzahl an Aktivitäten, die über den regulären Unterricht hinausgehen — zwölf Monate im Jahr, in allen Jahrgängen."
+  items:
+    - "Zwei UNESCO-Projekttage pro Schuljahr mit jahrgangsübergreifenden Themen"
+    - "UNESCO-Führerschein in der Sekundarstufe I"
+    - "Ausstellungen zu Welttagen der Vereinten Nationen (2 – 3 pro Monat)"
+    - "Ein hauptamtlicher UNESCO-Beauftragter im Kollegium"
+    - "Aktive Mitarbeit in regionalen und bundesweiten UNESCO-Arbeitskreisen"
+    - "Jährliche Berichte und Dokumentationen an die Deutsche UNESCO-Kommission"
+    - "Partnerschaften mit Kulturinstitutionen (Theater und Philharmonie Essen, Aalto-Theater, Museen)"
+    - "Erasmus-Plus-Programm und internationale Schüleraustausche"
+    - "Orientierung an den 17 Zielen für nachhaltige Entwicklung (SDGs) im Unterricht"
+    - "Zusammenarbeit mit der Deutschen UNESCO-Kommission und dem Schulnetzwerk ASPnet"
+
+pledge:
+  eyebrow: "Unsere Selbstverpflichtung"
+  title: "Den Namen zu tragen heißt, ihm gerecht zu werden — jeden Tag."
+  body: |
+    Die Aufnahme ins Netzwerk der anerkannten UNESCO-Projektschulen ist kein Schlusspunkt, sondern Versprechen. Wir verpflichten uns, die Werte der UNESCO nicht nur zu unterrichten, sondern zu leben — und unsere Arbeit regelmäßig zur Prüfung zu stellen.
+
+    Das bedeutet: Wer unsere Schule verlässt, soll nicht nur ein starkes Abitur in der Hand halten — sondern eine Haltung im Kopf, die in der Welt trägt.
+  signature: "Kollegium der UNESCO-Schule Essen"

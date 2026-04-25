@@ -1,11 +1,11 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
+import { getSingle } from "../lib/pageContent";
 
-/**
- * Partner-Seite. Gruppiert nach Art der Partnerschaft.
- */
-const categories = [
+const page: any = await getSingle("pagePartner");
+
+const _categoriesFallback = [
   {
     label: "Netzwerk & Bildungsauftrag",
     intro: "Verbände und Organisationen, in deren Auftrag wir unseren Bildungsauftrag verstehen und weitertragen.",
@@ -132,6 +132,8 @@ const categories = [
     ],
   },
 ];
+
+const categories = page.categories;
 ---
 <BaseLayout title="Partnerschaften — UNESCO-Schule Essen" description="Mit wem wir zusammenarbeiten: UNESCO, Universität Duisburg-Essen, Theater und Philharmonie, Stiftungen, lokale Partner und Service-Clubs.">
 <style is:global>
@@ -242,9 +244,9 @@ const categories = [
 <main id="top">
 
 <PageHero variant="feature">
-  <Fragment slot="eyebrow">Über Uns · Gemeinschaft &amp; Netzwerk</Fragment>
-  <Fragment slot="title">Mit wem wir<br><em>zusammenarbeiten.</em></Fragment>
-  <Fragment slot="lede">Schule funktioniert nicht allein. Unsere Partnerschaften reichen von weltweiten Netzwerken bis zu Essener Institutionen — und machen vieles von dem möglich, was unseren Alltag prägt.</Fragment>
+  <Fragment slot="eyebrow">{page.hero.eyebrow}</Fragment>
+  <Fragment slot="title">{page.hero.title}{page.hero.titleHighlight && <><br /><em>{page.hero.titleHighlight}</em></>}</Fragment>
+  <Fragment slot="lede">{page.hero.lede}</Fragment>
 </PageHero>
 
 <section class="pt-intro" aria-label="Einordnung">

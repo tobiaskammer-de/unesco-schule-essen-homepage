@@ -1,0 +1,80 @@
+hero:
+  eyebrow: "Informieren · Schulstufen"
+  title: "Stundentafeln"
+  titleHighlight: "und Unterrichtsraster."
+  lede: "Welche Fächer werden in welcher Klasse wie lange unterrichtet? Und wann beginnt die erste Stunde? Hier finden Sie alle organisatorischen Rahmendaten der Sekundarstufe I."
+
+intro:
+  title: "Ein klarer Rahmen — für ein"
+  titleHighlight: "vielseitiges Lernen."
+  body: |
+    Die Stundentafel legt fest, mit wie vielen Wochenstunden jedes Fach in der Sekundarstufe I unterrichtet wird. Grundlage ist die **APO-SI (Anlage 6)**, ergänzt um das Profil unserer UNESCO-Schule.
+
+    Zusätzlich erhalten Sie hier einen Überblick über das aktuelle Unterrichtsraster — also die Zeiten, in denen unsere Schülerinnen und Schüler lernen, Pause machen und nach Hause gehen.
+
+raster:
+  eyebrow: "Tagesstruktur"
+  title: "Das aktuelle Unterrichtsraster."
+  body: "45-Minuten-Stunden mit zwei großen Pausen am Vormittag und einer Mittagspause vor dem Nachmittagsunterricht."
+  rows:
+    - { label: "1. Stunde", time: "08:05 – 08:50", kind: "lesson" }
+    - { label: "2. Stunde", time: "08:55 – 09:40", kind: "lesson" }
+    - { label: "1. große Pause", time: "", kind: "pause" }
+    - { label: "3. Stunde", time: "10:00 – 10:45", kind: "lesson" }
+    - { label: "4. Stunde", time: "10:50 – 11:35", kind: "lesson" }
+    - { label: "2. große Pause", time: "", kind: "pause" }
+    - { label: "5. Stunde", time: "11:55 – 12:40", kind: "lesson" }
+    - { label: "6. Stunde", time: "12:45 – 13:30", kind: "lesson" }
+    - { label: "Mittagspause", time: "", kind: "pause" }
+    - { label: "7. Stunde", time: "13:50 – 14:35", kind: "lesson" }
+    - { label: "8. Stunde", time: "14:40 – 15:25", kind: "lesson" }
+    - { label: "9. Stunde", time: "15:25 – 16:10", kind: "lesson" }
+    - { label: "10. Stunde", time: "16:10 – 16:55", kind: "lesson" }
+
+table:
+  eyebrow: "Wochenstunden je Fach"
+  title: "Stundentafel Sekundarstufe I."
+  tag: "Ab Schuljahr 2020/21 · APO-SI, Anlage 6"
+  body: "Die Tabelle zeigt die Wochenstunden pro Fach in den Klassen 7 bis 10. Bedeutung der Fachkürzel findet sich weiter unten auf der Seite."
+  caption: "UNESCO-Schule Essen · Stundentafel SI ab 2020/21"
+
+notes:
+  title: "Anmerkungen zur Stundentafel"
+  list:
+    - "Epochenunterricht in Biologie — s. Erläuterung oben."
+    - "Epochenunterricht in Physik — s. Erläuterung oben."
+    - "Epochenunterricht in Physik — s. Erläuterung oben."
+    - "FUD (Fach-Unterricht Deutsch) gilt nur für seiteneinsteigende Schülerinnen und Schüler mit Sprachfeststellungsprüfung in der Herkunftssprache."
+    - "3. Fremdsprache = 4-stündig."
+    - "Förderung / Forderung in Deutsch, Englisch oder Mathematik in den Klassen 7+8 sowie 9+10, jahrgangsstufenübergreifend organisiert."
+
+legend:
+  eyebrow: "Legende"
+  title: "Abkürzungen und Fachkürzel."
+  list:
+    - { key: "D", name: "Deutsch" }
+    - { key: "E", name: "Englisch" }
+    - { key: "M", name: "Mathematik" }
+    - { key: "GE", name: "Geschichte" }
+    - { key: "EK", name: "Erdkunde" }
+    - { key: "WI-PK", name: "Wirtschaft / Politik" }
+    - { key: "BI", name: "Biologie" }
+    - { key: "CH", name: "Chemie" }
+    - { key: "PH", name: "Physik" }
+    - { key: "KU", name: "Kunst" }
+    - { key: "MU", name: "Musik" }
+    - { key: "SP", name: "Sport" }
+    - { key: "ER", name: "Evangelische Religion" }
+    - { key: "KR", name: "Katholische Religion" }
+    - { key: "PL", name: "Praktische Philosophie" }
+    - { key: "L7", name: "Latein (ab Klasse 7)" }
+    - { key: "FS", name: "Fremdsprache" }
+    - { key: "WP", name: "Wahlpflicht" }
+    - { key: "IF", name: "Informatik (Differenzierung)" }
+    - { key: "FUD", name: "Fachunterricht Deutsch" }
+    - { key: "EGS", name: "Ergänzungsstunden" }
+
+dummy:
+  eyebrow: "In Vorbereitung"
+  title: "Stundentafel Sekundarstufe II."
+  body: "Eine entsprechende Übersicht zur gymnasialen Oberstufe (EF · Q1 · Q2) folgt an dieser Stelle in Kürze."

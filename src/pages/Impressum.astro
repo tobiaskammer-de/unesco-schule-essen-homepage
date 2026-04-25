@@ -1,6 +1,9 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
+import { getSingle } from "../lib/pageContent";
+
+const page = await getSingle("pageImpressum");
 ---
 <BaseLayout title="Impressum — UNESCO-Schule Essen" description="Impressum und Anbieterkennzeichnung der UNESCO-Schule Essen gemäß § 5 TMG und § 55 RStV.">
 <style is:global>
@@ -45,9 +48,9 @@ import PageHero from "../components/PageHero.astro";
 <main id="top">
 
 <PageHero variant="page">
-  <Fragment slot="eyebrow">Rechtliches</Fragment>
-  <Fragment slot="title">Impressum.</Fragment>
-  <Fragment slot="lede">Anbieterkennzeichnung nach § 5 TMG sowie Verantwortlichkeit nach § 18 Abs. 2 MStV für die Website unesco-schule-essen.de.</Fragment>
+  <Fragment slot="eyebrow">{page.hero.eyebrow}</Fragment>
+  <Fragment slot="title">{page.hero.title}</Fragment>
+  <Fragment slot="lede">{page.hero.lede}</Fragment>
 </PageHero>
 
 <section class="legal" aria-label="Impressum">

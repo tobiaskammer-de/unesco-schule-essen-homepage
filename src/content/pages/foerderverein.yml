@@ -1,0 +1,75 @@
+hero:
+  badge: "Gemeinnützig · gegründet 2007"
+  eyebrow: "Über Uns · Förderverein"
+  title: "Der Förderverein —"
+  titleHighlight: "mehr möglich machen."
+  lede: "Als gemeinnützig anerkannter Verein unterstützt der Förderverein die pädagogische Arbeit an der UNESCO-Schule und macht Projekte möglich, die über das reguläre Schulbudget hinausgehen."
+
+purpose:
+  title: "Warum wir diesen Verein brauchen."
+  body: |
+    Ein Gymnasium mit UNESCO-Auftrag braucht mehr als Standardausstattung. Der Förderverein verbessert die Schule als Lebensraum — mit Musikinstrumenten, wissenschaftlicher Ausrüstung, kulturellen Veranstaltungen und ganz konkreter finanzieller Hilfe, wenn Familien sie brauchen.
+
+    Jedes Mitglied trägt dazu bei, dass unsere Schülerinnen und Schüler nicht nur lernen, sondern erleben, experimentieren, auftreten, reisen — und dass niemand zurückbleibt, weil die Mittel fehlen.
+
+goals:
+  eyebrow: "Fünf Arbeitsfelder"
+  title: "Was wir konkret fördern."
+  list:
+    - n: "01"
+      title: "Unterrichtsmaterial & Fachbücher"
+      body: "Anschaffung von Unterrichtsmaterialien und Fachbüchern, die Standardetats nicht abdecken."
+    - n: "02"
+      title: "Kulturelle Veranstaltungen"
+      body: "Unterstützung von Aufführungen, Ausstellungen, Lesungen und Projekttagen."
+    - n: "03"
+      title: "Schulsport"
+      body: "Förderung sportlicher Angebote — von Ausrüstung bis zu Wettkampf-Teilnahmen."
+    - n: "04"
+      title: "Schüler in Not"
+      body: "Individuelle finanzielle Hilfe, damit keine Schülerin und kein Schüler aus Geldgründen zurückbleibt."
+    - n: "05"
+      title: "Eltern- und Schülervertretung"
+      body: "Förderung der Arbeit von Elternvertretung und Schülervertretung."
+
+board:
+  eyebrow: "Vorstand"
+  title: "Wer den Verein trägt."
+  members:
+    - role: "Vorsitzende"
+      name: "Khadra Azboy"
+      email: "Khadraazboy@yahoo.com"
+      phone: "0201 · 280 26 30"
+      phoneNote: "über das Sekretariat"
+    - role: "Stellvertreter"
+      name: "André Pittelkau"
+      email: "info@unesco-schule-essen.de"
+      phone: ""
+      phoneNote: "Über das Sekretariat erreichbar"
+
+projects:
+  eyebrow: "Geförderte Projekte"
+  title: "Ein Ausschnitt dessen,"
+  titleHighlight: "was möglich wurde."
+  list:
+    - icon: "♪"
+      title: "Musikinstrumente"
+      sub: "für Unterricht & AGs"
+    - icon: "⚗"
+      title: "Biologie-Ausstattung"
+      sub: "Mikroskope, Präparate"
+    - icon: "☕"
+      title: "Schülercafé"
+      sub: "Verschönerung, Möbel"
+    - icon: "✦"
+      title: "Schulhof"
+      sub: "Neugestaltung"
+    - icon: "♥"
+      title: "Familienunterstützung"
+      sub: "individuell, still"
+
+join:
+  title: "Mitglied werden."
+  titleHighlight: "Mit dabei sein."
+  body: "Sie möchten den Förderverein unterstützen — als Eltern, als Ehemalige, als Freundinnen und Freunde unserer Schule? Wir freuen uns über jedes Mitglied und jede Spende."
+  note: "**Bankverbindung, Beitragshöhe und Mitgliedsantrag** senden wir Ihnen auf Anfrage gerne zu — die Informationen liegen aktuell beim Vorstand und im Sekretariat."

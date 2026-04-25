@@ -8,7 +8,9 @@ import {
   displayName,
   initials,
 } from "../lib/teachers";
+import { getSingle } from "../lib/pageContent";
 
+const page = await getSingle("pageKollegium");
 const staff = await getStaffTeachers();
 const trainees = await getTrainees();
 const subjects = await getAllSubjects();
@@ -177,9 +179,9 @@ function asset(p: string): string {
 <main id="top">
 
 <PageHero variant="feature" image="assets/kollegium.jpeg" imageAlt="" imageCredit="Kollegium · UNESCO-Schule Essen">
-  <Fragment slot="eyebrow">Informieren · Unsere Schule</Fragment>
-  <Fragment slot="title">Unser <em>Kollegium.</em></Fragment>
-  <Fragment slot="lede">Die Menschen, die unsere Schule tragen — mit ihren Fächern, Funktionen und offenen Türen für Gespräche.</Fragment>
+  <Fragment slot="eyebrow">{page.hero.eyebrow}</Fragment>
+  <Fragment slot="title">{page.hero.title}{page.hero.titleHighlight && <> <em>{page.hero.titleHighlight}</em></>}</Fragment>
+  <Fragment slot="lede">{page.hero.lede}</Fragment>
 </PageHero>
 
 <section class="ko-intro" aria-label="Einordnung">

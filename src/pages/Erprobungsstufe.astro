@@ -1,6 +1,9 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
+import { getSingle } from "../lib/pageContent";
+
+const page: any = await getSingle("pageErprobungsstufe");
 const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
 ---
 <BaseLayout title="Erprobungsstufe (Klassen 5–6) — UNESCO-Schule Essen">
@@ -223,10 +226,10 @@ const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
 
 <main id="top">
 
-<PageHero variant="feature" image="assets/erprobungsstufe/flur-schueler.jpg" imageAlt="Schülerinnen und Schüler im Schulflur der UNESCO-Schule Essen">
-  <Fragment slot="badge">Unterricht · Erprobungsstufe · Klasse 5 – 6</Fragment>
-  <Fragment slot="title">Hier wächst Zukunft.<br>Hier <em>wächst du.</em></Fragment>
-  <Fragment slot="lede">Ab dem Schuljahr 2026/27 nimmt die UNESCO-Schule Essen erstmals Schülerinnen und Schüler ab Klasse 5 auf — auf einem Weg voller Energie, Gemeinschaft und Herz.</Fragment>
+<PageHero variant="feature" image={page.hero.image || "assets/erprobungsstufe/flur-schueler.jpg"} imageAlt={page.hero.imageAlt || ""}>
+  {page.hero.badge && <Fragment slot="badge">{page.hero.badge}</Fragment>}
+  <Fragment slot="title">{page.hero.title}{page.hero.titleHighlight && <><br />Hier <em>{page.hero.titleHighlight.replace(/^Hier /, "")}</em></>}</Fragment>
+  <Fragment slot="lede">{page.hero.lede}</Fragment>
 </PageHero>
 
 <section class="er-intro" aria-label="Unser Start mit Klasse 5">

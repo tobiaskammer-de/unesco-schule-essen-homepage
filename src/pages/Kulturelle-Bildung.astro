@@ -1,6 +1,9 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
+import { getSingle } from "../lib/pageContent";
+
+const page: any = await getSingle("pageKulturelleBildung");
 ---
 <BaseLayout title="Kulturelle Bildung und Kunst — UNESCO-Schule Essen">
 <style is:global>
@@ -151,10 +154,10 @@ import PageHero from "../components/PageHero.astro";
 
 <main id="top">
 
-<PageHero variant="feature" image="assets/kulturelle-bildung/buhne.jpg" imageAlt="" imageCredit="Bühne · UNESCO-Schule Essen">
-  <Fragment slot="eyebrow">Profil · Kulturelle Bildung und Kunst</Fragment>
-  <Fragment slot="title">Kulturelle Bildung,<br>die bei uns <em>wächst.</em></Fragment>
-  <Fragment slot="lede">Von Klasse 5 bis zur Oberstufe — kulturelle Bildung ist bei uns kein Einzelprojekt, sondern ein durchgängiges Konzept. Wir verbinden schulinterne Profile mit starken externen Partnern.</Fragment>
+<PageHero variant="feature" image={page.hero.image || "assets/kulturelle-bildung/buhne.jpg"} imageAlt={page.hero.imageAlt || ""} imageCredit="Bühne · UNESCO-Schule Essen">
+  <Fragment slot="eyebrow">{page.hero.eyebrow}</Fragment>
+  <Fragment slot="title">{page.hero.title}{page.hero.titleHighlight && <><br />die bei uns <em>{page.hero.titleHighlight.replace(/^die bei uns /, "")}</em></>}</Fragment>
+  <Fragment slot="lede">{page.hero.lede}</Fragment>
 </PageHero>
 
 <section class="kb-intro" aria-label="Einordnung">

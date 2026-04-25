@@ -2,7 +2,9 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
 import { getAllNews, withBase, formatArticleDate, entrySlug, categoryBadgeClass } from "../lib/news";
+import { getSingle } from "../lib/pageContent";
 
+const page = await getSingle("pageAktuelles");
 const news = await getAllNews();
 const BASE = import.meta.env.BASE_URL;
 
@@ -185,9 +187,9 @@ const categories = Array.from(new Set(news.map((e) => e.data.category)));
 <main id="top">
 
 <PageHero variant="page">
-  <Fragment slot="eyebrow">Aktuelles</Fragment>
-  <Fragment slot="title">Aus unserem<br>Schulleben.</Fragment>
-  <Fragment slot="lede">Berichte, Projekte und Stimmen aus dem Alltag der UNESCO-Schule Essen. Was wir machen — und warum es uns wichtig ist.</Fragment>
+  <Fragment slot="eyebrow">{page.hero.eyebrow}</Fragment>
+  <Fragment slot="title">{page.hero.title}{page.hero.titleHighlight && <><br />{page.hero.titleHighlight}</>}</Fragment>
+  <Fragment slot="lede">{page.hero.lede}</Fragment>
   <Fragment slot="extra">
     <nav class="filter-row" aria-label="Nach Kategorie filtern">
       <span class="label">Filter</span>

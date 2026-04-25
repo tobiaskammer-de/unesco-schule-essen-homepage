@@ -1,0 +1,85 @@
+hero:
+  badge: "Unterricht · Erprobungsstufe · Klasse 5 – 6"
+  eyebrow: ""
+  title: "Hier wächst Zukunft."
+  titleHighlight: "Hier wächst du."
+  lede: "Ab dem Schuljahr 2026/27 nimmt die UNESCO-Schule Essen erstmals Schülerinnen und Schüler ab Klasse 5 auf — auf einem Weg voller Energie, Gemeinschaft und Herz."
+  image: "assets/erprobungsstufe/flur-schueler.jpg"
+  imageAlt: "Schülerinnen und Schüler im Schulflur der UNESCO-Schule Essen"
+
+intro:
+  title: "Unser Start mit Klasse 5."
+  body: |
+    Schon in den Einführungstagen lernen sich die Kinder kennen, entdecken neue Lernmethoden und finden sich behutsam in den Schulalltag ein. Bereits zum Start wählen sie einen von zwei Profilschwerpunkten, die ihre Stärken früh sichtbar machen.
+
+    Als UNESCO-Projektschule durchziehen Demokratieerziehung, globales Lernen und interkulturelle Kompetenz unseren Unterricht — vertieft durch internationale Austauschprogramme und Kooperationen mit dem Aalto-Theater und der Philharmonie Essen.
+
+    Ein durchdachtes digitales Lernkonzept ab Klasse 6, eine starke Schulgemeinschaft und ein strukturiertes Beratungsangebot sorgen dafür, dass jede Schülerin und jeder Schüler gezielt gefordert und gefördert wird.
+  image: "assets/sp-lernend.jpg"
+  imageAlt: "Schülerinnen und Schüler beim gemeinsamen Lernen"
+
+profiles:
+  eyebrow: "Zwei Profile ab Klasse 5"
+  title: "Schwerpunktklassen — früh Stärken entdecken."
+  body: "In Klasse 5 kann jedes Kind eigene Interessen in einem Profilkurs vertiefen. Hier werden Stärken früh entdeckt und gezielt gefördert."
+  cards:
+    - mark: "Profil · Sprachlich-kreativ"
+      title: "WortArt⁺"
+      tag: "Geschichten entwerfen · Sprache erforschen · Ideen in Szene setzen"
+      body: "Hier zählt die Kraft von Worten, Ausdruck und Musik. Ob Melodie, Theater, Poetry Slam oder Präsentationen: Kreativität wird zur Bühne für Ausdruckskraft und sicheres Auftreten. Das Profil für alle, die Freude an Texten, Sprache und darstellendem Spiel haben."
+      image: "assets/erprobungsstufe/wortart-theater.jpg"
+      imageAlt: "Schülerin mit selbstgebastelter Krone auf der Theaterbühne"
+    - mark: "Profil · Forschend-naturwissenschaftlich"
+      title: "Forscher²"
+      tag: "Fragen stellen · Phänomene erforschen · Experimente entwickeln"
+      body: "Hier führt Neugier tief in Naturwissenschaft, Technik und Umwelt. Experimente und Messungen werden zu Entdeckungsreisen, die Denken schärfen und Problemlösungsfreude wecken. Das Profil für alle, die neugierig auf Experimente und naturwissenschaftliche Phänomene sind."
+      image: "assets/erprobungsstufe/forscher-pflanzen.jpg"
+      imageAlt: "Schüler mit Pflanzenkiste im Schulgarten"
+
+pillars:
+  eyebrow: "Drei Säulen der Erprobungsstufe"
+  title: "Was bei uns zusammenkommt."
+  cards:
+    - label: "Gelebte UNESCO-Werte"
+      title: "Toleranz, Verantwortung, Respekt."
+      body: "Projekttage, internationale Austausche und diverse Kooperationen fördern interkulturelle Kompetenz und stärken das Miteinander. Mit Erasmus+ öffnen wir den Blick über Grenzen hinweg — unsere Schülerinnen und Schüler besuchten bereits den UNESCO-Hauptsitz in Paris und unsere Partnerschule, das Lycée Professionnel Léonard de Vinci."
+      image: "assets/erprobungsstufe/erasmus-paris.jpg"
+      imageAlt: "Schülerinnen vor dem Eiffelturm in Paris — Erasmus+ Austausch"
+    - label: "Ankommen & Kennenlernen"
+      title: "Zusammenhalt von Anfang an."
+      body: "Klassenfahrten in den Stufen 7 und 9 stärken Zusammenhalt und Selbstständigkeit. In der Streitschlichter-AG übernehmen Schülerinnen und Schüler Verantwortung für ihre Schulgemeinschaft. Sozialarbeit und Berufsorientierung begleiten die gesamte Schullaufbahn."
+      image: "assets/sp-persoenlich.jpg"
+      imageAlt: "Gemeinschaft, Klassenfahrt, Zusammenhalt"
+    - label: "Digitale Bildung"
+      title: "Sicher, kreativ, verantwortungsvoll."
+      body: "Mit Informatik ab Klasse 6, kreativen Programmierprojekten in der „Hacker School\" und moderner technischer Ausstattung lernen unsere Schülerinnen und Schüler, sich sicher, kreativ und verantwortungsbewusst in der digitalen Welt zu bewegen."
+      image: "assets/sp-digital.jpg"
+      imageAlt: "Digitales Lernen, iPads, Informatik"
+
+values:
+  eyebrow: "Tiefe Wurzeln, starke Werte"
+  title: "Echtes Lernen heißt: verstehen, verankern, weiterdenken."
+  body: "Nicht nur für die nächste Prüfung, sondern langfristig. So wachsen aus Werten echte Kompetenzen."
+  list:
+    - name: "Selbstbewusstsein & Persönlichkeit"
+      desc: "Die eigene Meinung zu vertreten ist schwer — genau, wie sie überhaupt zu entwickeln. Wer seine Stimme findet, kann auch die Welt mitgestalten."
+    - name: "Verantwortung & Empathie"
+      desc: "Gemeinschaft lebt davon, neue Perspektiven einzunehmen und einander zu verstehen — und für andere und sich einzustehen."
+    - name: "Gemeinschaft & Teamgeist"
+      desc: "Der Mensch ist für Zusammenhalt gemacht: Ob im Beruf oder in Familie und Gesellschaft — Kooperation und Austausch bringen den Einzelnen weiter."
+    - name: "Resilienz & Mut"
+      desc: "Fehler? Gehören dazu. Die Kunst liegt darin, weiterzumachen, dranzubleiben — den Willen und das Vertrauen in sich zu stärken."
+    - name: "Kritisches Denken & Neugier"
+      desc: "Fragen stellen, neue Wege suchen — all das ist wichtiger, als fertige Antworten zu übernehmen."
+    - name: "Kreativität & Ausdruck"
+      desc: "Frei gestalten, Dinge anders zu denken als vorgeschrieben — genau das ist Innovation. Und in unserer schnelllebigen Welt unglaublich wichtig."
+    - name: "Weltoffenheit & Vielfalt"
+      desc: "Menschen sind unterschiedlich. Denken anders, leben anders, sehen anders aus — und das ist ein Geschenk."
+
+quote:
+  text: "Wenn Kinder hier Mut entwickeln, neugierig bleiben und spüren, dass sie ihren Weg selbst gestalten können — das ist für mich das Größte."
+  author: "Lehrkraft der UNESCO-Schule"
+
+cta:
+  title: "Ihr persönliches Beratungsgespräch."
+  body: "Unser Beratungsteam steht Ihnen zur Verfügung — zu Profilklassen, Schulalltag und dem Weg zum Abitur. Kommen Sie vorbei, rufen Sie an oder schreiben Sie uns."

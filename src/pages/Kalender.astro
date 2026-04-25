@@ -9,7 +9,9 @@ import {
   formatDayNum,
   formatMonthShort,
 } from "../lib/calendar";
+import { getSingle } from "../lib/pageContent";
 
+const page = await getSingle("pageKalender");
 const allEvents = await fetchCalendar();
 const upcoming = await upcomingEvents();
 
@@ -270,9 +272,9 @@ const lastUpdated = new Intl.DateTimeFormat("de-DE", {
 <main id="top">
 
 <PageHero variant="feature">
-  <Fragment slot="eyebrow">Service · Kalender</Fragment>
-  <Fragment slot="title">Alle Termine <em>auf&nbsp;einen&nbsp;Blick.</em></Fragment>
-  <Fragment slot="lede">Von Abiturprüfungen über Elternabende bis zu Ferienterminen — unser Schulkalender, direkt aus der Schulverwaltung. Stets aktuell.</Fragment>
+  <Fragment slot="eyebrow">{page.hero.eyebrow}</Fragment>
+  <Fragment slot="title">{page.hero.title}{page.hero.titleHighlight && <> <em>{page.hero.titleHighlight}</em></>}</Fragment>
+  <Fragment slot="lede">{page.hero.lede}</Fragment>
 </PageHero>
 
 <section class="kl-intro" aria-label="Legende und Hinweise">
