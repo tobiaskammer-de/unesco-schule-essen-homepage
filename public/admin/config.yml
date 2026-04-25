@@ -161,7 +161,7 @@ collections:
               - { name: imageSrc, label: "Hero-Bild", widget: image, choose_url: false }
               - { name: imageAlt, label: "Bildbeschreibung (für Screenreader)", widget: string }
           - name: path
-            label: "„Dein Weg zu uns"-Sektion"
+            label: 'Sektion „Dein Weg zu uns"'
             widget: object
             collapsed: true
             fields:
@@ -259,7 +259,7 @@ collections:
               - { name: quote, label: "Zitat", widget: string }
               - { name: sub, label: "Begleittext", widget: text }
           - name: values
-            label: "„Drei Überzeugungen"-Sektion"
+            label: 'Sektion „Drei Überzeugungen"'
             widget: object
             collapsed: true
             fields:
