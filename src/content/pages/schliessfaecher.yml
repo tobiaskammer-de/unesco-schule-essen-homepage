@@ -1,0 +1,36 @@
+hero:
+  eyebrow: "Service · Digitales & Alltag"
+  title: "Schließfächer"
+  titleHighlight: "mieten."
+  lede: "Ein eigenes Schließfach im Schulgebäude — unkompliziert und direkt beim Betreiber. Hier findest du alle Infos."
+
+intro:
+  title: "Dein eigener Platz"
+  titleHighlight: "in der Schule."
+  body: |
+    Bei Interesse hat jede Schülerin und jeder Schüler die Möglichkeit, ein Schließfach im Schulgebäude zu mieten.
+
+    Der Vertrag läuft nicht über die Schule, sondern direkt zwischen dir (beziehungsweise den Erziehungsberechtigten) und dem Betreiber **AstraDirect**. Das heißt: wenige Klicks online, und dein Schließfach ist reserviert.
+
+steps:
+  eyebrow: "So funktioniert's"
+  title: "Drei Schritte zum eigenen Schließfach."
+  body: "Die Anmeldung läuft komplett online beim Betreiber AstraDirect — Schule ist hier nur Vermittler."
+  list:
+    - n: "01"
+      title: "Website öffnen"
+      body: "Rufe die Website von AstraDirect auf und wähle unsere Schule aus. Dort siehst du verfügbare Schließfächer und Preise."
+    - n: "02"
+      title: "Vertrag abschließen"
+      body: "Die Anmeldung erfolgt online. AstraDirect schließt den Vertrag direkt mit dir bzw. den Erziehungsberechtigten."
+    - n: "03"
+      title: "Schlüssel erhalten"
+      body: "Nach der Zahlung bekommst du Zugang zum reservierten Fach. Der Betreiber informiert dich über alle Details zur Abholung des Schlüssels."
+
+action:
+  eyebrow: "Direkt anmelden"
+  title: "Bereit für dein eigenes Schließfach?"
+  body: "Nutze einfach die Website von AstraDirect. Bei Fragen zur Anmeldung oder zum Fach selbst ist AstraDirect die richtige Adresse."
+  buttonLabel: "Zur Anmeldung bei AstraDirect"
+  buttonUrl: "https://www.astradirect.de/index.html"
+  hint: "Externer Link — öffnet in einem neuen Tab. Vertragspartner ist AstraDirect, nicht die Schule."

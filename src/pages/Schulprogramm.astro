@@ -1,6 +1,9 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
+import { getSingle } from "../lib/pageContent";
+
+const page: any = await getSingle("pageSchulprogramm");
 ---
 <BaseLayout title="Schulprogramm — UNESCO-Schule Essen">
 <style is:global>
@@ -185,10 +188,10 @@ import PageHero from "../components/PageHero.astro";
 
 <main id="top">
 
-<PageHero variant="feature" image="assets/sp-hero.jpg" imageAlt="">
-  <Fragment slot="eyebrow">Profil · Schulprogramm</Fragment>
-  <Fragment slot="title">Gemeinsam lernen,<br>den eigenen Weg finden.</Fragment>
-  <Fragment slot="lede">Unser Schulprogramm — das, was uns trägt. Ein Leitbild, das aus einer Überzeugung wächst: Schule muss beides sein — ein Ort der Sicherheit für die Zukunft und ein Freiraum, in dem junge Menschen heute schon ganz sie selbst sein dürfen.</Fragment>
+<PageHero variant="feature" image={page.hero.image || "assets/sp-hero.jpg"} imageAlt="">
+  <Fragment slot="eyebrow">{page.hero.eyebrow}</Fragment>
+  <Fragment slot="title">{page.hero.title}{page.hero.titleHighlight && <><br />{page.hero.titleHighlight}</>}</Fragment>
+  <Fragment slot="lede">{page.hero.lede}</Fragment>
 </PageHero>
 
 

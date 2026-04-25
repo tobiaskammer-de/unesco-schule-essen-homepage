@@ -3,10 +3,9 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
 import ContactCard from "../components/ContactCard.astro";
 import { getTeacherByRole, ROLES } from "../lib/roles";
+import { getSingle } from "../lib/pageContent";
 
-// Beratungslehrer und Schulsozialarbeit kommen aus der Lehrkraft-Datenbank.
-// Talentscout (extern, von der UDE) ist KEIN Mitglied unseres Kollegiums —
-// daher wird die Karte mit manuellen Daten gerendert.
+const page: any = await getSingle("pageBeratung");
 const [beratungslehrer, sozialarbeit] = await Promise.all([
   getTeacherByRole(ROLES.BERATUNGSLEHRER),
   getTeacherByRole(ROLES.SCHULSOZIALARBEIT),
@@ -231,9 +230,9 @@ const [beratungslehrer, sozialarbeit] = await Promise.all([
 <main id="top">
 
 <PageHero variant="feature">
-  <Fragment slot="eyebrow">Angebote · Beratung &amp; Mitbestimmung</Fragment>
-  <Fragment slot="title">Beratung und<br><em>Unterstützung.</em></Fragment>
-  <Fragment slot="lede">Schule ist mehr als Unterricht. Wir hören zu, wenn's schwierig wird — vertraulich, auf Augenhöhe und mit klaren Ansprechpersonen für jede Situation.</Fragment>
+  <Fragment slot="eyebrow">{page.hero.eyebrow}</Fragment>
+  <Fragment slot="title">{page.hero.title}{page.hero.titleHighlight && <><br /><em>{page.hero.titleHighlight}</em></>}</Fragment>
+  <Fragment slot="lede">{page.hero.lede}</Fragment>
 </PageHero>
 
 <section class="br-intro" aria-label="Einordnung">

@@ -1,6 +1,10 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
+import { getSingle } from "../lib/pageContent";
+
+const page: any = await getSingle("pageAnfahrt");
+const school: any = await getSingle("siteSchool");
 ---
 <BaseLayout title="Adresse und Anfahrt — UNESCO-Schule Essen">
 <style is:global>
@@ -100,9 +104,9 @@ import PageHero from "../components/PageHero.astro";
 <main id="top">
 
 <PageHero variant="page">
-  <Fragment slot="eyebrow">Über Uns · Adresse und Anfahrt</Fragment>
-  <Fragment slot="title">So finden Sie uns.</Fragment>
-  <Fragment slot="lede">Zentral in Essen, in der Nähe des Steeler Wasserturms — fünfzehn Minuten fußläufig vom Hauptbahnhof.</Fragment>
+  <Fragment slot="eyebrow">{page.hero.eyebrow}</Fragment>
+  <Fragment slot="title">{page.hero.title}</Fragment>
+  <Fragment slot="lede">{page.hero.lede}</Fragment>
 </PageHero>
 
 <section class="an-main" aria-label="Adresse und Karte">
@@ -111,36 +115,36 @@ import PageHero from "../components/PageHero.astro";
       <div class="an-col">
         <h2>Adresse &amp; Kontakt</h2>
         <div class="address">
-          <strong>UNESCO-Schule Essen</strong>
-          Steinmetzstr. 9<br>
-          45139 Essen<br><br>
-          <a href="tel:+492012802630">Telefon · 0201 · 280 26 30</a><br>
-          <a href="mailto:info@unesco-schule-essen.de">info@unesco-schule-essen.de</a>
+          <strong>{school.name}</strong>
+          {school.address.street}<br>
+          {school.address.postal} {school.address.city}<br><br>
+          <a href={`tel:+49${school.phone.replace(/\D/g, "").replace(/^0/, "")}`}>Telefon · {school.phone}</a><br>
+          <a href={`mailto:${school.emailGeneral}`}>{school.emailGeneral}</a>
         </div>
         <div class="contact-row">
           <div class="cell">
             <span class="lbl">Telefon</span>
-            0201 · 280 26 30
+            {school.phone}
           </div>
           <div class="cell">
             <span class="lbl">Fax</span>
-            0201 · 280 26 31
+            {school.fax}
           </div>
         </div>
         <p style="font-family:var(--sans);font-size:14.5px;line-height:1.6;color:var(--stein);margin:24px 0 0;max-width:40ch;">
-          Wir freuen uns, wenn Sie sich vor einem Besuch kurz anmelden — so können wir uns Zeit für Sie nehmen.
+          {page.contactNote}
         </p>
       </div>
       <div class="an-col">
-        <h2>Auf der Karte</h2>
+        <h2>{page.map.title}</h2>
         <div class="map-wrap">
           <iframe
-            src="https://www.openstreetmap.org/export/embed.html?bbox=7.0370%2C51.4481%2C7.0570%2C51.4580&amp;layer=mapnik&amp;marker=51.4529%2C7.0470"
+            src={page.map.embedSrc}
             title="UNESCO-Schule Essen auf OpenStreetMap"
             loading="lazy"
             referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
-        <a class="map-link" href="https://www.openstreetmap.org/?mlat=51.4529&amp;mlon=7.0470#map=17/51.4529/7.0470" target="_blank" rel="noopener">
+        <a class="map-link" href={page.map.externalUrl} target="_blank" rel="noopener">
           Auf OpenStreetMap öffnen <span aria-hidden="true">↗</span>
         </a>
       </div>
@@ -151,32 +155,24 @@ import PageHero from "../components/PageHero.astro";
 <section class="an-transport" aria-label="So kommen Sie zu uns">
   <div class="container">
     <div class="head">
-      <span class="eyebrow">Anfahrt</span>
-      <h2>So kommen Sie zu uns.</h2>
+      <span class="eyebrow">{page.transport.eyebrow}</span>
+      <h2>{page.transport.title}</h2>
     </div>
     <div class="transport-grid">
-      <article class="transport-card">
-        <span class="mode">Zu Fuß</span>
-        <h3>15 Minuten<br>vom Hauptbahnhof.</h3>
-        <p>Vom Essener Hauptbahnhof ist die Schule in etwa 15 Minuten fußläufig erreichbar — ideal für Besucherinnen und Besucher mit dem Zug.</p>
-      </article>
-
-      <article class="transport-card">
-        <span class="mode">Öffentlich (ÖPNV)</span>
-        <h3>Haltestelle<br>Wasserturm.</h3>
-        <p>Von der Haltestelle „Wasserturm" sind es noch rund drei Minuten Fußweg. Die Ruhrbahn bedient uns mit mehreren Linien:</p>
-        <div class="lines">
-          <span class="line tram">Straßenbahn 109</span>
-          <span class="line bus">Bus 146</span>
-          <span class="line bus">Bus 147</span>
-        </div>
-      </article>
-
-      <article class="transport-card">
-        <span class="mode">Mit dem Auto</span>
-        <h3>Zentral,<br>leicht zu finden.</h3>
-        <p>Die Schule liegt zentral in Essen-Huttrop, in der Nähe des Steeler Wasserturms. Bitte beachten Sie: in der Steinmetzstraße sind Parkplätze begrenzt — öffentliche Parkflächen finden Sie in den angrenzenden Straßen.</p>
-      </article>
+      {page.transport.cards.map((card: any) => (
+        <article class="transport-card">
+          <span class="mode">{card.mode}</span>
+          <h3 set:html={card.title.replace(/\n/g, "<br>")} />
+          <p>{card.body}</p>
+          {card.lines && card.lines.length > 0 && (
+            <div class="lines">
+              {card.lines.map((line: any) => (
+                <span class={`line ${line.type}`}>{line.label}</span>
+              ))}
+            </div>
+          )}
+        </article>
+      ))}
     </div>
   </div>
 </section>

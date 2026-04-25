@@ -1,6 +1,9 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
+import { getSingle } from "../lib/pageContent";
+
+const page: any = await getSingle("pageStundentafel");
 ---
 <BaseLayout title="Stundentafeln und Unterrichtsraster — UNESCO-Schule Essen">
 <style is:global>
@@ -253,9 +256,9 @@ import PageHero from "../components/PageHero.astro";
 <main id="top">
 
 <PageHero variant="feature">
-  <Fragment slot="eyebrow">Informieren · Schulstufen</Fragment>
-  <Fragment slot="title">Stundentafeln<br>und <em>Unterrichtsraster.</em></Fragment>
-  <Fragment slot="lede">Welche Fächer werden in welcher Klasse wie lange unterrichtet? Und wann beginnt die erste Stunde? Hier finden Sie alle organisatorischen Rahmendaten der Sekundarstufe I.</Fragment>
+  <Fragment slot="eyebrow">{page.hero.eyebrow}</Fragment>
+  <Fragment slot="title">{page.hero.title}{page.hero.titleHighlight && <><br />und <em>{page.hero.titleHighlight.replace(/^und /, "")}</em></>}</Fragment>
+  <Fragment slot="lede">{page.hero.lede}</Fragment>
 </PageHero>
 
 <section class="st-intro" aria-label="Einordnung">

@@ -1,0 +1,32 @@
+hero:
+  eyebrow: "Über Uns · Adresse und Anfahrt"
+  title: "So finden Sie uns."
+  titleHighlight: ""
+  lede: "Zentral in Essen, in der Nähe des Steeler Wasserturms — fünfzehn Minuten fußläufig vom Hauptbahnhof."
+
+map:
+  title: "Auf der Karte"
+  embedSrc: "https://www.openstreetmap.org/export/embed.html?bbox=7.0370%2C51.4481%2C7.0570%2C51.4580&layer=mapnik&marker=51.4529%2C7.0470"
+  externalUrl: "https://www.openstreetmap.org/?mlat=51.4529&mlon=7.0470#map=17/51.4529/7.0470"
+
+contactNote: "Wir freuen uns, wenn Sie sich vor einem Besuch kurz anmelden — so können wir uns Zeit für Sie nehmen."
+
+transport:
+  eyebrow: "Anfahrt"
+  title: "So kommen Sie zu uns."
+  cards:
+    - mode: "Zu Fuß"
+      title: "15 Minuten vom Hauptbahnhof."
+      body: "Vom Essener Hauptbahnhof ist die Schule in etwa 15 Minuten fußläufig erreichbar — ideal für Besucherinnen und Besucher mit dem Zug."
+      lines: []
+    - mode: "Öffentlich (ÖPNV)"
+      title: "Haltestelle Wasserturm."
+      body: "Von der Haltestelle „Wasserturm\" sind es noch rund drei Minuten Fußweg. Die Ruhrbahn bedient uns mit mehreren Linien:"
+      lines:
+        - { type: "tram", label: "Straßenbahn 109" }
+        - { type: "bus", label: "Bus 146" }
+        - { type: "bus", label: "Bus 147" }
+    - mode: "Mit dem Auto"
+      title: "Zentral, leicht zu finden."
+      body: "Die Schule liegt zentral in Essen-Huttrop, in der Nähe des Steeler Wasserturms. Bitte beachten Sie: in der Steinmetzstraße sind Parkplätze begrenzt — öffentliche Parkflächen finden Sie in den angrenzenden Straßen."
+      lines: []

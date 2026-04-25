@@ -1,0 +1,17 @@
+hero:
+  eyebrow: "Über Uns · Schulleitung und Sekretariat"
+  title: "Ihre Ansprechpartner in Schulleitung und Sekretariat."
+  titleHighlight: ""
+  lede: "Das Team, das unsere Schule trägt — mit offenen Türen für Schülerinnen und Schüler, Eltern und Kolleginnen und Kollegen."
+
+team:
+  eyebrow: "Unser Team"
+  title: "Schulleitung, Koordination, Sekretariat."
+
+note:
+  title: "Erprobungsstufe ab 2026/27"
+  prefix: "Für Fragen zur Erprobungsstufe (Klassen 5 und 6) ist"
+  suffix: "als Erprobungsstufenleitung Ansprechpartner."
+  vacantText: "derzeit eine kommissarische Leitung Ansprechpartner."
+  linkLabel: "Mehr zur Erprobungsstufe →"
+  linkHref: "Erprobungsstufe.html"

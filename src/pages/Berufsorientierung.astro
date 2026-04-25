@@ -3,9 +3,9 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
 import { getTeacherByRole, ROLES } from "../lib/roles";
 import { displayName } from "../lib/teachers";
+import { getSingle } from "../lib/pageContent";
 
-// Laufbahnberatung führt die Person mit Rolle "Koordination Sek II"
-// (zugleich auch "Laufbahnberatung").
+const page: any = await getSingle("pageBerufsorientierung");
 const laufbahn = await getTeacherByRole(ROLES.KOORD_SEK_II);
 ---
 <BaseLayout title="Studien- und Berufsorientierung — UNESCO-Schule Essen">
@@ -211,9 +211,9 @@ const laufbahn = await getTeacherByRole(ROLES.KOORD_SEK_II);
 <main id="top">
 
 <PageHero variant="feature">
-  <Fragment slot="eyebrow">Angebote · Beratung &amp; Mitbestimmung</Fragment>
-  <Fragment slot="title">Studien- und<br><em>Berufsorientierung.</em></Fragment>
-  <Fragment slot="lede">Schule bereitet auf das Berufsleben vor. Wir geben Schülerinnen und Schülern über viele Jahre hinweg einen Überblick über berufliche Möglichkeiten — und beraten individuell, wenn's konkret wird.</Fragment>
+  <Fragment slot="eyebrow">{page.hero.eyebrow}</Fragment>
+  <Fragment slot="title">{page.hero.title}{page.hero.titleHighlight && <><br /><em>{page.hero.titleHighlight}</em></>}</Fragment>
+  <Fragment slot="lede">{page.hero.lede}</Fragment>
 </PageHero>
 
 <section class="bo-intro" aria-label="Einordnung">

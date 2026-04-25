@@ -3,8 +3,10 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
 import { getTeacherByRole, ROLES } from "../lib/roles";
 import { displayName } from "../lib/teachers";
+import { getSingle } from "../lib/pageContent";
 
-// Oberstufenkoordination und Stufenleitung EF: zentrale Lehrkraft-DB.
+const page: any = await getSingle("pageOberstufe");
+
 const [koordSekII, stufeEF] = await Promise.all([
   getTeacherByRole(ROLES.KOORD_SEK_II),
   getTeacherByRole(ROLES.STUFENLEITUNG_EF),
@@ -234,9 +236,9 @@ const [koordSekII, stufeEF] = await Promise.all([
 <main id="top">
 
 <PageHero variant="feature" image="assets/pillar-abitur.jpg" imageAlt="">
-  <Fragment slot="eyebrow">Unterricht · Oberstufe · EF · Q1 · Q2</Fragment>
-  <Fragment slot="title">Gemeinsam lernen —<br>den <em>eigenen Weg</em> finden.</Fragment>
-  <Fragment slot="lede">Die gymnasiale Oberstufe der UNESCO-Schule Essen. Für alle, die nach Klasse 10 zum Abitur oder zur Fachhochschulreife führen wollen — besonders für Schulwechslerinnen und Schulwechsler.</Fragment>
+  <Fragment slot="eyebrow">{page.hero.eyebrow}</Fragment>
+  <Fragment slot="title">{page.hero.title}{page.hero.titleHighlight && <><br />den <em>{page.hero.titleHighlight.replace(/^den /, "").replace(/ finden\.$/, "")}</em> finden.</>}</Fragment>
+  <Fragment slot="lede">{page.hero.lede}</Fragment>
   <Fragment slot="actions">
     <a href="assets/GO2026.pdf" class="ob-download" download>
       <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -418,9 +420,9 @@ const [koordSekII, stufeEF] = await Promise.all([
 
 <section class="ob-welcome" aria-label="Herzlich willkommen">
   <div class="container">
-    <span class="eyebrow">Der erste Schultag</span>
-    <h2>Herzlich willkommen!<br>Komm herein.</h2>
-    <p>Traditionell beginnt der erste Schultag für unsere neuen Schülerinnen und Schüler der EF am zweiten Schultag nach den Sommerferien — im kommenden Schuljahr am <strong>Donnerstag, 03.09.2026</strong>.</p>
+    <span class="eyebrow">{page.welcome.eyebrow}</span>
+    <h2>{page.welcome.title}{page.welcome.titleHighlight && <><br />{page.welcome.titleHighlight}</>}</h2>
+    <p set:html={page.welcome.body.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")} />
   </div>
   <span class="cred">Platzhalter · Foto folgt</span>
 </section>
@@ -428,9 +430,9 @@ const [koordSekII, stufeEF] = await Promise.all([
 <section class="ob-contact" aria-label="Ansprechpartner Oberstufe">
   <div class="container">
     <div class="head" style="max-width:780px;margin:0 0 32px;">
-      <span class="eyebrow" style="font-family:var(--sans);font-weight:500;font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:var(--bordeaux);display:block;margin-bottom:14px;">Ansprechpartner Oberstufe</span>
-      <h2 style="font-family:var(--serif);font-weight:500;font-size:clamp(28px,3vw,40px);line-height:1.15;letter-spacing:-0.015em;color:var(--petrol);margin:0 0 12px;">Ihr Oberstufenbüro.</h2>
-      <p style="font-family:var(--sans);font-size:16.5px;line-height:1.65;color:var(--stein);margin:0;">Sekretariat: 0201 · 2802630 &nbsp;·&nbsp; Oberstufenbüro: 0201 · 2802643</p>
+      <span class="eyebrow" style="font-family:var(--sans);font-weight:500;font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:var(--bordeaux);display:block;margin-bottom:14px;">{page.contact.eyebrow}</span>
+      <h2 style="font-family:var(--serif);font-weight:500;font-size:clamp(28px,3vw,40px);line-height:1.15;letter-spacing:-0.015em;color:var(--petrol);margin:0 0 12px;">{page.contact.title}</h2>
+      <p style="font-family:var(--sans);font-size:16.5px;line-height:1.65;color:var(--stein);margin:0;">{page.contact.body}</p>
     </div>
     <div class="contact-duo">
       {koordSekII ? (

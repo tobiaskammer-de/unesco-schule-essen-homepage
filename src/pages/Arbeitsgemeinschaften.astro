@@ -1,14 +1,13 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
+import { getSingle } from "../lib/pageContent";
+
+const page: any = await getSingle("pageArbeitsgemeinschaften");
+
 const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
 
-/**
- * Arbeitsgemeinschaften-Seite.
- * Jede AG = eine Karte mit kurzer Beschreibung, optionalem Foto-Platzhalter
- * und einer Ansprechpartner-Mini-Card.
- */
-const ags = [
+const _agsFallback = [
   {
     title: "Philharmonie- und Theaterbesuche",
     kicker: "Kulturelle Bildung",
@@ -84,6 +83,24 @@ const ags = [
     photo: null,
   },
 ];
+
+// Aus YAML in das ursprüngliche Schema mappen
+const ags = page.list.ags.map((ag: any) => ({
+  title: ag.title,
+  kicker: ag.kicker,
+  desc: ag.desc,
+  contact: {
+    name: ag.contactName,
+    role: ag.contactRole,
+    initials: ag.contactInitials,
+    photo: ag.contactPhoto || undefined,
+  },
+  extra: ag.extra || undefined,
+  quote: ag.quote || undefined,
+  state: ag.state,
+  accent: ag.accent,
+  photo: null,
+}));
 ---
 <BaseLayout title="Arbeitsgemeinschaften — UNESCO-Schule Essen" description="Unsere Arbeitsgemeinschaften: Schulsanitätsdienst, Makerspace, Kulturbesuche, Sprachen und Leseförderung.">
 <style is:global>
@@ -235,9 +252,9 @@ const ags = [
 <main id="top">
 
 <PageHero variant="feature">
-  <Fragment slot="eyebrow">Angebote · Lernen &amp; Förderung</Fragment>
-  <Fragment slot="title">Arbeits­gemein­schaften.</Fragment>
-  <Fragment slot="lede">Nach dem Unterricht geht's weiter: In unseren AGs entdecken Schülerinnen und Schüler eigene Interessen, übernehmen Verantwortung und lernen Neues — freiwillig, engagiert und mit Freude.</Fragment>
+  <Fragment slot="eyebrow">{page.hero.eyebrow}</Fragment>
+  <Fragment slot="title">{page.hero.title}</Fragment>
+  <Fragment slot="lede">{page.hero.lede}</Fragment>
 </PageHero>
 
 <section class="ag-intro" aria-label="Einordnung">

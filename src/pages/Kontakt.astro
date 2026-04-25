@@ -1,8 +1,11 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
+import { getSingle } from "../lib/pageContent";
 
-// Ansprechpartner*innen
+const page: any = await getSingle("pageKontakt");
+const school: any = await getSingle("siteSchool");
+
 const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
 const people = [
   {
@@ -256,13 +259,13 @@ const people = [
 
 <PageHero
   variant="feature"
-  image="assets/kontakt-hero.webp"
-  imageAlt="Eingang der UNESCO-Schule Essen, Steinmetzstr. 9"
-  imageCredit="UNESCO-Schule Essen · Steinmetzstr. 9"
+  image={page.hero.image || "assets/kontakt-hero.webp"}
+  imageAlt={page.hero.imageAlt || "Eingang der UNESCO-Schule Essen"}
+  imageCredit="UNESCO-Schule Essen"
 >
-  <Fragment slot="eyebrow">Service · Kontakt</Fragment>
-  <Fragment slot="title">Wir sind <em>für Sie da.</em></Fragment>
-  <Fragment slot="lede">Ob Anmeldung, Beratung oder einfach eine Frage zum Schulalltag — so erreichen Sie uns am besten.</Fragment>
+  <Fragment slot="eyebrow">{page.hero.eyebrow}</Fragment>
+  <Fragment slot="title">{page.hero.title}{page.hero.titleHighlight && <> <em>{page.hero.titleHighlight}</em></>}</Fragment>
+  <Fragment slot="lede">{page.hero.lede}</Fragment>
 </PageHero>
 
 <!-- Anschrift -->

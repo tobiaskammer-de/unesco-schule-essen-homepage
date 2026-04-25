@@ -1,8 +1,11 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
+import { getSingle } from "../lib/pageContent";
 
-const konzepte = [
+const page: any = await getSingle("pagePaedagogischeKonzepte");
+
+const _konzepteFallback = [
   {
     num: "01",
     label: "Vertretung",
@@ -50,6 +53,8 @@ const konzepte = [
     pdfMeta: "PDF · 46&#8239;KB",
   },
 ];
+
+const konzepte = page.list.konzepte;
 ---
 <BaseLayout title="Pädagogische Konzepte — UNESCO-Schule Essen">
 <style is:global>
@@ -190,9 +195,9 @@ const konzepte = [
 <main id="top">
 
 <PageHero variant="feature">
-  <Fragment slot="eyebrow">Angebote · Pädagogische Konzepte</Fragment>
-  <Fragment slot="title">Pädagogische Konzepte —<br><em>klar, transparent, gelebt.</em></Fragment>
-  <Fragment slot="lede">Hinter dem Unterrichtsalltag stehen Grundsätze, auf die Sie sich verlassen können. Hier finden Sie die wichtigsten in Kurzform — jeweils mit Download der vollständigen Fassung.</Fragment>
+  <Fragment slot="eyebrow">{page.hero.eyebrow}</Fragment>
+  <Fragment slot="title">{page.hero.title}{page.hero.titleHighlight && <><br /><em>{page.hero.titleHighlight}</em></>}</Fragment>
+  <Fragment slot="lede">{page.hero.lede}</Fragment>
 </PageHero>
 
 <section class="pk-intro" aria-label="Einordnung">

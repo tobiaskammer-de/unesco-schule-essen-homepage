@@ -1,0 +1,152 @@
+hero:
+  eyebrow: "Profil · Schulprogramm"
+  title: "Gemeinsam lernen,"
+  titleHighlight: "den eigenen Weg finden."
+  lede: "Unser Schulprogramm — das, was uns trägt. Ein Leitbild, das aus einer Überzeugung wächst: Schule muss beides sein — ein Ort der Sicherheit für die Zukunft und ein Freiraum, in dem junge Menschen heute schon ganz sie selbst sein dürfen."
+  image: "assets/sp-hero.jpg"
+
+intro:
+  title: "Mehr als gute Noten."
+  body: |
+    Gute Noten, fundiertes Wissen und ein starkes Abitur sind für uns selbstverständlich. Doch als UNESCO-Projektschule blicken wir darüber hinaus: Wir sind Teil eines weltweiten Netzwerks, das sich für Frieden, Menschenrechte, kulturelle Vielfalt und nachhaltige Entwicklung einsetzt.
+
+    Unsere Schule lebt diese Ziele im Alltag — mit Projekten zu Demokratie, nachhaltigem Handeln und kulturellem Austausch, und mit einer Haltung, die junge Menschen zu verantwortungsvollen Gestaltern von morgen macht.
+
+    Wir sehen Kinder und Jugendliche als _ganze Persönlichkeiten_. Darum schaffen wir Raum für Musik und Kreativität, für Verantwortung und echtes Miteinander. Unser Ziel ist klar: junge Menschen zu stärken — für das Leben, das vor ihnen liegt.
+
+pledge:
+  eyebrow: "Selbstverpflichtung des Kollegiums"
+  title: "Unser Auftrag: Schülerinnen und Schüler auf ihren Lern- und Lebenswegen zu begleiten."
+  intro: "Wir, das Kollegium der UNESCO-Schule Essen, empfinden es als unseren Auftrag, alle Schülerinnen und Schüler unserer Schule bestmöglich auf ein Leben in unserer demokratischen Gesellschaft vorzubereiten. Deswegen wollen wir …"
+  list:
+    - num: "01"
+      text: "Vielfalt leben, Gemeinschaft stiften und Möglichkeiten der persönlichen Entfaltung bieten."
+    - num: "02"
+      text: "Vorbildlich handeln."
+    - num: "03"
+      text: "Auf gewaltfreie und respektvolle Kommunikation achten."
+    - num: "04"
+      text: "Fähigkeiten fördern und helfen, aus Fehlern zu lernen."
+    - num: "05"
+      text: "Allen Schülerinnen und Schülern fair, gerecht und wertschätzend begegnen."
+    - num: "06"
+      text: "Durch Transparenz und Konsequenz im Handeln verlässlich sein."
+    - num: "07"
+      text: "Mit Eltern und Betreuenden zusammenarbeiten, um junge Menschen gemeinsam ins Erwachsenenleben zu begleiten."
+    - num: "08"
+      text: "Uns an den Verhaltenskodex unserer Schule im Rahmen des Schutzkonzeptes halten."
+  outro: "Wir betrachten es als Selbstverständlichkeit, unsere Schülerinnen und Schüler als Menschen wahrzunehmen, die Stärken und Schwächen haben — und möchten sie im Rahmen ihrer spezifischen Lebenswirklichkeiten begleiten."
+
+pillarsIntro:
+  eyebrow: "Leitsätze und Ziele"
+  title: "Zwei Säulen, acht Leitsätze."
+  body: "Unser Schulprogramm stützt sich entsprechend unseres Leitbildes auf zwei Säulen: das individuelle, akademische Lernen und die sozial-affektive Persönlichkeitsentwicklung innerhalb einer gesellschaftsrelevanten Gemeinschaft."
+  pillars:
+    - title: "Gemeinsam lernen"
+      body: "Individuelles, akademisches Lernen — mit hohem fachlichen Anspruch und enger pädagogischer Begleitung auf dem Weg zum Abitur."
+    - title: "Den eigenen Weg finden"
+      body: "Sozial-affektive Persönlichkeitsentwicklung innerhalb einer demokratischen, weltoffenen und vielfältigen Schulgemeinschaft."
+
+leitsaetze:
+  - num: "01"
+    image: "assets/sp-lernend.jpg"
+    title: "Lernende Schule"
+    claim: "Unabhängig von der bisherigen Schullaufbahn erhalten unsere Schülerinnen und Schüler bei entsprechender Qualifizierung die individuell bestmögliche gymnasiale Ausbildung — mit enger Unterstützung auf dem Weg dorthin."
+    points:
+      - "In Klasse 5 Wahl zwischen zwei neigungsdifferenzierten Ergänzungsfächern: Forscher² (naturwissenschaftlich-experimentell) und WortArt+ (sprachlich-künstlerisch)"
+      - "Behutsamer Aufbau von Schulformwechselnden in Sek II durch gestaffelte, progressive Annäherung an gymnasiale Standards"
+      - "Kennenlern- und Methodenfahrt für Neuzugänge in der EF"
+      - "Regelmäßige pädagogische Konferenzen (zusätzlich zu Notenkonferenzen) pro Klasse und Jahrgang"
+      - "Intensive Förderung durch den Rotary Club Essen (Arbeitsmaterialien, Schulhofgestaltung, Auslandsaufenthalte)"
+    futureGoals:
+      - "Auszeichnung als „MINT-freundliche Schule\" (in Arbeit)"
+  - num: "02"
+    image: "assets/sp-persoenlich.jpg"
+    title: "Diskriminierungsfreie Schule"
+    claim: "In einem wertschätzenden, sicheren Umfeld können sich unsere Schülerinnen und Schüler frei von rassistischer, sexualisierter oder kulturell-religiöser Diskriminierung entwickeln und unbelastet lernen."
+    points:
+      - "Regelmäßige UNESCO-Projekttage (2 × pro Schuljahr)"
+      - "Kooperation mit der Polizei Essen und dem Franz-Sales-Haus Essen"
+      - "Kooperation mit dem CSE Ruhr und Together Education"
+      - "Selbstverpflichtung zum Verhaltenskodex als Bestandteil des Schutzkonzeptes"
+      - "Enges Beratungskonzept mit Vertrauenslehrern und Schulsozialarbeitern"
+      - "Schuleigenes Schutzkonzept"
+    futureGoals:
+      - "Auszeichnung „Schule ohne Rassismus – Schule mit Courage\""
+  - num: "03"
+    image: "assets/sp-divers.jpg"
+    title: "Diverse Schule"
+    claim: "Unsere Schülerinnen und Schüler kommunizieren mit großer Selbstverständlichkeit in vielerlei Sprachen und bringen ihre jeweilige kulturelle Lebens- und Erfahrungswelt kreativ in den Schulalltag ein."
+    points:
+      - "Internationale Schülerschaft"
+      - "Darstellung kultureller Identitäten bei Veranstaltungen und Projekten (Tanz, Theater, Musik, Kochkunst)"
+      - "Bilinguale Alltagskommunikation (Schulradio, Schülerzeitung), schulinterne Dolmetscher"
+      - "Kooperation mit dem „Freundeskreis Theater und Philharmonie\" (Opernprojekte, Konzert-Sponsoring)"
+      - "Erasmus-Plus-Programm"
+      - "„Arche Noah\"-Projekt · KokoRu in der Sek I · Kooperation mit Together Education"
+    futureGoals:
+      - "Englisches Theater und Schülerzeitung"
+  - num: "04"
+    image: "assets/sp-demokratie.jpg"
+    title: "Demokratische Schule"
+    claim: "Unsere Schülerinnen und Schüler können Ideen und gesellschaftliche Entwicklungen als gefestigte und mündige Persönlichkeiten innerhalb demokratischer Grundstrukturen entwerfen, umsetzen und bewerten."
+    points:
+      - "Klassenrat und Lion's Quest"
+      - "Aktive Schülervertretung"
+      - "Schülerpartizipation in Gremien (Fachkonferenzen, Steuergruppe, Arbeitskreise) und bei der Unterrichtsgestaltung"
+      - "Gedenkstättenfahrt in der Q2 (Geschichtskurs)"
+      - "Regelmäßige UNESCO-Projekttage zur Demokratieerziehung"
+      - "Teilnahme am Projekt „Juniorwahl\" · Streitschlichterprogramm im Aufbau · Schülerpatenschaften"
+    futureGoals:
+      - "Auszeichnung „Schule der Zukunft\""
+  - num: "05"
+    image: "assets/sp-nachhaltig.jpg"
+    title: "Nachhaltige Schule"
+    claim: "Unsere Schülerinnen und Schüler entwickeln ein Bewusstsein für ein auf Nachhaltigkeit angelegtes Leben und übernehmen Verantwortung für Umwelt und Gesellschaft."
+    points:
+      - "Schulgarten-AG"
+      - "Fachübergreifende Nutzung des Schulgartens"
+      - "UNESCO-Projekttage zu „Umwelt/Klimawandel\" und „Zukunft\""
+      - "Differenzierungskurs „Nachhaltige Gesellschaft\""
+      - "Bücherschrank"
+    futureGoals:
+      - "Auszeichnung „Schule der Zukunft\""
+      - "Dachbegrünung"
+  - num: "06"
+    image: "assets/sp-weltoffen.jpg"
+    title: "Weltoffene Schule"
+    claim: "Lernende und Lehrende orientieren sich im Schulalltag an den Zielen und Werten der UNESCO sowie den 17 Zielen für nachhaltige Entwicklung (SDGs) und setzen sich für Frieden, Nachhaltigkeit und Weltoffenheit ein."
+    points:
+      - "Thematisch wechselnde Ausstellungen zu Welttagen der Vereinten Nationen (2–3 pro Monat) in Eigenverantwortung der EF-Kurse und LKs in Q1/Q2"
+      - "UNESCO-Führerschein in der Sek I"
+      - "Organisation von UNESCO-Projekttagen (2 × pro Jahr) und Netzwerkpflege durch den UNESCO-Beauftragten"
+      - "UNESCO ist Namensgeber der Schule — Orientierung an ihren Zielen und Werten"
+    futureGoals: []
+  - num: "07"
+    image: "assets/sp-digital.jpg"
+    title: "Digitale Schule"
+    claim: "Unsere Schülerinnen und Schüler erleben, erproben und bewerten aktuelle Entwicklungen ihrer digitalen Lebensrealität bei einem zunehmend selbstverständlichen Umgang mit digitalen Medien im Unterricht."
+    points:
+      - "UNESCO-Projekttage zu „Internet/Hatespeech\""
+      - "Vollausstattung der Schülerschaft und des Lehrkollegiums mit iPads"
+      - "Kabellose Kommunikations- und Präsentationsmöglichkeiten in allen Klassenräumen (Beamer / Whiteboards)"
+      - "Handy- und Tabletkonzept der UNESCO-Schule"
+      - "Kooperation mit Hacker School"
+    futureGoals:
+      - "Auszeichnung „Digitale Schule\""
+      - "Digitales Klassenbuch"
+  - num: "08"
+    image: "assets/sp-hero.jpg"
+    title: "Persönlichkeitsentwickelnde Schule"
+    claim: "Lernende und Lehrende nehmen sich gegenseitig als Individuum und als integrativer Teil einer größeren Gemeinschaft wahr — und bilden in vielfältiger Form ihre Persönlichkeit aus."
+    points:
+      - "Klassen- und Kursfahrten in Klasse 9 und Stufe Q1"
+      - "Zahlreiche Projekttage und gemeinsame Schulveranstaltungen"
+      - "Enges Beratungskonzept bei kleinen Lerngruppen („Schüler im Blick\")"
+      - "Klassenleiterteams · Theaterprojekte"
+      - "Durchgängige Studien- und Berufsberatung, Kooperation mit Jugendberufsagentur (Jobcenter & Bundesagentur)"
+      - "Kooperation mit dem Talentscouting der Universität Duisburg-Essen"
+      - "Aufenthaltsräume (SV) · Schülerpatenschaften · bewegte Pause"
+    futureGoals:
+      - "Ausbau der Lerninseln / freie Sitzmöglichkeiten"
+      - "Kostenfreie Wasserspender"

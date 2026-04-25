@@ -1,9 +1,11 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
+import { getSingle } from "../lib/pageContent";
 
-// Unterrichts- und Pausenzeiten (Quelle: Schul-ABC)
-const schedule = [
+const page: any = await getSingle("pageEltern");
+
+const _scheduleFallback = [
   { label: "1. Stunde", time: "08:05 – 08:50", kind: "lesson" },
   { label: "2. Stunde", time: "08:55 – 09:40", kind: "lesson" },
   { label: "1. Große Pause", time: "09:40 – 10:00", kind: "break" },
@@ -14,8 +16,8 @@ const schedule = [
   { label: "6. Stunde", time: "12:45 – 13:30", kind: "lesson" },
 ];
 
-// FAQ-Blöcke
-const faqs = [
+// FAQ-Blöcke (Fallback)
+const _faqsFallback = [
   {
     q: "Warum der Name UNESCO?",
     a: "Als Weltkulturorganisation tritt die UNESCO für Toleranz, Verantwortung und ein friedliches Miteinander ein — genau die Werte, die wir täglich leben. Deshalb erteilte uns die UNESCO-Kommission die Erlaubnis, diesen Namen zu führen.",
@@ -60,6 +62,13 @@ const faqs = [
     link: { label: "Aktuelle AGs ansehen", href: "Arbeitsgemeinschaften.html" },
   },
 ];
+
+const schedule = page.schedule.list;
+const faqs = page.faq.list.map((f: any) => ({
+  q: f.q,
+  a: f.a,
+  link: f.linkLabel ? { label: f.linkLabel, href: f.linkHref } : null,
+}));
 ---
 <BaseLayout title="Informationen für Eltern — UNESCO-Schule Essen" description="Alle wichtigen Infos für Eltern auf einen Blick: FAQs, Schul-ABC, Unterrichtszeiten und Kontakt.">
 <style is:global>
@@ -268,9 +277,9 @@ const faqs = [
 <main id="top">
 
 <PageHero variant="feature">
-  <Fragment slot="eyebrow">Informieren · Für Eltern</Fragment>
-  <Fragment slot="title">Schule verstehen —<br>bevor das Kind sie <em>erklärt.</em></Fragment>
-  <Fragment slot="lede">Alle Antworten, die wir in Anmeldegesprächen immer wieder geben — gesammelt, sortiert, zum Nachlesen. Plus zwei kompakte PDFs für zuhause.</Fragment>
+  <Fragment slot="eyebrow">{page.hero.eyebrow}</Fragment>
+  <Fragment slot="title">{page.hero.title}{page.hero.titleHighlight && <><br />bevor das Kind sie <em>{page.hero.titleHighlight.replace(/^bevor das Kind sie /, "")}</em></>}</Fragment>
+  <Fragment slot="lede">{page.hero.lede}</Fragment>
 </PageHero>
 
 <section class="el-intro" aria-label="Einordnung">
