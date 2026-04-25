@@ -1,6 +1,15 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
+import { getTeacherByRole, ROLES } from "../lib/roles";
+import { displayName } from "../lib/teachers";
+
+// Ansprechperson Mittelstufe: kommt aus zentraler Lehrkraft-DB
+// (Eintrag mit Rolle "Koordination Sek I"). Wechselt die Person,
+// genügt es, die Rolle in der Lehrkraft-Markdown zu verschieben.
+const koordSekI = await getTeacherByRole(ROLES.KOORD_SEK_I);
+const kontaktName = koordSekI ? displayName(koordSekI) : "Sekretariat";
+const kontaktEmail = koordSekI?.data.email ?? "info@unesco-schule-essen.de";
 ---
 <BaseLayout title="Mittelstufe (Klassen 7–10) — UNESCO-Schule Essen">
 <style is:global>
@@ -177,13 +186,13 @@ import PageHero from "../components/PageHero.astro";
         <p>Jeder Anmeldung geht ein persönliches Beratungs- und Informationsgespräch voraus. Wir nehmen uns gerne Zeit, um Ihre individuelle Situation zu besprechen und gemeinsam den besten Weg zu finden.</p>
         <p>Kontaktieren Sie uns telefonisch oder per E-Mail — wir melden uns zeitnah mit einem Terminvorschlag.</p>
         <div class="contact-card">
-          <div class="role">Kontakt Mittelstufe</div>
+          <div class="role">Kontakt Mittelstufe · {kontaktName}</div>
           <div class="title-line">UNESCO-Schule Essen · Steinmetzstr. 9 · 45139 Essen</div>
           <a href="tel:+492012802630">0201 · 280 26 30</a>
-          <a href="mailto:carmen.wilbat@164835.nrw.schule">carmen.wilbat@164835.nrw.schule</a>
+          <a href={`mailto:${kontaktEmail}`}>{kontaktEmail}</a>
         </div>
         <div class="cta-row">
-          <a href="mailto:carmen.wilbat@164835.nrw.schule" class="btn btn-primary">Beratung anfragen <span class="arrow">→</span></a>
+          <a href={`mailto:${kontaktEmail}`} class="btn btn-primary">Beratung anfragen <span class="arrow">→</span></a>
           <a href="index.html#wegzuuns" class="btn btn-secondary">Tag der offenen Tür <span class="arrow">→</span></a>
         </div>
       </div>

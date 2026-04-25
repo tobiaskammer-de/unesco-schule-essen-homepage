@@ -1,0 +1,261 @@
+---
+import type { TeacherEntry } from "../lib/teachers";
+import { displayName, initials } from "../lib/teachers";
+
+/**
+ * Wiederverwendbares Personen-Kärtchen.
+ *
+ * Datenquelle hat Vorrang in dieser Reihenfolge:
+ *   1. teacher (Eintrag aus der Kollegium-Datenbank)
+ *   2. manuelle Props (für externe Personen wie Talentscout, Förderverein)
+ *
+ * Die Komponente respektiert das vorhandene Design (--petrol, --gold etc.)
+ * und kennt drei Varianten:
+ *   - "compact"  → schmale Karte mit kleinem Avatar (für Beratung-Layout)
+ *   - "feature"  → Standard-Karte mit großem Avatar (Schulleitung)
+ *   - "dark"     → invertierte Karte für dunkle Sektionen (Schulsozialarbeit)
+ */
+interface Props {
+  teacher?: TeacherEntry;
+  /** Anzeigetext über dem Namen — überschreibt die Lehrer-roles. */
+  roleLabel: string;
+  /** Optionaler Untertitel (z. B. "Universität Duisburg-Essen"). */
+  subline?: string;
+  /** Raum, Sprechstunde o. Ä. */
+  room?: string;
+  /** Manuelle Felder, falls keine teacher-Bindung. */
+  manualName?: string;
+  manualEmail?: string;
+  manualPhone?: string;
+  manualPhoto?: string;
+  /** E-Mail oder Telefon der Lehrkraft überschreiben (z. B. dienstliche statt privater Adresse). */
+  emailOverride?: string;
+  phoneOverride?: string;
+  /** Foto der Lehrkraft überschreiben. */
+  photoOverride?: string;
+  /** Variante steuert das Layout. */
+  variant?: "compact" | "feature" | "dark";
+  /** Beschriftung des Kontakt-Buttons. Default: "E-Mail senden" */
+  ctaLabel?: string;
+  /** Wenn die Stelle vakant ist, wird stattdessen dieser Hinweis gezeigt. */
+  vacantLabel?: string;
+}
+
+const {
+  teacher,
+  roleLabel,
+  subline,
+  room,
+  manualName,
+  manualEmail,
+  manualPhone,
+  manualPhoto,
+  emailOverride,
+  phoneOverride,
+  photoOverride,
+  variant = "feature",
+  ctaLabel = "E-Mail senden",
+  vacantLabel = "Stelle aktuell vakant — bitte über das Sekretariat anfragen.",
+} = Astro.props;
+
+const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
+
+// Bild-URL korrekt mit Base-Pfad auflösen
+function asset(path: string | undefined | null): string | undefined {
+  if (!path) return undefined;
+  if (/^https?:\/\//.test(path)) return path;
+  if (path.startsWith(BASE + "/") || path.startsWith(BASE)) return path;
+  if (path.startsWith("/")) {
+    // Pfad aus Sveltia (z. B. /unesco-schule-essen-homepage/assets/…)
+    // bereits korrekt — sonst BASE voranstellen.
+    if (BASE && !path.startsWith(BASE)) return BASE + path;
+    return path;
+  }
+  return BASE + "/" + path;
+}
+
+const hasTeacher = !!teacher;
+const isVacant = !hasTeacher && !manualName;
+
+// Daten zusammenstellen
+const name = hasTeacher
+  ? displayName(teacher!)
+  : manualName ?? "";
+const email = hasTeacher
+  ? emailOverride ?? teacher!.data.email
+  : manualEmail;
+const phone = hasTeacher
+  ? phoneOverride ?? teacher!.data.phone
+  : manualPhone;
+const photo = hasTeacher
+  ? asset(photoOverride ?? teacher!.data.photo)
+  : asset(manualPhoto);
+const fallbackInitials = hasTeacher
+  ? initials(teacher!)
+  : (manualName ?? "")
+      .split(/\s+/)
+      .map((w) => w.charAt(0))
+      .filter(Boolean)
+      .slice(-2)
+      .join("")
+      .toUpperCase();
+---
+
+{isVacant ? (
+  <article class:list={["cc", `cc--${variant}`, "cc--vacant"]}>
+    <p class="cc-role">{roleLabel}</p>
+    <p class="cc-vacant-msg">{vacantLabel}</p>
+  </article>
+) : (
+  <article class:list={["cc", `cc--${variant}`]}>
+    <div class="cc-avatar" aria-hidden="true">
+      {photo ? (
+        <img
+          src={photo}
+          alt=""
+          loading="lazy"
+          width="200"
+          height="200"
+          onerror="this.parentElement.classList.add('cc-avatar--no-photo'); this.remove();"
+        />
+      ) : (
+        <span class="cc-initials">{fallbackInitials || "?"}</span>
+      )}
+    </div>
+    <div class="cc-body">
+      <p class="cc-role">{roleLabel}</p>
+      <h3 class="cc-name">{name}</h3>
+      {subline && <p class="cc-sub">{subline}</p>}
+      {room && <p class="cc-room">{room}</p>}
+    </div>
+    {(email || phone) && (
+      <div class="cc-actions">
+        {email && (
+          <a href={`mailto:${email}`} class="cc-btn-mail" aria-label={`E-Mail an ${name}`}>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+              <rect x="3" y="5" width="18" height="14" rx="1"/>
+              <path d="M3 7l9 6 9-6"/>
+            </svg>
+            {ctaLabel}
+          </a>
+        )}
+        {phone && (
+          <a href={`tel:${phone.replace(/\s|·/g, "")}`} class="cc-btn-phone" aria-label={`Anrufen ${name}`}>
+            {phone}
+          </a>
+        )}
+      </div>
+    )}
+  </article>
+)}
+
+<style is:global>
+  .cc {
+    background: #fff;
+    border: 1px solid var(--hairline);
+    border-top: var(--card-accent-width) solid var(--petrol);
+    padding: var(--card-padding);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    transition: transform var(--transition), box-shadow var(--transition);
+  }
+  .cc:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 16px 36px -22px rgba(14, 77, 79, 0.3);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .cc:hover { transform: none; }
+  }
+  .cc-avatar {
+    width: 100px; height: 100px; border-radius: 50%;
+    overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--petrol);
+    color: var(--creme);
+    font-family: var(--serif); font-weight: 500; font-size: 36px;
+    letter-spacing: -0.02em;
+    flex-shrink: 0;
+  }
+  .cc-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .cc-initials { line-height: 1; }
+  .cc-role {
+    font-family: var(--sans); font-size: 12px; font-weight: 600;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--bordeaux); margin: 0;
+  }
+  .cc-name {
+    font-family: var(--serif); font-weight: 500; font-size: 22px; line-height: 1.15;
+    color: var(--petrol); letter-spacing: -0.008em; margin: 0;
+  }
+  .cc-sub {
+    font-family: var(--sans); font-size: 14.5px; color: var(--stein); margin: 6px 0 0;
+  }
+  .cc-room {
+    font-family: var(--sans); font-size: 14px; color: var(--stein);
+    padding-top: 12px; border-top: 1px solid var(--hairline);
+    margin: 8px 0 0;
+  }
+  .cc-actions {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    margin-top: auto;
+    padding-top: 12px;
+  }
+  .cc-btn-mail {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 11px 18px;
+    background: var(--petrol); color: var(--creme);
+    font-family: var(--sans); font-weight: 500; font-size: 14px;
+    border: 1.5px solid var(--petrol);
+    transition: background var(--transition-fast);
+    white-space: nowrap;
+  }
+  .cc-btn-mail:hover { background: var(--petrol-dark); color: var(--creme); }
+  .cc-btn-mail svg { width: 14px; height: 14px; }
+  .cc-btn-phone {
+    font-family: var(--sans); font-size: 13.5px; color: var(--petrol);
+    border-bottom: 1px solid var(--hairline);
+    padding: 11px 4px;
+  }
+  .cc-btn-phone:hover { color: var(--petrol-dark); }
+
+  /* Variant: compact (for Beratung) */
+  .cc--compact .cc-avatar { width: 84px; height: 84px; font-size: 28px; }
+  .cc--compact { padding: 32px 32px 28px; gap: 14px; }
+  .cc--compact .cc-name { font-size: 24px; }
+
+  /* Variant: dark (for dunkle Sektionen) */
+  .cc--dark {
+    background: rgba(245, 239, 231, 0.06);
+    border: 1px solid rgba(245, 239, 231, 0.2);
+    border-top: var(--card-accent-width) solid var(--gold);
+  }
+  .cc--dark .cc-avatar { background: var(--gold); color: #2a1d08; }
+  .cc--dark .cc-role { color: var(--gold); }
+  .cc--dark .cc-name { color: var(--creme); }
+  .cc--dark .cc-sub { color: rgba(245, 239, 231, 0.78); }
+  .cc--dark .cc-room {
+    color: rgba(245, 239, 231, 0.78);
+    border-top-color: rgba(245, 239, 231, 0.18);
+  }
+  .cc--dark .cc-btn-mail {
+    background: var(--gold); color: #2a1d08; border-color: var(--gold);
+  }
+  .cc--dark .cc-btn-mail:hover { background: #e0b68a; color: #2a1d08; }
+  .cc--dark .cc-btn-phone { color: var(--creme); border-bottom-color: rgba(245, 239, 231, 0.25); }
+
+  /* Variant: vakante Stelle */
+  .cc--vacant {
+    border-top-color: var(--gold);
+    background: rgba(212, 165, 116, 0.08);
+  }
+  .cc-vacant-msg {
+    font-family: var(--serif); font-style: italic;
+    font-size: 16px; line-height: 1.55; color: var(--stein); margin: 6px 0 0;
+  }
+  .cc--dark.cc--vacant {
+    background: rgba(212, 165, 116, 0.12);
+    border-top-color: var(--gold);
+  }
+  .cc--dark .cc-vacant-msg { color: rgba(245, 239, 231, 0.85); }
+</style>

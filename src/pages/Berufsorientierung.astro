@@ -1,6 +1,12 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
+import { getTeacherByRole, ROLES } from "../lib/roles";
+import { displayName } from "../lib/teachers";
+
+// Laufbahnberatung führt die Person mit Rolle "Koordination Sek II"
+// (zugleich auch "Laufbahnberatung").
+const laufbahn = await getTeacherByRole(ROLES.KOORD_SEK_II);
 ---
 <BaseLayout title="Studien- und Berufsorientierung — UNESCO-Schule Essen">
 <style is:global>
@@ -235,8 +241,11 @@ import PageHero from "../components/PageHero.astro";
       </div>
       <aside class="contact">
         <div class="role">Ansprechpartner</div>
-        <p class="name">Herr Omlor</p>
+        <p class="name">{laufbahn ? displayName(laufbahn) : "Über das Sekretariat"}</p>
         <p class="room">Oberstufenbüro · Raum 104</p>
+        {laufbahn && (
+          <p class="room"><a href={`mailto:${laufbahn.data.email}`} style="color:var(--petrol);">{laufbahn.data.email}</a></p>
+        )}
       </aside>
     </div>
   </div>

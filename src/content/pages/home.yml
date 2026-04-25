@@ -1,0 +1,33 @@
+hero:
+  eyebrow: "UNESCO-Schule Essen · Dein Gymnasium"
+  title: "Gemeinsam lernen,"
+  titleHighlight: "den eigenen Weg finden."
+  sub: "Als UNESCO-Projektschule begleiten wir junge Menschen zu einem starken Abitur — und zu einer Haltung, die in der Welt trägt."
+  ctaLabel: "Unsere Schule entdecken"
+  ctaHref: "#was-uns-auszeichnet"
+  imageSrc: "assets/hero.jpeg"
+  imageAlt: "Bibliothek mit geschwungenen Bücherregalen"
+
+path:
+  title: "Dein Weg zu uns."
+  intro: "Drei Wege, uns kennenzulernen. Sie sind herzlich eingeladen — kommen Sie vorbei, schreiben Sie uns, oder rufen Sie einfach an."
+  cards:
+    - kicker: "Tag der offenen Tür"
+      bigDate: "21. November 2027"
+      bigDateSub: "Samstag, 10:00 – 14:00 Uhr · Steinmetzstr. 9"
+      text: "Unterricht zum Mitmachen, Gespräche mit Lehrkräften und Schülerinnen, Führungen durch die Naturwissenschafts- und Kunsträume. Eine Anmeldung ist nicht nötig."
+    - kicker: "Anmeldung zum Schuljahr 2026/27"
+      title: "Jetzt anmelden."
+      text: "Anmeldezeitraum: 02. bis 13. Februar 2026. Das Anmeldeformular, benötigte Unterlagen und weitere Hinweise finden Sie in unserem Eltern-Bereich."
+      ctaLabel: "Zur Anmeldung"
+      ctaHref: "Anmeldung.html"
+    - kicker: "Fragen stellen"
+      title: "Gespräch vereinbaren."
+      text: ""
+      ctaLabel: "Termin anfragen"
+      ctaHref: "Kontakt.html"
+
+partners:
+  eyebrow: "Kooperationen & Partner"
+  title: "Wir stehen nicht allein."
+  intro: "Unsere Schule lebt von Partnerschaften — mit dem UNESCO-Netzwerk, der Universität Duisburg-Essen, Theater und Philharmonie, dem Stifterverband und einer Reihe von Essener Unternehmen, Stiftungen und Vereinen, die Unterricht an echten Aufgaben möglich machen."

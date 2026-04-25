@@ -1,7 +1,16 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
-const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
+import ContactCard from "../components/ContactCard.astro";
+import { getTeacherByRole, ROLES } from "../lib/roles";
+
+// Beratungslehrer und Schulsozialarbeit kommen aus der Lehrkraft-Datenbank.
+// Talentscout (extern, von der UDE) ist KEIN Mitglied unseres Kollegiums —
+// daher wird die Karte mit manuellen Daten gerendert.
+const [beratungslehrer, sozialarbeit] = await Promise.all([
+  getTeacherByRole(ROLES.BERATUNGSLEHRER),
+  getTeacherByRole(ROLES.SCHULSOZIALARBEIT),
+]);
 ---
 <BaseLayout title="Beratung und Unterstützung — UNESCO-Schule Essen">
 <style is:global>
@@ -301,16 +310,13 @@ const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
         <div class="row"><span class="q">Wo findest du mich?</span><span class="a">Sprich mich im Lehrerzimmer an oder wo immer du mich triffst. Wir vereinbaren einen Termin. Alternativ: Telefonnummer im Sekretariat hinterlassen — ich rufe zurück.</span></div>
       </div>
 
-      <article class="br-person">
-        <span class="avatar" aria-hidden="true">CB</span>
-        <div class="role">Beratungslehrer</div>
-        <p class="name">Christian Büngers</p>
-        <p class="sub">Ansprechpartner für Schülerinnen, Schüler und Eltern</p>
-        <div class="room">Lehrerzimmer / Sekretariat</div>
-        <div class="actions">
-          <a href="mailto:christian.buengers@164835.nrw.schule" class="btn-mail">E-Mail senden</a>
-        </div>
-      </article>
+      <ContactCard
+        teacher={beratungslehrer}
+        roleLabel="Beratungslehrer"
+        subline="Ansprechpartner für Schülerinnen, Schüler und Eltern"
+        room="Lehrerzimmer / Sekretariat"
+        variant="compact"
+      />
     </div>
   </div>
 </section>
@@ -332,16 +338,15 @@ const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
         <div class="row"><span class="q">Was kostet's?</span><span class="a">Nichts. Das Angebot ist für Schülerinnen und Schüler kostenfrei — finanziert durch das NRW-Talentscouting.</span></div>
       </div>
 
-      <article class="br-person">
-        <span class="avatar" aria-hidden="true">SS</span>
-        <div class="role">Talentscout</div>
-        <p class="name">Sarah Schröter</p>
-        <p class="sub">Universität Duisburg-Essen · NRW-Talentscouting</p>
-        <div class="room">Regelmäßig vor Ort · Termine über das Sekretariat</div>
-        <div class="actions">
-          <a href="tel:+492012802630" class="btn-mail">Termin über Sekretariat</a>
-        </div>
-      </article>
+      <ContactCard
+        roleLabel="Talentscout"
+        manualName="Sarah Schröter"
+        manualPhone="0201 · 280 26 30"
+        subline="Universität Duisburg-Essen · NRW-Talentscouting"
+        room="Regelmäßig vor Ort · Termine über das Sekretariat"
+        ctaLabel="Termin über Sekretariat"
+        variant="compact"
+      />
     </div>
   </div>
 </section>
@@ -367,18 +372,13 @@ const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
         <li>…wenn du einfach mal reden möchtest</li>
       </ul>
 
-      <article class="br-person">
-        <span class="avatar" aria-hidden="true">
-          <img src={`${BASE}/assets/kollegium/spiegel-ruth.png`} alt="" loading="lazy" width="168" height="168"/>
-        </span>
-        <div class="role">Schulsozialarbeit</div>
-        <p class="name">Frau Spiegel</p>
-        <p class="sub">Schulsozialarbeiterin · Schweigepflicht gilt</p>
-        <div class="room">Raum 103A · komm vorbei oder frag am Lehrerzimmer</div>
-        <div class="actions">
-          <a href="mailto:info@unesco-schule-essen.de" class="btn-mail" aria-label="Kontakt Schulsozialarbeit">Kontakt (E-Mail folgt)</a>
-        </div>
-      </article>
+      <ContactCard
+        teacher={sozialarbeit}
+        roleLabel="Schulsozialarbeit"
+        subline="Schulsozialarbeiterin · Schweigepflicht gilt"
+        room="Raum 103A · komm vorbei oder frag am Lehrerzimmer"
+        variant="dark"
+      />
     </div>
   </div>
 </section>

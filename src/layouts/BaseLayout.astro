@@ -8,6 +8,7 @@ import "@fontsource/fraunces/500.css";
 import "@fontsource/fraunces/600.css";
 import "@fontsource/fraunces/400-italic.css";
 import "@fontsource/fraunces/500-italic.css";
+import AccessibilityToolbar from "../components/AccessibilityToolbar.astro";
 
 interface Props {
   title?: string;
@@ -1106,6 +1107,8 @@ function link(path: string): string {
 <div class="nav-backdrop" id="navBackdrop" aria-hidden="true"></div>
 
 <slot />
+
+<AccessibilityToolbar />
 
 <footer class="site-footer" aria-label="Seitenfuß">
   <div class="container">
