@@ -1,8 +1,8 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
-import ContactCard from "../components/ContactCard.astro";
 import { getTeacherByRole, ROLES } from "../lib/roles";
+import { displayName, initials } from "../lib/teachers";
 import { getSingle } from "../lib/pageContent";
 
 const page: any = await getSingle("pageSchulleitung");
@@ -23,10 +23,33 @@ const [
   getTeacherByRole(ROLES.KOORD_ERPROBUNGSSTUFE),
   getTeacherByRole(ROLES.SEKRETARIAT),
 ]);
+
+const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
+function asset(p?: string | null): string | undefined {
+  if (!p) return undefined;
+  if (/^https?:\/\//.test(p)) return p;
+  if (p.startsWith(BASE + "/") || p.startsWith(BASE)) return p;
+  if (p.startsWith("/")) return BASE && !p.startsWith(BASE) ? BASE + p : p;
+  return BASE + "/" + p;
+}
+
+// "Wofür ich da bin" — Platzhaltertexte, bis echte O-Töne der Personen vorliegen.
+// Über den Nachnamen verknüpft, damit ein Personenwechsel den Text nicht mit-zieht.
+const claims: Record<string, string> = {
+  Lichtenstein: "Schule ist erst dann gut, wenn Kinder, Eltern und Kolleginnen sich darin gesehen fühlen. Das ist mein Maßstab.",
+  Stief: "Die Stundenpläne, die Vertretungen, die kleinen Schräubchen im Schulalltag — damit der Unterricht laufen kann.",
+  Wilbat: "Mittelstufe heißt: dranbleiben, Krisen begleiten, Stärken sichtbar machen. Kommen Sie auf mich zu.",
+  Omlor: "Oberstufenwege sind selten gerade. Ich sortiere mit Ihnen, was geht und was sich lohnt.",
+  Scheding: "Die Erprobungsstufe ist der Übergang, der den Ton setzt. Wir nehmen ihn ernst.",
+  Axer: "Ich bin die erste Stimme, die Sie hören, wenn Sie hier anrufen — und meistens auch die erste Tür, die sich öffnet.",
+};
+function claim(t: any): string {
+  return (t && claims[t.data.lastName]) || "";
+}
 ---
 <BaseLayout title="Schulleitung und Sekretariat · UNESCO-Schule Essen">
 <style is:global>
-  /* People */
+  /* ---------- Schulleitung — Variante A: Hierarchie sichtbar machen ---------- */
   .sl-team{background:var(--offwhite);padding:var(--space-section) 0;}
   .sl-team .head{max-width:760px;margin:0 0 48px;}
   .sl-team .head .eyebrow{display:block;margin-bottom:14px;}
@@ -35,10 +58,160 @@ const [
     font-size:clamp(30px,3.2vw,44px);line-height:1.15;letter-spacing:-0.015em;
     color:var(--petrol);margin:0;
   }
-  .sl-people{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;}
+
+  /* 1. Feature: Schulleiterin (Vollbreite, mit Zitat) */
+  .sl-feature{
+    background:#fff;border:1px solid var(--hairline);
+    border-top:4px solid var(--petrol);
+    padding:48px 56px;margin-bottom:24px;
+    display:grid;grid-template-columns:200px minmax(0,1fr) auto;gap:48px;align-items:center;
+  }
+  .sl-feature .avatar{
+    width:200px;height:200px;border-radius:50%;overflow:hidden;
+    background:var(--petrol);display:flex;align-items:center;justify-content:center;
+    font-family:var(--serif);font-weight:500;font-size:64px;color:var(--creme);
+    flex-shrink:0;
+  }
+  .sl-feature .avatar img{width:100%;height:100%;object-fit:cover;display:block;}
+  .sl-feature .role{
+    font-family:var(--sans);font-size:12px;font-weight:600;
+    letter-spacing:0.14em;text-transform:uppercase;color:var(--bordeaux);margin:0 0 8px;
+  }
+  .sl-feature .name{
+    font-family:var(--serif);font-weight:500;font-size:36px;line-height:1.1;
+    color:var(--petrol);letter-spacing:-0.015em;margin:0 0 18px;
+  }
+  .sl-feature blockquote{
+    font-family:var(--serif);font-style:italic;font-size:18px;line-height:1.5;
+    color:var(--tinte);margin:0;padding-left:18px;border-left:3px solid var(--gold);
+    max-width:560px;
+  }
+  .sl-feature .actions{display:flex;flex-direction:column;gap:10px;align-items:flex-end;}
+  .sl-feature .btn-mail{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:11px 18px;background:var(--petrol);color:var(--creme);
+    font-family:var(--sans);font-weight:500;font-size:14px;
+    border:1.5px solid var(--petrol);text-decoration:none;
+    transition:background var(--transition-fast);white-space:nowrap;
+  }
+  .sl-feature .btn-mail:hover{background:var(--petrol-dark);color:var(--creme);}
+
+  /* 2. Stellv: schmaler unter Feature */
+  .sl-stellv{
+    background:#fff;border:1px solid var(--hairline);
+    border-top:3px solid var(--petrol);
+    padding:32px 36px;margin-bottom:32px;
+    display:grid;grid-template-columns:120px minmax(0,1fr) auto;gap:32px;align-items:center;
+  }
+  .sl-stellv .avatar{
+    width:120px;height:120px;border-radius:50%;overflow:hidden;
+    background:var(--petrol);display:flex;align-items:center;justify-content:center;
+    font-family:var(--serif);font-weight:500;font-size:42px;color:var(--creme);
+    flex-shrink:0;
+  }
+  .sl-stellv .avatar img{width:100%;height:100%;object-fit:cover;display:block;}
+  .sl-stellv .role{
+    font-family:var(--sans);font-size:11px;font-weight:600;
+    letter-spacing:0.14em;text-transform:uppercase;color:var(--bordeaux);margin:0 0 6px;
+  }
+  .sl-stellv .name{
+    font-family:var(--serif);font-weight:500;font-size:24px;line-height:1.2;
+    color:var(--petrol);margin:0 0 8px;
+  }
+  .sl-stellv .claim{
+    font-family:var(--sans);font-size:14.5px;line-height:1.55;color:var(--stein);margin:0;
+    max-width:540px;
+  }
+  .sl-stellv .btn-mail{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:10px 16px;background:transparent;color:var(--petrol);
+    font-family:var(--sans);font-weight:500;font-size:13.5px;
+    border:1.5px solid var(--petrol);text-decoration:none;
+    transition:background var(--transition-fast), color var(--transition-fast);
+    white-space:nowrap;
+  }
+  .sl-stellv .btn-mail:hover{background:var(--petrol);color:var(--creme);}
+
+  /* 3. Drei Koordinationen — gleichgewichtig */
+  .sl-coord-row{
+    display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin-bottom:24px;
+  }
+  .sl-coord{
+    background:#fff;border:1px solid var(--hairline);
+    border-top:2px solid var(--gold);
+    padding:28px 28px 24px;
+    display:flex;flex-direction:column;gap:12px;
+  }
+  .sl-coord .avatar{
+    width:72px;height:72px;border-radius:50%;overflow:hidden;
+    background:var(--gold);display:flex;align-items:center;justify-content:center;
+    font-family:var(--serif);font-weight:500;font-size:24px;color:#2a1d08;
+  }
+  .sl-coord .avatar img{width:100%;height:100%;object-fit:cover;display:block;}
+  .sl-coord .role{
+    font-family:var(--sans);font-size:11px;font-weight:600;
+    letter-spacing:0.12em;text-transform:uppercase;color:var(--bordeaux);
+  }
+  .sl-coord .name{
+    font-family:var(--serif);font-weight:500;font-size:20px;line-height:1.2;
+    color:var(--petrol);margin:0;
+  }
+  .sl-coord .claim{
+    font-family:var(--sans);font-size:13.5px;line-height:1.5;color:var(--stein);
+    margin:0;flex:1;
+  }
+  .sl-coord .mail{
+    font-family:var(--sans);font-size:13px;color:var(--petrol);text-decoration:none;
+    border-bottom:1px solid var(--hairline);padding-bottom:2px;align-self:flex-start;margin-top:4px;
+    transition:border-color var(--transition-fast);
+  }
+  .sl-coord .mail:hover{border-bottom-color:var(--petrol);}
+
+  /* 4. Sekretariat als Highlight-Bar */
+  .sl-sekr{
+    background:var(--petrol);color:var(--creme);
+    padding:32px 40px;
+    display:grid;grid-template-columns:80px minmax(0,1fr) auto;gap:32px;align-items:center;
+  }
+  .sl-sekr .avatar{
+    width:80px;height:80px;border-radius:50%;overflow:hidden;
+    background:var(--gold);display:flex;align-items:center;justify-content:center;
+    font-family:var(--serif);font-weight:500;font-size:28px;color:#2a1d08;
+    flex-shrink:0;
+  }
+  .sl-sekr .avatar img{width:100%;height:100%;object-fit:cover;display:block;}
+  .sl-sekr .role{
+    font-family:var(--sans);font-size:11px;font-weight:600;
+    letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);margin:0 0 4px;
+  }
+  .sl-sekr .name{
+    font-family:var(--serif);font-weight:500;font-size:22px;line-height:1.2;
+    color:var(--creme);margin:0 0 4px;
+  }
+  .sl-sekr .claim{
+    font-family:var(--sans);font-size:15px;line-height:1.5;color:rgba(245,239,231,0.85);margin:0;
+    max-width:600px;
+  }
+  .sl-sekr .phone-cta{
+    display:inline-flex;align-items:center;gap:10px;
+    padding:14px 22px;background:var(--gold);color:#2a1d08;
+    font-family:var(--sans);font-weight:600;font-size:15px;text-decoration:none;
+    white-space:nowrap;transition:background var(--transition-fast);
+  }
+  .sl-sekr .phone-cta:hover{background:#e0b68a;color:#2a1d08;}
 
   @media (max-width:960px){
-    .sl-people{grid-template-columns:1fr;gap:16px;}
+    .sl-feature,.sl-stellv,.sl-sekr{
+      grid-template-columns:1fr;text-align:center;gap:20px;padding:32px 28px;
+    }
+    .sl-feature .avatar,.sl-stellv .avatar,.sl-sekr .avatar{margin:0 auto;}
+    .sl-feature .actions{align-items:center;}
+    .sl-feature blockquote{
+      padding-left:0;border-left:0;border-top:3px solid var(--gold);
+      padding-top:14px;text-align:left;margin:0 auto;
+    }
+    .sl-stellv .claim,.sl-sekr .claim{margin:0 auto;}
+    .sl-coord-row{grid-template-columns:1fr;gap:14px;}
     .sl-team{padding:48px 0;}
   }
 </style>
@@ -57,14 +230,79 @@ const [
       <span class="eyebrow">{page.team.eyebrow}</span>
       <h2>{page.team.title}</h2>
     </div>
-    <div class="sl-people">
-      <ContactCard teacher={schulleiterin} roleLabel="Schulleiterin" />
-      <ContactCard teacher={stellv} roleLabel="Stellvertretende Schulleitung" />
-      <ContactCard teacher={koordOberstufe} roleLabel="Koordination · Oberstufe" />
-      <ContactCard teacher={koordMittelstufe} roleLabel="Koordination · Mittelstufe" />
-      <ContactCard teacher={koordEprob} roleLabel="Koordination · Erprobungsstufe" />
-      <ContactCard teacher={sekretariat} roleLabel="Sekretariat" />
+
+    {schulleiterin && (
+      <article class="sl-feature">
+        <div class="avatar">
+          {asset(schulleiterin.data.photo)
+            ? <img src={asset(schulleiterin.data.photo)} alt="" loading="lazy" width="200" height="200" />
+            : <span>{initials(schulleiterin)}</span>}
+        </div>
+        <div>
+          <p class="role">Schulleiterin</p>
+          <h3 class="name">{displayName(schulleiterin)}</h3>
+          {claim(schulleiterin) && <blockquote>„{claim(schulleiterin)}"</blockquote>}
+        </div>
+        <div class="actions">
+          <a class="btn-mail" href={`mailto:${schulleiterin.data.email}`}>E-Mail an {schulleiterin.data.lastName === "Lichtenstein" ? "Frau" : ""} {schulleiterin.data.lastName}</a>
+        </div>
+      </article>
+    )}
+
+    {stellv && (
+      <article class="sl-stellv">
+        <div class="avatar">
+          {asset(stellv.data.photo)
+            ? <img src={asset(stellv.data.photo)} alt="" loading="lazy" width="120" height="120" />
+            : <span>{initials(stellv)}</span>}
+        </div>
+        <div>
+          <p class="role">Stellvertretende Schulleitung</p>
+          <h3 class="name">{displayName(stellv)}</h3>
+          {claim(stellv) && <p class="claim">{claim(stellv)}</p>}
+        </div>
+        <a class="btn-mail" href={`mailto:${stellv.data.email}`}>E-Mail senden</a>
+      </article>
+    )}
+
+    <div class="sl-coord-row">
+      {[
+        { teacher: koordEprob, label: "Koordination · Erprobungsstufe" },
+        { teacher: koordMittelstufe, label: "Koordination · Mittelstufe" },
+        { teacher: koordOberstufe, label: "Koordination · Oberstufe" },
+      ].map(({ teacher, label }) => teacher && (
+        <article class="sl-coord">
+          <div class="avatar">
+            {asset(teacher.data.photo)
+              ? <img src={asset(teacher.data.photo)} alt="" loading="lazy" width="72" height="72" />
+              : <span>{initials(teacher)}</span>}
+          </div>
+          <p class="role">{label}</p>
+          <h3 class="name">{displayName(teacher)}</h3>
+          {claim(teacher) && <p class="claim">{claim(teacher)}</p>}
+          <a class="mail" href={`mailto:${teacher.data.email}`}>{teacher.data.email}</a>
+        </article>
+      ))}
     </div>
+
+    {sekretariat && (
+      <article class="sl-sekr">
+        <div class="avatar">
+          {asset(sekretariat.data.photo)
+            ? <img src={asset(sekretariat.data.photo)} alt="" loading="lazy" width="80" height="80" />
+            : <span>{initials(sekretariat)}</span>}
+        </div>
+        <div>
+          <p class="role">Erste Anlaufstelle · Sekretariat</p>
+          <h3 class="name">{displayName(sekretariat)}</h3>
+          {claim(sekretariat) && <p class="claim">{claim(sekretariat)}</p>}
+        </div>
+        <a class="phone-cta" href={`tel:${(sekretariat.data.phone ?? "+49 201 280 26 30").replace(/\s|·/g, "")}`}>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+          {sekretariat.data.phone ?? "0201 · 280 26 30"}
+        </a>
+      </article>
+    )}
   </div>
 </section>
 
