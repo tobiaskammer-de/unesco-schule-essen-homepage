@@ -935,6 +935,123 @@ collections:
               - { name: buttonUrl, label: "Button-URL", widget: string }
               - { name: hint, label: "Hinweis", widget: string }
 
+      # ---------------- MITTAGESSEN & ÜBERMITTAGSBETREUUNG ----------------
+      - file: src/content/pages/mittagessen-und-betreuung.yml
+        label: "Mittagessen & Übermittagsbetreuung"
+        name: mittagessen-und-betreuung
+        format: yaml
+        fields:
+          - name: hero
+            label: "Hero (oberer Bereich)"
+            widget: object
+            collapsed: false
+            fields:
+              - { name: eyebrow, label: "Eyebrow", widget: string }
+              - { name: title, label: "Titel — Zeile 1", widget: string }
+              - { name: titleHighlight, label: "Titel — Zeile 2 (kursiv)", widget: string, required: false }
+              - { name: lede, label: "Einleitung", widget: text }
+
+          - name: pillars
+            label: "Zwei Säulen (Übersichts-Karten)"
+            widget: object
+            collapsed: true
+            fields:
+              - { name: eyebrow, label: "Eyebrow", widget: string }
+              - { name: title, label: "Titel — Zeile 1", widget: string }
+              - { name: titleHighlight, label: "Titel — Zeile 2 (kursiv)", widget: string, required: false }
+              - { name: intro, label: "Einleitung", widget: text }
+              - name: mittagessen
+                label: "Karte 1 — Mittagessen"
+                widget: object
+                fields:
+                  - { name: badge, label: "Badge (z. B. „Neu ab 2026/27")", widget: string, required: false }
+                  - { name: title, label: "Titel", widget: string }
+                  - { name: body, label: "Beschreibung", widget: text }
+                  - { name: bullets, label: "Stichpunkte", widget: list, field: { name: item, label: "Punkt", widget: string } }
+              - name: betreuung
+                label: "Karte 2 — Übermittagsbetreuung"
+                widget: object
+                fields:
+                  - { name: badge, label: "Badge (z. B. „Klassen 5")", widget: string, required: false }
+                  - { name: title, label: "Titel", widget: string }
+                  - { name: body, label: "Beschreibung", widget: text }
+                  - { name: bullets, label: "Stichpunkte", widget: list, field: { name: item, label: "Punkt", widget: string } }
+
+          - name: mittagessenDetail
+            label: "Detail-Sektion: Mittagessen"
+            widget: object
+            collapsed: true
+            fields:
+              - { name: eyebrow, label: "Eyebrow", widget: string }
+              - { name: title, label: "Titel — Zeile 1", widget: string }
+              - { name: titleHighlight, label: "Titel — Zeile 2 (kursiv)", widget: string, required: false }
+              - { name: lead, label: "Lead-Absatz", widget: text }
+              - { name: body, label: "Folgeabsatz", widget: text }
+              - name: facts
+                label: "Fakten-Kacheln"
+                widget: list
+                fields:
+                  - { name: label, label: "Bezeichnung", widget: string }
+                  - { name: value, label: "Hauptwert", widget: string }
+                  - { name: note, label: "Zusatz (klein)", widget: string, required: false }
+              - { name: infoTitle, label: "Info-Box: Titel", widget: string, required: false }
+              - { name: infoBody, label: "Info-Box: Text", widget: text, required: false }
+              - { name: externalLinkLabel, label: "Externer Link — Text", widget: string, required: false }
+              - { name: externalLinkUrl, label: "Externer Link — URL", widget: string, required: false, hint: "z. B. https://www.kantinekayser.de" }
+
+          - name: betreuungDetail
+            label: "Detail-Sektion: Übermittagsbetreuung"
+            widget: object
+            collapsed: true
+            fields:
+              - { name: eyebrow, label: "Eyebrow", widget: string }
+              - { name: title, label: "Titel — Zeile 1", widget: string }
+              - { name: titleHighlight, label: "Titel — Zeile 2 (kursiv)", widget: string, required: false }
+              - { name: lead, label: "Lead-Absatz", widget: text }
+              - { name: body, label: "Folgeabsatz", widget: text }
+              - name: facts
+                label: "Fakten-Kacheln"
+                widget: list
+                fields:
+                  - { name: label, label: "Bezeichnung", widget: string }
+                  - { name: value, label: "Hauptwert", widget: string }
+                  - { name: note, label: "Zusatz (klein)", widget: string, required: false }
+              - { name: infoTitle, label: "Info-Box: Titel", widget: string, required: false }
+              - { name: infoBody, label: "Info-Box: Text", widget: text, required: false, hint: "Wenn die E-Mail-Adresse unten gesetzt ist, wird sie im Text automatisch verlinkt." }
+              - { name: contactEmail, label: "Kontakt-E-Mail (wird im Info-Text verlinkt)", widget: string, required: false }
+
+          - name: downloads
+            label: "Download-Sektion"
+            widget: object
+            collapsed: true
+            fields:
+              - { name: eyebrow, label: "Eyebrow", widget: string }
+              - { name: title, label: "Titel — Zeile 1", widget: string }
+              - { name: titleHighlight, label: "Titel — Zeile 2 (kursiv)", widget: string, required: false }
+              - { name: intro, label: "Einleitung", widget: text }
+              - name: files
+                label: "PDFs zum Herunterladen"
+                widget: list
+                fields:
+                  - { name: label, label: "Kategorie-Label (klein)", widget: string, required: false }
+                  - { name: title, label: "Titel", widget: string }
+                  - { name: body, label: "Beschreibung", widget: text, required: false }
+                  - { name: meta, label: "Meta-Info (z. B. „PDF · 1,5 MB")", widget: string, required: false }
+                  - { name: url, label: "PDF-Datei", widget: file, choose_url: false, hint: "Datei aus public/assets oder neuen Upload wählen." }
+
+          - name: closing
+            label: "Abschluss-Block (Fragen / CTA)"
+            widget: object
+            collapsed: true
+            fields:
+              - { name: title, label: "Titel — Zeile 1", widget: string }
+              - { name: titleHighlight, label: "Titel — Zeile 2 (kursiv)", widget: string, required: false }
+              - { name: body, label: "Text", widget: text }
+              - { name: primaryLabel, label: "Primär-Button: Text", widget: string }
+              - { name: primaryUrl, label: "Primär-Button: Link", widget: string }
+              - { name: secondaryLabel, label: "Sekundär-Button: Text", widget: string, required: false }
+              - { name: secondaryUrl, label: "Sekundär-Button: Link", widget: string, required: false }
+
       # ---------------- FÖRDERVEREIN ----------------
       - file: src/content/pages/foerderverein.yml
         label: "Förderverein"
