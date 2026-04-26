@@ -1,0 +1,228 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import PageHero from "../../components/PageHero.astro";
+import { getTeacherByRole, ROLES } from "../../lib/roles";
+import { displayName, initials } from "../../lib/teachers";
+
+const [
+  schulleiterin,
+  stellv,
+  koordOberstufe,
+  koordMittelstufe,
+  koordEprob,
+  sekretariat,
+] = await Promise.all([
+  getTeacherByRole(ROLES.SCHULLEITUNG),
+  getTeacherByRole(ROLES.STELLV_SCHULLEITUNG),
+  getTeacherByRole(ROLES.KOORD_OBERSTUFE),
+  getTeacherByRole(ROLES.KOORD_MITTELSTUFE),
+  getTeacherByRole(ROLES.KOORD_ERPROBUNGSSTUFE),
+  getTeacherByRole(ROLES.SEKRETARIAT),
+]);
+
+const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
+function asset(p?: string | null) {
+  if (!p) return undefined;
+  if (/^https?:\/\//.test(p)) return p;
+  if (p.startsWith(BASE + "/") || p.startsWith(BASE)) return p;
+  if (p.startsWith("/")) return BASE && !p.startsWith(BASE) ? BASE + p : p;
+  return BASE + "/" + p;
+}
+
+interface Person {
+  data: any;
+  role: string;
+  forWhat: string;
+  phoneCta?: boolean;
+}
+
+const people: (Person | null)[] = [
+  sekretariat && {
+    data: sekretariat,
+    role: "Erste Anlaufstelle · Sekretariat",
+    forWhat: "Bin die erste Stimme, die Sie hören, wenn Sie hier anrufen — und meistens auch die erste Tür, die sich öffnet. Anmeldungen, Krankmeldungen, Termine: alles geht über mich.",
+    phoneCta: true,
+  },
+  schulleiterin && {
+    data: schulleiterin,
+    role: "Schulleiterin",
+    forWhat: "Verantworte Gesamtsteuerung und Personal — und bin ansprechbar bei allem, was strategische Fragen, Konflikte oder die pädagogische Ausrichtung betrifft.",
+  },
+  stellv && {
+    data: stellv,
+    role: "Stellvertretende Schulleitung",
+    forWhat: "Kümmere mich um die operativen Schräubchen: Stundenpläne, Vertretungen, Klausurplanung. Damit der Unterricht laufen kann.",
+  },
+  koordEprob && {
+    data: koordEprob,
+    role: "Koordination · Erprobungsstufe",
+    forWhat: "Bin die Anlaufstelle für alles rund um die Klassen 5 und 6 — Anmeldung, Übergang von der Grundschule, erste Wochen, Profilkurse.",
+  },
+  koordMittelstufe && {
+    data: koordMittelstufe,
+    role: "Koordination · Mittelstufe",
+    forWhat: "Begleite die Klassen 7 bis 10 durch ihre Wachstumsphase: Fächerwahl, Praktika, Berufsorientierung, schwierige Übergänge.",
+  },
+  koordOberstufe && {
+    data: koordOberstufe,
+    role: "Koordination · Oberstufe",
+    forWhat: "Berate zur EF, zur Oberstufenlaufbahn, zu Fächerkombinationen und zum Abitur. Auch für Wechslerinnen und Wechsler aus anderen Schulformen.",
+  },
+];
+---
+<BaseLayout title="Demo · Schulleitung Option C — Story">
+<style is:global>
+  .sl-demo-banner{
+    background:rgba(212,165,116,0.18);
+    border-bottom:1px solid rgba(212,165,116,0.35);
+    padding:14px 0;text-align:center;
+  }
+  .sl-demo-banner .label{
+    font-family:var(--sans);font-size:11.5px;font-weight:600;
+    letter-spacing:0.14em;text-transform:uppercase;color:#7a5120;
+  }
+  .sl-demo-banner .title{
+    font-family:var(--serif);font-style:italic;font-size:16px;color:var(--petrol);margin-left:12px;
+  }
+  .sl-demo-banner a{
+    margin-left:18px;color:var(--bordeaux);font-family:var(--sans);font-size:13px;font-weight:500;
+    border-bottom:1px solid currentColor;padding-bottom:1px;
+  }
+
+  /* Layout C: Story */
+  .sl-c{background:var(--offwhite);padding:var(--space-section) 0;}
+  .sl-c .head{max-width:760px;margin:0 0 56px;}
+  .sl-c .head .eyebrow{display:block;margin-bottom:14px;}
+  .sl-c .head h2{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(30px,3.2vw,44px);line-height:1.15;letter-spacing:-0.015em;
+    color:var(--petrol);margin:0;
+  }
+
+  .sl-c-story{display:flex;flex-direction:column;gap:0;}
+  .sl-c-row{
+    display:grid;grid-template-columns:280px minmax(0,1fr) auto;
+    gap:48px;align-items:center;
+    padding:40px 0;
+    border-bottom:1px solid var(--hairline);
+  }
+  .sl-c-row:first-child{padding-top:0;}
+  .sl-c-row:last-child{border-bottom:0;padding-bottom:0;}
+
+  .sl-c-portrait{
+    width:280px;height:280px;
+    overflow:hidden;
+    background:var(--petrol);
+    display:flex;align-items:center;justify-content:center;
+    font-family:var(--serif);font-weight:500;font-size:96px;color:var(--creme);
+    flex-shrink:0;
+  }
+  .sl-c-portrait img{width:100%;height:100%;object-fit:cover;display:block;}
+
+  .sl-c-body .role{
+    font-family:var(--sans);font-size:12px;font-weight:600;
+    letter-spacing:0.14em;text-transform:uppercase;color:var(--bordeaux);
+    margin:0 0 10px;
+  }
+  .sl-c-body .name{
+    font-family:var(--serif);font-weight:500;font-size:36px;line-height:1.1;
+    color:var(--petrol);letter-spacing:-0.015em;margin:0 0 20px;
+  }
+  .sl-c-body .for{
+    font-family:var(--serif);font-style:italic;font-size:18px;line-height:1.55;
+    color:var(--tinte);margin:0 0 18px;max-width:560px;
+  }
+  .sl-c-body .meta{
+    font-family:var(--sans);font-size:14.5px;color:var(--stein);
+  }
+  .sl-c-body .meta a{color:var(--petrol);text-decoration:none;border-bottom:1px solid var(--hairline);padding-bottom:1px;}
+  .sl-c-body .meta a:hover{border-bottom-color:var(--petrol);}
+
+  .sl-c-cta{display:flex;flex-direction:column;gap:10px;align-items:flex-end;}
+  .sl-c-cta .btn-mail{
+    display:inline-flex;align-items:center;gap:8px;padding:12px 20px;
+    background:var(--petrol);color:var(--creme);
+    font-family:var(--sans);font-weight:500;font-size:14px;text-decoration:none;
+    border:1.5px solid var(--petrol);
+  }
+  .sl-c-cta .btn-mail:hover{background:var(--petrol-dark);}
+  .sl-c-cta .btn-phone{
+    display:inline-flex;align-items:center;gap:8px;padding:12px 20px;
+    background:var(--gold);color:#2a1d08;
+    font-family:var(--sans);font-weight:600;font-size:14px;text-decoration:none;
+  }
+  .sl-c-cta .btn-phone:hover{background:#e0b68a;}
+
+  /* Sekretariat-Zeile leicht abgesetzt — als „erste Anlaufstelle"-Anker */
+  .sl-c-row--sekretariat{
+    background:linear-gradient(135deg, rgba(14,77,79,0.04), transparent 50%);
+    padding:48px 32px;margin-bottom:8px;
+    border-left:4px solid var(--gold);border-bottom:1px solid var(--hairline);
+  }
+
+  @media (max-width:960px){
+    .sl-c-row{grid-template-columns:1fr;gap:24px;text-align:center;}
+    .sl-c-portrait{width:200px;height:200px;font-size:64px;margin:0 auto;}
+    .sl-c-body .for{margin:0 auto 18px;}
+    .sl-c-cta{align-items:center;}
+    .sl-c-row--sekretariat{padding:32px 16px;text-align:center;border-left:0;border-top:4px solid var(--gold);}
+  }
+</style>
+
+<main id="top">
+
+<div class="sl-demo-banner">
+  <div class="container">
+    <span class="label">Demo · Variante C</span>
+    <span class="title">Story-Layout</span>
+    <a href={`${BASE}/demo/schulleitung-vergleich.html`}>Alle Varianten vergleichen →</a>
+  </div>
+</div>
+
+<PageHero variant="page">
+  <Fragment slot="eyebrow">Über Uns · Schulleitung und Sekretariat</Fragment>
+  <Fragment slot="title">Sechs Menschen, die <em>unsere Schule tragen</em>.</Fragment>
+  <Fragment slot="lede">Statt einer Karten-Galerie: kurze Geschichten, wer für welches Thema da ist. Mit offenen Türen für Schülerinnen und Schüler, Eltern und Kolleginnen und Kollegen.</Fragment>
+</PageHero>
+
+<section class="sl-c" aria-label="Das Team">
+  <div class="container">
+    <div class="head">
+      <span class="eyebrow">Unser Team</span>
+      <h2>Wer ist für was da?</h2>
+    </div>
+
+    <div class="sl-c-story">
+      {people.filter(Boolean).map((p: any) => (
+        <article class={`sl-c-row${p.phoneCta ? " sl-c-row--sekretariat" : ""}`}>
+          <div class="sl-c-portrait">
+            {asset(p.data.data.photo)
+              ? <img src={asset(p.data.data.photo)} alt="" loading="lazy" width="280" height="280" />
+              : initials(p.data)}
+          </div>
+          <div class="sl-c-body">
+            <p class="role">{p.role}</p>
+            <h3 class="name">{displayName(p.data)}</h3>
+            <p class="for">„{p.forWhat}"</p>
+            <p class="meta">
+              <a href={`mailto:${p.data.data.email}`}>{p.data.data.email}</a>
+            </p>
+          </div>
+          <div class="sl-c-cta">
+            {p.phoneCta ? (
+              <a class="btn-phone" href="tel:+492012802630">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+                0201 · 280 26 30
+              </a>
+            ) : (
+              <a class="btn-mail" href={`mailto:${p.data.data.email}`}>E-Mail senden</a>
+            )}
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+</main>
+</BaseLayout>
