@@ -1,0 +1,358 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHero from "../components/PageHero.astro";
+import { getSingle } from "../lib/pageContent";
+
+const page: any = await getSingle("pageMittagessenUndBetreuung");
+---
+<BaseLayout
+  title="Mittagessen & Übermittagsbetreuung · UNESCO-Schule Essen"
+  description="Warmes Mittagessen ab Schuljahr 2026/27 und verlässliche Übermittagsbetreuung der Caritas SkF Essen für die Klassen 5: alle Infos für Eltern auf einen Blick."
+>
+<style is:global>
+  /* ---------- Mittagessen & Betreuung ---------- */
+  .mb-pillars{background:var(--creme);padding:var(--space-section) 0;}
+  .mb-pillars .head{max-width:760px;margin:0 0 48px;}
+  .mb-pillars .head .eyebrow{display:block;margin-bottom:14px;}
+  .mb-pillars .head h2{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(30px,3.4vw,44px);line-height:1.1;letter-spacing:-0.015em;
+    color:var(--petrol);margin:0 0 14px;
+  }
+  .mb-pillars .head h2 em{font-style:italic;color:var(--bordeaux);}
+  .mb-pillars .head p{
+    font-family:var(--sans);font-size:17px;line-height:1.7;color:var(--stein);max-width:640px;margin:0;
+  }
+  .mb-pillar-grid{display:grid;grid-template-columns:repeat(2, minmax(0, 1fr));gap:24px;}
+  .mb-pillar{
+    background:#fff;border:1px solid var(--hairline);
+    border-top:var(--card-accent-width) solid var(--petrol);
+    padding:var(--card-padding);
+    display:flex;flex-direction:column;gap:14px;
+  }
+  .mb-pillar.is-new{border-top-color:var(--gold);}
+  .mb-pillar .badge{
+    align-self:flex-start;
+    font-family:var(--sans);font-size:11.5px;font-weight:600;letter-spacing:0.1em;
+    text-transform:uppercase;
+    padding:5px 10px;border-radius:999px;
+    background:rgba(212,165,116,0.18);color:#7a5120;
+    border:1px solid rgba(212,165,116,0.35);
+  }
+  .mb-pillar h3{
+    font-family:var(--serif);font-weight:500;font-size:26px;line-height:1.2;
+    color:var(--petrol);letter-spacing:-0.008em;margin:0;
+  }
+  .mb-pillar p{
+    font-family:var(--sans);font-size:16px;line-height:1.65;color:var(--tinte);margin:0;
+  }
+  .mb-pillar ul{
+    margin:0;padding:0;list-style:none;
+    display:flex;flex-direction:column;gap:10px;
+  }
+  .mb-pillar li{
+    font-family:var(--sans);font-size:15px;line-height:1.6;color:var(--tinte);
+    padding-left:22px;position:relative;
+  }
+  .mb-pillar li::before{
+    content:"";position:absolute;left:0;top:9px;
+    width:10px;height:2px;background:var(--petrol);
+  }
+  .mb-pillar.is-new li::before{background:var(--gold);}
+
+  /* ---------- Detail sections ---------- */
+  .mb-detail{padding:var(--space-section) 0;border-top:1px solid var(--hairline);}
+  .mb-detail--alt{background:var(--offwhite);}
+  .mb-detail .grid{
+    display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);
+    gap:56px;align-items:start;
+  }
+  .mb-detail .grid h2{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(28px,3vw,40px);line-height:1.15;letter-spacing:-0.015em;
+    color:var(--petrol);margin:0 0 14px;
+  }
+  .mb-detail .grid h2 em{font-style:italic;color:var(--bordeaux);}
+  .mb-detail .grid .eyebrow{display:block;margin-bottom:14px;}
+  .mb-detail p{
+    font-family:var(--sans);font-size:17px;line-height:1.7;color:var(--tinte);
+    margin:0 0 16px;
+  }
+  .mb-detail p.lead{color:var(--stein);font-size:18px;}
+  .mb-detail .facts{
+    margin:0;padding:0;list-style:none;
+    display:grid;grid-template-columns:1fr 1fr;gap:1px;
+    background:var(--hairline);border:1px solid var(--hairline);
+  }
+  .mb-detail .facts li{
+    background:#fff;padding:20px 22px;
+    display:flex;flex-direction:column;gap:4px;
+  }
+  .mb-detail .facts .k{
+    font-family:var(--sans);font-size:12px;font-weight:600;letter-spacing:0.08em;
+    text-transform:uppercase;color:var(--stein);
+  }
+  .mb-detail .facts .v{
+    font-family:var(--serif);font-weight:500;font-size:20px;line-height:1.25;
+    color:var(--petrol);letter-spacing:-0.01em;
+  }
+  .mb-detail .facts .v small{
+    display:block;font-family:var(--sans);font-weight:400;font-size:13px;
+    color:var(--stein);margin-top:2px;letter-spacing:0;
+  }
+  .mb-detail .info-card{
+    background:var(--creme);border-left:var(--card-accent-width) solid var(--gold);
+    padding:18px 22px;margin-top:24px;
+  }
+  .mb-detail .info-card strong{color:var(--petrol);}
+  .mb-detail .info-card p{font-size:15px;line-height:1.6;margin:0;color:var(--tinte);}
+  .mb-detail .ext-link{
+    display:inline-flex;align-items:center;gap:8px;
+    margin-top:18px;
+    font-family:var(--sans);font-weight:600;font-size:15px;
+    color:var(--petrol);text-decoration:none;
+    border-bottom:1.5px solid var(--gold);padding-bottom:2px;
+    transition:color var(--transition-fast), border-color var(--transition-fast);
+  }
+  .mb-detail .ext-link:hover{color:var(--bordeaux);border-bottom-color:var(--bordeaux);}
+  .mb-detail .ext-link svg{width:14px;height:14px;}
+
+  /* ---------- Downloads ---------- */
+  .mb-downloads{background:var(--petrol);color:var(--creme);padding:var(--space-section) 0;}
+  .mb-downloads .head{max-width:760px;margin:0 0 40px;}
+  .mb-downloads .eyebrow{color:rgba(245,239,231,0.55);display:block;margin-bottom:14px;}
+  .mb-downloads h2{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(28px,3vw,42px);line-height:1.2;letter-spacing:-0.015em;
+    color:var(--creme);margin:0 0 14px;
+  }
+  .mb-downloads h2 em{font-style:italic;color:var(--gold);}
+  .mb-downloads .head p{
+    font-family:var(--sans);font-size:17px;line-height:1.7;
+    color:rgba(245,239,231,0.85);margin:0;
+  }
+  .mb-dl-grid{display:grid;grid-template-columns:repeat(2, minmax(0, 1fr));gap:20px;}
+  .mb-dl{
+    display:flex;align-items:flex-start;gap:18px;
+    padding:24px;
+    background:rgba(245,239,231,0.06);
+    border:1px solid rgba(245,239,231,0.18);
+    color:var(--creme);text-decoration:none;
+    transition:background var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast);
+  }
+  .mb-dl:hover{
+    background:rgba(245,239,231,0.12);
+    border-color:rgba(212,165,116,0.55);
+    transform:translateY(-2px);
+    color:var(--creme);
+  }
+  @media (prefers-reduced-motion: reduce){.mb-dl:hover{transform:none;}}
+  .mb-dl-icon{
+    flex:0 0 auto;width:46px;height:46px;
+    display:flex;align-items:center;justify-content:center;
+    background:var(--gold);color:#2a1d08;border-radius:4px;
+  }
+  .mb-dl-icon svg{width:22px;height:22px;}
+  .mb-dl-body{display:flex;flex-direction:column;gap:6px;}
+  .mb-dl-body .label{
+    font-family:var(--sans);font-size:11.5px;font-weight:600;letter-spacing:0.1em;
+    text-transform:uppercase;color:rgba(245,239,231,0.6);
+  }
+  .mb-dl-body h3{
+    font-family:var(--serif);font-weight:500;font-size:20px;line-height:1.25;
+    color:var(--creme);letter-spacing:-0.005em;margin:0;
+  }
+  .mb-dl-body p{
+    font-family:var(--sans);font-size:14px;line-height:1.55;
+    color:rgba(245,239,231,0.78);margin:0;
+  }
+  .mb-dl-meta{
+    font-family:var(--sans);font-size:12.5px;color:rgba(245,239,231,0.55);
+    margin-top:4px;letter-spacing:0.02em;
+  }
+
+  /* ---------- Closing ---------- */
+  .mb-closing{background:var(--offwhite);padding:var(--space-section) 0;border-top:1px solid var(--hairline);}
+  .mb-closing .container{max-width:780px;text-align:center;}
+  .mb-closing h2{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(28px,3vw,40px);line-height:1.2;letter-spacing:-0.015em;
+    color:var(--petrol);margin:0 0 14px;
+  }
+  .mb-closing h2 em{font-style:italic;color:var(--bordeaux);}
+  .mb-closing p{
+    font-family:var(--sans);font-size:17px;line-height:1.7;color:var(--tinte);
+    max-width:600px;margin:0 auto 24px;
+  }
+  .mb-closing .actions{
+    display:inline-flex;flex-wrap:wrap;gap:12px;justify-content:center;
+  }
+
+  @media (max-width:960px){
+    .mb-pillar-grid{grid-template-columns:1fr;}
+    .mb-detail .grid{grid-template-columns:1fr;gap:28px;}
+    .mb-detail .facts{grid-template-columns:1fr;}
+    .mb-dl-grid{grid-template-columns:1fr;}
+    .mb-pillars,.mb-detail,.mb-downloads,.mb-closing{padding:var(--space-section-sm) 0;}
+  }
+</style>
+
+<main id="top">
+
+<PageHero variant="page">
+  <Fragment slot="eyebrow">{page.hero.eyebrow}</Fragment>
+  <Fragment slot="title">{page.hero.title}{page.hero.titleHighlight && <> <em>{page.hero.titleHighlight}</em></>}</Fragment>
+  <Fragment slot="lede">{page.hero.lede}</Fragment>
+</PageHero>
+
+<!-- ===================== ZWEI SÄULEN ===================== -->
+<section class="mb-pillars" aria-label="Mittagessen und Betreuung im Überblick">
+  <div class="container">
+    <div class="head">
+      <span class="eyebrow">{page.pillars.eyebrow}</span>
+      <h2>{page.pillars.title}{page.pillars.titleHighlight && <> <em>{page.pillars.titleHighlight}</em></>}</h2>
+      <p>{page.pillars.intro}</p>
+    </div>
+
+    <div class="mb-pillar-grid">
+      <article class="mb-pillar is-new">
+        {page.pillars.mittagessen.badge && <span class="badge">{page.pillars.mittagessen.badge}</span>}
+        <h3>{page.pillars.mittagessen.title}</h3>
+        <p>{page.pillars.mittagessen.body}</p>
+        <ul>
+          {(page.pillars.mittagessen.bullets ?? []).map((b: string) => <li>{b}</li>)}
+        </ul>
+      </article>
+
+      <article class="mb-pillar">
+        {page.pillars.betreuung.badge && <span class="badge">{page.pillars.betreuung.badge}</span>}
+        <h3>{page.pillars.betreuung.title}</h3>
+        <p>{page.pillars.betreuung.body}</p>
+        <ul>
+          {(page.pillars.betreuung.bullets ?? []).map((b: string) => <li>{b}</li>)}
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== MITTAGESSEN DETAIL ===================== -->
+<section class="mb-detail" aria-label="Details zum Mittagessen">
+  <div class="container">
+    <div class="grid">
+      <div>
+        <span class="eyebrow">{page.mittagessenDetail.eyebrow}</span>
+        <h2>{page.mittagessenDetail.title}{page.mittagessenDetail.titleHighlight && <> <em>{page.mittagessenDetail.titleHighlight}</em></>}</h2>
+        <p class="lead">{page.mittagessenDetail.lead}</p>
+        <p>{page.mittagessenDetail.body}</p>
+      </div>
+
+      <div>
+        <ul class="facts">
+          {(page.mittagessenDetail.facts ?? []).map((f: any) => (
+            <li>
+              <span class="k">{f.label}</span>
+              <span class="v">{f.value}{f.note && <small>{f.note}</small>}</span>
+            </li>
+          ))}
+        </ul>
+
+        {(page.mittagessenDetail.infoTitle || page.mittagessenDetail.infoBody) && (
+          <div class="info-card">
+            <p>{page.mittagessenDetail.infoTitle && <strong>{page.mittagessenDetail.infoTitle}</strong>} {page.mittagessenDetail.infoBody}</p>
+          </div>
+        )}
+
+        {page.mittagessenDetail.externalLinkUrl && (
+          <a class="ext-link" href={page.mittagessenDetail.externalLinkUrl} target="_blank" rel="noopener">
+            {page.mittagessenDetail.externalLinkLabel}
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17L17 7M17 7H9M17 7v8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        )}
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== ÜBERMITTAGSBETREUUNG DETAIL ===================== -->
+<section class="mb-detail mb-detail--alt" aria-label="Details zur Übermittagsbetreuung">
+  <div class="container">
+    <div class="grid">
+      <div>
+        <span class="eyebrow">{page.betreuungDetail.eyebrow}</span>
+        <h2>{page.betreuungDetail.title}{page.betreuungDetail.titleHighlight && <> <em>{page.betreuungDetail.titleHighlight}</em></>}</h2>
+        <p class="lead">{page.betreuungDetail.lead}</p>
+        <p>{page.betreuungDetail.body}</p>
+      </div>
+
+      <div>
+        <ul class="facts">
+          {(page.betreuungDetail.facts ?? []).map((f: any) => (
+            <li>
+              <span class="k">{f.label}</span>
+              <span class="v">{f.value}{f.note && <small>{f.note}</small>}</span>
+            </li>
+          ))}
+        </ul>
+
+        {(page.betreuungDetail.infoTitle || page.betreuungDetail.infoBody) && (
+          <div class="info-card">
+            <p>
+              {page.betreuungDetail.infoTitle && <><strong>{page.betreuungDetail.infoTitle}</strong>{" "}</>}
+              {page.betreuungDetail.contactEmail
+                ? page.betreuungDetail.infoBody.split(page.betreuungDetail.contactEmail).map((part: string, i: number, arr: string[]) => (
+                    <>
+                      {part}
+                      {i < arr.length - 1 && <a class="inline-link" href={`mailto:${page.betreuungDetail.contactEmail}`}>{page.betreuungDetail.contactEmail}</a>}
+                    </>
+                  ))
+                : page.betreuungDetail.infoBody}
+            </p>
+          </div>
+        )}
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== DOWNLOADS ===================== -->
+<section class="mb-downloads" aria-label="Dokumente zum Herunterladen">
+  <div class="container">
+    <div class="head">
+      <span class="eyebrow">{page.downloads.eyebrow}</span>
+      <h2>{page.downloads.title}{page.downloads.titleHighlight && <> <em>{page.downloads.titleHighlight}</em></>}</h2>
+      <p>{page.downloads.intro}</p>
+    </div>
+
+    <div class="mb-dl-grid">
+      {(page.downloads.files ?? []).map((f: any) => (
+        <a class="mb-dl" href={f.url} target="_blank" rel="noopener" download>
+          <div class="mb-dl-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 2v6h6M12 18v-6M9 15l3 3 3-3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="mb-dl-body">
+            {f.label && <span class="label">{f.label}</span>}
+            <h3>{f.title}</h3>
+            {f.body && <p>{f.body}</p>}
+            {f.meta && <span class="mb-dl-meta">{f.meta}</span>}
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CLOSING ===================== -->
+<section class="mb-closing" aria-label="Fragen und Kontakt">
+  <div class="container">
+    <h2>{page.closing.title}{page.closing.titleHighlight && <> <em>{page.closing.titleHighlight}</em></>}</h2>
+    <p>{page.closing.body}</p>
+    <div class="actions">
+      {page.closing.primaryUrl && <a href={page.closing.primaryUrl} class="btn btn-primary">{page.closing.primaryLabel} <span class="arrow">→</span></a>}
+      {page.closing.secondaryUrl && <a href={page.closing.secondaryUrl} class="btn btn-secondary">{page.closing.secondaryLabel} <span class="arrow">→</span></a>}
+    </div>
+  </div>
+</section>
+
+</main>
+</BaseLayout>
