@@ -108,23 +108,47 @@ const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
     font-family:var(--sans);font-size:17px;line-height:1.65;
     color:rgba(245,239,231,0.85);max-width:640px;margin:0;
   }
+  /* Bento-Layout: 1 großer Feature-Block + 2 Halb-Blöcke + 4 kleine.
+     Variiert Größen/Gewicht und vermeidet die symmetrisch-langweilige 3er-Grid
+     mit Waisen-Box am Ende. */
   .values-list{
     list-style:none;margin:0;padding:0;
-    display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+    display:grid;grid-template-columns:repeat(4,minmax(0,1fr));
     gap:1px;background:rgba(245,239,231,0.15);
     border:1px solid rgba(245,239,231,0.15);
   }
   .values-list li{
     background:var(--petrol);padding:28px 28px 32px;
-    display:flex;flex-direction:column;gap:8px;
+    display:flex;flex-direction:column;gap:10px;
   }
+  /* Feature: erstes Item, doppelte Breite, doppelte Höhe, mit Gold-Akzent */
+  .values-list li:nth-child(1){
+    grid-column:span 2;grid-row:span 2;
+    background:linear-gradient(135deg, rgba(212,165,116,0.10), rgba(245,239,231,0.02));
+    border-left:3px solid var(--gold);
+    padding:40px 36px;justify-content:center;gap:14px;
+  }
+  .values-list li:nth-child(1) .name{font-size:28px;line-height:1.15;}
+  .values-list li:nth-child(1) .desc{font-size:16px;line-height:1.6;max-width:38ch;}
+  /* Zwei Halb-Blöcke neben dem Feature (rechte Hälfte) */
+  .values-list li:nth-child(2),
+  .values-list li:nth-child(3){grid-column:span 2;}
+  /* Vier kleine Boxen in der unteren Reihe */
+  .values-list li:nth-child(n+4){grid-column:span 1;}
   .values-list .name{
-    font-family:var(--serif);font-weight:500;font-size:20px;line-height:1.2;
+    font-family:var(--serif);font-weight:500;font-size:19px;line-height:1.2;
     color:var(--gold);letter-spacing:-0.005em;
   }
   .values-list .desc{
     font-family:var(--sans);font-size:14.5px;line-height:1.55;
     color:rgba(245,239,231,0.88);
+  }
+  @media (max-width:1080px){
+    .values-list{grid-template-columns:repeat(2,minmax(0,1fr));}
+    .values-list li:nth-child(1){grid-column:span 2;grid-row:span 1;}
+    .values-list li:nth-child(2),
+    .values-list li:nth-child(3){grid-column:span 1;}
+    .values-list li:nth-child(n+4){grid-column:span 1;}
   }
 
   /* Pull quote */
@@ -208,6 +232,10 @@ const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
     .profile-duo{grid-template-columns:1fr;gap:18px;}
     .pillar-row{grid-template-columns:1fr;gap:16px;}
     .values-list{grid-template-columns:1fr;}
+    .values-list li:nth-child(1){grid-column:span 1;grid-row:span 1;padding:32px 28px;}
+    .values-list li:nth-child(1) .name{font-size:22px;}
+    .values-list li:nth-child(2),
+    .values-list li:nth-child(3){grid-column:span 1;}
     .er-intro,.er-profiles,.er-pillars,.er-values,.er-quote,.er-cta{padding:var(--space-section-sm) 0;}
   }
 
@@ -366,7 +394,7 @@ const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
           <a href="mailto:info@unesco-schule-essen.de" style="color:var(--petrol);font-weight:500;">info@unesco-schule-essen.de</a>
         </p>
         <div class="cta-row">
-          <a href="index.html#wegzuuns" class="btn btn-primary">Tag der offenen Tür <span class="arrow">→</span></a>
+          <a href="Tag-der-offenen-Tuer.html" class="btn btn-primary">Tag der offenen Tür <span class="arrow">→</span></a>
           <a href="mailto:info@unesco-schule-essen.de" class="btn btn-secondary">Gespräch vereinbaren <span class="arrow">→</span></a>
         </div>
       </div>

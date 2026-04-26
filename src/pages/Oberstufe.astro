@@ -7,14 +7,58 @@ import { getSingle } from "../lib/pageContent";
 
 const page: any = await getSingle("pageOberstufe");
 
-const [koordSekII, stufeEF] = await Promise.all([
-  getTeacherByRole(ROLES.KOORD_SEK_II),
+const [koordOberstufe, stufeEF] = await Promise.all([
+  getTeacherByRole(ROLES.KOORD_OBERSTUFE),
   getTeacherByRole(ROLES.STUFENLEITUNG_EF),
 ]);
 ---
 <BaseLayout title="Oberstufe (EF · Q1 · Q2) — UNESCO-Schule Essen">
 <style is:global>
   /* ---------- Oberstufe ---------- */
+  /* Laufbahn (Callout) — verschoben aus Berufsorientierung */
+  .ob-lauf{background:var(--offwhite);padding:var(--space-section-sm) 0;border-bottom:1px solid var(--hairline);}
+  .ob-lauf .inner{
+    background:#fff;border:1px solid var(--hairline);
+    border-left:var(--card-accent-width) solid var(--petrol);
+    display:grid;grid-template-columns:minmax(0,140px) minmax(0,1fr) minmax(0,260px);
+    gap:36px;align-items:center;padding:32px 40px;
+  }
+  .ob-lauf .icon{
+    width:88px;height:88px;border-radius:50%;
+    background:rgba(14,77,79,0.08);color:var(--petrol);
+    display:flex;align-items:center;justify-content:center;
+    font-family:var(--serif);font-weight:500;font-size:38px;
+  }
+  .ob-lauf .body .kicker{
+    font-family:var(--sans);font-size:11px;font-weight:600;
+    letter-spacing:0.14em;text-transform:uppercase;color:var(--petrol);
+  }
+  .ob-lauf .body h3{
+    font-family:var(--serif);font-weight:500;font-size:clamp(24px,2.6vw,32px);
+    line-height:1.2;color:var(--petrol);letter-spacing:-0.01em;margin:8px 0 10px;
+  }
+  .ob-lauf .body p{
+    font-family:var(--sans);font-size:16px;line-height:1.65;color:var(--tinte);margin:0;
+  }
+  .ob-lauf .contact{
+    font-family:var(--sans);font-size:14.5px;line-height:1.55;
+    color:var(--stein);
+    padding:18px 20px;background:var(--creme);border:1px solid var(--hairline);
+  }
+  .ob-lauf .contact .role{
+    font-size:11px;font-weight:600;letter-spacing:0.14em;
+    text-transform:uppercase;color:var(--bordeaux);margin-bottom:6px;
+  }
+  .ob-lauf .contact .name{
+    font-family:var(--serif);font-weight:500;font-size:18px;color:var(--petrol);
+    margin:0 0 4px;
+  }
+  .ob-lauf .contact .room{color:var(--stein);}
+  @media (max-width:960px){
+    .ob-lauf .inner{grid-template-columns:1fr;gap:20px;padding:28px 24px;}
+    .ob-lauf .icon{margin:0 auto;}
+  }
+
   .ob-download{
     display:inline-flex;align-items:center;gap:12px;
     padding:14px 22px;border-radius:4px;
@@ -248,6 +292,27 @@ const [koordSekII, stufeEF] = await Promise.all([
   </Fragment>
 </PageHero>
 
+<section class="ob-lauf" id="laufbahn" aria-label="Individuelle Laufbahnberatung">
+  <div class="container">
+    <div class="inner">
+      <div class="icon" aria-hidden="true">i</div>
+      <div class="body">
+        <span class="kicker">Wenn's individuell wird</span>
+        <h3>Individuelle Laufbahnberatung.</h3>
+        <p>Der Weg von der Grundschule in die Universität ist von zahlreichen Gesetzen und Vorgaben geregelt. Für Schülerinnen, Schüler und Eltern ist es oft schwierig, einen Überblick über alle Regelungen zu erhalten und die bestmöglichen Optionen zu wählen. Hier hilft persönliche Beratung, auch wenn der Weg einmal nicht idealtypisch verläuft.</p>
+      </div>
+      <aside class="contact">
+        <div class="role">Ansprechpartner</div>
+        <p class="name">{koordOberstufe ? displayName(koordOberstufe) : "Über das Sekretariat"}</p>
+        <p class="room">Oberstufenbüro · Raum 104</p>
+        {koordOberstufe && (
+          <p class="room"><a href={`mailto:${koordOberstufe.data.email}`} style="color:var(--petrol);">{koordOberstufe.data.email}</a></p>
+        )}
+      </aside>
+    </div>
+  </div>
+</section>
+
 <section class="ob-duwir" aria-label="Für wen ist die Oberstufe gedacht">
   <div class="container">
     <div class="duwir-grid">
@@ -435,12 +500,12 @@ const [koordSekII, stufeEF] = await Promise.all([
       <p style="font-family:var(--sans);font-size:16.5px;line-height:1.65;color:var(--stein);margin:0;">{page.contact.body}</p>
     </div>
     <div class="contact-duo">
-      {koordSekII ? (
+      {koordOberstufe ? (
         <article class="contact-person">
           <span class="role">Oberstufenkoordination</span>
-          <span class="name">{displayName(koordSekII)}</span>
+          <span class="name">{displayName(koordOberstufe)}</span>
           <span class="title">UNESCO-Schule Essen · Steinmetzstr. 9 · 45139 Essen</span>
-          <a href={`mailto:${koordSekII.data.email}`}>{koordSekII.data.email}</a>
+          <a href={`mailto:${koordOberstufe.data.email}`}>{koordOberstufe.data.email}</a>
         </article>
       ) : (
         <article class="contact-person">

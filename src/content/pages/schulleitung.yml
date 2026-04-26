@@ -7,11 +7,3 @@ hero:
 team:
   eyebrow: "Unser Team"
   title: "Schulleitung, Koordination, Sekretariat."
-
-note:
-  title: "Erprobungsstufe ab 2026/27"
-  prefix: "Für Fragen zur Erprobungsstufe (Klassen 5 und 6) ist"
-  suffix: "als Erprobungsstufenleitung Ansprechpartner."
-  vacantText: "derzeit eine kommissarische Leitung Ansprechpartner."
-  linkLabel: "Mehr zur Erprobungsstufe →"
-  linkHref: "Erprobungsstufe.html"

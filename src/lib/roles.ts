@@ -19,8 +19,8 @@ import type { TeacherEntry } from "./teachers";
 export const ROLES = {
   SCHULLEITUNG: "Schulleitung",
   STELLV_SCHULLEITUNG: "Stellvertretende Schulleitung",
-  KOORD_SEK_I: "Koordination Sek I",
-  KOORD_SEK_II: "Koordination Sek II",
+  KOORD_MITTELSTUFE: "Koordination Mittelstufe",
+  KOORD_OBERSTUFE: "Koordination Oberstufe",
   KOORD_ERPROBUNGSSTUFE: "Koordination Erprobungsstufe",
   STUFENLEITUNG_EF: "Stufenleitung EF",
   SEKRETARIAT: "Sekretariat",

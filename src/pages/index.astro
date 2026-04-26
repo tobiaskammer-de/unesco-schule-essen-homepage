@@ -16,7 +16,7 @@ const nextDates = await upcomingEvents(20);
 const latestNews = await getLatestNews(3);
 const BASE = import.meta.env.BASE_URL;
 ---
-<BaseLayout title="UNESCO-Schule Essen — Gymnasium">
+<BaseLayout title="UNESCO-Schule Essen · Gymnasium">
 <style is:global>
 /* ---------- HERO ---------- */
   .hero{padding:72px 0 54px;}
@@ -321,10 +321,16 @@ const BASE = import.meta.env.BASE_URL;
     color:var(--petrol);letter-spacing:-0.01em;line-height:1.2;
   }
   .path-card .big-date{
-    font-family:var(--serif);font-weight:500;font-size:40px;line-height:1;
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(30px, 2.8vw, 40px);line-height:1.05;
     color:var(--petrol);letter-spacing:-0.015em;
+    text-wrap:balance;
   }
-  .path-card .big-date small{display:block;font-size:14px;font-family:var(--sans);font-weight:500;color:var(--stein);margin-top:10px;letter-spacing:0.04em;}
+  .path-card .big-date small{
+    display:block;font-size:14px;font-family:var(--sans);font-weight:500;
+    color:var(--stein);margin-top:10px;letter-spacing:0.04em;line-height:1.45;
+    white-space:pre-line;
+  }
   .path-card p{font-size:15px;color:var(--tinte);line-height:1.55;flex:1;}
   .path-card .contact-line{font-family:var(--sans);font-weight:500;font-size:17px;color:var(--petrol);line-height:1.5;}
   .path-card .contact-line a{color:var(--petrol);text-decoration:none;}
@@ -572,7 +578,7 @@ const BASE = import.meta.env.BASE_URL;
         </svg>
         <div>
           <h3>UNESCO-Projektschule</h3>
-          <p>Teil eines weltweiten Netzwerks von rund 12 000 Schulen. Frieden, Menschenrechte und nachhaltige Entwicklung sind bei uns nicht Projekttag — sie sind Lehrplan.</p>
+          <p>Teil eines weltweiten Netzwerks von rund 12 000 Schulen. Frieden, Menschenrechte und nachhaltige Entwicklung sind bei uns nicht Projekttag, sondern Lehrplan.</p>
         </div>
       </a>
 
@@ -598,7 +604,7 @@ const BASE = import.meta.env.BASE_URL;
         </svg>
         <div>
           <h3>Starkes Abitur</h3>
-          <p>Solide Oberstufe mit einer breiten Auswahl an Leistungskursen. Fundiertes Wissen, Methodensicherheit — und Zeit, den eigenen Weg zu finden.</p>
+          <p>Solide Oberstufe mit einer breiten Auswahl an Leistungskursen. Fundiertes Wissen, Methodensicherheit und Zeit, den eigenen Weg zu finden.</p>
         </div>
       </a>
 
@@ -657,7 +663,7 @@ const BASE = import.meta.env.BASE_URL;
       <li><a class="partner-logo" href="https://www.uni-due.de" target="_blank" rel="noopener" title="Universität Duisburg-Essen"><img src="assets/partners/uni-due.png" alt="Universität Duisburg-Essen" width="200" height="80" loading="lazy"></a></li>
       <li><a class="partner-logo" href="https://www.theater-essen.de" target="_blank" rel="noopener" title="Theater und Philharmonie Essen"><img src="assets/partners/tup.png" alt="Theater und Philharmonie Essen" width="200" height="80" loading="lazy"></a></li>
       <li><a class="partner-logo" href="https://www.stifterverband.org" target="_blank" rel="noopener" title="Stifterverband"><img src="assets/partners/stifterverband.png" alt="Stifterverband" width="200" height="80" loading="lazy"></a></li>
-      <li><a class="partner-logo" href="https://www.contact-essen.de" target="_blank" rel="noopener" title="Contact — Kommunikation · Sport · Event"><img src="assets/partners/contact.png" alt="Contact" width="200" height="80" loading="lazy"></a></li>
+      <li><a class="partner-logo" href="https://www.contact-essen.de" target="_blank" rel="noopener" title="Contact · Kommunikation · Sport · Event"><img src="assets/partners/contact.png" alt="Contact" width="200" height="80" loading="lazy"></a></li>
       <li><a class="partner-logo" href="https://www.arbeitsagentur.de/vor-ort/essen/startseite" target="_blank" rel="noopener" title="Agentur für Arbeit Essen"><img src="assets/partners/agentur-arbeit.png" alt="Agentur für Arbeit Essen" width="200" height="80" loading="lazy"></a></li>
       <li><a class="partner-logo" href="https://www.cse.de" target="_blank" rel="noopener" title="CSE"><img src="assets/partners/cse.png" alt="CSE" width="200" height="80" loading="lazy"></a></li>
       <li><a class="partner-logo" href="https://www.goldschmidt.com" target="_blank" rel="noopener" title="Goldschmidt Thermit Group"><img src="assets/partners/goldschmidt-thermit.png" alt="Goldschmidt Thermit Group" width="200" height="80" loading="lazy"></a></li>

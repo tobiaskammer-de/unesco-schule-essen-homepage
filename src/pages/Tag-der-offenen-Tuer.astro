@@ -1,0 +1,369 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHero from "../components/PageHero.astro";
+
+const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
+const link = (p: string) => p.startsWith("/") || /^https?:\/\//.test(p) ? p : `${BASE}/${p}`;
+---
+<BaseLayout
+  title="Tag der offenen Tür · UNESCO-Schule Essen"
+  description="Lernen Sie die UNESCO-Schule Essen am Tag der offenen Tür im November 2027 kennen: Unterricht zum Mitmachen, Gespräche mit Lehrkräften und Schülerinnen, Einblick in unsere Profilklassen."
+>
+<style is:global>
+  /* ---------- Tag der offenen Tür ---------- */
+
+  /* Termin-Block */
+  .tdo-date{background:var(--creme);padding:var(--space-section-sm) 0;border-bottom:1px solid var(--hairline);}
+  .tdo-date-card{
+    display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);
+    gap:48px;align-items:center;
+    background:#fff;border:1px solid var(--hairline);
+    border-left:var(--card-accent-width) solid var(--gold);
+    padding:40px 48px;
+  }
+  .tdo-date-card .when .kicker{
+    font-family:var(--sans);font-size:11.5px;font-weight:600;
+    letter-spacing:0.14em;text-transform:uppercase;color:var(--bordeaux);
+    display:block;margin-bottom:14px;
+  }
+  .tdo-date-card .when .big{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(36px,4.4vw,56px);line-height:1;
+    color:var(--petrol);letter-spacing:-0.02em;
+  }
+  .tdo-date-card .when .sub{
+    font-family:var(--serif);font-style:italic;font-size:18px;color:var(--stein);
+    margin-top:14px;
+  }
+  .tdo-date-card .where p{
+    font-family:var(--sans);font-size:16px;line-height:1.65;color:var(--tinte);
+    margin:0 0 12px;
+  }
+  .tdo-date-card .where p strong{color:var(--petrol);font-weight:600;}
+  .tdo-date-card .where .badge{
+    display:inline-flex;align-items:center;gap:8px;
+    margin-top:8px;padding:6px 14px;
+    background:rgba(212,165,116,0.16);color:#7a5120;
+    font-family:var(--sans);font-size:12.5px;font-weight:600;
+    letter-spacing:0.06em;
+  }
+
+  /* Was Sie erleben */
+  .tdo-what{background:var(--offwhite);padding:var(--space-section) 0;}
+  .tdo-what .head{max-width:780px;margin:0 0 56px;}
+  .tdo-what .head .eyebrow{display:block;margin-bottom:14px;color:var(--bordeaux);}
+  .tdo-what .head h2{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(30px,3.4vw,46px);line-height:1.12;letter-spacing:-0.015em;
+    color:var(--petrol);margin:0 0 18px;
+  }
+  .tdo-what .head p{
+    font-family:var(--sans);font-size:17px;line-height:1.65;color:var(--stein);margin:0;
+  }
+  .tdo-what-grid{
+    display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;
+    background:var(--hairline);border:1px solid var(--hairline);
+  }
+  .tdo-what-card{
+    background:#fff;padding:32px 28px 28px;
+    display:flex;flex-direction:column;gap:12px;
+  }
+  .tdo-what-card .num{
+    font-family:var(--serif);font-weight:500;font-size:42px;line-height:1;
+    color:var(--gold);letter-spacing:-0.02em;
+  }
+  .tdo-what-card h3{
+    font-family:var(--serif);font-weight:500;font-size:22px;line-height:1.2;
+    color:var(--petrol);letter-spacing:-0.008em;margin:0;
+  }
+  .tdo-what-card p{
+    font-family:var(--sans);font-size:14.5px;line-height:1.6;color:var(--tinte);margin:0;
+  }
+
+  /* Programm-Skizze */
+  .tdo-program{background:var(--petrol);color:var(--creme);padding:var(--space-section) 0;}
+  .tdo-program .head{max-width:780px;margin:0 0 48px;}
+  .tdo-program .head .eyebrow{color:var(--gold);display:block;margin-bottom:14px;}
+  .tdo-program .head h2{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(30px,3.2vw,42px);line-height:1.15;letter-spacing:-0.015em;
+    color:var(--creme);margin:0 0 18px;
+  }
+  .tdo-program .head p{
+    font-family:var(--sans);font-size:16.5px;line-height:1.65;
+    color:rgba(245,239,231,0.85);max-width:680px;margin:0;
+  }
+  .tdo-program-list{
+    list-style:none;margin:0;padding:0;
+    display:grid;grid-template-columns:1fr;gap:1px;
+    background:rgba(245,239,231,0.18);border:1px solid rgba(245,239,231,0.18);
+  }
+  .tdo-program-list li{
+    background:var(--petrol);padding:22px 26px;
+    display:grid;grid-template-columns:minmax(0,180px) minmax(0,1fr);gap:24px;align-items:baseline;
+  }
+  .tdo-program-list .slot{
+    font-family:var(--sans);font-size:13px;font-weight:600;
+    letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);
+  }
+  .tdo-program-list .what{
+    font-family:var(--sans);font-size:15.5px;line-height:1.6;color:rgba(245,239,231,0.92);
+  }
+  .tdo-program-list .what strong{color:var(--creme);font-weight:600;}
+  .tdo-program-foot{
+    font-family:var(--serif);font-style:italic;font-size:15px;
+    color:rgba(245,239,231,0.7);margin:24px 0 0;
+  }
+
+  /* Für wen */
+  .tdo-target{background:var(--creme);padding:var(--space-section) 0;}
+  .tdo-target-grid{
+    display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);
+    gap:56px;align-items:start;
+  }
+  .tdo-target h2{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(28px,3vw,40px);line-height:1.15;letter-spacing:-0.015em;
+    color:var(--petrol);margin:0 0 16px;
+  }
+  .tdo-target h2 em{font-style:italic;color:var(--bordeaux);}
+  .tdo-target .lead{
+    font-family:var(--sans);font-size:17px;line-height:1.65;color:var(--stein);margin:0;
+  }
+  .tdo-target ul{
+    list-style:none;margin:0;padding:0;
+    display:grid;gap:14px;
+  }
+  .tdo-target ul li{
+    background:#fff;border:1px solid var(--hairline);
+    padding:18px 22px;
+    font-family:var(--sans);font-size:15.5px;line-height:1.55;color:var(--tinte);
+    border-left:3px solid var(--petrol);
+  }
+  .tdo-target ul li strong{color:var(--petrol);font-weight:600;}
+
+  /* Praktisches */
+  .tdo-practical{background:var(--offwhite);padding:var(--space-section) 0;border-top:1px solid var(--hairline);}
+  .tdo-practical .head{max-width:780px;margin:0 0 48px;}
+  .tdo-practical .head .eyebrow{display:block;margin-bottom:14px;color:var(--bordeaux);}
+  .tdo-practical .head h2{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(28px,3vw,40px);line-height:1.15;letter-spacing:-0.015em;
+    color:var(--petrol);margin:0;
+  }
+  .tdo-practical-grid{
+    display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;
+  }
+  .tdo-practical-card{
+    background:#fff;border:1px solid var(--hairline);
+    border-top:var(--card-accent-width) solid var(--petrol);
+    padding:28px 28px 32px;
+    display:flex;flex-direction:column;gap:12px;
+  }
+  .tdo-practical-card .label{
+    font-family:var(--sans);font-size:11px;font-weight:600;
+    letter-spacing:0.14em;text-transform:uppercase;color:var(--petrol);
+  }
+  .tdo-practical-card h3{
+    font-family:var(--serif);font-weight:500;font-size:22px;line-height:1.2;
+    color:var(--petrol);letter-spacing:-0.008em;margin:0;
+  }
+  .tdo-practical-card p{
+    font-family:var(--sans);font-size:15px;line-height:1.6;color:var(--tinte);margin:0;
+  }
+  .tdo-practical-card a{color:var(--bordeaux);font-weight:500;}
+
+  /* CTA */
+  .tdo-cta{background:var(--creme);padding:var(--space-section) 0;border-top:1px solid var(--hairline);}
+  .tdo-cta-grid{
+    display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);
+    gap:56px;align-items:center;
+  }
+  .tdo-cta h2{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(28px,3vw,40px);line-height:1.15;
+    color:var(--petrol);letter-spacing:-0.015em;margin:0;
+  }
+  .tdo-cta p{
+    font-family:var(--sans);font-size:17px;line-height:1.65;color:var(--stein);
+    margin:0 0 22px;
+  }
+  .tdo-cta .row{display:flex;flex-wrap:wrap;gap:14px;}
+
+  @media (max-width:960px){
+    .tdo-date-card{grid-template-columns:1fr;gap:24px;padding:32px 28px;}
+    .tdo-what-grid{grid-template-columns:1fr 1fr;}
+    .tdo-target-grid,.tdo-cta-grid{grid-template-columns:1fr;gap:24px;}
+    .tdo-practical-grid{grid-template-columns:1fr;gap:14px;}
+    .tdo-program-list li{grid-template-columns:1fr;gap:6px;}
+  }
+  @media (max-width:560px){
+    .tdo-what-grid{grid-template-columns:1fr;}
+  }
+</style>
+
+<main id="top">
+
+<PageHero variant="feature" image="assets/kulturelle-bildung/buhne.jpg" imageAlt="">
+  <Fragment slot="eyebrow">Komm vorbei · Tag der offenen Tür</Fragment>
+  <Fragment slot="title">Sieh dir an,<br /><em>wie wir lernen.</em></Fragment>
+  <Fragment slot="lede">Einmal im Schuljahr öffnen wir Räume, Klassen und Werkstätten für Sie und Ihr Kind. Sprechen Sie mit Lehrkräften, gehen Sie in den Naturwissenschaftsräumen ans Mikroskop, hören Sie unserer Bigband zu — und finden Sie heraus, ob die UNESCO-Schule Essen die richtige Schule für Ihre Familie ist.</Fragment>
+</PageHero>
+
+<!-- ===================== TERMIN ===================== -->
+<section class="tdo-date" aria-label="Termin und Ort">
+  <div class="container">
+    <div class="tdo-date-card">
+      <div class="when">
+        <span class="kicker">Nächster Tag der offenen Tür</span>
+        <div class="big">November 2027</div>
+        <p class="sub">Der genaue Samstagstermin wird im Frühherbst bekannt gegeben — wir informieren rechtzeitig per Aushang in den Essener Grundschulen und auf dieser Seite.</p>
+      </div>
+      <div class="where">
+        <p><strong>UNESCO-Schule Essen</strong><br>Steinmetzstraße 9, 45139 Essen</p>
+        <p>Öffnungszeit voraussichtlich 10:00 bis 14:00 Uhr. Kommen Sie, wann es Ihnen passt — unser Programm läuft im fließenden Wechsel, eine Anmeldung ist nicht nötig.</p>
+        <span class="badge">Eintritt frei · Ohne Anmeldung</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== WAS SIE ERLEBEN ===================== -->
+<section class="tdo-what" aria-label="Was Sie an diesem Tag erleben">
+  <div class="container">
+    <div class="head">
+      <span class="eyebrow">An diesem Vormittag</span>
+      <h2>Schule erleben, nicht nur ansehen.</h2>
+      <p>Statt Hochglanz-Präsentation: echte Klassenzimmer mit Schülerinnen und Schülern, die zeigen, woran sie gerade arbeiten. Lehrkräfte, die Zeit für Ihre Fragen haben. Und ein Programm, das Sie in Ihrem Tempo durchlaufen.</p>
+    </div>
+
+    <div class="tdo-what-grid">
+      <article class="tdo-what-card">
+        <span class="num">01</span>
+        <h3>Unterricht zum Mitmachen</h3>
+        <p>Naturwissenschaften, Sprachen, Kunst, Musik: In offenen Klassenzimmern führen unsere Schülerinnen und Schüler Experimente vor, lesen aus eigenen Texten oder erklären, wie ihr Profilkurs arbeitet.</p>
+      </article>
+      <article class="tdo-what-card">
+        <span class="num">02</span>
+        <h3>Profilklassen kennenlernen</h3>
+        <p>Naturwissenschaftliches und sprachlich-künstlerisches Profil ab Klasse 5 — beide stellen sich an eigenen Stationen vor, sodass Sie sehen, was Ihr Kind ab Tag 1 erwarten kann.</p>
+      </article>
+      <article class="tdo-what-card">
+        <span class="num">03</span>
+        <h3>Geführte Rundgänge</h3>
+        <p>Ältere Schülerinnen und Schüler führen Sie und Ihr Kind durch das Haus: vom Forscherraum über die Bibliothek bis zur Aula. Ehrliche Antworten von denen, die hier täglich lernen.</p>
+      </article>
+      <article class="tdo-what-card">
+        <span class="num">04</span>
+        <h3>Gespräche mit der Schulleitung</h3>
+        <p>Schulleitung und Erprobungsstufenkoordination sind durchgehend ansprechbar — für Fragen zur Anmeldung, zum pädagogischen Konzept oder zum konkreten Schulalltag Ihres Kindes.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PROGRAMM-SKIZZE ===================== -->
+<section class="tdo-program" aria-label="Voraussichtliches Programm">
+  <div class="container">
+    <div class="head">
+      <span class="eyebrow">Voraussichtliches Programm</span>
+      <h2>Ein Vormittag im Überblick.</h2>
+      <p>Eine Skizze, an der Sie sich orientieren können. Das genaue Programm veröffentlichen wir, sobald der Termin feststeht — Erfahrungswerte aus den Vorjahren als Richtlinie.</p>
+    </div>
+    <ul class="tdo-program-list">
+      <li>
+        <span class="slot">10:00 Uhr</span>
+        <span class="what"><strong>Begrüßung in der Aula</strong> durch die Schulleitung. Kurzer Überblick über Schule und Tagesprogramm.</span>
+      </li>
+      <li>
+        <span class="slot">10:15 – 13:30 Uhr</span>
+        <span class="what"><strong>Offene Klassenzimmer und Stationen.</strong> Unterricht zum Mitmachen, Profilklassen, Naturwissenschaftsräume, Kunst und Musik. Sie wählen, was Sie sehen möchten.</span>
+      </li>
+      <li>
+        <span class="slot">10:30 / 11:30 / 12:30</span>
+        <span class="what"><strong>Geführte Rundgänge</strong> durch das Haus, jeweils ca. 30 Minuten. Treffpunkt: Foyer.</span>
+      </li>
+      <li>
+        <span class="slot">11:00 / 12:00 / 13:00</span>
+        <span class="what"><strong>Infogespräche zur Anmeldung</strong> mit Schulleitung und Erprobungsstufenkoordination. Auf Wunsch auch im Einzelgespräch.</span>
+      </li>
+      <li>
+        <span class="slot">Durchgehend</span>
+        <span class="what"><strong>Café im Foyer</strong> mit Kaffee, Kuchen und Gesprächsmöglichkeit. Organisiert von Eltern und Schülerinnen — alle Einnahmen fließen in das Schulleben zurück.</span>
+      </li>
+      <li>
+        <span class="slot">14:00 Uhr</span>
+        <span class="what"><strong>Programmende.</strong></span>
+      </li>
+    </ul>
+    <p class="tdo-program-foot">Detailprogramm wird mit dem Termin im Frühherbst veröffentlicht.</p>
+  </div>
+</section>
+
+<!-- ===================== FÜR WEN ===================== -->
+<section class="tdo-target" aria-label="Für wen ist der Tag der offenen Tür">
+  <div class="container">
+    <div class="tdo-target-grid">
+      <div>
+        <h2>Wir freuen uns <em>besonders auf Sie</em>, wenn …</h2>
+        <p class="lead">Der Tag der offenen Tür ist offen für alle. Manche Familien profitieren davon allerdings besonders.</p>
+      </div>
+      <ul>
+        <li>… Ihr Kind <strong>aktuell die 4. Klasse besucht</strong> und im kommenden Februar an einer weiterführenden Schule angemeldet werden soll.</li>
+        <li>… Sie <strong>ein Gymnasium suchen, das mehr will als gute Noten</strong>: kulturelle Bildung, internationale Perspektive, demokratisches Lernen.</li>
+        <li>… Sie sich <strong>einen ehrlichen Eindruck</strong> wünschen, jenseits von Webseite und Broschüre — Räume sehen, Stimmen hören, Atmosphäre spüren.</li>
+        <li>… Sie sich für unser <strong>UNESCO-Profil</strong> interessieren und wissen möchten, was es konkret im Schulalltag bedeutet.</li>
+        <li>… Ihr Kind <strong>später in die Oberstufe wechseln</strong> möchte: Auch Familien, die einen Wechsel zur EF planen, sind ausdrücklich willkommen.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PRAKTISCHES ===================== -->
+<section class="tdo-practical" aria-label="Praktische Hinweise">
+  <div class="container">
+    <div class="head">
+      <span class="eyebrow">Praktisches</span>
+      <h2>Damit der Tag entspannt wird.</h2>
+    </div>
+    <div class="tdo-practical-grid">
+      <article class="tdo-practical-card">
+        <span class="label">Anfahrt</span>
+        <h3>So finden Sie uns.</h3>
+        <p>Steinmetzstraße 9, 45139 Essen. Mit dem ÖPNV: Straßenbahnlinie 101 oder Buslinien 142/162 bis Haltestelle „Holsterhausen Bf.".</p>
+        <p><a href={link("Anfahrt.html")}>Wegbeschreibung &amp; Karte →</a></p>
+      </article>
+      <article class="tdo-practical-card">
+        <span class="label">Parken</span>
+        <h3>Mit dem Auto.</h3>
+        <p>Direkt am Schulgelände stehen nur wenige Stellplätze zur Verfügung. Wir empfehlen die umliegenden Anwohnerstraßen oder die Anreise mit dem ÖPNV.</p>
+      </article>
+      <article class="tdo-practical-card">
+        <span class="label">Anmeldung</span>
+        <h3>Voranmeldung nicht nötig.</h3>
+        <p>Kommen Sie einfach vorbei. Falls Sie sicherheitshalber Bescheid geben möchten oder besondere Bedürfnisse haben (z. B. barrierefreie Führung), erreichen Sie das Sekretariat unter <a href="tel:+492012802630">0201 · 280 26 30</a>.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CTA ===================== -->
+<section class="tdo-cta" aria-label="Wenn Sie nicht kommen können">
+  <div class="container">
+    <div class="tdo-cta-grid">
+      <div>
+        <h2>Sie können nicht kommen?</h2>
+      </div>
+      <div>
+        <p>Wir freuen uns, wenn Sie es trotzdem einrichten können. Falls nicht: Wir nehmen uns auch außerhalb des Tags der offenen Tür gern Zeit für Sie. Vereinbaren Sie ein persönliches Gespräch oder informieren Sie sich direkt zur Anmeldung.</p>
+        <div class="row">
+          <a href={link("Anmeldung.html")} class="btn btn-primary">Zur Anmeldung <span class="arrow">→</span></a>
+          <a href={link("Kontakt.html")} class="btn btn-secondary">Termin vereinbaren <span class="arrow">→</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+</BaseLayout>

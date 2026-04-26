@@ -7,9 +7,9 @@ import { getSingle } from "../lib/pageContent";
 
 const page: any = await getSingle("pageMittelstufe");
 
-const koordSekI = await getTeacherByRole(ROLES.KOORD_SEK_I);
-const kontaktName = koordSekI ? displayName(koordSekI) : "Sekretariat";
-const kontaktEmail = koordSekI?.data.email ?? "info@unesco-schule-essen.de";
+const koordMittelstufe = await getTeacherByRole(ROLES.KOORD_MITTELSTUFE);
+const kontaktName = koordMittelstufe ? displayName(koordMittelstufe) : "Sekretariat";
+const kontaktEmail = koordMittelstufe?.data.email ?? "info@unesco-schule-essen.de";
 ---
 <BaseLayout title="Mittelstufe (Klassen 7–10) — UNESCO-Schule Essen">
 <style is:global>
@@ -189,7 +189,7 @@ const kontaktEmail = koordSekI?.data.email ?? "info@unesco-schule-essen.de";
         </div>
         <div class="cta-row">
           <a href={`mailto:${kontaktEmail}`} class="btn btn-primary">Beratung anfragen <span class="arrow">→</span></a>
-          <a href="index.html#wegzuuns" class="btn btn-secondary">Tag der offenen Tür <span class="arrow">→</span></a>
+          <a href="Tag-der-offenen-Tuer.html" class="btn btn-secondary">Tag der offenen Tür <span class="arrow">→</span></a>
         </div>
       </div>
     </div>
