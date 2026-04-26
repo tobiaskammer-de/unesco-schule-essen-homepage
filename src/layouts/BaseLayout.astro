@@ -794,13 +794,19 @@ function link(path: string): string {
     .hamburger{display:block;}
     .header-actions{display:none;}
 
-    /* Full-Screen Mobile-Drawer von rechts */
+    /* Full-Screen Mobile-Drawer von rechts.
+       WICHTIG: Höhe explizit setzen, NICHT via top+bottom — der Header hat
+       backdrop-filter, was ihn zum Containing Block für position:fixed-Kinder
+       macht. top/bottom würden sich dann gegen die 64px hohe Header-Box
+       rechnen → Drawer kollabiert auf 0px. */
     .main-nav{
-      position:fixed;top:64px;right:0;bottom:0;
+      position:fixed;top:64px;right:0;bottom:auto;
       width:min(360px, 86vw);left:auto;
+      height:calc(100vh - 64px);
+      height:calc(100dvh - 64px);
       background:var(--offwhite);
       flex-direction:column;align-items:stretch;
-      height:auto;max-height:none;overflow-y:auto;overscroll-behavior:contain;
+      max-height:none;overflow-y:auto;overscroll-behavior:contain;
       transform:translateX(100%);
       transition:transform .3s cubic-bezier(0.2,0.8,0.2,1);
       border-top:1px solid var(--hairline);
@@ -827,7 +833,9 @@ function link(path: string): string {
     .nav-item.has-dropdown.open > .nav-link::after{
       transform:rotate(-135deg) translate(-4px,-4px);
     }
-    .dropdown-mega{
+    .dropdown-mega,
+    .nav-item:hover > .dropdown-mega,
+    .nav-item:focus-within > .dropdown-mega{
       position:static;display:block;grid-template-columns:1fr;
       opacity:1;visibility:visible;pointer-events:auto;transform:none;
       border:0;min-width:0;padding:0;max-height:0;overflow:hidden;
@@ -1039,8 +1047,7 @@ function link(path: string): string {
               <h4>Digitales &amp; Alltag</h4>
               <ul>
                 <li><a href={link("Mittagessen-und-Betreuung.html")}>Mittagessen &amp; Übermittagsbetreuung</a></li>
-                <li><a href="#">Digitaler Vertretungsplan</a></li>
-                <li><a href="#">Schultabletts</a></li>
+                <li><a href="#">Digitales Lernen</a></li>
                 <li><a href={link("Schliessfaecher.html")}>Schließfächer mieten</a></li>
                 <li><a href="#">Schoolwear</a></li>
               </ul>
