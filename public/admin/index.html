@@ -9,7 +9,13 @@
     <link rel="icon" type="image/png" href="/unesco-schule-essen-homepage/assets/logo-mark.png" />
   </head>
   <body>
-    <script src="https://unpkg.com/@sveltia/cms@0/dist/sveltia-cms.js" type="module"></script>
+    <!-- Sveltia auf eine konkrete Version gepinnt (statt @0 = "neueste 0.x").
+         Grund: @0 zieht jedes Mal die neueste Veröffentlichung, was bei
+         Schema-Änderungen im IndexedDB-Cache der CMS-Oberfläche zu
+         Datenbank-/Ladefehlern führen kann. Updates bewusst durch
+         Hochsetzen dieser Versionsnummer einspielen. Letzte als stabil
+         getestete Version: 0.156.4 (Pre-i18n-Refactor in 0.157.x). -->
+    <script src="https://unpkg.com/@sveltia/cms@0.156.4/dist/sveltia-cms.js" type="module"></script>
     <!-- Deutsche UI-Übersetzung + Branding-Title — best-effort, da Sveltia
          offiziell noch keine deutsche Lokalisierung anbietet. -->
     <script src="i18n-de.js"></script>
