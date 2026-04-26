@@ -10,12 +10,16 @@ hero:
 
 path:
   title: "Dein Weg zu uns."
-  intro: "Drei Wege, uns kennenzulernen. Sie sind herzlich eingeladen — kommen Sie vorbei, schreiben Sie uns, oder rufen Sie einfach an."
+  intro: "Drei Wege, uns kennenzulernen. Sie sind herzlich eingeladen: kommen Sie vorbei, schreiben Sie uns oder rufen Sie einfach an."
   cards:
     - kicker: "Tag der offenen Tür"
       bigDate: "21. November 2027"
-      bigDateSub: "Samstag, 10:00 – 14:00 Uhr · Steinmetzstr. 9"
+      bigDateSub: |-
+        Samstag, 10:00 – 14:00 Uhr
+        Steinmetzstraße 9, 45139 Essen
       text: "Unterricht zum Mitmachen, Gespräche mit Lehrkräften und Schülerinnen, Führungen durch die Naturwissenschafts- und Kunsträume. Eine Anmeldung ist nicht nötig."
+      ctaLabel: "Programm und Details"
+      ctaHref: "Tag-der-offenen-Tuer.html"
     - kicker: "Anmeldung zum Schuljahr 2026/27"
       title: "Jetzt anmelden."
       text: "Anmeldezeitraum: 02. bis 13. Februar 2026. Das Anmeldeformular, benötigte Unterlagen und weitere Hinweise finden Sie in unserem Eltern-Bereich."
@@ -23,11 +27,11 @@ path:
       ctaHref: "Anmeldung.html"
     - kicker: "Fragen stellen"
       title: "Gespräch vereinbaren."
-      text: ""
+      text: "Ob Schulwahl, Schnuppertag für Ihr Kind oder Fragen zu unserem UNESCO-Profil: Frau Axer im Sekretariat ist Ihre erste Anlaufstelle. Werktags melden wir uns in der Regel innerhalb von 24 Stunden zurück."
       ctaLabel: "Termin anfragen"
       ctaHref: "Kontakt.html"
 
 partners:
   eyebrow: "Kooperationen & Partner"
   title: "Wir stehen nicht allein."
-  intro: "Unsere Schule lebt von Partnerschaften — mit dem UNESCO-Netzwerk, der Universität Duisburg-Essen, Theater und Philharmonie, dem Stifterverband und einer Reihe von Essener Unternehmen, Stiftungen und Vereinen, die Unterricht an echten Aufgaben möglich machen."
+  intro: "Unsere Schule lebt von Partnerschaften mit dem UNESCO-Netzwerk, der Universität Duisburg-Essen, Theater und Philharmonie, dem Stifterverband und einer Reihe von Essener Unternehmen, Stiftungen und Vereinen, die Unterricht an echten Aufgaben möglich machen."

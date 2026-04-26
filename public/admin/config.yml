@@ -94,7 +94,7 @@ collections:
       - { name: lastName, label: "Nachname", widget: string }
       - { name: title, label: "Titel (z. B. Dr.)", widget: string, required: false }
       - { name: subjects, label: "Fächer", widget: list, required: false, default: [] }
-      - { name: roles, label: "Funktionen / Sonderrollen", widget: list, required: false, default: [], hint: "Wichtig — diese Schreibweisen sind verknüpft mit den Seiten Schulleitung/Beratung/Mittelstufe/Oberstufe und werden dort automatisch angezeigt: Schulleitung · Stellvertretende Schulleitung · Koordination Sek I · Koordination Sek II · Koordination Erprobungsstufe · Stufenleitung EF · Sekretariat · Beratungslehrer · Schulsozialarbeit. Weitere freie Rollen (z. B. Klassenleitung 7a) sind möglich." }
+      - { name: roles, label: "Funktionen / Sonderrollen", widget: list, required: false, default: [], hint: "Wichtig — diese Schreibweisen sind verknüpft mit den Seiten Schulleitung/Beratung/Mittelstufe/Oberstufe und werden dort automatisch angezeigt: Schulleitung · Stellvertretende Schulleitung · Koordination Mittelstufe · Koordination Oberstufe · Koordination Erprobungsstufe · Stufenleitung EF · Sekretariat · Beratungslehrer · Schulsozialarbeit. Weitere freie Rollen (z. B. Klassenleitung 7a) sind möglich." }
       - { name: email, label: "E-Mail", widget: string, pattern: ['^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$', "Bitte eine gültige E-Mail."] }
       - { name: phone, label: "Telefon (optional)", widget: string, required: false }
       - { name: photo, label: "Portrait-Foto", widget: image, required: false, choose_url: false, media_library: { config: { multiple: false } } }
@@ -403,17 +403,6 @@ collections:
             fields:
               - { name: eyebrow, label: "Eyebrow", widget: string }
               - { name: title, label: "Überschrift", widget: string }
-          - name: note
-            label: "Erprobungsstufen-Hinweis"
-            widget: object
-            collapsed: true
-            fields:
-              - { name: title, label: "Überschrift", widget: string }
-              - { name: prefix, label: "Vorlauftext", widget: string }
-              - { name: suffix, label: "Nachsatz", widget: string }
-              - { name: vacantText, label: "Text bei vakanter Stelle", widget: string }
-              - { name: linkLabel, label: "Link-Text", widget: string }
-              - { name: linkHref, label: "Link-Ziel", widget: string }
 
       # ---------------- OBERSTUFE ----------------
       - file: src/content/pages/oberstufe.yml

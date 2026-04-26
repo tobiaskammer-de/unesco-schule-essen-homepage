@@ -1,31 +1,29 @@
 hero:
   eyebrow: "Informieren · Für Eltern"
-  title: "Schule verstehen —"
+  title: "Schule verstehen,"
   titleHighlight: "bevor das Kind sie erklärt."
-  lede: "Alle Antworten, die wir in Anmeldegesprächen immer wieder geben — gesammelt, sortiert, zum Nachlesen. Plus zwei kompakte PDFs für zuhause."
+  lede: "Alle Antworten, die wir in Anmeldegesprächen immer wieder geben: gesammelt, sortiert, zum Nachlesen. Plus zwei kompakte PDFs für zuhause."
 
 intro:
   title: "Die Fragen, die wir"
   titleHighlight: "am häufigsten hören."
   body: |
-    Wie lang ist ein Schultag? Was heißt eigentlich „UNESCO-Projektschule\"? Gibt es Betreuung nach der sechsten Stunde? Welche Sprachen lernt mein Kind? — In jedem Infogespräch kommen dieselben Themen wieder.
-
-    Deshalb haben wir sie hier versammelt. Kurz, klar, verlinkt mit den passenden Seiten. Fehlt Ihre Frage: Sekretariat anrufen oder Nachricht schreiben — wir rufen zurück.
+    Wie lang ist ein Schultag? Was heißt eigentlich „UNESCO-Projektschule\"? Gibt es Betreuung nach der sechsten Stunde? Welche Sprachen lernt mein Kind? In jedem Infogespräch kommen dieselben Themen wieder.
 
 downloads:
   eyebrow: "Zum Mitnehmen"
   title: "Zwei Broschüren für den Einstieg."
-  body: "Das Schul-ABC beantwortet die Alltagsfragen von Tag 1. Die Orientierungshilfe zeigt, wo was im Gebäude ist — damit die ersten Wochen leichter werden."
+  body: "Das Schul-ABC beantwortet die Alltagsfragen von Tag 1. Die Orientierungshilfe zeigt, wo was im Gebäude ist, damit die ersten Wochen leichter werden."
   list:
     - kicker: "Broschüre"
       title: "Schul-ABC"
-      body: "Von A wie Aula bis W wie Wasser — alle wichtigen Orte und Regeln des Schulalltags."
+      body: "Von A wie Aula bis W wie Wasser: alle wichtigen Orte und Regeln des Schulalltags."
       meta: "PDF · 5 Seiten · 185 KB"
       url: "assets/eltern/UNESCO-Schule-Essen_Schul-ABC.pdf"
       style: "default"
     - kicker: "Orientierung"
       title: "Was finde ich wo?"
-      body: "Raumnummern-Logik, Sekretariat, Fachräume, Turnhallen — damit die ersten Wochen leichter werden."
+      body: "Raumnummern-Logik, Sekretariat, Fachräume, Turnhallen, damit die ersten Wochen leichter werden."
       meta: "PDF · 2 Seiten · 186 KB"
       url: "assets/eltern/UNESCO-Schule-Essen_Was-finde-ich-wo.pdf"
       style: "gold"
@@ -50,7 +48,7 @@ faq:
   body: "Tippen Sie auf eine Frage, um die Antwort zu sehen."
   list:
     - q: "Warum der Name UNESCO?"
-      a: "Als Weltkulturorganisation tritt die UNESCO für Toleranz, Verantwortung und ein friedliches Miteinander ein — genau die Werte, die wir täglich leben. Deshalb erteilte uns die UNESCO-Kommission die Erlaubnis, diesen Namen zu führen."
+      a: "Als Weltkulturorganisation tritt die UNESCO für Toleranz, Verantwortung und ein friedliches Miteinander ein: genau die Werte, die wir täglich leben. Deshalb erteilte uns die UNESCO-Kommission die Erlaubnis, diesen Namen zu führen."
       linkLabel: ""
       linkHref: ""
     - q: "Welche Fremdsprachen werden angeboten?"
@@ -104,7 +102,7 @@ faq:
       linkLabel: ""
       linkHref: ""
     - q: "Gibt es AGs, die man belegen kann?"
-      a: "Ja! Jedes Schuljahr werden an der Schule unterschiedliche Arbeitsgemeinschaften angeboten — von Schulsanitätsdienst über Sprach-AGs bis zum Makerspace."
+      a: "Ja! Jedes Schuljahr werden an der Schule unterschiedliche Arbeitsgemeinschaften angeboten: von Schulsanitätsdienst über Sprach-AGs bis zum Makerspace."
       linkLabel: "Aktuelle AGs ansehen"
       linkHref: "Arbeitsgemeinschaften.html"
 

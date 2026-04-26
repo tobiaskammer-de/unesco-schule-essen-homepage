@@ -6,55 +6,28 @@ import { getTeacherByRole, ROLES } from "../lib/roles";
 import { getSingle } from "../lib/pageContent";
 
 const page: any = await getSingle("pageSchulleitung");
-const school: any = await getSingle("siteSchool");
 
 // Zentrale Datenbindung: alle Personen kommen aus src/content/teachers/.
 const [
   schulleiterin,
   stellv,
-  koordSekII,
-  koordSekI,
+  koordOberstufe,
+  koordMittelstufe,
   koordEprob,
   sekretariat,
 ] = await Promise.all([
   getTeacherByRole(ROLES.SCHULLEITUNG),
   getTeacherByRole(ROLES.STELLV_SCHULLEITUNG),
-  getTeacherByRole(ROLES.KOORD_SEK_II),
-  getTeacherByRole(ROLES.KOORD_SEK_I),
+  getTeacherByRole(ROLES.KOORD_OBERSTUFE),
+  getTeacherByRole(ROLES.KOORD_MITTELSTUFE),
   getTeacherByRole(ROLES.KOORD_ERPROBUNGSSTUFE),
   getTeacherByRole(ROLES.SEKRETARIAT),
 ]);
-
-const erprobName = koordEprob
-  ? `${koordEprob.data.firstName} ${koordEprob.data.lastName}`
-  : null;
 ---
-<BaseLayout title="Schulleitung und Sekretariat — UNESCO-Schule Essen">
+<BaseLayout title="Schulleitung und Sekretariat · UNESCO-Schule Essen">
 <style is:global>
-  /* Office info card */
-  .sl-office{background:var(--offwhite);padding:var(--space-section) 0 var(--space-section-sm);}
-  .office-card{
-    background:#fff;border:1px solid var(--hairline);
-    border-top:3px solid var(--petrol);
-    padding:36px 40px;
-    display:grid;grid-template-columns:auto 1fr 1fr 1fr;gap:32px;align-items:center;
-  }
-  .office-card .brand{
-    font-family:var(--serif);font-weight:500;font-size:20px;
-    color:var(--petrol);letter-spacing:-0.005em;max-width:220px;
-  }
-  .office-card .col{display:flex;flex-direction:column;gap:4px;}
-  .office-card .col .lbl{
-    font-family:var(--sans);font-size:10.5px;font-weight:600;
-    letter-spacing:0.14em;text-transform:uppercase;color:var(--stein);
-  }
-  .office-card .col a, .office-card .col span.val{
-    font-family:var(--sans);font-size:16px;font-weight:500;color:var(--petrol);line-height:1.35;
-  }
-  .office-card .col a:hover{text-decoration:underline;}
-
   /* People */
-  .sl-team{background:var(--offwhite);padding:24px 0 var(--space-section);}
+  .sl-team{background:var(--offwhite);padding:var(--space-section) 0;}
   .sl-team .head{max-width:760px;margin:0 0 48px;}
   .sl-team .head .eyebrow{display:block;margin-bottom:14px;}
   .sl-team .head h2{
@@ -64,34 +37,9 @@ const erprobName = koordEprob
   }
   .sl-people{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;}
 
-  /* Note about Erprobungsstufe */
-  .sl-note{
-    background:var(--creme);padding:var(--space-section-sm) 0;border-top:1px solid var(--hairline);
-  }
-  .sl-note .inner{
-    display:grid;grid-template-columns:auto 1fr;gap:36px;align-items:center;
-    padding:32px 40px;background:#fff;border:1px solid var(--hairline);
-    border-left:3px solid var(--gold);
-  }
-  .sl-note .icon{
-    width:64px;height:64px;border-radius:50%;
-    background:rgba(212,165,116,0.2);color:#8a5a20;
-    display:flex;align-items:center;justify-content:center;
-    font-family:var(--serif);font-weight:500;font-size:28px;
-  }
-  .sl-note h3{
-    font-family:var(--serif);font-weight:500;font-size:24px;line-height:1.2;
-    color:var(--petrol);letter-spacing:-0.008em;margin:0 0 6px;
-  }
-  .sl-note p{
-    font-family:var(--sans);font-size:15.5px;line-height:1.6;color:var(--stein);margin:0;
-  }
-
   @media (max-width:960px){
-    .office-card{grid-template-columns:1fr;gap:16px;}
     .sl-people{grid-template-columns:1fr;gap:16px;}
-    .sl-note .inner{grid-template-columns:1fr;gap:16px;padding:24px 28px;}
-    .sl-team,.sl-office,.sl-note{padding:48px 0;}
+    .sl-team{padding:48px 0;}
   }
 </style>
 
@@ -103,26 +51,6 @@ const erprobName = koordEprob
   <Fragment slot="lede">{page.hero.lede}</Fragment>
 </PageHero>
 
-<section class="sl-office" aria-label="Kontaktdaten">
-  <div class="container">
-    <div class="office-card">
-      <div class="brand">{school.name}<br>{school.address.street} · {school.address.postal} {school.address.city}</div>
-      <div class="col">
-        <span class="lbl">Telefon</span>
-        <a href={`tel:+49${school.phone.replace(/\D/g, "").replace(/^0/, "")}`}>{school.phone}</a>
-      </div>
-      <div class="col">
-        <span class="lbl">Telefax</span>
-        <span class="val">{school.fax}</span>
-      </div>
-      <div class="col">
-        <span class="lbl">E-Mail</span>
-        <a href={`mailto:${school.emailGeneral}`}>{school.emailGeneral}</a>
-      </div>
-    </div>
-  </div>
-</section>
-
 <section class="sl-team" aria-label="Das Team">
   <div class="container">
     <div class="head">
@@ -132,27 +60,10 @@ const erprobName = koordEprob
     <div class="sl-people">
       <ContactCard teacher={schulleiterin} roleLabel="Schulleiterin" />
       <ContactCard teacher={stellv} roleLabel="Stellvertretende Schulleitung" />
-      <ContactCard teacher={koordSekII} roleLabel="Koordination · Sekundarstufe II" />
-      <ContactCard teacher={koordSekI} roleLabel="Koordination · Sekundarstufe I" />
+      <ContactCard teacher={koordOberstufe} roleLabel="Koordination · Oberstufe" />
+      <ContactCard teacher={koordMittelstufe} roleLabel="Koordination · Mittelstufe" />
       <ContactCard teacher={koordEprob} roleLabel="Koordination · Erprobungsstufe" />
       <ContactCard teacher={sekretariat} roleLabel="Sekretariat" />
-    </div>
-  </div>
-</section>
-
-<section class="sl-note" aria-label="Hinweis zur Erprobungsstufe">
-  <div class="container">
-    <div class="inner">
-      <div class="icon">★</div>
-      <div>
-        <h3>{page.note.title}</h3>
-        <p>
-          {page.note.prefix}
-          {erprobName ? <strong>{erprobName}</strong> : <em>{page.note.vacantText}</em>}
-          {erprobName && " " + page.note.suffix}
-          <a class="inline-link" href={page.note.linkHref}>{page.note.linkLabel}</a>
-        </p>
-      </div>
     </div>
   </div>
 </section>

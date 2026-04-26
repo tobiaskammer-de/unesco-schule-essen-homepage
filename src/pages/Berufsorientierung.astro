@@ -1,12 +1,9 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
-import { getTeacherByRole, ROLES } from "../lib/roles";
-import { displayName } from "../lib/teachers";
 import { getSingle } from "../lib/pageContent";
 
 const page: any = await getSingle("pageBerufsorientierung");
-const laufbahn = await getTeacherByRole(ROLES.KOORD_SEK_II);
 ---
 <BaseLayout title="Studien- und Berufsorientierung — UNESCO-Schule Essen">
 <style is:global>
@@ -26,46 +23,6 @@ const laufbahn = await getTeacherByRole(ROLES.KOORD_SEK_II);
     margin:0 0 16px;
   }
   .bo-intro p em{font-style:italic;color:var(--bordeaux);}
-
-  /* Laufbahn (callout) */
-  .bo-lauf{background:var(--offwhite);padding:var(--space-section) 0;border-top:1px solid var(--hairline);}
-  .bo-lauf .inner{
-    background:#fff;border:1px solid var(--hairline);
-    border-left:var(--card-accent-width) solid var(--petrol);
-    display:grid;grid-template-columns:minmax(0,140px) minmax(0,1fr) minmax(0,260px);
-    gap:36px;align-items:center;padding:32px 40px;
-  }
-  .bo-lauf .icon{
-    width:88px;height:88px;border-radius:50%;
-    background:rgba(14,77,79,0.08);color:var(--petrol);
-    display:flex;align-items:center;justify-content:center;
-    font-family:var(--serif);font-weight:500;font-size:38px;
-  }
-  .bo-lauf .body .kicker{
-    font-family:var(--sans);font-size:11px;font-weight:600;
-    letter-spacing:0.14em;text-transform:uppercase;color:var(--petrol);
-  }
-  .bo-lauf .body h3{
-    font-family:var(--serif);font-weight:500;font-size:clamp(24px,2.6vw,32px);
-    line-height:1.2;color:var(--petrol);letter-spacing:-0.01em;margin:8px 0 10px;
-  }
-  .bo-lauf .body p{
-    font-family:var(--sans);font-size:16px;line-height:1.65;color:var(--tinte);margin:0;
-  }
-  .bo-lauf .contact{
-    font-family:var(--sans);font-size:14.5px;line-height:1.55;
-    color:var(--stein);
-    padding:18px 20px;background:var(--creme);border:1px solid var(--hairline);
-  }
-  .bo-lauf .contact .role{
-    font-size:11px;font-weight:600;letter-spacing:0.14em;
-    text-transform:uppercase;color:var(--bordeaux);margin-bottom:6px;
-  }
-  .bo-lauf .contact .name{
-    font-family:var(--serif);font-weight:500;font-size:18px;color:var(--petrol);
-    margin:0 0 4px;
-  }
-  .bo-lauf .contact .room{color:var(--stein);}
 
   /* Stufen — Sek I & Sek II */
   .bo-stufen{background:var(--creme);padding:var(--space-section) 0;}
@@ -133,6 +90,9 @@ const laufbahn = await getTeacherByRole(ROLES.KOORD_SEK_II);
   }
   .bo-angebot-card:hover{transform:translateY(-2px);box-shadow:0 14px 34px -22px rgba(14,77,79,0.28);}
   @media (prefers-reduced-motion: reduce){.bo-angebot-card:hover{transform:none;}}
+  /* Statische Karte ohne Link/Hover */
+  .bo-angebot-card--static{cursor:default;transition:none;}
+  .bo-angebot-card--static:hover{transform:none;box-shadow:none;}
   .bo-angebot-card .label{
     font-family:var(--sans);font-size:11px;font-weight:600;
     letter-spacing:0.14em;text-transform:uppercase;color:var(--petrol);
@@ -230,27 +190,6 @@ const laufbahn = await getTeacherByRole(ROLES.KOORD_SEK_II);
   </div>
 </section>
 
-<section class="bo-lauf" aria-label="Individuelle Laufbahnberatung">
-  <div class="container">
-    <div class="inner">
-      <div class="icon" aria-hidden="true">i</div>
-      <div class="body">
-        <span class="kicker">Wenn's individuell wird</span>
-        <h3>Individuelle Laufbahnberatung.</h3>
-        <p>Der Weg von der Grundschule in die Universität ist von zahlreichen Gesetzen und Vorgaben geregelt. Für Schüler und Eltern ist es oft schwierig, einen Überblick über alle Regelungen zu erhalten und die bestmöglichen Optionen zu wählen. Hier hilft persönliche Beratung — auch, wenn der Weg einmal nicht idealtypisch verläuft.</p>
-      </div>
-      <aside class="contact">
-        <div class="role">Ansprechpartner</div>
-        <p class="name">{laufbahn ? displayName(laufbahn) : "Über das Sekretariat"}</p>
-        <p class="room">Oberstufenbüro · Raum 104</p>
-        {laufbahn && (
-          <p class="room"><a href={`mailto:${laufbahn.data.email}`} style="color:var(--petrol);">{laufbahn.data.email}</a></p>
-        )}
-      </aside>
-    </div>
-  </div>
-</section>
-
 <section class="bo-stufen" aria-label="Angebote in Sek I und Sek II">
   <div class="container">
     <div class="head">
@@ -295,18 +234,17 @@ const laufbahn = await getTeacherByRole(ROLES.KOORD_SEK_II);
       <h2>Wer berät zu welchem Thema?</h2>
     </div>
     <div class="bo-angebot-grid">
-      <a href="#laufbahn" class="bo-angebot-card">
+      <a href="Oberstufe.html#laufbahn" class="bo-angebot-card">
         <span class="label">Schullaufbahn</span>
         <h3>Individuelle Laufbahnberatung</h3>
         <p>Wege durch das Schulsystem, Fächerwahl, Übergänge, Wiederholung oder Wechsel — persönliche Orientierung, wenn Entscheidungen anstehen.</p>
         <span class="go">Zur Laufbahnberatung →</span>
       </a>
-      <a href="#studium" class="bo-angebot-card">
+      <article class="bo-angebot-card bo-angebot-card--static">
         <span class="label">Studium &amp; Beruf</span>
         <h3>Studien- und Berufsberatung</h3>
         <p>Vom Praktikum bis zum Studi-Finder: Wir begleiten den Übergang von Schule zu Hochschule oder Ausbildung — inklusive externer Partner.</p>
-        <span class="go">Zu Sek I &amp; Sek II →</span>
-      </a>
+      </article>
       <a href="Beratung.html" class="bo-angebot-card">
         <span class="label">Persönlich</span>
         <h3>Beratung &amp; Unterstützung</h3>

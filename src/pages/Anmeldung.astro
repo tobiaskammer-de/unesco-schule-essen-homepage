@@ -1,11 +1,18 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
+import ContactCard from "../components/ContactCard.astro";
 import { getSingle } from "../lib/pageContent";
+import { getTeacherByRole, ROLES } from "../lib/roles";
 
 // Editierbare Inhalte aus src/content/pages/anmeldung.yml (Sveltia)
 const an = await getSingle("pageAnmeldung");
 const school = await getSingle("siteSchool");
+
+const [koordEprob, koordOberstufe] = await Promise.all([
+  getTeacherByRole(ROLES.KOORD_ERPROBUNGSSTUFE),
+  getTeacherByRole(ROLES.KOORD_OBERSTUFE),
+]);
 ---
 <BaseLayout title="Anmeldung — UNESCO-Schule Essen">
 <style is:global>
@@ -284,23 +291,23 @@ const school = await getSingle("siteSchool");
   .q-download .title{font-family:var(--sans);font-weight:600;font-size:15px;}
   .q-download .meta{font-family:var(--sans);font-size:12px;color:#5e3f12;letter-spacing:0.04em;}
 
-  .q-contact{
-    background:rgba(245,239,231,0.06);border:1px solid rgba(245,239,231,0.18);
-    padding:24px 28px;
+  /* Klasse-5-Ansprechpartner-Block */
+  .an-k5-contact{
+    margin-top:48px;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);
+    gap:32px;align-items:center;
+    padding-top:40px;border-top:1px solid var(--hairline);
   }
-  .q-contact .role{
-    font-family:var(--sans);font-size:11px;font-weight:600;
-    letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;
+  .an-k5-contact .lead h3{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(24px,2.4vw,32px);line-height:1.2;
+    color:var(--petrol);letter-spacing:-0.01em;margin:0 0 12px;
   }
-  .q-contact .name{
-    font-family:var(--serif);font-weight:500;font-size:20px;line-height:1.2;
-    color:var(--creme);letter-spacing:-0.008em;margin:0 0 8px;
+  .an-k5-contact .lead p{
+    font-family:var(--sans);font-size:16px;line-height:1.6;color:var(--stein);margin:0;
   }
-  .q-contact .line{
-    font-family:var(--sans);font-size:14.5px;line-height:1.6;color:rgba(245,239,231,0.88);
+  @media (max-width:960px){
+    .an-k5-contact{grid-template-columns:1fr;gap:20px;}
   }
-  .q-contact .line a{color:var(--creme);border-bottom:1px solid rgba(245,239,231,0.4);}
-  .q-contact .line a:hover{border-bottom-color:var(--creme);}
 
   /* Closing CTA */
   .an-closing{background:var(--creme);padding:var(--space-section) 0;border-top:1px solid var(--hairline);}
@@ -439,6 +446,20 @@ const school = await getSingle("siteSchool");
         </article>
       </div>
     </div>
+
+    <!-- Persönlicher Ansprechpartner Klasse 5 -->
+    <div class="an-k5-contact">
+      <div class="lead">
+        <h3>Ihr Ansprechpartner für die Anmeldung in Klasse 5.</h3>
+        <p>Persönliche Beratung zu Profilklassen, Schulalltag und Anmeldung. Rufen Sie an oder schreiben Sie eine E-Mail, wir nehmen uns Zeit.</p>
+      </div>
+      <ContactCard
+        teacher={koordEprob}
+        roleLabel="Ihr Ansprechpartner · Erprobungsstufenkoordination"
+        subline="Klassen 5 und 6"
+        variant="compact"
+      />
+    </div>
   </div>
 </section>
 
@@ -506,14 +527,12 @@ const school = await getSingle("siteSchool");
         </span>
       </a>
 
-      <div class="q-contact">
-        <div class="role">Ansprechperson</div>
-        <p class="name">Oberstufenkoordination</p>
-        <p class="line">
-          <a href="tel:+492012802630">0201 · 280&nbsp;26&nbsp;30</a><br>
-          <a href="mailto:oberstufe@unesco-schule-essen.de">oberstufe@unesco-schule-essen.de</a>
-        </p>
-      </div>
+      <ContactCard
+        teacher={koordOberstufe}
+        roleLabel="Ihr Ansprechpartner · Oberstufenkoordination"
+        subline="Persönliche Beratung zu Aufnahme, Fächerwahl und Bildungsweg"
+        variant="dark"
+      />
     </div>
   </div>
 </section>
