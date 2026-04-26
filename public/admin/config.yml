@@ -964,7 +964,7 @@ collections:
                 label: "Karte 1 — Mittagessen"
                 widget: object
                 fields:
-                  - { name: badge, label: "Badge (z. B. „Neu ab 2026/27")", widget: string, required: false }
+                  - { name: badge, label: 'Badge (z. B. „Neu ab 2026/27")', widget: string, required: false }
                   - { name: title, label: "Titel", widget: string }
                   - { name: body, label: "Beschreibung", widget: text }
                   - { name: bullets, label: "Stichpunkte", widget: list, field: { name: item, label: "Punkt", widget: string } }
@@ -972,7 +972,7 @@ collections:
                 label: "Karte 2 — Übermittagsbetreuung"
                 widget: object
                 fields:
-                  - { name: badge, label: "Badge (z. B. „Klassen 5")", widget: string, required: false }
+                  - { name: badge, label: 'Badge (z. B. „Klassen 5")', widget: string, required: false }
                   - { name: title, label: "Titel", widget: string }
                   - { name: body, label: "Beschreibung", widget: text }
                   - { name: bullets, label: "Stichpunkte", widget: list, field: { name: item, label: "Punkt", widget: string } }
@@ -1036,7 +1036,7 @@ collections:
                   - { name: label, label: "Kategorie-Label (klein)", widget: string, required: false }
                   - { name: title, label: "Titel", widget: string }
                   - { name: body, label: "Beschreibung", widget: text, required: false }
-                  - { name: meta, label: "Meta-Info (z. B. „PDF · 1,5 MB")", widget: string, required: false }
+                  - { name: meta, label: 'Meta-Info (z. B. „PDF · 1,5 MB")', widget: string, required: false }
                   - { name: url, label: "PDF-Datei", widget: file, choose_url: false, hint: "Datei aus public/assets oder neuen Upload wählen." }
 
           - name: closing
