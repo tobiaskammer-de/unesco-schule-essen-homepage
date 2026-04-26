@@ -2,44 +2,44 @@ hero:
   eyebrow: "Angebote · Beratung & Mitbestimmung"
   title: "Studien- und"
   titleHighlight: "Berufsorientierung."
-  lede: "Schule bereitet auf das Berufsleben vor. Wir geben Schülerinnen und Schülern über viele Jahre hinweg einen Überblick über berufliche Möglichkeiten — und beraten individuell, wenn's konkret wird."
+  lede: "Schule bereitet auf das Berufsleben vor. Wir geben Schülerinnen und Schülern über viele Jahre hinweg einen Überblick über berufliche Möglichkeiten und beraten individuell, wenn's konkret wird."
 
 intro:
   title: "Der Weg entsteht —"
   titleHighlight: "beim Gehen."
   body: |
-    Zwischen Grundschule und Universität liegt ein Bildungsweg voller Regeln, Vorgaben und Entscheidungen. Für Schülerinnen, Schüler und Eltern ist es oft schwierig, dabei den Überblick zu behalten — zumal Bildungswege nicht immer geradlinig verlaufen.
+    Zwischen Grundschule und Universität liegt ein Bildungsweg voller Regeln, Vorgaben und Entscheidungen. Für Schülerinnen, Schüler und Eltern ist es oft schwierig, dabei den Überblick zu behalten, zumal Bildungswege nicht immer geradlinig verlaufen.
 
     Deshalb begleiten wir systematisch: mit altersgerechten Angeboten in den Klassen 8 bis 10, intensiver Orientierung in der Oberstufe und persönlicher Laufbahnberatung, wann immer sie gebraucht wird.
 
 laufbahn:
   kicker: "Wenn's individuell wird"
   title: "Individuelle Laufbahnberatung."
-  body: "Der Weg von der Grundschule in die Universität ist von zahlreichen Gesetzen und Vorgaben geregelt. Für Schüler und Eltern ist es oft schwierig, einen Überblick über alle Regelungen zu erhalten und die bestmöglichen Optionen zu wählen. Hier hilft persönliche Beratung — auch, wenn der Weg einmal nicht idealtypisch verläuft."
+  body: "Der Weg von der Grundschule in die Universität ist von zahlreichen Gesetzen und Vorgaben geregelt. Für Schüler und Eltern ist es oft schwierig, einen Überblick über alle Regelungen zu erhalten und die bestmöglichen Optionen zu wählen. Hier hilft persönliche Beratung, auch wenn der Weg einmal nicht idealtypisch verläuft."
   contactRoom: "Oberstufenbüro · Raum 104"
 
 stufen:
   eyebrow: "Was wann passiert"
   title: "Orientierung in Sek I und Sek II."
-  body: "Zwei Phasen mit klar unterschiedlichen Zielen: In der Sekundarstufe I legen wir die Grundlage. In der Sekundarstufe II wird's konkret — Studium, Ausbildung, duales Modell."
+  body: "Zwei Phasen mit klar unterschiedlichen Zielen: In der Sekundarstufe I legen wir die Grundlage. In der Sekundarstufe II wird's konkret: Studium, Ausbildung, duales Modell."
   cards:
     - label: "Sekundarstufe I"
       title: "Potentiale erkennen."
       when: "Klassen 8 – 10"
       items:
-        - "**Klasse 8 —** Potentialanalyse und Berufsfelderkundung (3 Tage in Betrieben)."
-        - "**Klasse 9 —** Schülerbetriebspraktikum (2 Wochen) und Anschlussvereinbarung."
-        - "**Klasse 10 —** Beratungstermine für Schulabgängerinnen und Schulabgänger mit der Arbeitsagentur Essen."
+        - "**Klasse 8:** Potentialanalyse und Berufsfelderkundung (3 Tage in Betrieben)."
+        - "**Klasse 9:** Schülerbetriebspraktikum (2 Wochen) und Anschlussvereinbarung."
+        - "**Klasse 10:** Beratungstermine für Schulabgängerinnen und Schulabgänger mit der Arbeitsagentur Essen."
     - label: "Sekundarstufe II"
       title: "Konkret werden."
       when: "EF · Q1 · Q2"
       items:
-        - "**EF —** Freiwilliges Schülerbetriebspraktikum oder Duales Orientierungspraktikum."
-        - "**Q1 / Q2 —** Veranstaltungen „Wege ins Berufsleben\", „Wege ins Studium\" und „Wege in die Ausbildung\"."
-        - "**Beratung —** Regelmäßige Gesprächstermine mit der Arbeitsagentur."
-        - "**UniTrainees —** Orientierung an der Universität Duisburg-Essen."
-        - "**Studienfeldbezogener Eignungstest —** zur Selbsteinschätzung."
-        - "**Studi-Finder —** Einführung und begleitete Nutzung."
+        - "**EF:** Freiwilliges Schülerbetriebspraktikum oder Duales Orientierungspraktikum."
+        - "**Q1 / Q2:** Veranstaltungen „Wege ins Berufsleben\", „Wege ins Studium\" und „Wege in die Ausbildung\"."
+        - "**Beratung:** Regelmäßige Gesprächstermine mit der Arbeitsagentur."
+        - "**UniTrainees:** Orientierung an der Universität Duisburg-Essen."
+        - "**Studienfeldbezogener Eignungstest:** zur Selbsteinschätzung."
+        - "**Studi-Finder:** Einführung und begleitete Nutzung."
 
 angebot:
   eyebrow: "Beratungsangebot"
@@ -47,17 +47,17 @@ angebot:
   cards:
     - label: "Schullaufbahn"
       title: "Individuelle Laufbahnberatung"
-      body: "Wege durch das Schulsystem, Fächerwahl, Übergänge, Wiederholung oder Wechsel — persönliche Orientierung, wenn Entscheidungen anstehen."
+      body: "Wege durch das Schulsystem, Fächerwahl, Übergänge, Wiederholung oder Wechsel: persönliche Orientierung, wenn Entscheidungen anstehen."
       href: "#laufbahn"
       cta: "Zur Laufbahnberatung →"
     - label: "Studium & Beruf"
       title: "Studien- und Berufsberatung"
-      body: "Vom Praktikum bis zum Studi-Finder: Wir begleiten den Übergang von Schule zu Hochschule oder Ausbildung — inklusive externer Partner."
+      body: "Vom Praktikum bis zum Studi-Finder: Wir begleiten den Übergang von Schule zu Hochschule oder Ausbildung, inklusive externer Partner."
       href: "#studium"
       cta: "Zu Sek I & Sek II →"
     - label: "Persönlich"
       title: "Beratung & Unterstützung"
-      body: "Beratungslehrer, Talentscout der Uni Duisburg-Essen, Schulsozialarbeit — die Menschen, die zuhören, wenn's nicht nur um Noten geht."
+      body: "Beratungslehrer, Talentscout der Uni Duisburg-Essen, Schulsozialarbeit: die Menschen, die zuhören, wenn's nicht nur um Noten geht."
       href: "Beratung.html"
       cta: "Zur Beratungsseite →"
 

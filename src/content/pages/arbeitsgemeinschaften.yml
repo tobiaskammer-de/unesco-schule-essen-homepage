@@ -2,24 +2,24 @@ hero:
   eyebrow: "Angebote · Lernen & Förderung"
   title: "Arbeitsgemeinschaften."
   titleHighlight: ""
-  lede: "Nach dem Unterricht geht's weiter: In unseren AGs entdecken Schülerinnen und Schüler eigene Interessen, übernehmen Verantwortung und lernen Neues — freiwillig, engagiert und mit Freude."
+  lede: "Nach dem Unterricht geht's weiter: In unseren AGs entdecken Schülerinnen und Schüler eigene Interessen, übernehmen Verantwortung und lernen Neues, freiwillig, engagiert und mit Freude."
 
 intro:
   title: "Mehr als Unterricht —"
   titleHighlight: "eine Auswahl."
   body: |
-    Arbeitsgemeinschaften ergänzen den regulären Unterricht — mal praktisch, mal kreativ, mal engagiert. Sie sind freiwillig, kostenlos und offen für alle interessierten Schülerinnen und Schüler.
+    Arbeitsgemeinschaften ergänzen den regulären Unterricht, mal praktisch, mal kreativ, mal engagiert. Sie sind freiwillig, kostenlos und offen für alle interessierten Schülerinnen und Schüler.
 
-    Manche AGs sind seit Jahren fester Bestandteil unseres Schullebens, andere entstehen gerade frisch. Auf dieser Seite findet sich ein aktueller Überblick — plus Ansprechpartner*innen, bei denen man sich melden kann.
+    Manche AGs sind seit Jahren fester Bestandteil unseres Schullebens, andere entstehen gerade frisch. Auf dieser Seite findet sich ein aktueller Überblick mit Ansprechpartner*innen, bei denen man sich melden kann.
 
 list:
   eyebrow: "Aktuelles Angebot"
   title: "Unsere Arbeitsgemeinschaften."
-  body: "Mitmachen jederzeit möglich — sprecht einfach die jeweilige Ansprechperson an."
+  body: "Mitmachen jederzeit möglich: sprecht einfach die jeweilige Ansprechperson an."
   ags:
     - title: "Philharmonie- und Theaterbesuche"
       kicker: "Kulturelle Bildung"
-      desc: "Regelmäßige gemeinsame Abende in der Philharmonie und im Theater Essen — von Konzerten bis zu Schauspielaufführungen. Kartenkontingente und Einführungen helfen, Kultur als lebendigen Teil des Schullebens zu erleben."
+      desc: "Regelmäßige gemeinsame Abende in der Philharmonie und im Theater Essen, von Konzerten bis zu Schauspielaufführungen. Kartenkontingente und Einführungen helfen, Kultur als lebendigen Teil des Schullebens zu erleben."
       contactName: "Herr Pittelkau"
       contactRole: "Leitung"
       contactInitials: "P"
@@ -30,18 +30,18 @@ list:
       accent: "petrol"
     - title: "Schulsanitätsdienst"
       kicker: "Erste Hilfe & Verantwortung"
-      desc: "Gemeinsam mit dem ASB Essen werden interessierte Schülerinnen und Schüler zu Schulsanitäter*innen ausgebildet. Sie lernen, in Notsituationen schnell und kompetent Erste Hilfe zu leisten — und engagieren sich danach ehrenamtlich im Schulalltag: bei Verletzungen in Pausen, im Sport und bei Veranstaltungen."
+      desc: "Gemeinsam mit dem ASB Essen werden interessierte Schülerinnen und Schüler zu Schulsanitäter*innen ausgebildet. Sie lernen, in Notsituationen schnell und kompetent Erste Hilfe zu leisten, und engagieren sich danach ehrenamtlich im Schulalltag: bei Verletzungen in Pausen, im Sport und bei Veranstaltungen."
       contactName: "Frau Engelke"
       contactRole: "Schulische Betreuung"
       contactInitials: "E"
       contactPhoto: ""
       extra: "Ausbildung durch Henning Handschke · ASB Essen"
-      quote: "„Leben retten ist keine Frage des Alters — aber je früher man anfängt, desto mehr festigt sich das Wissen.\""
+      quote: "„Leben retten ist keine Frage des Alters, aber je früher man anfängt, desto mehr festigt sich das Wissen.\""
       state: "aktiv"
       accent: "bordeaux"
     - title: "Makerspace"
       kicker: "Im Aufbau"
-      desc: "Unser neuer Makerspace unterhalb des Selbstlernzentrums nimmt Gestalt an. Ausgestattet mit 3D-Drucker und weiterem Werkzeug entsteht ein Raum, in dem Schülerinnen und Schüler eigene Ideen prototypen, modellieren und herstellen können — fachübergreifend und projektbasiert."
+      desc: "Unser neuer Makerspace unterhalb des Selbstlernzentrums nimmt Gestalt an. Ausgestattet mit 3D-Drucker und weiterem Werkzeug entsteht ein Raum, in dem Schülerinnen und Schüler eigene Ideen prototypen, modellieren und herstellen können, fachübergreifend und projektbasiert."
       contactName: "Herr Kammer"
       contactRole: "Leitung"
       contactInitials: "K"
@@ -52,7 +52,7 @@ list:
       accent: "gold"
     - title: "Spanisch-AG"
       kicker: "Sprachen"
-      desc: "Hola! In der Spanisch-AG lernen Schülerinnen und Schüler spielerisch die spanische Sprache und Kultur kennen — mit Liedern, Gesprächen und kleinen Projekten. Ideal als Ergänzung zum regulären Sprachenangebot oder als erster Einstieg."
+      desc: "Hola! In der Spanisch-AG lernen Schülerinnen und Schüler spielerisch die spanische Sprache und Kultur kennen: mit Liedern, Gesprächen und kleinen Projekten. Ideal als Ergänzung zum regulären Sprachenangebot oder als erster Einstieg."
       contactName: "Frau Rhimi"
       contactRole: "Leitung"
       contactInitials: "R"
@@ -63,7 +63,7 @@ list:
       accent: "petrol"
     - title: "Lese-AG"
       kicker: "Leseförderung"
-      desc: "Lesen schafft Welten. In der Lese-AG treffen sich Schülerinnen und Schüler, die gerne in Bücher eintauchen — zum Austausch über aktuelle Lieblingslektüren, gemeinsame Leseabende und die Vorbereitung auf den Vorlesewettbewerb."
+      desc: "Lesen schafft Welten. In der Lese-AG treffen sich Schülerinnen und Schüler, die gerne in Bücher eintauchen: zum Austausch über aktuelle Lieblingslektüren, gemeinsame Leseabende und die Vorbereitung auf den Vorlesewettbewerb."
       contactName: "Frau Cheshmberah"
       contactRole: "Leitung"
       contactInitials: "C"
@@ -74,7 +74,7 @@ list:
       accent: "petrol"
     - title: "Roboter-AG"
       kicker: "Im Aufbau · MINT & Technik"
-      desc: "Robotik zum Anfassen: In unserer neu entstehenden Roboter-AG bauen, programmieren und erproben Schülerinnen und Schüler eigene Roboter. In Anbindung an das zdi-Portal NRW wecken wir MINT-Begeisterung, bauen technische und überfachliche Kompetenzen auf und erproben sie im Wettbewerb — mit dem zdi-Roboterwettbewerb als motivierendem Höhepunkt."
+      desc: "Robotik zum Anfassen: In unserer neu entstehenden Roboter-AG bauen, programmieren und erproben Schülerinnen und Schüler eigene Roboter. In Anbindung an das zdi-Portal NRW wecken wir MINT-Begeisterung, bauen technische und überfachliche Kompetenzen auf und erproben sie im Wettbewerb, mit dem zdi-Roboterwettbewerb als motivierendem Höhepunkt."
       contactName: "Sven Scheding"
       contactRole: "Betreuung"
       contactInitials: "SS"
@@ -85,7 +85,7 @@ list:
       accent: "gold"
     - title: "Pausenpaten"
       kicker: "Verantwortung & Schulleben"
-      desc: "Pausenpaten sind Anlaufstelle, Organisator*in und Vorbild zugleich. Schülerinnen und Schüler der Klassen 8–11 übernehmen Verantwortung im Pausenalltag: Spielzeug-Ausgabe gegen Schülerausweis, kleine Reparaturen, Inventar-Verwaltung — und sind besonders für neue Fünftklässler*innen da."
+      desc: "Pausenpaten sind Anlaufstelle, Organisator*in und Vorbild zugleich. Schülerinnen und Schüler der Klassen 8–11 übernehmen Verantwortung im Pausenalltag: Spielzeug-Ausgabe gegen Schülerausweis, kleine Reparaturen, Inventar-Verwaltung, und sind besonders für neue Fünftklässler*innen da."
       contactName: "Herr Scheding"
       contactRole: "Leitung · Raum 108 N"
       contactInitials: "S"
@@ -99,4 +99,4 @@ cta:
   eyebrow: "Eigene Idee?"
   title: "Eine AG ist"
   titleHighlight: "kein fertiges Angebot."
-  body: "AGs entstehen aus Interesse. Wenn dir ein Angebot fehlt oder du selbst Lust hast, etwas aufzuziehen — sprich uns an. Wir unterstützen gern beim Start."
+  body: "AGs entstehen aus Interesse. Wenn dir ein Angebot fehlt oder du selbst Lust hast, etwas aufzuziehen: sprich uns an. Wir unterstützen gern beim Start."

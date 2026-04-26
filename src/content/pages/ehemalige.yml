@@ -2,18 +2,18 @@ hero:
   eyebrow: "Über Uns · Ehemalige"
   title: "Einmal UNESCO —"
   titleHighlight: "immer verbunden."
-  lede: "Egal, ob dein Abitur ein Jahr oder fünfzig Jahre zurückliegt — ein Wiedersehen macht Freude. Bleib in Kontakt mit deiner alten Schule."
+  lede: "Egal, ob dein Abitur ein Jahr oder fünfzig Jahre zurückliegt: ein Wiedersehen macht Freude. Bleib in Kontakt mit deiner alten Schule."
   image: "assets/ehemalige/banner.png"
-  imageAlt: "UNESCO-Schule Essen — Ehemalige"
+  imageAlt: "UNESCO-Schule Essen, Ehemalige"
 
 statement:
-  quote: "Egal, ob dein Abitur ein Jahr oder 50 Jahre zurückliegt — ein Wiedersehen macht Freude."
-  body: "Unsere Schule verändert sich, aber die Menschen bleiben. Wir möchten mit unseren Ehemaligen in Kontakt bleiben — nicht, um zu werben, sondern weil uns eure Geschichten wichtig sind."
+  quote: "Egal, ob dein Abitur ein Jahr oder 50 Jahre zurückliegt: ein Wiedersehen macht Freude."
+  body: "Unsere Schule verändert sich, aber die Menschen bleiben. Wir möchten mit unseren Ehemaligen in Kontakt bleiben, nicht um zu werben, sondern weil uns eure Geschichten wichtig sind."
 
 testimonials:
   eyebrow: "Stimmen von Ehemaligen"
   title: "Was bleibt, wenn die Schulzeit vorbei ist."
-  body: "Fünf Ehemalige erzählen, was ihnen die UNESCO-Schule gegeben hat — und was davon sie bis heute begleitet."
+  body: "Fünf Ehemalige erzählen, was ihnen die UNESCO-Schule gegeben hat, und was davon sie bis heute begleitet."
   list:
     - name: "Valentina"
       photo: "assets/ehemalige/Valentina.png"
@@ -25,15 +25,15 @@ testimonials:
       long: false
     - name: "Vithussa"
       photo: "assets/ehemalige/Vithussa.png"
-      quote: "Die UNESCO-Schule war und bleibt für mich etwas Besonderes. Ich habe viel gelernt — vor allem fürs Leben, durch meine Freunde und durch meine Lehrer. Die Schulzeit hat mich sehr geprägt und ich blicke sehr gerne zurück. Die UNESCO-Schule wird für mich immer eine sehr schöne Erinnerung bleiben."
+      quote: "Die UNESCO-Schule war und bleibt für mich etwas Besonderes. Ich habe viel gelernt, vor allem fürs Leben, durch meine Freunde und durch meine Lehrer. Die Schulzeit hat mich sehr geprägt und ich blicke sehr gerne zurück. Die UNESCO-Schule wird für mich immer eine sehr schöne Erinnerung bleiben."
       long: false
     - name: "Dounia"
       photo: "assets/ehemalige/Dounia.png"
-      quote: "Die beste Schule auf dem gesamten Planeten! Im Gegensatz zu meiner alten Schule hatte ich hier nie das Gefühl, nicht dazuzugehören. Den Umgang, den die Lehrer mit den Schülern pflegen, habe ich so vorher noch nie gesehen. Man merkt, dass die Lehrer sich nur das Beste für die Mitschüler wünschen und tatkräftig in der Gestaltung ihrer Zukunft unterstützen. Für mich war meine Zeit im Abitur, die ich hier verbrachte, mehr als nur Schule. Vielmehr ist es wie eine Anlaufstelle für jeden, wie ein zweites Zuhause. Der Abgang von dieser Schule fiel mir definitiv nicht leicht — denn ich werde mich immer als ein Teil der UNESCO-Schule ansehen."
+      quote: "Die beste Schule auf dem gesamten Planeten! Im Gegensatz zu meiner alten Schule hatte ich hier nie das Gefühl, nicht dazuzugehören. Den Umgang, den die Lehrer mit den Schülern pflegen, habe ich so vorher noch nie gesehen. Man merkt, dass die Lehrer sich nur das Beste für die Mitschüler wünschen und tatkräftig in der Gestaltung ihrer Zukunft unterstützen. Für mich war meine Zeit im Abitur, die ich hier verbrachte, mehr als nur Schule. Vielmehr ist es wie eine Anlaufstelle für jeden, wie ein zweites Zuhause. Der Abgang von dieser Schule fiel mir definitiv nicht leicht, denn ich werde mich immer als ein Teil der UNESCO-Schule ansehen."
       long: true
     - name: "Vinthusa"
       photo: "assets/ehemalige/Vinthusa.png"
-      quote: "Die UNESCO-Schule nimmt jeden Schüler unabhängig seines Hintergrundes herzlich auf — das macht diese Schule wirklich aus. Ich bin froh und gleichzeitig auch stolz darüber, ein Teil dieser Schule gewesen zu sein und eine tolle Oberstufenzeit gehabt zu haben. Heute, in der Uni, vermisse ich nicht nur die Pausen und Zeiten mit den Freunden, sondern auch den Unterricht!"
+      quote: "Die UNESCO-Schule nimmt jeden Schüler unabhängig seines Hintergrundes herzlich auf: das macht diese Schule wirklich aus. Ich bin froh und gleichzeitig auch stolz darüber, ein Teil dieser Schule gewesen zu sein und eine tolle Oberstufenzeit gehabt zu haben. Heute, in der Uni, vermisse ich nicht nur die Pausen und Zeiten mit den Freunden, sondern auch den Unterricht!"
       long: false
 
 offer:
@@ -45,13 +45,13 @@ offer:
       body: "Etwa einmal jährlich schicken wir einen Newsletter mit Neuigkeiten aus der Schule, wichtigen Entwicklungen und Einladungen zu Treffen. Kein Marketing, kein Spam."
     - mark: "Wiedersehen"
       title: "Türen stehen immer offen."
-      body: "Du warst lange nicht mehr da? Ruf an, schreib uns. Wir freuen uns, wenn ehemalige Schülerinnen und Schüler zu Besuch kommen — spontan oder zum Tag der offenen Tür."
+      body: "Du warst lange nicht mehr da? Ruf an, schreib uns. Wir freuen uns, wenn ehemalige Schülerinnen und Schüler zu Besuch kommen, spontan oder zum Tag der offenen Tür."
     - mark: "Beitrag leisten"
       title: "Dein Wissen. Unsere Schule."
-      body: "Du hast einen Beruf, von dem unsere Schülerinnen und Schüler etwas lernen können? Melde dich — wir vermitteln gerne Kontakte für Berufsorientierung und Praktika."
+      body: "Du hast einen Beruf, von dem unsere Schülerinnen und Schüler etwas lernen können? Melde dich, wir vermitteln gerne Kontakte für Berufsorientierung und Praktika."
 
 signup:
   eyebrow: "Newsletter für Ehemalige"
-  title: "Anmelden — und auf dem Laufenden bleiben."
+  title: "Anmelden und auf dem Laufenden bleiben."
   body: "Ein kurzer E-Mail-Kontakt reicht uns. Nenne uns deinen Namen, dein Abiturjahr (oder ungefähr), und wir nehmen dich in den Verteiler auf. Austragen kannst du dich jederzeit mit einer einzigen Mail."
   meta: "ca. 1 Mail pro Jahr · jederzeit kündbar"

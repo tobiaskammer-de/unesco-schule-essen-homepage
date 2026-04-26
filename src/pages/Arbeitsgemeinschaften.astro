@@ -7,83 +7,6 @@ const page: any = await getSingle("pageArbeitsgemeinschaften");
 
 const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
 
-const _agsFallback = [
-  {
-    title: "Philharmonie- und Theaterbesuche",
-    kicker: "Kulturelle Bildung",
-    desc: "Regelmäßige gemeinsame Abende in der Philharmonie und im Theater Essen — von Konzerten bis zu Schauspielaufführungen. Kartenkontingente und Einführungen helfen, Kultur als lebendigen Teil des Schullebens zu erleben.",
-    contact: { name: "Herr Pittelkau", role: "Leitung", initials: "P" },
-    state: "aktiv",
-    accent: "petrol",
-    photo: null,
-  },
-  {
-    title: "Schulsanitätsdienst",
-    kicker: "Erste Hilfe & Verantwortung",
-    desc:
-      "Gemeinsam mit dem ASB Essen werden interessierte Schülerinnen und Schüler zu Schulsanitäter*innen ausgebildet. Sie lernen, in Notsituationen schnell und kompetent Erste Hilfe zu leisten — und engagieren sich danach ehrenamtlich im Schulalltag: bei Verletzungen in Pausen, im Sport und bei Veranstaltungen.",
-    contact: { name: "Frau Engelke", role: "Schulische Betreuung", initials: "E" },
-    extra: "Ausbildung durch Henning Handschke · ASB Essen",
-    quote: '„Leben retten ist keine Frage des Alters — aber je früher man anfängt, desto mehr festigt sich das Wissen."',
-    state: "aktiv",
-    accent: "bordeaux",
-    photo: null,
-  },
-  {
-    title: "Makerspace",
-    kicker: "Im Aufbau",
-    desc:
-      "Unser neuer Makerspace unterhalb des Selbstlernzentrums nimmt Gestalt an. Ausgestattet mit 3D-Drucker und weiterem Werkzeug entsteht ein Raum, in dem Schülerinnen und Schüler eigene Ideen prototypen, modellieren und herstellen können — fachübergreifend und projektbasiert.",
-    contact: { name: "Herr Kammer", role: "Leitung", initials: "K" },
-    extra: "Raum unter dem Selbstlernzentrum · Eröffnung folgt",
-    state: "im-aufbau",
-    accent: "gold",
-    photo: null,
-  },
-  {
-    title: "Spanisch-AG",
-    kicker: "Sprachen",
-    desc:
-      "Hola! In der Spanisch-AG lernen Schülerinnen und Schüler spielerisch die spanische Sprache und Kultur kennen — mit Liedern, Gesprächen und kleinen Projekten. Ideal als Ergänzung zum regulären Sprachenangebot oder als erster Einstieg.",
-    contact: { name: "Frau Rhimi", role: "Leitung", initials: "R" },
-    state: "aktiv",
-    accent: "petrol",
-    photo: null,
-  },
-  {
-    title: "Lese-AG",
-    kicker: "Leseförderung",
-    desc:
-      "Lesen schafft Welten. In der Lese-AG treffen sich Schülerinnen und Schüler, die gerne in Bücher eintauchen — zum Austausch über aktuelle Lieblingslektüren, gemeinsame Leseabende und die Vorbereitung auf den Vorlesewettbewerb.",
-    contact: { name: "Frau Cheshmberah", role: "Leitung", initials: "C" },
-    state: "aktiv",
-    accent: "petrol",
-    photo: null,
-  },
-  {
-    title: "Roboter-AG",
-    kicker: "Im Aufbau · MINT & Technik",
-    desc:
-      "Robotik zum Anfassen: In unserer neu entstehenden Roboter-AG bauen, programmieren und erproben Schülerinnen und Schüler eigene Roboter. In Anbindung an das zdi-Portal NRW wecken wir MINT-Begeisterung, bauen technische und überfachliche Kompetenzen auf und erproben sie im Wettbewerb — mit dem zdi-Roboterwettbewerb als motivierendem Höhepunkt.",
-    contact: { name: "Ansprechpartner folgt", role: "Leitung", initials: "—" },
-    extra: "Partner: zdi-Zentrum NRW · zdi-portal.de",
-    state: "im-aufbau",
-    accent: "gold",
-    photo: null,
-  },
-  {
-    title: "Pausenpaten",
-    kicker: "Verantwortung & Schulleben",
-    desc:
-      "Pausenpaten sind Anlaufstelle, Organisator*in und Vorbild zugleich. Schülerinnen und Schüler der Klassen 8–11 übernehmen Verantwortung im Pausenalltag: Spielzeug-Ausgabe gegen Schülerausweis, kleine Reparaturen, Inventar-Verwaltung — und sind besonders für neue Fünftklässler*innen da.",
-    contact: { name: "Herr Scheding", role: "Leitung · Raum 108 N", initials: "S", photo: "assets/kollegium/scheding-sven.jpg" },
-    quote: '„Kein Stundenplan, keine Tests. Nur echte Verantwortung und echte Wirkung."',
-    state: "aktiv",
-    accent: "bordeaux",
-    photo: null,
-  },
-];
-
 // Aus YAML in das ursprüngliche Schema mappen
 const ags = page.list.ags.map((ag: any) => ({
   title: ag.title,
@@ -102,7 +25,7 @@ const ags = page.list.ags.map((ag: any) => ({
   photo: null,
 }));
 ---
-<BaseLayout title="Arbeitsgemeinschaften — UNESCO-Schule Essen" description="Unsere Arbeitsgemeinschaften: Schulsanitätsdienst, Makerspace, Kulturbesuche, Sprachen und Leseförderung.">
+<BaseLayout title="Arbeitsgemeinschaften · UNESCO-Schule Essen" description="Unsere Arbeitsgemeinschaften: Schulsanitätsdienst, Makerspace, Kulturbesuche, Sprachen und Leseförderung.">
 <style is:global>
   /* ---------- Arbeitsgemeinschaften ---------- */
   .ag-intro{background:var(--creme);padding:var(--space-section) 0;}
@@ -264,8 +187,8 @@ const ags = page.list.ags.map((ag: any) => ({
         <h2>Mehr als Unterricht — <em>eine Auswahl.</em></h2>
       </div>
       <div>
-        <p>Arbeitsgemeinschaften ergänzen den regulären Unterricht — mal praktisch, mal kreativ, mal engagiert. Sie sind freiwillig, kostenlos und offen für alle interessierten Schülerinnen und Schüler.</p>
-        <p>Manche AGs sind seit Jahren fester Bestandteil unseres Schullebens, andere entstehen gerade frisch. Auf dieser Seite findet sich ein aktueller Überblick — plus Ansprechpartner*innen, bei denen man sich melden kann.</p>
+        <p>Arbeitsgemeinschaften ergänzen den regulären Unterricht, mal praktisch, mal kreativ, mal engagiert. Sie sind freiwillig, kostenlos und offen für alle interessierten Schülerinnen und Schüler.</p>
+        <p>Manche AGs sind seit Jahren fester Bestandteil unseres Schullebens, andere entstehen gerade frisch. Auf dieser Seite findet sich ein aktueller Überblick mit Ansprechpartner*innen, bei denen man sich melden kann.</p>
       </div>
     </div>
   </div>
@@ -276,7 +199,7 @@ const ags = page.list.ags.map((ag: any) => ({
     <div class="head">
       <span class="eyebrow">Aktuelles Angebot</span>
       <h2>Unsere Arbeits­gemein­schaften.</h2>
-      <p>Mitmachen jederzeit möglich — sprecht einfach die jeweilige Ansprechperson an.</p>
+      <p>Mitmachen jederzeit möglich: sprecht einfach die jeweilige Ansprechperson an.</p>
     </div>
 
     <div class="ag-grid">
@@ -313,7 +236,7 @@ const ags = page.list.ags.map((ag: any) => ({
   <div class="container">
     <span class="eyebrow">Eigene Idee?</span>
     <h2>Eine AG ist <em>kein fertiges Angebot.</em></h2>
-    <p>AGs entstehen aus Interesse. Wenn dir ein Angebot fehlt oder du selbst Lust hast, etwas aufzuziehen — sprich uns an. Wir unterstützen gern beim Start.</p>
+    <p>AGs entstehen aus Interesse. Wenn dir ein Angebot fehlt oder du selbst Lust hast, etwas aufzuziehen: sprich uns an. Wir unterstützen gern beim Start.</p>
   </div>
 </section>
 
