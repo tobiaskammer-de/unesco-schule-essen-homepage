@@ -9,13 +9,13 @@ hero:
 alert:
   label: "Bitte beachten"
   title: "Wichtige Information zur Aufnahme."
-  body: "Mit der Einführung unserer neuen **Erprobungsstufe ab dem Schuljahr 2026/27** ändern sich die Aufnahmemöglichkeiten in die Mittelstufe. Lesen Sie die beiden Regeln unten aufmerksam — oder sprechen Sie uns direkt an."
+  body: "Mit der Einführung unserer neuen **Erprobungsstufe ab dem Schuljahr 2026/27** ändern sich die Aufnahmemöglichkeiten in die Mittelstufe. Lesen Sie die beiden Regeln unten aufmerksam oder sprechen Sie uns direkt an."
 
 rules:
   - kind: "warning"
     badge: "Keine Aufnahme in Klasse 7"
     title: "In 2026/27 und 2028/29 keine 7. Klassen."
-    body: "In diesen Schuljahren führen wir keine 7. Klassen — die entsprechenden Jahrgänge, die regulär in die Klasse 7 eintreten würden, können in diesen Jahren leider nicht an der UNESCO-Schule aufgenommen werden."
+    body: "In diesen Schuljahren führen wir keine 7. Klassen: die entsprechenden Jahrgänge, die regulär in die Klasse 7 eintreten würden, können in diesen Jahren leider nicht an der UNESCO-Schule aufgenommen werden."
     requirement: ""
   - kind: "ok"
     badge: "Aufnahme ab Klasse 8 möglich"
@@ -28,6 +28,6 @@ path:
   body: |
     Jeder Anmeldung geht ein persönliches Beratungs- und Informationsgespräch voraus. Wir nehmen uns gerne Zeit, um Ihre individuelle Situation zu besprechen und gemeinsam den besten Weg zu finden.
 
-    Kontaktieren Sie uns telefonisch oder per E-Mail — wir melden uns zeitnah mit einem Terminvorschlag.
+    Kontaktieren Sie uns telefonisch oder per E-Mail, wir melden uns zeitnah mit einem Terminvorschlag.
   image: "assets/sp-demokratie.jpg"
   imageAlt: "Beratungsgespräch an der UNESCO-Schule Essen"

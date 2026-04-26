@@ -10,7 +10,7 @@ intro:
   body: |
     Die Stundentafel legt fest, mit wie vielen Wochenstunden jedes Fach in der Sekundarstufe I unterrichtet wird. Grundlage ist die **APO-SI (Anlage 6)**, ergänzt um das Profil unserer UNESCO-Schule.
 
-    Zusätzlich erhalten Sie hier einen Überblick über das aktuelle Unterrichtsraster — also die Zeiten, in denen unsere Schülerinnen und Schüler lernen, Pause machen und nach Hause gehen.
+    Zusätzlich erhalten Sie hier einen Überblick über das aktuelle Unterrichtsraster, also die Zeiten, in denen unsere Schülerinnen und Schüler lernen, Pause machen und nach Hause gehen.
 
 raster:
   eyebrow: "Tagesstruktur"
@@ -41,9 +41,9 @@ table:
 notes:
   title: "Anmerkungen zur Stundentafel"
   list:
-    - "Epochenunterricht in Biologie — s. Erläuterung oben."
-    - "Epochenunterricht in Physik — s. Erläuterung oben."
-    - "Epochenunterricht in Physik — s. Erläuterung oben."
+    - "Epochenunterricht in Biologie (s. Erläuterung oben)."
+    - "Epochenunterricht in Physik (s. Erläuterung oben)."
+    - "Epochenunterricht in Physik (s. Erläuterung oben)."
     - "FUD (Fach-Unterricht Deutsch) gilt nur für seiteneinsteigende Schülerinnen und Schüler mit Sprachfeststellungsprüfung in der Herkunftssprache."
     - "3. Fremdsprache = 4-stündig."
     - "Förderung / Forderung in Deutsch, Englisch oder Mathematik in den Klassen 7+8 sowie 9+10, jahrgangsstufenübergreifend organisiert."

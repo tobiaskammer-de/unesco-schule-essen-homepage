@@ -48,7 +48,7 @@ const lastUpdated = new Intl.DateTimeFormat("de-DE", {
   timeZone: "Europe/Berlin",
 }).format(today);
 ---
-<BaseLayout title="Kalender — UNESCO-Schule Essen">
+<BaseLayout title="Kalender · UNESCO-Schule Essen">
 <style is:global>
   /* ---------- Kalender ---------- */
   .kl-intro{background:var(--creme);padding:var(--space-section) 0;}
@@ -284,7 +284,7 @@ const lastUpdated = new Intl.DateTimeFormat("de-DE", {
         <h2>Immer aktuell —<br>direkt aus unserem Google-Kalender.</h2>
       </div>
       <div>
-        <p>Der Kalender unten wird automatisch aus unserem zentralen Schulkalender gespeist und einmal täglich aktualisiert. Ändert sich ein Termin, landet er hier — ohne dass jemand die Website anfassen muss.</p>
+        <p>Der Kalender unten wird automatisch aus unserem zentralen Schulkalender gespeist und einmal täglich aktualisiert. Ändert sich ein Termin, landet er hier, ohne dass jemand die Website anfassen muss.</p>
         <span class="meta"><span class="dot"></span>Zuletzt aktualisiert: {lastUpdated}&nbsp;Uhr</span>
         <div class="kl-legend" aria-label="Farbkodierung">
           <span class="item"><span class="swatch"></span>Regulärer Termin</span>
@@ -390,7 +390,7 @@ const lastUpdated = new Intl.DateTimeFormat("de-DE", {
     });
     var listHeadCount = document.querySelector('.kl-list .head p');
     if (listHeadCount){
-      listHeadCount.textContent = 'Chronologisch sortiert — ab heute und in die Zukunft. Insgesamt ' + countVisible + ' Einträge.';
+      listHeadCount.textContent = 'Chronologisch sortiert, ab heute und in die Zukunft. Insgesamt ' + countVisible + ' Einträge.';
     }
 
     var idx = currentIndex;
@@ -452,7 +452,7 @@ const lastUpdated = new Intl.DateTimeFormat("de-DE", {
     <div class="head">
       <span class="eyebrow">Listenansicht</span>
       <h2>Alle kommenden Termine.</h2>
-      <p>Chronologisch sortiert — ab heute und in die Zukunft. Insgesamt {upcoming.length} Einträge.</p>
+      <p>Chronologisch sortiert, ab heute und in die Zukunft. Insgesamt {upcoming.length} Einträge.</p>
     </div>
 
     {upcoming.length === 0 ? (

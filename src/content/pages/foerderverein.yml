@@ -8,9 +8,9 @@ hero:
 purpose:
   title: "Warum wir diesen Verein brauchen."
   body: |
-    Ein Gymnasium mit UNESCO-Auftrag braucht mehr als Standardausstattung. Der Förderverein verbessert die Schule als Lebensraum — mit Musikinstrumenten, wissenschaftlicher Ausrüstung, kulturellen Veranstaltungen und ganz konkreter finanzieller Hilfe, wenn Familien sie brauchen.
+    Ein Gymnasium mit UNESCO-Auftrag braucht mehr als Standardausstattung. Der Förderverein verbessert die Schule als Lebensraum: mit Musikinstrumenten, wissenschaftlicher Ausrüstung, kulturellen Veranstaltungen und ganz konkreter finanzieller Hilfe, wenn Familien sie brauchen.
 
-    Jedes Mitglied trägt dazu bei, dass unsere Schülerinnen und Schüler nicht nur lernen, sondern erleben, experimentieren, auftreten, reisen — und dass niemand zurückbleibt, weil die Mittel fehlen.
+    Jedes Mitglied trägt dazu bei, dass unsere Schülerinnen und Schüler nicht nur lernen, sondern erleben, experimentieren, auftreten, reisen, und dass niemand zurückbleibt, weil die Mittel fehlen.
 
 goals:
   eyebrow: "Fünf Arbeitsfelder"
@@ -24,7 +24,7 @@ goals:
       body: "Unterstützung von Aufführungen, Ausstellungen, Lesungen und Projekttagen."
     - n: "03"
       title: "Schulsport"
-      body: "Förderung sportlicher Angebote — von Ausrüstung bis zu Wettkampf-Teilnahmen."
+      body: "Förderung sportlicher Angebote, von Ausrüstung bis zu Wettkampf-Teilnahmen."
     - n: "04"
       title: "Schüler in Not"
       body: "Individuelle finanzielle Hilfe, damit keine Schülerin und kein Schüler aus Geldgründen zurückbleibt."
@@ -71,5 +71,5 @@ projects:
 join:
   title: "Mitglied werden."
   titleHighlight: "Mit dabei sein."
-  body: "Sie möchten den Förderverein unterstützen — als Eltern, als Ehemalige, als Freundinnen und Freunde unserer Schule? Wir freuen uns über jedes Mitglied und jede Spende."
-  note: "**Bankverbindung, Beitragshöhe und Mitgliedsantrag** senden wir Ihnen auf Anfrage gerne zu — die Informationen liegen aktuell beim Vorstand und im Sekretariat."
+  body: "Sie möchten den Förderverein unterstützen, als Eltern, als Ehemalige, als Freundinnen und Freunde unserer Schule? Wir freuen uns über jedes Mitglied und jede Spende."
+  note: "**Bankverbindung, Beitragshöhe und Mitgliedsantrag** senden wir Ihnen auf Anfrage gerne zu. Die Informationen liegen aktuell beim Vorstand und im Sekretariat."

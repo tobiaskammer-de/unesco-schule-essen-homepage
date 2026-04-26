@@ -3,7 +3,7 @@ hero:
   eyebrow: ""
   title: "Hier wächst Zukunft."
   titleHighlight: "Hier wächst du."
-  lede: "Ab dem Schuljahr 2026/27 nimmt die UNESCO-Schule Essen erstmals Schülerinnen und Schüler ab Klasse 5 auf — auf einem Weg voller Energie, Gemeinschaft und Herz."
+  lede: "Ab dem Schuljahr 2026/27 nimmt die UNESCO-Schule Essen erstmals Schülerinnen und Schüler ab Klasse 5 auf. Ein Weg voller Energie, Gemeinschaft und Herz."
   image: "assets/erprobungsstufe/flur-schueler.jpg"
   imageAlt: "Schülerinnen und Schüler im Schulflur der UNESCO-Schule Essen"
 
@@ -12,7 +12,7 @@ intro:
   body: |
     Schon in den Einführungstagen lernen sich die Kinder kennen, entdecken neue Lernmethoden und finden sich behutsam in den Schulalltag ein. Bereits zum Start wählen sie einen von zwei Profilschwerpunkten, die ihre Stärken früh sichtbar machen.
 
-    Als UNESCO-Projektschule durchziehen Demokratieerziehung, globales Lernen und interkulturelle Kompetenz unseren Unterricht — vertieft durch internationale Austauschprogramme und Kooperationen mit dem Aalto-Theater und der Philharmonie Essen.
+    Als UNESCO-Projektschule durchziehen Demokratieerziehung, globales Lernen und interkulturelle Kompetenz unseren Unterricht, vertieft durch internationale Austauschprogramme und Kooperationen mit dem Aalto-Theater und der Philharmonie Essen.
 
     Ein durchdachtes digitales Lernkonzept ab Klasse 6, eine starke Schulgemeinschaft und ein strukturiertes Beratungsangebot sorgen dafür, dass jede Schülerin und jeder Schüler gezielt gefordert und gefördert wird.
   image: "assets/sp-lernend.jpg"
@@ -42,9 +42,9 @@ pillars:
   cards:
     - label: "Gelebte UNESCO-Werte"
       title: "Toleranz, Verantwortung, Respekt."
-      body: "Projekttage, internationale Austausche und diverse Kooperationen fördern interkulturelle Kompetenz und stärken das Miteinander. Mit Erasmus+ öffnen wir den Blick über Grenzen hinweg — unsere Schülerinnen und Schüler besuchten bereits den UNESCO-Hauptsitz in Paris und unsere Partnerschule, das Lycée Professionnel Léonard de Vinci."
+      body: "Projekttage, internationale Austausche und diverse Kooperationen fördern interkulturelle Kompetenz und stärken das Miteinander. Mit Erasmus+ öffnen wir den Blick über Grenzen hinweg: unsere Schülerinnen und Schüler besuchten bereits den UNESCO-Hauptsitz in Paris und unsere Partnerschule, das Lycée Professionnel Léonard de Vinci."
       image: "assets/erprobungsstufe/erasmus-paris.jpg"
-      imageAlt: "Schülerinnen vor dem Eiffelturm in Paris — Erasmus+ Austausch"
+      imageAlt: "Schülerinnen vor dem Eiffelturm in Paris, Erasmus+ Austausch"
     - label: "Ankommen & Kennenlernen"
       title: "Zusammenhalt von Anfang an."
       body: "Klassenfahrten in den Stufen 7 und 9 stärken Zusammenhalt und Selbstständigkeit. In der Streitschlichter-AG übernehmen Schülerinnen und Schüler Verantwortung für ihre Schulgemeinschaft. Sozialarbeit und Berufsorientierung begleiten die gesamte Schullaufbahn."
@@ -62,24 +62,24 @@ values:
   body: "Nicht nur für die nächste Prüfung, sondern langfristig. So wachsen aus Werten echte Kompetenzen."
   list:
     - name: "Selbstbewusstsein & Persönlichkeit"
-      desc: "Die eigene Meinung zu vertreten ist schwer — genau, wie sie überhaupt zu entwickeln. Wer seine Stimme findet, kann auch die Welt mitgestalten."
+      desc: "Die eigene Meinung zu vertreten ist schwer, genauso wie sie überhaupt zu entwickeln. Wer seine Stimme findet, kann auch die Welt mitgestalten."
     - name: "Verantwortung & Empathie"
-      desc: "Gemeinschaft lebt davon, neue Perspektiven einzunehmen und einander zu verstehen — und für andere und sich einzustehen."
+      desc: "Gemeinschaft lebt davon, neue Perspektiven einzunehmen und einander zu verstehen, für andere und sich einzustehen."
     - name: "Gemeinschaft & Teamgeist"
-      desc: "Der Mensch ist für Zusammenhalt gemacht: Ob im Beruf oder in Familie und Gesellschaft — Kooperation und Austausch bringen den Einzelnen weiter."
+      desc: "Der Mensch ist für Zusammenhalt gemacht: Ob im Beruf oder in Familie und Gesellschaft, Kooperation und Austausch bringen den Einzelnen weiter."
     - name: "Resilienz & Mut"
-      desc: "Fehler? Gehören dazu. Die Kunst liegt darin, weiterzumachen, dranzubleiben — den Willen und das Vertrauen in sich zu stärken."
+      desc: "Fehler? Gehören dazu. Die Kunst liegt darin, weiterzumachen, dranzubleiben, den Willen und das Vertrauen in sich zu stärken."
     - name: "Kritisches Denken & Neugier"
-      desc: "Fragen stellen, neue Wege suchen — all das ist wichtiger, als fertige Antworten zu übernehmen."
+      desc: "Fragen stellen, neue Wege suchen: all das ist wichtiger, als fertige Antworten zu übernehmen."
     - name: "Kreativität & Ausdruck"
-      desc: "Frei gestalten, Dinge anders zu denken als vorgeschrieben — genau das ist Innovation. Und in unserer schnelllebigen Welt unglaublich wichtig."
+      desc: "Frei gestalten, Dinge anders zu denken als vorgeschrieben: genau das ist Innovation. Und in unserer schnelllebigen Welt unglaublich wichtig."
     - name: "Weltoffenheit & Vielfalt"
-      desc: "Menschen sind unterschiedlich. Denken anders, leben anders, sehen anders aus — und das ist ein Geschenk."
+      desc: "Menschen sind unterschiedlich. Denken anders, leben anders, sehen anders aus, und das ist ein Geschenk."
 
 quote:
-  text: "Wenn Kinder hier Mut entwickeln, neugierig bleiben und spüren, dass sie ihren Weg selbst gestalten können — das ist für mich das Größte."
+  text: "Wenn Kinder hier Mut entwickeln, neugierig bleiben und spüren, dass sie ihren Weg selbst gestalten können: das ist für mich das Größte."
   author: "Lehrkraft der UNESCO-Schule"
 
 cta:
   title: "Ihr persönliches Beratungsgespräch."
-  body: "Unser Beratungsteam steht Ihnen zur Verfügung — zu Profilklassen, Schulalltag und dem Weg zum Abitur. Kommen Sie vorbei, rufen Sie an oder schreiben Sie uns."
+  body: "Unser Beratungsteam steht Ihnen zur Verfügung: zu Profilklassen, Schulalltag und dem Weg zum Abitur. Kommen Sie vorbei, rufen Sie an oder schreiben Sie uns."

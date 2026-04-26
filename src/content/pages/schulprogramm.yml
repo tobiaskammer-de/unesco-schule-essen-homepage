@@ -2,7 +2,7 @@ hero:
   eyebrow: "Profil · Schulprogramm"
   title: "Gemeinsam lernen,"
   titleHighlight: "den eigenen Weg finden."
-  lede: "Unser Schulprogramm — das, was uns trägt. Ein Leitbild, das aus einer Überzeugung wächst: Schule muss beides sein — ein Ort der Sicherheit für die Zukunft und ein Freiraum, in dem junge Menschen heute schon ganz sie selbst sein dürfen."
+  lede: "Unser Schulprogramm — das, was uns trägt. Ein Leitbild, das aus einer Überzeugung wächst: Schule muss beides sein, ein Ort der Sicherheit für die Zukunft und ein Freiraum, in dem junge Menschen heute schon ganz sie selbst sein dürfen."
   image: "assets/kontakt-hero.webp"
 
 intro:
@@ -10,9 +10,9 @@ intro:
   body: |
     Gute Noten, fundiertes Wissen und ein starkes Abitur sind für uns selbstverständlich. Doch als UNESCO-Projektschule blicken wir darüber hinaus: Wir sind Teil eines weltweiten Netzwerks, das sich für Frieden, Menschenrechte, kulturelle Vielfalt und nachhaltige Entwicklung einsetzt.
 
-    Unsere Schule lebt diese Ziele im Alltag — mit Projekten zu Demokratie, nachhaltigem Handeln und kulturellem Austausch, und mit einer Haltung, die junge Menschen zu verantwortungsvollen Gestaltern von morgen macht.
+    Unsere Schule lebt diese Ziele im Alltag, mit Projekten zu Demokratie, nachhaltigem Handeln und kulturellem Austausch, und mit einer Haltung, die junge Menschen zu verantwortungsvollen Gestaltern von morgen macht.
 
-    Wir sehen Kinder und Jugendliche als _ganze Persönlichkeiten_. Darum schaffen wir Raum für Musik und Kreativität, für Verantwortung und echtes Miteinander. Unser Ziel ist klar: junge Menschen zu stärken — für das Leben, das vor ihnen liegt.
+    Wir sehen Kinder und Jugendliche als _ganze Persönlichkeiten_. Darum schaffen wir Raum für Musik und Kreativität, für Verantwortung und echtes Miteinander. Unser Ziel ist klar: junge Menschen zu stärken für das Leben, das vor ihnen liegt.
 
 pledge:
   eyebrow: "Selbstverpflichtung des Kollegiums"
@@ -35,7 +35,7 @@ pledge:
       text: "Mit Eltern und Betreuenden zusammenarbeiten, um junge Menschen gemeinsam ins Erwachsenenleben zu begleiten."
     - num: "08"
       text: "Uns an den Verhaltenskodex unserer Schule im Rahmen des Schutzkonzeptes halten."
-  outro: "Wir betrachten es als Selbstverständlichkeit, unsere Schülerinnen und Schüler als Menschen wahrzunehmen, die Stärken und Schwächen haben — und möchten sie im Rahmen ihrer spezifischen Lebenswirklichkeiten begleiten."
+  outro: "Wir betrachten es als Selbstverständlichkeit, unsere Schülerinnen und Schüler als Menschen wahrzunehmen, die Stärken und Schwächen haben, und möchten sie im Rahmen ihrer spezifischen Lebenswirklichkeiten begleiten."
 
 pillarsIntro:
   eyebrow: "Leitsätze und Ziele"
@@ -43,7 +43,7 @@ pillarsIntro:
   body: "Unser Schulprogramm stützt sich entsprechend unseres Leitbildes auf zwei Säulen: das individuelle, akademische Lernen und die sozial-affektive Persönlichkeitsentwicklung innerhalb einer gesellschaftsrelevanten Gemeinschaft."
   pillars:
     - title: "Gemeinsam lernen"
-      body: "Individuelles, akademisches Lernen — mit hohem fachlichen Anspruch und enger pädagogischer Begleitung auf dem Weg zum Abitur."
+      body: "Individuelles, akademisches Lernen, mit hohem fachlichen Anspruch und enger pädagogischer Begleitung auf dem Weg zum Abitur."
     - title: "Den eigenen Weg finden"
       body: "Sozial-affektive Persönlichkeitsentwicklung innerhalb einer demokratischen, weltoffenen und vielfältigen Schulgemeinschaft."
 
@@ -51,7 +51,7 @@ leitsaetze:
   - num: "01"
     image: "assets/sp-lernend.jpg"
     title: "Lernende Schule"
-    claim: "Unabhängig von der bisherigen Schullaufbahn erhalten unsere Schülerinnen und Schüler bei entsprechender Qualifizierung die individuell bestmögliche gymnasiale Ausbildung — mit enger Unterstützung auf dem Weg dorthin."
+    claim: "Unabhängig von der bisherigen Schullaufbahn erhalten unsere Schülerinnen und Schüler bei entsprechender Qualifizierung die individuell bestmögliche gymnasiale Ausbildung, mit enger Unterstützung auf dem Weg dorthin."
     points:
       - "In Klasse 5 Wahl zwischen zwei neigungsdifferenzierten Ergänzungsfächern: Forscher² (naturwissenschaftlich-experimentell) und WortArt+ (sprachlich-künstlerisch)"
       - "Behutsamer Aufbau von Schulformwechselnden in Sek II durch gestaffelte, progressive Annäherung an gymnasiale Standards"
@@ -120,7 +120,7 @@ leitsaetze:
       - "Thematisch wechselnde Ausstellungen zu Welttagen der Vereinten Nationen (2–3 pro Monat) in Eigenverantwortung der EF-Kurse und LKs in Q1/Q2"
       - "UNESCO-Führerschein in der Sek I"
       - "Organisation von UNESCO-Projekttagen (2 × pro Jahr) und Netzwerkpflege durch den UNESCO-Beauftragten"
-      - "UNESCO ist Namensgeber der Schule — Orientierung an ihren Zielen und Werten"
+      - "UNESCO ist Namensgeber der Schule: Orientierung an ihren Zielen und Werten"
     futureGoals: []
   - num: "07"
     image: "assets/sp-digital.jpg"
@@ -138,7 +138,7 @@ leitsaetze:
   - num: "08"
     image: "assets/sp-hero.jpg"
     title: "Persönlichkeitsentwickelnde Schule"
-    claim: "Lernende und Lehrende nehmen sich gegenseitig als Individuum und als integrativer Teil einer größeren Gemeinschaft wahr — und bilden in vielfältiger Form ihre Persönlichkeit aus."
+    claim: "Lernende und Lehrende nehmen sich gegenseitig als Individuum und als integrativer Teil einer größeren Gemeinschaft wahr, und bilden in vielfältiger Form ihre Persönlichkeit aus."
     points:
       - "Klassen- und Kursfahrten in Klasse 9 und Stufe Q1"
       - "Zahlreiche Projekttage und gemeinsame Schulveranstaltungen"

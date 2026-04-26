@@ -15,7 +15,7 @@ intro:
 steps:
   eyebrow: "So funktioniert's"
   title: "Drei Schritte zum eigenen Schließfach."
-  body: "Die Anmeldung läuft komplett online beim Betreiber AstraDirect — Schule ist hier nur Vermittler."
+  body: "Die Anmeldung läuft komplett online beim Betreiber AstraDirect; Schule ist hier nur Vermittler."
   list:
     - n: "01"
       title: "Website öffnen"
@@ -33,4 +33,4 @@ action:
   body: "Nutze einfach die Website von AstraDirect. Bei Fragen zur Anmeldung oder zum Fach selbst ist AstraDirect die richtige Adresse."
   buttonLabel: "Zur Anmeldung bei AstraDirect"
   buttonUrl: "https://www.astradirect.de/index.html"
-  hint: "Externer Link — öffnet in einem neuen Tab. Vertragspartner ist AstraDirect, nicht die Schule."
+  hint: "Externer Link, öffnet in einem neuen Tab. Vertragspartner ist AstraDirect, nicht die Schule."

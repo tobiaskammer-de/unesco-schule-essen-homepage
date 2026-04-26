@@ -5,63 +5,6 @@ import { getSingle } from "../lib/pageContent";
 
 const page: any = await getSingle("pageEltern");
 
-const _scheduleFallback = [
-  { label: "1. Stunde", time: "08:05 – 08:50", kind: "lesson" },
-  { label: "2. Stunde", time: "08:55 – 09:40", kind: "lesson" },
-  { label: "1. Große Pause", time: "09:40 – 10:00", kind: "break" },
-  { label: "3. Stunde", time: "10:00 – 10:45", kind: "lesson" },
-  { label: "4. Stunde", time: "10:50 – 11:35", kind: "lesson" },
-  { label: "2. Große Pause", time: "11:35 – 11:55", kind: "break" },
-  { label: "5. Stunde", time: "11:55 – 12:40", kind: "lesson" },
-  { label: "6. Stunde", time: "12:45 – 13:30", kind: "lesson" },
-];
-
-// FAQ-Blöcke (Fallback)
-const _faqsFallback = [
-  {
-    q: "Warum der Name UNESCO?",
-    a: "Als Weltkulturorganisation tritt die UNESCO für Toleranz, Verantwortung und ein friedliches Miteinander ein — genau die Werte, die wir täglich leben. Deshalb erteilte uns die UNESCO-Kommission die Erlaubnis, diesen Namen zu führen.",
-  },
-  {
-    q: "Welche Fremdsprachen werden angeboten?",
-    a: "Ab Klasse 5 beginnt der Unterricht in Englisch. In Klasse 7 kommt Latein als zweite Fremdsprache hinzu, und ab Klasse 9 können die Lernenden Französisch als dritte Fremdsprache wählen.",
-  },
-  {
-    q: "Wie kann ich mein Kind / mich an der UNESCO-Schule anmelden?",
-    a: 'Jeder Anmeldung geht ein persönliches Beratungs- und Informationsgespräch voraus. Nehmen Sie hierfür einfach Kontakt mit dem Sekretariat auf. Weitere Informationen finden Sie unter dem Menüpunkt „Anmeldung".',
-    link: { label: "Zur Anmeldung", href: "Anmeldung.html" },
-  },
-  {
-    q: "Gibt es eine verlässliche Nachmittagsbetreuung?",
-    a: "Ja. Der Unterricht endet in der Regel um 13:30 Uhr, doch auf Wunsch können Kinder täglich bis 15:00 Uhr in unserer betreuten Lern- und Freizeitgruppe bleiben. Dort gibt es Hausaufgabenhilfe, kreative Angebote und Bewegungszeiten.",
-  },
-  {
-    q: "Wie ist die Schule digital ausgestattet?",
-    a: 'Alle Klassenräume verfügen über interaktive Displays und WLAN. Ab Klasse 6 arbeiten die Schülerinnen und Schüler regelmäßig mit schuleigenen Tablets, programmieren in der „Hacker School" und lernen einen verantwortungsvollen Umgang mit digitalen Medien.',
-  },
-  {
-    q: "Welche Kurse sind in der Oberstufe wählbar?",
-    a: `In der Oberstufe belegbar sind:\n\n**Sprachlich – literarisch – künstlerisch:** Deutsch, Englisch, Latein, Französisch, Kunst.\n\n**Gesellschaftswissenschaftlich:** Literatur, Erdkunde, Geschichte, Sozialwissenschaften, Philosophie, Pädagogik.\n\n**Mathematisch-naturwissenschaftlich:** Mathematik, Biologie, Chemie, Physik.\n\n**Darüber hinaus:** Religionslehre und Sport.`,
-    link: { label: "Zur Oberstufe", href: "Oberstufe.html" },
-  },
-  {
-    q: "Welche Leistungskurse sind in der Oberstufe wählbar?",
-    a: `Aktuell belegbare LKs:\n\n**Sprachlich – literarisch – künstlerisch:** Deutsch, Englisch.\n\n**Gesellschaftswissenschaftlich:** Geschichte, Sozialwissenschaften, Philosophie.\n\n**Mathematisch-naturwissenschaftlich:** Mathematik, Biologie, Chemie, Physik.\n\nFür Fragen zu möglichen Fächerkombinationen vereinbaren Sie gern einen Beratungstermin mit unserem Oberstufenteam.`,
-  },
-  {
-    q: "Wie sieht ein Schultag aus? Wie lange geht der Unterricht?",
-    a: "Der Unterricht beginnt um 08:05 Uhr. Je nach Klassenstufe dauert ein Schultag bis ca. 13:30 Uhr. Für Klassen der Erprobungs- und Mittelstufe bieten wir eine Übermittagsbetreuung bis 15:00 Uhr an.",
-  },
-  {
-    q: "Wird an der UNESCO-Schule Mittagessen angeboten?",
-    a: "Ja. Unsere Mensa serviert jeden Schultag ein frisch gekochtes, warmes Mittagessen, das ein erfahrener Caterer zubereitet. Für den kleinen Hunger zwischendurch steht zusätzlich ein schuleigener Kiosk mit belegten Brötchen, Obst, Snacks und Getränken bereit.",
-  },
-  {
-    q: "Gibt es AGs, die man belegen kann?",
-    a: "Ja! Jedes Schuljahr werden an der Schule unterschiedliche Arbeitsgemeinschaften angeboten — von Schulsanitätsdienst über Sprach-AGs bis zum Makerspace.",
-    link: { label: "Aktuelle AGs ansehen", href: "Arbeitsgemeinschaften.html" },
-  },
-];
 
 const schedule = page.schedule.list;
 const faqs = page.faq.list.map((f: any) => ({

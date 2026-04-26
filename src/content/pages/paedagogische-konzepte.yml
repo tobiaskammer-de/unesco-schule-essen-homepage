@@ -2,58 +2,58 @@ hero:
   eyebrow: "Angebote · Pädagogische Konzepte"
   title: "Pädagogische Konzepte —"
   titleHighlight: "klar, transparent, gelebt."
-  lede: "Hinter dem Unterrichtsalltag stehen Grundsätze, auf die Sie sich verlassen können. Hier finden Sie die wichtigsten in Kurzform — jeweils mit Download der vollständigen Fassung."
+  lede: "Hinter dem Unterrichtsalltag stehen Grundsätze, auf die Sie sich verlassen können. Hier finden Sie die wichtigsten in Kurzform, jeweils mit Download der vollständigen Fassung."
 
 intro:
   title: "Warum Konzepte,"
   titleHighlight: "die transparent sind?"
   body: |
-    Eltern und Schülerinnen und Schüler sollen **wissen, wie Schule bei uns funktioniert** — nicht nur an guten Tagen, sondern auch dann, wenn Unterricht vertreten wird, wenn Noten vergeben werden oder wenn eine Klassenfahrt ansteht.
+    Eltern und Schülerinnen und Schüler sollen **wissen, wie Schule bei uns funktioniert**, nicht nur an guten Tagen, sondern auch dann, wenn Unterricht vertreten wird, wenn Noten vergeben werden oder wenn eine Klassenfahrt ansteht.
 
-    Deshalb legen wir zentrale Grundsätze schriftlich fest, geben sie zu Beginn des Schuljahres bekannt — und veröffentlichen sie hier offen. So können Sie jederzeit nachlesen, welche Regeln gelten und wie wir pädagogisch arbeiten.
+    Deshalb legen wir zentrale Grundsätze schriftlich fest, geben sie zu Beginn des Schuljahres bekannt und veröffentlichen sie hier offen. So können Sie jederzeit nachlesen, welche Regeln gelten und wie wir pädagogisch arbeiten.
 
 list:
   eyebrow: "Fünf zentrale Konzepte"
   title: "Was bei uns verbindlich geregelt ist."
-  body: "Jedes Konzept in einem Satz — und mit Download für alle Details. Die vollständigen Fassungen sind Teil der offiziellen Schuldokumentation."
+  body: "Jedes Konzept in einem Satz, jeweils mit Download für alle Details. Die vollständigen Fassungen sind Teil der offiziellen Schuldokumentation."
   konzepte:
     - num: "01"
       label: "Vertretung"
       title: "Vertretungskonzept"
-      claim: "Kein Leerlauf — auch wenn eine Lehrkraft fehlt."
-      body: "Fällt Unterricht aus, planen wir ihn nicht einfach weg. Vertretungen laufen mit Fachaufgaben aus dem jeweiligen Kurs — keine Verwaltung von Zeit, sondern echtes Weiterarbeiten am Thema. Stundenplanänderungen sind digital für Eltern und Kinder jederzeit einsehbar."
+      claim: "Kein Leerlauf, auch wenn eine Lehrkraft fehlt."
+      body: "Fällt Unterricht aus, planen wir ihn nicht einfach weg. Vertretungen laufen mit Fachaufgaben aus dem jeweiligen Kurs, keine Verwaltung von Zeit, sondern echtes Weiterarbeiten am Thema. Stundenplanänderungen sind digital für Eltern und Kinder jederzeit einsehbar."
       pdf: ""
       pdfMeta: ""
     - num: "02"
       label: "Leistung"
       title: "Leistungskonzept"
-      claim: "Fair bewerten — und vorher sagen, was zählt."
-      body: "Wir bewerten nicht nur Klassenarbeiten, sondern den ganzen Lernweg: mündliche Beiträge, Projekte, Heftführung, individuelle Fortschritte. Welche Leistungen in welchem Fach wie gewichtet werden, erfahren Schülerinnen und Schüler zu Beginn jedes Schuljahres — transparent und nachvollziehbar."
+      claim: "Fair bewerten, und vorher sagen, was zählt."
+      body: "Wir bewerten nicht nur Klassenarbeiten, sondern den ganzen Lernweg: mündliche Beiträge, Projekte, Heftführung, individuelle Fortschritte. Welche Leistungen in welchem Fach wie gewichtet werden, erfahren Schülerinnen und Schüler zu Beginn jedes Schuljahres, transparent und nachvollziehbar."
       pdf: ""
       pdfMeta: ""
     - num: "03"
       label: "Fahrten"
       title: "Fahrtenkonzept"
       claim: "Klassenfahrten mit Sinn und Maß."
-      body: "Von der Kennenlernfahrt in Klasse 5 bis zur Studienfahrt in der Q1 — jede Fahrt hat einen pädagogischen Auftrag. Wir achten auf vertretbare Kosten, klaren Lernbezug und dass das Programm zur jeweiligen Altersstufe passt. Und: Niemand bleibt aus finanziellen Gründen zurück."
+      body: "Von der Kennenlernfahrt in Klasse 5 bis zur Studienfahrt in der Q1: jede Fahrt hat einen pädagogischen Auftrag. Wir achten auf vertretbare Kosten, klaren Lernbezug und dass das Programm zur jeweiligen Altersstufe passt. Und: Niemand bleibt aus finanziellen Gründen zurück."
       pdf: ""
       pdfMeta: ""
     - num: "04"
       label: "Lesen"
       title: "Leseförderung"
       claim: "Wer gut liest, lernt in allen Fächern besser."
-      body: "Lesen ist Schlüsselkompetenz — und wird bei uns systematisch gepflegt. Feste Lesezeiten, Buchpatenschaften, der Vorlesewettbewerb in Klasse 6 und eine aktive Schulbibliothek gehören dazu. Kinder, die zusätzliche Unterstützung brauchen, bekommen sie in gezielten Förderbändern."
+      body: "Lesen ist Schlüsselkompetenz und wird bei uns systematisch gepflegt. Feste Lesezeiten, Buchpatenschaften, der Vorlesewettbewerb in Klasse 6 und eine aktive Schulbibliothek gehören dazu. Kinder, die zusätzliche Unterstützung brauchen, bekommen sie in gezielten Förderbändern."
       pdf: ""
       pdfMeta: ""
     - num: "05"
       label: "Digitales"
       title: "Regeln zum Umgang mit digitalen Endgeräten"
       claim: "iPad ist Lernwerkzeug, Handy bleibt in der Tasche."
-      body: "Unser Handy- und Tablet-Konzept ist Teil der Schulordnung. Das Schultablet (iPad) kommt täglich aufgeladen mit in den Unterricht — das Handy bleibt im Unterricht ausgeschaltet oder im Flugmodus. In Pausen und in der Sek II gelten klare Ausnahmen. Das schafft Konzentration im Klassenraum und schützt Persönlichkeitsrechte."
+      body: "Unser Handy- und Tablet-Konzept ist Teil der Schulordnung. Das Schultablet (iPad) kommt täglich aufgeladen mit in den Unterricht, das Handy bleibt im Unterricht ausgeschaltet oder im Flugmodus. In Pausen und in der Sek II gelten klare Ausnahmen. Das schafft Konzentration im Klassenraum und schützt Persönlichkeitsrechte."
       pdf: "assets/Handykonzept-2026.pdf"
       pdfMeta: "PDF · 46 KB"
 
 closing:
   eyebrow: "Gespräch statt Papier"
   title: "Etwas unklar oder nicht gefunden?"
-  body: "Unsere Konzepte leben nicht vom Dokument, sondern vom Alltag. Wenn Sie Fragen haben oder etwas nicht auf dem Papier finden: Sprechen Sie uns an — im Sekretariat oder direkt bei der Klassenleitung."
+  body: "Unsere Konzepte leben nicht vom Dokument, sondern vom Alltag. Wenn Sie Fragen haben oder etwas nicht auf dem Papier finden: Sprechen Sie uns an, im Sekretariat oder direkt bei der Klassenleitung."
