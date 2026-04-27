@@ -13,7 +13,7 @@ intro:
     Deshalb legen wir zentrale Grundsätze schriftlich fest, geben sie zu Beginn des Schuljahres bekannt und veröffentlichen sie hier offen. So können Sie jederzeit nachlesen, welche Regeln gelten und wie wir pädagogisch arbeiten.
 
 list:
-  eyebrow: "Fünf zentrale Konzepte"
+  eyebrow: "Sechs zentrale Konzepte"
   title: "Was bei uns verbindlich geregelt ist."
   body: "Jedes Konzept in einem Satz, jeweils mit Download für alle Details. Die vollständigen Fassungen sind Teil der offiziellen Schuldokumentation."
   konzepte:
@@ -29,8 +29,8 @@ list:
       title: "Leistungskonzept"
       claim: "Fair bewerten, und vorher sagen, was zählt."
       body: "Wir bewerten nicht nur Klassenarbeiten, sondern den ganzen Lernweg: mündliche Beiträge, Projekte, Heftführung, individuelle Fortschritte. Welche Leistungen in welchem Fach wie gewichtet werden, erfahren Schülerinnen und Schüler zu Beginn jedes Schuljahres, transparent und nachvollziehbar."
-      pdf: ""
-      pdfMeta: ""
+      pdf: "assets/Leistungskonzept-2019.pdf"
+      pdfMeta: "PDF · 88 KB"
     - num: "03"
       label: "Fahrten"
       title: "Fahrtenkonzept"
@@ -52,6 +52,13 @@ list:
       body: "Unser Handy- und Tablet-Konzept ist Teil der Schulordnung. Das Schultablet (iPad) kommt täglich aufgeladen mit in den Unterricht, das Handy bleibt im Unterricht ausgeschaltet oder im Flugmodus. In Pausen und in der Sek II gelten klare Ausnahmen. Das schafft Konzentration im Klassenraum und schützt Persönlichkeitsrechte."
       pdf: "assets/Handykonzept-2026.pdf"
       pdfMeta: "PDF · 46 KB"
+    - num: "06"
+      label: "Schutz"
+      title: "Schutzkonzept"
+      claim: "Ein geschützter Ort, an dem alle angenommen und sicher sind."
+      body: "Alle Mitarbeitenden, von Schulleitung bis Schulsozialarbeit, verpflichten sich auf einen gemeinsamen Verhaltenskodex zu Nähe und Distanz, Sprache und Privatsphäre. Bei Sorgen oder Verdachtsfällen gibt es klare interne Ansprechstellen und feste Interventionspläne, ergänzt durch externe Beratungsstellen, Jugendamt und Polizei. Prävention läuft kontinuierlich: von Sexualaufklärung und UNESCO-Projekttagen zu Diskriminierung und sexueller Gewalt bis zu verpflichtenden Fortbildungen für das gesamte Kollegium."
+      pdf: "assets/Schutzkonzept-2024.pdf"
+      pdfMeta: "PDF · 218 KB"
 
 closing:
   eyebrow: "Gespräch statt Papier"
