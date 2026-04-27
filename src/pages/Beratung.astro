@@ -195,9 +195,16 @@ const [beratungslehrer, sozialarbeit] = await Promise.all([
   .br-section.dark .br-person .btn-mail:hover{background:#e0b68a;color:#2a1d08;}
 
   /* Concerns list (Schulsozialarbeit) */
+  .br-concerns-wrap{display:flex;flex-direction:column;gap:24px;}
   .br-concerns{
     list-style:none;margin:0;padding:24px 0 0;
     display:grid;grid-template-columns:1fr 1fr;gap:8px 28px;
+  }
+  .br-staff-note{
+    margin:0;padding:14px 18px;
+    background:rgba(212,165,116,0.16);border-left:3px solid var(--gold);
+    font-family:var(--serif);font-style:italic;font-size:15.5px;line-height:1.55;
+    color:rgba(245,239,231,0.92);
   }
   .br-concerns li{
     position:relative;padding:8px 0 8px 22px;
@@ -292,6 +299,7 @@ const [beratungslehrer, sozialarbeit] = await Promise.all([
       <div class="br-qa">
         <div class="row"><span class="q">Wer wird beraten?</span><span class="a">Schülerinnen und Schüler sowie Eltern, unabhängig von Jahrgang und Schulform.</span></div>
         <div class="row"><span class="q">Wie wird beraten?</span><span class="a">Vertrauliche Einzelgespräche. Bei Bedarf vermittle ich Kontakt zu außerschulischen Beratungsstellen.</span></div>
+        <div class="row"><span class="q">Sprechstunden</span><span class="a">Montags in der 5. Stunde und dienstags in der 4. Stunde — zu finden im Lehrerzimmer. Individuelle Termine sind jederzeit möglich.</span></div>
         <div class="row"><span class="q">Wobei kann ich helfen?</span><span class="a">
           <ul class="br-topics">
             <li>Lernschwierigkeiten</li>
@@ -306,7 +314,7 @@ const [beratungslehrer, sozialarbeit] = await Promise.all([
             <li>Kontakt zu externen Stellen</li>
           </ul>
         </span></div>
-        <div class="row"><span class="q">Wo findest du mich?</span><span class="a">Sprich mich im Lehrerzimmer an oder wo immer du mich triffst. Wir vereinbaren einen Termin. Alternativ: Telefonnummer im Sekretariat hinterlassen, ich rufe zurück.</span></div>
+        <div class="row"><span class="q">Wo findest du mich?</span><span class="a">Sprich mich im Lehrerzimmer an oder wo immer du mich triffst. Alternativ: Telefonnummer im Sekretariat hinterlassen, ich rufe zurück; Kontakt per E-Mail ist ebenfalls möglich.</span></div>
       </div>
 
       <ContactCard
@@ -360,22 +368,28 @@ const [beratungslehrer, sozialarbeit] = await Promise.all([
     </div>
 
     <div class="br-split">
-      <ul class="br-concerns">
-        <li>…wenn es dir nicht so gut geht und du nicht weiter weißt</li>
-        <li>…wenn du zu Hause Ärger hast und dich nicht wohlfühlst</li>
-        <li>…wenn es mit Lehrern oder Mitschülern Stress gibt</li>
-        <li>…wenn Schule nicht klappt und du nicht weißt, wie's weitergehen soll</li>
-        <li>…wenn du Probleme mit Ämtern hast</li>
-        <li>…wenn du Unterstützung bei Anträgen brauchst</li>
-        <li>…wenn du finanzielle Probleme hast</li>
-        <li>…wenn du einfach mal reden möchtest</li>
-      </ul>
+      <div class="br-concerns-wrap">
+        <ul class="br-concerns">
+          <li>…wenn du gesundheitliche Fragen hast und nach passenden Hilfen suchst</li>
+          <li>…wenn du zu Hause Ärger hast und dich dort nicht wohlfühlst</li>
+          <li>…wenn du Auseinandersetzungen mit Lehrkräften oder Mitschülerinnen und Mitschülern hast</li>
+          <li>…wenn du Probleme in der Schule hast und nicht weißt, wie es weitergehen soll</li>
+          <li>…wenn du Probleme mit Ämtern hast</li>
+          <li>…wenn du Unterstützung bei Anträgen brauchst</li>
+          <li>…wenn du Hilfe in finanziellen Fragen brauchst</li>
+          <li>…wenn du gemobbt wirst</li>
+          <li>…wenn du einfach mal reden möchtest</li>
+          <li>…wenn du eine tolle Idee hast und nicht weißt, wie du sie umsetzen kannst</li>
+          <li>…wenn du einfach individuelle Hilfe brauchst</li>
+        </ul>
+        <p class="br-staff-note">Auch Kolleginnen und Kollegen können Frau Spiegel bei Problemfragen jederzeit kontaktieren.</p>
+      </div>
 
       <ContactCard
         teacher={sozialarbeit}
         roleLabel="Schulsozialarbeit"
         subline="Schulsozialarbeiterin · Schweigepflicht gilt"
-        room="Raum 103A · komm vorbei oder frag am Lehrerzimmer"
+        room="In den Pausen am Lehrerzimmer oder Raum 103A"
         variant="dark"
       />
     </div>

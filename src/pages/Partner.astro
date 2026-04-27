@@ -70,6 +70,13 @@ const categories = page.categories;
     transition:filter .3s ease, opacity .3s ease;
   }
   .pt-card:hover .logo-box img{filter:grayscale(0);opacity:1;}
+  .pt-card .logo-placeholder{
+    display:inline-flex;align-items:center;justify-content:center;
+    width:64px;height:64px;border-radius:50%;
+    background:var(--petrol);color:var(--creme);
+    font-family:var(--serif);font-weight:500;font-size:22px;letter-spacing:-0.01em;
+    opacity:0.92;
+  }
 
   .pt-card h3{
     font-family:var(--serif);font-weight:500;font-size:20px;line-height:1.25;
@@ -155,8 +162,12 @@ const categories = page.categories;
               target={p.url ? "_blank" : undefined}
               rel={p.url ? "noopener" : undefined}
             >
-              <div class="logo-box">
-                <img src={p.logo} alt={`${p.name} Logo`} width="180" height="72" loading="lazy" />
+              <div class={`logo-box ${p.logo ? "" : "logo-box--placeholder"}`}>
+                {p.logo ? (
+                  <img src={p.logo} alt={`${p.name} Logo`} width="180" height="72" loading="lazy" />
+                ) : (
+                  <span class="logo-placeholder" aria-hidden="true">{p.name.split(/\s+/).map((w: string) => w[0]).filter(Boolean).slice(0,2).join("").toUpperCase()}</span>
+                )}
               </div>
               <h3>{p.name}</h3>
               <p class="desc">{p.desc}</p>

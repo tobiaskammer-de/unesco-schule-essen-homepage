@@ -73,6 +73,13 @@ categories:
         url: "https://www.wdr.de"
         logo: "assets/partners/wdr.png"
         desc: "Medienbildung und Zusammenarbeit bei dokumentarischen Schulprojekten."
+  - label: "Internationale Schulpartnerschaften"
+    intro: "Über das Erasmus+-Programm besuchen unsere Schülerinnen und Schüler ihre Partnerschulen in Europa jährlich vor Ort."
+    items:
+      - name: "Erasmus+ Schulpartnerschaft Tallinn"
+        url: ""
+        logo: ""
+        desc: "Partnerschule in Tallinn (Estland). Jährlicher Schulbesuch unserer Schülerinnen und Schüler im Rahmen des Erasmus+-Programms. Verantwortlich: Frau Hödel und Herr Rockensüß-Köln."
   - label: "Stiftungen & Förderer"
     intro: "Private Stiftungen und Service-Clubs, deren Förderung vieles möglich macht."
     items:
