@@ -4,11 +4,6 @@ import PageHero from "../components/PageHero.astro";
 import { getSingle } from "../lib/pageContent";
 
 const page: any = await getSingle("pageSchliessfaecher");
-
-const lockers = [
-  "#A399AE", "#3B7968", "#8B2B7F", "#7A9E6A", "#C7C8BE", "#7FC7BF",
-  "#1E2D4A", "#6FA2DE", "#E8DFBE", "#21428E", "#E2C13A", "#9B2733",
-];
 ---
 <BaseLayout title="Schließfächer mieten · UNESCO-Schule Essen" description="So mietet dein Kind ein Schließfach im Schulgebäude: direkt online beim Betreiber AstraDirect.">
 <style is:global>
@@ -93,40 +88,10 @@ const lockers = [
     margin-top:18px;
   }
 
-  /* Schließfach-Illustration */
-  .sf-illu{
-    width:100%;aspect-ratio:3/1.2;
-    background:var(--creme);
-    padding:18px;
-    display:grid;grid-template-columns:repeat(6, 1fr);grid-template-rows:1fr 1fr;gap:10px;
-    border:1px solid var(--hairline);
-  }
-  .sf-locker{
-    position:relative;border-radius:2px;
-    display:flex;align-items:center;justify-content:center;
-  }
-  .sf-locker::before{
-    content:"";position:absolute;top:18%;left:50%;transform:translateX(-50%);
-    width:32px;height:22px;border-radius:2px;
-    background:rgba(255,255,255,0.9);
-    box-shadow:0 1px 2px rgba(0,0,0,0.1);
-  }
-  .sf-locker::after{
-    content:"";position:absolute;top:calc(18% + 3px);left:50%;transform:translateX(-50%);
-    width:6px;height:6px;border-radius:50%;
-    background:var(--stein);opacity:0.5;
-  }
-
   @media (max-width:960px){
     .sf-grid{grid-template-columns:1fr;gap:28px;}
     .sf-steps-grid{grid-template-columns:1fr;gap:14px;}
     .sf-intro,.sf-steps,.sf-action{padding:var(--space-section-sm) 0;}
-    .sf-illu{aspect-ratio:3/1.4;padding:12px;gap:6px;}
-  }
-  @media (max-width:520px){
-    .sf-illu{grid-template-columns:repeat(4, 1fr);grid-template-rows:repeat(3, 1fr);aspect-ratio:4/3;}
-    .sf-locker::before{top:22%;width:22px;height:16px;}
-    .sf-locker::after{top:calc(22% + 2px);width:4px;height:4px;}
   }
 </style>
 
@@ -147,11 +112,6 @@ const lockers = [
       <div>
         <p>Bei Interesse hat jede Schülerin und jeder Schüler die Möglichkeit, ein Schließfach im Schulgebäude zu mieten.</p>
         <p>Der Vertrag läuft nicht über die Schule, sondern direkt zwischen dir (beziehungsweise den Erziehungsberechtigten) und dem Betreiber <strong>AstraDirect</strong>. Das heißt: wenige Klicks online, und dein Schließfach ist reserviert.</p>
-        <div class="sf-illu" aria-label="Farbige Schließfächer in der Schule">
-          {lockers.map((color) => (
-            <div class="sf-locker" style={`background:${color};`}></div>
-          ))}
-        </div>
       </div>
     </div>
   </div>
