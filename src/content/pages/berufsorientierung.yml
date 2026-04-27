@@ -34,12 +34,11 @@ stufen:
       title: "Konkret werden."
       when: "EF · Q1 · Q2"
       items:
-        - "**EF:** Freiwilliges Schülerbetriebspraktikum oder Duales Orientierungspraktikum."
-        - "**Q1 / Q2:** Veranstaltungen „Wege ins Berufsleben\", „Wege ins Studium\" und „Wege in die Ausbildung\"."
-        - "**Beratung:** Regelmäßige Gesprächstermine mit der Arbeitsagentur."
-        - "**UniTrainees:** Orientierung an der Universität Duisburg-Essen."
-        - "**Studienfeldbezogener Eignungstest:** zur Selbsteinschätzung."
-        - "**Studi-Finder:** Einführung und begleitete Nutzung."
+        - "**EF:** Zweiwöchiges Pflichtpraktikum."
+        - "**Q1:** Teilnahme an der Ausbildungsoffensive."
+        - "**Q2:** Besuch von Ausbildungs- und Studienmessen."
+        - "**Beratung:** Anschlussvereinbarung; wöchentliche Beratungsangebote der Jugendberufsagentur und der Agentur für Arbeit."
+        - "**Begabtenförderung & Studienorientierung:** Talentscouting der Universität Duisburg-Essen."
 
 angebot:
   eyebrow: "Beratungsangebot"
@@ -52,7 +51,7 @@ angebot:
       cta: "Zur Laufbahnberatung →"
     - label: "Studium & Beruf"
       title: "Studien- und Berufsberatung"
-      body: "Vom Praktikum bis zum Studi-Finder: Wir begleiten den Übergang von Schule zu Hochschule oder Ausbildung, inklusive externer Partner."
+      body: "Vom Pflichtpraktikum bis zur Studien- und Ausbildungsmesse: Wir begleiten den Übergang von Schule zu Hochschule oder Ausbildung, inklusive externer Partner."
       href: "#studium"
       cta: "Zu Sek I & Sek II →"
     - label: "Persönlich"

@@ -1,0 +1,105 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHero from "../components/PageHero.astro";
+---
+<BaseLayout title="Wettbewerbe · UNESCO-Schule Essen" description="Wettbewerbe an der UNESCO-Schule Essen — geplante und laufende Teilnahmen.">
+<style is:global>
+  .wb-intro{background:var(--creme);padding:var(--space-section) 0;}
+  .wb-intro-grid{
+    display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);
+    gap:56px;align-items:start;
+  }
+  .wb-intro h2{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(30px,3.4vw,44px);line-height:1.1;
+    color:var(--petrol);letter-spacing:-0.015em;margin:0;
+  }
+  .wb-intro h2 em{font-style:italic;color:var(--bordeaux);}
+  .wb-intro p{
+    font-family:var(--sans);font-size:17px;line-height:1.7;color:var(--tinte);
+    margin:0 0 14px;
+  }
+
+  .wb-list{background:var(--offwhite);padding:var(--space-section) 0;border-top:1px solid var(--hairline);}
+  .wb-list .head{max-width:820px;margin:0 0 40px;}
+  .wb-list .head .eyebrow{display:block;margin-bottom:14px;}
+  .wb-list .head h2{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(28px,3vw,40px);line-height:1.15;letter-spacing:-0.015em;
+    color:var(--petrol);margin:0;
+  }
+
+  .wb-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:24px;}
+  .wb-card{
+    background:#fff;border:1px solid var(--hairline);
+    border-top:var(--card-accent-width) solid var(--gold);
+    padding:28px 28px 24px;display:flex;flex-direction:column;gap:14px;
+  }
+  .wb-card .kicker{
+    font-family:var(--sans);font-size:11px;font-weight:600;
+    letter-spacing:0.14em;text-transform:uppercase;color:#8a5a20;
+    display:inline-flex;align-items:center;gap:8px;
+  }
+  .wb-card .kicker .dot{
+    width:6px;height:6px;border-radius:50%;background:var(--gold);display:inline-block;
+  }
+  .wb-card h3{
+    font-family:var(--serif);font-weight:500;font-size:22px;line-height:1.2;
+    color:var(--petrol);letter-spacing:-0.008em;margin:0;
+  }
+  .wb-card p{
+    font-family:var(--sans);font-size:15px;line-height:1.6;color:var(--tinte);margin:0;
+  }
+  .wb-card .meta{
+    font-family:var(--sans);font-size:13px;color:var(--stein);
+    padding-top:12px;border-top:1px solid var(--hairline);
+  }
+
+  @media (max-width:960px){
+    .wb-intro-grid{grid-template-columns:1fr;gap:28px;}
+    .wb-intro,.wb-list{padding:var(--space-section-sm) 0;}
+  }
+</style>
+
+<main id="top">
+
+<PageHero variant="feature">
+  <Fragment slot="eyebrow">Angebote · Wettbewerbe</Fragment>
+  <Fragment slot="title">Wettbewerbe.</Fragment>
+  <Fragment slot="lede">Ob MINT, Sprache, Sport oder Kultur: Wettbewerbe sind eine Bühne, auf der unsere Schülerinnen und Schüler ihre Stärken zeigen. Diese Seite wächst — derzeit ist hier ein erster Eintrag zu finden, weitere folgen.</Fragment>
+</PageHero>
+
+<section class="wb-intro" aria-label="Einordnung">
+  <div class="container">
+    <div class="wb-intro-grid">
+      <div>
+        <h2>Wettbewerbe als <em>Lernanlass.</em></h2>
+      </div>
+      <div>
+        <p>Wettbewerbe geben einen klaren Rahmen, ein Ziel und ein Publikum. Sie ergänzen den Unterricht, fördern Eigeninitiative und machen Lernerfolge sichtbar.</p>
+        <p>Der Überblick wird sukzessive erweitert. Aktuell vorbereitet:</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="wb-list" aria-label="Geplante und laufende Wettbewerbe">
+  <div class="container">
+    <div class="head">
+      <span class="eyebrow">Geplant</span>
+      <h2>Was kommt.</h2>
+    </div>
+
+    <div class="wb-grid">
+      <article class="wb-card">
+        <span class="kicker"><span class="dot"></span>Geplant · MINT &amp; Technik</span>
+        <h3>zdi-Roboterwettbewerb</h3>
+        <p>Im Rahmen unserer Roboter-AG bereiten sich Schülerinnen und Schüler auf den Roboterwettbewerb des zdi-Zentrums NRW vor: bauen, programmieren, im Wettbewerb erproben.</p>
+        <p class="meta">Partner: zdi-Zentrum NRW</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+</main>
+</BaseLayout>
