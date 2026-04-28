@@ -1,0 +1,709 @@
+---
+import BaseLayout from "../layouts/BaseLayoutTest.astro";
+import { upcomingEvents, formatDayNum, formatMonthShort, formatWeekdayShort } from "../lib/calendar";
+import { getLatestNews, withBase, formatArticleDate, entrySlug, categoryBadgeClass } from "../lib/news";
+import { getSingle } from "../lib/pageContent";
+
+// Editierbare Inhalte aus src/content/pages/home.yml (Sveltia)
+const home = await getSingle("pageHome");
+
+// Nächste Termine für die Startseite: 20 holen, damit auch bei spätem
+// Seitenaufruf nach dem letzten Build genug aktuelle übrig bleiben.
+// Clientseitiges Skript unten filtert Vergangenes und begrenzt auf 5.
+const nextDates = await upcomingEvents(20);
+
+// Drei neueste News-Artikel
+const latestNews = await getLatestNews(3);
+const BASE = import.meta.env.BASE_URL;
+---
+<BaseLayout title="TEST · Neuer Header · UNESCO-Schule Essen">
+<style is:global>
+/* ---------- HERO ---------- */
+  .hero{padding:72px 0 54px;}
+  .hero-grid{
+    display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;
+  }
+  .hero-photo{
+    position:relative;aspect-ratio:16/15;overflow:hidden;border-radius:2px;
+    background:var(--creme);
+  }
+  .hero-photo img{width:100%;height:100%;object-fit:cover;}
+  .hero-photo .cred{
+    position:absolute;bottom:12px;left:14px;
+    color:rgba(255,255,255,0.82);
+    font-family:var(--sans);font-size:10.5px;letter-spacing:0.1em;
+    text-transform:uppercase;
+  }
+  .hero-text .eyebrow{margin-bottom:20px;display:block;}
+  .hero-claim{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(40px,4.6vw,64px);
+    line-height:1.04;letter-spacing:-0.02em;
+    color:var(--petrol);
+    margin-bottom:28px;
+  }
+  .hero-claim em{font-style:italic;color:var(--petrol);}
+  .hero-sub{
+    font-family:var(--serif);font-style:italic;
+    color:var(--stein);
+    font-size:21px;line-height:1.5;
+    max-width:520px;margin-bottom:40px;
+  }
+  .hero-cta-row{display:flex;align-items:center;gap:20px;flex-wrap:wrap;}
+  .hero-open-day{
+    display:inline-flex;align-items:center;gap:6px;
+    color:var(--bordeaux);font-family:var(--sans);font-weight:500;font-size:14px;
+    text-decoration:none;
+  }
+  .hero-open-day .dot{
+    width:6px;height:6px;border-radius:50%;background:var(--bordeaux);
+    display:inline-block;
+  }
+  .hero-open-day span.label{
+    text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px;
+  }
+  .hero-open-day:hover{color:var(--petrol-dark);}
+
+  /* ---------- News + Dates ---------- */
+  .news-dates{
+    display:grid;grid-template-columns:minmax(0,6fr) minmax(0,4fr);gap:48px;
+  }
+  .news-dates > div, .news-dates > aside{
+    background:rgba(245,239,231,0.55);
+    border:1px solid var(--hairline);
+    border-radius:6px;
+    padding:40px 40px 44px;
+    box-shadow:0 12px 32px -18px rgba(14,77,79,0.22), 0 2px 6px -2px rgba(14,77,79,0.06);
+  }
+  .news-list{display:grid;grid-template-columns:1fr 1fr;gap:32px 28px;}
+  .news-card{display:flex;flex-direction:column;gap:14px;text-decoration:none;color:inherit;}
+  .news-card .thumb{
+    aspect-ratio:4/3;overflow:hidden;background:var(--creme);
+    border-radius:2px;
+  }
+  .news-card .thumb img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease;}
+  .news-card:hover .thumb img{transform:scale(1.03);}
+  .news-meta{display:flex;align-items:center;gap:10px;}
+  .badge{
+    font-family:var(--sans);font-weight:500;font-size:10.5px;
+    letter-spacing:0.1em;text-transform:uppercase;
+    padding:3px 9px;border-radius:2px;display:inline-block;
+  }
+  .badge-aktuell{background:var(--bordeaux);color:var(--creme);}
+  .badge-news{background:rgba(110,38,57,0.10);color:var(--bordeaux);}
+  .badge-unesco{background:rgba(127,176,105,0.18);color:#3e6b2a;}
+  .badge-kunst{background:rgba(212,165,116,0.22);color:#7a5120;}
+  .badge-sport{background:rgba(14,77,79,0.10);color:var(--petrol);}
+  .news-card h3{
+    color:var(--petrol);font-size:20px;line-height:1.25;
+    font-family:var(--serif);font-weight:500;letter-spacing:-0.005em;
+    margin:0;
+  }
+  .news-card:hover h3{color:var(--petrol-dark);}
+  .news-card .excerpt{
+    color:var(--stein);font-size:15px;line-height:1.55;
+    display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+  }
+  .news-card .date{color:var(--stein);}
+
+  /* Featured news (first card) */
+  .news-list .news-card.featured{grid-column:1/-1;display:grid;grid-template-columns:1.2fr 1fr;gap:28px;align-items:center;}
+  .news-list .news-card.featured .thumb{aspect-ratio:5/4;}
+  .news-list .news-card.featured h3{font-size:24px;font-family:var(--serif);font-weight:500;letter-spacing:-0.01em;}
+  .news-list .news-card.featured .excerpt{-webkit-line-clamp:3;font-size:16px;}
+
+  /* Dates */
+  .dates-list{list-style:none;margin:0;padding:0;border-top:1px solid var(--hairline);}
+  .date-row{
+    display:grid;grid-template-columns:84px 1fr;gap:20px;
+    padding:22px 0;
+    border-bottom:1px solid var(--hairline);
+  }
+  .date-row .date-main{
+    font-family:var(--serif);font-weight:500;font-size:26px;
+    color:var(--petrol);line-height:1;letter-spacing:-0.01em;
+    font-variant-numeric:tabular-nums;
+  }
+  .date-row .date-sub{
+    font-family:var(--sans);font-size:12px;color:var(--stein);
+    letter-spacing:0.08em;text-transform:uppercase;margin-top:4px;
+  }
+  .date-row .date-body h3{
+    font-family:var(--sans);font-weight:500;font-size:16px;color:var(--tinte);
+    margin:0 0 4px;
+  }
+  .date-row .date-cat{
+    font-family:var(--sans);font-weight:500;font-size:11px;
+    letter-spacing:0.1em;text-transform:uppercase;color:var(--stein);
+  }
+  .date-row.highlight .date-main{color:var(--bordeaux);}
+
+  /* ---------- Was uns auszeichnet (Collage) ---------- */
+  .pillars-section{
+    background:
+      radial-gradient(ellipse at 15% 10%, rgba(127,176,105,0.08), transparent 45%),
+      radial-gradient(ellipse at 85% 90%, rgba(212,165,116,0.10), transparent 50%),
+      var(--creme);
+    padding:30px 0 35px;
+    position:relative;
+    overflow:hidden;
+  }
+  .pillars-section::before{
+    content:"";position:absolute;inset:0;
+    background-image:
+      radial-gradient(circle at 25% 30%, rgba(14,77,79,0.025) 1px, transparent 1px),
+      radial-gradient(circle at 75% 70%, rgba(110,38,57,0.02) 1px, transparent 1px);
+    background-size:24px 24px, 32px 32px;
+    pointer-events:none;opacity:0.6;
+  }
+  .pillars-head{text-align:center;max-width:760px;margin:0 auto 72px;position:relative;}
+  .pillars-head .eyebrow{display:block;margin-bottom:16px;}
+  .pillars-head h2{
+    font-family:var(--serif);font-weight:500;font-size:42px;line-height:1.15;
+    letter-spacing:-0.02em;color:var(--petrol);
+  }
+  .pillars-collage{
+    position:relative;max-width:1100px;margin:0 auto;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:28px;
+  }
+  .pillar-card{
+    position:relative;overflow:hidden;isolation:isolate;
+    background:var(--offwhite);
+    border:1px solid var(--hairline);
+    padding:40px 36px;
+    display:flex;flex-direction:column;gap:20px;
+    box-shadow:0 10px 30px -20px rgba(14,77,79,0.22);
+    transition:transform .3s ease, box-shadow .3s ease;
+    min-height:280px;
+    text-decoration:none;color:inherit;
+  }
+  a.pillar-card:focus-visible{
+    outline:2px solid var(--bordeaux);outline-offset:3px;
+  }
+  .pillars-section[data-bg-images="on"] .pillar-card::before{
+    content:"";position:absolute;inset:0;z-index:-1;
+    background-image:var(--card-bg, none);
+    background-size:cover;background-position:center;
+    opacity:var(--card-bg-opacity, 0.15);
+    transition:opacity .3s ease;
+    pointer-events:none;
+  }
+  .pillars-section[data-bg-images="on"] .pillar-card > *{position:relative;}
+  .pillar-unesco{--card-bg:url("/unesco-schule-essen-homepage/assets/pillar-unesco.jpg");}
+  .pillar-profile{--card-bg:url("/unesco-schule-essen-homepage/assets/pillar-profil.jpg");}
+  .pillar-abitur{--card-bg:url("/unesco-schule-essen-homepage/assets/pillar-abitur.jpg");}
+  .pillar-quote{--card-bg:url("/unesco-schule-essen-homepage/assets/pillar-quote.jpg");}
+  .pillars-section[data-bg-images="on"] .pillar-quote::after{
+    content:"";position:absolute;inset:-1px;z-index:-1;
+    background:rgba(250,247,241,0.55);
+    pointer-events:none;
+  }
+  .pillar-card:hover{
+    transform:translateY(-2px);
+    box-shadow:0 18px 40px -22px rgba(14,77,79,0.3);
+  }
+  .pillar-card .icon{width:36px;height:36px;color:var(--bordeaux);}
+  .pillar-card h3{
+    font-family:var(--serif);font-weight:500;font-size:24px;line-height:1.2;
+    color:var(--petrol);letter-spacing:-0.005em;margin:0 0 10px;
+  }
+  .pillar-card p{font-size:15px;color:var(--stein);line-height:1.6;}
+
+  .pillar-profile{background:var(--petrol);color:var(--creme);border-color:var(--petrol);}
+  .pillar-profile h3{color:var(--creme);}
+  .pillar-profile p{color:rgba(245,239,231,0.82);}
+  .pillar-profile .icon{color:var(--gold);}
+
+  .pillar-unesco{background:var(--bordeaux);color:var(--creme);border-color:var(--bordeaux);}
+  .pillar-unesco h3{color:var(--creme);}
+  .pillar-unesco p{color:rgba(245,239,231,0.88);}
+  .pillar-unesco .icon{color:var(--gold);}
+
+  .pillar-abitur{background:var(--gold);color:#3a2a10;border-color:var(--gold);}
+  .pillar-abitur h3{color:#2a1d08;}
+  .pillar-abitur p{color:rgba(58,42,16,0.85);}
+  .pillar-abitur .icon{color:var(--bordeaux);}
+
+  .pillar-quote{
+    background:var(--creme);
+    border:1px solid var(--hairline);
+    display:flex;align-items:center;justify-content:center;
+    text-align:center;padding:40px 36px;
+    transform:rotate(-1.2deg);
+    /* Drehpunkt oben, damit die Karte wie an einer Schnur baumelt */
+    transform-origin:50% 0%;
+    transition:transform .3s ease;
+  }
+  .pillar-quote:hover{
+    animation:pillar-quote-swing 1.8s cubic-bezier(0.36, 0, 0.16, 1) 1;
+  }
+  @keyframes pillar-quote-swing{
+    0%   { transform:rotate(-1.2deg); }
+    18%  { transform:rotate(-5.5deg); }
+    36%  { transform:rotate( 2.6deg); }
+    54%  { transform:rotate(-2.2deg); }
+    72%  { transform:rotate( 0.8deg); }
+    88%  { transform:rotate(-1.4deg); }
+    100% { transform:rotate(-1.2deg); }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .pillar-quote:hover{animation:none;transform:rotate(-1.2deg);}
+  }
+  .pillar-quote blockquote{
+    margin:0;
+    font-family:var(--serif);font-weight:400;font-style:italic;
+    font-size:clamp(22px,2vw,28px);line-height:1.25;letter-spacing:-0.01em;
+    color:var(--petrol);
+  }
+  .pillar-quote blockquote::before{
+    content:"\201E";
+    display:block;font-family:var(--serif);font-size:72px;line-height:0.4;
+    color:var(--bordeaux);opacity:0.5;margin-bottom:14px;
+  }
+  .pillar-quote cite{
+    display:block;margin-top:16px;
+    font-family:var(--sans);font-style:normal;font-size:11px;
+    letter-spacing:0.2em;text-transform:uppercase;color:var(--stein);
+  }
+
+  /* ---------- Voice (Quote) ---------- */
+  .voice-section{padding:60px 0;}
+  .voice-grid{
+    display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:72px;align-items:center;
+  }
+  .voice-photo{
+    aspect-ratio:4/5;overflow:hidden;background:var(--creme);border-radius:2px;
+    filter:grayscale(100%) contrast(1.02);
+  }
+  .voice-photo img{width:100%;height:100%;object-fit:cover;}
+  .voice-text .eyebrow{display:block;margin-bottom:24px;}
+  .voice-quote{
+    font-family:var(--serif);font-style:italic;font-weight:400;
+    font-size:clamp(26px,2.2vw,32px);line-height:1.35;
+    color:var(--petrol);
+    letter-spacing:-0.005em;
+    margin-bottom:32px;
+  }
+  .voice-quote .mark{color:var(--bordeaux);font-style:normal;}
+  .voice-attrib{
+    border-left:2px solid var(--bordeaux);padding-left:16px;
+  }
+  .voice-attrib .name{
+    font-family:var(--sans);font-weight:600;font-size:14px;color:var(--tinte);
+  }
+  .voice-attrib .role{
+    font-family:var(--sans);font-weight:500;font-size:11.5px;
+    letter-spacing:0.1em;text-transform:uppercase;color:var(--stein);margin-top:3px;
+  }
+
+  /* ---------- Dein Weg zu uns ---------- */
+  .path-section{background:var(--creme);padding:60px 0;}
+  .path-head{margin-bottom:56px;max-width:620px;}
+  .path-head .eyebrow{display:block;margin-bottom:14px;}
+  .path-head h2{font-size:36px;}
+  .path-head p{font-size:17px;color:var(--stein);margin-top:16px;line-height:1.55;}
+  .path-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:32px;
+  }
+  .path-card{
+    background:#fff;border:1px solid var(--hairline);border-radius:4px;
+    padding:36px 32px;display:flex;flex-direction:column;gap:16px;
+    min-height:100%;
+  }
+  .path-card .kicker{
+    font-family:var(--sans);font-weight:500;font-size:11.5px;
+    letter-spacing:0.1em;text-transform:uppercase;color:var(--stein);
+  }
+  .path-card h3{
+    font-family:var(--serif);font-weight:500;font-size:24px;
+    color:var(--petrol);letter-spacing:-0.01em;line-height:1.2;
+  }
+  .path-card .big-date{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(30px, 2.8vw, 40px);line-height:1.05;
+    color:var(--petrol);letter-spacing:-0.015em;
+    text-wrap:balance;
+  }
+  .path-card .big-date small{
+    display:block;font-size:14px;font-family:var(--sans);font-weight:500;
+    color:var(--stein);margin-top:10px;letter-spacing:0.04em;line-height:1.45;
+    white-space:pre-line;
+  }
+  .path-card p{font-size:15px;color:var(--tinte);line-height:1.55;flex:1;}
+  .path-card .contact-line{font-family:var(--sans);font-weight:500;font-size:17px;color:var(--petrol);line-height:1.5;}
+  .path-card .contact-line a{color:var(--petrol);text-decoration:none;}
+  .path-card .contact-line a:hover{text-decoration:underline;}
+  .path-card .btn{align-self:flex-start;margin-top:auto;}
+
+  /* ---------- Kooperationen & Partner (Logo-Leiste) ---------- */
+  .partners-section{
+    background:var(--offwhite);
+    padding:60px 0;
+    border-top:1px solid var(--hairline);
+  }
+  .partners-head{max-width:760px;margin-bottom:48px;}
+  .partners-head .eyebrow{display:block;margin-bottom:14px;}
+  .partners-head h2{font-size:36px;margin-bottom:16px;}
+  .partners-head p{color:var(--stein);font-size:17px;line-height:1.6;}
+  .partners-logos{
+    list-style:none;margin:0;padding:40px 0 0;
+    display:grid;grid-template-columns:repeat(5,1fr);
+    gap:16px 20px;align-items:center;
+    border-top:1px solid var(--hairline);
+  }
+  .partner-logo{
+    display:flex;align-items:center;justify-content:center;
+    height:88px;padding:8px;
+    filter:grayscale(100%) opacity(0.72);
+    transition:filter .3s ease, transform .3s ease;
+  }
+  .partner-logo:hover{
+    filter:grayscale(0) opacity(1);
+    transform:scale(1.18);
+    z-index:2;position:relative;
+  }
+  .partner-logo img{max-height:100%;max-width:100%;width:auto;height:auto;object-fit:contain;}
+  .partners-foot{margin-top:36px;}
+
+  /* ---------- Mobile ≤960px — komplette Anpassung der Startseite ---------- */
+  @media (max-width:960px){
+    /* Hero: 1-spaltig, Foto oben, knapperes Padding, kleinere Schrift */
+    .hero{padding:var(--space-section-sm) 0;}
+    .hero-grid{grid-template-columns:1fr;gap:28px;}
+    .hero-photo{aspect-ratio:4/3;max-height:480px;}
+    .hero-text{order:2;}
+    .hero-photo{order:1;}
+    .hero-claim{font-size:clamp(30px,7vw,44px);margin-bottom:18px;line-height:1.08;}
+    .hero-sub{font-size:17px;line-height:1.55;margin-bottom:28px;}
+
+    /* News + Termine: stacked */
+    .news-dates{grid-template-columns:1fr;gap:32px;}
+    .news-dates > div, .news-dates > aside{padding:22px 22px 26px;}
+
+    /* News-Cards: Bild oben, Text unten, 1-spaltig */
+    .news-list{grid-template-columns:1fr;gap:28px;}
+    .news-card{display:flex;flex-direction:column;gap:12px;}
+    .news-card .thumb{aspect-ratio:16/10;}
+    .news-card h3{font-size:19px;}
+    .news-card .excerpt{-webkit-line-clamp:3;font-size:15px;line-height:1.55;}
+    /* Featured-Card: selbes Layout wie andere, nur größere Schrift */
+    .news-list .news-card.featured{
+      grid-column:auto;display:flex;flex-direction:column;gap:12px;align-items:stretch;
+    }
+    .news-list .news-card.featured .thumb{aspect-ratio:16/10;}
+    .news-list .news-card.featured h3{font-size:22px;}
+    .news-list .news-card.featured .excerpt{-webkit-line-clamp:3;font-size:15.5px;}
+
+    /* Termine-Datumsspalte knapper */
+    .date-row{grid-template-columns:72px 1fr;gap:14px;padding:18px 0;}
+    .date-row .date-main{font-size:22px;}
+    .date-row .date-body h3{font-size:15px;}
+
+    /* Section-Head: Titel und "Alle Beiträge →" untereinander */
+    .section-head{flex-direction:column;align-items:flex-start;gap:10px;margin-bottom:20px;}
+    .section-head .all-link{white-space:normal;}
+
+    /* Pillars: 1-spaltig, keine Rotation, knapperes Padding */
+    .pillars-section{padding:40px 0 48px;}
+    .pillars-head{margin-bottom:40px;}
+    .pillars-head h2{font-size:clamp(26px,6vw,34px);}
+    .pillars-collage{grid-template-columns:1fr;gap:16px;}
+    .pillar-card{padding:28px 24px;min-height:auto;}
+    .pillar-quote{transform:none;padding:28px 24px;}
+    .pillar-quote:hover{transform:none;animation:none;}
+    .pillar-quote blockquote{font-size:clamp(20px,4.5vw,24px);}
+    .pillar-quote blockquote::before{font-size:56px;margin-bottom:8px;}
+    .pillar-card h3{font-size:22px;}
+
+    /* Voice: 1-spaltig */
+    .voice-section{padding:40px 0;}
+    .voice-grid{grid-template-columns:1fr;gap:28px;}
+    .voice-photo{max-width:360px;aspect-ratio:4/5;margin:0 auto;}
+    .voice-quote{font-size:clamp(22px,5vw,28px);}
+
+    /* Path: 1-spaltig */
+    .path-section{padding:var(--space-section-sm) 0;}
+    .path-head{margin-bottom:32px;}
+    .path-head h2{font-size:clamp(26px,6vw,32px);}
+    .path-grid{grid-template-columns:1fr;gap:14px;}
+    .path-card{padding:28px 24px;}
+
+    /* Partners */
+    .partners-section{padding:var(--space-section-sm) 0;}
+    .partners-head{margin-bottom:32px;}
+    .partners-head h2{font-size:clamp(26px,6vw,32px);}
+    .partners-logos{grid-template-columns:repeat(3,1fr);gap:12px;padding:28px 0 0;}
+  }
+
+  @media (max-width:560px){
+    .partners-logos{grid-template-columns:repeat(2,1fr);}
+    /* Hero-CTA-Row vertikal stapeln */
+    .hero-cta-row{flex-direction:column;align-items:flex-start;gap:14px;}
+    .hero-cta-row .btn{width:100%;justify-content:center;}
+  }
+  @media (max-width:400px){
+    .partners-logos{grid-template-columns:1fr;gap:8px;}
+    .partner-logo{height:64px;}
+    .hero-claim{font-size:28px;}
+    .news-list .news-card.featured h3{font-size:20px;}
+  }
+</style>
+
+<main id="top">
+<!-- ===================== HERO ===================== -->
+<section class="hero" aria-label="Willkommen">
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-photo">
+        <img id="heroImage"
+             src={home.hero.imageSrc}
+             alt={home.hero.imageAlt}
+             width="960" height="900" fetchpriority="high">
+        <span class="cred">Platzhalter · Foto-Shoot folgt</span>
+      </div>
+      <div class="hero-text">
+        <span class="eyebrow">{home.hero.eyebrow}</span>
+        <h1 class="hero-claim" id="heroClaim">
+          {home.hero.title}{home.hero.titleHighlight && <><br />{home.hero.titleHighlight}</>}
+        </h1>
+        <p class="hero-sub">{home.hero.sub}</p>
+        <div class="hero-cta-row">
+          <a href={home.hero.ctaHref} class="btn btn-primary">{home.hero.ctaLabel} <span class="arrow">→</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== AKTUELLES + TERMINE ===================== -->
+<section id="aktuelles" aria-label="Aktuelles und nächste Termine">
+  <div class="container">
+    <div class="news-dates">
+
+      <!-- Aktuelles -->
+      <div>
+        <div class="section-head">
+          <h2>Aktuelles aus der Schule</h2>
+          <a href="Aktuelles.html" class="all-link">Alle Beiträge →</a>
+        </div>
+
+        <div class="news-list">
+          {latestNews.length === 0 ? (
+            <p style="font-family:var(--sans);color:var(--stein);">Noch keine Beiträge veröffentlicht.</p>
+          ) : (
+            latestNews.map((entry, idx) => (
+              <a href={`${BASE}/aktuelles/${entrySlug(entry)}.html`} class={`news-card ${idx === 0 ? "featured" : ""}`}>
+                <div class="thumb">
+                  <img
+                    src={withBase(entry.data.coverImage, BASE)}
+                    alt={entry.data.coverAlt}
+                    width={idx === 0 ? 1000 : 800}
+                    height={idx === 0 ? 800 : 600}
+                    loading={idx === 0 ? "eager" : "lazy"}
+                  />
+                </div>
+                <div>
+                  <div class="news-meta">
+                    <span class={`badge ${categoryBadgeClass(entry.data.category)}`}>{entry.data.category}</span>
+                    <span class="caption date">{formatArticleDate(entry.data.date)}</span>
+                  </div>
+                  <h3 style="margin-top:10px;">{entry.data.title}</h3>
+                  <p class="excerpt">{entry.data.excerpt}</p>
+                </div>
+              </a>
+            ))
+          )}
+        </div>
+      </div>
+
+      <!-- Termine -->
+      <aside aria-label="Nächste Termine">
+        <div class="section-head">
+          <h2>Nächste Termine</h2>
+          <a href="Kalender.html" class="all-link">Alle Termine →</a>
+        </div>
+        {nextDates.length === 0 ? (
+          <p style="font-family:var(--sans);color:var(--stein);font-size:15px;">Derzeit keine anstehenden Termine.</p>
+        ) : (
+          <ul class="dates-list" id="homeDatesList">
+            {nextDates.map((e) => (
+              <li class={`date-row ${e.category === "highlight" || e.category === "exam" ? "highlight" : ""}`} data-end-date={e.endDate}>
+                <div>
+                  <div class="date-main">{formatDayNum(e.startDate)}&nbsp;{formatMonthShort(e.startDate)}</div>
+                  <div class="date-sub">{formatWeekdayShort(e.startDate)}</div>
+                </div>
+                <div class="date-body">
+                  <h3>{e.title}</h3>
+                  {e.isMultiDay && (
+                    <span class="date-cat">bis {formatDayNum(e.endDate)}&nbsp;{formatMonthShort(e.endDate)}</span>
+                  )}
+                  {!e.isMultiDay && e.category === "exam" && (
+                    <span class="date-cat">Prüfung</span>
+                  )}
+                  {!e.isMultiDay && e.category === "highlight" && (
+                    <span class="date-cat">Termin der Schulgemeinschaft</span>
+                  )}
+                  {!e.isMultiDay && e.category === "holiday" && (
+                    <span class="date-cat">Ferien &middot; schulfrei</span>
+                  )}
+                </div>
+              </li>
+            ))}
+          </ul>
+        )}
+      </aside>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===================== WAS UNS AUSZEICHNET ===================== -->
+<section id="was-uns-auszeichnet" class="pillars-section" data-bg-images="on" aria-label="Was uns auszeichnet">
+  <div class="container">
+    <div class="pillars-head">
+      <span class="eyebrow">Was uns auszeichnet</span>
+      <h2>Drei Gründe,<br>die einen Unterschied machen.</h2>
+    </div>
+
+    <div class="pillars-collage">
+      <a href="UNESCO-Mission.html" class="pillar-card pillar-unesco">
+        <svg class="icon" viewBox="0 0 56 56" fill="none" aria-hidden="true" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+          <circle cx="28" cy="28" r="20"/>
+          <path d="M8 28h40"/>
+          <path d="M28 8c6 6 9 13 9 20s-3 14-9 20"/>
+          <path d="M28 8c-6 6-9 13-9 20s3 14 9 20"/>
+          <path d="M12 18c5 3 11 4 16 4s11-1 16-4M12 38c5-3 11-4 16-4s11 1 16 4"/>
+        </svg>
+        <div>
+          <h3>UNESCO-Projektschule</h3>
+          <p>Teil eines weltweiten Netzwerks von rund 12 000 Schulen. Frieden, Menschenrechte und nachhaltige Entwicklung sind bei uns nicht Projekttag, sondern Lehrplan.</p>
+        </div>
+      </a>
+
+      <a href="Erprobungsstufe.html" class="pillar-card pillar-profile">
+        <svg class="icon" viewBox="0 0 56 56" fill="none" aria-hidden="true" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 44c0-10 3-18 8-26"/>
+          <path d="M20 44c-8 0-12-6-12-14 0-8 6-14 14-14 6 0 10 4 12 8-2 8-8 16-14 20z"/>
+          <path d="M36 44c0-10-3-18-8-26"/>
+          <path d="M36 44c8 0 12-6 12-14 0-8-6-14-14-14-6 0-10 4-12 8 2 8 8 16 14 20z"/>
+        </svg>
+        <div>
+          <h3>Zwei Profile<br>ab Klasse 5</h3>
+          <p>WortArt⁺ für Sprache, Literatur und darstellendes Spiel. Forscher² für Naturwissenschaften und Mathematik.</p>
+        </div>
+      </a>
+
+      <a href="Oberstufe.html" class="pillar-card pillar-abitur">
+        <svg class="icon" viewBox="0 0 56 56" fill="none" aria-hidden="true" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M8 14h18c2 0 4 2 4 4v28c0-2-2-4-4-4H8z"/>
+          <path d="M48 14H30c-2 0-4 2-4 4v28c0-2 2-4 4-4h18z"/>
+          <path d="M28 18v28"/>
+          <path d="M14 22h10M14 28h10M34 22h8M34 28h10M34 34h6"/>
+        </svg>
+        <div>
+          <h3>Starkes Abitur</h3>
+          <p>Solide Oberstufe mit einer breiten Auswahl an Leistungskursen. Fundiertes Wissen, Methodensicherheit und Zeit, den eigenen Weg zu finden.</p>
+        </div>
+      </a>
+
+      <a href="Leitbild.html" class="pillar-card pillar-quote">
+        <div>
+          <blockquote>
+            Gemeinsam Lernen<br>Den eigenen Weg finden
+          </blockquote>
+          <cite>Unser Leitbild</cite>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== DEIN WEG ZU UNS ===================== -->
+<section id="wegzuuns" class="path-section" aria-label="Dein Weg zu uns">
+  <div class="container">
+    <div class="path-head">
+      <h2>{home.path.title}</h2>
+      <p>{home.path.intro}</p>
+    </div>
+
+    <div class="path-grid">
+      {home.path.cards.map((card) => (
+        <article class="path-card">
+          <span class="kicker">{card.kicker}</span>
+          {card.bigDate && (
+            <div class="big-date">
+              {card.bigDate}
+              {card.bigDateSub && <small>{card.bigDateSub}</small>}
+            </div>
+          )}
+          {card.title && <h3>{card.title}</h3>}
+          {card.text && <p>{card.text}</p>}
+          {card.ctaLabel && card.ctaHref && (
+            <a href={card.ctaHref} class="btn btn-primary">{card.ctaLabel} <span class="arrow">→</span></a>
+          )}
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ===================== KOOPERATIONEN & PARTNER ===================== -->
+<section class="partners-section" aria-label="Kooperationen und Partner">
+  <div class="container">
+    <div class="partners-head">
+      <span class="eyebrow">{home.partners.eyebrow}</span>
+      <h2>{home.partners.title}</h2>
+      <p>{home.partners.intro}</p>
+    </div>
+
+    <ul class="partners-logos">
+      <li><a class="partner-logo" href="https://www.unesco.de/bildung/unesco-projektschulen" target="_blank" rel="noopener" title="UNESCO-Projektschulen"><img src="assets/partners/unesco.png" alt="UNESCO-Projektschulen" width="200" height="80" loading="lazy"></a></li>
+      <li><a class="partner-logo" href="https://www.uni-due.de" target="_blank" rel="noopener" title="Universität Duisburg-Essen"><img src="assets/partners/uni-due.png" alt="Universität Duisburg-Essen" width="200" height="80" loading="lazy"></a></li>
+      <li><a class="partner-logo" href="https://www.theater-essen.de" target="_blank" rel="noopener" title="Theater und Philharmonie Essen"><img src="assets/partners/tup.png" alt="Theater und Philharmonie Essen" width="200" height="80" loading="lazy"></a></li>
+      <li><a class="partner-logo" href="https://www.stifterverband.org" target="_blank" rel="noopener" title="Stifterverband"><img src="assets/partners/stifterverband.png" alt="Stifterverband" width="200" height="80" loading="lazy"></a></li>
+      <li><a class="partner-logo" href="https://www.contact-essen.de" target="_blank" rel="noopener" title="Contact · Kommunikation · Sport · Event"><img src="assets/partners/contact.png" alt="Contact" width="200" height="80" loading="lazy"></a></li>
+      <li><a class="partner-logo" href="https://www.arbeitsagentur.de/vor-ort/essen/startseite" target="_blank" rel="noopener" title="Agentur für Arbeit Essen"><img src="assets/partners/agentur-arbeit.png" alt="Agentur für Arbeit Essen" width="200" height="80" loading="lazy"></a></li>
+      <li><a class="partner-logo" href="https://www.cse.de" target="_blank" rel="noopener" title="CSE"><img src="assets/partners/cse.png" alt="CSE" width="200" height="80" loading="lazy"></a></li>
+      <li><a class="partner-logo" href="https://www.goldschmidt.com" target="_blank" rel="noopener" title="Goldschmidt Thermit Group"><img src="assets/partners/goldschmidt-thermit.png" alt="Goldschmidt Thermit Group" width="200" height="80" loading="lazy"></a></li>
+      <li><a class="partner-logo" href="https://www.theater-essen.de/philharmonie" target="_blank" rel="noopener" title="Essener Philharmoniker"><img src="assets/partners/philharmoniker.png" alt="Essener Philharmoniker" width="200" height="80" loading="lazy"></a></li>
+      <li><a class="partner-logo" href="https://www.jugendhilfe-essen.de" target="_blank" rel="noopener" title="Jugendhilfe Essen"><img src="assets/partners/jhe.png" alt="jhe" width="200" height="80" loading="lazy"></a></li>
+      <li><a class="partner-logo" href="https://goldschmidt-stiftung.de" target="_blank" rel="noopener" title="Goldschmidt Stiftung"><img src="assets/partners/goldschmidt-stiftung.png" alt="Goldschmidt Stiftung" width="200" height="80" loading="lazy"></a></li>
+      <li><a class="partner-logo" href="https://www.rotary-essen.de" target="_blank" rel="noopener" title="Rotary Club Essen"><img src="assets/partners/rotary.png" alt="Rotary Club Essen" width="200" height="80" loading="lazy"></a></li>
+      <li><a class="partner-logo" href="https://www.archenoah-essen.de" target="_blank" rel="noopener" title="Arche Noah Essen"><img src="assets/partners/arche-noah.png" alt="Arche Noah Essen" width="200" height="80" loading="lazy"></a></li>
+      <li><a class="partner-logo" href="https://www.wdr.de" target="_blank" rel="noopener" title="WDR"><img src="assets/partners/wdr.png" alt="WDR" width="200" height="80" loading="lazy"></a></li>
+      <li><a class="partner-logo" href="https://www.iwc-essen-nord.de" target="_blank" rel="noopener" title="IWC Essen-Nord"><img src="assets/partners/iwc.png" alt="IWC Essen-Nord" width="200" height="80" loading="lazy"></a></li>
+    </ul>
+
+    <p class="partners-foot">
+      <a href="#" class="inline-link">Alle Kooperationen &amp; Partnerschaften ansehen</a>
+    </p>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+
+<script is:inline>
+  // Termine-Liste tagesaktuell halten — unabhängig vom letzten Build.
+  // Filtert veraltete Einträge (endDate < heute in Berliner Zeit) und
+  // zeigt höchstens 5 kommende Termine an.
+  (function(){
+    var list = document.getElementById('homeDatesList');
+    if (!list) return;
+    var todayISO = new Date().toLocaleDateString('en-CA', { timeZone: 'Europe/Berlin' });
+    var rows = list.querySelectorAll('.date-row');
+    var shown = 0;
+    rows.forEach(function(row){
+      var endDate = row.getAttribute('data-end-date') || '';
+      if (endDate < todayISO || shown >= 5){
+        row.style.display = 'none';
+      } else {
+        shown++;
+      }
+    });
+  })();
+</script>
+
+</main>
+</BaseLayout>
