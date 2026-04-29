@@ -286,39 +286,72 @@ function link(path: string): string {
   /* ---------- Header ---------- */
   .site-header{
     position:sticky;top:0;z-index:1000;
-    background:rgba(250,247,241,0.92);
+    background:rgba(245,239,231,0.96);
     backdrop-filter:saturate(140%) blur(8px);
     -webkit-backdrop-filter:saturate(140%) blur(8px);
     border-bottom:1px solid var(--hairline);
+    box-shadow:0 1px 0 rgba(14,77,79,0) inset;
+    transition:box-shadow .3s ease, border-color .3s ease;
   }
+  /* Dünner Akzentstreifen oben in Petrol */
+  .site-header::before{
+    content:"";display:block;height:4px;width:100%;
+    background:linear-gradient(90deg, var(--petrol) 0%, var(--petrol) 65%, var(--bordeaux) 100%);
+  }
+  /* Sanfter Schatten beim Scrollen statt harter Hairline */
+  .site-header[data-scrolled="true"]{
+    border-bottom-color:transparent;
+    box-shadow:0 8px 24px -16px rgba(14,77,79,0.28);
+  }
+
   .header-inner{
     max-width:var(--container);
     margin:0 auto;
-    padding:0 var(--pad-desk);
-    height:160px;
-    display:flex;align-items:center;gap:40px;
+    padding:22px var(--pad-desk) 0;
+    display:flex;flex-direction:column;align-items:center;gap:18px;
+    transition:padding .3s ease;
   }
-  .logo{display:flex;align-items:center;text-decoration:none;flex-shrink:0;}
+  .logo{
+    display:flex;align-items:center;justify-content:center;
+    text-decoration:none;flex-shrink:0;
+    margin:0 auto;
+  }
+  /* Logo: 126 px Default */
   .logo .logo-stack{
-    position:relative;display:block;height:134px;
-    transition:transform .3s ease;
+    position:relative;display:block;height:126px;
+    transition:transform .3s ease, height .35s ease;
   }
   .logo .logo-stack img{
-    display:block;height:134px;width:auto;
-    transition:opacity .35s ease;
+    display:block;height:126px;width:auto;max-width:100%;
+    transition:opacity .35s ease, height .35s ease;
   }
   .logo .logo-color{position:absolute;inset:0;opacity:0;}
-  .logo:hover .logo-stack{transform:scale(1.04);}
+  .logo:hover .logo-stack{transform:scale(1.02);}
   .logo:hover .logo-bw{opacity:0;}
   .logo:hover .logo-color{opacity:1;}
 
-  .main-nav{flex:1;display:flex;align-items:center;height:100%;}
-  .nav-list{list-style:none;display:flex;gap:4px;height:100%;margin:0;padding:0;}
+  /* Scroll-Shrink: Logo halbiert sich beim Scrollen (126 → 63 px) */
+  .site-header[data-scrolled="true"] .header-inner{padding-top:12px;gap:12px;}
+  .site-header[data-scrolled="true"] .logo .logo-stack,
+  .site-header[data-scrolled="true"] .logo .logo-stack img{height:63px;}
+
+  /* Nav-Row: Menü + Kalender/Kontakt-Buttons als zentrierte Gruppe */
+  .nav-row{
+    width:100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:18px;
+  }
+  .main-nav{
+    display:flex;align-items:center;justify-content:center;
+  }
+  .nav-list{list-style:none;display:flex;gap:4px;margin:0;padding:0;}
   .nav-item{position:relative;display:flex;align-items:center;}
   .nav-link{
-    display:flex;align-items:center;height:100%;
-    padding:0 16px;
-    font-family:var(--sans);font-size:19.6px;font-weight:500;
+    display:flex;align-items:center;
+    padding:14px 18px;
+    font-family:var(--sans);font-size:17px;font-weight:500;
     color:var(--tinte);text-decoration:none;
     border-bottom:3px solid transparent;
     transition:color .2s, border-color .2s;
@@ -362,18 +395,24 @@ function link(path: string): string {
 
 
 
-  .header-actions{display:flex;align-items:center;gap:10px;flex-shrink:0;}
+  .header-actions{
+    display:flex;align-items:center;justify-content:flex-end;gap:10px;
+  }
   .header-actions a{
     font-family:var(--sans);font-size:13.5px;font-weight:500;
     color:var(--petrol);
     padding:9px 16px;border-radius:4px;
     border:1.5px solid var(--petrol);
+    text-decoration:none;
     transition:color .2s, background-color .2s, border-color .2s;
   }
   .header-actions a:hover{color:#fff;background:var(--petrol);border-color:var(--petrol);}
   .header-actions .sep{display:none;}
 
-  .hamburger{display:none;background:none;border:0;cursor:pointer;padding:8px;margin-left:auto;}
+  .hamburger{
+    display:none;background:none;border:0;cursor:pointer;padding:8px;
+    position:absolute;top:14px;right:var(--pad-mob);
+  }
   .hamburger span{display:block;width:26px;height:2px;background:var(--petrol);margin:6px 0;transition:.3s;}
   .hamburger.active span:nth-child(1){transform:translateY(8px) rotate(45deg);}
   .hamburger.active span:nth-child(2){opacity:0;}
@@ -741,13 +780,13 @@ function link(path: string): string {
   .footer-brand .footer-logo{
     margin-bottom:28px;
   }
-  .footer-brand .footer-logo{display:inline-block;cursor:pointer;}
+  .footer-brand .footer-logo{display:inline-block;cursor:pointer;max-width:100%;}
   .footer-brand .footer-logo .logo-stack{
-    position:relative;display:block;height:117px;max-width:100%;
+    position:relative;display:block;width:100%;max-width:360px;
     transition:transform .3s ease;
   }
   .footer-brand .footer-logo .logo-stack img{
-    display:block;height:117px;width:auto;max-width:100%;
+    display:block;width:100%;height:auto;max-width:360px;
     transition:opacity .35s ease, filter .35s ease;
   }
   .footer-brand .footer-logo .logo-bw{filter:brightness(0) invert(1);}
@@ -787,23 +826,24 @@ function link(path: string): string {
 
   /* ---------- Responsive ---------- */
   @media (max-width:1080px){
-    /* Kompakter Header: 64px Höhe, Logo proportional */
-    .header-inner{height:64px;gap:16px;padding:0 var(--pad-mob);}
+    /* Mobile: Logo zentriert, Hamburger oben rechts, Menü als Drawer */
+    .header-inner{padding:14px var(--pad-mob) 12px;gap:0;}
     .logo .logo-stack,
-    .logo .logo-stack img{height:44px;}
-    .hamburger{display:block;}
+    .logo .logo-stack img{height:64px;}
+    .site-header[data-scrolled="true"] .logo .logo-stack,
+    .site-header[data-scrolled="true"] .logo .logo-stack img{height:32px;}
+    .nav-row{display:contents;}
     .header-actions{display:none;}
+    .hamburger{display:block;}
 
     /* Full-Screen Mobile-Drawer von rechts.
-       WICHTIG: Höhe explizit setzen, NICHT via top+bottom — der Header hat
-       backdrop-filter, was ihn zum Containing Block für position:fixed-Kinder
-       macht. top/bottom würden sich dann gegen die 64px hohe Header-Box
-       rechnen → Drawer kollabiert auf 0px. */
+       Höhe per JS-CSS-Variable --header-h gesetzt, weil sich die
+       Header-Höhe je nach Logo-Höhe unterscheidet. */
     .main-nav{
-      position:fixed;top:64px;right:0;bottom:auto;
+      position:fixed;top:var(--header-h, 92px);right:0;bottom:auto;
       width:min(360px, 86vw);left:auto;
-      height:calc(100vh - 64px);
-      height:calc(100dvh - 64px);
+      height:calc(100vh - var(--header-h, 92px));
+      height:calc(100dvh - var(--header-h, 92px));
       background:var(--offwhite);
       flex-direction:column;align-items:stretch;
       max-height:none;overflow-y:auto;overscroll-behavior:contain;
@@ -931,7 +971,7 @@ function link(path: string): string {
     .footer-grid{grid-template-columns:1fr 1fr;gap:28px 32px;}
     .footer-brand{grid-column:1 / -1;}
     .footer-brand .footer-logo .logo-stack,
-    .footer-brand .footer-logo .logo-stack img{height:84px;}
+    .footer-brand .footer-logo .logo-stack img{max-width:280px;}
     .footer-brand address{font-size:14px;}
     .footer-col h4{margin-bottom:14px;}
     .footer-col li{margin-bottom:8px;}
@@ -977,16 +1017,17 @@ function link(path: string): string {
 
 <a href="#top" class="skip-link">Zum Hauptinhalt springen</a>
 
-<header class="site-header">
+<header class="site-header" id="siteHeader">
   <div class="header-inner">
     <a href={link("index.html")} class="logo" aria-label="UNESCO-Schule Essen Startseite">
       <span class="logo-stack">
-        <img class="logo-bw"    src={link("assets/Logo_Signum_Aktualisiert.png")} alt="UNESCO-Schule Essen" width="440" height="134" fetchpriority="high">
-        <img class="logo-color" src={link("assets/Logo_Signum_Aktualisiert.png")} alt="" aria-hidden="true" width="440" height="134" loading="lazy">
+        <img class="logo-bw"    src={link("assets/Logo_UNESCO_Schule_Essen_Text.png")} alt="UNESCO-Schule Essen — Städtisches Gymnasium für Jungen und Mädchen, Sekundarstufen I und II" width="2367" height="637" fetchpriority="high">
+        <img class="logo-color" src={link("assets/Logo_UNESCO_Schule_Essen_Text.png")} alt="" aria-hidden="true" width="2367" height="637" loading="lazy">
       </span>
     </a>
 
-    <nav class="main-nav" id="mainNav" aria-label="Hauptnavigation">
+    <div class="nav-row">
+      <nav class="main-nav" id="mainNav" aria-label="Hauptnavigation">
       <ul class="nav-list">
         <li class="nav-item"><a href={link("Aktuelles.html")} class="nav-link">Aktuelles</a></li>
 
@@ -1100,11 +1141,10 @@ function link(path: string): string {
         </a>
       </div>
     </nav>
-
-    <div class="header-actions">
-      <a href={link("Kalender.html")}>Kalender</a>
-      <span class="sep">·</span>
-      <a href={link("Kontakt.html")}>Kontakt</a>
+      <div class="header-actions" aria-label="Schnellzugriff">
+        <a href={link("Kalender.html")}>Kalender</a>
+        <a href={link("Kontakt.html")}>Kontakt</a>
+      </div>
     </div>
 
     <button class="hamburger" id="hamburgerBtn" aria-label="Menü öffnen" aria-expanded="false" aria-controls="mainNav">
@@ -1125,8 +1165,8 @@ function link(path: string): string {
       <div class="footer-col footer-brand">
         <div class="footer-logo">
           <span class="logo-stack">
-            <img class="logo-bw"    src={link("assets/Logo_Signum_Aktualisiert.png")} alt="UNESCO-Schule Essen" width="440" height="134" fetchpriority="high">
-            <img class="logo-color" src={link("assets/Logo_Signum_Aktualisiert.png")} alt="" aria-hidden="true" width="440" height="134" loading="lazy">
+            <img class="logo-bw"    src={link("assets/Logo_UNESCO_Schule_Essen_Text.png")} alt="UNESCO-Schule Essen — Städtisches Gymnasium für Jungen und Mädchen, Sekundarstufen I und II" width="1200" height="360" fetchpriority="high">
+            <img class="logo-color" src={link("assets/Logo_UNESCO_Schule_Essen_Text.png")} alt="" aria-hidden="true" width="1200" height="360" loading="lazy">
           </span>
         </div>
         <address>
@@ -1237,6 +1277,20 @@ function link(path: string): string {
   window.addEventListener('resize', ()=>{
     if(window.innerWidth > 1080 && mainNav.classList.contains('open')) closeMenu();
   });
+
+  // Scroll-Shrink: Logo schrumpft auf 50 %, sobald gescrollt wird
+  const siteHeader = document.getElementById('siteHeader');
+  const SHRINK_AT = 40;
+  let lastShrunk = null;
+  function updateScrolled(){
+    const shrunk = window.scrollY > SHRINK_AT;
+    if(shrunk !== lastShrunk){
+      siteHeader.dataset.scrolled = shrunk ? 'true' : 'false';
+      lastShrunk = shrunk;
+    }
+  }
+  updateScrolled();
+  window.addEventListener('scroll', updateScrolled, { passive:true });
 </script>
 
 </body>
