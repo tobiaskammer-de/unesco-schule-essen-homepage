@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
+import MailLink from "../components/MailLink.astro";
 import { getSingle } from "../lib/pageContent";
 
 const page: any = await getSingle("pageErprobungsstufe");
@@ -391,11 +392,11 @@ const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
         </div>
         <p style="font-family:var(--sans);font-size:17px;line-height:1.6;color:var(--petrol);margin:0 0 22px;">
           <a href="tel:+492012802630" style="color:var(--petrol);font-weight:500;">0201 · 280 26 30</a><br>
-          <a href="mailto:info@unesco-schule-essen.de" style="color:var(--petrol);font-weight:500;">info@unesco-schule-essen.de</a>
+          <MailLink email="info@unesco-schule-essen.de" class="" />
         </p>
         <div class="cta-row">
           <a href="Tag-der-offenen-Tuer.html" class="btn btn-primary">Tag der offenen Tür <span class="arrow">→</span></a>
-          <a href="mailto:info@unesco-schule-essen.de" class="btn btn-secondary">Gespräch vereinbaren <span class="arrow">→</span></a>
+          <MailLink email="info@unesco-schule-essen.de" class="btn btn-secondary" label="Gespräch vereinbaren">Gespräch vereinbaren <span class="arrow">→</span></MailLink>
         </div>
       </div>
     </div>

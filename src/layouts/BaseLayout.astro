@@ -9,6 +9,7 @@ import "@fontsource/fraunces/600.css";
 import "@fontsource/fraunces/400-italic.css";
 import "@fontsource/fraunces/500-italic.css";
 import AccessibilityToolbar from "../components/AccessibilityToolbar.astro";
+import MailLink from "../components/MailLink.astro";
 
 interface Props {
   title?: string;
@@ -192,11 +193,14 @@ function link(path: string): string {
   .btn-primary:hover{background:var(--petrol-dark);}
   .btn-secondary{background:transparent;color:var(--petrol);border-color:var(--petrol);}
   .btn-secondary:hover{background:var(--creme);}
+  .btn-gold{background:var(--gold);color:var(--gold-text);border-color:var(--gold);}
+  .btn-gold:hover{background:var(--gold-hover);color:var(--gold-text);border-color:var(--gold-hover);}
 
   .btn .arrow{display:inline-block;transition:transform .2s;}
   .btn:hover .arrow{transform:translateX(3px);}
   .btn:focus-visible{outline:2px solid var(--petrol);outline-offset:3px;}
   .btn-primary:focus-visible{outline-color:var(--bordeaux);}
+  .btn-gold:focus-visible{outline-color:var(--bordeaux);}
 
   /* ---------- Shared Section system ---------- */
   .section{
@@ -1185,7 +1189,7 @@ function link(path: string): string {
           Steinmetzstraße 9<br>
           45139 Essen<br><br>
           <a href="tel:+492013658040">0201 · 365 80 40</a><br>
-          <a href="mailto:kontakt@unesco-schule-essen.de">kontakt@unesco-schule-essen.de</a>
+          <MailLink email="kontakt@unesco-schule-essen.de" />
         </address>
         <div class="socials">
           <a href="https://www.instagram.com/unesco.schule.essen/?hl=de" target="_blank" rel="noopener" aria-label="Instagram: @unesco.schule.essen">
@@ -1303,6 +1307,34 @@ function link(path: string): string {
   }
   updateScrolled();
   window.addEventListener('scroll', updateScrolled, { passive:true });
+
+  /* ---------- Mail-Link Hydration ---------------------------------- *
+   * Spam-Bots scrapen statisches HTML; sie sehen weder mailto: noch @.
+   * Hier rekonstruieren wir auf Client-Seite den richtigen mailto:-Link
+   * und ersetzen den `[at]`-Platzhalter durch ein echtes @.
+   * ----------------------------------------------------------------- */
+  document.querySelectorAll('a.ml-link').forEach(function(el){
+    var u = el.getAttribute('data-u');
+    var d = el.getAttribute('data-d');
+    if(!u || !d) return;
+    var addr = u + '@' + d;
+    var url = 'mailto:' + addr;
+    var s = el.getAttribute('data-s');
+    var b = el.getAttribute('data-b');
+    var params = [];
+    if (s) params.push('subject=' + encodeURIComponent(s));
+    if (b) params.push('body=' + encodeURIComponent(b));
+    if (params.length) url += '?' + params.join('&');
+    el.setAttribute('href', url);
+    if(el.getAttribute('data-mode') === 'address'){
+      el.textContent = addr;
+    }
+    el.removeAttribute('data-u');
+    el.removeAttribute('data-d');
+    el.removeAttribute('data-mode');
+    el.removeAttribute('data-s');
+    el.removeAttribute('data-b');
+  });
 </script>
 
 </body>

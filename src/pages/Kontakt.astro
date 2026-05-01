@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
+import MailLink from "../components/MailLink.astro";
 import { getSingle } from "../lib/pageContent";
 
 const page: any = await getSingle("pageKontakt");
@@ -292,11 +293,11 @@ const people = [
           </li>
           <li>
             <span class="lbl">E-Mail</span>
-            <a href="mailto:info@unesco-schule-essen.de">info@unesco-schule-essen.de</a>
+            <MailLink email="info@unesco-schule-essen.de" />
           </li>
           <li>
             <span class="lbl">Schulverwaltung</span>
-            <a href="mailto:164835@schule.nrw.de">164835@schule.nrw.de</a>
+            <MailLink email="164835@schule.nrw.de" />
           </li>
         </ul>
       </div>
@@ -323,7 +324,7 @@ const people = [
           <p class="sub">{p.sub}</p>
           <div class="links">
             <div><span class="lbl">Tel</span><a href={`tel:${p.tel}`}>{p.telDisplay}</a></div>
-            <div><span class="lbl">E-Mail</span><a href={`mailto:${p.mail}`}>{p.mail}</a></div>
+            <div><span class="lbl">E-Mail</span><MailLink email={p.mail} /></div>
           </div>
         </article>
       ))}

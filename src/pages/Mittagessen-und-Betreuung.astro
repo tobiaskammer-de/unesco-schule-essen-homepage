@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
+import MailLink from "../components/MailLink.astro";
 import { getSingle } from "../lib/pageContent";
 
 const page: any = await getSingle("pageMittagessenUndBetreuung");
@@ -150,7 +151,7 @@ const page: any = await getSingle("pageMittagessenUndBetreuung");
   .mb-dl-icon{
     flex:0 0 auto;width:46px;height:46px;
     display:flex;align-items:center;justify-content:center;
-    background:var(--gold);color:#2a1d08;border-radius:4px;
+    background:var(--gold);color:var(--gold-text);border-radius:4px;
   }
   .mb-dl-icon svg{width:22px;height:22px;}
   .mb-dl-body{display:flex;flex-direction:column;gap:6px;}
@@ -303,7 +304,7 @@ const page: any = await getSingle("pageMittagessenUndBetreuung");
                 ? page.betreuungDetail.infoBody.split(page.betreuungDetail.contactEmail).map((part: string, i: number, arr: string[]) => (
                     <>
                       {part}
-                      {i < arr.length - 1 && <a class="inline-link" href={`mailto:${page.betreuungDetail.contactEmail}`}>{page.betreuungDetail.contactEmail}</a>}
+                      {i < arr.length - 1 && <MailLink class="inline-link" email={page.betreuungDetail.contactEmail} />}
                     </>
                   ))
                 : page.betreuungDetail.infoBody}

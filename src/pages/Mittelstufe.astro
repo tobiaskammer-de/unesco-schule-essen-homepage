@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
+import MailLink from "../components/MailLink.astro";
 import { getTeacherByRole, ROLES } from "../lib/roles";
 import { displayName } from "../lib/teachers";
 import { getSingle } from "../lib/pageContent";
@@ -186,10 +187,10 @@ const kontaktEmail = koordMittelstufe?.data.email ?? "info@unesco-schule-essen.d
           <div class="role">Kontakt Mittelstufe · {kontaktName}</div>
           <div class="title-line">UNESCO-Schule Essen · Steinmetzstr. 9 · 45139 Essen</div>
           <a href="tel:+492012802630">0201 · 280 26 30</a>
-          <a href={`mailto:${kontaktEmail}`}>{kontaktEmail}</a>
+          <MailLink email={kontaktEmail} />
         </div>
         <div class="cta-row">
-          <a href={`mailto:${kontaktEmail}`} class="btn btn-primary">Beratung anfragen <span class="arrow">→</span></a>
+          <MailLink email={kontaktEmail} class="btn btn-primary" label="Beratung anfragen">Beratung anfragen <span class="arrow">→</span></MailLink>
           <a href="Tag-der-offenen-Tuer.html" class="btn btn-secondary">Tag der offenen Tür <span class="arrow">→</span></a>
         </div>
       </div>
