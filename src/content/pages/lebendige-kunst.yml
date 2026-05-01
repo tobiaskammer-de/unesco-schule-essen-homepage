@@ -5,20 +5,50 @@ hero:
   lede: 'An unserer Schule entstehen Werke, die mehr sind als ein Schulergebnis: Bilder, Skulpturen, Drucke und Aktionen, die unseren Schulalltag prägen. Diese Seite wird gerade aufgebaut.'
   image: ''
   imageAlt: ''
+
 intro:
   eyebrow: In Arbeit
   title: Diese Seite wird gerade aufgebaut.
   body: Wir arbeiten an Inhalten zu Lebendiger Kunst an unserer Schule. Schauen Sie gerne bald wieder vorbei — die Galerie unten zeigt erste Eindrücke.
+
 gallery:
   eyebrow: Galerie
   title: Eindrücke aus dem Kunstunterricht.
   body: Werke, Werkstätten, Ausstellungen — eine wachsende Sammlung.
   items:
-    - image: /unesco-schule-essen-homepage/assets/news/2026-04-08-delf-cover.jpg
-      imageAlt: Test-Überschrift
-      title: Test-Titel
+    - title: Test-Titel
       caption: Hier steht ein Text
-    - image: /unesco-schule-essen-homepage/assets/news/2026-04-15-unesco-projekttag-cover.jpg
-      imageAlt: Ein Bild
-      title: Test-eintrag 2
+      images:
+        - image: /unesco-schule-essen-homepage/assets/news/2026-04-08-delf-cover.jpg
+          imageAlt: Test-Überschrift
+    - title: Test-eintrag 2
       caption: Hier steht ein Beschreibungstext
+      images:
+        - image: /unesco-schule-essen-homepage/assets/news/2026-04-15-unesco-projekttag-cover.jpg
+          imageAlt: Ein Bild
+    - title: Linolschnitt-Werkstatt
+      caption: 'Klasse 9 · zweistufiger Druckprozess: Schneideübung, Probedruck, Auflage. Die Schülerinnen und Schüler entwickeln eine eigene Bildidee und übersetzen sie ins Hochdruckverfahren.'
+      images:
+        - image: /unesco-schule-essen-homepage/assets/lebendige-kunst-demo/linol-1.svg
+          imageAlt: Geometrische Bildkomposition in Petrol und Crème
+        - image: /unesco-schule-essen-homepage/assets/lebendige-kunst-demo/linol-2.svg
+          imageAlt: Druckserie in Bordeaux mit Gold-Akzenten
+        - image: /unesco-schule-essen-homepage/assets/lebendige-kunst-demo/abstrakt-1.svg
+          imageAlt: Vier-Felder-Komposition mit zentralem Kreis
+    - title: Skulpturen aus dem Q1-Kurs
+      caption: Tonarbeiten und Reliefs aus dem Werkstatt­unterricht der Oberstufe — von der Skizze zum dreidimensionalen Objekt.
+      images:
+        - image: /unesco-schule-essen-homepage/assets/lebendige-kunst-demo/skulptur-1.svg
+          imageAlt: Tonfigur in warmen Goldtönen vor hellem Hintergrund
+        - image: /unesco-schule-essen-homepage/assets/lebendige-kunst-demo/skulptur-2.svg
+          imageAlt: Reliefserie auf dunklem Petrol-Grund
+    - title: Aquarelle der 8b
+      caption: Erste Lavur-Übungen mit kalten und warmen Farbverläufen.
+      images:
+        - image: /unesco-schule-essen-homepage/assets/lebendige-kunst-demo/aquarell-1.svg
+          imageAlt: Weiche Aquarell-Flächen in Sage, Bordeaux und Gold
+    - title: Aktzeichnung im Literaturkurs
+      caption: Anatomie, Linie, Reduktion auf das Wesentliche — eine Hommage an klassische Studien­blätter.
+      images:
+        - image: /unesco-schule-essen-homepage/assets/lebendige-kunst-demo/akt-1.svg
+          imageAlt: Reduzierte Linienzeichnung einer stehenden Figur

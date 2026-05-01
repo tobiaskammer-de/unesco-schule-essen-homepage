@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Demo-Komposition Linolschnitt">
+  <defs>
+    <pattern id="p1" width="60" height="60" patternUnits="userSpaceOnUse">
+      <rect width="60" height="60" fill="#0E4D4F"/>
+      <path d="M0 60L60 0" stroke="#0A3638" stroke-width="2"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="900" fill="url(#p1)"/>
+  <g opacity="0.9">
+    <rect x="180" y="180" width="380" height="540" fill="#F5EFE7"/>
+    <rect x="220" y="220" width="300" height="460" fill="#0E4D4F"/>
+    <rect x="260" y="260" width="220" height="380" fill="#F5EFE7"/>
+  </g>
+  <g opacity="0.85">
+    <circle cx="850" cy="320" r="180" fill="#D4A574"/>
+    <circle cx="850" cy="320" r="120" fill="#0E4D4F"/>
+    <circle cx="850" cy="320" r="60" fill="#F5EFE7"/>
+  </g>
+  <path d="M620 700 Q 800 580 980 700 T 1200 700" stroke="#F5EFE7" stroke-width="6" fill="none" opacity="0.7"/>
+  <text x="60" y="850" font-family="Georgia,serif" font-size="32" fill="#F5EFE7" opacity="0.7" font-style="italic">Demo · Linolschnitt</text>
+</svg>

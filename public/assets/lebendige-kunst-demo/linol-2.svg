@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Demo-Komposition Linolschnitt 2">
+  <rect width="1200" height="900" fill="#6E2639"/>
+  <g opacity="0.92">
+    <rect x="80" y="120" width="540" height="660" fill="#F5EFE7"/>
+    <path d="M120 160 L 580 160 L 580 740 L 120 740 Z" fill="none" stroke="#6E2639" stroke-width="6"/>
+    <path d="M180 280 Q 350 220 520 280" stroke="#6E2639" stroke-width="14" fill="none" stroke-linecap="round"/>
+    <path d="M180 380 Q 350 320 520 380" stroke="#6E2639" stroke-width="14" fill="none" stroke-linecap="round"/>
+    <path d="M180 480 Q 350 420 520 480" stroke="#6E2639" stroke-width="14" fill="none" stroke-linecap="round"/>
+    <path d="M180 580 Q 350 520 520 580" stroke="#6E2639" stroke-width="14" fill="none" stroke-linecap="round"/>
+    <path d="M180 680 Q 350 620 520 680" stroke="#6E2639" stroke-width="14" fill="none" stroke-linecap="round"/>
+  </g>
+  <g opacity="0.88">
+    <rect x="700" y="180" width="420" height="200" fill="#D4A574"/>
+    <rect x="700" y="420" width="420" height="120" fill="#F5EFE7" opacity="0.7"/>
+    <rect x="700" y="580" width="420" height="200" fill="#0E4D4F"/>
+  </g>
+  <text x="60" y="850" font-family="Georgia,serif" font-size="32" fill="#F5EFE7" opacity="0.7" font-style="italic">Demo · Druckserie</text>
+</svg>
