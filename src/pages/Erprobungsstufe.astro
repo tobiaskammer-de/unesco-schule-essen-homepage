@@ -153,7 +153,7 @@ const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
 
   /* Pull quote */
   .er-quote{
-    position:relative;padding:140px 0;isolation:isolate;overflow:hidden;
+    position:relative;padding:var(--space-section-lg) 0;isolation:isolate;overflow:hidden;
   }
   .er-quote::before{
     content:"";position:absolute;inset:0;z-index:-2;
