@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Demo-Komposition Aktzeichnung">
+  <rect width="1200" height="900" fill="#F5EFE7"/>
+  <g opacity="0.85" fill="none" stroke="#1A1A1A" stroke-width="3" stroke-linecap="round">
+    <path d="M580 220 Q 560 200 580 180 Q 620 170 640 200 Q 645 240 620 260"/>
+    <path d="M620 270 L 620 350 Q 600 360 580 380"/>
+    <path d="M580 380 L 540 460 L 520 540"/>
+    <path d="M620 350 L 700 380 L 740 440"/>
+    <path d="M620 350 L 600 480 L 580 600"/>
+    <path d="M620 350 L 660 480 L 660 600"/>
+    <path d="M580 600 L 540 720 L 520 760"/>
+    <path d="M660 600 L 700 720 L 700 760"/>
+  </g>
+  <g opacity="0.45">
+    <ellipse cx="320" cy="450" rx="160" ry="280" fill="#6E2639"/>
+    <rect x="800" y="200" width="240" height="500" fill="#0E4D4F" opacity="0.6"/>
+  </g>
+  <text x="60" y="850" font-family="Georgia,serif" font-size="32" fill="#1A1A1A" opacity="0.5" font-style="italic">Demo · Akt­zeichnung</text>
+</svg>

@@ -5,8 +5,60 @@ import { getSingle } from "../lib/pageContent";
 import { safeInlineJson } from "../lib/safeMarkup";
 
 const page: any = await getSingle("pageLebendigeKunst");
-const galleryItems: Array<{ image: string; imageAlt: string; title?: string; caption?: string }> =
-  page.gallery?.items ?? [];
+
+type GalleryImage = { image: string; imageAlt: string };
+type GalleryItem = {
+  title?: string;
+  caption?: string;
+  images: GalleryImage[];
+};
+
+// Backward-Kompatibilität: alte items mit `image`/`imageAlt` direkt am Item
+// werden in eine images-Liste mit einem Eintrag normalisiert.
+const rawItems: any[] = page.gallery?.items ?? [];
+const galleryItems: GalleryItem[] = rawItems.map((it) => {
+  if (Array.isArray(it.images) && it.images.length > 0) {
+    return { title: it.title, caption: it.caption, images: it.images };
+  }
+  if (it.image) {
+    return {
+      title: it.title,
+      caption: it.caption,
+      images: [{ image: it.image, imageAlt: it.imageAlt ?? "" }],
+    };
+  }
+  return { title: it.title, caption: it.caption, images: [] };
+}).filter((it) => it.images.length > 0);
+
+// Flat-Liste für die Lightbox: jedes Bild bekommt seinen Beitrag-Kontext
+// mit, plus seine Position innerhalb des Beitrags ("Bild 2 von 5").
+type FlatImage = {
+  image: string;
+  imageAlt: string;
+  title: string;
+  caption: string;
+  posInItem: number;
+  totalInItem: number;
+};
+const flatImages: FlatImage[] = galleryItems.flatMap((item) =>
+  item.images.map((img, imgIdx) => ({
+    image: img.image,
+    imageAlt: img.imageAlt,
+    title: item.title ?? "",
+    caption: item.caption ?? "",
+    posInItem: imgIdx + 1,
+    totalInItem: item.images.length,
+  }))
+);
+
+// Pro Card: Index des ersten Bildes in der Flat-Liste.
+// Klick auf Card öffnet Lightbox dort.
+const firstImageIndices: number[] = [];
+let runningIndex = 0;
+for (const it of galleryItems) {
+  firstImageIndices.push(runningIndex);
+  runningIndex += it.images.length;
+}
 ---
 <BaseLayout title="Lebendige Kunst · UNESCO-Schule Essen">
 <style is:global>
@@ -54,7 +106,7 @@ const galleryItems: Array<{ image: string; imageAlt: string; title?: string; cap
   }
   .lk-gallery-card:hover,
   .lk-gallery-card:focus-visible{
-    transform:translateY(-2px);
+    transform:translateY(var(--card-hover-lift));
     box-shadow:0 16px 40px -22px rgba(14,77,79,0.3);
     outline:none;
   }
@@ -64,15 +116,29 @@ const galleryItems: Array<{ image: string; imageAlt: string; title?: string; cap
   }
   .lk-gallery-card .media{
     aspect-ratio:4/3;overflow:hidden;background:var(--creme);
+    position:relative;
   }
   .lk-gallery-card .media img{
     width:100%;height:100%;object-fit:cover;display:block;
-    transition:transform .5s ease;
+    transition:transform var(--transition-slow);
   }
   .lk-gallery-card:hover .media img{transform:scale(1.02);}
   @media (prefers-reduced-motion: reduce){
     .lk-gallery-card:hover .media img{transform:none;}
   }
+  /* Multi-Bild-Badge */
+  .lk-gallery-card .multi-badge{
+    position:absolute;top:12px;right:12px;
+    background:rgba(11,42,43,0.78);color:var(--creme);
+    border:1px solid rgba(245,239,231,0.25);
+    padding:5px 10px;border-radius:999px;
+    font-family:var(--sans);font-size:12px;font-weight:600;
+    letter-spacing:0.04em;
+    display:inline-flex;align-items:center;gap:6px;
+    backdrop-filter:blur(4px);
+    -webkit-backdrop-filter:blur(4px);
+  }
+  .lk-gallery-card .multi-badge svg{width:13px;height:13px;}
   .lk-gallery-card .body{
     padding:var(--card-padding);
     display:flex;flex-direction:column;gap:8px;
@@ -107,9 +173,10 @@ const galleryItems: Array<{ image: string; imageAlt: string; title?: string; cap
     display:flex;flex-direction:column;align-items:center;gap:16px;
   }
   .lk-lightbox-image{
-    max-width:100%;max-height:75vh;width:auto;height:auto;
+    max-width:100%;max-height:70vh;width:auto;height:auto;
     object-fit:contain;display:block;
     box-shadow:0 30px 80px -30px rgba(0,0,0,0.6);
+    transition:opacity .15s ease;
   }
   .lk-lightbox figcaption{
     text-align:center;color:var(--creme);max-width:780px;
@@ -154,8 +221,29 @@ const galleryItems: Array<{ image: string; imageAlt: string; title?: string; cap
     color:rgba(245,239,231,0.75);
     background:rgba(11,42,43,0.6);
     border:1px solid rgba(245,239,231,0.2);
-    padding:4px 12px;border-radius:999px;
+    padding:4px 14px;border-radius:999px;
     font-variant-numeric:tabular-nums;
+    white-space:nowrap;
+    max-width:calc(100vw - 130px);
+    overflow:hidden;text-overflow:ellipsis;
+  }
+  /* Slider-Dots — nur sichtbar wenn ein Beitrag mehr als 1 Bild hat */
+  .lk-lightbox-dots{
+    display:flex;align-items:center;justify-content:center;gap:8px;
+    margin-top:6px;
+  }
+  .lk-lightbox-dots[hidden]{display:none;}
+  .lk-lightbox-dots .dot{
+    width:8px;height:8px;border-radius:50%;
+    background:rgba(245,239,231,0.35);
+    border:0;cursor:pointer;padding:0;
+    transition:background .15s ease, transform .15s ease;
+  }
+  .lk-lightbox-dots .dot[aria-current="true"]{
+    background:var(--gold);transform:scale(1.3);
+  }
+  .lk-lightbox-dots .dot:focus-visible{
+    outline:2px solid var(--gold);outline-offset:3px;
   }
   body.lk-lightbox-open{overflow:hidden;}
 
@@ -168,6 +256,7 @@ const galleryItems: Array<{ image: string; imageAlt: string; title?: string; cap
     .lk-gallery-grid{grid-template-columns:1fr;}
     .lk-lightbox{padding:24px 12px;}
     .lk-lightbox-prev,.lk-lightbox-next{width:40px;height:40px;}
+    .lk-lightbox-image{max-height:62vh;}
   }
 </style>
 
@@ -203,28 +292,44 @@ const galleryItems: Array<{ image: string; imageAlt: string; title?: string; cap
 
     {galleryItems.length > 0 ? (
       <ul class="lk-gallery-grid" role="list">
-        {galleryItems.map((item, i) => (
-          <li>
-            <button type="button" class="lk-gallery-card" data-lightbox-index={i} aria-label={`Bild öffnen: ${item.title || item.imageAlt}`}>
-              <div class="media">
-                <img src={item.image} alt={item.imageAlt} loading="lazy" decoding="async" width="800" height="600" />
-              </div>
-              {(item.title || item.caption) && (
-                <div class="body">
-                  {item.title && <h3>{item.title}</h3>}
-                  {item.caption && <p class="cap">{item.caption}</p>}
+        {galleryItems.map((item, i) => {
+          const cover = item.images[0];
+          const count = item.images.length;
+          const aria = count > 1
+            ? `${item.title || cover.imageAlt} — ${count} Bilder ansehen`
+            : `Bild öffnen: ${item.title || cover.imageAlt}`;
+          return (
+            <li>
+              <button type="button" class="lk-gallery-card" data-lightbox-index={firstImageIndices[i]} aria-label={aria}>
+                <div class="media">
+                  <img src={cover.image} alt={cover.imageAlt} loading="lazy" decoding="async" width="800" height="600" />
+                  {count > 1 && (
+                    <span class="multi-badge" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="3" width="14" height="14" rx="1"/>
+                        <path d="M7 7h14v14"/>
+                      </svg>
+                      {count} Bilder
+                    </span>
+                  )}
                 </div>
-              )}
-            </button>
-          </li>
-        ))}
+                {(item.title || item.caption) && (
+                  <div class="body">
+                    {item.title && <h3>{item.title}</h3>}
+                    {item.caption && <p class="cap">{item.caption}</p>}
+                  </div>
+                )}
+              </button>
+            </li>
+          );
+        })}
       </ul>
     ) : (
       <p class="lk-gallery-empty">Bald gibt es hier erste Bilder zu sehen.</p>
     )}
   </div>
 
-  {galleryItems.length > 0 && (
+  {flatImages.length > 0 && (
     <>
       <div class="lk-lightbox" role="dialog" aria-modal="true" aria-label="Galerie-Bild" hidden>
         <button type="button" class="lk-lightbox-close" aria-label="Schließen">×</button>
@@ -235,12 +340,13 @@ const galleryItems: Array<{ image: string; imageAlt: string; title?: string; cap
           <figcaption>
             <h3 class="lk-lightbox-title"></h3>
             <p class="lk-lightbox-caption"></p>
+            <div class="lk-lightbox-dots" role="tablist" aria-label="Bilder dieses Beitrags" hidden></div>
           </figcaption>
         </figure>
         <span class="lk-lightbox-counter" aria-live="polite"></span>
       </div>
 
-      <script type="application/json" id="lk-gallery-data" set:html={safeInlineJson(galleryItems)}></script>
+      <script type="application/json" id="lk-gallery-data" set:html={safeInlineJson(flatImages)}></script>
 
       <script is:inline>
         (function(){
@@ -256,6 +362,7 @@ const galleryItems: Array<{ image: string; imageAlt: string; title?: string; cap
           const imgEl   = lightbox.querySelector(".lk-lightbox-image");
           const titleEl = lightbox.querySelector(".lk-lightbox-title");
           const capEl   = lightbox.querySelector(".lk-lightbox-caption");
+          const dotsEl  = lightbox.querySelector(".lk-lightbox-dots");
           const counter = lightbox.querySelector(".lk-lightbox-counter");
           const closeBtn= lightbox.querySelector(".lk-lightbox-close");
           const prevBtn = lightbox.querySelector(".lk-lightbox-prev");
@@ -264,6 +371,42 @@ const galleryItems: Array<{ image: string; imageAlt: string; title?: string; cap
           let currentIndex = 0;
           let lastFocused  = null;
 
+          // Index des ersten Bildes des Beitrags, zu dem `flatIdx` gehört.
+          function itemStart(flatIdx){
+            const cur = items[flatIdx];
+            return flatIdx - (cur.posInItem - 1);
+          }
+
+          function renderDots(flatIdx){
+            const item = items[flatIdx];
+            if (!item || item.totalInItem <= 1) {
+              dotsEl.hidden = true;
+              dotsEl.innerHTML = "";
+              return;
+            }
+            dotsEl.hidden = false;
+            const start = itemStart(flatIdx);
+            // Nur neu rendern, wenn sich der Beitrag oder die Anzahl ändert.
+            if (parseInt(dotsEl.dataset.start || "-1", 10) !== start) {
+              dotsEl.innerHTML = "";
+              for (let i = 0; i < item.totalInItem; i++) {
+                const target = start + i;
+                const dot = document.createElement("button");
+                dot.type = "button";
+                dot.className = "dot";
+                dot.setAttribute("role", "tab");
+                dot.setAttribute("aria-label", "Bild " + (i + 1) + " von " + item.totalInItem);
+                dot.addEventListener("click", function(){ render(target); });
+                dotsEl.appendChild(dot);
+              }
+              dotsEl.dataset.start = String(start);
+            }
+            dotsEl.querySelectorAll(".dot").forEach(function(d, i){
+              if (start + i === flatIdx) d.setAttribute("aria-current", "true");
+              else d.removeAttribute("aria-current");
+            });
+          }
+
           function render(index){
             const item = items[index];
             if (!item) return;
@@ -271,7 +414,14 @@ const galleryItems: Array<{ image: string; imageAlt: string; title?: string; cap
             imgEl.alt = item.imageAlt || "";
             titleEl.textContent = item.title || "";
             capEl.textContent = item.caption || "";
-            counter.textContent = (index + 1) + " / " + items.length;
+            // Counter zeigt Position im Beitrag, wenn er mehrere Bilder hat,
+            // sonst die globale Position.
+            if (item.totalInItem > 1) {
+              counter.textContent = "Bild " + item.posInItem + " von " + item.totalInItem;
+            } else {
+              counter.textContent = (index + 1) + " / " + items.length;
+            }
+            renderDots(index);
             currentIndex = index;
           }
 
@@ -315,7 +465,9 @@ const galleryItems: Array<{ image: string; imageAlt: string; title?: string; cap
             else if (e.key === "ArrowRight") { e.preventDefault(); next(); }
             else if (e.key === "ArrowLeft")  { e.preventDefault(); prev(); }
             else if (e.key === "Tab") {
-              const focusables = [closeBtn, prevBtn, nextBtn];
+              const focusables = [closeBtn, prevBtn, nextBtn].concat(
+                Array.from(dotsEl.querySelectorAll(".dot"))
+              );
               const idx = focusables.indexOf(document.activeElement);
               e.preventDefault();
               if (e.shiftKey) {

@@ -826,12 +826,18 @@ collections:
               - name: items
                 label: "Galerie-Einträge"
                 widget: list
-                summary: "{{fields.title}} — {{fields.imageAlt}}"
+                summary: "{{fields.title}} ({{fields.images.length}} Bild(er))"
                 fields:
-                  - { name: image, label: "Bild", widget: image, choose_url: false }
-                  - { name: imageAlt, label: "Bildbeschreibung (Pflicht, für Screenreader)", widget: string }
-                  - { name: title, label: "Titel (optional)", widget: string, required: false }
-                  - { name: caption, label: "Bildtext (optional)", widget: text, required: false }
+                  - { name: title, label: "Titel des Beitrags (optional)", widget: string, required: false }
+                  - { name: caption, label: "Beschreibungstext (optional)", widget: text, required: false }
+                  - name: images
+                    label: "Bilder dieses Beitrags"
+                    widget: list
+                    min: 1
+                    summary: "{{fields.imageAlt}}"
+                    fields:
+                      - { name: image, label: "Bild", widget: image, choose_url: false }
+                      - { name: imageAlt, label: "Bildbeschreibung (Pflicht, für Screenreader)", widget: string }
 
       # ---------------- PÄDAGOGISCHE KONZEPTE ----------------
       - file: src/content/pages/paedagogische-konzepte.yml

@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Demo-Komposition Abstrakt">
+  <rect width="1200" height="900" fill="#F5EFE7"/>
+  <g>
+    <rect x="0" y="0" width="600" height="450" fill="#0E4D4F"/>
+    <rect x="600" y="0" width="600" height="450" fill="#D4A574"/>
+    <rect x="0" y="450" width="600" height="450" fill="#6E2639"/>
+    <rect x="600" y="450" width="600" height="450" fill="#7FB069"/>
+  </g>
+  <g opacity="0.92">
+    <circle cx="600" cy="450" r="220" fill="#F5EFE7"/>
+    <circle cx="600" cy="450" r="160" fill="none" stroke="#0E4D4F" stroke-width="3"/>
+    <circle cx="600" cy="450" r="100" fill="none" stroke="#0E4D4F" stroke-width="3"/>
+    <circle cx="600" cy="450" r="40" fill="#0E4D4F"/>
+  </g>
+  <g opacity="0.85" stroke="#F5EFE7" stroke-width="3" fill="none">
+    <line x1="600" y1="0" x2="600" y2="900"/>
+    <line x1="0" y1="450" x2="1200" y2="450"/>
+  </g>
+  <text x="60" y="850" font-family="Georgia,serif" font-size="32" fill="#F5EFE7" opacity="0.75" font-style="italic">Demo · Farbfeld</text>
+</svg>
