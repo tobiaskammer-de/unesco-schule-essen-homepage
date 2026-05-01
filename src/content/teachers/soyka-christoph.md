@@ -1,7 +1,7 @@
 ---
 firstName: "Christoph"
 lastName: "Soyka"
-subjects: []
-roles: ["Stufenleitung EF", "Stufenleitung Sek II"]
+subjects: ["Deutsch", "Geschichte"]
+roles: ["Stufenleitung Sek II"]
 email: "soyka@unesco-schule-essen.de"
 ---

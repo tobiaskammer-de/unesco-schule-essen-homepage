@@ -1,6 +1,6 @@
 ---
 firstName: "Viola"
-lastName: "Böhm"
+lastName: "Pietrass"
 subjects: ["Biologie", "Mathematik"]
 roles: []
 email: "boehm@unesco-schule-essen.de"
