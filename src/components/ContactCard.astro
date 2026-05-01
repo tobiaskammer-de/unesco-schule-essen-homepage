@@ -203,7 +203,8 @@ const fallbackInitials = hasTeacher
   }
   .cc-btn-mail {
     display: inline-flex; align-items: center; gap: 8px;
-    padding: 11px 18px;
+    padding: 12px 18px;
+    min-height: 44px;
     background: var(--petrol); color: var(--creme);
     font-family: var(--sans); font-weight: 500; font-size: 14px;
     border: 1.5px solid var(--petrol);
@@ -213,9 +214,11 @@ const fallbackInitials = hasTeacher
   .cc-btn-mail:hover { background: var(--petrol-dark); color: var(--creme); }
   .cc-btn-mail svg { width: 14px; height: 14px; }
   .cc-btn-phone {
+    display: inline-flex; align-items: center;
     font-family: var(--sans); font-size: 13.5px; color: var(--petrol);
     border-bottom: 1px solid var(--hairline);
-    padding: 11px 4px;
+    padding: 12px 6px;
+    min-height: 44px;
   }
   .cc-btn-phone:hover { color: var(--petrol-dark); }
 
