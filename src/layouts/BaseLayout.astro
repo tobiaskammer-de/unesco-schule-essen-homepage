@@ -159,6 +159,9 @@ function link(path: string): string {
     text-transform:uppercase;
     color:var(--bordeaux);
   }
+  @media (max-width:560px){
+    .eyebrow{font-size:13px;letter-spacing:0.08em;}
+  }
   .lead{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--stein);font-size:21px;line-height:1.45;}
   .inline-link{
     color:var(--bordeaux);
@@ -410,8 +413,9 @@ function link(path: string): string {
   .header-actions .sep{display:none;}
 
   .hamburger{
-    display:none;background:none;border:0;cursor:pointer;padding:8px;
-    position:absolute;top:14px;right:var(--pad-mob);
+    display:none;background:none;border:0;cursor:pointer;padding:10px;
+    min-width:44px;min-height:44px;
+    position:absolute;top:12px;right:var(--pad-mob);
   }
   .hamburger span{display:block;width:26px;height:2px;background:var(--petrol);margin:6px 0;transition:.3s;}
   .hamburger.active span:nth-child(1){transform:translateY(8px) rotate(45deg);}
@@ -454,6 +458,7 @@ function link(path: string): string {
     display:inline-flex;align-items:center;gap:6px;
     color:var(--bordeaux);font-family:var(--sans);font-weight:500;font-size:14px;
     text-decoration:none;
+    padding:10px 4px;min-height:44px;
   }
   .hero-open-day .dot{
     width:6px;height:6px;border-radius:50%;background:var(--bordeaux);
