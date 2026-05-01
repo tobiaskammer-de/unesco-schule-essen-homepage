@@ -1,0 +1,18 @@
+hero:
+  eyebrow: "Profil · Lebendige Kunst"
+  title: "Lebendige Kunst,"
+  titleHighlight: "die hier entsteht."
+  lede: "An unserer Schule entstehen Werke, die mehr sind als ein Schulergebnis: Bilder, Skulpturen, Drucke und Aktionen, die unseren Schulalltag prägen. Diese Seite wird gerade aufgebaut."
+  image: ""
+  imageAlt: ""
+
+intro:
+  eyebrow: "In Arbeit"
+  title: "Diese Seite wird gerade aufgebaut."
+  body: "Wir arbeiten an Inhalten zu Lebendiger Kunst an unserer Schule. Schauen Sie gerne bald wieder vorbei — die Galerie unten zeigt erste Eindrücke."
+
+gallery:
+  eyebrow: "Galerie"
+  title: "Eindrücke aus dem Kunstunterricht."
+  body: "Werke, Werkstätten, Ausstellungen — eine wachsende Sammlung."
+  items: []
