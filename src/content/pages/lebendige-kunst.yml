@@ -1,18 +1,24 @@
 hero:
-  eyebrow: "Profil · Lebendige Kunst"
-  title: "Lebendige Kunst,"
-  titleHighlight: "die hier entsteht."
-  lede: "An unserer Schule entstehen Werke, die mehr sind als ein Schulergebnis: Bilder, Skulpturen, Drucke und Aktionen, die unseren Schulalltag prägen. Diese Seite wird gerade aufgebaut."
-  image: ""
-  imageAlt: ""
-
+  eyebrow: Profil · Lebendige Kunst
+  title: Lebendige Kunst,
+  titleHighlight: die hier entsteht.
+  lede: 'An unserer Schule entstehen Werke, die mehr sind als ein Schulergebnis: Bilder, Skulpturen, Drucke und Aktionen, die unseren Schulalltag prägen. Diese Seite wird gerade aufgebaut.'
+  image: ''
+  imageAlt: ''
 intro:
-  eyebrow: "In Arbeit"
-  title: "Diese Seite wird gerade aufgebaut."
-  body: "Wir arbeiten an Inhalten zu Lebendiger Kunst an unserer Schule. Schauen Sie gerne bald wieder vorbei — die Galerie unten zeigt erste Eindrücke."
-
+  eyebrow: In Arbeit
+  title: Diese Seite wird gerade aufgebaut.
+  body: Wir arbeiten an Inhalten zu Lebendiger Kunst an unserer Schule. Schauen Sie gerne bald wieder vorbei — die Galerie unten zeigt erste Eindrücke.
 gallery:
-  eyebrow: "Galerie"
-  title: "Eindrücke aus dem Kunstunterricht."
-  body: "Werke, Werkstätten, Ausstellungen — eine wachsende Sammlung."
-  items: []
+  eyebrow: Galerie
+  title: Eindrücke aus dem Kunstunterricht.
+  body: Werke, Werkstätten, Ausstellungen — eine wachsende Sammlung.
+  items:
+    - image: /unesco-schule-essen-homepage/assets/news/2026-04-08-delf-cover.jpg
+      imageAlt: Test-Überschrift
+      title: Test-Titel
+      caption: Hier steht ein Text
+    - image: /unesco-schule-essen-homepage/assets/news/2026-04-15-unesco-projekttag-cover.jpg
+      imageAlt: Ein Bild
+      title: Test-eintrag 2
+      caption: Hier steht ein Beschreibungstext
