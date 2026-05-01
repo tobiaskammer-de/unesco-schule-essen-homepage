@@ -2,6 +2,7 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
 import { getSingle } from "../lib/pageContent";
+import { safeBold } from "../lib/safeMarkup";
 
 const page: any = await getSingle("pageEltern");
 
@@ -307,7 +308,7 @@ const faqs = page.faq.list.map((f: any) => ({
           <summary>{f.q}</summary>
           <div class="answer">
             {f.a.split("\n\n").map((para) => (
-              <p set:html={para.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")} />
+              <p set:html={safeBold(para)} />
             ))}
             {f.link && (
               <a class="followup" href={f.link.href}>

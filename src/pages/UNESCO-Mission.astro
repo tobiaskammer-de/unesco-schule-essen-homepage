@@ -2,6 +2,7 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
 import { getSingle } from "../lib/pageContent";
+import { safeBold } from "../lib/safeMarkup";
 
 const page: any = await getSingle("pageUnescoMission");
 ---
@@ -124,7 +125,7 @@ const page: any = await getSingle("pageUnescoMission");
   <div class="container">
     <h2>{page.statement.title}</h2>
     {page.statement.body.split(/\n\n+/).map((para: string) => (
-      <p set:html={para.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")} />
+      <p set:html={safeBold(para)} />
     ))}
     {page.statement.highlight && <p class="highlight">{page.statement.highlight}</p>}
   </div>

@@ -2,6 +2,7 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
 import { getSingle } from "../lib/pageContent";
+import { safeBreaks } from "../lib/safeMarkup";
 
 const page: any = await getSingle("pageAnfahrt");
 const school: any = await getSingle("siteSchool");
@@ -162,7 +163,7 @@ const school: any = await getSingle("siteSchool");
       {page.transport.cards.map((card: any) => (
         <article class="transport-card">
           <span class="mode">{card.mode}</span>
-          <h3 set:html={card.title.replace(/\n/g, "<br>")} />
+          <h3 set:html={safeBreaks(card.title)} />
           <p>{card.body}</p>
           {card.lines && card.lines.length > 0 && (
             <div class="lines">
