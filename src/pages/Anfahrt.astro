@@ -143,7 +143,8 @@ const school: any = await getSingle("siteSchool");
             src={page.map.embedSrc}
             title="UNESCO-Schule Essen auf OpenStreetMap"
             loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"></iframe>
+            referrerpolicy="no-referrer-when-downgrade"
+            sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe>
         </div>
         <a class="map-link" href={page.map.externalUrl} target="_blank" rel="noopener">
           Auf OpenStreetMap öffnen <span aria-hidden="true">↗</span>
