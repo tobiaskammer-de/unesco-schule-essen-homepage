@@ -4,6 +4,7 @@ import PageHero from "../components/PageHero.astro";
 import { getTeacherByRole, ROLES } from "../lib/roles";
 import { displayName } from "../lib/teachers";
 import { getSingle } from "../lib/pageContent";
+import { safeBold, safeBreaks } from "../lib/safeMarkup";
 
 const page: any = await getSingle("pageMittelstufe");
 
@@ -146,7 +147,7 @@ const kontaktEmail = koordMittelstufe?.data.email ?? "info@unesco-schule-essen.d
       <div class="alert-body">
         <span class="label">{page.alert.label}</span>
         <h2>{page.alert.title}</h2>
-        <p set:html={page.alert.body.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")} />
+        <p set:html={safeBold(page.alert.body)} />
       </div>
     </div>
   </div>
@@ -158,10 +159,10 @@ const kontaktEmail = koordMittelstufe?.data.email ?? "info@unesco-schule-essen.d
       {page.rules.map((rule: any) => (
         <article class={`rule ${rule.kind === "ok" ? "is-ok" : ""}`}>
           <span class="badge"><span class="dot"></span>{rule.badge}</span>
-          <h3 set:html={rule.title.replace(/\n/g, "<br>")} />
+          <h3 set:html={safeBreaks(rule.title)} />
           <p>{rule.body}</p>
           {rule.requirement && (
-            <div class="requirement" set:html={rule.requirement.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")} />
+            <div class="requirement" set:html={safeBold(rule.requirement)} />
           )}
         </article>
       ))}

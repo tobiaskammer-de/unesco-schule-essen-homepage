@@ -2,6 +2,7 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
 import { getSingle } from "../lib/pageContent";
+import { safeBold } from "../lib/safeMarkup";
 
 const page: any = await getSingle("pagePaedagogischeKonzepte");
 
@@ -184,7 +185,7 @@ const konzepte = page.list.konzepte;
           <div class="body">
             <h3>{k.title}</h3>
             <p class="claim">„{k.claim}"</p>
-            <p class="desc" set:html={k.body} />
+            <p class="desc" set:html={safeBold(k.body)} />
           </div>
           <div class="right">
             {k.pdf ? (
@@ -194,7 +195,7 @@ const konzepte = page.list.konzepte;
                 </span>
                 <span class="txt">
                   <span class="title">Gesamtes Konzept</span>
-                  <span class="meta" set:html={k.pdfMeta || "PDF herunterladen"} />
+                  <span class="meta">{k.pdfMeta || "PDF herunterladen"}</span>
                 </span>
               </a>
             ) : (
