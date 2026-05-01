@@ -155,7 +155,7 @@ const [beratungslehrer, sozialarbeit] = await Promise.all([
     letter-spacing:-0.01em;
   }
   .br-person .avatar img{width:100%;height:100%;object-fit:cover;display:block;}
-  .br-section.dark .br-person .avatar{background:var(--gold);color:#2a1d08;}
+  .br-section.dark .br-person .avatar{background:var(--gold);color:var(--gold-text);}
   .br-person .role{
     font-family:var(--sans);font-size:11px;font-weight:600;
     letter-spacing:0.14em;text-transform:uppercase;color:var(--petrol);
@@ -190,9 +190,9 @@ const [beratungslehrer, sozialarbeit] = await Promise.all([
   }
   .br-person .btn-mail:hover{background:var(--petrol-dark);color:var(--creme);}
   .br-section.dark .br-person .btn-mail{
-    background:var(--gold);color:#2a1d08;border-color:var(--gold);
+    background:var(--gold);color:var(--gold-text);border-color:var(--gold);
   }
-  .br-section.dark .br-person .btn-mail:hover{background:#e0b68a;color:#2a1d08;}
+  .br-section.dark .br-person .btn-mail:hover{background:var(--gold-hover);color:var(--gold-text);}
 
   /* Concerns list (Schulsozialarbeit) */
   .br-concerns-wrap{display:flex;flex-direction:column;gap:24px;}

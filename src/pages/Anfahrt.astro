@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
+import MailLink from "../components/MailLink.astro";
 import { getSingle } from "../lib/pageContent";
 import { safeBreaks } from "../lib/safeMarkup";
 
@@ -120,7 +121,7 @@ const school: any = await getSingle("siteSchool");
           {school.address.street}<br>
           {school.address.postal} {school.address.city}<br><br>
           <a href={`tel:+49${school.phone.replace(/\D/g, "").replace(/^0/, "")}`}>Telefon · {school.phone}</a><br>
-          <a href={`mailto:${school.emailGeneral}`}>{school.emailGeneral}</a>
+          <MailLink email={school.emailGeneral} />
         </div>
         <div class="contact-row">
           <div class="cell">

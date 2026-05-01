@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
+import MailLink from "../components/MailLink.astro";
 import { getSingle } from "../lib/pageContent";
 
 const page: any = await getSingle("pageFoerderverein");
@@ -198,7 +199,7 @@ const page: any = await getSingle("pageFoerderverein");
         <span class="role">Vorsitzende</span>
         <h3 class="name">Khadra Azboy</h3>
         <p class="contact">
-          <a href="mailto:Khadraazboy@yahoo.com">Khadraazboy@yahoo.com</a><br>
+          <MailLink email="Khadraazboy@yahoo.com" /><br>
           <a href="tel:+492012802630">0201 · 280 26 30</a> · über das Sekretariat
         </p>
       </article>
@@ -207,7 +208,7 @@ const page: any = await getSingle("pageFoerderverein");
         <h3 class="name">André Pittelkau</h3>
         <p class="contact">
           Über das Sekretariat erreichbar:<br>
-          <a href="mailto:info@unesco-schule-essen.de">info@unesco-schule-essen.de</a>
+          <MailLink email="info@unesco-schule-essen.de" />
         </p>
       </article>
     </div>
@@ -242,8 +243,8 @@ const page: any = await getSingle("pageFoerderverein");
           <strong>Bankverbindung, Beitragshöhe und Mitgliedsantrag</strong> senden wir Ihnen auf Anfrage gerne zu. Die Informationen liegen aktuell beim Vorstand und im Sekretariat.
         </div>
         <div class="cta-row">
-          <a href="mailto:Khadraazboy@yahoo.com?subject=Mitglied%20im%20F%C3%B6rderverein" class="btn btn-primary">Beitreten oder Infos anfragen <span class="arrow">→</span></a>
-          <a href="mailto:info@unesco-schule-essen.de?subject=F%C3%B6rderverein%20%E2%80%93%20Sekretariat" class="btn btn-secondary">Über Sekretariat <span class="arrow">→</span></a>
+          <MailLink email="Khadraazboy@yahoo.com" subject="Mitglied im Förderverein" class="btn btn-primary" label="Beitreten oder Infos anfragen">Beitreten oder Infos anfragen <span class="arrow">→</span></MailLink>
+          <MailLink email="info@unesco-schule-essen.de" subject="Förderverein – Sekretariat" class="btn btn-secondary" label="Über Sekretariat">Über Sekretariat <span class="arrow">→</span></MailLink>
         </div>
       </div>
     </div>

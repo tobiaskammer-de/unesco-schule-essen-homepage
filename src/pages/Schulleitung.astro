@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
+import MailLink from "../components/MailLink.astro";
 import { getTeacherByRole, ROLES } from "../lib/roles";
 import { displayName, initials } from "../lib/teachers";
 import { getSingle } from "../lib/pageContent";
@@ -145,7 +146,7 @@ function claim(t: any): string {
   .sl-coord .avatar{
     width:72px;height:72px;border-radius:50%;overflow:hidden;
     background:var(--gold);display:flex;align-items:center;justify-content:center;
-    font-family:var(--serif);font-weight:500;font-size:24px;color:#2a1d08;
+    font-family:var(--serif);font-weight:500;font-size:24px;color:var(--gold-text);
   }
   .sl-coord .avatar img{width:100%;height:100%;object-fit:cover;display:block;}
   .sl-coord .role{
@@ -176,7 +177,7 @@ function claim(t: any): string {
   .sl-sekr .avatar{
     width:80px;height:80px;border-radius:50%;overflow:hidden;
     background:var(--gold);display:flex;align-items:center;justify-content:center;
-    font-family:var(--serif);font-weight:500;font-size:28px;color:#2a1d08;
+    font-family:var(--serif);font-weight:500;font-size:28px;color:var(--gold-text);
     flex-shrink:0;
   }
   .sl-sekr .avatar img{width:100%;height:100%;object-fit:cover;display:block;}
@@ -194,11 +195,11 @@ function claim(t: any): string {
   }
   .sl-sekr .phone-cta{
     display:inline-flex;align-items:center;gap:10px;
-    padding:14px 22px;background:var(--gold);color:#2a1d08;
+    padding:14px 22px;background:var(--gold);color:var(--gold-text);
     font-family:var(--sans);font-weight:600;font-size:15px;text-decoration:none;
     white-space:nowrap;transition:background var(--transition-fast);
   }
-  .sl-sekr .phone-cta:hover{background:#e0b68a;color:#2a1d08;}
+  .sl-sekr .phone-cta:hover{background:var(--gold-hover);color:var(--gold-text);}
 
   @media (max-width:960px){
     .sl-feature,.sl-stellv,.sl-sekr{
@@ -244,7 +245,7 @@ function claim(t: any): string {
           {claim(schulleiterin) && <blockquote>„{claim(schulleiterin)}"</blockquote>}
         </div>
         <div class="actions">
-          <a class="btn-mail" href={`mailto:${schulleiterin.data.email}`}>E-Mail an {schulleiterin.data.lastName === "Lichtenstein" ? "Frau" : ""} {schulleiterin.data.lastName}</a>
+          <MailLink class="btn-mail" email={schulleiterin.data.email} label={`E-Mail an ${schulleiterin.data.lastName === "Lichtenstein" ? "Frau " : ""}${schulleiterin.data.lastName}`}>E-Mail an {schulleiterin.data.lastName === "Lichtenstein" ? "Frau" : ""} {schulleiterin.data.lastName}</MailLink>
         </div>
       </article>
     )}
@@ -261,7 +262,7 @@ function claim(t: any): string {
           <h3 class="name">{displayName(stellv)}</h3>
           {claim(stellv) && <p class="claim">{claim(stellv)}</p>}
         </div>
-        <a class="btn-mail" href={`mailto:${stellv.data.email}`}>E-Mail senden</a>
+        <MailLink class="btn-mail" email={stellv.data.email} label="E-Mail senden">E-Mail senden</MailLink>
       </article>
     )}
 
@@ -280,7 +281,7 @@ function claim(t: any): string {
           <p class="role">{label}</p>
           <h3 class="name">{displayName(teacher)}</h3>
           {claim(teacher) && <p class="claim">{claim(teacher)}</p>}
-          <a class="mail" href={`mailto:${teacher.data.email}`}>{teacher.data.email}</a>
+          <MailLink class="mail" email={teacher.data.email} />
         </article>
       ))}
     </div>

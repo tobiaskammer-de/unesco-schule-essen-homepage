@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
+import MailLink from "../components/MailLink.astro";
 import { getSingle } from "../lib/pageContent";
 
 // Editierbare Inhalte aus src/content/pages/leitbild.yml (Sveltia)
@@ -226,7 +227,7 @@ const lb = await getSingle("pageLeitbild");
         <p>Das Leitbild lebt im Alltag: in den Fluren, in den Pausen, im Unterricht. Kommen Sie zum Tag der offenen Tür, oder vereinbaren Sie ein Gespräch. Wir zeigen Ihnen gerne, wie „Gemeinsam lernen" bei uns konkret aussieht.</p>
         <div class="lb-cta-links">
           <a href="Tag-der-offenen-Tuer.html" class="btn btn-primary">Tag der offenen Tür <span class="arrow">→</span></a>
-          <a href="mailto:kontakt@unesco-schule-essen.de" class="btn btn-secondary">Gespräch vereinbaren <span class="arrow">→</span></a>
+          <MailLink email="kontakt@unesco-schule-essen.de" class="btn btn-secondary" label="Gespräch vereinbaren">Gespräch vereinbaren <span class="arrow">→</span></MailLink>
         </div>
       </div>
     </div>

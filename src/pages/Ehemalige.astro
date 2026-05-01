@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
+import MailLink from "../components/MailLink.astro";
 import { getSingle } from "../lib/pageContent";
 
 const page: any = await getSingle("pageEhemalige");
@@ -138,8 +139,8 @@ function asset(p: string): string {
     font-family:var(--sans);font-size:17px;line-height:1.65;
     color:rgba(245,239,231,0.9);max-width:640px;margin:0 auto 32px;
   }
-  .eh-signup .btn{background:var(--gold);color:#2a1d08;border-color:var(--gold);}
-  .eh-signup .btn:hover{background:#e0b68a;color:#2a1d08;}
+  .eh-signup .btn{background:var(--gold);color:var(--gold-text);border-color:var(--gold);}
+  .eh-signup .btn:hover{background:var(--gold-hover);color:var(--gold-text);}
   .eh-signup .meta{
     margin-top:28px;font-family:var(--sans);font-size:13px;
     color:rgba(245,239,231,0.65);letter-spacing:0.02em;
@@ -236,7 +237,7 @@ function asset(p: string): string {
     <span class="eyebrow">Newsletter für Ehemalige</span>
     <h2>Anmelden und auf dem Laufenden bleiben.</h2>
     <p>Ein kurzer E-Mail-Kontakt reicht uns. Nenne uns deinen Namen, dein Abiturjahr (oder ungefähr), und wir nehmen dich in den Verteiler auf. Austragen kannst du dich jederzeit mit einer einzigen Mail.</p>
-    <a href="mailto:info@unesco-schule-essen.de?subject=Newsletter%20f%C3%BCr%20Ehemalige&amp;body=Hallo%2C%0A%0Aich%20m%C3%B6chte%20mich%20f%C3%BCr%20den%20Ehemaligen-Newsletter%20anmelden.%0A%0AName%3A%0AAbiturjahr%3A%0A%0AVielen%20Dank!" class="btn btn-primary">Newsletter abonnieren <span class="arrow">→</span></a>
+    <MailLink email="info@unesco-schule-essen.de" subject="Newsletter für Ehemalige" body={"Hallo,\n\nich möchte mich für den Ehemaligen-Newsletter anmelden.\n\nName:\nAbiturjahr:\n\nVielen Dank!"} class="btn btn-primary" label="Newsletter abonnieren">Newsletter abonnieren <span class="arrow">→</span></MailLink>
     <p class="meta">ca. 1 Mail pro Jahr · jederzeit kündbar</p>
   </div>
 </section>
@@ -251,7 +252,7 @@ function asset(p: string): string {
         <strong>UNESCO-Schule Essen</strong>
         Steinmetzstr. 9 · 45139 Essen<br><br>
         <a href="tel:+492012802630">0201 · 280 26 30</a><br>
-        <a href="mailto:info@unesco-schule-essen.de">info@unesco-schule-essen.de</a>
+        <MailLink email="info@unesco-schule-essen.de" />
       </div>
     </div>
   </div>

@@ -1,0 +1,47 @@
+---
+/**
+ * Spam-resistenter E-Mail-Link.
+ *
+ * Bots, die das HTML scrapen, sehen weder `mailto:` noch das `@`-Zeichen.
+ * Nach Hydration durch das Inline-Script in BaseLayout.astro wird der
+ * Link für reale Nutzer:innen klickbar (`href="mailto:user@domain"`)
+ * und der sichtbare Text wird auf `user@domain` aufgelöst.
+ *
+ * Im Anzeige-Fallback (ohne JS) zeigt der Link `user [at] domain` mit
+ * `aria-label`, so bleibt die Adresse für Screenreader nutzbar.
+ *
+ * Props:
+ *   email     — vollständige E-Mail-Adresse (Pflicht)
+ *   class     — zusätzliche CSS-Klassen
+ *   label     — sichtbarer Linktext (Default: die E-Mail-Adresse)
+ *   ariaLabel — überschreibt das `aria-label`
+ *   subject   — optionaler Mail-Betreff (URL-Encoding macht das Skript)
+ *   body      — optionaler Mail-Body
+ */
+interface Props {
+  email: string;
+  class?: string;
+  label?: string;
+  ariaLabel?: string;
+  subject?: string;
+  body?: string;
+}
+
+const { email, class: className = "", label, ariaLabel, subject, body } = Astro.props;
+
+const atIdx = email.indexOf("@");
+const user = atIdx > -1 ? email.slice(0, atIdx) : email;
+const domain = atIdx > -1 ? email.slice(atIdx + 1) : "";
+
+const fallbackText = label ?? `${user} [at] ${domain}`;
+---
+<a
+  class={`ml-link ${className}`.trim()}
+  href="#"
+  data-u={user}
+  data-d={domain}
+  data-mode={label ? "label" : "address"}
+  data-s={subject}
+  data-b={body}
+  aria-label={ariaLabel ?? `E-Mail an ${user}@${domain}`}
+><slot>{fallbackText}</slot></a>

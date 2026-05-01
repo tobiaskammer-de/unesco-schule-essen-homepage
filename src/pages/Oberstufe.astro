@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
+import MailLink from "../components/MailLink.astro";
 import { getTeacherByRole, ROLES } from "../lib/roles";
 import { displayName } from "../lib/teachers";
 import { getSingle } from "../lib/pageContent";
@@ -63,11 +64,11 @@ const [koordOberstufe, stufeEF] = await Promise.all([
   .ob-download{
     display:inline-flex;align-items:center;gap:12px;
     padding:14px 22px;border-radius:4px;
-    background:var(--gold);color:#2a1d08;
+    background:var(--gold);color:var(--gold-text);
     font-family:var(--sans);font-size:15px;font-weight:600;text-decoration:none;
     transition:background var(--transition-fast), transform var(--transition-fast);
   }
-  .ob-download:hover{background:#e0b68a;transform:translateY(-1px);color:#2a1d08;}
+  .ob-download:hover{background:var(--gold-hover);transform:translateY(-1px);color:var(--gold-text);}
   @media (prefers-reduced-motion: reduce){.ob-download:hover{transform:none;}}
   .ob-download .icon{width:18px;height:18px;fill:currentColor;}
   .ob-download .meta{
@@ -307,7 +308,7 @@ const [koordOberstufe, stufeEF] = await Promise.all([
         <p class="name">{koordOberstufe ? displayName(koordOberstufe) : "Über das Sekretariat"}</p>
         <p class="room">Oberstufenbüro · Raum 104</p>
         {koordOberstufe && (
-          <p class="room"><a href={`mailto:${koordOberstufe.data.email}`} style="color:var(--petrol);">{koordOberstufe.data.email}</a></p>
+          <p class="room"><MailLink email={koordOberstufe.data.email} /></p>
         )}
       </aside>
     </div>
@@ -506,14 +507,14 @@ const [koordOberstufe, stufeEF] = await Promise.all([
           <span class="role">Oberstufenkoordination</span>
           <span class="name">{displayName(koordOberstufe)}</span>
           <span class="title">UNESCO-Schule Essen · Steinmetzstr. 9 · 45139 Essen</span>
-          <a href={`mailto:${koordOberstufe.data.email}`}>{koordOberstufe.data.email}</a>
+          <MailLink email={koordOberstufe.data.email} />
         </article>
       ) : (
         <article class="contact-person">
           <span class="role">Oberstufenkoordination</span>
           <span class="name">Stelle aktuell vakant</span>
           <span class="title">Bitte über das Sekretariat anfragen.</span>
-          <a href="mailto:info@unesco-schule-essen.de">info@unesco-schule-essen.de</a>
+          <MailLink email="info@unesco-schule-essen.de" />
         </article>
       )}
       {stufeEF ? (
@@ -521,14 +522,14 @@ const [koordOberstufe, stufeEF] = await Promise.all([
           <span class="role">Stufenleitung EF</span>
           <span class="name">{displayName(stufeEF)}</span>
           <span class="title">UNESCO-Schule Essen · Steinmetzstr. 9 · 45139 Essen</span>
-          <a href={`mailto:${stufeEF.data.email}`}>{stufeEF.data.email}</a>
+          <MailLink email={stufeEF.data.email} />
         </article>
       ) : (
         <article class="contact-person">
           <span class="role">Stufenleitung EF</span>
           <span class="name">Stelle aktuell vakant</span>
           <span class="title">Bitte über das Sekretariat anfragen.</span>
-          <a href="mailto:info@unesco-schule-essen.de">info@unesco-schule-essen.de</a>
+          <MailLink email="info@unesco-schule-essen.de" />
         </article>
       )}
     </div>

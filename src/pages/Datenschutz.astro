@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
+import MailLink from "../components/MailLink.astro";
 import { getSingle } from "../lib/pageContent";
 
 const page = await getSingle("pageDatenschutz");
@@ -72,13 +73,13 @@ const page = await getSingle("pageDatenschutz");
       Rathaus, Porscheplatz<br>
       45121 Essen<br>
       Telefon: <a href="tel:+4920188">+49&nbsp;201 88-0</a><br>
-      E-Mail: <a href="mailto:info@essen.de">info@essen.de</a><br>
+      E-Mail: <MailLink email="info@essen.de" /><br>
       Web: <a href="https://www.essen.de" target="_blank" rel="noopener">www.essen.de</a>
     </div>
     <p>Für die inhaltliche Gestaltung und den laufenden Betrieb der Website ist die Schulleitung der UNESCO-Schule Essen verantwortlich (Kontaktdaten siehe <a href="Impressum.html">Impressum</a>).</p>
 
     <h3>Datenschutzbeauftragte*r</h3>
-    <p>Den oder die behördliche Datenschutzbeauftragte*r der Stadt Essen erreichen Sie über die oben genannte Postanschrift mit dem Zusatz „Datenschutzbeauftragte" oder per E-Mail an <a href="mailto:datenschutz@essen.de">datenschutz@essen.de</a>.</p>
+    <p>Den oder die behördliche Datenschutzbeauftragte*r der Stadt Essen erreichen Sie über die oben genannte Postanschrift mit dem Zusatz „Datenschutzbeauftragte" oder per E-Mail an <MailLink email="datenschutz@essen.de" />.</p>
 
     <hr>
 
@@ -153,7 +154,7 @@ const page = await getSingle("pageDatenschutz");
       Kavalleriestraße 2–4<br>
       40213 Düsseldorf<br>
       Telefon: +49&nbsp;211 38424-0<br>
-      E-Mail: <a href="mailto:poststelle@ldi.nrw.de">poststelle@ldi.nrw.de</a><br>
+      E-Mail: <MailLink email="poststelle@ldi.nrw.de" /><br>
       Web: <a href="https://www.ldi.nrw.de" target="_blank" rel="noopener">www.ldi.nrw.de</a>
     </div>
 

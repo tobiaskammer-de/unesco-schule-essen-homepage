@@ -1,6 +1,7 @@
 ---
 import type { TeacherEntry } from "../lib/teachers";
 import { displayName, initials } from "../lib/teachers";
+import MailLink from "./MailLink.astro";
 
 /**
  * Wiederverwendbares Personen-Kärtchen.
@@ -131,13 +132,13 @@ const fallbackInitials = hasTeacher
     {(email || phone) && (
       <div class="cc-actions">
         {email && (
-          <a href={`mailto:${email}`} class="cc-btn-mail" aria-label={`E-Mail an ${name}`}>
+          <MailLink email={email} class="cc-btn-mail" label={ctaLabel} ariaLabel={`E-Mail an ${name}`}>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
               <rect x="3" y="5" width="18" height="14" rx="1"/>
               <path d="M3 7l9 6 9-6"/>
             </svg>
             {ctaLabel}
-          </a>
+          </MailLink>
         )}
         {phone && (
           <a href={`tel:${phone.replace(/\s|·/g, "")}`} class="cc-btn-phone" aria-label={`Anrufen ${name}`}>
@@ -233,7 +234,7 @@ const fallbackInitials = hasTeacher
     border: 1px solid rgba(245, 239, 231, 0.2);
     border-top: var(--card-accent-width) solid var(--gold);
   }
-  .cc--dark .cc-avatar { background: var(--gold); color: #2a1d08; }
+  .cc--dark .cc-avatar { background: var(--gold); color: var(--gold-text); }
   .cc--dark .cc-role { color: var(--gold); }
   .cc--dark .cc-name { color: var(--creme); }
   .cc--dark .cc-sub { color: rgba(245, 239, 231, 0.78); }
@@ -242,9 +243,9 @@ const fallbackInitials = hasTeacher
     border-top-color: rgba(245, 239, 231, 0.18);
   }
   .cc--dark .cc-btn-mail {
-    background: var(--gold); color: #2a1d08; border-color: var(--gold);
+    background: var(--gold); color: var(--gold-text); border-color: var(--gold);
   }
-  .cc--dark .cc-btn-mail:hover { background: #e0b68a; color: #2a1d08; }
+  .cc--dark .cc-btn-mail:hover { background: var(--gold-hover); color: var(--gold-text); }
   .cc--dark .cc-btn-phone { color: var(--creme); border-bottom-color: rgba(245, 239, 231, 0.25); }
 
   /* Variant: vakante Stelle */
