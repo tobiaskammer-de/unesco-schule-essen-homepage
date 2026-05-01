@@ -19,19 +19,19 @@ overview:
   cards:
     - label: "Schule & Alltag"
       title: "Beratungslehrer"
-      body: "Lernschwierigkeiten, Konflikte mit Mitschülerinnen oder Lehrkräften, Sorgen im Alltag: erste Adresse für Schülerinnen, Schüler und Eltern."
+      body: "Lernschwierigkeiten, Konflikte mit Mitschülerinnen, Mitschülern oder Lehrkräften, Sorgen im Alltag: erste Adresse für Schülerinnen, Schüler und Eltern."
       href: "#beratungslehrer"
-      cta: "Mehr erfahren →"
+      cta: "Zum Beratungslehrer →"
     - label: "Uni-Übergang"
       title: "Talentscout"
       body: "Begleitung auf dem Weg in ein Studium, gerade dann, wenn niemand in der Familie bisher studiert hat. Kostenfrei, vor Ort, langfristig."
       href: "#talentscout"
-      cta: "Mehr erfahren →"
+      cta: "Zum Talentscout →"
     - label: "Vertraulich"
       title: "Schulsozialarbeit"
       body: "Wenn zu Hause Ärger ist, es finanzielle Probleme gibt oder einfach nichts mehr klappt: wir unterstützen und schweigen."
       href: "#schulsozialarbeit"
-      cta: "Mehr erfahren →"
+      cta: "Zur Schulsozialarbeit →"
 
 beratungslehrer:
   eyebrow: "01 · Beratungslehrer"
