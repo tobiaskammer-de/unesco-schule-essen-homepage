@@ -388,15 +388,17 @@ const [koordEprob, koordOberstufe] = await Promise.all([
     <!-- Termine -->
     <div class="termine">
       <div class="intro">
-        <span class="kicker">{an.termine.kicker}</span>
+        {an.termine.kicker && <span class="kicker">{an.termine.kicker}</span>}
         <h3>{an.termine.title}</h3>
         <p>{an.termine.intro}</p>
       </div>
-      <ol>
-        {an.termine.list.map((t) => (
-          <li><span class="date">{t.date}</span><span class="day">{t.day}</span><span class="time">{t.time}</span></li>
-        ))}
-      </ol>
+      {an.termine.list.length > 0 && (
+        <ol>
+          {an.termine.list.map((t) => (
+            <li><span class="date">{t.date}</span><span class="day">{t.day}</span><span class="time">{t.time}</span></li>
+          ))}
+        </ol>
+      )}
     </div>
 
     <!-- Steps -->
@@ -407,7 +409,7 @@ const [koordEprob, koordOberstufe] = await Promise.all([
         <article class="step">
           <span class="n">01</span>
           <h4>Termin vereinbaren</h4>
-          <p>Rufen Sie uns an oder buchen Sie online einen verbindlichen Termin im Koordinierungsverfahren.</p>
+          <p>Rufen Sie uns an oder buchen Sie online einen verbindlichen Termin.</p>
           <p><a href="tel:+492012802630" class="action">0201 · 280&nbsp;26&nbsp;30 →</a></p>
         </article>
         <article class="step">

@@ -1,6 +1,6 @@
 ---
 firstName: "Jennifer"
-lastName: "Gonzalez Guila"
+lastName: "González Guilá"
 subjects: ["kath. Religion", "Mathematik"]
 roles: ["Lernmittelverwaltung"]
 email: "gonzalez-guila@unesco-schule-essen.de"
