@@ -228,7 +228,8 @@ const pageOberstufe       = defineCollection({ loader: glob({ pattern: "oberstuf
 const pageSchulleitung    = defineCollection({ loader: glob({ pattern: "schulleitung.yml",         base: "./src/content/pages" }), schema: flexibleSchema });
 const pageBeratung        = defineCollection({ loader: glob({ pattern: "beratung.yml",             base: "./src/content/pages" }), schema: flexibleSchema });
 const pageBerufsorientierung = defineCollection({ loader: glob({ pattern: "berufsorientierung.yml", base: "./src/content/pages" }), schema: flexibleSchema });
-const pageKulturelleBildung = defineCollection({ loader: glob({ pattern: "kulturelle-bildung.yml", base: "./src/content/pages" }), schema: flexibleSchema });
+const pageMusischeUndKulturelleBildung = defineCollection({ loader: glob({ pattern: "musische-und-kulturelle-bildung.yml", base: "./src/content/pages" }), schema: flexibleSchema });
+const pageLebendigeKunst  = defineCollection({ loader: glob({ pattern: "lebendige-kunst.yml",       base: "./src/content/pages" }), schema: flexibleSchema });
 const pagePaedagogischeKonzepte = defineCollection({ loader: glob({ pattern: "paedagogische-konzepte.yml", base: "./src/content/pages" }), schema: flexibleSchema });
 const pageAnfahrt         = defineCollection({ loader: glob({ pattern: "anfahrt.yml",              base: "./src/content/pages" }), schema: flexibleSchema });
 const pageSchliessfaecher = defineCollection({ loader: glob({ pattern: "schliessfaecher.yml",      base: "./src/content/pages" }), schema: flexibleSchema });
@@ -262,7 +263,8 @@ export const collections = {
   pageSchulleitung,
   pageBeratung,
   pageBerufsorientierung,
-  pageKulturelleBildung,
+  pageMusischeUndKulturelleBildung,
+  pageLebendigeKunst,
   pagePaedagogischeKonzepte,
   pageAnfahrt,
   pageSchliessfaecher,

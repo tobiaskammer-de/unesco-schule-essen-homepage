@@ -1,0 +1,334 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHero from "../components/PageHero.astro";
+import { getSingle } from "../lib/pageContent";
+
+const page: any = await getSingle("pageLebendigeKunst");
+const galleryItems: Array<{ image: string; imageAlt: string; title?: string; caption?: string }> =
+  page.gallery?.items ?? [];
+---
+<BaseLayout title="Lebendige Kunst · UNESCO-Schule Essen">
+<style is:global>
+  /* ---------- Lebendige Kunst ---------- */
+  .lk-intro{background:var(--creme);padding:var(--space-section) 0;}
+  .lk-intro-grid{
+    display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);
+    gap:64px;align-items:start;
+  }
+  .lk-intro .eyebrow{display:block;margin-bottom:14px;}
+  .lk-intro h2{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(30px,3.4vw,44px);line-height:1.1;
+    color:var(--petrol);letter-spacing:-0.015em;margin:0;
+  }
+  .lk-intro p{
+    font-family:var(--sans);font-size:17px;line-height:1.7;color:var(--tinte);
+    margin:0;
+  }
+
+  /* Galerie */
+  .lk-gallery{background:var(--offwhite);padding:var(--space-section) 0;}
+  .lk-gallery .head{max-width:780px;margin:0 0 56px;}
+  .lk-gallery .head .eyebrow{display:block;margin-bottom:14px;}
+  .lk-gallery .head h2{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(30px,3.2vw,44px);line-height:1.15;letter-spacing:-0.015em;
+    color:var(--petrol);margin:0 0 16px;
+  }
+  .lk-gallery .head p{
+    font-family:var(--sans);font-size:17px;line-height:1.65;color:var(--stein);
+    max-width:680px;margin:0;
+  }
+  .lk-gallery-grid{
+    display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px;
+    list-style:none;padding:0;margin:0;
+  }
+  .lk-gallery-card{
+    appearance:none;background:#fff;border:1px solid var(--hairline);
+    border-top:var(--card-accent-width) solid var(--petrol);
+    padding:0;width:100%;text-align:left;cursor:pointer;
+    display:flex;flex-direction:column;
+    transition:transform var(--transition), box-shadow var(--transition);
+    color:inherit;font:inherit;
+  }
+  .lk-gallery-card:hover,
+  .lk-gallery-card:focus-visible{
+    transform:translateY(-2px);
+    box-shadow:0 16px 40px -22px rgba(14,77,79,0.3);
+    outline:none;
+  }
+  .lk-gallery-card:focus-visible{outline:2px solid var(--petrol);outline-offset:3px;}
+  @media (prefers-reduced-motion: reduce){
+    .lk-gallery-card:hover,.lk-gallery-card:focus-visible{transform:none;}
+  }
+  .lk-gallery-card .media{
+    aspect-ratio:4/3;overflow:hidden;background:var(--creme);
+  }
+  .lk-gallery-card .media img{
+    width:100%;height:100%;object-fit:cover;display:block;
+    transition:transform .5s ease;
+  }
+  .lk-gallery-card:hover .media img{transform:scale(1.02);}
+  @media (prefers-reduced-motion: reduce){
+    .lk-gallery-card:hover .media img{transform:none;}
+  }
+  .lk-gallery-card .body{
+    padding:var(--card-padding);
+    display:flex;flex-direction:column;gap:8px;
+  }
+  .lk-gallery-card h3{
+    font-family:var(--serif);font-weight:500;font-size:20px;line-height:1.25;
+    color:var(--petrol);letter-spacing:-0.008em;margin:0;
+  }
+  .lk-gallery-card .cap{
+    font-family:var(--sans);font-size:14.5px;line-height:1.6;color:var(--stein);margin:0;
+  }
+  .lk-gallery-empty{
+    font-family:var(--sans);font-size:16px;color:var(--stein);font-style:italic;
+    padding:24px 0;
+  }
+
+  /* Lightbox */
+  .lk-lightbox[hidden]{display:none !important;}
+  .lk-lightbox{
+    position:fixed;inset:0;z-index:1000;
+    background:rgba(11,42,43,0.92);
+    display:flex;align-items:center;justify-content:center;
+    padding:48px 24px;
+    animation:lkLightboxIn .18s ease-out;
+  }
+  @keyframes lkLightboxIn{from{opacity:0;}to{opacity:1;}}
+  @media (prefers-reduced-motion: reduce){
+    .lk-lightbox{animation:none;}
+  }
+  .lk-lightbox figure{
+    margin:0;max-width:1100px;width:100%;
+    display:flex;flex-direction:column;align-items:center;gap:16px;
+  }
+  .lk-lightbox-image{
+    max-width:100%;max-height:75vh;width:auto;height:auto;
+    object-fit:contain;display:block;
+    box-shadow:0 30px 80px -30px rgba(0,0,0,0.6);
+  }
+  .lk-lightbox figcaption{
+    text-align:center;color:var(--creme);max-width:780px;
+    display:flex;flex-direction:column;gap:6px;
+  }
+  .lk-lightbox-title{
+    font-family:var(--serif);font-weight:500;font-size:22px;line-height:1.25;
+    color:var(--creme);margin:0;
+  }
+  .lk-lightbox-title:empty{display:none;}
+  .lk-lightbox-caption{
+    font-family:var(--sans);font-size:15.5px;line-height:1.6;
+    color:rgba(245,239,231,0.85);margin:0;
+  }
+  .lk-lightbox-caption:empty{display:none;}
+  .lk-lightbox-close,
+  .lk-lightbox-prev,
+  .lk-lightbox-next{
+    position:absolute;background:rgba(11,42,43,0.6);color:var(--creme);
+    border:1px solid rgba(245,239,231,0.25);
+    width:44px;height:44px;border-radius:50%;
+    font-size:22px;line-height:1;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;
+    transition:background .15s ease, border-color .15s ease;
+  }
+  .lk-lightbox-close:hover,
+  .lk-lightbox-prev:hover,
+  .lk-lightbox-next:hover,
+  .lk-lightbox-close:focus-visible,
+  .lk-lightbox-prev:focus-visible,
+  .lk-lightbox-next:focus-visible{
+    background:rgba(11,42,43,0.85);
+    border-color:var(--gold);
+    outline:none;
+  }
+  .lk-lightbox-close{top:16px;right:16px;}
+  .lk-lightbox-prev{left:16px;top:50%;transform:translateY(-50%);}
+  .lk-lightbox-next{right:16px;top:50%;transform:translateY(-50%);}
+  .lk-lightbox-counter{
+    position:absolute;bottom:16px;left:50%;transform:translateX(-50%);
+    font-family:var(--sans);font-size:13px;letter-spacing:0.06em;
+    color:rgba(245,239,231,0.75);
+    background:rgba(11,42,43,0.6);
+    border:1px solid rgba(245,239,231,0.2);
+    padding:4px 12px;border-radius:999px;
+    font-variant-numeric:tabular-nums;
+  }
+  body.lk-lightbox-open{overflow:hidden;}
+
+  @media (max-width:960px){
+    .lk-intro-grid{grid-template-columns:1fr;gap:32px;}
+    .lk-gallery-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;}
+    .lk-intro,.lk-gallery{padding:var(--space-section-sm) 0;}
+  }
+  @media (max-width:600px){
+    .lk-gallery-grid{grid-template-columns:1fr;}
+    .lk-lightbox{padding:24px 12px;}
+    .lk-lightbox-prev,.lk-lightbox-next{width:40px;height:40px;}
+  }
+</style>
+
+<main id="top">
+
+<PageHero variant="feature" image={page.hero.image || undefined} imageAlt={page.hero.imageAlt || ""}>
+  <Fragment slot="eyebrow">{page.hero.eyebrow}</Fragment>
+  <Fragment slot="title">{page.hero.title}{page.hero.titleHighlight && <><br /><em>{page.hero.titleHighlight}</em></>}</Fragment>
+  <Fragment slot="lede">{page.hero.lede}</Fragment>
+</PageHero>
+
+<section class="lk-intro" aria-label="Einordnung">
+  <div class="container">
+    <div class="lk-intro-grid">
+      <div>
+        {page.intro?.eyebrow && <span class="eyebrow">{page.intro.eyebrow}</span>}
+        <h2>{page.intro?.title}</h2>
+      </div>
+      <div>
+        <p>{page.intro?.body}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="lk-gallery" aria-label="Galerie Lebendige Kunst">
+  <div class="container">
+    <div class="head">
+      {page.gallery?.eyebrow && <span class="eyebrow">{page.gallery.eyebrow}</span>}
+      <h2>{page.gallery?.title}</h2>
+      {page.gallery?.body && <p>{page.gallery.body}</p>}
+    </div>
+
+    {galleryItems.length > 0 ? (
+      <ul class="lk-gallery-grid" role="list">
+        {galleryItems.map((item, i) => (
+          <li>
+            <button type="button" class="lk-gallery-card" data-lightbox-index={i} aria-label={`Bild öffnen: ${item.title || item.imageAlt}`}>
+              <div class="media">
+                <img src={item.image} alt={item.imageAlt} loading="lazy" decoding="async" width="800" height="600" />
+              </div>
+              {(item.title || item.caption) && (
+                <div class="body">
+                  {item.title && <h3>{item.title}</h3>}
+                  {item.caption && <p class="cap">{item.caption}</p>}
+                </div>
+              )}
+            </button>
+          </li>
+        ))}
+      </ul>
+    ) : (
+      <p class="lk-gallery-empty">Bald gibt es hier erste Bilder zu sehen.</p>
+    )}
+  </div>
+
+  {galleryItems.length > 0 && (
+    <>
+      <div class="lk-lightbox" role="dialog" aria-modal="true" aria-label="Galerie-Bild" hidden>
+        <button type="button" class="lk-lightbox-close" aria-label="Schließen">×</button>
+        <button type="button" class="lk-lightbox-prev"  aria-label="Vorheriges Bild">‹</button>
+        <button type="button" class="lk-lightbox-next"  aria-label="Nächstes Bild">›</button>
+        <figure>
+          <img class="lk-lightbox-image" alt="" />
+          <figcaption>
+            <h3 class="lk-lightbox-title"></h3>
+            <p class="lk-lightbox-caption"></p>
+          </figcaption>
+        </figure>
+        <span class="lk-lightbox-counter" aria-live="polite"></span>
+      </div>
+
+      <script type="application/json" id="lk-gallery-data" set:html={JSON.stringify(galleryItems)}></script>
+
+      <script is:inline>
+        (function(){
+          const dataEl = document.getElementById("lk-gallery-data");
+          if (!dataEl) return;
+          let items;
+          try { items = JSON.parse(dataEl.textContent || "[]"); }
+          catch (e) { return; }
+          if (!Array.isArray(items) || items.length === 0) return;
+
+          const lightbox = document.querySelector(".lk-lightbox");
+          if (!lightbox) return;
+          const imgEl   = lightbox.querySelector(".lk-lightbox-image");
+          const titleEl = lightbox.querySelector(".lk-lightbox-title");
+          const capEl   = lightbox.querySelector(".lk-lightbox-caption");
+          const counter = lightbox.querySelector(".lk-lightbox-counter");
+          const closeBtn= lightbox.querySelector(".lk-lightbox-close");
+          const prevBtn = lightbox.querySelector(".lk-lightbox-prev");
+          const nextBtn = lightbox.querySelector(".lk-lightbox-next");
+
+          let currentIndex = 0;
+          let lastFocused  = null;
+
+          function render(index){
+            const item = items[index];
+            if (!item) return;
+            imgEl.src = item.image;
+            imgEl.alt = item.imageAlt || "";
+            titleEl.textContent = item.title || "";
+            capEl.textContent = item.caption || "";
+            counter.textContent = (index + 1) + " / " + items.length;
+            currentIndex = index;
+          }
+
+          function open(index){
+            lastFocused = document.activeElement;
+            render(index);
+            lightbox.hidden = false;
+            document.body.classList.add("lk-lightbox-open");
+            closeBtn.focus();
+          }
+
+          function close(){
+            lightbox.hidden = true;
+            document.body.classList.remove("lk-lightbox-open");
+            if (lastFocused && typeof lastFocused.focus === "function") {
+              lastFocused.focus();
+            }
+          }
+
+          function next(){ render((currentIndex + 1) % items.length); }
+          function prev(){ render((currentIndex - 1 + items.length) % items.length); }
+
+          document.querySelectorAll(".lk-gallery-card").forEach(function(card){
+            card.addEventListener("click", function(){
+              const idx = parseInt(card.getAttribute("data-lightbox-index") || "0", 10);
+              open(idx);
+            });
+          });
+
+          closeBtn.addEventListener("click", close);
+          nextBtn.addEventListener("click", next);
+          prevBtn.addEventListener("click", prev);
+
+          lightbox.addEventListener("click", function(e){
+            if (e.target === lightbox) close();
+          });
+
+          document.addEventListener("keydown", function(e){
+            if (lightbox.hidden) return;
+            if (e.key === "Escape") { e.preventDefault(); close(); }
+            else if (e.key === "ArrowRight") { e.preventDefault(); next(); }
+            else if (e.key === "ArrowLeft")  { e.preventDefault(); prev(); }
+            else if (e.key === "Tab") {
+              const focusables = [closeBtn, prevBtn, nextBtn];
+              const idx = focusables.indexOf(document.activeElement);
+              e.preventDefault();
+              if (e.shiftKey) {
+                focusables[(idx - 1 + focusables.length) % focusables.length].focus();
+              } else {
+                focusables[(idx + 1) % focusables.length].focus();
+              }
+            }
+          });
+        })();
+      </script>
+    </>
+  )}
+</section>
+
+</main>
+</BaseLayout>

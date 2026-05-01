@@ -773,10 +773,10 @@ collections:
               - { name: body, label: "Text (Markdown)", widget: text }
               - { name: signature, label: "Signatur", widget: string }
 
-      # ---------------- KULTURELLE BILDUNG ----------------
-      - file: src/content/pages/kulturelle-bildung.yml
-        label: "Kulturelle Bildung"
-        name: kulturelleBildung
+      # ---------------- MUSISCHE UND KULTURELLE BILDUNG ----------------
+      - file: src/content/pages/musische-und-kulturelle-bildung.yml
+        label: "Musische und kulturelle Bildung"
+        name: musischeUndKulturelleBildung
         format: yaml
         fields:
           - name: hero
@@ -790,6 +790,48 @@ collections:
               - { name: lede, label: "Einleitung", widget: text }
               - { name: image, label: "Hero-Bild", widget: image, required: false, choose_url: false }
               - { name: imageAlt, label: "Bildbeschreibung", widget: string, required: false }
+
+      # ---------------- LEBENDIGE KUNST ----------------
+      - file: src/content/pages/lebendige-kunst.yml
+        label: "Lebendige Kunst"
+        name: lebendigeKunst
+        format: yaml
+        fields:
+          - name: hero
+            label: "Hero"
+            widget: object
+            collapsed: false
+            fields:
+              - { name: eyebrow, label: "Eyebrow", widget: string }
+              - { name: title, label: "Titel — Zeile 1", widget: string }
+              - { name: titleHighlight, label: "Titel — Zeile 2 (kursiv)", widget: string, required: false }
+              - { name: lede, label: "Einleitung", widget: text }
+              - { name: image, label: "Hero-Bild", widget: image, required: false, choose_url: false }
+              - { name: imageAlt, label: "Bildbeschreibung", widget: string, required: false }
+          - name: intro
+            label: "Einleitung"
+            widget: object
+            collapsed: true
+            fields:
+              - { name: eyebrow, label: "Eyebrow", widget: string, required: false }
+              - { name: title, label: "Überschrift", widget: string }
+              - { name: body, label: "Text", widget: text }
+          - name: gallery
+            label: "Galerie"
+            widget: object
+            fields:
+              - { name: eyebrow, label: "Eyebrow", widget: string, required: false }
+              - { name: title, label: "Überschrift", widget: string }
+              - { name: body, label: "Einleitung (optional)", widget: text, required: false }
+              - name: items
+                label: "Galerie-Einträge"
+                widget: list
+                summary: "{{fields.title}} — {{fields.imageAlt}}"
+                fields:
+                  - { name: image, label: "Bild", widget: image, choose_url: false }
+                  - { name: imageAlt, label: "Bildbeschreibung (Pflicht, für Screenreader)", widget: string }
+                  - { name: title, label: "Titel (optional)", widget: string, required: false }
+                  - { name: caption, label: "Bildtext (optional)", widget: text, required: false }
 
       # ---------------- PÄDAGOGISCHE KONZEPTE ----------------
       - file: src/content/pages/paedagogische-konzepte.yml
