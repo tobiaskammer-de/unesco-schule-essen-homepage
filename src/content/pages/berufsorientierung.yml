@@ -37,7 +37,7 @@ stufen:
         - "**EF:** Zweiwöchiges Pflichtpraktikum."
         - "**Q1:** Teilnahme an der Ausbildungsoffensive."
         - "**Q2:** Besuch von Ausbildungs- und Studienmessen."
-        - "**Beratung:** Anschlussvereinbarung; wöchentliche Beratungsangebote der Jugendberufsagentur und der Agentur für Arbeit."
+        - "**Beratung:** Anschlussvereinbarung; wöchentliche Beratungsangebote der Jugendberufsagentur (JBA)."
         - "**Begabtenförderung & Studienorientierung:** Talentscouting der Universität Duisburg-Essen."
 
 angebot:
@@ -51,9 +51,9 @@ angebot:
       cta: "Zur Laufbahnberatung →"
     - label: "Studium & Beruf"
       title: "Studien- und Berufsberatung"
-      body: "Vom Pflichtpraktikum bis zur Studien- und Ausbildungsmesse: Wir begleiten den Übergang von Schule zu Hochschule oder Ausbildung, inklusive externer Partner."
-      href: "#studium"
-      cta: "Zu Sek I & Sek II →"
+      body: "Falk Lindemann, Studien- und Berufsberater, sammelt auf seinem TaskCards-Board die wichtigsten Informationen für Schülerinnen und Schüler: von Studienwahl über Bewerbung bis zu aktuellen Terminen."
+      href: "https://www.taskcards.de/#/board/415fc6c6-b78e-4c13-9896-637cbaf79189/view"
+      cta: "Zum Info-Board →"
     - label: "Persönlich"
       title: "Beratung & Unterstützung"
       body: "Beratungslehrer, Talentscout der Uni Duisburg-Essen, Schulsozialarbeit: die Menschen, die zuhören, wenn's nicht nur um Noten geht."
