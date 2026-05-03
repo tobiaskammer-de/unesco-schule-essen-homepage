@@ -342,7 +342,7 @@ const page: any = await getSingle("pageSprachen");
           <article class="spr-stage">
             <span class="pill is-pflicht">Englisch · für alle</span>
             <h3>Englisch</h3>
-            <p>{page.journey?.stages?.[0]?.body ?? "Die wichtigste internationale Verständigungssprache: praxisnah, kommunikativ und mit klarem Fokus auf aktivem Sprechen."}</p>
+            <p>{page.journey?.stages?.[0]?.body}</p>
           </article>
         </div>
       </div>
@@ -357,13 +357,13 @@ const page: any = await getSingle("pageSprachen");
           <article class="spr-stage">
             <span class="pill is-wahl">2. Fremdsprache</span>
             <h3>Französisch</h3>
-            <p>{page.journey?.stages?.[1]?.body ?? "Lebendig, modern und weltweit gesprochen — ideal für alle, die später Reisen, Studium oder Beruf international gestalten möchten."}</p>
+            <p>{page.journey?.stages?.[1]?.body}</p>
           </article>
           <span class="spr-or" aria-hidden="true">oder</span>
           <article class="spr-stage">
             <span class="pill is-wahl">2. Fremdsprache</span>
             <h3>Latein</h3>
-            <p>{page.journey?.stages?.[2]?.body ?? "Die Basis vieler europäischer Sprachen und ein ideales Training für logisches Denken und sprachliche Genauigkeit."}</p>
+            <p>{page.journey?.stages?.[2]?.body}</p>
           </article>
         </div>
       </div>
@@ -379,7 +379,7 @@ const page: any = await getSingle("pageSprachen");
           <article class="spr-stage">
             <span class="pill is-erweiterung">+ 3. Fremdsprache</span>
             <h3>Französisch <span style="color:var(--gold-deep);font-style:italic;">als Erweiterung</span></h3>
-            <p>{page.journey?.stages?.[3]?.body ?? "Wer in Klasse 7 Latein gewählt hat, kann zusätzlich Französisch lernen und sein sprachliches Profil bewusst erweitern."}</p>
+            <p>{page.journey?.stages?.[3]?.body}</p>
           </article>
         </div>
       </div>
