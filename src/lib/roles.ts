@@ -26,6 +26,7 @@ export const ROLES = {
   SEKRETARIAT: "Sekretariat",
   BERATUNGSLEHRER: "Beratungslehrer",
   SCHULSOZIALARBEIT: "Schulsozialarbeit",
+  BEAUFTRAGTE_LESEFOERDERUNG_SI: "Beauftragte Leseförderung Sek I",
 } as const;
 
 export type RoleKey = keyof typeof ROLES;

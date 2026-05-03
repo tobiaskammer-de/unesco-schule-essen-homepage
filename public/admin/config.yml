@@ -929,6 +929,91 @@ collections:
               - { name: ctaLabel, label: "CTA-Beschriftung", widget: string, required: false }
               - { name: ctaHref, label: "CTA-Link", widget: string, required: false }
 
+      # ---------------- LESEFÖRDERUNG ----------------
+      - file: src/content/pages/lesefoerderung.yml
+        label: "Leseförderung"
+        name: lesefoerderung
+        format: yaml
+        fields:
+          - name: hero
+            label: "Hero"
+            widget: object
+            collapsed: false
+            fields:
+              - { name: eyebrow, label: "Eyebrow", widget: string }
+              - { name: title, label: "Titel — Zeile 1", widget: string }
+              - { name: titleHighlight, label: "Titel — Zeile 2 (kursiv)", widget: string, required: false }
+              - { name: lede, label: "Einleitung", widget: text }
+              - { name: image, label: "Hero-Bild (optional)", widget: image, required: false, choose_url: false }
+              - { name: imageAlt, label: "Bildbeschreibung", widget: string, required: false }
+          - name: quote
+            label: "Zitat-Block"
+            widget: object
+            collapsed: true
+            fields:
+              - { name: text, label: "Zitat-Text", widget: text }
+              - { name: author, label: "Urheber:in", widget: string }
+          - name: bausteine
+            label: "01 · Bausteine nach Jahrgangsstufen"
+            widget: object
+            collapsed: true
+            fields:
+              - { name: eyebrow, label: "Eyebrow", widget: string }
+              - { name: title, label: "Überschrift", widget: string }
+              - { name: body, label: "Einleitung", widget: text }
+              - name: list
+                label: "Stufen"
+                widget: list
+                summary: "{{fields.klasse}} · {{fields.mark}}"
+                fields:
+                  - { name: klasse, label: "Klassen-Label (z.B. „Klassen 5 und 6")", widget: string }
+                  - { name: mark, label: "Stufen-Motto (z.B. „Lust am Lesen wecken")", widget: string }
+                  - name: bullets
+                    label: "Stichpunkte (**fett** möglich)"
+                    widget: list
+                    field: { name: bullet, label: "Stichpunkt", widget: text }
+          - name: beyond
+            label: "02 · Über das Pflichtprogramm hinaus"
+            widget: object
+            collapsed: true
+            fields:
+              - { name: eyebrow, label: "Eyebrow", widget: string }
+              - { name: title, label: "Überschrift", widget: string }
+              - name: cards
+                label: "Karten"
+                widget: list
+                summary: "{{fields.title}}"
+                fields:
+                  - { name: title, label: "Titel", widget: string }
+                  - { name: body, label: "Text (**fett** möglich)", widget: text }
+          - name: verantwortung
+            label: "Verantwortlich"
+            widget: object
+            collapsed: true
+            fields:
+              - { name: eyebrow, label: "Eyebrow", widget: string }
+              - { name: title, label: "Überschrift", widget: string }
+              - { name: body, label: "Text", widget: text }
+          - name: download
+            label: "PDF-Download"
+            widget: object
+            collapsed: true
+            fields:
+              - { name: eyebrow, label: "Eyebrow", widget: string }
+              - { name: title, label: "Titel", widget: string }
+              - { name: body, label: "Beschreibung (optional)", widget: text, required: false }
+              - { name: fileLabel, label: "Datei-Beschreibung (z.B. „PDF · 84 KB")", widget: string }
+              - { name: fileHref, label: "PDF-Pfad (assets/...)", widget: string }
+          - name: closing
+            label: "Abschluss-Block"
+            widget: object
+            collapsed: true
+            fields:
+              - { name: eyebrow, label: "Eyebrow", widget: string }
+              - { name: title, label: "Titel — Zeile 1", widget: string }
+              - { name: titleHighlight, label: "Titel — Zeile 2 (kursiv)", widget: string, required: false }
+              - { name: body, label: "Text", widget: text }
+
       # ---------------- PÄDAGOGISCHE KONZEPTE ----------------
       - file: src/content/pages/paedagogische-konzepte.yml
         label: "Pädagogische Konzepte"

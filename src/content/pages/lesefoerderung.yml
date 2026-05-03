@@ -1,0 +1,64 @@
+hero:
+  eyebrow: "Schulprogramm · Leseförderung · Sek I"
+  title: "Leseförderung,"
+  titleHighlight: "Schritt für Schritt."
+  lede: "An der UNESCO-Schule Essen fördern wir nicht nur Lesekompetenz und Textverständnis, sondern ausdrücklich auch die Freude am Lesen — das Eintauchen in fremde, fantastische und neue Welten. Weil Leseförderung immer auch Sprachförderung ist, hat sie im Fach Deutsch einen besonderen Schwerpunkt."
+  image: ""
+  imageAlt: ""
+
+quote:
+  text: "Von allen Welten, die der Mensch erschaffen hat, ist die der Bücher die Gewaltigste."
+  author: "Heinrich Heine"
+
+bausteine:
+  eyebrow: "01 · Bausteine nach Jahrgangsstufen"
+  title: "Leseförderung Schritt für Schritt."
+  body: "Drei aufeinander aufbauende Stufen — von der Lust am Lesen über das systematische Verstehen bis zur eigenständigen literarischen Arbeit."
+  list:
+    - klasse: "Klassen 5 und 6"
+      mark: "Lust am Lesen wecken"
+      bullets:
+        - "**Lesenachmittage** in der Schule — gemeinsames Vorlesen, Buchempfehlungen und kleine Mitmachformate."
+        - "Teilnahme am bundesweiten **Vorlesewettbewerb** in Klasse 6."
+        - "**Besuch der Stadtbibliothek Essen** — Bibliotheksführung, Recherche- und Ausleihroutine."
+        - "Systematisches **Training von Lesestrategien** und Methoden der Texterschließung im Deutschunterricht."
+    - klasse: "Klassen 7 und 8"
+      mark: "Vom Lesen zum Verstehen"
+      bullets:
+        - "**Buchpräsentationen** in der Reihe „Einen Jugendroman lesen und verstehen\" — jede Schülerin und jeder Schüler stellt einen selbst gewählten Roman vor."
+        - "Projekt **„Zeitschriften in die Schulen\"** — bundesweites Leseförderungsprojekt der Stiftung Lesen."
+        - "In Kooperation mit **lit.COLOGNE und lit.RUHR**: Lesungen mit Autorinnen und Autoren von Jugendbüchern."
+        - "**Thalia #lassmalesen-Büchertisch** als kuratierte Empfehlungsübersicht."
+    - klasse: "Klassen 9 und 10"
+      mark: "Lesen als Haltung"
+      bullets:
+        - "Fortführung des Projekts **„Zeitschriften in die Schulen\"** der Stiftung Lesen — mit stärkerem Fokus auf Sachtexten, Reportage und Recherche."
+        - "**Thalia #lassmalesen-Büchertisch** als kuratierte Empfehlungsplattform für eigene Buchwahl in Lektürephasen und Projekten."
+        - "Vorbereitung auf das fortgesetzte literarische Arbeiten in der Sekundarstufe II: Genre-Vielfalt, kritisches Lesen, Verbindung von Literatur und Gegenwart."
+
+beyond:
+  eyebrow: "02 · Über das Pflichtprogramm hinaus"
+  title: "Lesen, wo die Schule stattfindet."
+  cards:
+    - title: "Offener Bücherschrank auf dem Schulhof"
+      body: "Ergänzend zu den Schwerpunkten in den Jahrgangsstufen steht den Schülerinnen und Schülern auf dem Schulhof ein offener Bücherschrank mit einer Vielzahl von Jugendbüchern für verschiedene Altersstufen zur Verfügung. Lesen darf hier spätestens in der Pause beginnen — ein freier Zugang zu Geschichten, ohne Anmeldung, ohne Note."
+    - title: "Vernetzt im Stadtteil und in der Region"
+      body: "Leseförderung lebt von Partnerinnen und Partnern: die **Stadtbibliothek Essen** als verlässlicher Lernort, die **Stiftung Lesen** als bundesweites Programm, **lit.COLOGNE und lit.RUHR** als Festivals — dazu Buchhandlungen und Verlage als Impulsgeber. Diese Vernetzung macht Lesen für unsere Schülerinnen und Schüler greifbar und zeigt, dass Literatur ein gesellschaftlicher Ort ist."
+
+verantwortung:
+  eyebrow: "Verantwortlich"
+  title: "Beauftragte für Leseförderung."
+  body: "Anregungen, Rückfragen und Ideen sind herzlich willkommen — schreiben Sie gerne direkt an die Beauftragte für Leseförderung in der Sekundarstufe I."
+
+download:
+  eyebrow: "Vollständiges Konzept"
+  title: "Leseförderung als PDF."
+  body: "Das vollständige Konzept zum Mitnehmen oder Ausdrucken — drei Seiten."
+  fileLabel: "PDF · 84 KB · Stand Vers02"
+  fileHref: "assets/Lesefoerderung-Vers02.pdf"
+
+closing:
+  eyebrow: "Lesen verbindet Welten."
+  title: "Verstehen und"
+  titleHighlight: "Freude am Lesen."
+  body: "Lesekompetenz ist der Schlüssel zu allen Fächern — und zugleich Einladung in fremde, fantastische, neue Welten. Mit gezielter Förderung in jeder Jahrgangsstufe halten wir beides zusammen."
