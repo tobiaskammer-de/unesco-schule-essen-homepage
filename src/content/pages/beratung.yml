@@ -10,11 +10,11 @@ intro:
   body: |
     Ob Lernschwierigkeiten, Mobbing, Sorgen zu Hause, die Frage nach dem richtigen Studium oder Schulangst: bei uns gibt es für jede Situation jemanden, der zuhört.
 
-    Drei feste Anlaufstellen ergänzen sich: der **Beratungslehrer**, der **Talentscout** der Universität Duisburg-Essen und die **Schulsozialarbeit**. Alle Gespräche sind vertraulich.
+    Zwei feste Anlaufstellen ergänzen sich: der **Beratungslehrer** und die **Schulsozialarbeit**. Alle Gespräche sind vertraulich.
   pledge: "Für Beratung und Schulsozialarbeit gilt die Schweigepflicht. Du kannst über alles reden, was dich bedrückt."
 
 overview:
-  eyebrow: "Drei Anlaufstellen"
+  eyebrow: "Zwei Anlaufstellen"
   title: "Wer berät wofür?"
   cards:
     - label: "Schule & Alltag"
@@ -22,11 +22,6 @@ overview:
       body: "Lernschwierigkeiten, Konflikte mit Mitschülerinnen, Mitschülern oder Lehrkräften, Sorgen im Alltag: erste Adresse für Schülerinnen, Schüler und Eltern."
       href: "#beratungslehrer"
       cta: "Zum Beratungslehrer →"
-    - label: "Uni-Übergang"
-      title: "Talentscout"
-      body: "Begleitung auf dem Weg in ein Studium, gerade dann, wenn niemand in der Familie bisher studiert hat. Kostenfrei, vor Ort, langfristig."
-      href: "#talentscout"
-      cta: "Zum Talentscout →"
     - label: "Vertraulich"
       title: "Schulsozialarbeit"
       body: "Wenn zu Hause Ärger ist, es finanzielle Probleme gibt oder einfach nichts mehr klappt: wir unterstützen und schweigen."
@@ -61,26 +56,8 @@ beratungslehrer:
   contactSubline: "Ansprechpartner für Schülerinnen, Schüler und Eltern"
   contactRoom: "Lehrerzimmer / Sekretariat"
 
-talentscout:
-  eyebrow: "02 · Talentscout"
-  title: "Gleiche Chancen —"
-  titleHighlight: "unabhängig vom Elternhaus."
-  lede: "Ziel des NRW-Talentscoutings ist es, jungen Menschen gleiche Bildungschancen zu ermöglichen, unabhängig von Bildungshintergrund oder Einkommen der Eltern."
-  qa:
-    - q: "Für wen?"
-      a: "Insbesondere Jugendliche ohne akademische Wurzeln, die sich ein Studium zutrauen sollen: wir ermutigen und begleiten."
-    - q: "Was gibt's?"
-      a: "Regelmäßige Beratungsgespräche vor Ort in der Schule. Orientierung beim Übergang von Schule zu Hochschule. Begleitung auch nach dem Abitur."
-    - q: "Von wem?"
-      a: "Sarah Schröter, Talentscout der Universität Duisburg-Essen, regelmäßig bei uns im Haus und erreichbar über das Sekretariat."
-    - q: "Was kostet's?"
-      a: "Nichts. Das Angebot ist für Schülerinnen und Schüler kostenfrei, finanziert durch das NRW-Talentscouting."
-  contactName: "Sarah Schröter"
-  contactSubline: "Universität Duisburg-Essen · NRW-Talentscouting"
-  contactRoom: "Regelmäßig vor Ort · Termine über das Sekretariat"
-
 schulsozialarbeit:
-  eyebrow: "03 · Schulsozialarbeit"
+  eyebrow: "02 · Schulsozialarbeit"
   title: "Wenn's mal"
   titleHighlight: "nicht so gut läuft."
   lede: "Für alles, was dich bedrückt und nicht in Schulnoten passt. Wir unterstützen dich dort, wo du dir Hilfe wünschst. Vertraulich, auf Augenhöhe."

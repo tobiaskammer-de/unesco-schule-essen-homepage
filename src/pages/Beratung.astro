@@ -44,7 +44,7 @@ const [beratungslehrer, sozialarbeit] = await Promise.all([
     font-size:clamp(30px,3.2vw,44px);line-height:1.15;letter-spacing:-0.015em;
     color:var(--petrol);margin:0;
   }
-  .br-overview-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;}
+  .br-overview-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;}
   .br-nav-card{
     background:#fff;border:1px solid var(--hairline);
     border-top:var(--card-accent-width) solid var(--petrol);
@@ -250,17 +250,17 @@ const [beratungslehrer, sozialarbeit] = await Promise.all([
       </div>
       <div>
         <p>Ob Lernschwierigkeiten, Mobbing, Sorgen zu Hause, die Frage nach dem richtigen Studium oder Schulangst: bei uns gibt es für jede Situation jemanden, der zuhört.</p>
-        <p>Drei feste Anlaufstellen ergänzen sich: der <strong>Beratungslehrer</strong>, der <strong>Talentscout</strong> der Universität Duisburg-Essen und die <strong>Schulsozialarbeit</strong>. Alle Gespräche sind vertraulich.</p>
+        <p>Zwei feste Anlaufstellen ergänzen sich: der <strong>Beratungslehrer</strong> und die <strong>Schulsozialarbeit</strong>. Alle Gespräche sind vertraulich.</p>
         <p class="pledge">Für Beratung und Schulsozialarbeit gilt die Schweigepflicht. Du kannst über alles reden, was dich bedrückt.</p>
       </div>
     </div>
   </div>
 </section>
 
-<section class="br-overview" aria-label="Drei Anlaufstellen">
+<section class="br-overview" aria-label="Zwei Anlaufstellen">
   <div class="container">
     <div class="head">
-      <span class="eyebrow">Drei Anlaufstellen</span>
+      <span class="eyebrow">Zwei Anlaufstellen</span>
       <h2>Wer berät wofür?</h2>
     </div>
     <div class="br-overview-grid">
@@ -269,12 +269,6 @@ const [beratungslehrer, sozialarbeit] = await Promise.all([
         <h3>Beratungslehrer</h3>
         <p>Lernschwierigkeiten, Konflikte mit Mitschülerinnen, Mitschülern oder Lehrkräften, Sorgen im Alltag: erste Adresse für Schülerinnen, Schüler und Eltern.</p>
         <span class="go">Zum Beratungslehrer →</span>
-      </a>
-      <a href="#talentscout" class="br-nav-card">
-        <span class="label">Uni-Übergang</span>
-        <h3>Talentscout</h3>
-        <p>Begleitung auf dem Weg in ein Studium, gerade dann, wenn niemand in der Familie bisher studiert hat. Kostenfrei, vor Ort, langfristig.</p>
-        <span class="go">Zum Talentscout →</span>
       </a>
       <a href="#schulsozialarbeit" class="br-nav-card">
         <span class="label">Vertraulich</span>
@@ -328,42 +322,11 @@ const [beratungslehrer, sozialarbeit] = await Promise.all([
   </div>
 </section>
 
-<!-- =================== TALENTSCOUT =================== -->
-<section class="br-section alt" id="talentscout" aria-label="Talentscout">
-  <div class="container">
-    <div class="head">
-      <span class="eyebrow">02 · Talentscout</span>
-      <h2>Gleiche Chancen —<br><em>unabhängig vom Elternhaus.</em></h2>
-      <p class="lede">Ziel des NRW-Talentscoutings ist es, jungen Menschen gleiche Bildungschancen zu ermöglichen, unabhängig von Bildungshintergrund oder Einkommen der Eltern.</p>
-    </div>
-
-    <div class="br-split">
-      <div class="br-qa">
-        <div class="row"><span class="q">Für wen?</span><span class="a">Insbesondere Jugendliche ohne akademische Wurzeln, die sich ein Studium zutrauen sollen: wir ermutigen und begleiten.</span></div>
-        <div class="row"><span class="q">Was gibt's?</span><span class="a">Regelmäßige Beratungsgespräche vor Ort in der Schule. Orientierung beim Übergang von Schule zu Hochschule. Begleitung auch nach dem Abitur.</span></div>
-        <div class="row"><span class="q">Von wem?</span><span class="a">Sarah Schröter, Talentscout der Universität Duisburg-Essen, regelmäßig bei uns im Haus und erreichbar über das Sekretariat.</span></div>
-        <div class="row"><span class="q">Was kostet's?</span><span class="a">Nichts. Das Angebot ist für Schülerinnen und Schüler kostenfrei, finanziert durch das NRW-Talentscouting.</span></div>
-      </div>
-
-      <ContactCard
-        roleLabel="Talentscout"
-        manualName="Sarah Schröter"
-        manualPhone="0201 · 280 26 30"
-        manualPhoto="assets/beratung/schroeter-sarah.png"
-        subline="Universität Duisburg-Essen · NRW-Talentscouting"
-        room="Regelmäßig vor Ort · Termine über das Sekretariat"
-        ctaLabel="Termin über Sekretariat"
-        variant="compact"
-      />
-    </div>
-  </div>
-</section>
-
 <!-- =================== SCHULSOZIALARBEIT =================== -->
 <section class="br-section dark" id="schulsozialarbeit" aria-label="Schulsozialarbeit">
   <div class="container">
     <div class="head">
-      <span class="eyebrow">03 · Schulsozialarbeit</span>
+      <span class="eyebrow">02 · Schulsozialarbeit</span>
       <h2>Wenn's mal <em>nicht so gut</em> läuft.</h2>
       <p class="lede">Für alles, was dich bedrückt und nicht in Schulnoten passt. Wir unterstützen dich dort, wo du dir Hilfe wünschst. Vertraulich, auf Augenhöhe.</p>
     </div>
