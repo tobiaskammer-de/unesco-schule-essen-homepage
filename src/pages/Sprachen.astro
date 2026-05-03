@@ -43,14 +43,39 @@ const page: any = await getSingle("pageSprachen");
     font-family:var(--sans);font-size:17px;line-height:1.65;color:var(--stein);
     max-width:680px;margin:0;
   }
-  .spr-stages{
-    display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;
+  /* Sprachen-Roadmap: 3 Stufen (Pflicht → Wahl → Erweiterung) */
+  .spr-roadmap{
+    display:flex;flex-direction:column;gap:0;
+    position:relative;
   }
+  .spr-row{
+    display:grid;grid-template-columns:160px 1fr;gap:32px;align-items:stretch;
+    padding:28px 0;
+    border-bottom:1px solid var(--hairline);
+    position:relative;
+  }
+  .spr-row:last-child{border-bottom:0;}
+  .spr-row-axis{
+    display:flex;flex-direction:column;justify-content:center;gap:6px;
+    padding-top:6px;
+  }
+  .spr-row-axis .klasse{
+    font-family:var(--serif);font-weight:500;font-size:28px;line-height:1;
+    color:var(--petrol);letter-spacing:-0.02em;
+    font-variant-numeric:tabular-nums;
+  }
+  .spr-row-axis .label{
+    font-family:var(--sans);font-size:11px;font-weight:600;
+    letter-spacing:0.14em;text-transform:uppercase;color:var(--bordeaux);
+  }
+  .spr-row-axis .label.gold{color:var(--gold-deep);}
+
+  /* Stage Card (gemeinsam) */
   .spr-stage{
     background:#fff;border:1px solid var(--hairline);
     border-top:var(--card-accent-width) solid var(--petrol);
-    padding:var(--card-padding);
-    display:flex;flex-direction:column;gap:12px;
+    padding:24px 28px;
+    display:flex;flex-direction:column;gap:8px;
     position:relative;
     transition:transform var(--transition), box-shadow var(--transition);
   }
@@ -59,35 +84,77 @@ const page: any = await getSingle("pageSprachen");
     box-shadow:0 16px 40px -22px rgba(14,77,79,0.3);
   }
   @media (prefers-reduced-motion: reduce){.spr-stage:hover{transform:none;}}
-  .spr-stage .stage-head{
-    display:flex;align-items:baseline;justify-content:space-between;gap:12px;
-  }
-  .spr-stage .klasse{
-    font-family:var(--sans);font-size:11px;font-weight:600;
-    letter-spacing:0.14em;text-transform:uppercase;color:var(--petrol);
-  }
-  .spr-stage .mark{
-    font-family:var(--sans);font-size:10.5px;font-weight:600;
-    letter-spacing:0.1em;text-transform:uppercase;
-    color:var(--bordeaux);
-    padding:3px 8px;
-    background:rgba(110,38,57,0.08);
-  }
   .spr-stage h3{
-    font-family:var(--serif);font-weight:500;font-size:24px;line-height:1.2;
-    color:var(--petrol);letter-spacing:-0.01em;margin:4px 0 0;
+    font-family:var(--serif);font-weight:500;font-size:22px;line-height:1.2;
+    color:var(--petrol);letter-spacing:-0.01em;margin:0;
   }
   .spr-stage p{
     font-family:var(--sans);font-size:15px;line-height:1.6;color:var(--tinte);margin:0;
   }
-  /* Stage 4 (Erweiterung) leicht anders, Gold-Akzent */
-  .spr-stage.is-extension{
+
+  /* Klasse 5 — eine breite Card */
+  .spr-row-pflicht .spr-cards{display:block;}
+  .spr-row-pflicht .spr-stage{
+    border-top-color:var(--petrol);
+  }
+
+  /* Klasse 7 — zwei Cards nebeneinander mit ODER-Trenner */
+  .spr-row-wahl .spr-cards{
+    display:grid;grid-template-columns:1fr auto 1fr;gap:16px;align-items:stretch;
+  }
+  .spr-row-wahl .spr-or{
+    display:flex;align-items:center;justify-content:center;
+    font-family:var(--serif);font-style:italic;font-size:18px;
+    color:var(--bordeaux);letter-spacing:0.04em;
+    padding:0 4px;
+  }
+  .spr-row-wahl .spr-stage{border-top-color:var(--bordeaux);}
+
+  /* Klasse 9 — schmale Erweiterungs-Card rechtsbündig unter Latein */
+  .spr-row-erweiterung .spr-cards{
+    display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:stretch;
+  }
+  .spr-row-erweiterung .spr-cards > .filler{
+    /* leerer linker Bereich, bleibt frei zur visuellen Auflockerung */
+    display:none;
+  }
+  .spr-row-erweiterung .spr-stage{
     border-top-color:var(--gold);
+    grid-column:2 / 3;
+    background:linear-gradient(180deg, rgba(212,165,116,0.10) 0%, #fff 100%);
   }
-  .spr-stage.is-extension .klasse{color:var(--gold-deep);}
-  .spr-stage.is-extension .mark{
-    color:var(--gold-deep);background:rgba(212,165,116,0.18);
+  /* Verbindungslinie zwischen Latein (Klasse 7) und 3. FS (Klasse 9) */
+  .spr-row-erweiterung::before{
+    content:"";
+    position:absolute;
+    /* startet rechts in der Wahl-Reihe (über Latein), zieht runter in die Erweiterungs-Reihe */
+    top:-28px;
+    right:25%;
+    width:2px;height:56px;
+    background:linear-gradient(180deg, var(--bordeaux) 0%, var(--gold) 100%);
+    transform:translateX(-50%);
   }
+  .spr-row-erweiterung::after{
+    content:"";
+    position:absolute;
+    top:24px;
+    right:25%;
+    width:10px;height:10px;
+    background:var(--gold);
+    transform:translateX(-50%) rotate(45deg);
+  }
+
+  /* Pflicht/Wahl/Optional Pill innerhalb der Karte */
+  .spr-stage .pill{
+    align-self:flex-start;
+    font-family:var(--sans);font-size:10.5px;font-weight:600;
+    letter-spacing:0.12em;text-transform:uppercase;
+    padding:3px 8px;
+    margin-bottom:4px;
+  }
+  .spr-stage .pill.is-pflicht{color:var(--petrol);background:rgba(14,77,79,0.08);}
+  .spr-stage .pill.is-wahl{color:var(--bordeaux);background:rgba(110,38,57,0.08);}
+  .spr-stage .pill.is-erweiterung{color:var(--gold-deep);background:rgba(212,165,116,0.18);}
 
   /* Oberstufen-Highlight */
   .spr-oberstufe{
@@ -206,7 +273,6 @@ const page: any = await getSingle("pageSprachen");
 
   @media (max-width:960px){
     .spr-intro-grid{grid-template-columns:1fr;gap:32px;}
-    .spr-stages{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;}
     .spr-pillars{grid-template-columns:1fr;gap:20px;}
     .spr-advantages-grid{grid-template-columns:1fr;gap:32px;}
     .spr-oberstufe-card{
@@ -216,9 +282,18 @@ const page: any = await getSingle("pageSprachen");
     .spr-intro,.spr-journey,.spr-oberstufe,.spr-experience,.spr-advantages,.spr-closing{
       padding:var(--space-section-sm) 0;
     }
+    /* Roadmap: Achse über die Karten ziehen statt seitlich */
+    .spr-row{grid-template-columns:1fr;gap:14px;padding:24px 0;}
+    .spr-row-axis{padding-top:0;}
+    .spr-row-axis .klasse{font-size:24px;}
+    .spr-row-erweiterung::before,
+    .spr-row-erweiterung::after{display:none;}
   }
   @media (max-width:560px){
-    .spr-stages{grid-template-columns:1fr;}
+    .spr-row-wahl .spr-cards{grid-template-columns:1fr;}
+    .spr-row-wahl .spr-or{padding:8px 0;font-size:16px;}
+    .spr-row-erweiterung .spr-cards{grid-template-columns:1fr;}
+    .spr-row-erweiterung .spr-stage{grid-column:1 / -1;}
   }
 </style>
 
@@ -256,17 +331,58 @@ const page: any = await getSingle("pageSprachen");
       <h2>{page.journey?.title}</h2>
       {page.journey?.body && <p>{page.journey.body}</p>}
     </div>
-    <div class="spr-stages">
-      {(page.journey?.stages ?? []).map((s: any, i: number) => (
-        <article class={`spr-stage ${i === 3 ? "is-extension" : ""}`}>
-          <div class="stage-head">
-            <span class="klasse">{s.klasse}</span>
-            {s.mark && <span class="mark">{s.mark}</span>}
-          </div>
-          <h3>{s.title}</h3>
-          <p>{s.body}</p>
-        </article>
-      ))}
+    <div class="spr-roadmap">
+      {/* Klasse 5 — Pflicht für alle */}
+      <div class="spr-row spr-row-pflicht">
+        <div class="spr-row-axis">
+          <span class="klasse">Klasse 5</span>
+          <span class="label">Pflicht für alle</span>
+        </div>
+        <div class="spr-cards">
+          <article class="spr-stage">
+            <span class="pill is-pflicht">Englisch · für alle</span>
+            <h3>Englisch</h3>
+            <p>{page.journey?.stages?.[0]?.body ?? "Die wichtigste internationale Verständigungssprache: praxisnah, kommunikativ und mit klarem Fokus auf aktivem Sprechen."}</p>
+          </article>
+        </div>
+      </div>
+
+      {/* Klasse 7 — Wahl zwischen Französisch ODER Latein */}
+      <div class="spr-row spr-row-wahl">
+        <div class="spr-row-axis">
+          <span class="klasse">Klasse 7</span>
+          <span class="label">Wahl: Französisch oder Latein</span>
+        </div>
+        <div class="spr-cards">
+          <article class="spr-stage">
+            <span class="pill is-wahl">2. Fremdsprache</span>
+            <h3>Französisch</h3>
+            <p>{page.journey?.stages?.[1]?.body ?? "Lebendig, modern und weltweit gesprochen — ideal für alle, die später Reisen, Studium oder Beruf international gestalten möchten."}</p>
+          </article>
+          <span class="spr-or" aria-hidden="true">oder</span>
+          <article class="spr-stage">
+            <span class="pill is-wahl">2. Fremdsprache</span>
+            <h3>Latein</h3>
+            <p>{page.journey?.stages?.[2]?.body ?? "Die Basis vieler europäischer Sprachen und ein ideales Training für logisches Denken und sprachliche Genauigkeit."}</p>
+          </article>
+        </div>
+      </div>
+
+      {/* Klasse 9 — Erweiterung: Französisch als 3. FS, wenn Latein gewählt wurde */}
+      <div class="spr-row spr-row-erweiterung">
+        <div class="spr-row-axis">
+          <span class="klasse">Klasse 9</span>
+          <span class="label gold">Optional bei Latein-Vorwahl</span>
+        </div>
+        <div class="spr-cards">
+          <div class="filler"></div>
+          <article class="spr-stage">
+            <span class="pill is-erweiterung">+ 3. Fremdsprache</span>
+            <h3>Französisch <span style="color:var(--gold-deep);font-style:italic;">als Erweiterung</span></h3>
+            <p>{page.journey?.stages?.[3]?.body ?? "Wer in Klasse 7 Latein gewählt hat, kann zusätzlich Französisch lernen und sein sprachliches Profil bewusst erweitern."}</p>
+          </article>
+        </div>
+      </div>
     </div>
   </div>
 </section>
