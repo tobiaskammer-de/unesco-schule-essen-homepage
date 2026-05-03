@@ -111,40 +111,84 @@ const page: any = await getSingle("pageBerufsorientierung");
     border-bottom:1px solid currentColor;padding-bottom:2px;
   }
 
-  /* Talentscout */
-  .bo-talent{background:var(--creme);padding:var(--space-section) 0;border-top:1px solid var(--hairline);}
+  /* Beratungs-Sektionen (Falk, Talentscout): gemeinsames Layout */
+  .bo-falk,
+  .bo-talent{
+    padding:var(--space-section) 0;border-top:1px solid var(--hairline);
+    scroll-margin-top:120px;
+  }
+  .bo-falk{background:var(--creme);}
+  .bo-talent{background:var(--offwhite);}
+  .bo-falk .head,
   .bo-talent .head{max-width:820px;margin:0 0 40px;}
+  .bo-falk .head .eyebrow,
   .bo-talent .head .eyebrow{display:block;margin-bottom:14px;}
+  .bo-falk .head h2,
   .bo-talent .head h2{
     font-family:var(--serif);font-weight:500;
     font-size:clamp(30px,3.4vw,48px);line-height:1.1;letter-spacing:-0.015em;
     color:var(--petrol);margin:0 0 16px;
   }
+  .bo-falk .head h2 em,
   .bo-talent .head h2 em{font-style:italic;color:var(--bordeaux);}
+  .bo-falk .head .lede,
   .bo-talent .head .lede{
     font-family:var(--sans);font-size:17px;line-height:1.65;color:var(--stein);
     max-width:720px;margin:0;
   }
-  .bo-talent-grid{
+  .bo-qa-grid{
     display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);
     gap:48px;align-items:start;
   }
-  .bo-talent-facts{
+  .bo-qa-list{
     list-style:none;margin:0;padding:0;
     display:grid;grid-template-columns:1fr;gap:2px;
     background:var(--hairline);border:1px solid var(--hairline);
   }
-  .bo-talent-facts li{
+  .bo-qa-list li{
     background:#fff;padding:22px 26px;
     display:grid;grid-template-columns:minmax(0,160px) minmax(0,1fr);gap:22px;align-items:baseline;
   }
-  .bo-talent-facts .q{
+  .bo-qa-list .q{
     font-family:var(--sans);font-size:11.5px;font-weight:600;
     letter-spacing:0.14em;text-transform:uppercase;color:var(--petrol);
   }
-  .bo-talent-facts .a{
+  .bo-qa-list .a{
     font-family:var(--sans);font-size:15.5px;line-height:1.65;color:var(--tinte);
   }
+
+  /* Personen-Karte für Falk Lindemann (kompakt, kleines Foto). */
+  .bo-falk-card{
+    background:#fff;border:1px solid var(--hairline);
+    border-top:var(--card-accent-width) solid var(--petrol);
+    padding:32px 32px 28px;
+    display:flex;flex-direction:column;gap:14px;align-items:flex-start;
+  }
+  .bo-falk-card .photo{
+    width:84px;height:84px;border-radius:50%;overflow:hidden;background:var(--petrol);
+    flex-shrink:0;
+  }
+  .bo-falk-card .photo img{width:100%;height:100%;object-fit:cover;display:block;}
+  .bo-falk-card .role{
+    font-family:var(--sans);font-size:11px;font-weight:600;
+    letter-spacing:0.14em;text-transform:uppercase;color:var(--bordeaux);margin:0;
+  }
+  .bo-falk-card .name{
+    font-family:var(--serif);font-weight:500;font-size:24px;line-height:1.15;
+    color:var(--petrol);letter-spacing:-0.01em;margin:0;
+  }
+  .bo-falk-card .sub{
+    font-family:var(--sans);font-size:14.5px;color:var(--stein);margin:0;
+  }
+  .bo-falk-card .cta{
+    display:inline-flex;align-items:center;gap:6px;
+    margin-top:6px;padding:11px 18px;
+    background:var(--petrol);color:var(--creme);
+    font-family:var(--sans);font-weight:500;font-size:14px;
+    border:1.5px solid var(--petrol);
+    transition:background var(--transition-fast);white-space:nowrap;
+  }
+  .bo-falk-card .cta:hover{background:var(--petrol-dark);color:var(--creme);}
 
   /* Ansprechpartner */
   .bo-contacts{background:var(--creme);padding:var(--space-section) 0;border-top:1px solid var(--hairline);}
@@ -193,11 +237,11 @@ const page: any = await getSingle("pageBerufsorientierung");
     .bo-lauf .contact{grid-area:contact;}
   }
 
-  /* Tablet-Zwischenlayout für Talentscout: ContactCard rutscht unter die Fakten,
-     damit die Tabelle volle Breite bekommt. */
+  /* Tablet-Zwischenlayout für Beratungs-Sektionen: Personen-Card rutscht unter
+     die Q&A-Liste, damit die Tabelle volle Breite bekommt. */
   @media (max-width:1080px) and (min-width:961px){
-    .bo-talent-grid{grid-template-columns:1fr;gap:28px;}
-    .bo-talent-facts li{grid-template-columns:minmax(0,130px) minmax(0,1fr);}
+    .bo-qa-grid{grid-template-columns:1fr;gap:28px;}
+    .bo-qa-list li{grid-template-columns:minmax(0,130px) minmax(0,1fr);}
   }
 
   @media (max-width:960px){
@@ -206,10 +250,10 @@ const page: any = await getSingle("pageBerufsorientierung");
     .bo-lauf .icon{width:64px;height:64px;font-size:28px;}
     .bo-stufen-grid{grid-template-columns:1fr;gap:18px;}
     .bo-angebot-grid{grid-template-columns:1fr;gap:14px;}
-    .bo-talent-grid{grid-template-columns:1fr;gap:24px;}
-    .bo-talent-facts li{grid-template-columns:1fr;gap:4px;}
+    .bo-qa-grid{grid-template-columns:1fr;gap:24px;}
+    .bo-qa-list li{grid-template-columns:1fr;gap:4px;}
     .bo-contacts-grid{grid-template-columns:1fr;gap:14px;}
-    .bo-intro,.bo-lauf,.bo-stufen,.bo-angebot,.bo-talent,.bo-contacts{padding:var(--space-section-sm) 0;}
+    .bo-intro,.bo-lauf,.bo-stufen,.bo-angebot,.bo-falk,.bo-talent,.bo-contacts{padding:var(--space-section-sm) 0;}
   }
 </style>
 
@@ -284,18 +328,47 @@ const page: any = await getSingle("pageBerufsorientierung");
         <p>Wege durch das Schulsystem, Fächerwahl, Übergänge, Wiederholung oder Wechsel: persönliche Orientierung, wenn Entscheidungen anstehen.</p>
         <span class="go">Zur Laufbahnberatung →</span>
       </a>
-      <a href="https://www.taskcards.de/#/board/415fc6c6-b78e-4c13-9896-637cbaf79189/view" class="bo-angebot-card" target="_blank" rel="noopener noreferrer">
+      <a href="#falk-lindemann" class="bo-angebot-card">
         <span class="label">Studium &amp; Beruf</span>
         <h3>Studien- und Berufsberatung</h3>
-        <p>Falk Lindemann, Studien- und Berufsberater, sammelt auf seinem TaskCards-Board die wichtigsten Informationen für Schülerinnen und Schüler: von Studienwahl über Bewerbung bis zu aktuellen Terminen.</p>
-        <span class="go">Zum Info-Board →</span>
+        <p>Falk Lindemann, Studien- und Berufsberater, begleitet bei Studienwahl, Bewerbung und Übergängen. Sein TaskCards-Board bündelt aktuelle Termine und Hilfen für Schülerinnen und Schüler.</p>
+        <span class="go">Zu Falk Lindemann →</span>
       </a>
-      <a href="Beratung.html" class="bo-angebot-card">
-        <span class="label">Persönlich</span>
-        <h3>Beratung &amp; Unterstützung</h3>
-        <p>Beratungslehrer, Talentscout der Uni Duisburg-Essen, Schulsozialarbeit: die Menschen, die zuhören, wenn's nicht nur um Noten geht.</p>
-        <span class="go">Zur Beratungsseite →</span>
+      <a href="#talentscout" class="bo-angebot-card">
+        <span class="label">Uni-Übergang</span>
+        <h3>Talentscout</h3>
+        <p>Sarah Schröter von der Universität Duisburg-Essen begleitet besonders Jugendliche ohne akademische Wurzeln auf dem Weg ins Studium — kostenfrei, vor Ort, langfristig.</p>
+        <span class="go">Zum Talentscout →</span>
       </a>
+    </div>
+  </div>
+</section>
+
+<section class="bo-falk" id="falk-lindemann" aria-label="Studien- und Berufsberatung Falk Lindemann">
+  <div class="container">
+    <div class="head">
+      <span class="eyebrow">Studien- und Berufsberatung</span>
+      <h2>Falk Lindemann.</h2>
+      <p class="lede">Studien- und Berufsberater an unserer Schule. Auf seinem TaskCards-Board sammelt er laufend Informationen für Schülerinnen und Schüler: von Studienwahl über Bewerbung bis hin zu aktuellen Terminen und Veranstaltungen.</p>
+    </div>
+
+    <div class="bo-qa-grid">
+      <ul class="bo-qa-list">
+        <li><span class="q">Für wen?</span><span class="a">Schülerinnen und Schüler aller Jahrgänge, die sich für Studium, Ausbildung oder duale Wege interessieren — auch bei Unsicherheit, was zu einem passt.</span></li>
+        <li><span class="q">Was gibt's?</span><span class="a">Beratung zu Studien- und Berufswahl, Bewerbungsprozessen und Hilfen wie BAB, BAföG oder Stipendien. Hinweise auf Messen, Infotage und Tests.</span></li>
+        <li><span class="q">Wie geht's?</span><span class="a">Persönliche Termine über das Sekretariat oder die Schule. Auf dem TaskCards-Board sind alle wichtigen Materialien und Aktualitäten jederzeit abrufbar.</span></li>
+        <li><span class="q">Was kostet's?</span><span class="a">Nichts. Die Beratung ist für Schülerinnen und Schüler kostenfrei.</span></li>
+      </ul>
+
+      <article class="bo-falk-card">
+        <div class="photo">
+          <img src="assets/beratung/lindemann-falk.jpg" alt="Porträt Falk Lindemann" width="200" height="300" loading="lazy" />
+        </div>
+        <p class="role">Studien- und Berufsberater</p>
+        <h3 class="name">Falk Lindemann</h3>
+        <p class="sub">Termine über das Sekretariat</p>
+        <a class="cta" href="https://www.taskcards.de/#/board/415fc6c6-b78e-4c13-9896-637cbaf79189/view" target="_blank" rel="noopener noreferrer">Zum Info-Board →</a>
+      </article>
     </div>
   </div>
 </section>
@@ -308,8 +381,8 @@ const page: any = await getSingle("pageBerufsorientierung");
       <p class="lede">Ziel des NRW-Talentscoutings ist es, jungen Menschen gleiche Bildungschancen zu ermöglichen, unabhängig von Bildungshintergrund oder Einkommen der Eltern.</p>
     </div>
 
-    <div class="bo-talent-grid">
-      <ul class="bo-talent-facts">
+    <div class="bo-qa-grid">
+      <ul class="bo-qa-list">
         <li><span class="q">Für wen?</span><span class="a">Insbesondere Jugendliche ohne akademische Wurzeln, die sich ein Studium zutrauen sollen: wir ermutigen und begleiten.</span></li>
         <li><span class="q">Was gibt's?</span><span class="a">Regelmäßige Beratungsgespräche vor Ort in der Schule. Orientierung beim Übergang von Schule zu Hochschule. Begleitung auch nach dem Abitur.</span></li>
         <li><span class="q">Von wem?</span><span class="a">Sarah Schröter, Talentscout der Universität Duisburg-Essen, regelmäßig bei uns im Haus und erreichbar über das Sekretariat.</span></li>
