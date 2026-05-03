@@ -139,35 +139,26 @@ const page: any = await getSingle("pageSprachen");
   .spr-stage .pill.is-wahl{color:var(--bordeaux);background:rgba(110,38,57,0.08);}
   .spr-stage .pill.is-erweiterung{color:var(--gold-deep);background:rgba(212,165,116,0.18);}
 
-  /* Oberstufen-Highlight */
+  /* Oberstufe — normale Sektion mit dezentem Gold-Akzent links */
   .spr-oberstufe{
     background:var(--creme);padding:var(--space-section) 0;
     border-top:1px solid var(--hairline);
   }
-  .spr-oberstufe-card{
+  .spr-oberstufe .inner{
     max-width:880px;margin:0 auto;
-    background:#fff;border:1px solid var(--hairline);
-    border-left:var(--card-accent-width) solid var(--gold);
-    padding:48px 56px;
-    display:grid;grid-template-columns:auto 1fr;gap:40px;align-items:start;
+    border-left:3px solid var(--gold);
+    padding:6px 0 6px 36px;
   }
-  .spr-oberstufe-card .num{
-    font-family:var(--serif);font-weight:500;font-size:40px;line-height:1;
-    color:var(--gold-deep);letter-spacing:-0.02em;
-    font-variant-numeric:tabular-nums;
-    padding-top:6px;
-  }
-  .spr-oberstufe-card .body .eyebrow{
-    display:block;margin-bottom:12px;color:var(--gold-deep);
-  }
-  .spr-oberstufe-card h2{
+  .spr-oberstufe .eyebrow{display:block;margin-bottom:14px;color:var(--gold-deep);}
+  .spr-oberstufe h2{
     font-family:var(--serif);font-weight:500;
-    font-size:clamp(26px,2.8vw,36px);line-height:1.2;letter-spacing:-0.015em;
-    color:var(--petrol);margin:0 0 14px;
+    font-size:clamp(28px,3vw,40px);line-height:1.2;letter-spacing:-0.015em;
+    color:var(--petrol);margin:0 0 16px;
   }
-  .spr-oberstufe-card h2 em{font-style:italic;color:var(--bordeaux);font-weight:500;}
-  .spr-oberstufe-card p{
-    font-family:var(--sans);font-size:16.5px;line-height:1.7;color:var(--tinte);margin:0;
+  .spr-oberstufe h2 em{font-style:italic;color:var(--bordeaux);font-weight:500;}
+  .spr-oberstufe p{
+    font-family:var(--sans);font-size:17px;line-height:1.7;color:var(--tinte);margin:0;
+    max-width:760px;
   }
 
   /* Sprache erleben — Pillars */
@@ -184,7 +175,7 @@ const page: any = await getSingle("pageSprachen");
     max-width:680px;margin:0;
   }
   .spr-pillars{
-    display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px;
+    display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:32px;
   }
   .spr-pillar{
     border-top:1px solid var(--hairline);
@@ -257,10 +248,7 @@ const page: any = await getSingle("pageSprachen");
   @media (max-width:960px){
     .spr-pillars{grid-template-columns:1fr;gap:20px;}
     .spr-advantages-grid{grid-template-columns:1fr;gap:32px;}
-    .spr-oberstufe-card{
-      grid-template-columns:1fr;gap:20px;padding:36px 32px;
-    }
-    .spr-oberstufe-card .num{font-size:32px;padding-top:0;}
+    .spr-oberstufe .inner{padding-left:20px;}
     .spr-journey,.spr-oberstufe,.spr-experience,.spr-advantages,.spr-closing{
       padding:var(--space-section-sm) 0;
     }
@@ -355,15 +343,12 @@ const page: any = await getSingle("pageSprachen");
   </div>
 </section>
 
-<section class="spr-oberstufe" aria-label="Einstieg in der Oberstufe">
+<section class="spr-oberstufe" aria-label="Anfängerkurse in der Oberstufe">
   <div class="container">
-    <div class="spr-oberstufe-card">
-      <span class="num" aria-hidden="true">11</span>
-      <div class="body">
-        {page.oberstufe?.eyebrow && <span class="eyebrow">{page.oberstufe.eyebrow}</span>}
-        <h2>{page.oberstufe?.title}{page.oberstufe?.titleHighlight && <> <em>{page.oberstufe.titleHighlight}</em></>}</h2>
-        <p>{page.oberstufe?.body}</p>
-      </div>
+    <div class="inner">
+      {page.oberstufe?.eyebrow && <span class="eyebrow">{page.oberstufe.eyebrow}</span>}
+      <h2>{page.oberstufe?.title}{page.oberstufe?.titleHighlight && <> <em>{page.oberstufe.titleHighlight}</em></>}</h2>
+      <p>{page.oberstufe?.body}</p>
     </div>
   </div>
 </section>
