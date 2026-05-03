@@ -12,23 +12,6 @@ const page: any = await getSingle("pageSprachen");
 >
 <style is:global>
   /* ---------- Sprachen ---------- */
-  .spr-intro{background:var(--creme);padding:var(--space-section) 0;}
-  .spr-intro-grid{
-    display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);
-    gap:64px;align-items:start;
-  }
-  .spr-intro .eyebrow{display:block;margin-bottom:14px;}
-  .spr-intro h2{
-    font-family:var(--serif);font-weight:500;
-    font-size:clamp(30px,3.4vw,44px);line-height:1.1;
-    color:var(--petrol);letter-spacing:-0.015em;margin:0;
-  }
-  .spr-intro h2 em{font-style:italic;color:var(--bordeaux);font-weight:500;}
-  .spr-intro p{
-    font-family:var(--sans);font-size:17px;line-height:1.7;color:var(--tinte);
-    margin:0;
-  }
-  .spr-intro p strong{color:var(--petrol);font-weight:500;}
 
   /* Sprachenfolge — Stages-Grid */
   .spr-journey{background:var(--offwhite);padding:var(--space-section) 0;}
@@ -272,14 +255,13 @@ const page: any = await getSingle("pageSprachen");
   }
 
   @media (max-width:960px){
-    .spr-intro-grid{grid-template-columns:1fr;gap:32px;}
     .spr-pillars{grid-template-columns:1fr;gap:20px;}
     .spr-advantages-grid{grid-template-columns:1fr;gap:32px;}
     .spr-oberstufe-card{
       grid-template-columns:1fr;gap:20px;padding:36px 32px;
     }
     .spr-oberstufe-card .num{font-size:32px;padding-top:0;}
-    .spr-intro,.spr-journey,.spr-oberstufe,.spr-experience,.spr-advantages,.spr-closing{
+    .spr-journey,.spr-oberstufe,.spr-experience,.spr-advantages,.spr-closing{
       padding:var(--space-section-sm) 0;
     }
     /* Roadmap: Achse über die Karten ziehen statt seitlich */
@@ -309,20 +291,6 @@ const page: any = await getSingle("pageSprachen");
   <Fragment slot="title">{page.hero.title}{page.hero.titleHighlight && <><br /><em>{page.hero.titleHighlight}</em></>}</Fragment>
   <Fragment slot="lede">{page.hero.lede}</Fragment>
 </PageHero>
-
-<section class="spr-intro" aria-label="Sprachen — Einordnung">
-  <div class="container">
-    <div class="spr-intro-grid">
-      <div>
-        {page.intro?.eyebrow && <span class="eyebrow">{page.intro.eyebrow}</span>}
-        <h2>{page.intro?.title}{page.intro?.titleHighlight && <><br /><em>{page.intro.titleHighlight}</em></>}</h2>
-      </div>
-      <div>
-        <p set:html={safeBold(page.intro?.body)} />
-      </div>
-    </div>
-  </div>
-</section>
 
 <section class="spr-journey" aria-label="Sprachenfolge">
   <div class="container">

@@ -6,15 +6,8 @@ hero:
   image: "assets/sp-weltoffen.jpg"
   imageAlt: "Schülerinnen und Schüler im Sprachunterricht"
 
-intro:
-  eyebrow: "01 · Englisch ab Klasse 5"
-  title: "Vor Grammatik kommt"
-  titleHighlight: "das Sprechen."
-  body: |
-    Englisch beginnt am ersten Schultag und läuft bis zum Abitur durch. Schwerpunkt im Unterricht: Hörverstehen, freie Rede, eigene Texte.
-
 journey:
-  eyebrow: "02 · Sprachenfolge"
+  eyebrow: "01 · Sprachenfolge"
   title: "Drei Wege durch die Sprachen."
   body: "Die Pflicht-Sprache Englisch wird ab Klasse 7 um eine zweite Fremdsprache ergänzt. Wer Latein wählt, kann ab Klasse 9 zusätzlich Französisch belegen — und mit drei Schulsprachen ins Abitur gehen."
   stages:
@@ -36,13 +29,13 @@ journey:
       body: "Latein-Schülerinnen und Schüler können zusätzlich Französisch belegen und mit drei Schulsprachen ins Abitur gehen."
 
 oberstufe:
-  eyebrow: "03 · Anfängerkurse in der Oberstufe"
-  title: "Auch Quereinsteiger"
+  eyebrow: "02 · Anfängerkurse in der Oberstufe"
+  title: "Auch Quereinsteiger in der gymnasialen Oberstufe"
   titleHighlight: "schaffen die 2. Fremdsprache."
   body: "In der Einführungsphase (EF) bieten wir Anfängerkurse in Französisch und Latein. Damit können Schülerinnen und Schüler aus anderen Schulformen die zweite Fremdsprache nachholen, die für das Abitur Pflicht ist."
 
 experience:
-  eyebrow: "04 · Sprache erleben"
+  eyebrow: "03 · Sprache erleben"
   title: "Drei Bausteine neben dem Unterricht."
   body: "Sprachen werden bei uns nicht nur gelernt, sondern angewendet — innerhalb und außerhalb des Klassenraums."
   pillars:
@@ -60,7 +53,7 @@ advantages:
     - "Englisch durchgängig von Klasse 5 bis zum Abitur"
     - "2. Fremdsprache (Französisch oder Latein) ab Klasse 7"
     - "3. Fremdsprache (Französisch nach Latein) ab Klasse 9 möglich"
-    - "Anfängerkurse Französisch und Latein auch in der Oberstufe"
+    - "Französisch und Latein als neu einsetzende Fremdsprache auch in der Oberstufe"
     - "Latein-Latinum am Ende der Mittelstufe"
 
 closing:
