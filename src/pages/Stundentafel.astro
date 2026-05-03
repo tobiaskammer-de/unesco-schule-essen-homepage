@@ -189,31 +189,6 @@ const page: any = await getSingle("pageStundentafel");
     line-height:1.3;
   }
 
-  /* Legend / subject keys */
-  .st-legend{background:var(--creme);padding:var(--space-section) 0;border-top:1px solid var(--hairline);}
-  .st-legend .head{max-width:780px;margin:0 0 40px;}
-  .st-legend .head .eyebrow{display:block;margin-bottom:14px;}
-  .st-legend .head h2{
-    font-family:var(--serif);font-weight:500;
-    font-size:clamp(28px,3vw,40px);line-height:1.15;letter-spacing:-0.015em;
-    color:var(--petrol);margin:0;
-  }
-  .legend-grid{
-    display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:2px;
-    background:var(--hairline);border:1px solid var(--hairline);
-  }
-  .legend-grid .cell{
-    background:#fff;padding:16px 20px;
-    display:grid;grid-template-columns:56px 1fr;gap:14px;align-items:baseline;
-  }
-  .legend-grid .key{
-    font-family:var(--serif);font-weight:500;font-size:20px;line-height:1;
-    color:var(--petrol);letter-spacing:-0.01em;
-  }
-  .legend-grid .name{
-    font-family:var(--sans);font-size:14px;line-height:1.45;color:var(--tinte);
-  }
-
   /* Dummy preview (placeholder for SII / Stundenplan-Grafik) */
   .st-dummy{background:var(--offwhite);padding:var(--space-section) 0;border-top:1px solid var(--hairline);}
   .st-dummy .head{max-width:780px;margin:0 0 32px;}
@@ -239,7 +214,7 @@ const page: any = await getSingle("pageStundentafel");
     .st-intro-grid{grid-template-columns:1fr;gap:32px;}
     .raster-row{grid-template-columns:140px 1fr;}
     .legend-grid{grid-template-columns:1fr;}
-    .st-intro,.st-raster,.st-table-wrap,.st-notes,.st-legend,.st-dummy{padding:var(--space-section-sm) 0;}
+    .st-intro,.st-raster,.st-table-wrap,.st-notes,.st-dummy{padding:var(--space-section-sm) 0;}
     .st-notes .inner{padding:24px 24px;}
   }
   @media (max-width:400px){
@@ -307,7 +282,7 @@ const page: any = await getSingle("pageStundentafel");
       <span class="eyebrow">Wochenstunden je Fach</span>
       <h2>Stundentafel Sekundarstufe&nbsp;I.</h2>
       <span class="tag">Stand Mai 2026 · APO-SI</span>
-      <p>Die Tabelle zeigt die Wochenstunden pro Fach in den Klassen&nbsp;5 bis 10. Die Bedeutung der Fachkürzel findet sich weiter unten auf der Seite.</p>
+      <p>Die Tabelle zeigt die Wochenstunden pro Fach in den Klassen&nbsp;5 bis 10. Die Fachkürzel sind direkt hinter den Fachnamen aufgeführt.</p>
     </div>
 
     <div class="st-table-scroll">
@@ -383,38 +358,6 @@ const page: any = await getSingle("pageStundentafel");
         <li>Profilkurs in Klasse&nbsp;5: zweistündiger Wahlkurs (z.&nbsp;B. WortArt+) zur frühen Profilbildung.</li>
         <li>Förderunterricht / Startchancen-Programm in den Klassen&nbsp;7 und&nbsp;8: gezielte Unterstützung in Deutsch, Englisch oder Mathematik, jahrgangsstufenübergreifend organisiert.</li>
       </ol>
-    </div>
-  </div>
-</section>
-
-<section class="st-legend" aria-label="Abkürzungen und Fachkürzel">
-  <div class="container">
-    <div class="head">
-      <span class="eyebrow">Legende</span>
-      <h2>Abkürzungen und Fachkürzel.</h2>
-    </div>
-    <div class="legend-grid">
-      <div class="cell"><span class="key">D</span><span class="name">Deutsch</span></div>
-      <div class="cell"><span class="key">E</span><span class="name">Englisch</span></div>
-      <div class="cell"><span class="key">M</span><span class="name">Mathematik</span></div>
-      <div class="cell"><span class="key">GE</span><span class="name">Geschichte</span></div>
-      <div class="cell"><span class="key">EK</span><span class="name">Erdkunde</span></div>
-      <div class="cell"><span class="key">WI-PK</span><span class="name">Wirtschaft / Politik</span></div>
-      <div class="cell"><span class="key">BI</span><span class="name">Biologie</span></div>
-      <div class="cell"><span class="key">CH</span><span class="name">Chemie</span></div>
-      <div class="cell"><span class="key">PH</span><span class="name">Physik</span></div>
-      <div class="cell"><span class="key">KU</span><span class="name">Kunst</span></div>
-      <div class="cell"><span class="key">MU</span><span class="name">Musik</span></div>
-      <div class="cell"><span class="key">SP</span><span class="name">Sport</span></div>
-      <div class="cell"><span class="key">ER</span><span class="name">Evangelische Religion</span></div>
-      <div class="cell"><span class="key">KR</span><span class="name">Katholische Religion</span></div>
-      <div class="cell"><span class="key">PL</span><span class="name">Praktische Philosophie</span></div>
-      <div class="cell"><span class="key">L7</span><span class="name">Latein (ab Klasse&nbsp;7)</span></div>
-      <div class="cell"><span class="key">FS</span><span class="name">Fremdsprache</span></div>
-      <div class="cell"><span class="key">WP</span><span class="name">Wahlpflicht</span></div>
-      <div class="cell"><span class="key">IF</span><span class="name">Informatik (Differenzierung)</span></div>
-      <div class="cell"><span class="key">FUD</span><span class="name">Fachunterricht Deutsch</span></div>
-      <div class="cell"><span class="key">EGS</span><span class="name">Ergänzungsstunden</span></div>
     </div>
   </div>
 </section>
