@@ -839,6 +839,96 @@ collections:
                       - { name: image, label: "Bild", widget: image, choose_url: false }
                       - { name: imageAlt, label: "Bildbeschreibung (Pflicht, für Screenreader)", widget: string }
 
+      # ---------------- SPRACHEN ----------------
+      - file: src/content/pages/sprachen.yml
+        label: "Sprachen"
+        name: sprachen
+        format: yaml
+        fields:
+          - name: hero
+            label: "Hero"
+            widget: object
+            collapsed: false
+            fields:
+              - { name: eyebrow, label: "Eyebrow", widget: string }
+              - { name: title, label: "Titel — Zeile 1", widget: string }
+              - { name: titleHighlight, label: "Titel — Zeile 2 (kursiv)", widget: string, required: false }
+              - { name: lede, label: "Einleitung", widget: text }
+              - { name: image, label: "Hero-Bild", widget: image, required: false, choose_url: false }
+              - { name: imageAlt, label: "Bildbeschreibung", widget: string, required: false }
+          - name: intro
+            label: "01 · Englisch ab Klasse 5"
+            widget: object
+            collapsed: true
+            fields:
+              - { name: eyebrow, label: "Eyebrow", widget: string }
+              - { name: title, label: "Titel — Zeile 1", widget: string }
+              - { name: titleHighlight, label: "Titel — Zeile 2 (kursiv)", widget: string, required: false }
+              - { name: body, label: "Text (**fett** möglich)", widget: text }
+          - name: journey
+            label: "02 · Sprachenfolge"
+            widget: object
+            collapsed: true
+            fields:
+              - { name: eyebrow, label: "Eyebrow", widget: string }
+              - { name: title, label: "Überschrift", widget: string }
+              - { name: body, label: "Einleitung", widget: text }
+              - name: stages
+                label: "Stationen"
+                widget: list
+                summary: "{{fields.klasse}} · {{fields.title}}"
+                fields:
+                  - { name: klasse, label: "Klasse / Stufe", widget: string }
+                  - { name: mark, label: "Badge (Pflicht / Wahl / Erweiterung)", widget: string, required: false }
+                  - { name: title, label: "Titel", widget: string }
+                  - { name: body, label: "Beschreibung", widget: text }
+          - name: oberstufe
+            label: "03 · Einstieg in der Oberstufe"
+            widget: object
+            collapsed: true
+            fields:
+              - { name: eyebrow, label: "Eyebrow", widget: string }
+              - { name: title, label: "Titel — Zeile 1", widget: string }
+              - { name: titleHighlight, label: "Titel — Zeile 2 (kursiv)", widget: string, required: false }
+              - { name: body, label: "Text", widget: text }
+          - name: experience
+            label: "04 · Sprache erleben"
+            widget: object
+            collapsed: true
+            fields:
+              - { name: eyebrow, label: "Eyebrow", widget: string }
+              - { name: title, label: "Überschrift", widget: string }
+              - { name: body, label: "Einleitung", widget: text }
+              - name: pillars
+                label: "Säulen"
+                widget: list
+                summary: "{{fields.title}}"
+                fields:
+                  - { name: title, label: "Titel", widget: string }
+                  - { name: body, label: "Text", widget: text }
+          - name: advantages
+            label: "Vorteile auf einen Blick"
+            widget: object
+            collapsed: true
+            fields:
+              - { name: eyebrow, label: "Eyebrow", widget: string }
+              - { name: title, label: "Überschrift", widget: string }
+              - name: list
+                label: "Vorteile (Zeile = Punkt)"
+                widget: list
+                field: { name: item, label: "Vorteil", widget: string }
+          - name: closing
+            label: "Abschluss-Block"
+            widget: object
+            collapsed: true
+            fields:
+              - { name: eyebrow, label: "Eyebrow", widget: string }
+              - { name: title, label: "Titel — Zeile 1", widget: string }
+              - { name: titleHighlight, label: "Titel — Zeile 2 (kursiv)", widget: string, required: false }
+              - { name: body, label: "Text", widget: text }
+              - { name: ctaLabel, label: "CTA-Beschriftung", widget: string, required: false }
+              - { name: ctaHref, label: "CTA-Link", widget: string, required: false }
+
       # ---------------- PÄDAGOGISCHE KONZEPTE ----------------
       - file: src/content/pages/paedagogische-konzepte.yml
         label: "Pädagogische Konzepte"

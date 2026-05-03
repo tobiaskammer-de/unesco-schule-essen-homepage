@@ -1,0 +1,72 @@
+hero:
+  eyebrow: "Profil · Sprachen"
+  title: "Sprachen öffnen Türen,"
+  titleHighlight: "von Anfang an."
+  lede: "Wer Sprachen beherrscht, kann die Welt entdecken, verstehen und aktiv mitgestalten. An der UNESCO-Schule Essen legen wir den Grundstein dafür mit einem starken Fremdsprachenkonzept, das bereits in Klasse 5 beginnt."
+  image: "assets/sp-weltoffen.jpg"
+  imageAlt: "Schülerinnen und Schüler im Sprachunterricht"
+
+intro:
+  eyebrow: "01 · Englisch ab Klasse 5"
+  title: "Früh starten,"
+  titleHighlight: "sicher wachsen."
+  body: |
+    Schon ab der 5. Klasse lernen unsere Schülerinnen und Schüler Englisch — die wichtigste internationale Verständigungssprache. Dabei geht es uns nicht nur um Grammatik und Vokabeln, sondern vor allem darum, **selbstbewusst zu sprechen und Sprache aktiv zu nutzen**.
+
+journey:
+  eyebrow: "02 · Sprachenfolge"
+  title: "Individuelle Wege durch die Sprachenvielfalt."
+  body: "Ab Klasse 7 wählen die Schülerinnen und Schüler ihre zweite Fremdsprache — ganz nach Interesse und Begabung. Wer sich zunächst für Latein entscheidet, kann ab Klasse 9 zusätzlich Französisch als dritte Fremdsprache wählen."
+  stages:
+    - klasse: "Ab Klasse 5"
+      mark: "Pflicht"
+      title: "Englisch"
+      body: "Die wichtigste internationale Verständigungssprache: praxisnah, kommunikativ und mit klarem Fokus auf aktivem Sprechen."
+    - klasse: "Ab Klasse 7"
+      mark: "Wahl"
+      title: "Französisch"
+      body: "Lebendig, modern und weltweit gesprochen — ideal für alle, die später Reisen, Studium oder Beruf international gestalten möchten."
+    - klasse: "Ab Klasse 7"
+      mark: "Wahl"
+      title: "Latein"
+      body: "Die Basis vieler europäischer Sprachen und ein ideales Training für logisches Denken und sprachliche Genauigkeit."
+    - klasse: "Ab Klasse 9"
+      mark: "Erweiterung"
+      title: "Französisch als 3. Fremdsprache"
+      body: "Wer in Klasse 7 Latein gewählt hat, kann zusätzlich Französisch lernen und sein sprachliches Profil bewusst erweitern."
+
+oberstufe:
+  eyebrow: "03 · Faire Chancen"
+  title: "Auch beim Schulwechsel"
+  titleHighlight: "willkommen."
+  body: "In der Einführungsphase der Oberstufe ermöglichen wir den Einstieg in Französisch oder Latein — insbesondere für Schülerinnen und Schüler, die von anderen Schulformen zu uns wechseln. So schaffen wir faire Chancen auf dem Weg zum Abitur."
+
+experience:
+  eyebrow: "04 · Sprache erleben"
+  title: "Mehr als Unterricht."
+  body: "Sprachenlernen bedeutet bei uns vor allem eines: erleben und anwenden. Als UNESCO-Schule fördern wir gezielt interkulturelle Kompetenz, Offenheit und Neugier — Fähigkeiten, die heute wichtiger sind denn je."
+  pillars:
+    - title: "Praxisnaher Unterricht"
+      body: "Moderne Methoden, kommunikative Aufgaben und ein klarer Fokus auf aktivem Sprachgebrauch."
+    - title: "Projekte rund um Sprache und Kultur"
+      body: "Von Lese-Wettbewerben über Sprachzertifikate (DELF) bis zu kulturellen Aktionen im Schuljahr."
+    - title: "Internationale Schulgemeinschaft"
+      body: "Schüleraustausche, Erasmus+-Begegnungen und Partnerschulen in Europa machen Sprache lebendig."
+
+advantages:
+  eyebrow: "Auf einen Blick"
+  title: "Warum Sprachen an unserer Schule?"
+  list:
+    - "Früher Beginn ab Klasse 5"
+    - "Klare und flexible Sprachenfolge"
+    - "Individuelle Förderung und Erweiterungsmöglichkeiten"
+    - "Gezielte Unterstützung für Seiteneinsteigerinnen und Seiteneinsteiger"
+    - "Lernen in einem internationalen, weltoffenen Umfeld"
+
+closing:
+  eyebrow: "Ihr Kind im Mittelpunkt"
+  title: "Eigene Stärken entdecken,"
+  titleHighlight: "den eigenen Weg gehen."
+  body: "Jedes Kind bringt eigene Stärken mit — wir helfen dabei, sie zu entfalten. Unser Ziel: dass unsere Schülerinnen und Schüler mit Freude Sprachen lernen, Selbstvertrauen entwickeln und ihren eigenen Weg gehen."
+  ctaLabel: "Tag der offenen Tür"
+  ctaHref: "Tag-der-offenen-Tuer.html"

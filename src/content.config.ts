@@ -214,6 +214,7 @@ const pageBeratung        = defineCollection({ loader: glob({ pattern: "beratung
 const pageBerufsorientierung = defineCollection({ loader: glob({ pattern: "berufsorientierung.yml", base: "./src/content/pages" }), schema: flexibleSchema });
 const pageMusischeUndKulturelleBildung = defineCollection({ loader: glob({ pattern: "musische-und-kulturelle-bildung.yml", base: "./src/content/pages" }), schema: flexibleSchema });
 const pageLebendigeKunst  = defineCollection({ loader: glob({ pattern: "lebendige-kunst.yml",       base: "./src/content/pages" }), schema: flexibleSchema });
+const pageSprachen        = defineCollection({ loader: glob({ pattern: "sprachen.yml",              base: "./src/content/pages" }), schema: flexibleSchema });
 const pagePaedagogischeKonzepte = defineCollection({ loader: glob({ pattern: "paedagogische-konzepte.yml", base: "./src/content/pages" }), schema: flexibleSchema });
 const pageAnfahrt         = defineCollection({ loader: glob({ pattern: "anfahrt.yml",              base: "./src/content/pages" }), schema: flexibleSchema });
 const pageSchliessfaecher = defineCollection({ loader: glob({ pattern: "schliessfaecher.yml",      base: "./src/content/pages" }), schema: flexibleSchema });
@@ -248,6 +249,7 @@ export const collections = {
   pageBerufsorientierung,
   pageMusischeUndKulturelleBildung,
   pageLebendigeKunst,
+  pageSprachen,
   pagePaedagogischeKonzepte,
   pageAnfahrt,
   pageSchliessfaecher,

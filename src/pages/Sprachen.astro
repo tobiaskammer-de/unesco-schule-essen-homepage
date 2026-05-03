@@ -1,0 +1,343 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHero from "../components/PageHero.astro";
+import { getSingle } from "../lib/pageContent";
+import { safeBold } from "../lib/safeMarkup";
+
+const page: any = await getSingle("pageSprachen");
+---
+<BaseLayout
+  title="Sprachen · UNESCO-Schule Essen"
+  description="Fremdsprachenkonzept der UNESCO-Schule Essen: Englisch ab Klasse 5, Französisch oder Latein ab Klasse 7, dritte Fremdsprache ab Klasse 9 sowie Einstieg in der Oberstufe."
+>
+<style is:global>
+  /* ---------- Sprachen ---------- */
+  .spr-intro{background:var(--creme);padding:var(--space-section) 0;}
+  .spr-intro-grid{
+    display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);
+    gap:64px;align-items:start;
+  }
+  .spr-intro .eyebrow{display:block;margin-bottom:14px;}
+  .spr-intro h2{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(30px,3.4vw,44px);line-height:1.1;
+    color:var(--petrol);letter-spacing:-0.015em;margin:0;
+  }
+  .spr-intro h2 em{font-style:italic;color:var(--bordeaux);font-weight:500;}
+  .spr-intro p{
+    font-family:var(--sans);font-size:17px;line-height:1.7;color:var(--tinte);
+    margin:0;
+  }
+  .spr-intro p strong{color:var(--petrol);font-weight:500;}
+
+  /* Sprachenfolge — Stages-Grid */
+  .spr-journey{background:var(--offwhite);padding:var(--space-section) 0;}
+  .spr-journey .head{max-width:820px;margin:0 0 56px;}
+  .spr-journey .head .eyebrow{display:block;margin-bottom:14px;}
+  .spr-journey .head h2{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(30px,3.2vw,44px);line-height:1.15;letter-spacing:-0.015em;
+    color:var(--petrol);margin:0 0 16px;
+  }
+  .spr-journey .head p{
+    font-family:var(--sans);font-size:17px;line-height:1.65;color:var(--stein);
+    max-width:680px;margin:0;
+  }
+  .spr-stages{
+    display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;
+  }
+  .spr-stage{
+    background:#fff;border:1px solid var(--hairline);
+    border-top:var(--card-accent-width) solid var(--petrol);
+    padding:var(--card-padding);
+    display:flex;flex-direction:column;gap:12px;
+    position:relative;
+    transition:transform var(--transition), box-shadow var(--transition);
+  }
+  .spr-stage:hover{
+    transform:translateY(var(--card-hover-lift));
+    box-shadow:0 16px 40px -22px rgba(14,77,79,0.3);
+  }
+  @media (prefers-reduced-motion: reduce){.spr-stage:hover{transform:none;}}
+  .spr-stage .stage-head{
+    display:flex;align-items:baseline;justify-content:space-between;gap:12px;
+  }
+  .spr-stage .klasse{
+    font-family:var(--sans);font-size:11px;font-weight:600;
+    letter-spacing:0.14em;text-transform:uppercase;color:var(--petrol);
+  }
+  .spr-stage .mark{
+    font-family:var(--sans);font-size:10.5px;font-weight:600;
+    letter-spacing:0.1em;text-transform:uppercase;
+    color:var(--bordeaux);
+    padding:3px 8px;
+    background:rgba(110,38,57,0.08);
+  }
+  .spr-stage h3{
+    font-family:var(--serif);font-weight:500;font-size:24px;line-height:1.2;
+    color:var(--petrol);letter-spacing:-0.01em;margin:4px 0 0;
+  }
+  .spr-stage p{
+    font-family:var(--sans);font-size:15px;line-height:1.6;color:var(--tinte);margin:0;
+  }
+  /* Stage 4 (Erweiterung) leicht anders, Gold-Akzent */
+  .spr-stage.is-extension{
+    border-top-color:var(--gold);
+  }
+  .spr-stage.is-extension .klasse{color:var(--gold-deep);}
+  .spr-stage.is-extension .mark{
+    color:var(--gold-deep);background:rgba(212,165,116,0.18);
+  }
+
+  /* Oberstufen-Highlight */
+  .spr-oberstufe{
+    background:var(--creme);padding:var(--space-section) 0;
+    border-top:1px solid var(--hairline);
+  }
+  .spr-oberstufe-card{
+    max-width:880px;margin:0 auto;
+    background:#fff;border:1px solid var(--hairline);
+    border-left:var(--card-accent-width) solid var(--gold);
+    padding:48px 56px;
+    display:grid;grid-template-columns:auto 1fr;gap:40px;align-items:start;
+  }
+  .spr-oberstufe-card .num{
+    font-family:var(--serif);font-weight:500;font-size:40px;line-height:1;
+    color:var(--gold-deep);letter-spacing:-0.02em;
+    font-variant-numeric:tabular-nums;
+    padding-top:6px;
+  }
+  .spr-oberstufe-card .body .eyebrow{
+    display:block;margin-bottom:12px;color:var(--gold-deep);
+  }
+  .spr-oberstufe-card h2{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(26px,2.8vw,36px);line-height:1.2;letter-spacing:-0.015em;
+    color:var(--petrol);margin:0 0 14px;
+  }
+  .spr-oberstufe-card h2 em{font-style:italic;color:var(--bordeaux);font-weight:500;}
+  .spr-oberstufe-card p{
+    font-family:var(--sans);font-size:16.5px;line-height:1.7;color:var(--tinte);margin:0;
+  }
+
+  /* Sprache erleben — Pillars */
+  .spr-experience{background:var(--offwhite);padding:var(--space-section) 0;}
+  .spr-experience .head{max-width:820px;margin:0 0 56px;}
+  .spr-experience .head .eyebrow{display:block;margin-bottom:14px;}
+  .spr-experience .head h2{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(30px,3.2vw,44px);line-height:1.15;letter-spacing:-0.015em;
+    color:var(--petrol);margin:0 0 16px;
+  }
+  .spr-experience .head p{
+    font-family:var(--sans);font-size:17px;line-height:1.65;color:var(--stein);
+    max-width:680px;margin:0;
+  }
+  .spr-pillars{
+    display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px;
+  }
+  .spr-pillar{
+    border-top:1px solid var(--hairline);
+    padding-top:22px;
+    display:flex;flex-direction:column;gap:10px;
+  }
+  .spr-pillar h3{
+    font-family:var(--serif);font-weight:500;font-size:22px;line-height:1.25;
+    color:var(--petrol);letter-spacing:-0.008em;margin:0;
+  }
+  .spr-pillar p{
+    font-family:var(--sans);font-size:15.5px;line-height:1.65;color:var(--tinte);margin:0;
+  }
+
+  /* Vorteile (Häkchen) */
+  .spr-advantages{
+    background:var(--creme);padding:var(--space-section) 0;
+    border-top:1px solid var(--hairline);
+  }
+  .spr-advantages-grid{
+    display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);
+    gap:64px;align-items:center;
+  }
+  .spr-advantages .head .eyebrow{display:block;margin-bottom:14px;}
+  .spr-advantages .head h2{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(30px,3.2vw,42px);line-height:1.15;letter-spacing:-0.015em;
+    color:var(--petrol);margin:0;
+  }
+  .spr-checklist{
+    list-style:none;margin:0;padding:0;
+    display:flex;flex-direction:column;gap:16px;
+  }
+  .spr-checklist li{
+    display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:start;
+    font-family:var(--sans);font-size:17px;line-height:1.55;color:var(--tinte);
+    padding:14px 0;border-bottom:1px solid var(--hairline);
+  }
+  .spr-checklist li:last-child{border-bottom:0;}
+  .spr-checklist .check{
+    width:28px;height:28px;flex-shrink:0;
+    background:rgba(14,77,79,0.08);color:var(--petrol);
+    display:flex;align-items:center;justify-content:center;
+    border-radius:50%;
+    margin-top:1px;
+  }
+  .spr-checklist .check svg{width:14px;height:14px;}
+
+  /* Closing */
+  .spr-closing{
+    background:var(--petrol);color:var(--creme);
+    padding:var(--space-section) 0;
+  }
+  .spr-closing .container{max-width:840px;text-align:center;}
+  .spr-closing .eyebrow{color:rgba(245,239,231,0.55);display:block;margin-bottom:16px;}
+  .spr-closing h2{
+    font-family:var(--serif);font-weight:500;font-style:italic;
+    font-size:clamp(28px,3.2vw,44px);line-height:1.2;
+    color:var(--creme);letter-spacing:-0.015em;margin:0 0 26px;
+  }
+  .spr-closing h2 em{color:var(--gold);font-style:italic;}
+  .spr-closing p{
+    font-family:var(--sans);font-size:17.5px;line-height:1.7;
+    color:rgba(245,239,231,0.9);max-width:720px;margin:0 auto 32px;
+  }
+  .spr-closing .cta-row{
+    display:flex;justify-content:center;gap:16px;flex-wrap:wrap;
+  }
+
+  @media (max-width:960px){
+    .spr-intro-grid{grid-template-columns:1fr;gap:32px;}
+    .spr-stages{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;}
+    .spr-pillars{grid-template-columns:1fr;gap:20px;}
+    .spr-advantages-grid{grid-template-columns:1fr;gap:32px;}
+    .spr-oberstufe-card{
+      grid-template-columns:1fr;gap:20px;padding:36px 32px;
+    }
+    .spr-oberstufe-card .num{font-size:32px;padding-top:0;}
+    .spr-intro,.spr-journey,.spr-oberstufe,.spr-experience,.spr-advantages,.spr-closing{
+      padding:var(--space-section-sm) 0;
+    }
+  }
+  @media (max-width:560px){
+    .spr-stages{grid-template-columns:1fr;}
+  }
+</style>
+
+<main id="top">
+
+<PageHero
+  variant="feature"
+  image={page.hero.image || "assets/sp-weltoffen.jpg"}
+  imageAlt={page.hero.imageAlt || ""}
+  imageCredit="UNESCO-Schule Essen"
+>
+  <Fragment slot="eyebrow">{page.hero.eyebrow}</Fragment>
+  <Fragment slot="title">{page.hero.title}{page.hero.titleHighlight && <><br /><em>{page.hero.titleHighlight}</em></>}</Fragment>
+  <Fragment slot="lede">{page.hero.lede}</Fragment>
+</PageHero>
+
+<section class="spr-intro" aria-label="Sprachen — Einordnung">
+  <div class="container">
+    <div class="spr-intro-grid">
+      <div>
+        {page.intro?.eyebrow && <span class="eyebrow">{page.intro.eyebrow}</span>}
+        <h2>{page.intro?.title}{page.intro?.titleHighlight && <><br /><em>{page.intro.titleHighlight}</em></>}</h2>
+      </div>
+      <div>
+        <p set:html={safeBold(page.intro?.body)} />
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="spr-journey" aria-label="Sprachenfolge">
+  <div class="container">
+    <div class="head">
+      {page.journey?.eyebrow && <span class="eyebrow">{page.journey.eyebrow}</span>}
+      <h2>{page.journey?.title}</h2>
+      {page.journey?.body && <p>{page.journey.body}</p>}
+    </div>
+    <div class="spr-stages">
+      {(page.journey?.stages ?? []).map((s: any, i: number) => (
+        <article class={`spr-stage ${i === 3 ? "is-extension" : ""}`}>
+          <div class="stage-head">
+            <span class="klasse">{s.klasse}</span>
+            {s.mark && <span class="mark">{s.mark}</span>}
+          </div>
+          <h3>{s.title}</h3>
+          <p>{s.body}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section class="spr-oberstufe" aria-label="Einstieg in der Oberstufe">
+  <div class="container">
+    <div class="spr-oberstufe-card">
+      <span class="num" aria-hidden="true">11</span>
+      <div class="body">
+        {page.oberstufe?.eyebrow && <span class="eyebrow">{page.oberstufe.eyebrow}</span>}
+        <h2>{page.oberstufe?.title}{page.oberstufe?.titleHighlight && <> <em>{page.oberstufe.titleHighlight}</em></>}</h2>
+        <p>{page.oberstufe?.body}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="spr-experience" aria-label="Sprache erleben">
+  <div class="container">
+    <div class="head">
+      {page.experience?.eyebrow && <span class="eyebrow">{page.experience.eyebrow}</span>}
+      <h2>{page.experience?.title}</h2>
+      {page.experience?.body && <p>{page.experience.body}</p>}
+    </div>
+    <div class="spr-pillars">
+      {(page.experience?.pillars ?? []).map((p: any) => (
+        <article class="spr-pillar">
+          <h3>{p.title}</h3>
+          <p>{p.body}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section class="spr-advantages" aria-label="Vorteile auf einen Blick">
+  <div class="container">
+    <div class="spr-advantages-grid">
+      <div class="head">
+        {page.advantages?.eyebrow && <span class="eyebrow">{page.advantages.eyebrow}</span>}
+        <h2>{page.advantages?.title}</h2>
+      </div>
+      <ul class="spr-checklist">
+        {(page.advantages?.list ?? []).map((item: string) => (
+          <li>
+            <span class="check" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12l5 5L20 7"/>
+              </svg>
+            </span>
+            <span>{item}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="spr-closing" aria-label="Abschluss">
+  <div class="container">
+    {page.closing?.eyebrow && <span class="eyebrow">{page.closing.eyebrow}</span>}
+    <h2>{page.closing?.title}{page.closing?.titleHighlight && <><br /><em>{page.closing.titleHighlight}</em></>}</h2>
+    <p>{page.closing?.body}</p>
+    {page.closing?.ctaLabel && page.closing?.ctaHref && (
+      <div class="cta-row">
+        <a href={page.closing.ctaHref} class="btn btn-gold">{page.closing.ctaLabel} <span class="arrow">→</span></a>
+        <a href="Anmeldung.html" class="btn btn-secondary" style="color:var(--creme);border-color:rgba(245,239,231,0.4);">Zur Anmeldung <span class="arrow">→</span></a>
+      </div>
+    )}
+  </div>
+</section>
+
+</main>
+</BaseLayout>
