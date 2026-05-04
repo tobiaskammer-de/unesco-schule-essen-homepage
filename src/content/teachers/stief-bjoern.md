@@ -1,4 +1,5 @@
 ---
+salutation: "Herr"
 firstName: "Björn"
 lastName: "Stief"
 subjects: ["Latein"]

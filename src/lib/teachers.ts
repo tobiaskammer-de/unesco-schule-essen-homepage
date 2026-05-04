@@ -56,10 +56,10 @@ export async function getAllSubjects(): Promise<string[]> {
   return Array.from(set).sort((a, b) => a.localeCompare(b, "de"));
 }
 
-/** Vollständiger Anzeigename: "Dr. Vorname Nachname" oder "Vorname Nachname". */
+/** Anzeigename in Anrede-Form: "Frau Mischke", "Herr Dr. Firnhaber", "Herr Stief". */
 export function displayName(t: TeacherEntry): string {
-  const { title, firstName, lastName } = t.data;
-  return title ? `${title} ${firstName} ${lastName}` : `${firstName} ${lastName}`;
+  const { salutation, title, lastName } = t.data;
+  return title ? `${salutation} ${title} ${lastName}` : `${salutation} ${lastName}`;
 }
 
 /** Initialen (für Fallback-Avatar, wenn kein Foto). */

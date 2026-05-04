@@ -1,4 +1,5 @@
 ---
+salutation: "Frau"
 firstName: "Sabine"
 lastName: "Firnhaber"
 title: "Dr."

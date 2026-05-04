@@ -1,4 +1,5 @@
 ---
+salutation: "Frau"
 firstName: "Jennifer"
 lastName: "Ruff"
 subjects: ["Biologie", "Chemie"]

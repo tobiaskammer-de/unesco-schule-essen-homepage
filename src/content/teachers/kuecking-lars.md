@@ -1,4 +1,5 @@
 ---
+salutation: "Herr"
 firstName: "Lars"
 lastName: "Kücking"
 subjects: ["Latein", "Chemie"]

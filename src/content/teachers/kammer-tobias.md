@@ -1,4 +1,5 @@
 ---
+salutation: "Herr"
 firstName: "Tobias"
 lastName: "Kammer"
 subjects: ["Französisch", "Pädagogik"]

@@ -1,4 +1,5 @@
 ---
+salutation: "Frau"
 firstName: "Diana"
 lastName: "Lange"
 subjects: ["Kunst", "Deutsch", "Literatur", "WortArt (Klasse 5)", "Bühnenwelten (WP)"]

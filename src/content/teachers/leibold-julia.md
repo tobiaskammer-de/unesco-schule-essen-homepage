@@ -1,4 +1,5 @@
 ---
+salutation: "Frau"
 firstName: "Julia"
 lastName: "Leibold"
 subjects: ["Deutsch", "Sozialwissenschaften"]

@@ -1,4 +1,5 @@
 ---
+salutation: "Herr"
 firstName: "Mario"
 lastName: "Schüler"
 subjects: ["Deutsch", "Geschichte"]

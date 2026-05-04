@@ -1,4 +1,5 @@
 ---
+salutation: "Frau"
 firstName: "Dilan"
 lastName: "Kalayci"
 subjects: ["Philosophie", "Pädagogik", "Deutsch"]

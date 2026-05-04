@@ -1,4 +1,5 @@
 ---
+salutation: "Frau"
 firstName: "Christin"
 lastName: "Engelke"
 subjects: ["Biologie", "Erdkunde"]

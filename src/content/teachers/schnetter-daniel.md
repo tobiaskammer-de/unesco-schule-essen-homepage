@@ -1,4 +1,5 @@
 ---
+salutation: "Herr"
 firstName: "Daniel"
 lastName: "Schnetter"
 subjects: ["Sozialwissenschaften", "Deutsch"]

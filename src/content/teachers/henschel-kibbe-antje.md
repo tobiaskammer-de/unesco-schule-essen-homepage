@@ -1,4 +1,5 @@
 ---
+salutation: "Frau"
 firstName: "Antje"
 lastName: "Henschel-Kibbe"
 subjects: ["Englisch", "Geschichte", "Philosophie"]

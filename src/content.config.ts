@@ -46,6 +46,7 @@ const news = defineCollection({
 const teachers = defineCollection({
   loader: glob({ pattern: "**/*.md", base: "./src/content/teachers" }),
   schema: z.object({
+    salutation: z.enum(["Frau", "Herr"]),
     firstName: z.string(),
     lastName: z.string(),
     title: z.string().optional(),

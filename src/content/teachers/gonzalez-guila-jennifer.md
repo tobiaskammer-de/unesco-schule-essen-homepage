@@ -1,4 +1,5 @@
 ---
+salutation: "Frau"
 firstName: "Jennifer"
 lastName: "González Guilá"
 subjects: ["kath. Religion", "Mathematik"]

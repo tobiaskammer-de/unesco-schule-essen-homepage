@@ -1,4 +1,5 @@
 ---
+salutation: "Frau"
 firstName: "Sandra"
 lastName: "Mischke"
 subjects: ["Englisch", "Pädagogik"]

@@ -1,4 +1,5 @@
 ---
+salutation: "Frau"
 firstName: "Barbara"
 lastName: "Hoffmann"
 subjects: ["Musik"]

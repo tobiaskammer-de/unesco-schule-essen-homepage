@@ -1,4 +1,5 @@
 ---
+salutation: "Herr"
 firstName: "Christian"
 lastName: "Büngers"
 subjects: ["Geschichte", "Sport"]

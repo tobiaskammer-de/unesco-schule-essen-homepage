@@ -1,4 +1,5 @@
 ---
+salutation: "Herr"
 firstName: "Youssef"
 lastName: "Murgia"
 subjects: []
