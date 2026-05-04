@@ -1,4 +1,5 @@
 ---
+salutation: "Frau"
 firstName: "Elke"
 lastName: "Rüenauver"
 subjects: ["Sozialwissenschaften", "Sport"]

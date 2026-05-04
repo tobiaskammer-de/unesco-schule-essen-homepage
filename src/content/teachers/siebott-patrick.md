@@ -1,4 +1,5 @@
 ---
+salutation: "Herr"
 firstName: "Patrick"
 lastName: "Siebott"
 subjects: ["Informatik", "Mathematik"]

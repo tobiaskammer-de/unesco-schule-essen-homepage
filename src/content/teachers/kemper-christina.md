@@ -1,4 +1,5 @@
 ---
+salutation: "Frau"
 firstName: "Christina"
 lastName: "Kemper"
 subjects: ["Deutsch", "Erdkunde"]

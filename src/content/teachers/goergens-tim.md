@@ -1,4 +1,5 @@
 ---
+salutation: "Herr"
 firstName: "Tim"
 lastName: "Görgens"
 subjects: ["Englisch", "Sport"]

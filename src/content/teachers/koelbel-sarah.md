@@ -1,4 +1,5 @@
 ---
+salutation: "Frau"
 firstName: "Sarah"
 lastName: "Kölbel"
 subjects: ["Deutsch", "Sport"]

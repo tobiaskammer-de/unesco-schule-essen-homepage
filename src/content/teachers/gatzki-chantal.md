@@ -1,4 +1,5 @@
 ---
+salutation: "Frau"
 firstName: "Chantal"
 lastName: "Gatzki"
 subjects: []

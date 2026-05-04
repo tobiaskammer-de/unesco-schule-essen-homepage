@@ -1,4 +1,5 @@
 ---
+salutation: "Frau"
 firstName: "Myriam"
 lastName: "Schulte-Ontrop"
 subjects: ["Geschichte", "Sozialwissenschaften"]

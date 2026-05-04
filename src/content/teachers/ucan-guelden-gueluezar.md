@@ -1,4 +1,5 @@
 ---
+salutation: "Frau"
 firstName: "Gülden Gülüzar"
 lastName: "Ucan"
 subjects: ["Englisch", "Französisch"]

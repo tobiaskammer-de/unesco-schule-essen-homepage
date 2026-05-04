@@ -1,4 +1,5 @@
 ---
+salutation: "Frau"
 firstName: "Birte"
 lastName: "Ruthmann"
 subjects: ["Englisch", "ev. Religion"]

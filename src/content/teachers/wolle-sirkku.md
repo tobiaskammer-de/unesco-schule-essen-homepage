@@ -1,4 +1,5 @@
 ---
+salutation: "Frau"
 firstName: "Sirkku"
 lastName: "Wolle"
 subjects: ["Biologie", "Kunst"]

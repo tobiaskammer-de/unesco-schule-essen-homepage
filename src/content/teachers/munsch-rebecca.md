@@ -1,4 +1,5 @@
 ---
+salutation: "Frau"
 firstName: "Rebecca"
 lastName: "Munsch"
 subjects: ["Deutsch", "kath. Religion", "Philosophie"]

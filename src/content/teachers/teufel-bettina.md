@@ -1,4 +1,5 @@
 ---
+salutation: "Frau"
 firstName: "Bettina"
 lastName: "Teufel"
 subjects: ["Deutsch", "Geschichte"]

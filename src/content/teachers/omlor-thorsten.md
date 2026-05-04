@@ -1,4 +1,5 @@
 ---
+salutation: "Herr"
 firstName: "Thorsten"
 lastName: "Omlor"
 subjects: ["Chemie", "Physik"]

@@ -1,4 +1,5 @@
 ---
+salutation: "Frau"
 firstName: "Silvia"
 lastName: "Lichtenstein"
 subjects: ["Englisch", "Philosophie"]

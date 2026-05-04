@@ -1,4 +1,5 @@
 ---
+salutation: "Herr"
 firstName: "Robin"
 lastName: "Rockensüß-Köln"
 subjects: ["Englisch", "Deutsch"]

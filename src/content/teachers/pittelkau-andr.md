@@ -1,4 +1,5 @@
 ---
+salutation: "Herr"
 firstName: "André"
 lastName: "Pittelkau"
 subjects: ["Musik"]

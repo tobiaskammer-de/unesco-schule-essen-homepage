@@ -1,4 +1,5 @@
 ---
+salutation: "Frau"
 firstName: "Viola"
 lastName: "Pietrass"
 subjects: ["Biologie", "Mathematik"]

@@ -1,4 +1,5 @@
 ---
+salutation: "Frau"
 firstName: "Mariem"
 lastName: "Rhimi"
 subjects: ["Spanisch", "Philosophie"]
