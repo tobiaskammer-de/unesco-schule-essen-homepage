@@ -2,7 +2,7 @@ hero:
   badge: "Work in Progress · Leitbild in Überarbeitung"
   eyebrow: "Über Uns · Unser Leitbild"
   title: "Unser Leitbild wächst"
-  titleHighlight: "mit uns."
+  titleHighlight: "mit uns"
   lede: "Mit dem Start der Erprobungsstufe ab Klasse 5 entwickeln wir unser Schulprofil weiter. Das aktuelle Leitbild wird derzeit überarbeitet, gemeinsam mit Kollegium, Eltern und Schülerschaft. Bis dahin gilt: Was Sie hier lesen, zeigt, woher wir kommen. Wohin wir gehen, erleben Sie am besten vor Ort."
 
 motto:
@@ -11,7 +11,7 @@ motto:
 
 values:
   eyebrow: "Drei Überzeugungen"
-  title: "Worauf unser Leitbild steht."
+  title: "Worauf unser Leitbild steht"
   cards:
     - num: "01"
       title: "Unsere Ziele"
@@ -24,5 +24,5 @@ values:
       text: "Respekt und Wertschätzung prägen unseren Alltag. Sie sind nicht nur Regel, sondern Haltung, und spiegeln sich in jeder pädagogischen Entscheidung, die wir treffen."
 
 closing:
-  title: "Am besten: vor Ort erleben."
+  title: "Am besten: vor Ort erleben"
   text: "Das Leitbild lebt im Alltag: in den Fluren, in den Pausen, im Unterricht. Kommen Sie zum Tag der offenen Tür, oder vereinbaren Sie ein Gespräch. Wir zeigen Ihnen gerne, wie „Gemeinsam lernen\" bei uns konkret aussieht."

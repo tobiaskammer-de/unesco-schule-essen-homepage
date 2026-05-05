@@ -4,7 +4,11 @@ import PageHero from "../components/PageHero.astro";
 import MailLink from "../components/MailLink.astro";
 import { getSingle } from "../lib/pageContent";
 
+import ContactCard from "../components/ContactCard.astro";
+import { getTeacherByLastName } from "../lib/teachers";
+
 const page: any = await getSingle("pageMittagessenUndBetreuung");
+const scheding = await getTeacherByLastName("Scheding");
 ---
 <BaseLayout
   title="Mittagessen & Übermittagsbetreuung · UNESCO-Schule Essen"
@@ -354,6 +358,24 @@ const page: any = await getSingle("pageMittagessenUndBetreuung");
     </div>
   </div>
 </section>
+
+{scheding && (
+  <section aria-label="Ansprechpartner Mittagessen" style="background:var(--creme);padding:var(--space-section) 0;border-top:1px solid var(--hairline);">
+    <div class="container" style="max-width:760px;">
+      <div style="margin-bottom:32px;">
+        <span class="eyebrow" style="display:block;margin-bottom:14px;">Ansprechpartner</span>
+        <h2 style="font-family:var(--serif);font-weight:500;font-size:clamp(28px,2.8vw,36px);line-height:1.15;letter-spacing:-0.01em;color:var(--petrol);margin:0;">Mittagessen und Betreuung an unserer Schule</h2>
+      </div>
+      <div style="max-width:480px;">
+        <ContactCard
+          teacher={scheding}
+          roleLabel="Ansprechpartner Mittagessen"
+          ctaLabel="E-Mail an Herrn Scheding"
+        />
+      </div>
+    </div>
+  </section>
+)}
 
 </main>
 </BaseLayout>

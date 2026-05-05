@@ -1,12 +1,12 @@
 hero:
   eyebrow: "Service · Digitales & Alltag"
   title: "Schließfächer"
-  titleHighlight: "mieten."
+  titleHighlight: "mieten"
   lede: "Ein eigenes Schließfach im Schulgebäude — unkompliziert und direkt beim Betreiber. Hier findest du alle Infos."
 
 intro:
   title: "Dein eigener Platz"
-  titleHighlight: "in der Schule."
+  titleHighlight: "in der Schule"
   body: |
     Bei Interesse hat jede Schülerin und jeder Schüler die Möglichkeit, ein Schließfach im Schulgebäude zu mieten.
 
@@ -14,7 +14,7 @@ intro:
 
 steps:
   eyebrow: "So funktioniert's"
-  title: "Drei Schritte zum eigenen Schließfach."
+  title: "Drei Schritte zum eigenen Schließfach"
   body: "Die Anmeldung läuft komplett online beim Betreiber AstraDirect; Schule ist hier nur Vermittler."
   list:
     - n: "01"

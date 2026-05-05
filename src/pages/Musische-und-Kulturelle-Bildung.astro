@@ -1,9 +1,13 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
+import ContactCard from "../components/ContactCard.astro";
 import { getSingle } from "../lib/pageContent";
+import { getTeacherByLastName } from "../lib/teachers";
 
 const page: any = await getSingle("pageMusischeUndKulturelleBildung");
+const lange = await getTeacherByLastName("Lange");
+const pittelkau = await getTeacherByLastName("Pittelkau");
 ---
 <BaseLayout title="Musische und kulturelle Bildung · UNESCO-Schule Essen">
 <style is:global>
@@ -126,6 +130,11 @@ const page: any = await getSingle("pageMusischeUndKulturelleBildung");
   }
   .kb-partner .highlight strong{color:var(--petrol);}
 
+  /* Ansprechpartner-Kärtchen */
+  .kb-contact{
+    margin-top:48px;max-width:520px;
+  }
+
   /* Closing statement */
   .kb-closing{
     background:var(--petrol);color:var(--creme);
@@ -204,6 +213,16 @@ const page: any = await getSingle("pageMusischeUndKulturelleBildung");
         <p>Eigene Texte werden entwickelt, überarbeitet und zur Aufführung gebracht: ein kontinuierlicher Entwicklungsweg vom ersten kreativen Ausprobieren bis zur eigenständigen künstlerischen Arbeit.</p>
       </article>
     </div>
+
+    {lange && (
+      <div class="kb-contact">
+        <ContactCard
+          teacher={lange}
+          roleLabel="Ansprechpartnerin · WortArt+, Bühnenwelten, Literaturkurs"
+          ctaLabel="E-Mail an Frau Lange"
+        />
+      </div>
+    )}
   </div>
 </section>
 
@@ -267,14 +286,16 @@ const page: any = await getSingle("pageMusischeUndKulturelleBildung");
         </div>
       </article>
     </div>
-  </div>
-</section>
 
-<section class="kb-closing" aria-label="Zusammenfassung">
-  <div class="container">
-    <span class="eyebrow">Unser Bildungskonzept</span>
-    <h2>Altersgerecht. Anspruchsvoll.<br><em>Praxisnah.</em></h2>
-    <p>Durch die klare Verbindung von schulischen Profilangeboten und starken kulturellen Partnern entsteht bei uns ein durchgängiges Bildungskonzept. Kulturelle Bildung begleitet unsere Schülerinnen und Schüler über viele Jahre hinweg.</p>
+    {pittelkau && (
+      <div class="kb-contact">
+        <ContactCard
+          teacher={pittelkau}
+          roleLabel="Ansprechpartner · Kulturelle Kooperationen"
+          ctaLabel="E-Mail an Herrn Pittelkau"
+        />
+      </div>
+    )}
   </div>
 </section>
 

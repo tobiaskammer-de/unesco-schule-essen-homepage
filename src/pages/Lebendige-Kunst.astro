@@ -1,10 +1,14 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
+import ContactCard from "../components/ContactCard.astro";
 import { getSingle } from "../lib/pageContent";
 import { safeInlineJson } from "../lib/safeMarkup";
+import { getTeacherByLastName } from "../lib/teachers";
 
 const page: any = await getSingle("pageLebendigeKunst");
+const lange = await getTeacherByLastName("Lange");
+const wolle = await getTeacherByLastName("Wolle");
 
 type GalleryImage = { image: string; imageAlt: string };
 type GalleryItem = {
@@ -77,6 +81,59 @@ for (const it of galleryItems) {
   .lk-intro p{
     font-family:var(--sans);font-size:17px;line-height:1.7;color:var(--tinte);
     margin:0;
+  }
+
+  /* Manifest-Sektion: „Kunst an der UNESCO-Schule" */
+  .lk-manifest{
+    background:var(--offwhite);
+    padding:var(--space-section) 0;
+    border-top:1px solid var(--hairline);
+  }
+  .lk-manifest-grid{
+    display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);
+    gap:64px;align-items:start;
+  }
+  .lk-manifest h2{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(30px,3.4vw,44px);line-height:1.1;
+    color:var(--petrol);letter-spacing:-0.015em;margin:0;
+  }
+  .lk-manifest .eyebrow{display:block;margin-bottom:14px;}
+  .lk-manifest .body p{
+    font-family:var(--sans);font-size:17px;line-height:1.7;color:var(--tinte);
+    margin:0 0 16px;
+  }
+  .lk-manifest .body p:last-child{margin-bottom:0;}
+  .lk-manifest blockquote{
+    margin:28px 0;
+    padding:20px 24px;
+    background:rgba(212,165,116,0.14);
+    border-left:3px solid var(--gold);
+    font-family:var(--serif);font-style:italic;font-weight:500;
+    font-size:clamp(20px,2.2vw,26px);line-height:1.35;
+    color:var(--petrol);letter-spacing:-0.005em;
+  }
+  .lk-manifest blockquote cite{
+    display:block;margin-top:10px;
+    font-family:var(--sans);font-style:normal;font-weight:600;font-size:11.5px;
+    letter-spacing:0.16em;text-transform:uppercase;color:var(--bordeaux);
+  }
+
+  /* Ansprechpartner */
+  .lk-contacts{
+    background:var(--creme);padding:var(--space-section) 0;
+    border-top:1px solid var(--hairline);
+  }
+  .lk-contacts .head{max-width:680px;margin:0 0 40px;}
+  .lk-contacts .head .eyebrow{display:block;margin-bottom:14px;}
+  .lk-contacts .head h2{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(28px,2.8vw,36px);line-height:1.15;letter-spacing:-0.01em;
+    color:var(--petrol);margin:0;
+  }
+  .lk-contacts-grid{
+    display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px;
+    max-width:780px;
   }
 
   /* Galerie */
@@ -249,8 +306,10 @@ for (const it of galleryItems) {
 
   @media (max-width:960px){
     .lk-intro-grid{grid-template-columns:1fr;gap:32px;}
+    .lk-manifest-grid{grid-template-columns:1fr;gap:24px;}
     .lk-gallery-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;}
-    .lk-intro,.lk-gallery{padding:var(--space-section-sm) 0;}
+    .lk-contacts-grid{grid-template-columns:1fr;gap:18px;}
+    .lk-intro,.lk-manifest,.lk-contacts,.lk-gallery{padding:var(--space-section-sm) 0;}
   }
   @media (max-width:560px){
     .lk-gallery-grid{grid-template-columns:1fr;}
@@ -281,6 +340,56 @@ for (const it of galleryItems) {
     </div>
   </div>
 </section>
+
+<section class="lk-manifest" aria-label="Kunst an der UNESCO-Schule">
+  <div class="container">
+    <div class="lk-manifest-grid">
+      <div>
+        <span class="eyebrow">Unser Selbstverständnis</span>
+        <h2>Kunst an der UNESCO-Schule.</h2>
+      </div>
+      <div class="body">
+        <p>Kunst bedeutet mehr als Zeichnen und Malen: es ist ein Raum für Ideen, Ausdruck und Perspektivwechsel. Auch hier gilt es, den eigenen Weg zu finden.</p>
+        <p>Unsere Schülerinnen und Schüler entdecken unterschiedliche Techniken, experimentieren mit Materialien und entwickeln eigene Bildsprachen. Dabei verbinden wir kreative Praxis mit spannenden Einblicken in Kunstgeschichte und zeitgenössische Positionen. Minimum ein Museumsbesuch ist im Sinne der kulturellen Bildung zudem ein selbstverständlicher Bestandteil des Unterrichts.</p>
+        <p>Es ist uns wichtig, die Arbeiten unserer Schülerinnen und Schüler sichtbar zu machen. Das Ausstellen dieser Werke, sei es im Schulgebäude oder im öffentlichen Raum, gehört zu unserem Selbstverständnis. Denn Kunst ist eine gemeinsame Sprache, die Barrieren überwinden kann.</p>
+        <p>In der Sekundarstufe II werden zwar zentrale Themen vorgegeben, dennoch versuchen wir, über vielfältige Techniken und Zugänge jede und jeden individuell abzuholen.</p>
+        <blockquote>
+          „Jeder Mensch ist ein Künstler."
+          <cite>Joseph Beuys</cite>
+        </blockquote>
+        <p>Ob Skizze, Fotografie, Druck oder digitale Gestaltung — im Kunstunterricht fördern wir Fantasie, Beobachtungsgabe und den Mut, eigene Wege zu gehen. Kunst macht sichtbar, was gedacht, gefühlt und hinterfragt wird. Und genau das macht unser Fach so lebendig.</p>
+        <p>Einen kleinen Einblick in die verschiedenen Jahrgangsstufen erhalten Sie in unseren digitalen Galerien.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+{(lange || wolle) && (
+  <section class="lk-contacts" aria-label="Ansprechpartnerinnen Kunst">
+    <div class="container">
+      <div class="head">
+        <span class="eyebrow">Ansprechpartnerinnen</span>
+        <h2>Wer das Fach Kunst bei uns trägt</h2>
+      </div>
+      <div class="lk-contacts-grid">
+        {lange && (
+          <ContactCard
+            teacher={lange}
+            roleLabel="Fachschaft Kunst"
+            ctaLabel="E-Mail an Frau Lange"
+          />
+        )}
+        {wolle && (
+          <ContactCard
+            teacher={wolle}
+            roleLabel="Fachschaft Kunst"
+            ctaLabel="E-Mail an Frau Wolle"
+          />
+        )}
+      </div>
+    </div>
+  </section>
+)}
 
 <section class="lk-gallery" aria-label="Galerie Lebendige Kunst">
   <div class="container">

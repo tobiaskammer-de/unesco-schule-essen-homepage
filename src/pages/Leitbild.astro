@@ -6,8 +6,10 @@ import { getSingle } from "../lib/pageContent";
 
 // Editierbare Inhalte aus src/content/pages/leitbild.yml (Sveltia)
 const lb = await getSingle("pageLeitbild");
+// Schulprogramm-Inhalte (gemerged in Leitbild) aus src/content/pages/schulprogramm.yml
+const sp: any = await getSingle("pageSchulprogramm");
 ---
-<BaseLayout title="Unser Leitbild · UNESCO-Schule Essen" description="Das Leitbild der UNESCO-Schule Essen: Werte, Haltungen und das gemeinsame Verständnis von Bildung als Brücke zu einer offenen, demokratischen Gesellschaft.">
+<BaseLayout title="Unser Leitbild · UNESCO-Schule Essen" description="Das Leitbild der UNESCO-Schule Essen: Werte, Haltungen, Selbstverpflichtung und acht Leitsätze als gemeinsames Verständnis von Bildung.">
 <style is:global>
   /* ---------- Leitbild page ---------- */
   .lb-motto{
@@ -66,6 +68,148 @@ const lb = await getSingle("pageLeitbild");
   }
   .value-card p{
     font-family:var(--sans);font-size:15.5px;line-height:1.65;color:var(--tinte);margin:0;
+  }
+
+  /* ---------- Pledge (Selbstverpflichtung des Kollegiums) ---------- */
+  .sp-pledge{
+    background:var(--petrol);color:var(--creme);
+    padding:var(--space-section) 0;position:relative;overflow:hidden;
+  }
+  .sp-pledge .eyebrow{
+    color:rgba(245,239,231,0.6);display:block;margin-bottom:16px;
+  }
+  .sp-pledge h2{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(30px,3.2vw,44px);line-height:1.12;
+    color:var(--creme);margin:0 0 36px;max-width:780px;letter-spacing:-0.012em;
+  }
+  .sp-pledge .intro{
+    font-family:var(--sans);font-size:17px;line-height:1.65;
+    color:rgba(245,239,231,0.9);max-width:760px;margin:0 0 40px;
+  }
+  .pledge-list{
+    list-style:none;margin:0;padding:0;
+    display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:1px;
+    background:rgba(245,239,231,0.15);
+    border:1px solid rgba(245,239,231,0.15);
+  }
+  .pledge-list li{
+    background:var(--petrol);
+    padding:26px 28px;
+    display:flex;gap:18px;align-items:flex-start;
+  }
+  .pledge-list .num{
+    font-family:var(--serif);font-weight:500;font-size:32px;line-height:1;
+    color:var(--gold);flex-shrink:0;letter-spacing:-0.02em;
+  }
+  .pledge-list .text{
+    font-family:var(--sans);font-size:15px;line-height:1.55;
+    color:rgba(245,239,231,0.95);
+  }
+  .pledge-outro{
+    font-family:var(--sans);font-size:15px;line-height:1.7;color:rgba(245,239,231,0.8);
+    max-width:780px;margin:40px 0 0;font-style:italic;
+  }
+
+  /* ---------- Leitsätze Intro ---------- */
+  .sp-pillars-intro{
+    background:var(--offwhite);
+    padding:var(--space-section) 0 48px;
+  }
+  .sp-pillars-intro .eyebrow{display:block;margin-bottom:16px;}
+  .sp-pillars-intro h2{
+    font-family:var(--serif);font-weight:500;font-size:clamp(30px,3.2vw,42px);
+    line-height:1.12;color:var(--petrol);margin:0 0 20px;letter-spacing:-0.012em;
+    max-width:760px;
+  }
+  .sp-pillars-intro p{
+    font-family:var(--sans);font-size:16.5px;line-height:1.7;color:var(--stein);
+    max-width:72ch;margin:0 0 14px;
+  }
+  .sp-pillars-intro .two-cols{
+    display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-top:32px;
+  }
+  .sp-pillars-intro .two-cols .card{
+    padding:var(--card-padding);background:#fff;border:1px solid var(--hairline);
+    border-top:var(--card-accent-width) solid var(--petrol);
+    border-radius:var(--card-radius);
+  }
+  .sp-pillars-intro .two-cols h3{
+    font-family:var(--serif);font-weight:500;font-size:22px;color:var(--petrol);
+    margin:0 0 10px;letter-spacing:-0.01em;
+  }
+  .sp-pillars-intro .two-cols p{font-size:15px;margin:0;}
+
+  /* ---------- 8 Leitsätze ---------- */
+  .sp-leitsaetze{
+    background:var(--offwhite);
+    padding:24px 0 var(--space-section-lg);
+  }
+  .leitsatz{
+    display:grid;
+    grid-template-columns:minmax(0,5fr) minmax(0,7fr);
+    gap:56px;
+    padding:56px 0;
+    border-top:1px solid var(--hairline);
+    align-items:start;
+  }
+  .leitsatz:last-child{border-bottom:1px solid var(--hairline);}
+  .leitsatz.flip{grid-template-columns:minmax(0,7fr) minmax(0,5fr);}
+  .leitsatz.flip .media{order:2;}
+  .leitsatz .media{
+    aspect-ratio:5/4;overflow:hidden;background:var(--creme);
+    border-radius:2px;position:relative;
+  }
+  .leitsatz .media img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease;}
+  .leitsatz:hover .media img{transform:scale(1.02);}
+  .leitsatz .media .num-badge{
+    position:absolute;top:16px;left:16px;
+    width:48px;height:48px;border-radius:50%;
+    background:var(--creme);color:var(--petrol);
+    display:flex;align-items:center;justify-content:center;
+    font-family:var(--serif);font-weight:500;font-size:22px;
+    letter-spacing:-0.02em;
+    box-shadow:0 4px 12px -4px rgba(0,0,0,0.2);
+  }
+  .leitsatz h3{
+    font-family:var(--serif);font-weight:500;font-size:clamp(26px,2.6vw,36px);
+    line-height:1.15;color:var(--petrol);letter-spacing:-0.012em;
+    margin:0 0 20px;
+  }
+  .leitsatz .claim{
+    font-family:var(--sans);font-size:16.5px;line-height:1.65;
+    color:var(--tinte);margin:0 0 24px;max-width:60ch;
+  }
+  .leitsatz ul{
+    list-style:none;margin:0 0 24px;padding:0;
+  }
+  .leitsatz ul li{
+    position:relative;padding:8px 0 8px 22px;
+    font-family:var(--sans);font-size:15px;line-height:1.55;color:var(--stein);
+    border-bottom:1px solid var(--hairline);
+  }
+  .leitsatz ul li:first-child{border-top:1px solid var(--hairline);}
+  .leitsatz ul li::before{
+    content:"";position:absolute;left:0;top:16px;
+    width:10px;height:1px;background:var(--bordeaux);
+  }
+  .leitsatz .future{
+    margin-top:18px;padding:16px 18px;
+    background:rgba(212,165,116,0.14);
+    border-left:3px solid var(--gold);
+  }
+  .leitsatz .future h4{
+    font-family:var(--sans);font-weight:600;font-size:11px;
+    letter-spacing:0.14em;text-transform:uppercase;color:var(--gold-deep);
+    margin:0 0 8px;
+  }
+  .leitsatz .future ul{margin:0;}
+  .leitsatz .future li{
+    border:0;padding:4px 0 4px 18px;font-size:14px;color:var(--tinte);
+  }
+  .leitsatz .future li::before{
+    top:13px;background:var(--gold);
   }
 
   /* Timeline / path */
@@ -144,12 +288,21 @@ const lb = await getSingle("pageLeitbild");
 
   @media (max-width:960px){
     .values-grid{grid-template-columns:1fr;gap:20px;}
+    .pledge-list{grid-template-columns:1fr;}
+    .sp-pillars-intro .two-cols{grid-template-columns:1fr;gap:24px;}
+    .leitsatz, .leitsatz.flip{grid-template-columns:1fr;gap:24px;}
+    .leitsatz.flip .media{order:-1;}
+    .leitsatz .media{order:-1;aspect-ratio:16/10;}
     .stages{grid-template-columns:1fr;}
     .stage{border-right:0;border-bottom:1px solid var(--hairline);}
     .stage:last-child{border-bottom:0;}
     .lb-cta-grid{grid-template-columns:1fr;gap:24px;}
     .lb-motto{padding:64px 0;}
-    .lb-values,.lb-path,.lb-cta{padding:64px 0;}
+    .lb-values,.lb-path,.lb-cta,.sp-pledge,.sp-pillars-intro{padding:64px 0;}
+  }
+  @media (max-width:640px){
+    .sp-leitsaetze{padding:12px 0 72px;}
+    .leitsatz{padding:36px 0;}
   }
 </style>
 
@@ -186,6 +339,70 @@ const lb = await getSingle("pageLeitbild");
     </div>
   </div>
 </section>
+
+
+<section class="sp-pledge" aria-label="Selbstverpflichtung des Kollegiums">
+  <div class="container">
+    <span class="eyebrow">{sp.pledge.eyebrow}</span>
+    <h2>{sp.pledge.title}</h2>
+    <p class="intro">{sp.pledge.intro}</p>
+    <ol class="pledge-list">
+      {sp.pledge.list.map((item: any) => (
+        <li><span class="num">{item.num}</span><span class="text">{item.text}</span></li>
+      ))}
+    </ol>
+    <p class="pledge-outro">{sp.pledge.outro}</p>
+  </div>
+</section>
+
+
+<section class="sp-pillars-intro">
+  <div class="container">
+    <span class="eyebrow">{sp.pillarsIntro.eyebrow}</span>
+    <h2>{sp.pillarsIntro.title}</h2>
+    <p>{sp.pillarsIntro.body}</p>
+    <div class="two-cols">
+      {sp.pillarsIntro.pillars.map((p: any) => (
+        <div class="card">
+          <h3>{p.title}</h3>
+          <p>{p.body}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+
+<section class="sp-leitsaetze">
+  <div class="container">
+    {sp.leitsaetze.map((l: any, idx: number) => (
+      <article class={`leitsatz${idx % 2 === 1 ? " flip" : ""}`}>
+        <div class="media">
+          <img src={l.image} alt="" width="1000" height="800" loading="lazy" />
+          <span class="num-badge">{l.num}</span>
+        </div>
+        <div class="body">
+          <h3>{l.title}</h3>
+          <p class="claim">{l.claim}</p>
+          {l.points && l.points.length > 0 && (
+            <ul>
+              {l.points.map((pt: string) => <li>{pt}</li>)}
+            </ul>
+          )}
+          {l.futureGoals && l.futureGoals.length > 0 && (
+            <div class="future">
+              <h4>Schulentwicklungsziele</h4>
+              <ul>
+                {l.futureGoals.map((g: string) => <li>{g}</li>)}
+              </ul>
+            </div>
+          )}
+        </div>
+      </article>
+    ))}
+  </div>
+</section>
+
 
 <section class="lb-path" aria-label="Unser Weg">
   <div class="container">

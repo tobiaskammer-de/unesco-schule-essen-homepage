@@ -381,7 +381,7 @@ const [koordOberstufe, stufeEF] = await Promise.all([
       <li><strong>Erhaltung eines Klassenverbandes</strong> in der Einführungsphase in Mathematik, Deutsch, Englisch und Sport</li>
       <li><strong>Klassenbildung gemäß den bisher besuchten Schulformen:</strong> Schülergruppen aus ein und derselben Schule können zusammen­bleiben</li>
       <li><strong>Vertiefungskurse</strong> in Mathematik, Deutsch und Englisch</li>
-      <li><strong>Anfängerkurse</strong> für Französisch und Latein (ggf. Erwerb des Kleinen Latinums)</li>
+      <li><strong>Neueinsetzende Fremdsprache</strong> Französisch und Latein (ggf. Erwerb des Kleinen Latinums)</li>
       <li><strong>Fortsetzung</strong> der Fremdsprache Französisch aus der Sekundarstufe I</li>
       <li><strong>Leistungskurse</strong> in Deutsch, Englisch, Mathematik, Pädagogik, Sozialwissenschaft, Biologie, Chemie, Erdkunde, Geschichte</li>
     </ul>
@@ -451,7 +451,7 @@ const [koordOberstufe, stufeEF] = await Promise.all([
         <span class="num">03</span>
         <div class="body">
           <h3>Die Fächerwahl</h3>
-          <p>Pflicht­belegungen (Deutsch, Mathematik, Englisch, Sport), zweite Fremdsprache (Französisch oder Latein als Anfänger, wenn bisher keine zweite Fremdsprache), Religion/Philosophie, Kunst/Musik, Natur- und Gesellschafts­wissenschaften. Infoabend und Abgabe des Wahlzettels.</p>
+          <p>Pflicht­belegungen (Deutsch, Mathematik, Englisch, Sport), zweite Fremdsprache (Französisch oder Latein als neueinsetzende Fremdsprache, wenn bisher keine zweite Fremdsprache), Religion/Philosophie, Kunst/Musik, Natur- und Gesellschafts­wissenschaften. Infoabend und Abgabe des Wahlzettels.</p>
         </div>
         <div class="when">21.04.2026 · Abgabe 13.05.2026</div>
       </li>
@@ -517,19 +517,12 @@ const [koordOberstufe, stufeEF] = await Promise.all([
           <MailLink email="info@unesco-schule-essen.de" />
         </article>
       )}
-      {stufeEF ? (
+      {stufeEF && (
         <article class="contact-person">
           <span class="role">Stufenleitung EF</span>
           <span class="name">{displayName(stufeEF)}</span>
           <span class="title">UNESCO-Schule Essen · Steinmetzstr. 9 · 45139 Essen</span>
           <MailLink email={stufeEF.data.email} />
-        </article>
-      ) : (
-        <article class="contact-person">
-          <span class="role">Stufenleitung EF</span>
-          <span class="name">Stelle aktuell vakant</span>
-          <span class="title">Bitte über das Sekretariat anfragen.</span>
-          <MailLink email="info@unesco-schule-essen.de" />
         </article>
       )}
     </div>

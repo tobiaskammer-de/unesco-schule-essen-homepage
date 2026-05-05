@@ -37,12 +37,10 @@ function asset(p?: string | null): string | undefined {
 // "Wofür ich da bin" — Platzhaltertexte, bis echte O-Töne der Personen vorliegen.
 // Über den Nachnamen verknüpft, damit ein Personenwechsel den Text nicht mit-zieht.
 const claims: Record<string, string> = {
-  Lichtenstein: "Schule ist erst dann gut, wenn Kinder, Eltern und Kolleginnen sich darin gesehen fühlen. Das ist mein Maßstab.",
   Stief: "Die Stundenpläne, die Vertretungen, die kleinen Schräubchen im Schulalltag, damit der Unterricht laufen kann.",
   Wilbat: "Mittelstufe heißt: dranbleiben, Krisen begleiten, Stärken sichtbar machen. Kommen Sie auf mich zu.",
   Omlor: "Oberstufenwege sind selten gerade. Ich sortiere mit Ihnen, was geht und was sich lohnt.",
   Scheding: "Die Erprobungsstufe ist der Übergang, der den Ton setzt. Wir nehmen ihn ernst.",
-  Axer: "Ich bin die erste Stimme, die Sie hören, wenn Sie hier anrufen — und meistens auch die erste Tür, die sich öffnet.",
 };
 function claim(t: any): string {
   return (t && claims[t.data.lastName]) || "";
@@ -242,10 +240,6 @@ function claim(t: any): string {
         <div>
           <p class="role">Schulleiterin</p>
           <h3 class="name">{displayName(schulleiterin)}</h3>
-          {claim(schulleiterin) && <blockquote>„{claim(schulleiterin)}"</blockquote>}
-        </div>
-        <div class="actions">
-          <MailLink class="btn-mail" email={schulleiterin.data.email} label={`E-Mail an ${schulleiterin.data.lastName === "Lichtenstein" ? "Frau " : ""}${schulleiterin.data.lastName}`}>E-Mail an {schulleiterin.data.lastName === "Lichtenstein" ? "Frau" : ""} {schulleiterin.data.lastName}</MailLink>
         </div>
       </article>
     )}
@@ -262,7 +256,6 @@ function claim(t: any): string {
           <h3 class="name">{displayName(stellv)}</h3>
           {claim(stellv) && <p class="claim">{claim(stellv)}</p>}
         </div>
-        <MailLink class="btn-mail" email={stellv.data.email} label="E-Mail senden">E-Mail senden</MailLink>
       </article>
     )}
 

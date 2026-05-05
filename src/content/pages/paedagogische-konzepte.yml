@@ -1,7 +1,7 @@
 hero:
   eyebrow: "Angebote · Pädagogische Konzepte"
   title: "Pädagogische Konzepte —"
-  titleHighlight: "klar, transparent, gelebt."
+  titleHighlight: "klar, transparent, gelebt"
   lede: "Hinter dem Unterrichtsalltag stehen Grundsätze, auf die Sie sich verlassen können. Hier finden Sie die wichtigsten in Kurzform, jeweils mit Download der vollständigen Fassung."
 
 intro:
@@ -14,7 +14,7 @@ intro:
 
 list:
   eyebrow: "Sechs zentrale Konzepte"
-  title: "Was bei uns verbindlich geregelt ist."
+  title: "Was bei uns verbindlich geregelt ist"
   body: "Jedes Konzept in einem Satz, jeweils mit Download für alle Details. Die vollständigen Fassungen sind Teil der offiziellen Schuldokumentation."
   konzepte:
     - num: "01"
@@ -52,14 +52,6 @@ list:
       body: "Unser Handy- und Tablet-Konzept ist Teil der Schulordnung. Das Schultablet (iPad) kommt täglich aufgeladen mit in den Unterricht, das Handy bleibt im Unterricht ausgeschaltet oder im Flugmodus. In Pausen und in der Sekundarstufe II gelten klare Ausnahmen. Das schafft Konzentration im Klassenraum und schützt Persönlichkeitsrechte."
       pdf: "assets/Handykonzept-2026.pdf"
       pdfMeta: "PDF · 46 KB"
-    - num: "06"
-      label: "Schutz"
-      title: "Schutzkonzept"
-      claim: "Ein geschützter Ort, an dem alle angenommen und sicher sind."
-      body: "Alle Mitarbeitenden, von Schulleitung bis Schulsozialarbeit, verpflichten sich auf einen gemeinsamen Verhaltenskodex zu Nähe und Distanz, Sprache und Privatsphäre. Bei Sorgen oder Verdachtsfällen gibt es klare interne Ansprechstellen und feste Interventionspläne, ergänzt durch externe Beratungsstellen, Jugendamt und Polizei. Prävention läuft kontinuierlich: von Sexualaufklärung und UNESCO-Projekttagen zu Diskriminierung und sexueller Gewalt bis zu verpflichtenden Fortbildungen für das gesamte Kollegium."
-      pdf: "assets/Schutzkonzept-2024.pdf"
-      pdfMeta: "PDF · 218 KB"
-
 closing:
   eyebrow: "Gespräch statt Papier"
   title: "Etwas unklar oder nicht gefunden?"

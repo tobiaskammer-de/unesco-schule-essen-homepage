@@ -1,14 +1,14 @@
 hero:
   eyebrow: "Profil · Kulturelle Bildung und Kunst"
   title: "Kulturelle Bildung,"
-  titleHighlight: "die bei uns wächst."
+  titleHighlight: "die bei uns wächst"
   lede: "Von Klasse 5 bis zur Oberstufe: kulturelle Bildung ist bei uns kein Einzelprojekt, sondern ein durchgängiges Konzept. Wir verbinden schulinterne Profile mit starken externen Partnern."
   image: "assets/kulturelle-bildung/buhne.jpg"
   imageAlt: ""
 
 intro:
   title: "Ein Weg, der sich"
-  titleHighlight: "über Jahre entfaltet."
+  titleHighlight: "über Jahre entfaltet"
   body: |
     Wer uns besucht, merkt schnell: Kulturelle Bildung ist bei uns kein Einzelprojekt, sondern ein durchgängiges Konzept — von Klasse 5 bis zur Oberstufe.
 
@@ -16,7 +16,7 @@ intro:
 
 courses:
   eyebrow: "01 · Im Schulalltag"
-  title: "Kulturelle Bildung im Schulalltag."
+  title: "Kulturelle Bildung im Schulalltag"
   body: "Unsere schulinternen Angebote, ein Lernweg vom ersten kreativen Ausprobieren in Klasse 5 bis zur eigenständigen künstlerischen Arbeit in der Oberstufe."
   list:
     - klasse: "Ab Klasse 5"
@@ -40,11 +40,11 @@ courses:
 
 partners:
   eyebrow: "02 · Starke Partner"
-  title: "Kulturelle Bildung durch starke Partner."
+  title: "Kulturelle Bildung durch starke Partner"
   body: "Unsere Kooperationen mit renommierten Essener und bundesweit vernetzten Kulturinstitutionen: Musik, Theater, Tanz und Konzert als regelmäßige Erfahrung."
   list:
     - mark: "Folkwang Musikschule"
-      title: "Musikpraxis mit dem Jamtruck."
+      title: "Musikpraxis mit dem Jamtruck"
       body: |
         Einmal pro Woche steht der Jamtruck auf unserem Schulhof, ein voll ausgestatteter Proberaum im LKW. Zwei professionelle Coaches arbeiten mit unseren Schülerinnen und Schülern an Bandprojekten, Songs und Arrangements.
 
@@ -53,7 +53,7 @@ partners:
       imageAlt: "Jamtruck der Folkwang Musikschule Essen"
       highlight: ""
     - mark: "Theater und Philharmonie Essen"
-      title: "Oper, Konzert und Tanz."
+      title: "Oper, Konzert und Tanz"
       body: |
         Eine besonders enge Zusammenarbeit verbindet uns mit der Theater und Philharmonie Essen, deren offizieller Kooperationspartner wir sind.
 
@@ -62,7 +62,7 @@ partners:
       imageAlt: "Aalto-Theater Essen"
       highlight: "**Aktuell:** Über 40 Schülerinnen und Schüler arbeiten gemeinsam mit den Philharmonikern Essen an einer eigenen Opernproduktion, stellvertretend für die Tiefe dieser Partnerschaft."
     - mark: "Klavier-Festival Ruhr"
-      title: "Konzerterlebnisse, die bleiben."
+      title: "Konzerterlebnisse, die bleiben"
       body: |
         Durch unsere langjährige Partnerschaft mit dem Klavier-Festival Ruhr besucht jede Schülerin und jeder Schüler im Laufe der Schulzeit mindestens einmal ein Konzert dieses international renommierten Festivals.
 
@@ -71,7 +71,7 @@ partners:
       imageAlt: "Schülergruppe beim Konzertbesuch"
       highlight: ""
     - mark: "Grillo-Theater Essen"
-      title: "Schauspiel und Workshops."
+      title: "Schauspiel und Workshops"
       body: |
         Ein weiterer Schwerpunkt ist die Zusammenarbeit mit dem Grillo-Theater Essen. Wir besuchen Schauspielaufführungen und nehmen an Workshops teil.
 
@@ -82,6 +82,6 @@ partners:
 
 closing:
   eyebrow: "Unser Bildungskonzept"
-  title: "Altersgerecht. Anspruchsvoll."
-  titleHighlight: "Praxisnah."
+  title: "Altersgerecht. Anspruchsvoll"
+  titleHighlight: "Praxisnah"
   body: "Durch die klare Verbindung von schulischen Profilangeboten und starken kulturellen Partnern entsteht bei uns ein durchgängiges Bildungskonzept. Kulturelle Bildung begleitet unsere Schülerinnen und Schüler über viele Jahre hinweg."

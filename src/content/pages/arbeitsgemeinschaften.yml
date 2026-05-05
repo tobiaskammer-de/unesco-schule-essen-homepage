@@ -1,12 +1,12 @@
 hero:
   eyebrow: "Angebote · Lernen & Förderung"
-  title: "Arbeitsgemeinschaften."
+  title: "Arbeitsgemeinschaften"
   titleHighlight: ""
   lede: "Nach dem Unterricht geht's weiter: In unseren AGs entdecken Schülerinnen und Schüler eigene Interessen, übernehmen Verantwortung und lernen Neues, freiwillig, engagiert und mit Freude."
 
 intro:
   title: "Mehr als Unterricht —"
-  titleHighlight: "eine Auswahl."
+  titleHighlight: "eine Auswahl"
   body: |
     Arbeitsgemeinschaften ergänzen den regulären Unterricht, mal praktisch, mal kreativ, mal engagiert. Sie sind freiwillig, kostenlos und offen für alle interessierten Schülerinnen und Schüler.
 
@@ -14,7 +14,7 @@ intro:
 
 list:
   eyebrow: "Aktuelles Angebot"
-  title: "Unsere Arbeitsgemeinschaften."
+  title: "Unsere Arbeitsgemeinschaften"
   body: "Mitmachen jederzeit möglich: sprecht einfach die jeweilige Ansprechperson an."
   ags:
     - title: "Philharmonie- und Theaterbesuche"
@@ -87,5 +87,5 @@ list:
 cta:
   eyebrow: "Eigene Idee?"
   title: "Eine AG ist"
-  titleHighlight: "kein fertiges Angebot."
+  titleHighlight: "kein fertiges Angebot"
   body: "AGs entstehen aus Interesse. Wenn dir ein Angebot fehlt oder du selbst Lust hast, etwas aufzuziehen: sprich uns an. Wir unterstützen gern beim Start."

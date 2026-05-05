@@ -2,7 +2,7 @@ hero:
   badge: "Anerkannte UNESCO-Projektschule · Stufe 3"
   eyebrow: "Über Uns · UNESCO – Name und Mission"
   title: "Wir sind nicht irgendeine"
-  titleHighlight: "UNESCO-Schule."
+  titleHighlight: "UNESCO-Schule"
   lede: "Wir sind das einzige Gymnasium in Deutschland, das den Namen der UNESCO trägt: nach einem intensiven, mehrjährigen Prüfungsverfahren der Deutschen UNESCO-Kommission. Der Name ist für uns Auftrag, nicht Auszeichnung."
 
 statement:
@@ -15,7 +15,7 @@ statement:
 
 aspnet:
   eyebrow: "Ein weltweites Netzwerk"
-  title: "Was eine UNESCO-Projektschule ist."
+  title: "Was eine UNESCO-Projektschule ist"
   body: "Seit 1953 verbindet das UNESCO-Projektschul-Netzwerk (ASPnet, Associated Schools Project Network) Schulen, die sich den Zielen der UNESCO verpflichten: Frieden, Menschenrechte, Nachhaltigkeit, interkultureller Dialog. Koordiniert wird das deutsche Netzwerk von der Deutschen UNESCO-Kommission."
   stats:
     - n: "~12 000"
@@ -27,7 +27,7 @@ aspnet:
 
 tiers:
   eyebrow: "Drei Stufen, ein Weg"
-  title: "Wie Schulen zu UNESCO-Projektschulen werden."
+  title: "Wie Schulen zu UNESCO-Projektschulen werden"
   body: "Der Weg in das Netzwerk verläuft in drei Stufen. Er ist lang, die Prüfung streng, und das ist gut so. Wir sind auf der dritten und höchsten Stufe angekommen."
   list:
     - step: "01"
@@ -48,7 +48,7 @@ tiers:
 
 themes:
   eyebrow: "Fünf Themenfelder der UNESCO"
-  title: "Woran wir arbeiten."
+  title: "Woran wir arbeiten"
   list:
     - n: "01"
       title: "Menschenrechte, Frieden und Demokratie"
@@ -68,7 +68,7 @@ themes:
 
 alltag:
   eyebrow: "UNESCO im Schulalltag"
-  title: "Was das konkret bedeutet."
+  title: "Was das konkret bedeutet"
   body: "Der Name verpflichtet uns zu einer Vielzahl an Aktivitäten, die über den regulären Unterricht hinausgehen: zwölf Monate im Jahr, in allen Jahrgängen."
   items:
     - "Zwei UNESCO-Projekttage pro Schuljahr mit jahrgangsübergreifenden Themen"

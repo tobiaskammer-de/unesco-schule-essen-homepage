@@ -1,18 +1,18 @@
 hero:
   eyebrow: "Informieren · Für Eltern"
   title: "Schule verstehen,"
-  titleHighlight: "bevor das Kind sie erklärt."
+  titleHighlight: "bevor das Kind sie erklärt"
   lede: "Alle Antworten, die wir in Anmeldegesprächen immer wieder geben: gesammelt, sortiert, zum Nachlesen. Plus zwei kompakte PDFs für zuhause."
 
 intro:
   title: "Die Fragen, die wir"
-  titleHighlight: "am häufigsten hören."
+  titleHighlight: "am häufigsten hören"
   body: |
     Wie lang ist ein Schultag? Was heißt eigentlich „UNESCO-Projektschule\"? Gibt es Betreuung nach der sechsten Stunde? Welche Sprachen lernt mein Kind? In jedem Infogespräch kommen dieselben Themen wieder.
 
 downloads:
   eyebrow: "Zum Mitnehmen"
-  title: "Zwei Broschüren für den Einstieg."
+  title: "Zwei Broschüren für den Einstieg"
   body: "Das Schul-ABC beantwortet die Alltagsfragen von Tag 1. Die Orientierungshilfe zeigt, wo was im Gebäude ist, damit die ersten Wochen leichter werden."
   list:
     - kicker: "Broschüre"
@@ -44,7 +44,7 @@ schedule:
 
 faq:
   eyebrow: "Fragen und Antworten"
-  title: "Fragen, die wir oft hören."
+  title: "Fragen, die wir oft hören"
   body: "Tippen Sie auf eine Frage, um die Antwort zu sehen."
   list:
     - q: "Warum der Name UNESCO?"
@@ -109,5 +109,5 @@ faq:
 cta:
   eyebrow: "Antwort fehlt?"
   title: "Dann"
-  titleHighlight: "sprechen wir."
+  titleHighlight: "sprechen wir"
   body: "Ein fünfminütiger Anruf klärt oft mehr als zehn Absätze. Wenn Sie möchten, laden wir Sie auch zu einem Rundgang durchs Haus ein."

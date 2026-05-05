@@ -8,7 +8,7 @@ hero:
   imageAlt: "Schülerinnen und Schüler im Schulflur der UNESCO-Schule Essen"
 
 intro:
-  title: "Unser Start mit Klasse 5."
+  title: "Unser Start mit Klasse 5"
   body: |
     Schon in den Einführungstagen lernen sich die Kinder kennen, entdecken neue Lernmethoden und finden sich behutsam in den Schulalltag ein. Bereits zum Start wählen sie einen von zwei Profilschwerpunkten, die ihre Stärken früh sichtbar machen.
 
@@ -20,7 +20,7 @@ intro:
 
 profiles:
   eyebrow: "Zwei Profile ab Klasse 5"
-  title: "Schwerpunktklassen — früh Stärken entdecken."
+  title: "Schwerpunktklassen — früh Stärken entdecken"
   body: "In Klasse 5 kann jedes Kind eigene Interessen in einem Profilkurs vertiefen. Hier werden Stärken früh entdeckt und gezielt gefördert."
   cards:
     - mark: "Profil · Sprachlich-kreativ"
@@ -38,20 +38,20 @@ profiles:
 
 pillars:
   eyebrow: "Drei Säulen der Erprobungsstufe"
-  title: "Was bei uns zusammenkommt."
+  title: "Was bei uns zusammenkommt"
   cards:
     - label: "Gelebte UNESCO-Werte"
-      title: "Toleranz, Verantwortung, Respekt."
+      title: "Toleranz, Verantwortung, Respekt"
       body: "Projekttage, internationale Austausche und diverse Kooperationen fördern interkulturelle Kompetenz und stärken das Miteinander. Mit Erasmus+ öffnen wir den Blick über Grenzen hinweg: unsere Schülerinnen und Schüler besuchten bereits den UNESCO-Hauptsitz in Paris und unsere Partnerschule, das Lycée Professionnel Léonard de Vinci und schlossen neue Freundschaften während einer Studienfahrt nach Estland."
       image: "assets/erprobungsstufe/erasmus-paris.jpg"
       imageAlt: "Schülerinnen vor dem Eiffelturm in Paris, Erasmus+ Austausch"
     - label: "Ankommen & Kennenlernen"
-      title: "Zusammenhalt von Anfang an."
+      title: "Zusammenhalt von Anfang an"
       body: "Klassenfahrten in den Stufen 5, 7, 10 und Q1 stärken Zusammenhalt und Selbstständigkeit. In der Streitschlichter-AG übernehmen Schülerinnen und Schüler Verantwortung für ihre Schulgemeinschaft. Sozialarbeit und Berufsorientierung begleiten die gesamte Schullaufbahn."
       image: "assets/sp-persoenlich.jpg"
       imageAlt: "Gemeinschaft, Klassenfahrt, Zusammenhalt"
     - label: "Digitale Bildung"
-      title: "Sicher, kreativ, verantwortungsvoll."
+      title: "Sicher, kreativ, verantwortungsvoll"
       body: "Mit Informatik ab Klasse 6, kreativen Programmierprojekten in der „Hacker School\" und moderner technischer Ausstattung lernen unsere Schülerinnen und Schüler, sich sicher, kreativ und verantwortungsbewusst in der digitalen Welt zu bewegen."
       image: "assets/sp-digital.jpg"
       imageAlt: "Digitales Lernen, iPads, Informatik"
@@ -81,5 +81,5 @@ quote:
   author: "Lehrkraft der UNESCO-Schule"
 
 cta:
-  title: "Ihr persönliches Beratungsgespräch."
+  title: "Ihr persönliches Beratungsgespräch"
   body: "Unser Beratungsteam steht Ihnen zur Verfügung: zu Profilklassen, Schulalltag und dem Weg zum Abitur. Kommen Sie vorbei, rufen Sie an oder schreiben Sie uns."
