@@ -2,11 +2,11 @@ hero:
   badge: "Gemeinnützig · gegründet 2007"
   eyebrow: "Über Uns · Förderverein"
   title: "Der Förderverein —"
-  titleHighlight: "mehr möglich machen."
+  titleHighlight: "mehr möglich machen"
   lede: "Als gemeinnützig anerkannter Verein unterstützt der Förderverein die pädagogische Arbeit an der UNESCO-Schule und macht Projekte möglich, die über das reguläre Schulbudget hinausgehen."
 
 purpose:
-  title: "Warum wir diesen Verein brauchen."
+  title: "Warum wir diesen Verein brauchen"
   body: |
     Ein Gymnasium mit UNESCO-Auftrag braucht mehr als Standardausstattung. Der Förderverein verbessert die Schule als Lebensraum: mit Musikinstrumenten, wissenschaftlicher Ausrüstung, kulturellen Veranstaltungen und ganz konkreter finanzieller Hilfe, wenn Familien sie brauchen.
 
@@ -14,7 +14,7 @@ purpose:
 
 goals:
   eyebrow: "Fünf Arbeitsfelder"
-  title: "Was wir konkret fördern."
+  title: "Was wir konkret fördern"
   list:
     - n: "01"
       title: "Unterrichtsmaterial & Fachbücher"
@@ -34,7 +34,7 @@ goals:
 
 board:
   eyebrow: "Vorstand"
-  title: "Wer den Verein trägt."
+  title: "Wer den Verein trägt"
   members:
     - role: "Vorsitzende"
       name: "Khadra Azboy"
@@ -50,7 +50,7 @@ board:
 projects:
   eyebrow: "Geförderte Projekte"
   title: "Ein Ausschnitt dessen,"
-  titleHighlight: "was möglich wurde."
+  titleHighlight: "was möglich wurde"
   list:
     - icon: "♪"
       title: "Musikinstrumente"
@@ -69,7 +69,7 @@ projects:
       sub: "individuell, still"
 
 join:
-  title: "Mitglied werden."
-  titleHighlight: "Mit dabei sein."
+  title: "Mitglied werden"
+  titleHighlight: "Mit dabei sein"
   body: "Sie möchten den Förderverein unterstützen, als Eltern, als Ehemalige, als Freundinnen und Freunde unserer Schule? Wir freuen uns über jedes Mitglied und jede Spende."
   note: "**Bankverbindung, Beitragshöhe und Mitgliedsantrag** senden wir Ihnen auf Anfrage gerne zu. Die Informationen liegen aktuell beim Vorstand und im Sekretariat."

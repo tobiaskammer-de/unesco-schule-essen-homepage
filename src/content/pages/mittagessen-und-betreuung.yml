@@ -1,13 +1,13 @@
 hero:
   eyebrow: "Service · Digitales & Alltag"
   title: "Gut versorgt"
-  titleHighlight: "am Mittag."
+  titleHighlight: "am Mittag"
   lede: "Ab dem Schuljahr 2026/27 gibt es bei uns endlich ein warmes Mittagessen — und für die neuen Fünftklässler eine verlässliche Übermittagsbetreuung. Damit Ihr Kind gestärkt und gut aufgehoben in den Nachmittag startet."
 
 pillars:
   eyebrow: "Für Eltern auf einen Blick"
   title: "Zwei Angebote,"
-  titleHighlight: "ein gutes Gefühl."
+  titleHighlight: "ein gutes Gefühl"
   intro: "Beides ist freiwillig und unabhängig voneinander wählbar. Sie entscheiden, was zu Ihrem Familienalltag passt."
   mittagessen:
     badge: "Neu ab 2026/27"
@@ -29,7 +29,7 @@ pillars:
 mittagessenDetail:
   eyebrow: "Mittagessen"
   title: "Endlich warm. Endlich"
-  titleHighlight: "jeden Tag."
+  titleHighlight: "jeden Tag"
   lead: "Gemeinsam essen, sich austauschen, dann konzentriert in den Nachmittag — das wünschen sich Familien, und das bekommen Sie ab dem neuen Schuljahr bei uns."
   body: "Die Teilnahme ist freiwillig und tageweise oder dauerhaft möglich. Auch eine Barzahlung ist möglich, sodass auch spontane Esser:innen versorgt sind."
   facts:
@@ -53,7 +53,7 @@ mittagessenDetail:
 betreuungDetail:
   eyebrow: "Übermittagsbetreuung"
   title: "Eine vertraute Anlaufstelle"
-  titleHighlight: "nach dem Unterricht."
+  titleHighlight: "nach dem Unterricht"
   lead: "Die Caritas SkF Essen begleitet Ihr Kind in den Klassen 5 nach Unterrichtsschluss: Mittagessen, Hausaufgaben, Spielen, Ausruhen — in einem festen Team und mit einem klaren Rahmen."
   body: "So überbrücken Sie den Nachmittag verlässlich, auch wenn Beruf und Familie nicht immer im selben Takt schlagen. Eine Anmeldung ist tageweise möglich und gilt jeweils für ein Schulhalbjahr."
   facts:
@@ -76,7 +76,7 @@ betreuungDetail:
 downloads:
   eyebrow: "Zum Mitnehmen"
   title: "Alle Infos"
-  titleHighlight: "als PDF."
+  titleHighlight: "als PDF"
   intro: "Beide Dokumente fassen die wichtigsten Punkte zusammen — zum Ausdrucken, Weitergeben oder ruhig in der Familie nachlesen."
   files:
     - label: "Mittagessen"

@@ -1,16 +1,16 @@
 hero:
   eyebrow: "Über Uns · Gemeinschaft & Netzwerk"
   title: "Mit wem wir"
-  titleHighlight: "zusammenarbeiten."
-  lede: "Schule funktioniert nicht allein. Unsere Partnerschaften reichen von weltweiten Netzwerken bis zu Essener Institutionen — und machen vieles von dem möglich, was unseren Alltag prägt."
+  titleHighlight: "zusammenarbeiten"
+  lede: "Schule funktioniert nicht allein. Unsere Kooperationen reichen von weltweiten Netzwerken bis zu Essener Institutionen — und machen vieles von dem möglich, was unseren Alltag prägt."
 
 intro:
   title: "Partner,"
-  titleHighlight: "auf die wir bauen."
+  titleHighlight: "auf die wir bauen"
   body: |
-    Über fünfzehn feste Partnerschaften tragen unser Schulprofil: das UNESCO-Netzwerk, die Universität Duisburg-Essen, Kultureinrichtungen wie die Theater und Philharmonie Essen sowie Stiftungen und Service-Clubs, die Projekte finanziell ermöglichen.
+    Feste Kooperationen tragen unser Schulprofil: das UNESCO-Netzwerk, die Universität Duisburg-Essen, Kultureinrichtungen wie die Theater und Philharmonie Essen sowie Stiftungen und Service-Clubs, die Projekte finanziell ermöglichen.
 
-    Dazu kommen Essener Institutionen aus Sozialarbeit, Medien und Berufsorientierung. Auf dieser Seite haben wir sie sortiert, damit man sieht, wer uns in welchem Bereich begleitet.
+    Dazu kommen Essener Institutionen aus Sozialarbeit, Medien, Justiz und Berufsorientierung. Auf dieser Seite haben wir sie sortiert, damit man sieht, wer uns in welchem Bereich begleitet.
 
 categories:
   - label: "Netzwerk & Bildungsauftrag"
@@ -20,10 +20,6 @@ categories:
         url: "https://www.unesco.de/bildung/unesco-projektschulen"
         logo: "assets/partners/unesco.png"
         desc: "Als eine von rund 300 deutschen UNESCO-Projektschulen sind wir Teil eines weltweiten Netzwerks, verpflichtet auf Frieden, Menschenrechte, kulturelle Vielfalt und nachhaltige Entwicklung."
-      - name: "Stifterverband"
-        url: "https://www.stifterverband.org"
-        logo: "assets/partners/stifterverband.png"
-        desc: "Einer der wichtigsten privaten Förderer für Bildung, Wissenschaft und Innovation in Deutschland. Partner u.a. beim MINT-Engagement."
   - label: "Hochschule & Studienorientierung"
     intro: "Mit wem wir zusammenarbeiten, wenn es um den Übergang in Studium und Beruf geht."
     items:
@@ -35,6 +31,13 @@ categories:
         url: "https://www.arbeitsagentur.de/vor-ort/essen/startseite"
         logo: "assets/partners/agentur-arbeit.png"
         desc: "Berufsorientierung, Beratungstermine in Klasse 10 und der Sekundarstufe II sowie die Veranstaltungsreihe „Wege ins Berufsleben\"."
+  - label: "Digitale & MINT-Bildung"
+    intro: "Partner, die unsere Schülerinnen und Schüler beim Programmieren, Forschen und Gestalten begleiten."
+    items:
+      - name: "TUMO Essen"
+        url: "https://tumo.de/essen"
+        logo: ""
+        desc: "Außerschulischer Lernort für digitales Gestalten und Coding. Über die Kooperation rund um die Hacker School erhalten unsere Schülerinnen und Schüler Zugänge zu Workshops in Programmierung, Animation, Robotik und Mediengestaltung."
   - label: "Kultur"
     intro: "Unsere Partner für kulturelle Bildung, von der Oper bis zum Schauspiel."
     items:
@@ -42,14 +45,10 @@ categories:
         url: "https://www.theater-essen.de"
         logo: "assets/partners/tup.png"
         desc: "Offizielle Kooperationspartnerschaft: aktuelle Opernproduktion mit über 40 Schülerinnen und Schülern und den Essener Philharmonikern."
-      - name: "Essener Philharmoniker"
-        url: "https://www.theater-essen.de/philharmonie"
-        logo: "assets/partners/philharmoniker.png"
-        desc: "Gemeinsame Bühnenprojekte, Proben und Konzerterlebnisse."
-      - name: "Freundeskreis Theater und Philharmonie"
-        url: ""
-        logo: "assets/partners/tup.png"
-        desc: "Unterstützt unsere Schülerschaft mit Kartenkontingenten zu Oper, Ballett und klassischen Konzerten."
+      - name: "Folkwang Musikschule"
+        url: "https://www.folkwang-musikschule.de"
+        logo: ""
+        desc: "Musikalische Kooperation rund um den JamTruck: gemeinsame Workshops, Bandprojekte und Auftrittsformate, die Schülerinnen und Schüler ans aktive Musizieren heranführen."
   - label: "Gemeinschaft vor Ort"
     intro: "Essener Partner, mit denen wir im Stadtteil und darüber hinaus Schule leben."
     items:
@@ -57,14 +56,10 @@ categories:
         url: "https://www.jugendhilfe-essen.de"
         logo: "assets/partners/jhe.png"
         desc: "Partner u.a. bei der Pop-Up-Ausstellung „Nur ein Bild!?\" und weiteren kulturell-politischen Projekten."
-      - name: "Contact · Kommunikation · Sport · Event"
-        url: "https://www.contact-essen.de"
-        logo: "assets/partners/contact.png"
-        desc: "Begleitung bei sportlichen Großveranstaltungen und Schulprojekten im öffentlichen Raum."
-      - name: "Arche Noah Essen"
-        url: "https://www.archenoah-essen.de"
-        logo: "assets/partners/arche-noah.png"
-        desc: "Soziales Engagement im Stadtteil und wiederkehrende Projekte zur gelebten Vielfalt."
+      - name: "Amtsgericht Essen"
+        url: "https://www.ag-essen.nrw.de"
+        logo: ""
+        desc: "Kooperation für gelebte politische und juristische Bildung: Gerichtsverhandlungen als Lernort, Begegnung mit Richterinnen und Richtern, Einblicke in das Rechtssystem unserer Demokratie."
       - name: "CSE"
         url: "https://www.cse.de"
         logo: "assets/partners/cse.png"
@@ -103,5 +98,5 @@ categories:
 cta:
   eyebrow: "Interesse an einer Kooperation?"
   title: "Gemeinsam"
-  titleHighlight: "mehr bewegen."
-  body: "Wenn Sie als Institution, Stiftung oder Unternehmen eine Kooperation mit uns aufbauen möchten: Wir freuen uns auf Ihre Nachricht. Die besten Partnerschaften entstehen dort, wo sich beide Seiten engagieren."
+  titleHighlight: "mehr bewegen"
+  body: "Wenn Sie als Institution, Stiftung oder Unternehmen eine Kooperation mit uns aufbauen möchten: Wir freuen uns auf Ihre Nachricht. Die besten Kooperationen entstehen dort, wo sich beide Seiten engagieren."

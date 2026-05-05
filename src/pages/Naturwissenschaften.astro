@@ -1,0 +1,151 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHero from "../components/PageHero.astro";
+import ContactCard from "../components/ContactCard.astro";
+import { getTeacherByLastName } from "../lib/teachers";
+
+const firnhaber = await getTeacherByLastName("Firnhaber");
+const sprado = await getTeacherByLastName("Sprado");
+---
+<BaseLayout title="Naturwissenschaften · UNESCO-Schule Essen" description="Naturwissenschaften an der UNESCO-Schule Essen: Biologie, Chemie, Physik, Mathematik und Informatik — Forschen, Experimentieren, Verstehen.">
+<style is:global>
+  /* ---------- Naturwissenschaften ---------- */
+  .nw-intro{background:var(--creme);padding:var(--space-section) 0;}
+  .nw-intro-grid{
+    display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);
+    gap:64px;align-items:start;
+  }
+  .nw-intro h2{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(30px,3.4vw,44px);line-height:1.1;
+    color:var(--petrol);letter-spacing:-0.015em;margin:0;
+  }
+  .nw-intro p{
+    font-family:var(--sans);font-size:17px;line-height:1.7;color:var(--tinte);
+    margin:0 0 16px;
+  }
+  .nw-intro p:last-child{margin-bottom:0;}
+
+  .nw-pillars{background:var(--offwhite);padding:var(--space-section) 0;}
+  .nw-pillars .head{max-width:780px;margin:0 0 56px;}
+  .nw-pillars .head .eyebrow{display:block;margin-bottom:14px;}
+  .nw-pillars .head h2{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(28px,3vw,40px);line-height:1.15;letter-spacing:-0.015em;
+    color:var(--petrol);margin:0 0 14px;
+  }
+  .nw-pillars .head p{
+    font-family:var(--sans);font-size:17px;line-height:1.65;color:var(--stein);max-width:680px;margin:0;
+  }
+  .nw-pillar-grid{
+    display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px;
+  }
+  .nw-pillar{
+    background:#fff;border:1px solid var(--hairline);
+    border-top:var(--card-accent-width) solid var(--petrol);
+    padding:var(--card-padding);
+    display:flex;flex-direction:column;gap:12px;
+  }
+  .nw-pillar h3{
+    font-family:var(--serif);font-weight:500;font-size:22px;line-height:1.2;
+    color:var(--petrol);letter-spacing:-0.005em;margin:0;
+  }
+  .nw-pillar p{
+    font-family:var(--sans);font-size:15.5px;line-height:1.6;color:var(--tinte);margin:0;
+  }
+
+  .nw-contacts{background:var(--creme);padding:var(--space-section) 0;border-top:1px solid var(--hairline);}
+  .nw-contacts .head{max-width:680px;margin:0 0 40px;}
+  .nw-contacts .head .eyebrow{display:block;margin-bottom:14px;}
+  .nw-contacts .head h2{
+    font-family:var(--serif);font-weight:500;font-size:clamp(28px,2.8vw,36px);
+    line-height:1.15;letter-spacing:-0.01em;color:var(--petrol);margin:0;
+  }
+  .nw-contacts-grid{
+    display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px;max-width:780px;
+  }
+
+  @media (max-width:960px){
+    .nw-intro-grid{grid-template-columns:1fr;gap:32px;}
+    .nw-pillar-grid{grid-template-columns:1fr;gap:18px;}
+    .nw-contacts-grid{grid-template-columns:1fr;gap:18px;}
+    .nw-intro,.nw-pillars,.nw-contacts{padding:var(--space-section-sm) 0;}
+  }
+</style>
+
+<main id="top">
+
+<PageHero variant="feature">
+  <Fragment slot="eyebrow">Profil · Was uns ausmacht</Fragment>
+  <Fragment slot="title">Naturwissenschaften,<br /><em>von der Frage bis zum Experiment.</em></Fragment>
+  <Fragment slot="lede">Biologie, Chemie, Physik, Mathematik und Informatik bilden bei uns ein verbundenes Profil. Forschen, Experimentieren und Diskutieren stehen im Mittelpunkt.</Fragment>
+</PageHero>
+
+<section class="nw-intro" aria-label="Einordnung">
+  <div class="container">
+    <div class="nw-intro-grid">
+      <div>
+        <h2>Wissenschaft beginnt mit Neugier.</h2>
+      </div>
+      <div>
+        <p>Unsere Schülerinnen und Schüler erleben Naturwissenschaften als zusammenhängendes Feld: vom genauen Beobachten in den ersten Klassen über das systematische Experimentieren in der Mittelstufe bis zur eigenständigen Auseinandersetzung mit komplexen Zusammenhängen in der Oberstufe.</p>
+        <p>Mit dem Profilkurs <strong>Forscher²</strong> bieten wir bereits ab Klasse 5 einen neigungsdifferenzierten Zugang. Wettbewerbe wie der <strong>Känguru-Wettbewerb</strong> und gezielte <strong>Matheförderung</strong> ergänzen den regulären Unterricht.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="nw-pillars" aria-label="Schwerpunkte">
+  <div class="container">
+    <div class="head">
+      <span class="eyebrow">Unsere Schwerpunkte</span>
+      <h2>Forschen, rechnen, programmieren</h2>
+      <p>Drei Felder, in denen wir Schülerinnen und Schüler besonders intensiv begleiten — fachlich verzahnt und altersgerecht aufgebaut.</p>
+    </div>
+
+    <div class="nw-pillar-grid">
+      <article class="nw-pillar">
+        <h3>Forscher²</h3>
+        <p>Profilkurs ab Klasse 5: experimentell-naturwissenschaftliche Fragestellungen, eigene Forschungsprojekte und das systematische Arbeiten im Labor.</p>
+      </article>
+      <article class="nw-pillar">
+        <h3>Mathematik</h3>
+        <p>Stärkenorientierte Förderung in den Lerngruppen, gezielte Unterstützung bei Übergängen, Teilnahme am Känguru-Wettbewerb und an weiteren Mathematik-Olympiaden.</p>
+      </article>
+      <article class="nw-pillar">
+        <h3>Informatik &amp; Digitales</h3>
+        <p>Programmieren, Robotik und digitales Gestalten — eingebettet in unsere iPad-Vollausstattung und in Kooperationen wie der Hacker School.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+{(firnhaber || sprado) && (
+  <section class="nw-contacts" aria-label="Ansprechpartnerinnen Naturwissenschaften">
+    <div class="container">
+      <div class="head">
+        <span class="eyebrow">Ansprechpartnerinnen</span>
+        <h2>Wer das Profil bei uns trägt</h2>
+      </div>
+      <div class="nw-contacts-grid">
+        {firnhaber && (
+          <ContactCard
+            teacher={firnhaber}
+            roleLabel="Naturwissenschaften"
+            ctaLabel="E-Mail an Frau Firnhaber"
+          />
+        )}
+        {sprado && (
+          <ContactCard
+            teacher={sprado}
+            roleLabel="Mathematik · Matheförderung"
+            ctaLabel="E-Mail an Frau Sprado"
+          />
+        )}
+      </div>
+    </div>
+  </section>
+)}
+
+</main>
+</BaseLayout>

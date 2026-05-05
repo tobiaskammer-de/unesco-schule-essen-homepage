@@ -1,7 +1,7 @@
 hero:
   eyebrow: "UNESCO-Schule Essen · Dein Gymnasium"
   title: "Gemeinsam lernen,"
-  titleHighlight: "den eigenen Weg finden."
+  titleHighlight: "den eigenen Weg finden"
   sub: "Als UNESCO-Projektschule begleiten wir junge Menschen zu einem starken Abitur — und zu einer Haltung, die in der Welt trägt."
   ctaLabel: "Unsere Schule entdecken"
   ctaHref: "#was-uns-auszeichnet"
@@ -9,7 +9,7 @@ hero:
   imageAlt: "Bibliothek mit geschwungenen Bücherregalen"
 
 path:
-  title: "Dein Weg zu uns."
+  title: "Dein Weg zu uns"
   intro: "Drei Wege, uns kennenzulernen. Sie sind herzlich eingeladen: kommen Sie vorbei, schreiben Sie uns oder rufen Sie einfach an."
   cards:
     - kicker: "Tag der offenen Tür"
@@ -21,12 +21,12 @@ path:
       ctaLabel: "Programm und Details"
       ctaHref: "Tag-der-offenen-Tuer.html"
     - kicker: "Anmeldung zum Schuljahr 2027/28"
-      title: "Termine folgen."
+      title: "Termine folgen"
       text: "Die konkreten Anmeldetermine (voraussichtlich Februar 2027) werden im Winter 2026 bekanntgegeben. Auf der Anmeldeseite finden Sie alle Informationen, sobald sie vorliegen."
       ctaLabel: "Zur Anmeldung"
       ctaHref: "Anmeldung.html"
     - kicker: "Fragen stellen"
-      title: "Gespräch vereinbaren."
+      title: "Gespräch vereinbaren"
       text: "Ob Schulwahl, Schnuppertag für Ihr Kind oder Fragen zu unserem UNESCO-Profil: Frau Axer im Sekretariat ist Ihre erste Anlaufstelle. Werktags melden wir uns in der Regel innerhalb von 24 Stunden zurück."
       ctaLabel: "Termin anfragen"
       ctaHref: "Kontakt.html"

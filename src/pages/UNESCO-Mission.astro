@@ -1,10 +1,13 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
+import ContactCard from "../components/ContactCard.astro";
 import { getSingle } from "../lib/pageContent";
 import { safeBold } from "../lib/safeMarkup";
+import { getTeacherByLastName } from "../lib/teachers";
 
 const page: any = await getSingle("pageUnescoMission");
+const munsch = await getTeacherByLastName("Munsch");
 ---
 <BaseLayout title="UNESCO – Name und Mission · UNESCO-Schule Essen">
 <style is:global>
@@ -210,6 +213,24 @@ const page: any = await getSingle("pageUnescoMission");
     <div class="sig">{page.pledge.signature}</div>
   </div>
 </section>
+
+{munsch && (
+  <section class="un-contact" aria-label="Ansprechpartnerin UNESCO" style="background:var(--creme);padding:var(--space-section) 0;border-top:1px solid var(--hairline);">
+    <div class="container" style="max-width:760px;">
+      <div style="margin-bottom:32px;">
+        <span class="eyebrow" style="display:block;margin-bottom:14px;">Ansprechpartnerin</span>
+        <h2 style="font-family:var(--serif);font-weight:500;font-size:clamp(28px,2.8vw,36px);line-height:1.15;letter-spacing:-0.01em;color:var(--petrol);margin:0;">UNESCO-Beauftragte unserer Schule</h2>
+      </div>
+      <div style="max-width:480px;">
+        <ContactCard
+          teacher={munsch}
+          roleLabel="UNESCO-Beauftragte"
+          ctaLabel="E-Mail an Frau Munsch"
+        />
+      </div>
+    </div>
+  </section>
+)}
 
 </main>
 </BaseLayout>

@@ -1,14 +1,14 @@
 hero:
   eyebrow: "Profil · Sprachen"
   title: "Drei Sprachen,"
-  titleHighlight: "neun Schuljahre."
+  titleHighlight: "neun Schuljahre"
   lede: "Englisch ab Klasse 5, eine zweite Fremdsprache ab Klasse 7, eine dritte ab Klasse 9 — Sprachen sind bei uns kein Beifach, sondern ein durchgängiger Bestandteil der Schulzeit."
   image: "assets/sp-weltoffen.jpg"
   imageAlt: "Schülerinnen und Schüler im Sprachunterricht"
 
 journey:
   eyebrow: "01 · Sprachenfolge"
-  title: "Drei Wege durch die Sprachen."
+  title: "Drei Wege durch die Sprachen"
   body: "Die Pflicht-Sprache Englisch wird ab Klasse 7 um eine zweite Fremdsprache ergänzt. Wer Latein wählt, kann ab Klasse 9 zusätzlich Französisch belegen — und mit drei Schulsprachen ins Abitur gehen."
   stages:
     - klasse: "Ab Klasse 5"
@@ -31,12 +31,12 @@ journey:
 oberstufe:
   eyebrow: "02 · Anfängerkurse in der Oberstufe"
   title: "Auch Quereinsteiger in der gymnasialen Oberstufe"
-  titleHighlight: "schaffen die 2. Fremdsprache."
+  titleHighlight: "schaffen die 2. Fremdsprache"
   body: "In der Einführungsphase (EF) bieten wir Anfängerkurse in Französisch und Latein. Damit können Schülerinnen und Schüler aus anderen Schulformen die zweite Fremdsprache nachholen, die für das Abitur Pflicht ist."
 
 experience:
   eyebrow: "03 · Sprache erleben"
-  title: "Zwei Bausteine neben dem Unterricht."
+  title: "Zwei Bausteine neben dem Unterricht"
   body: "Sprachen werden bei uns nicht nur gelernt, sondern angewendet — innerhalb und außerhalb des Klassenraums."
   pillars:
     - title: "Erasmus+ und Partnerschulen"
@@ -46,7 +46,7 @@ experience:
 
 advantages:
   eyebrow: "Auf einen Blick"
-  title: "Was unser Sprachenkonzept ausmacht."
+  title: "Was unser Sprachenkonzept ausmacht"
   list:
     - "Englisch durchgängig von Klasse 5 bis zum Abitur"
     - "2. Fremdsprache (Französisch oder Latein) ab Klasse 7"

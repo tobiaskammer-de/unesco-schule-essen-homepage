@@ -1,12 +1,12 @@
 hero:
   eyebrow: "Angebote · Beratung & Mitbestimmung"
   title: "Beratung und"
-  titleHighlight: "Unterstützung."
+  titleHighlight: "Unterstützung"
   lede: "Schule ist mehr als Unterricht. Wir hören zu, wenn's schwierig wird: vertraulich, auf Augenhöhe und mit klaren Ansprechpersonen für jede Situation."
 
 intro:
   title: "Wer uns braucht,"
-  titleHighlight: "findet uns."
+  titleHighlight: "findet uns"
   body: |
     Ob Lernschwierigkeiten, Mobbing, Sorgen zu Hause, die Frage nach dem richtigen Studium oder Schulangst: bei uns gibt es für jede Situation jemanden, der zuhört.
 
@@ -31,7 +31,7 @@ overview:
 beratungslehrer:
   eyebrow: "01 · Beratungslehrer"
   title: "Wenn im Schulalltag"
-  titleHighlight: "etwas klemmt."
+  titleHighlight: "etwas klemmt"
   lede: "Erste Anlaufstelle für Schülerinnen, Schüler und Eltern bei schulischen, sozialen und persönlichen Themen, die den Schulalltag beeinflussen."
   qa:
     - q: "Wer wird beraten?"
@@ -59,7 +59,7 @@ beratungslehrer:
 schulsozialarbeit:
   eyebrow: "02 · Schulsozialarbeit"
   title: "Wenn's mal"
-  titleHighlight: "nicht so gut läuft."
+  titleHighlight: "nicht so gut läuft"
   lede: "Für alles, was dich bedrückt und nicht in Schulnoten passt. Wir unterstützen dich dort, wo du dir Hilfe wünschst. Vertraulich, auf Augenhöhe."
   concerns:
     - "…wenn du gesundheitliche Fragen hast und nach passenden Hilfen suchst"

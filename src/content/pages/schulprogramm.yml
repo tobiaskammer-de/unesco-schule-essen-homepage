@@ -1,12 +1,12 @@
 hero:
   eyebrow: "Profil · Schulprogramm"
   title: "Gemeinsam lernen,"
-  titleHighlight: "den eigenen Weg finden."
+  titleHighlight: "den eigenen Weg finden"
   lede: "Unser Schulprogramm — das, was uns trägt. Ein Leitbild, das aus einer Überzeugung wächst: Schule muss beides sein, ein Ort der Sicherheit für die Zukunft und ein Freiraum, in dem junge Menschen heute schon ganz sie selbst sein dürfen."
   image: "assets/kontakt-hero.webp"
 
 intro:
-  title: "Mehr als gute Noten."
+  title: "Mehr als gute Noten"
   body: |
     Gute Noten, fundiertes Wissen und ein starkes Abitur sind für uns selbstverständlich. Doch als UNESCO-Projektschule blicken wir darüber hinaus: Wir sind Teil eines weltweiten Netzwerks, das sich für Frieden, Menschenrechte, kulturelle Vielfalt und nachhaltige Entwicklung einsetzt.
 
@@ -16,7 +16,7 @@ intro:
 
 pledge:
   eyebrow: "Selbstverpflichtung des Kollegiums"
-  title: "Unser Auftrag: Schülerinnen und Schüler auf ihren Lern- und Lebenswegen zu begleiten."
+  title: "Unser Auftrag: Schülerinnen und Schüler auf ihren Lern- und Lebenswegen zu begleiten"
   intro: "Wir, das Kollegium der UNESCO-Schule Essen, empfinden es als unseren Auftrag, alle Schülerinnen und Schüler unserer Schule bestmöglich auf ein Leben in unserer demokratischen Gesellschaft vorzubereiten. Deswegen wollen wir …"
   list:
     - num: "01"
@@ -39,7 +39,7 @@ pledge:
 
 pillarsIntro:
   eyebrow: "Leitsätze und Ziele"
-  title: "Zwei Säulen, acht Leitsätze."
+  title: "Zwei Säulen, acht Leitsätze"
   body: "Unser Schulprogramm stützt sich entsprechend unseres Leitbildes auf zwei Säulen: das individuelle, akademische Lernen und die sozial-affektive Persönlichkeitsentwicklung innerhalb einer gesellschaftsrelevanten Gemeinschaft."
   pillars:
     - title: "Gemeinsam lernen"
@@ -72,7 +72,7 @@ leitsaetze:
       - "Enges Beratungskonzept mit Vertrauenslehrern und Schulsozialarbeitern"
       - "Schuleigenes Schutzkonzept"
     futureGoals:
-      - "Auszeichnung „Schule ohne Rassismus – Schule mit Courage\""
+      - "Jugend Debattiert (in Arbeit)"
   - num: "03"
     image: "assets/sp-divers.jpg"
     title: "Diverse Schule"

@@ -1,0 +1,153 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHero from "../components/PageHero.astro";
+import ContactCard from "../components/ContactCard.astro";
+import { getTeacherByLastName } from "../lib/teachers";
+
+const hoedel = await getTeacherByLastName("Hödel");
+const rockensuess = await getTeacherByLastName("Rockensüß-Köln");
+---
+<BaseLayout title="Internationales Lernen · UNESCO-Schule Essen" description="Internationales Lernen an der UNESCO-Schule Essen: Erasmus+, europäische Schulpartnerschaften und gelebter Austausch über Grenzen hinweg.">
+<style is:global>
+  /* ---------- Internationales Lernen ---------- */
+  .il-intro{background:var(--creme);padding:var(--space-section) 0;}
+  .il-intro-grid{
+    display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);
+    gap:64px;align-items:start;
+  }
+  .il-intro h2{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(30px,3.4vw,44px);line-height:1.1;
+    color:var(--petrol);letter-spacing:-0.015em;margin:0;
+  }
+  .il-intro p{
+    font-family:var(--sans);font-size:17px;line-height:1.7;color:var(--tinte);
+    margin:0 0 16px;
+  }
+  .il-intro p:last-child{margin-bottom:0;}
+
+  .il-erasmus{background:var(--offwhite);padding:var(--space-section) 0;}
+  .il-erasmus .head{max-width:780px;margin:0 0 48px;}
+  .il-erasmus .head .eyebrow{display:block;margin-bottom:14px;}
+  .il-erasmus .head h2{
+    font-family:var(--serif);font-weight:500;font-size:clamp(28px,3vw,40px);
+    line-height:1.15;letter-spacing:-0.015em;color:var(--petrol);margin:0 0 14px;
+  }
+  .il-erasmus .head p{
+    font-family:var(--sans);font-size:17px;line-height:1.65;color:var(--stein);max-width:680px;margin:0;
+  }
+  .il-erasmus-grid{
+    display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px;
+  }
+  .il-card{
+    background:#fff;border:1px solid var(--hairline);
+    border-top:var(--card-accent-width) solid var(--petrol);
+    padding:var(--card-padding);
+    display:flex;flex-direction:column;gap:14px;
+  }
+  .il-card .badge{
+    align-self:flex-start;
+    font-family:var(--sans);font-weight:600;font-size:11px;
+    letter-spacing:0.14em;text-transform:uppercase;color:var(--bordeaux);
+  }
+  .il-card h3{
+    font-family:var(--serif);font-weight:500;font-size:22px;line-height:1.2;
+    color:var(--petrol);letter-spacing:-0.005em;margin:0;
+  }
+  .il-card p{
+    font-family:var(--sans);font-size:15.5px;line-height:1.6;color:var(--tinte);margin:0;
+  }
+
+  .il-contacts{background:var(--creme);padding:var(--space-section) 0;border-top:1px solid var(--hairline);}
+  .il-contacts .head{max-width:680px;margin:0 0 40px;}
+  .il-contacts .head .eyebrow{display:block;margin-bottom:14px;}
+  .il-contacts .head h2{
+    font-family:var(--serif);font-weight:500;font-size:clamp(28px,2.8vw,36px);
+    line-height:1.15;letter-spacing:-0.01em;color:var(--petrol);margin:0;
+  }
+  .il-contacts-grid{
+    display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px;max-width:780px;
+  }
+
+  @media (max-width:960px){
+    .il-intro-grid{grid-template-columns:1fr;gap:32px;}
+    .il-erasmus-grid{grid-template-columns:1fr;gap:18px;}
+    .il-contacts-grid{grid-template-columns:1fr;gap:18px;}
+    .il-intro,.il-erasmus,.il-contacts{padding:var(--space-section-sm) 0;}
+  }
+</style>
+
+<main id="top">
+
+<PageHero variant="feature">
+  <Fragment slot="eyebrow">Angebote · Lernen &amp; Förderung</Fragment>
+  <Fragment slot="title">Internationales Lernen,<br /><em>über Grenzen hinweg.</em></Fragment>
+  <Fragment slot="lede">Als UNESCO-Projektschule ist internationales Lernen für uns Alltag. Über Erasmus+ besuchen unsere Schülerinnen und Schüler regelmäßig Partnerschulen in Europa.</Fragment>
+</PageHero>
+
+<section class="il-intro" aria-label="Einordnung">
+  <div class="container">
+    <div class="il-intro-grid">
+      <div>
+        <h2>Europa wird greifbar.</h2>
+      </div>
+      <div>
+        <p>Sprachen lernen wir nicht nur im Klassenzimmer: Im Rahmen unseres Erasmus+-Programms verbringen unsere Schülerinnen und Schüler Zeit an Partnerschulen, lernen junge Menschen aus anderen Ländern kennen und erleben fremde Schulkulturen aus erster Hand.</p>
+        <p>Internationales Lernen heißt für uns: gemeinsam an Projekten arbeiten, Gastfamilien kennenlernen und einen anderen Blick auf das eigene Leben gewinnen.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="il-erasmus" aria-label="Erasmus+">
+  <div class="container">
+    <div class="head">
+      <span class="eyebrow">Erasmus+</span>
+      <h2>Unser europäisches Programm.</h2>
+      <p>Über das Erasmus+-Programm der Europäischen Union pflegen wir Schulpartnerschaften und ermöglichen unseren Schülerinnen und Schülern Auslandsbegegnungen, finanziell unterstützt und pädagogisch begleitet.</p>
+    </div>
+
+    <div class="il-erasmus-grid">
+      <article class="il-card">
+        <span class="badge">Partnerschule</span>
+        <h3>Tallinn, Estland</h3>
+        <p>Jährliche Schulbesuche unserer Schülerinnen und Schüler an unserer Partnerschule in Tallinn. Gemeinsame Projekttage, Gastfamilien-Aufenthalte und Einblicke in das estnische Schulsystem.</p>
+      </article>
+      <article class="il-card">
+        <span class="badge">So funktioniert's</span>
+        <h3>Vom Antrag bis zum Aufenthalt.</h3>
+        <p>Die Erasmus+-Aufenthalte sind in den Schulalltag integriert. Anmeldung, Vorbereitung, Reise und Auswertung werden gemeinsam mit den verantwortlichen Lehrkräften organisiert.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+{(hoedel || rockensuess) && (
+  <section class="il-contacts" aria-label="Ansprechpartner Internationales Lernen">
+    <div class="container">
+      <div class="head">
+        <span class="eyebrow">Ansprechpartner</span>
+        <h2>Wer Erasmus+ bei uns betreut</h2>
+      </div>
+      <div class="il-contacts-grid">
+        {hoedel && (
+          <ContactCard
+            teacher={hoedel}
+            roleLabel="Erasmus+ · Internationales Lernen"
+            ctaLabel="E-Mail an Frau Hödel"
+          />
+        )}
+        {rockensuess && (
+          <ContactCard
+            teacher={rockensuess}
+            roleLabel="Erasmus+ · Internationales Lernen"
+            ctaLabel="E-Mail an Herrn Rockensüß-Köln"
+          />
+        )}
+      </div>
+    </div>
+  </section>
+)}
+
+</main>
+</BaseLayout>
