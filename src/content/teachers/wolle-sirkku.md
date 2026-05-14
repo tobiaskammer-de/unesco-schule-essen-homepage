@@ -4,6 +4,6 @@ firstName: "Sirkku"
 lastName: "Wolle"
 subjects: ["Biologie", "Kunst"]
 roles: []
-email: "wolle@unesco-schule-essen.de"
+email: "sirkku.wolle@164835.nrw.schule"
 photo: "/unesco-schule-essen-homepage/assets/kollegium/wolle-sirkku.jpg"
 ---

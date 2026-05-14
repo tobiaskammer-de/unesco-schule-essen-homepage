@@ -4,5 +4,5 @@ firstName: "Christoph"
 lastName: "Soyka"
 subjects: ["Deutsch", "Geschichte"]
 roles: ["Stufenleitung Sek II"]
-email: "soyka@unesco-schule-essen.de"
+email: "christoph.soyka@164835.nrw.schule"
 ---

@@ -4,6 +4,6 @@ firstName: "Sandra"
 lastName: "Mischke"
 subjects: ["Englisch", "Pädagogik"]
 roles: ["Koordination Praktika", "Betreuung der Studierenden im Praktikum (EOP / PS)"]
-email: "mischke@unesco-schule-essen.de"
+email: "sandra.mischke@164835.nrw.schule"
 photo: "/unesco-schule-essen-homepage/assets/kollegium/mischke-sandra.jpg"
 ---

@@ -4,6 +4,6 @@ firstName: "Sarah"
 lastName: "Kölbel"
 subjects: ["Deutsch", "Sport"]
 roles: ["Stufenleitung Sek II"]
-email: "koelbel@unesco-schule-essen.de"
+email: "sarah.koelbel@164835.nrw.schule"
 photo: "/unesco-schule-essen-homepage/assets/kollegium/koelbel-sarah.jpg"
 ---
