@@ -1,8 +1,8 @@
 hero:
   badge: "Unterricht · Erprobungsstufe · Klasse 5 – 6"
   eyebrow: ""
-  title: "Hier wächst Zukunft."
-  titleHighlight: "Hier wächst du."
+  title: "Hier wächst Zukunft"
+  titleHighlight: "Hier wächst du"
   lede: "Ab dem Schuljahr 2026/27 nimmt die UNESCO-Schule Essen erstmals Schülerinnen und Schüler ab Klasse 5 auf. Ein Weg voller Energie, Gemeinschaft und Herz."
   image: "assets/erprobungsstufe/flur-schueler.jpg"
   imageAlt: "Schülerinnen und Schüler im Schulflur der UNESCO-Schule Essen"
@@ -58,7 +58,7 @@ pillars:
 
 values:
   eyebrow: "Tiefe Wurzeln, starke Werte"
-  title: "Echtes Lernen heißt: verstehen, verankern, weiterdenken."
+  title: "Echtes Lernen heißt: verstehen, verankern, weiterdenken"
   body: "Nicht nur für die nächste Prüfung, sondern langfristig. So wachsen aus Werten echte Kompetenzen."
   list:
     - name: "Selbstbewusstsein & Persönlichkeit"

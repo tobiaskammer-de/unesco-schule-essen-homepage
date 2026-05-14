@@ -30,7 +30,7 @@ downloads:
 
 schedule:
   eyebrow: "Tagesstruktur"
-  title: "So läuft der Schultag."
+  title: "So läuft der Schultag"
   body: "Sechs Stunden à 45 Minuten, dazwischen zwei große Pausen zum Durchatmen. Nachmittagsunterricht und Betreuung für die Jüngeren folgen ab 13:50 Uhr."
   list:
     - { label: "1. Stunde", time: "08:05 – 08:50", kind: "lesson" }

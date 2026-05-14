@@ -111,7 +111,7 @@ const introParas: string[] = (page.intro.body ?? "").split(/\n\n+/).map((p: stri
   <div class="container">
     <div class="sw-grid">
       <div>
-        <h2>{page.intro.title} <em>{page.intro.titleHighlight}.</em></h2>
+        <h2>{page.intro.title} <em>{page.intro.titleHighlight}</em></h2>
       </div>
       <div>
         {introParas.map((p) => <p set:html={safeBold(p)} />)}

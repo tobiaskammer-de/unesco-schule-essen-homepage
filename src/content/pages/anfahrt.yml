@@ -1,6 +1,6 @@
 hero:
   eyebrow: "Über Uns · Adresse und Anfahrt"
-  title: "So finden Sie uns."
+  title: "So finden Sie uns"
   titleHighlight: ""
   lede: "Zentral in Essen, in der Nähe des Steeler Wasserturms — fünfzehn Minuten fußläufig vom Hauptbahnhof."
 
@@ -13,7 +13,7 @@ contactNote: "Wir freuen uns, wenn Sie sich vor einem Besuch kurz anmelden, so k
 
 transport:
   eyebrow: "Anfahrt"
-  title: "So kommen Sie zu uns."
+  title: "So kommen Sie zu uns"
   cards:
     - mode: "Zu Fuß"
       title: "15 Minuten vom Hauptbahnhof"

@@ -123,16 +123,6 @@ const school: any = await getSingle("siteSchool");
           <a href={`tel:+49${school.phone.replace(/\D/g, "").replace(/^0/, "")}`}>Telefon · {school.phone}</a><br>
           <MailLink email={school.emailGeneral} />
         </div>
-        <div class="contact-row">
-          <div class="cell">
-            <span class="lbl">Telefon</span>
-            {school.phone}
-          </div>
-          <div class="cell">
-            <span class="lbl">Fax</span>
-            {school.fax}
-          </div>
-        </div>
         <p style="font-family:var(--sans);font-size:14.5px;line-height:1.6;color:var(--stein);margin:24px 0 0;max-width:40ch;">
           {page.contactNote}
         </p>
