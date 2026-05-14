@@ -2,19 +2,14 @@ hero:
   eyebrow: Profil · Lebendige Kunst
   title: Lebendige Kunst,
   titleHighlight: die hier entsteht
-  lede: 'An unserer Schule entstehen Werke, die mehr sind als ein Schulergebnis: Bilder, Skulpturen, Drucke und Aktionen, die unseren Schulalltag prägen. Diese Seite wird gerade aufgebaut.'
+  lede: 'An unserer Schule entstehen Werke, die mehr sind als ein Schulergebnis: Bilder, Skulpturen, Drucke und Aktionen, die unseren Schulalltag prägen.'
   image: ''
   imageAlt: ''
 
-intro:
+gallery:
   eyebrow: Eindrücke
   title: Was bei uns sichtbar wird
   body: Eine wachsende Sammlung an Werken aus dem Kunstunterricht — von ersten Übungen in der Erprobungsstufe bis zu eigenständigen Arbeiten der Oberstufe.
-
-gallery:
-  eyebrow: Galerie
-  title: Eindrücke aus dem Kunstunterricht
-  body: Werke, Werkstätten, Ausstellungen — eine wachsende Sammlung.
   items:
     - title: Test-Titel
       caption: Hier steht ein Text
