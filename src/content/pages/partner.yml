@@ -74,10 +74,14 @@ categories:
       - name: "Valga Gümnaasium"
         url: "https://www.valgagym.ee"
         logo: ""
+        image: "assets/partners/valga-guemnaasium.webp"
+        imageAlt: "Hauptgebäude des Valga Gümnaasium in Valga (Estland)"
         desc: "Valga Gümnaasium in Valga (Estland). Jährlicher Schulbesuch unserer Schülerinnen und Schüler im Rahmen des Erasmus+-Programms. Verantwortlich: Frau Hödel und Herr Rockensüß-Köln."
       - name: "Lycée Professionnel Léonard de Vinci"
         url: "https://www.education.gouv.fr/annuaire/75015/paris-15e/lycee/0754475g/lycee-leonard-de-vinci.html"
         logo: ""
+        image: "assets/partners/lycee-leonard-de-vinci.jpg"
+        imageAlt: "Schulhof des Lycée Léonard de Vinci in Paris"
         desc: "Partnerschule in Paris (Frankreich). Schüleraustausch und gemeinsame Projekte im Rahmen von Erasmus+, unter anderem Besuche des UNESCO-Hauptsitzes in Paris."
 
 cta:

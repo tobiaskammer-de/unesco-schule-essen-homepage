@@ -42,6 +42,20 @@ const categories = page.categories;
     text-decoration:none;color:inherit;
     transition:transform var(--transition), box-shadow var(--transition);
   }
+  .pt-card.has-photo{padding:0 0 18px;overflow:hidden;}
+  .pt-card.has-photo > h3,
+  .pt-card.has-photo > .desc,
+  .pt-card.has-photo > .go{padding-left:20px;padding-right:20px;}
+  .pt-card .photo-box{
+    aspect-ratio:16/10;overflow:hidden;background:var(--creme);
+    margin:-1px -1px 4px;
+  }
+  .pt-card .photo-box img{
+    width:100%;height:100%;object-fit:cover;display:block;
+    transition:transform .5s ease;
+  }
+  .pt-card:hover .photo-box img{transform:scale(1.03);}
+  @media (prefers-reduced-motion: reduce){.pt-card:hover .photo-box img{transform:none;}}
   .pt-card:hover{transform:translateY(-2px);box-shadow:0 14px 32px -22px rgba(14,77,79,0.28);}
   @media (prefers-reduced-motion: reduce){.pt-card:hover{transform:none;}}
 
@@ -127,18 +141,24 @@ const categories = page.categories;
           const CardTag = p.url ? "a" : "div";
           return (
             <CardTag
-              class={`pt-card ${p.url ? "" : "no-link"}`}
+              class={`pt-card ${p.image ? "has-photo" : ""} ${p.url ? "" : "no-link"}`}
               href={p.url}
               target={p.url ? "_blank" : undefined}
               rel={p.url ? "noopener" : undefined}
             >
-              <div class={`logo-box ${p.logo ? "" : "logo-box--placeholder"}`}>
-                {p.logo ? (
-                  <img src={p.logo} alt={`${p.name} Logo`} width="180" height="72" loading="lazy" />
-                ) : (
-                  <span class="logo-placeholder" aria-hidden="true">{p.name.split(/\s+/).map((w: string) => w[0]).filter(Boolean).slice(0,2).join("").toUpperCase()}</span>
-                )}
-              </div>
+              {p.image ? (
+                <div class="photo-box">
+                  <img src={p.image} alt={p.imageAlt || p.name} loading="lazy" />
+                </div>
+              ) : (
+                <div class={`logo-box ${p.logo ? "" : "logo-box--placeholder"}`}>
+                  {p.logo ? (
+                    <img src={p.logo} alt={`${p.name} Logo`} width="180" height="72" loading="lazy" />
+                  ) : (
+                    <span class="logo-placeholder" aria-hidden="true">{p.name.split(/\s+/).map((w: string) => w[0]).filter(Boolean).slice(0,2).join("").toUpperCase()}</span>
+                  )}
+                </div>
+              )}
               <h3>{p.name}</h3>
               <p class="desc">{p.desc}</p>
               {p.url && (
