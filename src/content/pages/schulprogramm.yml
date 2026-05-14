@@ -38,8 +38,8 @@ pledge:
   outro: "Wir betrachten es als Selbstverständlichkeit, unsere Schülerinnen und Schüler als Menschen wahrzunehmen, die Stärken und Schwächen haben, und möchten sie im Rahmen ihrer spezifischen Lebenswirklichkeiten begleiten."
 
 pillarsIntro:
-  eyebrow: "Leitsätze und Ziele"
-  title: "Zwei Säulen, acht Leitsätze"
+  eyebrow: ""
+  title: ""
   body: "Unser Schulprogramm stützt sich entsprechend unseres Leitbildes auf zwei Säulen: das individuelle, akademische Lernen und die sozial-affektive Persönlichkeitsentwicklung innerhalb einer gesellschaftsrelevanten Gemeinschaft."
   pillars:
     - title: "Gemeinsam lernen"
@@ -78,12 +78,9 @@ leitsaetze:
     title: "Diverse Schule"
     claim: "Unsere Schülerinnen und Schüler kommunizieren mit großer Selbstverständlichkeit in vielerlei Sprachen und bringen ihre jeweilige kulturelle Lebens- und Erfahrungswelt kreativ in den Schulalltag ein."
     points:
-      - "Internationale Schülerschaft"
       - "Darstellung kultureller Identitäten bei Veranstaltungen und Projekten (Tanz, Theater, Musik, Kochkunst)"
-      - "Bilinguale Alltagskommunikation (Schulradio, Schülerzeitung), schulinterne Dolmetscher"
       - "Kooperation mit dem „Freundeskreis Theater und Philharmonie\" (Opernprojekte, Konzert-Sponsoring)"
       - "Erasmus-Plus-Programm"
-      - "„Arche Noah\"-Projekt · KokoRu in der Sek I · Kooperation mit Together Education"
     futureGoals:
       - "Englisches Theater und Schülerzeitung"
   - num: "04"
@@ -91,7 +88,6 @@ leitsaetze:
     title: "Demokratische Schule"
     claim: "Unsere Schülerinnen und Schüler können Ideen und gesellschaftliche Entwicklungen als gefestigte und mündige Persönlichkeiten innerhalb demokratischer Grundstrukturen entwerfen, umsetzen und bewerten."
     points:
-      - "Klassenrat und Lion's Quest"
       - "Aktive Schülervertretung"
       - "Schülerpartizipation in Gremien (Fachkonferenzen, Steuergruppe, Arbeitskreise) und bei der Unterrichtsgestaltung"
       - "Gedenkstättenfahrt in der Q2 (Geschichtskurs)"
