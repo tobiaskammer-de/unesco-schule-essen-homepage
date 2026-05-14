@@ -207,7 +207,7 @@ const scheding = await getTeacherByLastName("Scheding");
 <PageHero variant="page">
   <Fragment slot="eyebrow">{page.hero.eyebrow}</Fragment>
   <Fragment slot="title">{page.hero.title}{page.hero.titleHighlight && <> <em>{page.hero.titleHighlight}</em></>}</Fragment>
-  <Fragment slot="lede">{page.hero.lede}</Fragment>
+  {page.hero.lede && <Fragment slot="lede">{page.hero.lede}</Fragment>}
 </PageHero>
 
 <!-- ===================== ZWEI SÄULEN ===================== -->
@@ -247,7 +247,7 @@ const scheding = await getTeacherByLastName("Scheding");
     <div class="grid">
       <div>
         <span class="eyebrow">{page.mittagessenDetail.eyebrow}</span>
-        <h2>{page.mittagessenDetail.title}{page.mittagessenDetail.titleHighlight && <> <em>{page.mittagessenDetail.titleHighlight}</em></>}</h2>
+        {page.mittagessenDetail.title && <h2>{page.mittagessenDetail.title}{page.mittagessenDetail.titleHighlight && <> <em>{page.mittagessenDetail.titleHighlight}</em></>}</h2>}
         <p class="lead">{page.mittagessenDetail.lead}</p>
         <p>{page.mittagessenDetail.body}</p>
       </div>
@@ -285,7 +285,7 @@ const scheding = await getTeacherByLastName("Scheding");
     <div class="grid">
       <div>
         <span class="eyebrow">{page.betreuungDetail.eyebrow}</span>
-        <h2>{page.betreuungDetail.title}{page.betreuungDetail.titleHighlight && <> <em>{page.betreuungDetail.titleHighlight}</em></>}</h2>
+        {page.betreuungDetail.title && <h2>{page.betreuungDetail.title}{page.betreuungDetail.titleHighlight && <> <em>{page.betreuungDetail.titleHighlight}</em></>}</h2>}
         <p class="lead">{page.betreuungDetail.lead}</p>
         <p>{page.betreuungDetail.body}</p>
       </div>
@@ -326,7 +326,7 @@ const scheding = await getTeacherByLastName("Scheding");
     <div class="head">
       <span class="eyebrow">{page.downloads.eyebrow}</span>
       <h2>{page.downloads.title}{page.downloads.titleHighlight && <> <em>{page.downloads.titleHighlight}</em></>}</h2>
-      <p>{page.downloads.intro}</p>
+      {page.downloads.intro && <p>{page.downloads.intro}</p>}
     </div>
 
     <div class="mb-dl-grid">
@@ -351,7 +351,7 @@ const scheding = await getTeacherByLastName("Scheding");
 <section class="mb-closing" aria-label="Fragen und Kontakt">
   <div class="container">
     <h2>{page.closing.title}{page.closing.titleHighlight && <> <em>{page.closing.titleHighlight}</em></>}</h2>
-    <p>{page.closing.body}</p>
+    {page.closing.body && <p>{page.closing.body}</p>}
     <div class="actions">
       {page.closing.primaryUrl && <a href={page.closing.primaryUrl} class="btn btn-primary">{page.closing.primaryLabel} <span class="arrow">→</span></a>}
       {page.closing.secondaryUrl && <a href={page.closing.secondaryUrl} class="btn btn-secondary">{page.closing.secondaryLabel} <span class="arrow">→</span></a>}
