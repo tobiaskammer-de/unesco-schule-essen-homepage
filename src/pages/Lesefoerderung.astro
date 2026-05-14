@@ -95,7 +95,10 @@ function link(p: string): string {
   /* Über das Pflichtprogramm hinaus */
   .lf-beyond{background:var(--offwhite);padding:var(--space-section) 0;border-top:1px solid var(--hairline);}
   .lf-beyond .head{max-width:820px;margin:0 0 48px;}
-  .lf-beyond .head .eyebrow{display:block;margin-bottom:14px;}
+  .lf-beyond .head .eyebrow{
+    display:block;margin-bottom:14px;
+    font-size:15px;letter-spacing:0.08em;color:var(--petrol);font-weight:600;
+  }
   .lf-beyond .head h2{
     font-family:var(--serif);font-weight:500;
     font-size:clamp(30px,3.2vw,44px);line-height:1.15;letter-spacing:-0.015em;
@@ -206,7 +209,7 @@ function link(p: string): string {
 
 <section class="lf-quote" aria-label="Zitat Heinrich Heine">
   <div class="container">
-    <blockquote>„{page.quote?.text}"<cite>— {page.quote?.author}</cite></blockquote>
+    <blockquote>„{page.quote?.text}"<cite>{page.quote?.author}</cite></blockquote>
   </div>
 </section>
 
@@ -237,7 +240,7 @@ function link(p: string): string {
   <div class="container">
     <div class="head">
       {page.beyond?.eyebrow && <span class="eyebrow">{page.beyond.eyebrow}</span>}
-      <h2>{page.beyond?.title}</h2>
+      {page.beyond?.title && <h2>{page.beyond.title}</h2>}
     </div>
     <div class="lf-beyond-grid">
       {(page.beyond?.cards ?? []).map((c: any) => (
@@ -266,7 +269,7 @@ function link(p: string): string {
             ctaLabel="E-Mail an die Leseförderung"
           />
         ) : (
-          <p style="font-style:italic;color:var(--stein);">Stelle aktuell vakant — wenden Sie sich gerne an das Sekretariat.</p>
+          <p style="font-style:italic;color:var(--stein);">Stelle aktuell vakant. Wenden Sie sich gerne an das Sekretariat.</p>
         )}
       </div>
     </div>
