@@ -222,20 +222,13 @@ const faqs = page.faq.list.map((f: any) => ({
 
 <PageHero variant="feature">
   <Fragment slot="eyebrow">{page.hero.eyebrow}</Fragment>
-  <Fragment slot="title">{page.hero.title}{page.hero.titleHighlight && <><br />bevor das Kind sie <em>{page.hero.titleHighlight.replace(/^bevor das Kind sie /, "")}</em></>}</Fragment>
-  <Fragment slot="lede">{page.hero.lede}</Fragment>
+  <Fragment slot="title">{page.hero.title}{page.hero.titleHighlight && <><br /><em>{page.hero.titleHighlight}</em></>}</Fragment>
+  {page.hero.lede && <Fragment slot="lede">{page.hero.lede}</Fragment>}
 </PageHero>
 
 <section class="el-intro" aria-label="Einordnung">
   <div class="container">
-    <div class="el-intro-grid">
-      <div>
-        <h2>Die Fragen, die wir <em>am häufigsten</em> hören</h2>
-      </div>
-      <div>
-        <p>Wie lang ist ein Schultag? Was heißt eigentlich „UNESCO-Projektschule"? Gibt es Betreuung nach der sechsten Stunde? Welche Sprachen lernt mein Kind? In jedem Infogespräch kommen dieselben Themen wieder.</p>
-      </div>
-    </div>
+    <h2>Häufig gestellte Fragen</h2>
   </div>
 </section>
 
@@ -271,25 +264,6 @@ const faqs = page.faq.list.map((f: any) => ({
         </div>
         <span class="meta">PDF · 4&nbsp;Seiten · 103&nbsp;KB</span>
       </a>
-    </div>
-  </div>
-</section>
-
-<section class="el-schedule" aria-label="Unterrichtszeiten">
-  <div class="container">
-    <div class="head">
-      <span class="eyebrow">Tagesstruktur</span>
-      <h2>So läuft der Schultag</h2>
-      <p>Sechs Stunden à 45 Minuten, dazwischen zwei große Pausen zum Durchatmen. Nachmittagsunterricht und Betreuung für die Jüngeren folgen ab 13:50&nbsp;Uhr.</p>
-    </div>
-
-    <div class="sched-table" role="table" aria-label="Unterrichtsplan">
-      {schedule.map((row) => (
-        <div class={`sched-row ${row.kind}`}>
-          <span class="lbl">{row.label}</span>
-          <span class="time">{row.time}</span>
-        </div>
-      ))}
     </div>
   </div>
 </section>
