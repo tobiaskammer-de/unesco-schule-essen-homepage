@@ -2,10 +2,10 @@ hero:
   eyebrow: "Angebote · Beratung & Mitbestimmung"
   title: "Studien- und"
   titleHighlight: "Berufsorientierung"
-  lede: "Schule bereitet auf das Berufsleben vor. Wir geben Schülerinnen und Schülern über viele Jahre hinweg einen Überblick über berufliche Möglichkeiten und beraten individuell, wenn's konkret wird."
+  lede: "Schule bereitet auf das Berufsleben vor. Wir geben Schülerinnen und Schülern über viele Jahre hinweg einen Überblick über berufliche Möglichkeiten und beraten bei Bedarf individuell."
 
 intro:
-  title: "Der Weg entsteht —"
+  title: "Der Weg entsteht"
   titleHighlight: "beim Gehen"
   body: |
     Zwischen Grundschule und Universität liegt ein Bildungsweg voller Regeln, Vorgaben und Entscheidungen. Für Schülerinnen, Schüler und Eltern ist es oft schwierig, dabei den Überblick zu behalten, zumal Bildungswege nicht immer geradlinig verlaufen.
@@ -25,13 +25,13 @@ stufen:
   cards:
     - label: "Sekundarstufe I"
       title: "Potenziale erkennen"
-      when: "Klassen 8 – 10"
+      when: "Klassen 8 bis 10"
       items:
         - "**Klasse 8:** Online-Tool BOaktiv (ab Schuljahr 2026/27)."
         - "**Klasse 9:** Potenzialanalyse (Einstiegsinstrument), Berufsfelderkundungen (3 Tage in Betrieben), Schülerbetriebspraktikum (2 Wochen), Planspiel „Spiel des Lebens\" und Anschlussvereinbarung."
         - "**Klasse 10:** Beratungstermine für Schulabgängerinnen und Schulabgänger mit der Arbeitsagentur Essen; IHK-Kooperation „Auszubildende als Werbebotschafter\"."
         - "**Alle Klassen:** Girls' und Boys' Day."
-        - "**Kooperation:** Kreishandwerkerschaft Essen — Angebote für die Klasse 9 und die IVK."
+        - "**Kooperation:** Kreishandwerkerschaft Essen, Angebote für die Klasse 9 und die IVK."
     - label: "Sekundarstufe II"
       title: "Konkret werden"
       when: "EF · Q1 · Q2"
@@ -58,7 +58,7 @@ angebot:
       cta: "Zu Falk Lindemann →"
     - label: "Uni-Übergang"
       title: "Talentscout"
-      body: "Sarah Schröter von der Universität Duisburg-Essen begleitet besonders Jugendliche ohne akademische Wurzeln auf dem Weg ins Studium — kostenfrei, vor Ort, langfristig."
+      body: "Sarah Schröter von der Universität Duisburg-Essen begleitet besonders Jugendliche ohne akademische Wurzeln auf dem Weg ins Studium: kostenfrei, vor Ort, langfristig."
       href: "#talentscout"
       cta: "Zum Talentscout →"
 
