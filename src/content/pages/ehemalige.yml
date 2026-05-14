@@ -1,6 +1,6 @@
 hero:
   eyebrow: "Über Uns · Ehemalige"
-  title: "Einmal UNESCO —"
+  title: "Einmal UNESCO"
   titleHighlight: "immer verbunden"
   lede: "Egal, ob dein Abitur ein Jahr oder fünfzig Jahre zurückliegt: ein Wiedersehen macht Freude. Bleib in Kontakt mit deiner alten Schule."
   image: "assets/ehemalige/banner.png"
@@ -8,7 +8,7 @@ hero:
 
 statement:
   quote: "Egal, ob dein Abitur ein Jahr oder 50 Jahre zurückliegt: ein Wiedersehen macht Freude."
-  body: "Unsere Schule verändert sich, aber die Menschen bleiben. Wir möchten mit unseren Ehemaligen in Kontakt bleiben, nicht um zu werben, sondern weil uns eure Geschichten wichtig sind."
+  body: "Unsere Schule verändert sich, aber die Menschen bleiben. Wir möchten mit unseren Ehemaligen in Kontakt bleiben."
 
 testimonials:
   eyebrow: "Stimmen von Ehemaligen"
@@ -42,16 +42,16 @@ offer:
   cards:
     - mark: "Newsletter"
       title: "Einmal im Jahr ein Rückblick"
-      body: "Etwa einmal jährlich schicken wir einen Newsletter mit Neuigkeiten aus der Schule, wichtigen Entwicklungen und Einladungen zu Treffen. Kein Marketing, kein Spam."
+      body: "Etwa einmal jährlich schicken wir einen Newsletter mit Neuigkeiten aus der Schule, wichtigen Entwicklungen und Einladungen zu Treffen."
     - mark: "Wiedersehen"
-      title: "Türen stehen immer offen."
+      title: "Türen stehen offen."
       body: "Du warst lange nicht mehr da? Ruf an, schreib uns. Wir freuen uns, wenn ehemalige Schülerinnen und Schüler zu Besuch kommen, spontan oder zum Tag der offenen Tür."
     - mark: "Beitrag leisten"
-      title: "Dein Wissen, unsere Schule"
+      title: "Einbringen"
       body: "Du hast einen Beruf, von dem unsere Schülerinnen und Schüler etwas lernen können? Melde dich, wir vermitteln gerne Kontakte für Berufsorientierung und Praktika."
 
 signup:
   eyebrow: "Newsletter für Ehemalige"
   title: "Anmelden und auf dem Laufenden bleiben"
   body: "Ein kurzer E-Mail-Kontakt reicht uns. Nenne uns deinen Namen, dein Abiturjahr (oder ungefähr), und wir nehmen dich in den Verteiler auf. Austragen kannst du dich jederzeit mit einer einzigen Mail."
-  meta: "ca. 1 Mail pro Jahr · jederzeit kündbar"
+  meta: ""
