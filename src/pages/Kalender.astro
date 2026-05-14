@@ -274,28 +274,8 @@ const lastUpdated = new Intl.DateTimeFormat("de-DE", {
 <PageHero variant="feature">
   <Fragment slot="eyebrow">{page.hero.eyebrow}</Fragment>
   <Fragment slot="title">{page.hero.title}{page.hero.titleHighlight && <> <em>{page.hero.titleHighlight}</em></>}</Fragment>
-  <Fragment slot="lede">{page.hero.lede}</Fragment>
+  {page.hero.lede && <Fragment slot="lede">{page.hero.lede}</Fragment>}
 </PageHero>
-
-<section class="kl-intro" aria-label="Legende und Hinweise">
-  <div class="container">
-    <div class="kl-intro-grid">
-      <div>
-        <h2>Immer aktuell —<br>direkt aus unserem Google-Kalender.</h2>
-      </div>
-      <div>
-        <p>Der Kalender unten wird automatisch aus unserem zentralen Schulkalender gespeist und einmal täglich aktualisiert. Ändert sich ein Termin, landet er hier, ohne dass jemand die Website anfassen muss.</p>
-        <span class="meta"><span class="dot"></span>Zuletzt aktualisiert: {lastUpdated}&nbsp;Uhr</span>
-        <div class="kl-legend" aria-label="Farbkodierung">
-          <span class="item"><span class="swatch"></span>Regulärer Termin</span>
-          <span class="item"><span class="swatch highlight"></span>Besonderer Termin</span>
-          <span class="item"><span class="swatch exam"></span>Prüfung / Klausur</span>
-          <span class="item"><span class="swatch holiday"></span>Ferien / schulfrei</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
 <section class="kl-months" aria-label="Monatsansicht">
   <div class="container">
@@ -388,11 +368,6 @@ const lastUpdated = new Intl.DateTimeFormat("de-DE", {
         countVisible++;
       }
     });
-    var listHeadCount = document.querySelector('.kl-list .head p');
-    if (listHeadCount){
-      listHeadCount.textContent = 'Chronologisch sortiert, ab heute und in die Zukunft. Insgesamt ' + countVisible + ' Einträge.';
-    }
-
     var idx = currentIndex;
     var label = document.getElementById('klNavLabel');
     var count = document.getElementById('klNavCount');
@@ -452,7 +427,6 @@ const lastUpdated = new Intl.DateTimeFormat("de-DE", {
     <div class="head">
       <span class="eyebrow">Listenansicht</span>
       <h2>Alle kommenden Termine</h2>
-      <p>Chronologisch sortiert, ab heute und in die Zukunft. Insgesamt {upcoming.length} Einträge.</p>
     </div>
 
     {upcoming.length === 0 ? (
