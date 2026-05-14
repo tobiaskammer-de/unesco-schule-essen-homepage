@@ -1,14 +1,13 @@
 hero:
   eyebrow: "Informieren · Für Eltern"
-  title: "Schule verstehen,"
-  titleHighlight: "bevor das Kind sie erklärt"
-  lede: "Alle Antworten, die wir in Anmeldegesprächen immer wieder geben: gesammelt, sortiert, zum Nachlesen. Plus zwei kompakte PDFs für zuhause."
+  title: "Informationen für Eltern"
+  titleHighlight: ""
+  lede: ""
 
 intro:
-  title: "Die Fragen, die wir"
-  titleHighlight: "am häufigsten hören"
-  body: |
-    Wie lang ist ein Schultag? Was heißt eigentlich „UNESCO-Projektschule\"? Gibt es Betreuung nach der sechsten Stunde? Welche Sprachen lernt mein Kind? In jedem Infogespräch kommen dieselben Themen wieder.
+  title: "Häufig gestellte Fragen"
+  titleHighlight: ""
+  body: ""
 
 downloads:
   eyebrow: "Zum Mitnehmen"
