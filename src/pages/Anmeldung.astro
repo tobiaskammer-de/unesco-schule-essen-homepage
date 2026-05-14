@@ -276,21 +276,18 @@ const [koordEprob, koordOberstufe] = await Promise.all([
   }
   .q-download{
     background:var(--gold);color:var(--gold-text);
-    display:flex;align-items:center;gap:14px;
-    padding:24px 28px;text-decoration:none;
+    display:inline-flex;align-items:center;gap:10px;align-self:flex-start;
+    padding:12px 22px;text-decoration:none;
+    font-family:var(--sans);font-weight:500;font-size:14.5px;
     transition:background var(--transition-fast), transform var(--transition-fast);
   }
   .q-download:hover{background:var(--gold-hover);transform:translateY(-1px);color:var(--gold-text);}
   @media (prefers-reduced-motion: reduce){.q-download:hover{transform:none;}}
-  .q-download .icon{
-    width:40px;height:40px;flex-shrink:0;
-    display:flex;align-items:center;justify-content:center;
-    background:rgba(42,29,8,0.12);border-radius:50%;
-  }
-  .q-download .icon svg{width:20px;height:20px;fill:currentColor;}
-  .q-download .txt{display:flex;flex-direction:column;gap:2px;}
-  .q-download .title{font-family:var(--sans);font-weight:600;font-size:15px;}
-  .q-download .meta{font-family:var(--sans);font-size:12px;color:#5e3f12;letter-spacing:0.04em;}
+  .q-download .icon{flex-shrink:0;display:inline-flex;align-items:center;}
+  .q-download .icon svg{width:16px;height:16px;fill:currentColor;}
+  .q-download .txt{display:inline-flex;align-items:center;gap:8px;}
+  .q-download .title{font-weight:600;}
+  .q-download .meta{font-size:12px;color:#5e3f12;letter-spacing:0.02em;}
 
   /* Klasse-5-Ansprechpartner-Block */
   .an-k5-contact{
@@ -361,14 +358,14 @@ const [koordEprob, koordOberstufe] = await Promise.all([
 
     <div class="choose-grid">
       <a href="#klasse-5" class="choose-card">
-        <span class="mark">Weg A · Für Eltern</span>
+        <span class="mark">Klasse 5</span>
         <h3>Anmeldung zur <span class="accent">Klasse&nbsp;5</span></h3>
         <p>Ihr Kind kommt aus der Grundschule und startet bei uns ins Gymnasium, mit einem Profilkurs ab dem ersten Tag.</p>
         <span class="go">Zu den Anmeldeterminen →</span>
       </a>
 
       <a href="#oberstufe" class="choose-card is-dark">
-        <span class="mark">Weg B · Für Schulwechsel</span>
+        <span class="mark">Oberstufe</span>
         <h3>Wechsel in die <span class="accent">Oberstufe</span></h3>
         <p>Sie haben die Klasse&nbsp;10 abgeschlossen und wollen bei uns Abitur machen: wir beraten Sie persönlich.</p>
         <span class="go">Zum Ablauf →</span>
@@ -470,7 +467,7 @@ const [koordEprob, koordOberstufe] = await Promise.all([
 <section class="an-q" id="oberstufe" aria-label="Anmeldung zur Oberstufe">
   <div class="container">
     <div class="head">
-      <span class="eyebrow">Weg B · Oberstufe</span>
+      <span class="eyebrow">Oberstufe</span>
       <h2>Wechsel in die<br><em>gymnasiale Oberstufe</em></h2>
       <p>Sie möchten nach Klasse&nbsp;10 zu uns wechseln und Ihren Weg zum Abitur oder zur Fachhochschulreife mit uns gehen? Wir begleiten Sie individuell, von der ersten Kontaktaufnahme bis zum Schuljahresbeginn.</p>
     </div>
@@ -526,7 +523,7 @@ const [koordEprob, koordOberstufe] = await Promise.all([
         </span>
         <span class="txt">
           <span class="title">Informationsbroschüre Oberstufe</span>
-          <span class="meta">PDF · 2,2&#8239;MB · Alle Details zum Bildungsgang</span>
+          <span class="meta">PDF · 2,2&#8239;MB</span>
         </span>
       </a>
 

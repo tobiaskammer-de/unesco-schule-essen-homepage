@@ -233,22 +233,8 @@ const page: any = await getSingle("pageStundentafel");
 <PageHero variant="feature">
   <Fragment slot="eyebrow">{page.hero.eyebrow}</Fragment>
   <Fragment slot="title">{page.hero.title}{page.hero.titleHighlight && <><br />und <em>{page.hero.titleHighlight.replace(/^und /, "")}</em></>}</Fragment>
-  <Fragment slot="lede">{page.hero.lede}</Fragment>
+  {page.hero.lede && <Fragment slot="lede">{page.hero.lede}</Fragment>}
 </PageHero>
-
-<section class="st-intro" aria-label="Einordnung">
-  <div class="container">
-    <div class="st-intro-grid">
-      <div>
-        <h2>Ein klarer Rahmen — für ein <em>vielseitiges</em> Lernen</h2>
-      </div>
-      <div>
-        <p>Die Stundentafel legt fest, mit wie vielen Wochenstunden jedes Fach in der Sekundarstufe I unterrichtet wird. Grundlage ist die <strong>APO-SI (Anlage 6)</strong>, ergänzt um das Profil unserer UNESCO-Schule.</p>
-        <p>Zusätzlich erhalten Sie hier einen Überblick über das aktuelle Unterrichtsraster, also die Zeiten, in denen unsere Schülerinnen und Schüler lernen, Pause machen und nach Hause gehen.</p>
-      </div>
-    </div>
-  </div>
-</section>
 
 <section class="st-raster" aria-label="Unterrichtsraster">
   <div class="container">
@@ -342,23 +328,6 @@ const page: any = await getSingle("pageStundentafel");
       </table>
     </div>
     <p class="st-scroll-hint">Tabelle seitlich scrollen →</p>
-  </div>
-</section>
-
-<section class="st-notes" aria-label="Fußnoten zur Stundentafel">
-  <div class="container">
-    <div class="inner">
-      <h3>Anmerkungen zur Stundentafel</h3>
-      <ol>
-        <li>Epochenunterricht in Biologie (s.&nbsp;Erläuterung oben).</li>
-        <li>Epochenunterricht in Physik (s.&nbsp;Erläuterung oben).</li>
-        <li>Epochenunterricht in Physik (s.&nbsp;Erläuterung oben).</li>
-        <li>FUD (Fach-Unterricht Deutsch) gilt nur für seiteneinsteigende Schülerinnen und Schüler mit Sprachfeststellungsprüfung in der Herkunftssprache. Werte in Klammern weisen darauf hin, dass FUD anstelle der Lateinstunden tritt.</li>
-        <li>Wer in Klasse&nbsp;7 Latein als 2.&nbsp;Fremdsprache gewählt hat, kann ab Klasse&nbsp;9 zusätzlich Französisch als 3.&nbsp;Fremdsprache belegen — als Wahlpflichtkurs sowie ergänzend einstündig.</li>
-        <li>Profilkurs in Klasse&nbsp;5: zweistündiger Wahlkurs (z.&nbsp;B. WortArt+) zur frühen Profilbildung.</li>
-        <li>Förderunterricht / Startchancen-Programm in den Klassen&nbsp;7 und&nbsp;8: gezielte Unterstützung in Deutsch, Englisch oder Mathematik, jahrgangsstufenübergreifend organisiert.</li>
-      </ol>
-    </div>
   </div>
 </section>
 
