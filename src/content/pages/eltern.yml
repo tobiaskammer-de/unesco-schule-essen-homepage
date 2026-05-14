@@ -105,6 +105,14 @@ faq:
       a: "Ja! Jedes Schuljahr werden an der Schule unterschiedliche Arbeitsgemeinschaften angeboten: von Schulsanitätsdienst über Sprach-AGs bis zum Makerspace."
       linkLabel: "Aktuelle AGs ansehen"
       linkHref: "Arbeitsgemeinschaften.html"
+    - q: "Können wir uns wünschen, dass unser Kind mit Freundin oder Freund aus der Grundschule in eine Klasse kommt?"
+      a: "Wünsche nehmen wir gerne entgegen und berücksichtigen sie, wo es geht. Eine Garantie können wir nicht geben, weil die Klassenbildung viele Faktoren ausbalancieren muss."
+      linkLabel: ""
+      linkHref: ""
+    - q: "Wie ist die Schule mit Bus und Bahn erreichbar, und gibt es ein Schülerticket?"
+      a: "Die Schule liegt direkt an der Bus- und Straßenbahnhaltestelle Wasserturm. Der Essener Hauptbahnhof ist in rund zehn Minuten fußläufig erreichbar. Das Schülerticket (SchokoTicket bzw. DeutschlandTicket Schule) stellt die Stadt Essen nach klaren Vorgaben zur Verfügung."
+      linkLabel: "Infos zum Schülerticket der Stadt Essen"
+      linkHref: "https://www.essen.de/leben/bildung/schule/schuelerfahrkosten__schokoticket_.de.html"
 
 cta:
   eyebrow: "Antwort fehlt?"
