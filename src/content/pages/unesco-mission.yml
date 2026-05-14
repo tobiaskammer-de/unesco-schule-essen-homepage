@@ -1,17 +1,16 @@
 hero:
-  badge: "Anerkannte UNESCO-Projektschule · Stufe 3"
   eyebrow: "Über Uns · UNESCO – Name und Mission"
-  title: "Wir sind nicht irgendeine"
-  titleHighlight: "UNESCO-Schule"
-  lede: "Wir sind das einzige Gymnasium in Deutschland, das den Namen der UNESCO trägt: nach einem intensiven, mehrjährigen Prüfungsverfahren der Deutschen UNESCO-Kommission. Der Name ist für uns Auftrag, nicht Auszeichnung."
+  title: "Wir heißen nicht UNESCO-Schule,"
+  titleHighlight: "sondern sind es"
+  lede: "Wir sind das einzige Gymnasium in Deutschland, das den Namen der UNESCO trägt: nach einem intensiven, mehrjährigen Prüfungsverfahren der Deutschen UNESCO-Kommission."
 
 statement:
-  title: "Den Namen zu tragen heißt, ihn zu leben."
+  title: ""
   body: |
     Die UNESCO-Schule Essen trägt nicht nur den Namen der UNESCO; sie setzt sich aktiv dafür ein, deren Werte und Ziele zu vermitteln. Dazu gehören **Erziehung zur Demokratie auf Basis der Menschenrechte**, die **Förderung des globalen Lernens**, der **Erwerb interkultureller Kompetenz** durch vielfältige Begegnungen sowie **Umwelterziehung im Sinne der Agenda 21** und der 17 Ziele für nachhaltige Entwicklung.
 
     Diese Ziele sind bei uns nicht Projekttag, sondern Lehrplan. Sie prägen, was wir unterrichten, wie wir Konflikte lösen, welche Partnerschaften wir eingehen und welche Projekte wir möglich machen.
-  highlight: "Inwiefern der Schulalltag unserer Schülerinnen und Schüler zum Erreichen dieser Ziele geprägt ist, erfahren Sie weiter unten."
+  highlight: ""
 
 aspnet:
   eyebrow: "Ein weltweites Netzwerk"

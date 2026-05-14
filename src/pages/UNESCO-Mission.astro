@@ -126,7 +126,7 @@ const munsch = await getTeacherByLastName("Munsch");
 
 <section class="un-statement" aria-label="Unser Selbstverständnis">
   <div class="container">
-    <h2>{page.statement.title}</h2>
+    {page.statement.title && <h2>{page.statement.title}</h2>}
     {page.statement.body.split(/\n\n+/).map((para: string) => (
       <p set:html={safeBold(para)} />
     ))}
