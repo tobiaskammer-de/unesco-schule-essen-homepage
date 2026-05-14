@@ -2,7 +2,7 @@ hero:
   eyebrow: "Über Uns · Gemeinschaft & Netzwerk"
   title: "Mit wem wir"
   titleHighlight: "zusammenarbeiten"
-  lede: "Schule funktioniert nicht allein. Unsere Kooperationen reichen von weltweiten Netzwerken bis zu Essener Institutionen — und machen vieles von dem möglich, was unseren Alltag prägt."
+  lede: "Schule funktioniert nicht allein. Unsere Kooperationen reichen von weltweiten Netzwerken bis zu Essener Institutionen und machen vieles von dem möglich, was unseren Alltag prägt."
 
 intro:
   title: "Partner,"
@@ -31,7 +31,7 @@ categories:
         url: "https://www.arbeitsagentur.de/vor-ort/essen/startseite"
         logo: "assets/partners/agentur-arbeit.png"
         desc: "Berufsorientierung, Beratungstermine in Klasse 10 und der Sekundarstufe II sowie die Veranstaltungsreihe „Wege ins Berufsleben\"."
-  - label: "Digitale & MINT-Bildung"
+  - label: "Digitales & MINT"
     intro: "Partner, die unsere Schülerinnen und Schüler beim Programmieren, Forschen und Gestalten begleiten."
     items:
       - name: "TUMO Essen"
@@ -75,6 +75,10 @@ categories:
         url: ""
         logo: ""
         desc: "Valga Gümnaasium in Valga (Estland). Jährlicher Schulbesuch unserer Schülerinnen und Schüler im Rahmen des Erasmus+-Programms. Verantwortlich: Frau Hödel und Herr Rockensüß-Köln."
+      - name: "Lycée Professionnel Léonard de Vinci"
+        url: ""
+        logo: ""
+        desc: "Partnerschule in Paris (Frankreich). Schüleraustausch und gemeinsame Projekte im Rahmen von Erasmus+ — unter anderem Besuche des UNESCO-Hauptsitzes in Paris."
 
 cta:
   eyebrow: "Interesse an einer Kooperation?"
