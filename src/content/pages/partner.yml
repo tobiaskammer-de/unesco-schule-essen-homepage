@@ -71,14 +71,14 @@ categories:
   - label: "Internationale Schulpartnerschaften"
     intro: "Über das Erasmus+-Programm besuchen unsere Schülerinnen und Schüler ihre Partnerschulen in Europa jährlich vor Ort."
     items:
-      - name: "Erasmus+ Schulpartnerschaft Valga"
-        url: ""
+      - name: "Valga Gümnaasium"
+        url: "https://www.valgagym.ee"
         logo: ""
         desc: "Valga Gümnaasium in Valga (Estland). Jährlicher Schulbesuch unserer Schülerinnen und Schüler im Rahmen des Erasmus+-Programms. Verantwortlich: Frau Hödel und Herr Rockensüß-Köln."
       - name: "Lycée Professionnel Léonard de Vinci"
-        url: ""
+        url: "https://www.education.gouv.fr/annuaire/75015/paris-15e/lycee/0754475g/lycee-leonard-de-vinci.html"
         logo: ""
-        desc: "Partnerschule in Paris (Frankreich). Schüleraustausch und gemeinsame Projekte im Rahmen von Erasmus+ — unter anderem Besuche des UNESCO-Hauptsitzes in Paris."
+        desc: "Partnerschule in Paris (Frankreich). Schüleraustausch und gemeinsame Projekte im Rahmen von Erasmus+, unter anderem Besuche des UNESCO-Hauptsitzes in Paris."
 
 cta:
   eyebrow: "Interesse an einer Kooperation?"
