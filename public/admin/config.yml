@@ -966,8 +966,8 @@ collections:
                 widget: list
                 summary: "{{fields.klasse}} · {{fields.mark}}"
                 fields:
-                  - { name: klasse, label: "Klassen-Label (z.B. „Klassen 5 und 6")", widget: string }
-                  - { name: mark, label: "Stufen-Motto (z.B. „Lust am Lesen wecken")", widget: string }
+                  - { name: klasse, label: "Klassen-Label (z.B. „Klassen 5 und 6”)", widget: string }
+                  - { name: mark, label: "Stufen-Motto (z.B. „Lust am Lesen wecken”)", widget: string }
                   - name: bullets
                     label: "Stichpunkte (**fett** möglich)"
                     widget: list
@@ -1002,7 +1002,7 @@ collections:
               - { name: eyebrow, label: "Eyebrow", widget: string }
               - { name: title, label: "Titel", widget: string }
               - { name: body, label: "Beschreibung (optional)", widget: text, required: false }
-              - { name: fileLabel, label: "Datei-Beschreibung (z.B. „PDF · 84 KB")", widget: string }
+              - { name: fileLabel, label: "Datei-Beschreibung (z.B. „PDF · 84 KB”)", widget: string }
               - { name: fileHref, label: "PDF-Pfad (assets/...)", widget: string }
           - name: closing
             label: "Abschluss-Block"

@@ -3,6 +3,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
 import MailLink from "../components/MailLink.astro";
 import { getSingle } from "../lib/pageContent";
+import { safeBreaks } from "../lib/safeMarkup";
 
 // Editierbare Inhalte aus src/content/pages/leitbild.yml (Sveltia)
 const lb = await getSingle("pageLeitbild");
@@ -317,7 +318,7 @@ const sp: any = await getSingle("pageSchulprogramm");
 
 <section class="lb-motto" aria-label="Unser Motto">
   <div class="container">
-    <blockquote>{lb.motto.quote}</blockquote>
+    <blockquote set:html={safeBreaks(lb.motto.quote)} />
     <p class="sub">{lb.motto.sub}</p>
   </div>
 </section>
@@ -325,7 +326,7 @@ const sp: any = await getSingle("pageSchulprogramm");
 <section class="lb-values" aria-label="Unsere Werte">
   <div class="container">
     <div class="head">
-      <span class="eyebrow">{lb.values.eyebrow}</span>
+      {lb.values.eyebrow && <span class="eyebrow">{lb.values.eyebrow}</span>}
       <h2>{lb.values.title}</h2>
     </div>
     <div class="values-grid">
@@ -358,8 +359,8 @@ const sp: any = await getSingle("pageSchulprogramm");
 
 <section class="sp-pillars-intro">
   <div class="container">
-    <span class="eyebrow">{sp.pillarsIntro.eyebrow}</span>
-    <h2>{sp.pillarsIntro.title}</h2>
+    {sp.pillarsIntro.eyebrow && <span class="eyebrow">{sp.pillarsIntro.eyebrow}</span>}
+    {sp.pillarsIntro.title && <h2>{sp.pillarsIntro.title}</h2>}
     <p>{sp.pillarsIntro.body}</p>
     <div class="two-cols">
       {sp.pillarsIntro.pillars.map((p: any) => (
@@ -403,36 +404,6 @@ const sp: any = await getSingle("pageSchulprogramm");
   </div>
 </section>
 
-
-<section class="lb-path" aria-label="Unser Weg">
-  <div class="container">
-    <div class="head">
-      <span class="eyebrow">Unser Weg</span>
-      <h2>Vom Ankommen bis zum Abitur.</h2>
-      <p>Neun Jahre begleiten wir junge Menschen. In drei Phasen, die aufeinander aufbauen, und in jeder Phase mit einem klaren Schwerpunkt.</p>
-    </div>
-    <div class="stages">
-      <article class="stage">
-        <span class="num-big">5·6</span>
-        <span class="klassen">Klasse 5 – 6</span>
-        <h3>Erprobungsstufe</h3>
-        <p>Mit den Profilen <strong>WortArt⁺</strong> (sprachlich-kreativ) und <strong>Forscher²</strong> (naturwissenschaftlich) entdecken Kinder früh ihre Stärken, unterstützt von UNESCO-Projekttagen und einer ersten Kennenlernfahrt.</p>
-      </article>
-      <article class="stage">
-        <span class="num-big">7·10</span>
-        <span class="klassen">Klasse 7 – 10</span>
-        <h3>Mittelstufe</h3>
-        <p>Latein oder Französisch ab Klasse 7 erweitern den sprachlichen Horizont. Wahlpflichtkurse, Tablet-gestützter Unterricht, Austauschprogramme und kulturelle Kooperationen verknüpfen Fachwissen, digitale Kompetenz und interkulturelles Lernen.</p>
-      </article>
-      <article class="stage">
-        <span class="num-big">EF·Q</span>
-        <span class="klassen">Einführungs- &amp; Qualifikationsphase</span>
-        <h3>Oberstufe</h3>
-        <p>Ein breites Kursangebot mit Leistungskursen, individueller Studien- und Berufsberatung sowie praxisnahen Projekten führt gezielt zum Abitur. Internationale Kooperationen bereiten unsere Schülerinnen und Schüler darauf vor, verantwortungsbewusste Weltbürgerinnen und Weltbürger zu werden.</p>
-      </article>
-    </div>
-  </div>
-</section>
 
 <section class="lb-cta" aria-label="Einladung">
   <div class="container">

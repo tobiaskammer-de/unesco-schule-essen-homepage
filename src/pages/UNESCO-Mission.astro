@@ -126,7 +126,7 @@ const munsch = await getTeacherByLastName("Munsch");
 
 <section class="un-statement" aria-label="Unser Selbstverständnis">
   <div class="container">
-    <h2>{page.statement.title}</h2>
+    {page.statement.title && <h2>{page.statement.title}</h2>}
     {page.statement.body.split(/\n\n+/).map((para: string) => (
       <p set:html={safeBold(para)} />
     ))}
@@ -149,28 +149,6 @@ const munsch = await getTeacherByLastName("Munsch");
         </div>
       ))}
     </div>
-  </div>
-</section>
-
-<section class="un-tiers" aria-label="Die drei Stufen">
-  <div class="container">
-    <div class="head">
-      <span class="eyebrow">{page.tiers.eyebrow}</span>
-      <h2>{page.tiers.title}</h2>
-      <p>{page.tiers.body}</p>
-    </div>
-    <ol class="tier-list">
-      {page.tiers.list.map((t: any) => (
-        <li class={`tier ${t.isUs ? "is-us" : ""}`}>
-          <span class="step">{t.step}</span>
-          <div class="body">
-            <h3>{t.title}</h3>
-            <p>{t.body}</p>
-          </div>
-          <span class="marker">{t.marker}</span>
-        </li>
-      ))}
-    </ol>
   </div>
 </section>
 
@@ -202,15 +180,6 @@ const munsch = await getTeacherByLastName("Munsch");
     <ul class="alltag-list">
       {page.alltag.items.map((it: string) => <li>{it}</li>)}
     </ul>
-  </div>
-</section>
-
-<section class="un-pledge" aria-label="Unsere Selbstverpflichtung">
-  <div class="container">
-    <span class="eyebrow">{page.pledge.eyebrow}</span>
-    <h2>{page.pledge.title}</h2>
-    {page.pledge.body.split(/\n\n+/).map((para: string) => <p>{para}</p>)}
-    <div class="sig">{page.pledge.signature}</div>
   </div>
 </section>
 
