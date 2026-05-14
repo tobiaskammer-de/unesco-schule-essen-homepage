@@ -37,6 +37,25 @@ export function safeRich(s: string | undefined | null): string {
 }
 
 /**
+ * HTML-escape, dann `**fett**` und `[Text](href)` → `<a href="…">Text</a>`.
+ *
+ * Erlaubte hrefs: relative Pfade, http(s)://, mailto: und tel:.
+ * Alles andere wird verworfen (XSS-Schutz gegen javascript:/data:-URIs).
+ */
+export function safeRichLink(s: string | undefined | null): string {
+  if (!s) return "";
+  let out = escapeHtml(s).replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
+  out = out.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (_, text, href) => {
+    const ok = /^(https?:\/\/|mailto:|tel:|\/|[A-Za-z0-9._-]+\.html|#)/.test(href);
+    if (!ok) return text;
+    const external = /^https?:\/\//.test(href);
+    const rel = external ? ' target="_blank" rel="noopener noreferrer"' : "";
+    return `<a href="${href}"${rel}>${text}</a>`;
+  });
+  return out;
+}
+
+/**
  * JSON-String für einbettung in inline `<script>`-Tags.
  * Verhindert `</script>`-Breakouts durch Escape von `<` zu `<`.
  */

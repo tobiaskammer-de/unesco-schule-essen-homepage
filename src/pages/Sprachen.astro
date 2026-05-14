@@ -2,7 +2,7 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
 import { getSingle } from "../lib/pageContent";
-import { safeBold } from "../lib/safeMarkup";
+import { safeBold, safeRichLink } from "../lib/safeMarkup";
 
 const page: any = await getSingle("pageSprachen");
 ---
@@ -277,7 +277,7 @@ const page: any = await getSingle("pageSprachen");
 >
   <Fragment slot="eyebrow">{page.hero.eyebrow}</Fragment>
   <Fragment slot="title">{page.hero.title}{page.hero.titleHighlight && <><br /><em>{page.hero.titleHighlight}</em></>}</Fragment>
-  <Fragment slot="lede">{page.hero.lede}</Fragment>
+  {page.hero.lede && <Fragment slot="lede">{page.hero.lede}</Fragment>}
 </PageHero>
 
 <section class="spr-journey" aria-label="Sprachenfolge">
@@ -371,34 +371,11 @@ const page: any = await getSingle("pageSprachen");
   </div>
 </section>
 
-<section class="spr-advantages" aria-label="Vorteile auf einen Blick">
-  <div class="container">
-    <div class="spr-advantages-grid">
-      <div class="head">
-        {page.advantages?.eyebrow && <span class="eyebrow">{page.advantages.eyebrow}</span>}
-        <h2>{page.advantages?.title}</h2>
-      </div>
-      <ul class="spr-checklist">
-        {(page.advantages?.list ?? []).map((item: string) => (
-          <li>
-            <span class="check" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M5 12l5 5L20 7"/>
-              </svg>
-            </span>
-            <span>{item}</span>
-          </li>
-        ))}
-      </ul>
-    </div>
-  </div>
-</section>
-
 <section class="spr-closing" aria-label="Abschluss">
   <div class="container">
     {page.closing?.eyebrow && <span class="eyebrow">{page.closing.eyebrow}</span>}
     <h2>{page.closing?.title}{page.closing?.titleHighlight && <><br /><em>{page.closing.titleHighlight}</em></>}</h2>
-    <p>{page.closing?.body}</p>
+    <p set:html={safeRichLink(page.closing?.body)} />
     {page.closing?.ctaLabel && page.closing?.ctaHref && (
       <div class="cta-row">
         <a href={page.closing.ctaHref} class="btn btn-gold">{page.closing.ctaLabel} <span class="arrow">→</span></a>

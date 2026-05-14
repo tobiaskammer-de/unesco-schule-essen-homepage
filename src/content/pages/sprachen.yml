@@ -2,14 +2,14 @@ hero:
   eyebrow: "Profil · Sprachen"
   title: "Drei Sprachen,"
   titleHighlight: "neun Schuljahre"
-  lede: "Englisch ab Klasse 5, eine zweite Fremdsprache ab Klasse 7, eine dritte ab Klasse 9 — Sprachen sind bei uns kein Beifach, sondern ein durchgängiger Bestandteil der Schulzeit."
+  lede: ""
   image: "assets/sp-weltoffen.jpg"
   imageAlt: "Schülerinnen und Schüler im Sprachunterricht"
 
 journey:
   eyebrow: "01 · Sprachenfolge"
   title: "Drei Wege durch die Sprachen"
-  body: "Die Pflicht-Sprache Englisch wird ab Klasse 7 um eine zweite Fremdsprache ergänzt. Wer Latein wählt, kann ab Klasse 9 zusätzlich Französisch belegen — und mit drei Schulsprachen ins Abitur gehen."
+  body: "Die Pflicht-Sprache Englisch wird ab Klasse 7 um eine zweite Fremdsprache ergänzt. Wer Latein wählt, kann ab Klasse 9 zusätzlich Französisch belegen und mit drei Schulsprachen ins Abitur gehen."
   stages:
     - klasse: "Ab Klasse 5"
       mark: "Pflicht"
@@ -22,7 +22,7 @@ journey:
     - klasse: "Ab Klasse 7"
       mark: "Wahl"
       title: "Latein"
-      body: "Für Schülerinnen und Schüler, die auf Struktur und Genauigkeit setzen. Möglichkeit, am Ende der Mittelstufe das Latinum zu erwerben — Voraussetzung für Studienfächer wie Medizin, Jura oder Theologie."
+      body: "Für Schülerinnen und Schüler, die auf Struktur und Genauigkeit setzen. Möglichkeit, am Ende der Mittelstufe das Latinum zu erwerben."
     - klasse: "Ab Klasse 9"
       mark: "Erweiterung"
       title: "Französisch als 3. Fremdsprache"
@@ -37,27 +37,17 @@ oberstufe:
 experience:
   eyebrow: "03 · Sprache erleben"
   title: "Zwei Bausteine neben dem Unterricht"
-  body: "Sprachen werden bei uns nicht nur gelernt, sondern angewendet — innerhalb und außerhalb des Klassenraums."
+  body: ""
   pillars:
     - title: "Erasmus+ und Partnerschulen"
       body: "Begegnungen mit unserer französischen Partnerschule, dem Lycée Professionnel Léonard de Vinci, sowie weiteren europäischen Schulen."
     - title: "Internationale Studienfahrten"
       body: "Im Profil unserer UNESCO-Schule unter anderem zum UNESCO-Hauptsitz in Paris und zu Partnerschulen im Baltikum."
 
-advantages:
-  eyebrow: "Auf einen Blick"
-  title: "Was unser Sprachenkonzept ausmacht"
-  list:
-    - "Englisch durchgängig von Klasse 5 bis zum Abitur"
-    - "2. Fremdsprache (Französisch oder Latein) ab Klasse 7"
-    - "3. Fremdsprache (Französisch nach Latein) ab Klasse 9 möglich"
-    - "Französisch und Latein als neu einsetzende Fremdsprache auch in der Oberstufe"
-    - "Latinum am Ende der Mittelstufe"
-
 closing:
   eyebrow: "Persönlich kennenlernen"
   title: "Fragen zum"
   titleHighlight: "Sprachenangebot?"
-  body: "Am Tag der offenen Tür sprechen Sie direkt mit den Lehrkräften und sehen den Unterricht in den Sprachräumen. Oder Sie vereinbaren ein Beratungsgespräch — das Sekretariat vermittelt."
+  body: "Am Tag der offenen Tür sprechen Sie direkt mit den Lehrkräften und sehen den Unterricht in den Sprachräumen. Oder vereinbaren Sie ein Beratungsgespräch über unser [Kontaktformular](Kontakt.html)."
   ctaLabel: "Tag der offenen Tür"
   ctaHref: "Tag-der-offenen-Tuer.html"
