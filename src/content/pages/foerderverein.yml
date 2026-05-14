@@ -1,5 +1,5 @@
 hero:
-  badge: "Gemeinnützig · gegründet 2007"
+  badge: ""
   eyebrow: "Über Uns · Förderverein"
   title: "Der Förderverein —"
   titleHighlight: "mehr möglich machen"
@@ -38,14 +38,14 @@ board:
   members:
     - role: "Vorsitzende"
       name: "Khadra Azboy"
-      email: "Khadraazboy@yahoo.com"
-      phone: "0201 · 280 26 30"
-      phoneNote: "über das Sekretariat"
+      email: ""
+      phone: ""
+      phoneNote: "Kontakt postalisch oder telefonisch über das Sekretariat"
     - role: "Stellvertreter"
       name: "Herr Pittelkau"
-      email: "info@unesco-schule-essen.de"
+      email: ""
       phone: ""
-      phoneNote: "Über das Sekretariat erreichbar"
+      phoneNote: "Kontakt postalisch oder telefonisch über das Sekretariat"
 
 projects:
   eyebrow: "Geförderte Projekte"
