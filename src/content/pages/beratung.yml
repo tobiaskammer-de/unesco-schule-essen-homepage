@@ -2,7 +2,7 @@ hero:
   eyebrow: "Angebote · Beratung & Mitbestimmung"
   title: "Beratung und"
   titleHighlight: "Unterstützung"
-  lede: "Schule ist mehr als Unterricht. Wir hören zu, wenn's schwierig wird: vertraulich, auf Augenhöhe und mit klaren Ansprechpersonen für jede Situation."
+  lede: ""
 
 intro:
   title: "Wer uns braucht,"
@@ -73,6 +73,6 @@ schulsozialarbeit:
     - "…wenn du einfach mal reden möchtest"
     - "…wenn du eine tolle Idee hast und nicht weißt, wie du sie umsetzen kannst"
     - "…wenn du einfach individuelle Hilfe brauchst"
-  staffNote: "Auch Kolleginnen und Kollegen können Frau Spiegel bei Problemfragen jederzeit kontaktieren."
+  staffNote: ""
   contactSubline: "Schulsozialarbeiterin · Schweigepflicht gilt"
   contactRoom: "In den Pausen am Lehrerzimmer oder Raum 103A"

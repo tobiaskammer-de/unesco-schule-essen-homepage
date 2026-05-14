@@ -15,10 +15,7 @@ const [beratungslehrer, sozialarbeit] = await Promise.all([
 <style is:global>
   /* ---------- Beratung & Unterstützung ---------- */
   .br-intro{background:var(--creme);padding:var(--space-section) 0;}
-  .br-intro-grid{
-    display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);
-    gap:56px;align-items:start;
-  }
+  .br-intro-prose{max-width:760px;}
   .br-intro h2{
     font-family:var(--serif);font-weight:500;
     font-size:clamp(30px,3.4vw,44px);line-height:1.1;
@@ -225,7 +222,7 @@ const [beratungslehrer, sozialarbeit] = await Promise.all([
   }
 
   @media (max-width:960px){
-    .br-intro-grid{grid-template-columns:1fr;gap:28px;}
+    .br-intro-prose{max-width:none;}
     .br-overview-grid{grid-template-columns:1fr;gap:14px;}
     .br-split{grid-template-columns:1fr;gap:28px;}
     .br-qa .row{grid-template-columns:1fr;gap:4px;}
@@ -239,20 +236,15 @@ const [beratungslehrer, sozialarbeit] = await Promise.all([
 <PageHero variant="feature">
   <Fragment slot="eyebrow">{page.hero.eyebrow}</Fragment>
   <Fragment slot="title">{page.hero.title}{page.hero.titleHighlight && <><br /><em>{page.hero.titleHighlight}</em></>}</Fragment>
-  <Fragment slot="lede">{page.hero.lede}</Fragment>
+  {page.hero.lede && <Fragment slot="lede">{page.hero.lede}</Fragment>}
 </PageHero>
 
 <section class="br-intro" aria-label="Einordnung">
   <div class="container">
-    <div class="br-intro-grid">
-      <div>
-        <h2>Wer uns braucht, <em>findet uns.</em></h2>
-      </div>
-      <div>
-        <p>Ob Lernschwierigkeiten, Mobbing, Sorgen zu Hause, die Frage nach dem richtigen Studium oder Schulangst: bei uns gibt es für jede Situation jemanden, der zuhört.</p>
-        <p>Zwei feste Anlaufstellen ergänzen sich: der <strong>Beratungslehrer</strong> und die <strong>Schulsozialarbeit</strong>. Alle Gespräche sind vertraulich.</p>
-        <p class="pledge">Für Beratung und Schulsozialarbeit gilt die Schweigepflicht. Du kannst über alles reden, was dich bedrückt.</p>
-      </div>
+    <div class="br-intro-prose">
+      <p>Ob Lernschwierigkeiten, Mobbing, Sorgen zu Hause, die Frage nach dem richtigen Studium oder Schulangst: bei uns gibt es für jede Situation jemanden, der zuhört.</p>
+      <p>Zwei feste Anlaufstellen ergänzen sich: der <strong>Beratungslehrer</strong> und die <strong>Schulsozialarbeit</strong>. Alle Gespräche sind vertraulich.</p>
+      <p class="pledge">Für Beratung und Schulsozialarbeit gilt die Schweigepflicht. Du kannst über alles reden, was dich bedrückt.</p>
     </div>
   </div>
 </section>
@@ -346,7 +338,6 @@ const [beratungslehrer, sozialarbeit] = await Promise.all([
           <li>…wenn du eine tolle Idee hast und nicht weißt, wie du sie umsetzen kannst</li>
           <li>…wenn du einfach individuelle Hilfe brauchst</li>
         </ul>
-        <p class="br-staff-note">Auch Kolleginnen und Kollegen können Frau Spiegel bei Problemfragen jederzeit kontaktieren.</p>
       </div>
 
       <ContactCard
