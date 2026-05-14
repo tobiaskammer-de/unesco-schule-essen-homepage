@@ -166,22 +166,8 @@ const pittelkau = await getTeacherByLastName("Pittelkau");
 <PageHero variant="feature" image={page.hero.image || "assets/kulturelle-bildung/buhne.jpg"} imageAlt={page.hero.imageAlt || ""} imageCredit="Bühne · UNESCO-Schule Essen">
   <Fragment slot="eyebrow">{page.hero.eyebrow}</Fragment>
   <Fragment slot="title">{page.hero.title}{page.hero.titleHighlight && <><br />die bei uns <em>{page.hero.titleHighlight.replace(/^die bei uns /, "")}</em></>}</Fragment>
-  <Fragment slot="lede">{page.hero.lede}</Fragment>
+  {page.hero.lede && <Fragment slot="lede">{page.hero.lede}</Fragment>}
 </PageHero>
-
-<section class="kb-intro" aria-label="Einordnung">
-  <div class="container">
-    <div class="kb-intro-grid">
-      <div>
-        <h2>Ein Weg, der sich <em>über Jahre entfaltet.</em></h2>
-      </div>
-      <div>
-        <p>Wer uns besucht, merkt schnell: Kulturelle Bildung ist bei uns kein Einzelprojekt, sondern ein durchgängiges Konzept — von Klasse 5 bis zur Oberstufe.</p>
-        <p>Dabei verbinden wir schulinterne Profile mit starken externen Partnern. So entsteht ein Erfahrungsraum, in dem junge Menschen Ausdrucksformen entdecken, erproben und über viele Schuljahre hinweg vertiefen können: altersgerecht, anspruchsvoll und praxisnah.</p>
-      </div>
-    </div>
-  </div>
-</section>
 
 <section class="kb-courses" aria-label="Kulturelle Bildung im Schulalltag">
   <div class="container">
