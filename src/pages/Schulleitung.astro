@@ -25,12 +25,15 @@ function asset(p?: string | null): string | undefined {
   return BASE + "/" + p;
 }
 
-const cards = [
-  { teacher: schulleiterin,   role: "Schulleiterin" },
-  { teacher: stellv,          role: "Stellvertretende Schulleitung" },
-  { teacher: koordEprob,      role: "Koordination · Erprobungsstufe" },
+const leadership = [
+  { teacher: schulleiterin, role: "Schulleiterin" },
+  { teacher: stellv,        role: "Stellvertretende Schulleitung" },
+].filter((c) => c.teacher);
+
+const koordinationen = [
+  { teacher: koordEprob,       role: "Koordination · Erprobungsstufe" },
   { teacher: koordMittelstufe, role: "Koordination · Mittelstufe" },
-  { teacher: koordOberstufe,  role: "Koordination · Oberstufe" },
+  { teacher: koordOberstufe,   role: "Koordination · Oberstufe" },
 ].filter((c) => c.teacher);
 ---
 <BaseLayout title="Schulleitung · UNESCO-Schule Essen">
@@ -47,6 +50,11 @@ const cards = [
 
   .sl-grid{
     display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;
+  }
+  .sl-grid--two{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    max-width:calc(66.66% - 8px);
+    margin-bottom:24px;
   }
 
   .sl-card{
@@ -94,6 +102,7 @@ const cards = [
 
   @media (max-width:900px){
     .sl-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;}
+    .sl-grid--two{max-width:none;}
   }
   @media (max-width:560px){
     .sl-grid{grid-template-columns:1fr;}
@@ -116,8 +125,23 @@ const cards = [
       <h2>{page.team.title}</h2>
     </div>
 
+    <div class="sl-grid sl-grid--two">
+      {leadership.map(({ teacher, role }) => (
+        <article class="sl-card">
+          <div class="avatar">
+            {asset(teacher!.data.photo)
+              ? <img src={asset(teacher!.data.photo)} alt="" loading="lazy" width="104" height="104" />
+              : <span>{initials(teacher!)}</span>}
+          </div>
+          <p class="role">{role}</p>
+          <h3 class="name">{displayName(teacher!)}</h3>
+          <MailLink class="mail" email={teacher!.data.email} />
+        </article>
+      ))}
+    </div>
+
     <div class="sl-grid">
-      {cards.map(({ teacher, role }) => (
+      {koordinationen.map(({ teacher, role }) => (
         <article class="sl-card">
           <div class="avatar">
             {asset(teacher!.data.photo)
