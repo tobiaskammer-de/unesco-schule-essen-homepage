@@ -11,21 +11,6 @@ const categories = page.categories;
 <BaseLayout title="Partnerschaften · UNESCO-Schule Essen" description="Mit wem wir zusammenarbeiten: UNESCO, Universität Duisburg-Essen, Theater und Philharmonie, Stiftungen, lokale Partner und Service-Clubs.">
 <style is:global>
   /* ---------- Partner-Seite ---------- */
-  .pt-intro{background:var(--creme);padding:var(--space-section) 0;}
-  .pt-intro-grid{
-    display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);
-    gap:56px;align-items:start;
-  }
-  .pt-intro h2{
-    font-family:var(--serif);font-weight:500;
-    font-size:clamp(30px,3.4vw,44px);line-height:1.1;
-    color:var(--petrol);letter-spacing:-0.015em;margin:0;
-  }
-  .pt-intro h2 em{font-style:italic;color:var(--bordeaux);}
-  .pt-intro p{
-    font-family:var(--sans);font-size:17px;line-height:1.7;color:var(--tinte);
-    margin:0 0 14px;
-  }
 
   /* Category blocks */
   .pt-category{
@@ -47,43 +32,43 @@ const categories = page.categories;
   }
 
   .pt-grid{
-    display:grid;grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));gap:24px;
+    display:grid;grid-template-columns:repeat(auto-fill, minmax(240px, 1fr));gap:22px;
   }
   .pt-card{
     background:#fff;border:1px solid var(--hairline);
     border-top:var(--card-accent-width) solid var(--petrol);
-    display:flex;flex-direction:column;gap:16px;
-    padding:28px 28px 24px;
+    display:flex;flex-direction:column;gap:12px;
+    padding:20px 20px 18px;
     text-decoration:none;color:inherit;
     transition:transform var(--transition), box-shadow var(--transition);
   }
-  .pt-card:hover{transform:translateY(-2px);box-shadow:0 16px 40px -24px rgba(14,77,79,0.28);}
+  .pt-card:hover{transform:translateY(-2px);box-shadow:0 14px 32px -22px rgba(14,77,79,0.28);}
   @media (prefers-reduced-motion: reduce){.pt-card:hover{transform:none;}}
 
   .pt-card .logo-box{
-    height:72px;display:flex;align-items:center;justify-content:flex-start;
-    padding:4px 0;border-bottom:1px solid var(--hairline);padding-bottom:16px;
+    height:56px;display:flex;align-items:center;justify-content:flex-start;
+    padding:2px 0 12px;border-bottom:1px solid var(--hairline);
   }
   .pt-card .logo-box img{
-    max-height:100%;max-width:180px;width:auto;height:auto;object-fit:contain;
+    max-height:100%;max-width:140px;width:auto;height:auto;object-fit:contain;
     filter:grayscale(100%);opacity:0.82;
     transition:filter .3s ease, opacity .3s ease;
   }
   .pt-card:hover .logo-box img{filter:grayscale(0);opacity:1;}
   .pt-card .logo-placeholder{
     display:inline-flex;align-items:center;justify-content:center;
-    width:64px;height:64px;border-radius:50%;
+    width:48px;height:48px;border-radius:50%;
     background:var(--petrol);color:var(--creme);
-    font-family:var(--serif);font-weight:500;font-size:22px;letter-spacing:-0.01em;
+    font-family:var(--serif);font-weight:500;font-size:18px;letter-spacing:-0.01em;
     opacity:0.92;
   }
 
   .pt-card h3{
-    font-family:var(--serif);font-weight:500;font-size:20px;line-height:1.25;
+    font-family:var(--serif);font-weight:500;font-size:17px;line-height:1.25;
     color:var(--petrol);letter-spacing:-0.008em;margin:0;
   }
   .pt-card .desc{
-    font-family:var(--sans);font-size:14.5px;line-height:1.6;color:var(--stein);
+    font-family:var(--sans);font-size:13.5px;line-height:1.55;color:var(--stein);
     margin:0;flex:1;
   }
   .pt-card .go{
@@ -112,12 +97,11 @@ const categories = page.categories;
   }
 
   @media (max-width:960px){
-    .pt-intro-grid{grid-template-columns:1fr;gap:28px;}
-    .pt-intro,.pt-category,.pt-cta{padding:var(--space-section-sm) 0;}
+    .pt-category,.pt-cta{padding:var(--space-section-sm) 0;}
   }
   @media (max-width:560px){
-    .pt-grid{grid-template-columns:1fr;gap:16px;}
-    .pt-card{padding:22px 22px 20px;}
+    .pt-grid{grid-template-columns:1fr;gap:14px;}
+    .pt-card{padding:18px 18px 16px;}
   }
 </style>
 
@@ -128,20 +112,6 @@ const categories = page.categories;
   <Fragment slot="title">{page.hero.title}{page.hero.titleHighlight && <><br /><em>{page.hero.titleHighlight}</em></>}</Fragment>
   <Fragment slot="lede">{page.hero.lede}</Fragment>
 </PageHero>
-
-<section class="pt-intro" aria-label="Einordnung">
-  <div class="container">
-    <div class="pt-intro-grid">
-      <div>
-        <h2>Partner, <em>auf die wir bauen.</em></h2>
-      </div>
-      <div>
-        <p>Über fünfzehn feste Partnerschaften tragen unser Schulprofil: das UNESCO-Netzwerk, die Universität Duisburg-Essen, Kultureinrichtungen wie die Theater und Philharmonie Essen sowie Stiftungen und Service-Clubs, die Projekte finanziell ermöglichen.</p>
-        <p>Dazu kommen Essener Institutionen aus Sozialarbeit, Medien und Berufsorientierung. Auf dieser Seite haben wir sie sortiert, damit man sieht, wer uns in welchem Bereich begleitet.</p>
-      </div>
-    </div>
-  </div>
-</section>
 
 {categories.map((cat, idx) => (
   <section class={`pt-category ${idx % 2 === 0 ? "alt" : "light"}`} aria-label={cat.label}>
