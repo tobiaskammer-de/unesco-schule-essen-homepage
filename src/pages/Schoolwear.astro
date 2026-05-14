@@ -1,0 +1,157 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHero from "../components/PageHero.astro";
+import { getSingle } from "../lib/pageContent";
+import { safeBold } from "../lib/safeMarkup";
+
+const page: any = await getSingle("pageSchoolwear");
+const introParas: string[] = (page.intro.body ?? "").split(/\n\n+/).map((p: string) => p.trim()).filter(Boolean);
+---
+<BaseLayout title="Schoolwear · UNESCO-Schule Essen" description="Unsere Schoolwear-Kollektion: T-Shirts, Hoodies und Sweatshirtjacken mit Schul-Logo. Bestellung läuft über Lomestar.">
+<style is:global>
+  /* ---------- Schoolwear ---------- */
+  .sw-intro{background:var(--creme);padding:var(--space-section) 0;}
+  .sw-grid{
+    display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);
+    gap:56px;align-items:start;
+  }
+  .sw-grid h2{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(30px,3.4vw,44px);line-height:1.1;
+    color:var(--petrol);letter-spacing:-0.015em;margin:0;
+  }
+  .sw-grid h2 em{font-style:italic;color:var(--bordeaux);}
+  .sw-grid p{
+    font-family:var(--sans);font-size:17px;line-height:1.7;color:var(--tinte);
+    margin:0 0 16px;
+  }
+  .sw-grid strong{color:var(--petrol);}
+
+  /* Steps */
+  .sw-steps{background:var(--offwhite);padding:var(--space-section) 0;border-top:1px solid var(--hairline);}
+  .sw-steps .head{max-width:820px;margin:0 0 48px;}
+  .sw-steps .head .eyebrow{display:block;margin-bottom:14px;}
+  .sw-steps .head h2{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(28px,3vw,40px);line-height:1.15;letter-spacing:-0.015em;
+    color:var(--petrol);margin:0 0 14px;
+  }
+  .sw-steps .head p{
+    font-family:var(--sans);font-size:16.5px;line-height:1.65;color:var(--stein);max-width:640px;margin:0;
+  }
+
+  .sw-steps-grid{display:grid;grid-template-columns:repeat(4, minmax(0, 1fr));gap:24px;}
+  .sw-step{
+    background:#fff;border:1px solid var(--hairline);
+    border-top:var(--card-accent-width) solid var(--petrol);
+    padding:var(--card-padding);
+    display:flex;flex-direction:column;gap:14px;
+  }
+  .sw-step .n{
+    font-family:var(--serif);font-weight:500;font-size:40px;line-height:1;
+    color:var(--petrol);letter-spacing:-0.02em;font-variant-numeric:tabular-nums;
+  }
+  .sw-step h3{
+    font-family:var(--serif);font-weight:500;font-size:22px;line-height:1.2;
+    color:var(--petrol);letter-spacing:-0.008em;margin:0;
+  }
+  .sw-step p{
+    font-family:var(--sans);font-size:15px;line-height:1.65;color:var(--tinte);margin:0;
+  }
+
+  /* Action */
+  .sw-action{
+    background:var(--petrol);color:var(--creme);
+    padding:var(--space-section) 0;
+  }
+  .sw-action .container{max-width:840px;text-align:center;}
+  .sw-action .eyebrow{color:rgba(245,239,231,0.55);display:block;margin-bottom:14px;}
+  .sw-action h2{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(28px,3vw,42px);line-height:1.2;
+    color:var(--creme);letter-spacing:-0.015em;margin:0 0 18px;
+  }
+  .sw-action p{
+    font-family:var(--sans);font-size:17px;line-height:1.7;
+    color:rgba(245,239,231,0.9);max-width:640px;margin:0 auto 28px;
+  }
+  .sw-btn{
+    display:inline-flex;align-items:center;gap:10px;
+    padding:16px 28px;
+    background:var(--gold);color:var(--gold-text);
+    font-family:var(--sans);font-weight:600;font-size:15px;
+    text-decoration:none;letter-spacing:0.02em;
+    transition:background var(--transition-fast), transform var(--transition-fast);
+  }
+  .sw-btn:hover{background:var(--gold-hover);transform:translateY(-1px);color:var(--gold-text);}
+  @media (prefers-reduced-motion: reduce){.sw-btn:hover{transform:none;}}
+  .sw-btn svg{width:16px;height:16px;}
+  .sw-action .hint{
+    font-family:var(--sans);font-size:13px;color:rgba(245,239,231,0.65);
+    margin-top:18px;
+  }
+
+  @media (max-width:1100px){.sw-steps-grid{grid-template-columns:repeat(2, minmax(0, 1fr));}}
+  @media (max-width:640px){
+    .sw-grid{grid-template-columns:1fr;gap:28px;}
+    .sw-steps-grid{grid-template-columns:1fr;gap:14px;}
+    .sw-intro,.sw-steps,.sw-action{padding:var(--space-section-sm) 0;}
+  }
+</style>
+
+<main id="top">
+
+<PageHero variant="feature">
+  <Fragment slot="eyebrow">{page.hero.eyebrow}</Fragment>
+  <Fragment slot="title">{page.hero.title}{page.hero.titleHighlight && <> <em>{page.hero.titleHighlight}</em></>}</Fragment>
+  <Fragment slot="lede">{page.hero.lede}</Fragment>
+</PageHero>
+
+<section class="sw-intro" aria-label="Überblick">
+  <div class="container">
+    <div class="sw-grid">
+      <div>
+        <h2>{page.intro.title} <em>{page.intro.titleHighlight}.</em></h2>
+      </div>
+      <div>
+        {introParas.map((p) => <p set:html={safeBold(p)} />)}
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sw-steps" aria-label="Ablauf">
+  <div class="container">
+    <div class="head">
+      <span class="eyebrow">{page.steps.eyebrow}</span>
+      <h2>{page.steps.title}</h2>
+      <p>{page.steps.body}</p>
+    </div>
+
+    <div class="sw-steps-grid">
+      {page.steps.list.map((s: any) => (
+        <article class="sw-step">
+          <span class="n">{s.n}</span>
+          <h3>{s.title}</h3>
+          <p>{s.body}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section class="sw-action" aria-label="Zum Shop">
+  <div class="container">
+    <span class="eyebrow">{page.action.eyebrow}</span>
+    <h2>{page.action.title}</h2>
+    <p>{page.action.body}</p>
+    <a href={page.action.buttonUrl} class="sw-btn" target="_blank" rel="noopener">
+      {page.action.buttonLabel}
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17L17 7M17 7H9M17 7v8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+    <p class="hint">{page.action.hint}</p>
+  </div>
+</section>
+
+</main>
+</BaseLayout>

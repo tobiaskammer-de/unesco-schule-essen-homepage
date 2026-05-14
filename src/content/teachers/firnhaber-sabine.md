@@ -5,6 +5,6 @@ lastName: "Firnhaber"
 title: "Dr."
 subjects: ["Biologie", "Physik"]
 roles: []
-email: "firnhaber@unesco-schule-essen.de"
+email: "sabine.firnhaber@164835.nrw.schule"
 photo: "/unesco-schule-essen-homepage/assets/kollegium/firnhaber-sabine.jpg"
 ---

@@ -79,7 +79,7 @@ const page: any = await getSingle("pageBerufsorientierung");
     color:var(--petrol);margin:0;
   }
   .bo-angebot-grid{
-    display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;
   }
   .bo-angebot-card{
     background:#fff;border:1px solid var(--hairline);
@@ -290,12 +290,14 @@ const page: any = await getSingle("pageBerufsorientierung");
     <div class="bo-stufen-grid">
       <article class="bo-stufe">
         <span class="label">Sekundarstufe&nbsp;I</span>
-        <h3>Potentiale erkennen.</h3>
+        <h3>Potenziale erkennen.</h3>
         <p class="when">Klassen 8 – 10</p>
         <ul>
-          <li><strong>Klasse 8:</strong> Potentialanalyse und Berufsfelderkundung (3 Tage in Betrieben).</li>
-          <li><strong>Klasse 9:</strong> Schülerbetriebspraktikum (2 Wochen) und Anschlussvereinbarung.</li>
-          <li><strong>Klasse 10:</strong> Beratungstermine für Schulabgängerinnen und Schulabgänger mit der Arbeitsagentur Essen.</li>
+          <li><strong>Klasse 8:</strong> Online-Tool BOaktiv (ab Schuljahr 2026/27).</li>
+          <li><strong>Klasse 9:</strong> Potenzialanalyse (Einstiegsinstrument), Berufsfelderkundungen (3 Tage in Betrieben), Schülerbetriebspraktikum (2 Wochen), Planspiel „Spiel des Lebens" und Anschlussvereinbarung.</li>
+          <li><strong>Klasse 10:</strong> Beratungstermine für Schulabgängerinnen und Schulabgänger mit der Arbeitsagentur Essen; IHK-Kooperation „Auszubildende als Werbebotschafter".</li>
+          <li><strong>Alle Klassen:</strong> Girls' und Boys' Day.</li>
+          <li><strong>Kooperation:</strong> Kreishandwerkerschaft Essen — Angebote für die Klasse 9 und die IVK.</li>
         </ul>
       </article>
 
@@ -339,6 +341,12 @@ const page: any = await getSingle("pageBerufsorientierung");
         <h3>Talentscout</h3>
         <p>Sarah Schröter von der Universität Duisburg-Essen begleitet besonders Jugendliche ohne akademische Wurzeln auf dem Weg ins Studium — kostenfrei, vor Ort, langfristig.</p>
         <span class="go">Zum Talentscout →</span>
+      </a>
+      <a href="#friedland" class="bo-angebot-card">
+        <span class="label">Übergang in den Beruf</span>
+        <h3>Berufseinstiegsbegleitung</h3>
+        <p>Anni Friedland begleitet Schülerinnen und Schüler individuell beim Übergang von der Schule in eine Ausbildung — über die Schulzeit hinaus.</p>
+        <span class="go">Zur Berufseinstiegsbegleitung →</span>
       </a>
     </div>
   </div>
@@ -385,8 +393,7 @@ const page: any = await getSingle("pageBerufsorientierung");
       <ul class="bo-qa-list">
         <li><span class="q">Für wen?</span><span class="a">Insbesondere Jugendliche ohne akademische Wurzeln, die sich ein Studium zutrauen sollen: wir ermutigen und begleiten.</span></li>
         <li><span class="q">Was gibt's?</span><span class="a">Regelmäßige Beratungsgespräche vor Ort in der Schule. Orientierung beim Übergang von Schule zu Hochschule. Begleitung auch nach dem Abitur.</span></li>
-        <li><span class="q">Von wem?</span><span class="a">Sarah Schröter, Talentscout der Universität Duisburg-Essen, regelmäßig bei uns im Haus und erreichbar über das Sekretariat.</span></li>
-        <li><span class="q">Was kostet's?</span><span class="a">Nichts. Das Angebot ist für Schülerinnen und Schüler kostenfrei, finanziert durch das NRW-Talentscouting.</span></li>
+        <li><span class="q">Von wem?</span><span class="a">Sarah Schröter, Talentscout der Universität Duisburg-Essen, regelmäßig bei uns im Haus und erreichbar über Frau Schulte-Ontrop.</span></li>
       </ul>
 
       <ContactCard
@@ -395,8 +402,33 @@ const page: any = await getSingle("pageBerufsorientierung");
         manualPhone="0201 · 280 26 30"
         manualPhoto="assets/beratung/schroeter-sarah.png"
         subline="Universität Duisburg-Essen · NRW-Talentscouting"
-        room="Regelmäßig vor Ort · Termine über das Sekretariat"
-        ctaLabel="Termin über Sekretariat"
+        room="Regelmäßig vor Ort · Termine über Frau Schulte-Ontrop"
+        ctaLabel="Termin über Frau Schulte-Ontrop"
+        variant="compact"
+      />
+    </div>
+  </div>
+</section>
+
+<section class="bo-talent" id="friedland" aria-label="Berufseinstiegsbegleitung Anni Friedland">
+  <div class="container">
+    <div class="head">
+      <span class="eyebrow">Berufseinstiegsbegleitung</span>
+      <h2>Anni Friedland.</h2>
+      <p class="lede">Die Berufseinstiegsbegleitung (BerEb) unterstützt Schülerinnen und Schüler individuell beim Übergang von der Schule in eine Ausbildung — auch über die Schulzeit hinaus.</p>
+    </div>
+
+    <div class="bo-qa-grid">
+      <ul class="bo-qa-list">
+        <li><span class="q">Für wen?</span><span class="a">Schülerinnen und Schüler ab Klasse 9, die beim Schritt in Ausbildung oder Beruf zusätzliche Begleitung gut gebrauchen können.</span></li>
+        <li><span class="q">Was gibt's?</span><span class="a">Individuelle Beratung und Unterstützung — von Bewerbung und Praktikumssuche bis hin zur Stabilisierung in den ersten Ausbildungsmonaten.</span></li>
+        <li><span class="q">Wo?</span><span class="a">Raum „Bob" — direkt unter dem Selbstlernzentrum.</span></li>
+      </ul>
+
+      <ContactCard
+        roleLabel="Berufseinstiegsbegleitung"
+        manualName="Anni Friedland"
+        room="Raum Bob · direkt unter dem Selbstlernzentrum"
         variant="compact"
       />
     </div>

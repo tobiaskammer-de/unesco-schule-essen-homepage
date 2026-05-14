@@ -4,6 +4,6 @@ firstName: "Bettina"
 lastName: "Teufel"
 subjects: ["Deutsch", "Geschichte"]
 roles: []
-email: "teufel@unesco-schule-essen.de"
+email: "bettina.teufel@164835.nrw.schule"
 photo: "/unesco-schule-essen-homepage/assets/kollegium/teufel-bettina.jpg"
 ---
