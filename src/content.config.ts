@@ -37,7 +37,7 @@ const news = defineCollection({
  * Teachers Collection.
  *
  * Jede Lehrkraft ist eine Markdown-Datei unter src/content/teachers/.
- * Dateiname-Konvention: nachname-vorname.md (z. B. boehm-viola.md) —
+ * Dateiname-Konvention: nachname-vorname.md (z. B. schnetter-daniel.md) —
  * funktioniert als URL-Slug und sortiert natürlich alphabetisch.
  *
  * Zentrale Datenquelle für Kollegium-Seite UND andere Seiten, die
