@@ -34,16 +34,8 @@ function asset(p?: string | null): string | undefined {
   return BASE + "/" + p;
 }
 
-// "Wofür ich da bin" — Platzhaltertexte, bis echte O-Töne der Personen vorliegen.
-// Über den Nachnamen verknüpft, damit ein Personenwechsel den Text nicht mit-zieht.
-const claims: Record<string, string> = {
-  Stief: "Die Stundenpläne, die Vertretungen, die kleinen Schräubchen im Schulalltag, damit der Unterricht laufen kann.",
-  Wilbat: "Mittelstufe heißt: dranbleiben, Krisen begleiten, Stärken sichtbar machen. Kommen Sie auf mich zu.",
-  Omlor: "Oberstufenwege sind selten gerade. Ich sortiere mit Ihnen, was geht und was sich lohnt.",
-  Scheding: "Die Erprobungsstufe ist der Übergang, der den Ton setzt. Wir nehmen ihn ernst.",
-};
-function claim(t: any): string {
-  return (t && claims[t.data.lastName]) || "";
+function claim(_t: any): string {
+  return "";
 }
 ---
 <BaseLayout title="Schulleitung und Sekretariat · UNESCO-Schule Essen">
@@ -220,7 +212,7 @@ function claim(t: any): string {
 <PageHero variant="page">
   <Fragment slot="eyebrow">{page.hero.eyebrow}</Fragment>
   <Fragment slot="title">{page.hero.title}</Fragment>
-  <Fragment slot="lede">{page.hero.lede}</Fragment>
+  {page.hero.lede && <Fragment slot="lede">{page.hero.lede}</Fragment>}
 </PageHero>
 
 <section class="sl-team" aria-label="Das Team">

@@ -182,22 +182,8 @@ function asset(p: string): string {
 <PageHero variant="feature" image="assets/kollegium.jpeg" imageAlt="" imageCredit="Kollegium · UNESCO-Schule Essen">
   <Fragment slot="eyebrow">{page.hero.eyebrow}</Fragment>
   <Fragment slot="title">{page.hero.title}{page.hero.titleHighlight && <> <em>{page.hero.titleHighlight}</em></>}</Fragment>
-  <Fragment slot="lede">{page.hero.lede}</Fragment>
+  {page.hero.lede && <Fragment slot="lede">{page.hero.lede}</Fragment>}
 </PageHero>
-
-<section class="ko-intro" aria-label="Einordnung">
-  <div class="container">
-    <div class="ko-intro-grid">
-      <div>
-        <h2>{staff.length}&nbsp;Lehrkräfte.</h2>
-      </div>
-      <div>
-        <p>Alle Lehrkräfte besitzen eine schulinterne E-Mail-Adresse nach dem Schema <code>vorname.nachname@164835.nrw.schule</code>. Für die direkte Kontaktaufnahme nutzen Sie einfach den E-Mail-Button auf der jeweiligen Karte.</p>
-        <p>Hinweis: Umlaute werden in E-Mail-Adressen als ae/oe/ue/ss geschrieben — z.&nbsp;B. <em>tim.goergens@…</em> statt <em>tim.görgens@…</em></p>
-      </div>
-    </div>
-  </div>
-</section>
 
 <section class="ko-section" aria-label="Alle Lehrkräfte">
   <div class="container">
@@ -269,7 +255,6 @@ function asset(p: string): string {
       <div class="head">
         <span class="eyebrow">Im Referendariat</span>
         <h2>Referendar*innen</h2>
-        <p>Angehende Lehrkräfte, die bei uns den Vorbereitungsdienst absolvieren.</p>
       </div>
       <div class="ko-trainees-grid">
         {trainees.map((t) => (

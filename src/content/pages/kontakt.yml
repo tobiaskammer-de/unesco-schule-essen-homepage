@@ -7,10 +7,10 @@ hero:
   imageAlt: "Eingang der UNESCO-Schule Essen, Steinmetzstr. 9"
 
 school:
-  title: "So erreichen Sie uns."
+  title: "So erreichen Sie uns"
 
 form:
-  title: "Schreiben Sie uns."
+  title: "Schreiben Sie uns"
   lede: "Dieses Formular geht direkt an unser Sekretariat. Wir melden uns werktags in der Regel innerhalb von 24 Stunden zurück."
   hint: "Ihre Angaben verwenden wir ausschließlich zur Beantwortung Ihrer Anfrage. Details in unserer Datenschutzerklärung."
   submitLabel: "Nachricht senden →"
