@@ -7,50 +7,6 @@ import { getSingle } from "../lib/pageContent";
 const page: any = await getSingle("pageKontakt");
 const school: any = await getSingle("siteSchool");
 
-const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
-const people = [
-  {
-    role: "Sekretariat · Erste Anlaufstelle",
-    name: "Frau Axer",
-    sub: "Zentrales Sekretariat der UNESCO-Schule Essen",
-    tel: "+492012802630",
-    telDisplay: "0201 · 280 26 30",
-    mail: "164835@schule.nrw.de",
-    initials: "A",
-    photo: `${BASE}/assets/kollegium/axer-kristina.png`,
-    primary: true,
-  },
-  {
-    role: "Ansprechpartner Erprobungsstufe",
-    name: "Herr Scheding",
-    sub: "Koordination Klassen 5 – 6 · Raum 108 N",
-    tel: "+492012802630",
-    telDisplay: "0201 · 280 26 30 (Sekretariat)",
-    mail: "sven.scheding@164835.nrw.schule",
-    initials: "S",
-    photo: `${BASE}/assets/kollegium/scheding-sven.jpg`,
-  },
-  {
-    role: "Ansprechpartnerin Sekundarstufe I",
-    name: "Frau Wilbat",
-    sub: "Koordination Klassen 5 – 10",
-    tel: "+492012802630",
-    telDisplay: "0201 · 280 26 30 (Sekretariat)",
-    mail: "164835@schule.nrw.de",
-    initials: "W",
-    photo: `${BASE}/assets/kollegium/wilbat-carmen.jpg`,
-  },
-  {
-    role: "Ansprechpartner Sekundarstufe II",
-    name: "Herr Omlor",
-    sub: "Oberstufenkoordination · Raum 104",
-    tel: "+492012802630",
-    telDisplay: "0201 · 280 26 30 (Sekretariat)",
-    mail: "oberstufe@unesco-schule-essen.de",
-    initials: "O",
-    photo: null,
-  },
-];
 ---
 <BaseLayout title="Kontakt · UNESCO-Schule Essen" description="Kontakt zur UNESCO-Schule Essen. Anschrift, Sekretariat, Ansprechpartner für Sekundarstufe I und II sowie Kontaktformular.">
 <style is:global>
@@ -266,7 +222,7 @@ const people = [
 >
   <Fragment slot="eyebrow">{page.hero.eyebrow}</Fragment>
   <Fragment slot="title">{page.hero.title}{page.hero.titleHighlight && <> <em>{page.hero.titleHighlight}</em></>}</Fragment>
-  <Fragment slot="lede">{page.hero.lede}</Fragment>
+  {page.hero.lede && <Fragment slot="lede">{page.hero.lede}</Fragment>}
 </PageHero>
 
 <!-- Anschrift -->
@@ -277,7 +233,7 @@ const people = [
         <h2>So erreichen Sie uns.</h2>
       </div>
       <div class="addr-card">
-        <p class="brand">Städtisches Gymnasium</p>
+        <p class="brand">UNESCO-Schule Essen<br><span style="font-weight:400;color:var(--stein);font-size:14px;">Städtisches Gymnasium für Jungen und Mädchen mit Sekundarstufen&nbsp;I und&nbsp;II</span></p>
         <address>
           Steinmetzstraße 9<br>
           45139 Essen
@@ -295,39 +251,8 @@ const people = [
             <span class="lbl">E-Mail</span>
             <MailLink email="info@unesco-schule-essen.de" />
           </li>
-          <li>
-            <span class="lbl">Schulverwaltung</span>
-            <MailLink email="164835@schule.nrw.de" />
-          </li>
         </ul>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- Ansprechpartner -->
-<section class="kt-people" aria-label="Ansprechpartner*innen">
-  <div class="container">
-    <div class="head">
-      <span class="eyebrow">Ansprechpartner*innen</span>
-      <h2>Vier persönliche Kontakte</h2>
-      <p>Frau Axer im Sekretariat ist Ihre <strong>erste Anlaufstelle</strong>. Für spezifische Fragen zur Erprobungsstufe (Klassen&nbsp;5 – 6), zur Sekundarstufe&nbsp;I oder zur Oberstufe gibt es jeweils eine feste Ansprechperson.</p>
-    </div>
-    <div class="kt-people-grid">
-      {people.map((p) => (
-        <article class={`kt-person ${p.primary ? "is-primary" : ""}`}>
-          <span class="avatar" aria-hidden="true">
-            {p.photo ? <img src={p.photo} alt="" loading="lazy" width="168" height="168"/> : p.initials}
-          </span>
-          <div class="role">{p.role}</div>
-          <p class="name">{p.name}</p>
-          <p class="sub">{p.sub}</p>
-          <div class="links">
-            <div><span class="lbl">Tel</span><a href={`tel:${p.tel}`}>{p.telDisplay}</a></div>
-            <div><span class="lbl">E-Mail</span><MailLink email={p.mail} /></div>
-          </div>
-        </article>
-      ))}
     </div>
   </div>
 </section>
