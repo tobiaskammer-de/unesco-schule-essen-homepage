@@ -2,7 +2,7 @@ hero:
   eyebrow: "Angebote · Lernen & Förderung"
   title: "Arbeitsgemeinschaften"
   titleHighlight: ""
-  lede: "Nach dem Unterricht geht's weiter: In unseren AGs entdecken Schülerinnen und Schüler eigene Interessen, übernehmen Verantwortung und lernen Neues, freiwillig, engagiert und mit Freude."
+  lede: "In unseren AGs entdecken Schülerinnen und Schüler eigene Interessen, übernehmen Verantwortung und lernen Neues, freiwillig, engagiert und mit Freude."
 
 intro:
   title: "Mehr als Unterricht —"
@@ -35,7 +35,7 @@ list:
       contactRole: "Schulische Betreuung"
       contactInitials: "E"
       contactPhoto: ""
-      extra: "Ausbildung durch Henning Handschke · ASB Essen"
+      extra: ""
       quote: "„Leben retten ist keine Frage des Alters, aber je früher man anfängt, desto mehr festigt sich das Wissen.\""
       state: "aktiv"
       accent: "bordeaux"
@@ -46,7 +46,7 @@ list:
       contactRole: "Leitung"
       contactInitials: "K"
       contactPhoto: ""
-      extra: "Raum unter dem Selbstlernzentrum · Eröffnung folgt"
+      extra: ""
       quote: ""
       state: "im-aufbau"
       accent: "gold"
