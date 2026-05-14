@@ -1158,6 +1158,56 @@ collections:
               - { name: buttonUrl, label: "Button-URL", widget: string }
               - { name: hint, label: "Hinweis", widget: string }
 
+      # ---------------- SCHOOLWEAR ----------------
+      - file: src/content/pages/schoolwear.yml
+        label: "Schoolwear"
+        name: schoolwear
+        format: yaml
+        fields:
+          - name: hero
+            label: "Hero"
+            widget: object
+            collapsed: false
+            fields:
+              - { name: eyebrow, label: "Eyebrow", widget: string }
+              - { name: title, label: "Titel — Zeile 1", widget: string }
+              - { name: titleHighlight, label: "Titel — Zeile 2 (kursiv)", widget: string, required: false }
+              - { name: lede, label: "Einleitung", widget: text }
+          - name: intro
+            label: "Einleitung"
+            widget: object
+            collapsed: true
+            fields:
+              - { name: title, label: "Titel — Zeile 1", widget: string }
+              - { name: titleHighlight, label: "Titel — Zeile 2 (kursiv)", widget: string, required: false }
+              - { name: body, label: "Text (Markdown, **fett** wird gerendert)", widget: text }
+          - name: steps
+            label: "Schritte"
+            widget: object
+            collapsed: true
+            fields:
+              - { name: eyebrow, label: "Eyebrow", widget: string }
+              - { name: title, label: "Überschrift", widget: string }
+              - { name: body, label: "Einleitung", widget: text }
+              - name: list
+                label: "Schritte"
+                widget: list
+                fields:
+                  - { name: n, label: "Nummer", widget: string }
+                  - { name: title, label: "Titel", widget: string }
+                  - { name: body, label: "Text", widget: text }
+          - name: action
+            label: "Action-Block"
+            widget: object
+            collapsed: true
+            fields:
+              - { name: eyebrow, label: "Eyebrow", widget: string }
+              - { name: title, label: "Überschrift", widget: string }
+              - { name: body, label: "Text", widget: text }
+              - { name: buttonLabel, label: "Button-Text", widget: string }
+              - { name: buttonUrl, label: "Button-URL", widget: string }
+              - { name: hint, label: "Hinweis", widget: string }
+
       # ---------------- MITTAGESSEN & ÜBERMITTAGSBETREUUNG ----------------
       - file: src/content/pages/mittagessen-und-betreuung.yml
         label: "Mittagessen & Übermittagsbetreuung"

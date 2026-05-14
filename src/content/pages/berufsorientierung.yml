@@ -24,12 +24,14 @@ stufen:
   body: "Zwei Phasen mit klar unterschiedlichen Zielen: In der Sekundarstufe I legen wir die Grundlage. In der Sekundarstufe II wird's konkret: Studium, Ausbildung, duales Modell."
   cards:
     - label: "Sekundarstufe I"
-      title: "Potentiale erkennen"
+      title: "Potenziale erkennen"
       when: "Klassen 8 – 10"
       items:
-        - "**Klasse 8:** Potentialanalyse und Berufsfelderkundung (3 Tage in Betrieben)."
-        - "**Klasse 9:** Schülerbetriebspraktikum (2 Wochen) und Anschlussvereinbarung."
-        - "**Klasse 10:** Beratungstermine für Schulabgängerinnen und Schulabgänger mit der Arbeitsagentur Essen."
+        - "**Klasse 8:** Online-Tool BOaktiv (ab Schuljahr 2026/27)."
+        - "**Klasse 9:** Potenzialanalyse (Einstiegsinstrument), Berufsfelderkundungen (3 Tage in Betrieben), Schülerbetriebspraktikum (2 Wochen), Planspiel „Spiel des Lebens\" und Anschlussvereinbarung."
+        - "**Klasse 10:** Beratungstermine für Schulabgängerinnen und Schulabgänger mit der Arbeitsagentur Essen; IHK-Kooperation „Auszubildende als Werbebotschafter\"."
+        - "**Alle Klassen:** Girls' und Boys' Day."
+        - "**Kooperation:** Kreishandwerkerschaft Essen — Angebote für die Klasse 9 und die IVK."
     - label: "Sekundarstufe II"
       title: "Konkret werden"
       when: "EF · Q1 · Q2"

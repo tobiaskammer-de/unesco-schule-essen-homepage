@@ -220,6 +220,7 @@ const pageLesefoerderung  = defineCollection({ loader: glob({ pattern: "lesefoer
 const pagePaedagogischeKonzepte = defineCollection({ loader: glob({ pattern: "paedagogische-konzepte.yml", base: "./src/content/pages" }), schema: flexibleSchema });
 const pageAnfahrt         = defineCollection({ loader: glob({ pattern: "anfahrt.yml",              base: "./src/content/pages" }), schema: flexibleSchema });
 const pageSchliessfaecher = defineCollection({ loader: glob({ pattern: "schliessfaecher.yml",      base: "./src/content/pages" }), schema: flexibleSchema });
+const pageSchoolwear      = defineCollection({ loader: glob({ pattern: "schoolwear.yml",           base: "./src/content/pages" }), schema: flexibleSchema });
 const pageMittagessenUndBetreuung = defineCollection({ loader: glob({ pattern: "mittagessen-und-betreuung.yml", base: "./src/content/pages" }), schema: flexibleSchema });
 const pageFoerderverein   = defineCollection({ loader: glob({ pattern: "foerderverein.yml",        base: "./src/content/pages" }), schema: flexibleSchema });
 const pageEhemalige       = defineCollection({ loader: glob({ pattern: "ehemalige.yml",            base: "./src/content/pages" }), schema: flexibleSchema });
@@ -256,6 +257,7 @@ export const collections = {
   pagePaedagogischeKonzepte,
   pageAnfahrt,
   pageSchliessfaecher,
+  pageSchoolwear,
   pageMittagessenUndBetreuung,
   pageFoerderverein,
   pageEhemalige,

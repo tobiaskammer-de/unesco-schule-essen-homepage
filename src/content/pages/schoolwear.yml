@@ -1,0 +1,43 @@
+hero:
+  eyebrow: "Service · Digitales & Alltag"
+  title: "Unsere"
+  titleHighlight: "Schoolwear"
+  lede: "Die UNESCO-Schule ist bunt — und so ist es auch unsere Schoolwear. Eine eigene Kollektion, die den Charakter unserer Schule unterstreicht."
+
+intro:
+  title: "Bunt wie"
+  titleHighlight: "unsere Schule"
+  body: |
+    Alle Artikel sind auf der Vorderseite auf der rechten Brust mit unserem kleinen Logo versehen — und neuerdings zusätzlich mit einem größeren Rückenprint und einem Schriftzug.
+
+    Hergestellt werden die Textilien erst auf Bestellung durch die Firma **Lomestar**. Bestellbar sind sie in etwa halbjährigem Turnus über den Onlineshop.
+
+    Verfügbar sind aktuell **T-Shirts, Hoodies und Sweatshirtjacken** in verschiedenen Farben und Größen für Männer, Frauen und Kinder. Bei einer Bestellung über den Onlineshop kann jede und jeder den passenden Artikel selbst auswählen.
+
+    Für unsere Erasmus+-Fahrten nach Paris und Estland wurden unsere Schülerinnen und Schüler mit einheitlicher Schulkleidung ausgestattet — für ein sichtbares Gemeinschaftsgefühl und eine geschlossene Außendarstellung unserer Schule.
+
+steps:
+  eyebrow: "So funktioniert's"
+  title: "In vier Schritten zu eurer Schoolwear"
+  body: "Die Bestellung läuft komplett online über Lomestar. Bezahlt wird per Vorkasse; die fertige Lieferung kommt gesammelt an die Schule."
+  list:
+    - n: "01"
+      title: "Im Onlineshop bestellen"
+      body: "Über den Onlineshop von Lomestar Artikel, Größe und Farbe auswählen — passend für Männer, Frauen und Kinder."
+    - n: "02"
+      title: "Vorkasse zahlen"
+      body: "Die gesamte Bestellung wird per Vorkasse beglichen. Erst danach geht sie in die Produktion."
+    - n: "03"
+      title: "Sammellieferung an die Schule"
+      body: "Lomestar fertigt die Artikel speziell für uns an und liefert die Sammelbestellung an die Schule."
+    - n: "04"
+      title: "Abholung bei Frau Hödel"
+      body: "Sobald die Lieferung da ist, können die bestellten Artikel bei Frau Hödel im Lehrerzimmer abgeholt werden."
+
+action:
+  eyebrow: "Direkt bestellen"
+  title: "Zum Onlineshop"
+  body: "Die aktuelle Bestellrunde läuft über den Onlineshop unserer Schule bei Lomestar. Dort sind alle verfügbaren Artikel, Größen und Farben einsehbar."
+  buttonLabel: "Zum Lomestar-Shop"
+  buttonUrl: "https://shop.lomestar.de/0296-3602/"
+  hint: "Externer Link, öffnet in einem neuen Tab. Vertragspartner ist Lomestar, nicht die Schule."
