@@ -343,16 +343,6 @@ const page: any = await getSingle("pageSprachen");
   </div>
 </section>
 
-<section class="spr-oberstufe" aria-label="Anfängerkurse in der Oberstufe">
-  <div class="container">
-    <div class="inner">
-      {page.oberstufe?.eyebrow && <span class="eyebrow">{page.oberstufe.eyebrow}</span>}
-      <h2>{page.oberstufe?.title}{page.oberstufe?.titleHighlight && <> <em>{page.oberstufe.titleHighlight}</em></>}</h2>
-      <p>{page.oberstufe?.body}</p>
-    </div>
-  </div>
-</section>
-
 <section class="spr-experience" aria-label="Sprache erleben">
   <div class="container">
     <div class="head">

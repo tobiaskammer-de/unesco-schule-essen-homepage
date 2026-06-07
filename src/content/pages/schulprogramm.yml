@@ -54,10 +54,7 @@ leitsaetze:
     claim: "Unabhängig von der bisherigen Schullaufbahn erhalten unsere Schülerinnen und Schüler bei entsprechender Qualifizierung die individuell bestmögliche gymnasiale Ausbildung, mit enger Unterstützung auf dem Weg dorthin."
     points:
       - "In Klasse 5 Wahl zwischen zwei neigungsdifferenzierten Ergänzungsfächern: Forscher² (naturwissenschaftlich-experimentell) und WortArt+ (sprachlich-künstlerisch)"
-      - "Behutsamer Aufbau von Schulformwechselnden in Sek II durch gestaffelte, progressive Annäherung an gymnasiale Standards"
       - "Kennenlern- und Methodenfahrt für Neuzugänge in der EF"
-      - "Regelmäßige pädagogische Konferenzen (zusätzlich zu Notenkonferenzen) pro Klasse und Jahrgang"
-      - "Intensive Förderung durch den Rotary Club Essen (Arbeitsmaterialien, Schulhofgestaltung, Auslandsaufenthalte)"
     futureGoals:
       - "Auszeichnung als „MINT-freundliche Schule\" (in Arbeit)"
   - num: "02"
@@ -74,16 +71,6 @@ leitsaetze:
     futureGoals:
       - "Jugend Debattiert (in Arbeit)"
   - num: "03"
-    image: "assets/sp-divers.jpg"
-    title: "Diverse Schule"
-    claim: "Unsere Schülerinnen und Schüler kommunizieren mit großer Selbstverständlichkeit in vielerlei Sprachen und bringen ihre jeweilige kulturelle Lebens- und Erfahrungswelt kreativ in den Schulalltag ein."
-    points:
-      - "Darstellung kultureller Identitäten bei Veranstaltungen und Projekten (Tanz, Theater, Musik, Kochkunst)"
-      - "Kooperation mit dem „Freundeskreis Theater und Philharmonie\" (Opernprojekte, Konzert-Sponsoring)"
-      - "Erasmus-Plus-Programm"
-    futureGoals:
-      - "Englisches Theater und Schülerzeitung"
-  - num: "04"
     image: "assets/sp-demokratie.jpg"
     title: "Demokratische Schule"
     claim: "Unsere Schülerinnen und Schüler können Ideen und gesellschaftliche Entwicklungen als gefestigte und mündige Persönlichkeiten innerhalb demokratischer Grundstrukturen entwerfen, umsetzen und bewerten."
@@ -95,7 +82,7 @@ leitsaetze:
       - "Teilnahme am Projekt „Juniorwahl\" · Streitschlichterprogramm im Aufbau · Schülerpatenschaften"
     futureGoals:
       - "Auszeichnung „Schule der Zukunft\""
-  - num: "05"
+  - num: "04"
     image: "assets/sp-nachhaltig.jpg"
     title: "Nachhaltige Schule"
     claim: "Unsere Schülerinnen und Schüler entwickeln ein Bewusstsein für ein auf Nachhaltigkeit angelegtes Leben und übernehmen Verantwortung für Umwelt und Gesellschaft."
@@ -108,7 +95,7 @@ leitsaetze:
     futureGoals:
       - "Auszeichnung „Schule der Zukunft\""
       - "Dachbegrünung"
-  - num: "06"
+  - num: "05"
     image: "assets/sp-weltoffen.jpg"
     title: "Weltoffene Schule"
     claim: "Lernende und Lehrende orientieren sich im Schulalltag an den Zielen und Werten der UNESCO sowie den 17 Zielen für nachhaltige Entwicklung (SDGs) und setzen sich für Frieden, Nachhaltigkeit und Weltoffenheit ein."
@@ -118,7 +105,7 @@ leitsaetze:
       - "Organisation von UNESCO-Projekttagen (2 × pro Jahr) und Netzwerkpflege durch den UNESCO-Beauftragten"
       - "UNESCO ist Namensgeber der Schule: Orientierung an ihren Zielen und Werten"
     futureGoals: []
-  - num: "07"
+  - num: "06"
     image: "assets/sp-digital.jpg"
     title: "Digitale Schule"
     claim: "Unsere Schülerinnen und Schüler erleben, erproben und bewerten aktuelle Entwicklungen ihrer digitalen Lebensrealität bei einem zunehmend selbstverständlichen Umgang mit digitalen Medien im Unterricht."
@@ -131,7 +118,7 @@ leitsaetze:
     futureGoals:
       - "Auszeichnung „Digitale Schule\""
       - "Digitales Klassenbuch"
-  - num: "08"
+  - num: "07"
     image: "assets/sp-hero.jpg"
     title: "Persönlichkeitsentwickelnde Schule"
     claim: "Lernende und Lehrende nehmen sich gegenseitig als Individuum und als integrativer Teil einer größeren Gemeinschaft wahr, und bilden in vielfältiger Form ihre Persönlichkeit aus."

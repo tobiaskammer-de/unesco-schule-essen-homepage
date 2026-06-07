@@ -213,12 +213,6 @@ const scheding = await getTeacherByLastName("Scheding");
 <!-- ===================== ZWEI SÄULEN ===================== -->
 <section class="mb-pillars" aria-label="Mittagessen und Betreuung im Überblick">
   <div class="container">
-    <div class="head">
-      <span class="eyebrow">{page.pillars.eyebrow}</span>
-      <h2>{page.pillars.title}{page.pillars.titleHighlight && <> <em>{page.pillars.titleHighlight}</em></>}</h2>
-      <p>{page.pillars.intro}</p>
-    </div>
-
     <div class="mb-pillar-grid">
       <article class="mb-pillar is-new">
         {page.pillars.mittagessen.badge && <span class="badge">{page.pillars.mittagessen.badge}</span>}
