@@ -10,7 +10,7 @@ pillars:
     title: "Warmes Mittagessen"
     body: "Frisch zubereitet von der Kantine Kayser. Montag bis Donnerstag warmes Essen mit Dessert, Freitag Kiosk-Angebot, und immer eine vegetarische Option."
     bullets:
-      - "72,00 € pro Monat"
+      - "88,00 € pro Monat"
       - "Anmeldung online unter kantinekayser.de"
       - "Bildung-und-Teilhabe-Paket möglich"
   betreuung:
@@ -30,7 +30,7 @@ mittagessenDetail:
   body: "Die Teilnahme ist freiwillig und tageweise oder dauerhaft möglich. Auch eine Barzahlung ist möglich, sodass auch spontane Esser:innen versorgt sind."
   facts:
     - label: "Kosten"
-      value: "72 €"
+      value: "88 €"
       note: "pro Monat"
     - label: "Wochenrhythmus"
       value: "Mo bis Do warm"
