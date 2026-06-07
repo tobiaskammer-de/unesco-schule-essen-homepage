@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Design-Vorschläge — UNESCO-Schule Essen</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: oklch(99% 0.004 230);
+    --ink: oklch(24% 0.01 240);
+    --muted: oklch(50% 0.012 240);
+    --hair: oklch(90% 0.006 240);
+    --card: oklch(100% 0 0 / 0.6);
+    --c1: oklch(48% 0.07 195);   /* Klar — Petrol */
+    --c2: oklch(58% 0.13 155);   /* Offen — Grün */
+    --c3: oklch(52% 0.18 255);   /* Haltung — Kobalt */
+    --space-sm:12px; --space-md:24px; --space-lg:48px; --space-xl:96px;
+  }
+  *,*::before,*::after{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:'Hanken Grotesk',sans-serif; line-height:1.6;
+    -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+  }
+  a{color:inherit;}
+  .wrap{max-width:1080px; margin:0 auto; padding:0 24px;}
+
+  header.top{padding:clamp(56px,9vw,120px) 0 clamp(32px,5vw,56px);}
+  .eyebrow{
+    font-size:12px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase;
+    color:var(--c1); margin:0 0 20px;
+  }
+  h1{
+    font-size:clamp(2.4rem,6vw,4.6rem); line-height:1.02; letter-spacing:-0.025em;
+    font-weight:800; margin:0; max-width:16ch;
+  }
+  .lede{
+    margin:28px 0 0; max-width:64ch; font-size:clamp(1.05rem,1.6vw,1.3rem);
+    color:var(--muted); font-weight:400;
+  }
+  .meta{
+    margin-top:32px; padding-top:20px; border-top:1px solid var(--hair);
+    display:flex; flex-wrap:wrap; gap:8px 28px; font-size:13.5px; color:var(--muted);
+  }
+  .meta b{color:var(--ink); font-weight:600;}
+
+  .grid{
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:20px; padding-bottom:clamp(48px,8vw,110px);
+  }
+  .card{
+    display:flex; flex-direction:column; min-height:300px;
+    padding:32px 28px 26px; border:1px solid var(--hair); border-radius:6px;
+    background:var(--bg); text-decoration:none; color:inherit;
+    transition:transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s, border-color .35s;
+  }
+  .card:hover{
+    transform:translateY(-4px);
+    box-shadow:0 22px 48px -28px oklch(24% 0.01 240 / 0.45);
+    border-color:transparent;
+  }
+  .card:focus-visible{outline:2px solid var(--ink); outline-offset:3px;}
+  .swatches{display:flex; gap:6px; margin-bottom:auto;}
+  .sw{width:26px; height:26px; border-radius:50%;}
+  .num{font-size:13px; font-weight:600; color:var(--muted); letter-spacing:0.06em; margin:28px 0 6px;}
+  .card h2{font-size:1.7rem; font-weight:800; letter-spacing:-0.02em; margin:0 0 10px;}
+  .card p{margin:0; color:var(--muted); font-size:15px; max-width:34ch;}
+  .go{
+    margin-top:22px; font-weight:600; font-size:14.5px; display:inline-flex; align-items:center; gap:7px;
+  }
+  .go .arr{transition:transform .25s;}
+  .card:hover .go .arr{transform:translateX(4px);}
+  .c1 .go,.c1 .num b{color:var(--c1);} .c2 .go{color:var(--c2);} .c3 .go{color:var(--c3);}
+
+  footer{border-top:1px solid var(--hair); padding:28px 0 60px; color:var(--muted); font-size:13px;}
+
+  @media (prefers-reduced-motion: reduce){
+    .card,.go .arr{transition:none;}
+    .card:hover{transform:none;}
+  }
+</style>
+</head>
+<body>
+  <header class="top">
+    <div class="wrap">
+      <p class="eyebrow">UNESCO-Schule Essen · Startseiten-Konzepte</p>
+      <h1>Drei Design-Vorschläge für die Startseite.</h1>
+      <p class="lede">Drei Richtungen für einen frischeren, weniger „corporate" wirkenden Auftritt — alle mit weißem Hintergrund und ausschließlich serifenloser Schrift. Wählen Sie einen Entwurf, um die komplette Beispiel-Startseite zu sehen.</p>
+      <div class="meta">
+        <span><b>Hintergrund:</b> Weiß</span>
+        <span><b>Schrift:</b> nur serifenlos, je Entwurf eine Familie</span>
+        <span><b>Inhalt:</b> exemplarisch (echte Texte &amp; Fotos)</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="grid">
+      <a class="card c1" href="vorschlag-1-klar.html">
+        <div class="swatches">
+          <span class="sw" style="background:oklch(99% 0.004 230); border:1px solid var(--hair);"></span>
+          <span class="sw" style="background:oklch(24% 0.01 240);"></span>
+          <span class="sw" style="background:var(--c1);"></span>
+        </div>
+        <p class="num">Vorschlag <b>01</b> · Schrift: Hanken Grotesk</p>
+        <h2>Klar</h2>
+        <p>Schweizer Reduktion: viel Weißraum, ruhige Typografie, ein dezenter Petrol-Akzent. Sachlich, präzise, zeitlos.</p>
+        <span class="go">Entwurf ansehen <span class="arr">→</span></span>
+      </a>
+
+      <a class="card c2" href="vorschlag-2-offen.html">
+        <div class="swatches">
+          <span class="sw" style="background:oklch(99% 0.006 95); border:1px solid var(--hair);"></span>
+          <span class="sw" style="background:oklch(95% 0.035 75);"></span>
+          <span class="sw" style="background:var(--c2);"></span>
+        </div>
+        <p class="num">Vorschlag <b>02</b> · Schrift: Figtree</p>
+        <h2>Offen</h2>
+        <p>Warm und einladend: freundliche Grüntöne, weiche Formen, nahbar. Eine offene, optimistische öffentliche Schule.</p>
+        <span class="go">Entwurf ansehen <span class="arr">→</span></span>
+      </a>
+
+      <a class="card c3" href="vorschlag-3-haltung.html">
+        <div class="swatches">
+          <span class="sw" style="background:oklch(99% 0.003 250); border:1px solid var(--hair);"></span>
+          <span class="sw" style="background:oklch(18% 0.02 260);"></span>
+          <span class="sw" style="background:var(--c3);"></span>
+        </div>
+        <p class="num">Vorschlag <b>03</b> · Schrift: Bricolage Grotesque</p>
+        <h2>Haltung</h2>
+        <p>Editorial und selbstbewusst: große Typografie, kräftiges Blau, klare Haltung. Unverwechselbar und mutig.</p>
+        <span class="go">Entwurf ansehen <span class="arr">→</span></span>
+      </a>
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap">Design-Entwürfe zur Auswahl · UNESCO-Schule Essen · Inhalte exemplarisch.</div>
+  </footer>
+</body>
+</html>

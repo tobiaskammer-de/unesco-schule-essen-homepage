@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UNESCO-Schule Essen — Vorschlag 3: Haltung</title>
+
+  <!-- Bricolage Grotesque: variable font, preconnect -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400;12..96,75..100,500;12..96,75..100,600;12..96,75..100,700;12..96,75..100,800&display=swap" rel="stylesheet">
+
+  <style>
+    /* ─── Design Tokens ─────────────────────────────────────── */
+    :root {
+      --bg:         oklch(99% 0.003 250);
+      --ink:        oklch(18% 0.02 260);
+      --muted:      oklch(45% 0.02 255);
+      --hairline:   oklch(89% 0.006 255);
+      --accent:     oklch(52% 0.18 255);
+      --accent-dim: oklch(52% 0.18 255 / 0.12);
+      --ink-inv:    oklch(97% 0.004 250);
+
+      /* Spacing (4pt scale) */
+      --sp-1:  4px;
+      --sp-2:  8px;
+      --sp-3:  12px;
+      --sp-4:  16px;
+      --sp-6:  24px;
+      --sp-8:  32px;
+      --sp-12: 48px;
+      --sp-16: 64px;
+      --sp-24: 96px;
+
+      /* Type scale */
+      --text-xs:   clamp(0.65rem, 0.9vw, 0.75rem);
+      --text-sm:   clamp(0.8rem,  1.1vw, 0.9rem);
+      --text-base: clamp(0.95rem, 1.3vw, 1.05rem);
+      --text-lg:   clamp(1.1rem,  1.6vw, 1.25rem);
+      --text-xl:   clamp(1.3rem,  2vw,   1.6rem);
+      --text-2xl:  clamp(1.6rem,  3vw,   2.2rem);
+      --text-3xl:  clamp(2rem,    4.5vw, 3.5rem);
+      --display:   clamp(3rem,    9vw,   8rem);
+
+      --font: 'Bricolage Grotesque', sans-serif;
+    }
+
+    /* ─── Reset & Base ───────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font);
+      font-size: var(--text-base);
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* ─── Page-load reveal ───────────────────────────────────── */
+    @keyframes fade-up {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .reveal {
+      opacity: 0;
+      animation: fade-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    .reveal-1 { animation-delay: 0.05s; }
+    .reveal-2 { animation-delay: 0.15s; }
+    .reveal-3 { animation-delay: 0.25s; }
+    .reveal-4 { animation-delay: 0.38s; }
+    .reveal-5 { animation-delay: 0.52s; }
+    .reveal-6 { animation-delay: 0.65s; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; animation: none; }
+    }
+
+    /* ─── Utility ────────────────────────────────────────────── */
+    .label {
+      font-size: var(--text-xs);
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .label-accent {
+      font-size: var(--text-xs);
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    /* ─── HEADER ─────────────────────────────────────────────── */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg);
+      border-bottom: 1px solid var(--hairline);
+      padding: var(--sp-4) clamp(var(--sp-6), 5vw, var(--sp-16));
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--sp-6);
+    }
+
+    .wordmark {
+      display: flex;
+      align-items: center;
+      gap: var(--sp-3);
+      font-size: var(--text-sm);
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      flex-shrink: 0;
+    }
+
+    .wordmark-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: clamp(var(--sp-4), 3vw, var(--sp-8));
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      font-size: var(--text-sm);
+      font-weight: 500;
+      color: var(--muted);
+      transition: color 0.15s;
+    }
+
+    nav a:hover { color: var(--ink); }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--sp-2);
+      font-family: var(--font);
+      font-size: var(--text-sm);
+      font-weight: 700;
+      background: var(--accent);
+      color: var(--bg);
+      border: none;
+      cursor: pointer;
+      padding: var(--sp-3) var(--sp-6);
+      letter-spacing: -0.01em;
+      text-decoration: none;
+      transition: background 0.18s, transform 0.15s;
+    }
+
+    .btn-primary:hover {
+      background: oklch(46% 0.2 255);
+      transform: translateY(-1px);
+    }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      font-family: var(--font);
+      font-size: var(--text-sm);
+      font-weight: 600;
+      background: transparent;
+      color: var(--ink);
+      border: 1.5px solid var(--ink);
+      cursor: pointer;
+      padding: var(--sp-3) var(--sp-6);
+      letter-spacing: -0.01em;
+      text-decoration: none;
+      transition: background 0.18s, color 0.18s;
+    }
+
+    .btn-ghost:hover {
+      background: var(--ink);
+      color: var(--bg);
+    }
+
+    /* ─── HERO ───────────────────────────────────────────────── */
+    .hero {
+      padding: clamp(var(--sp-12), 8vw, var(--sp-24)) clamp(var(--sp-6), 5vw, var(--sp-16));
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(var(--sp-8), 4vw, var(--sp-16));
+      align-items: end;
+      min-height: min(90vh, 820px);
+    }
+
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      gap: var(--sp-6);
+    }
+
+    .hero-eyebrow {
+      font-size: var(--text-xs);
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .hero-headline {
+      font-size: var(--display);
+      font-weight: 800;
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+      color: var(--ink);
+      max-width: 12ch;
+    }
+
+    .hero-headline em {
+      font-style: normal;
+      color: var(--accent);
+    }
+
+    .hero-sub {
+      font-size: var(--text-lg);
+      font-weight: 400;
+      color: var(--muted);
+      max-width: 52ch;
+      line-height: 1.55;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: var(--sp-4);
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .hero-right {
+      position: relative;
+    }
+
+    .hero-img-wrap {
+      position: relative;
+      aspect-ratio: 4 / 5;
+      overflow: hidden;
+      background: var(--accent-dim);
+    }
+
+    .hero-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Accent block behind the image */
+    .hero-img-wrap::before {
+      content: '';
+      position: absolute;
+      inset: -var(--sp-4);
+      bottom: auto;
+      left: auto;
+      right: calc(-1 * var(--sp-8));
+      top: calc(-1 * var(--sp-8));
+      width: 40%;
+      height: 40%;
+      background: var(--accent);
+      z-index: -1;
+    }
+
+    .hero-year-badge {
+      position: absolute;
+      bottom: var(--sp-6);
+      left: calc(-1 * var(--sp-8));
+      background: var(--ink);
+      color: var(--ink-inv);
+      padding: var(--sp-4) var(--sp-6);
+      font-size: var(--text-xl);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 1;
+    }
+
+    /* ─── TICKER / MARQUEE ───────────────────────────────────── */
+    .ticker-wrap {
+      overflow: hidden;
+      border-top: 1px solid var(--hairline);
+      border-bottom: 1px solid var(--hairline);
+      padding: var(--sp-4) 0;
+      background: var(--bg);
+    }
+
+    .ticker-track {
+      display: flex;
+      white-space: nowrap;
+      animation: marquee 28s linear infinite;
+      width: max-content;
+    }
+
+    .ticker-track span {
+      font-size: var(--text-xl);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      padding: 0 var(--sp-8);
+    }
+
+    .ticker-track span em {
+      font-style: normal;
+      color: var(--accent);
+    }
+
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .ticker-track { animation: none; }
+    }
+
+    /* ─── SECTION SCAFFOLD ───────────────────────────────────── */
+    .section {
+      padding: clamp(var(--sp-12), 8vw, var(--sp-24)) clamp(var(--sp-6), 5vw, var(--sp-16));
+    }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: var(--sp-6);
+      margin-bottom: clamp(var(--sp-12), 5vw, var(--sp-16));
+      padding-bottom: var(--sp-6);
+      border-bottom: 1px solid var(--hairline);
+    }
+
+    .section-num {
+      font-size: clamp(4rem, 8vw, 7rem);
+      font-weight: 800;
+      letter-spacing: -0.05em;
+      line-height: 0.85;
+      color: var(--hairline);
+    }
+
+    .section-title {
+      font-size: var(--text-2xl);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+    }
+
+    /* ─── SCHWERPUNKTE ───────────────────────────────────────── */
+    .schwerpunkte-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--sp-2);
+    }
+
+    .schwerpunkt {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .schwerpunkt-img {
+      aspect-ratio: 3 / 4;
+      overflow: hidden;
+      background: var(--accent-dim);
+    }
+
+    .schwerpunkt-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .schwerpunkt:hover .schwerpunkt-img img {
+      transform: scale(1.04);
+    }
+
+    .schwerpunkt-body {
+      padding: var(--sp-6) 0 var(--sp-8);
+    }
+
+    .schwerpunkt-title {
+      font-size: var(--text-xl);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      margin: var(--sp-3) 0 var(--sp-4);
+    }
+
+    .schwerpunkt-text {
+      font-size: var(--text-sm);
+      color: var(--muted);
+      line-height: 1.65;
+      max-width: 36ch;
+    }
+
+    /* First schwerpunkt: accent treatment */
+    .schwerpunkt:first-child .schwerpunkt-img::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--accent);
+      opacity: 0.08;
+      pointer-events: none;
+    }
+
+    /* ─── NEWS ───────────────────────────────────────────────── */
+    .news-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--sp-2);
+    }
+
+    .news-card {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .news-img {
+      aspect-ratio: 16 / 10;
+      overflow: hidden;
+      background: oklch(92% 0.006 255);
+    }
+
+    .news-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .news-card:hover .news-img img {
+      transform: scale(1.05);
+    }
+
+    .news-body {
+      padding: var(--sp-6) 0 var(--sp-4);
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: var(--sp-3);
+    }
+
+    .news-meta {
+      display: flex;
+      align-items: center;
+      gap: var(--sp-4);
+    }
+
+    .news-title {
+      font-size: var(--text-lg);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      line-height: 1.25;
+      max-width: 28ch;
+      flex: 1;
+    }
+
+    .news-date {
+      font-size: var(--text-xs);
+      font-weight: 500;
+      color: var(--muted);
+      margin-top: auto;
+    }
+
+    /* ─── OPEN-DAY CTA BAND ──────────────────────────────────── */
+    .openday {
+      margin: 0 clamp(var(--sp-6), 5vw, var(--sp-16));
+      margin-bottom: clamp(var(--sp-12), 8vw, var(--sp-24));
+    }
+
+    .openday-inner {
+      background: var(--ink);
+      color: var(--ink-inv);
+      padding: clamp(var(--sp-8), 5vw, var(--sp-16)) clamp(var(--sp-8), 5vw, var(--sp-16));
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: var(--sp-8);
+    }
+
+    .openday-num {
+      font-size: clamp(4rem, 8vw, 7rem);
+      font-weight: 800;
+      letter-spacing: -0.05em;
+      line-height: 0.85;
+      color: oklch(30% 0.04 260);
+    }
+
+    .openday-left {
+      display: flex;
+      flex-direction: column;
+      gap: var(--sp-6);
+    }
+
+    .openday-header {
+      display: flex;
+      align-items: baseline;
+      gap: var(--sp-6);
+    }
+
+    .openday-title {
+      font-size: var(--text-3xl);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 0.95;
+      color: var(--ink-inv);
+    }
+
+    .openday-when {
+      font-size: var(--text-lg);
+      font-weight: 600;
+      color: var(--accent);
+      letter-spacing: -0.01em;
+    }
+
+    .openday-desc {
+      font-size: var(--text-base);
+      color: oklch(65% 0.01 255);
+      max-width: 60ch;
+      line-height: 1.6;
+    }
+
+    .btn-accent {
+      display: inline-flex;
+      align-items: center;
+      font-family: var(--font);
+      font-size: var(--text-sm);
+      font-weight: 700;
+      background: var(--accent);
+      color: var(--bg);
+      border: none;
+      cursor: pointer;
+      padding: var(--sp-4) var(--sp-8);
+      letter-spacing: -0.01em;
+      text-decoration: none;
+      white-space: nowrap;
+      flex-shrink: 0;
+      align-self: center;
+      transition: background 0.18s;
+    }
+
+    .btn-accent:hover {
+      background: oklch(46% 0.2 255);
+    }
+
+    /* ─── FOOTER ─────────────────────────────────────────────── */
+    footer {
+      background: oklch(16% 0.025 260);
+      color: oklch(70% 0.01 255);
+    }
+
+    .footer-top {
+      padding: clamp(var(--sp-12), 6vw, var(--sp-24)) clamp(var(--sp-6), 5vw, var(--sp-16));
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      gap: var(--sp-12);
+      border-bottom: 1px solid oklch(28% 0.02 260);
+    }
+
+    .footer-brand {
+      grid-column: 1 / 2;
+    }
+
+    .footer-wordmark {
+      font-size: var(--text-xl);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--ink-inv);
+      margin-bottom: var(--sp-4);
+    }
+
+    .footer-address {
+      font-size: var(--text-sm);
+      line-height: 1.7;
+    }
+
+    .footer-tagline {
+      font-size: var(--text-xs);
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-top: var(--sp-4);
+    }
+
+    .footer-col h4 {
+      font-size: var(--text-sm);
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: var(--ink-inv);
+      margin-bottom: var(--sp-4);
+    }
+
+    .footer-col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: var(--sp-3);
+    }
+
+    .footer-col li a {
+      font-size: var(--text-sm);
+      color: oklch(62% 0.01 255);
+      transition: color 0.15s;
+    }
+
+    .footer-col li a:hover {
+      color: var(--ink-inv);
+    }
+
+    .footer-bottom {
+      padding: var(--sp-6) clamp(var(--sp-6), 5vw, var(--sp-16));
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--sp-4);
+      flex-wrap: wrap;
+    }
+
+    .footer-note {
+      font-size: var(--text-xs);
+      color: oklch(45% 0.01 255);
+      max-width: 70ch;
+    }
+
+    /* ─── RESPONSIVE ─────────────────────────────────────────── */
+    @media (max-width: 1024px) {
+      .hero {
+        grid-template-columns: 1fr;
+        min-height: auto;
+      }
+      .hero-right {
+        order: -1;
+      }
+      .hero-img-wrap {
+        aspect-ratio: 16 / 9;
+      }
+      .hero-year-badge {
+        left: 0;
+      }
+      .hero-headline {
+        max-width: 18ch;
+      }
+
+      .schwerpunkte-grid,
+      .news-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .openday-inner {
+        grid-template-columns: 1fr;
+        gap: var(--sp-8);
+      }
+      .openday-header {
+        flex-direction: column;
+        gap: var(--sp-3);
+      }
+
+      .footer-top {
+        grid-template-columns: 1fr 1fr;
+      }
+      .footer-brand {
+        grid-column: 1 / -1;
+      }
+    }
+
+    @media (max-width: 680px) {
+      header {
+        flex-wrap: wrap;
+        gap: var(--sp-3);
+      }
+      nav {
+        gap: var(--sp-4);
+        width: 100%;
+      }
+      .nav-cta { display: none; }
+
+      .schwerpunkte-grid,
+      .news-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .openday-inner {
+        padding: var(--sp-8);
+      }
+
+      .footer-top {
+        grid-template-columns: 1fr;
+        gap: var(--sp-8);
+      }
+      .footer-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .section-header {
+        flex-direction: column;
+        gap: var(--sp-2);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════════════════════════
+       HEADER
+  ══════════════════════════════════════════════════════════════ -->
+  <header>
+    <a href="#" class="wordmark">
+      <span class="wordmark-dot" aria-hidden="true"></span>
+      <span>UNESCO-Schule Essen</span>
+    </a>
+
+    <nav aria-label="Hauptnavigation">
+      <a href="#">Aktuelles</a>
+      <a href="#">Profil</a>
+      <a href="#">Angebote</a>
+      <a href="#">Informieren</a>
+    </nav>
+
+    <a href="#" class="btn-primary nav-cta" aria-label="Tag der offenen Tür">
+      Tag der offenen Tür
+    </a>
+  </header>
+
+  <!-- ══════════════════════════════════════════════════════════
+       HERO
+  ══════════════════════════════════════════════════════════════ -->
+  <section class="hero" aria-label="Einleitung">
+    <div class="hero-left">
+      <p class="hero-eyebrow reveal reveal-1">UNESCO-Schule Essen · Dein Gymnasium</p>
+
+      <h1 class="hero-headline reveal reveal-2">
+        Gemeinsam lernen, den eigenen Weg finden.
+      </h1>
+
+      <p class="hero-sub reveal reveal-3">
+        Als UNESCO-Projektschule begleiten wir junge Menschen zu einem starken Abitur — und zu einer Haltung, die in der Welt trägt.
+      </p>
+
+      <div class="hero-ctas reveal reveal-4">
+        <a href="#" class="btn-primary">Unsere Schule entdecken</a>
+        <a href="#" class="btn-ghost">Tag der offenen Tür · 28. Nov</a>
+      </div>
+    </div>
+
+    <div class="hero-right reveal reveal-5" aria-hidden="true">
+      <div class="hero-img-wrap">
+        <img
+          src="../assets/Buehne_Jubilaeum.jpg"
+          alt="Bühnenprojekt der UNESCO-Schule Essen"
+          loading="lazy"
+        >
+        <div class="hero-year-badge" aria-label="Seit 1975">1975</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════
+       TICKER / MARQUEE
+  ══════════════════════════════════════════════════════════════ -->
+  <div class="ticker-wrap" aria-label="Unsere Werte" role="marquee">
+    <div class="ticker-track" aria-hidden="true">
+      <!-- repeated twice for seamless loop -->
+      <span>Frieden <em>·</em> Vielfalt <em>·</em> Nachhaltigkeit <em>·</em> Demokratie <em>·</em> Weltoffenheit <em>·</em></span>
+      <span>Frieden <em>·</em> Vielfalt <em>·</em> Nachhaltigkeit <em>·</em> Demokratie <em>·</em> Weltoffenheit <em>·</em></span>
+      <span>Frieden <em>·</em> Vielfalt <em>·</em> Nachhaltigkeit <em>·</em> Demokratie <em>·</em> Weltoffenheit <em>·</em></span>
+      <span>Frieden <em>·</em> Vielfalt <em>·</em> Nachhaltigkeit <em>·</em> Demokratie <em>·</em> Weltoffenheit <em>·</em></span>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════
+       01 WAS UNS AUSZEICHNET
+  ══════════════════════════════════════════════════════════════ -->
+  <section class="section" id="profil" aria-labelledby="profil-title">
+    <div class="section-header">
+      <span class="section-num" aria-hidden="true">01</span>
+      <h2 class="section-title" id="profil-title">Was uns auszeichnet</h2>
+    </div>
+
+    <div class="schwerpunkte-grid">
+
+      <!-- Schwerpunkt 1 -->
+      <article class="schwerpunkt">
+        <div class="schwerpunkt-img">
+          <img
+            src="../assets/sp-weltoffen.jpg"
+            alt="Weltoffene Perspektiven – UNESCO-Projektschule"
+            loading="lazy"
+          >
+        </div>
+        <div class="schwerpunkt-body">
+          <span class="label-accent">UNESCO-Projektschule</span>
+          <h3 class="schwerpunkt-title">UNESCO-Projektschule</h3>
+          <p class="schwerpunkt-text">
+            Wir sind Teil eines weltweiten Netzwerks von rund 12&thinsp;000 Schulen. Frieden, Menschenrechte und nachhaltige Entwicklung sind bei uns fest im Lehrplan verankert.
+          </p>
+        </div>
+      </article>
+
+      <!-- Schwerpunkt 2 -->
+      <article class="schwerpunkt">
+        <div class="schwerpunkt-img">
+          <img
+            src="../assets/sp-lernend.jpg"
+            alt="Lernatmosphäre an der UNESCO-Schule Essen"
+            loading="lazy"
+          >
+        </div>
+        <div class="schwerpunkt-body">
+          <span class="label-accent">Profile</span>
+          <h3 class="schwerpunkt-title">Zwei Profile ab Klasse 5</h3>
+          <p class="schwerpunkt-text">
+            WortArt⁺ für Sprache, Literatur und darstellendes Spiel. Forscher² für Naturwissenschaften und Mathematik.
+          </p>
+        </div>
+      </article>
+
+      <!-- Schwerpunkt 3 -->
+      <article class="schwerpunkt">
+        <div class="schwerpunkt-img">
+          <img
+            src="../assets/sp-divers.jpg"
+            alt="Kulturelle Vielfalt an der Schule"
+            loading="lazy"
+          >
+        </div>
+        <div class="schwerpunkt-body">
+          <span class="label-accent">Kultur &amp; Gemeinschaft</span>
+          <h3 class="schwerpunkt-title">Kultur &amp; Demokratie</h3>
+          <p class="schwerpunkt-text">
+            Kooperationen mit dem Aalto-Theater und den Essener Philharmonikern, UNESCO-Projekttage und gelebte Mitbestimmung im Schulalltag.
+          </p>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════
+       02 AKTUELLES
+  ══════════════════════════════════════════════════════════════ -->
+  <section class="section" id="aktuelles" aria-labelledby="aktuelles-title" style="padding-top:0;">
+    <div class="section-header">
+      <span class="section-num" aria-hidden="true">02</span>
+      <h2 class="section-title" id="aktuelles-title">Aktuelles</h2>
+    </div>
+
+    <div class="news-grid">
+
+      <article class="news-card">
+        <div class="news-img">
+          <img
+            src="../assets/news/2025-11-20-aalto-cover.png"
+            alt="Bühnenproduktion mit dem Aalto-Theater"
+            loading="lazy"
+          >
+        </div>
+        <div class="news-body">
+          <div class="news-meta">
+            <span class="label-accent">Kooperation</span>
+          </div>
+          <h3 class="news-title">Eigene Bühnenproduktion mit dem Aalto-Theater</h3>
+          <p class="news-date">20. November 2025</p>
+        </div>
+      </article>
+
+      <article class="news-card">
+        <div class="news-img">
+          <img
+            src="../assets/news/2026-04-15-unesco-projekttag-cover.jpg"
+            alt="UNESCO-Projekttag: Grenzen überwinden"
+            loading="lazy"
+          >
+        </div>
+        <div class="news-body">
+          <div class="news-meta">
+            <span class="label-accent">UNESCO-Projekttag</span>
+          </div>
+          <h3 class="news-title">Projekttag: Grenzen überwinden</h3>
+          <p class="news-date">15. April 2026</p>
+        </div>
+      </article>
+
+      <article class="news-card">
+        <div class="news-img">
+          <img
+            src="../assets/news/sauberzauber1.jpeg"
+            alt="Sauberzauber – Schülerinnen und Schüler räumen den Stadtteil auf"
+            loading="lazy"
+          >
+        </div>
+        <div class="news-body">
+          <div class="news-meta">
+            <span class="label-accent">Aus dem Unterricht</span>
+          </div>
+          <h3 class="news-title">Sauberzauber: Wir räumen den Stadtteil auf</h3>
+          <p class="news-date">20. März 2026</p>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════
+       03 TAG DER OFFENEN TÜR
+  ══════════════════════════════════════════════════════════════ -->
+  <div class="openday" id="tag-der-offenen-tuer">
+    <div class="openday-inner">
+      <div class="openday-left">
+        <div class="openday-header">
+          <span class="openday-num" aria-hidden="true">03</span>
+          <div>
+            <h2 class="openday-title">Tag der&nbsp;offenen Tür</h2>
+            <p class="openday-when">Samstag, 28. November 2026 · 10–14 Uhr</p>
+          </div>
+        </div>
+        <p class="openday-desc">
+          Unterricht zum Mitmachen, Gespräche mit Lehrkräften, Schülerinnen und Schülern, Führungen durch die Naturwissenschafts- und Kunsträume. Eine Anmeldung ist nicht nötig.
+        </p>
+      </div>
+
+      <a href="#" class="btn-accent">Programm und Details</a>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════
+       FOOTER
+  ══════════════════════════════════════════════════════════════ -->
+  <footer>
+    <div class="footer-top">
+      <div class="footer-brand">
+        <p class="footer-wordmark">UNESCO-Schule Essen</p>
+        <address class="footer-address" style="font-style:normal;">
+          Steinmetzstraße 9<br>
+          45139 Essen
+        </address>
+        <p class="footer-tagline">Städtisches Gymnasium · UNESCO-Projektschule</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Profil</h4>
+        <ul>
+          <li><a href="#">Schulprogramm</a></li>
+          <li><a href="#">Leitbild</a></li>
+          <li><a href="#">UNESCO-Mission</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Angebote</h4>
+        <ul>
+          <li><a href="#">Sprachen</a></li>
+          <li><a href="#">Berufsorientierung</a></li>
+          <li><a href="#">AGs</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Informieren</h4>
+        <ul>
+          <li><a href="#">Anmeldung</a></li>
+          <li><a href="#">Eltern</a></li>
+          <li><a href="#">Anfahrt</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Kontakt</h4>
+        <ul>
+          <li><a href="#">Sekretariat</a></li>
+          <li><a href="#">Impressum</a></li>
+          <li><a href="#">Datenschutz</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p class="footer-note">
+        Dies ist ein Design-Entwurf (Vorschlag 3: „Haltung") — Inhalte exemplarisch.
+      </p>
+    </div>
+  </footer>
+
+  <!-- ─── Marquee robustness: duplicate detection ──────────── -->
+  <script>
+    // Ensure marquee runs at correct speed based on track width
+    (function() {
+      const track = document.querySelector('.ticker-track');
+      if (!track) return;
+      // Already handled via CSS; this is a no-op placeholder
+      // for future JS-driven adaptive speed if needed.
+    })();
+  </script>
+
+</body>
+</html>
