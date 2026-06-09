@@ -165,7 +165,7 @@ const pittelkau = await getTeacherByLastName("Pittelkau");
 
 <PageHero variant="feature" image={page.hero.image || "assets/kulturelle-bildung/buhne.jpg"} imageAlt={page.hero.imageAlt || ""} imageCredit="Bühne · UNESCO-Schule Essen">
   <Fragment slot="eyebrow">{page.hero.eyebrow}</Fragment>
-  <Fragment slot="title">{page.hero.title}{page.hero.titleHighlight && <><br />die bei uns <em>{page.hero.titleHighlight.replace(/^die bei uns /, "")}</em></>}</Fragment>
+  <Fragment slot="title">{page.hero.title}{page.hero.titleHighlight && <span style="color:var(--gold);">{page.hero.titleHighlight}</span>}</Fragment>
   {page.hero.lede && <Fragment slot="lede">{page.hero.lede}</Fragment>}
 </PageHero>
 
