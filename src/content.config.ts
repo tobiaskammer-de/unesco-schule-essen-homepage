@@ -89,6 +89,32 @@ const siteSchool = defineCollection({
 });
 
 /**
+ * Termin-Datenbank (Single-File Collection).
+ *
+ * Alle Schultermine in einer YAML-Liste — ersetzt den früheren
+ * Google-Kalender-Feed. Bearbeitbar in Sveltia unter „Termine".
+ * start/end im Format YYYY-MM-DD; end nur bei mehrtägigen Terminen
+ * (letzter Tag, inklusive). Kategorie wird in src/lib/calendar.ts
+ * automatisch aus dem Titel abgeleitet (Ferien, Prüfung, …).
+ */
+const siteTermine = defineCollection({
+  loader: glob({ pattern: "termine.yml", base: "./src/content/site" }),
+  schema: z.object({
+    events: z.array(
+      z.object({
+        title: z.string(),
+        start: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+        end: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional(),
+        time: z.string().regex(/^\d{2}:\d{2}$/).optional(),
+        timeEnd: z.string().regex(/^\d{2}:\d{2}$/).optional(),
+        location: z.string().optional(),
+        note: z.string().optional(),
+      })
+    ),
+  }),
+});
+
+/**
  * Seiten-Inhalte (Single-File Collections, eine pro Seite).
  *
  * Pro Seite eine YAML-Datei mit klar benannten Feldern. Layout bleibt
@@ -239,6 +265,7 @@ export const collections = {
   news,
   teachers,
   siteSchool,
+  siteTermine,
   pageHome,
   pageAnmeldung,
   pageLeitbild,

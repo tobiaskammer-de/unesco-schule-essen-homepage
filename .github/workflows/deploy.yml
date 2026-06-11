@@ -6,7 +6,9 @@ on:
   workflow_dispatch:
   schedule:
     # Täglich um 03:00 UTC (= 04:00 MEZ / 05:00 MESZ):
-    # holt den Google-Kalender-Feed neu und veröffentlicht die aktualisierte Seite.
+    # baut die Seite neu, damit datumsabhängige Ansichten (»Nächste Termine«,
+    # Kalender-Monatsraster) tagesaktuell bleiben. Die Termine selbst kommen
+    # seit Juni 2026 aus src/content/site/termine.yml (Sveltia, kein Google-Feed mehr).
     - cron: '0 3 * * *'
 
 permissions:

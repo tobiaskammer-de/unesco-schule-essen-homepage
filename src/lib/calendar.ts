@@ -1,11 +1,10 @@
-// @ts-ignore - node-ical ships without types
-import ical from "node-ical";
+import { getCollection } from "astro:content";
 
-const CALENDAR_ID =
-  "096da7ce40a3af379e539e1704b7812b42b529c3ff57155cafb0a35cea4fe41d@group.calendar.google.com";
-const FEED_URL = `https://calendar.google.com/calendar/ical/${encodeURIComponent(
-  CALENDAR_ID
-)}/public/basic.ics`;
+/**
+ * Termin-Quelle: src/content/site/termine.yml (Sveltia-Collection „Termine").
+ * Früher kam der Kalender aus einem Google-Kalender-iCal-Feed; seit Juni 2026
+ * werden alle Termine direkt im CMS gepflegt und beim Build eingelesen.
+ */
 
 export interface CalEvent {
   id: string;
@@ -61,58 +60,35 @@ let cached: CalEvent[] | null = null;
 export async function fetchCalendar(): Promise<CalEvent[]> {
   if (cached) return cached;
 
-  const res = await fetch(FEED_URL, { cache: "no-store" as RequestCache });
-  if (!res.ok) {
-    console.warn(`[calendar] feed fetch failed: ${res.status}`);
-    cached = [];
-    return cached;
-  }
-  const icsText = await res.text();
-  const parsed = ical.sync.parseICS(icsText);
+  const entries = await getCollection("siteTermine");
+  const raw = entries[0]?.data.events ?? [];
 
-  const events: CalEvent[] = [];
-  for (const key of Object.keys(parsed)) {
-    const item = (parsed as any)[key];
-    if (!item || item.type !== "VEVENT") continue;
-    const start: Date | undefined = item.start;
-    const end: Date | undefined = item.end;
-    if (!start) continue;
-
-    const isAllDay =
-      (item.datetype === "date") ||
-      (item.start && (item.start as any).dateOnly === true);
-
-    const startDate = toISODate(start);
-    // Google treats all-day DTEND as exclusive — subtract one day for display end.
-    let endDateRaw = end ?? start;
-    let endForDisplay = new Date(endDateRaw);
-    if (isAllDay && end) {
-      endForDisplay.setUTCDate(endForDisplay.getUTCDate() - 1);
-    }
-    const endDate = toISODate(endForDisplay);
-
-    const title =
-      typeof item.summary === "string"
-        ? item.summary
-        : (item.summary as any)?.val ?? "Termin";
-
-    events.push({
-      id: String(item.uid || key),
-      title: title.trim(),
-      description: typeof item.description === "string" ? item.description : undefined,
-      location: typeof item.location === "string" ? item.location : undefined,
+  const events: CalEvent[] = raw.map((t, i) => {
+    const startDate = t.start;
+    // end ist der letzte Tag (inklusive); fehlt er, ist der Termin eintägig.
+    const endDate = t.end ?? t.start;
+    const title = t.title.trim();
+    return {
+      id: `termin-${startDate}-${i}`,
+      title,
+      description: t.note,
+      location: t.location,
       startDate,
       endDate,
-      startTime: isAllDay ? null : start.toISOString(),
-      endTime: isAllDay ? null : end?.toISOString() ?? null,
-      isAllDay,
+      startTime: t.time ? `${startDate}T${t.time}:00` : null,
+      endTime: t.timeEnd ? `${endDate}T${t.timeEnd}:00` : null,
+      isAllDay: !t.time,
       isMultiDay: startDate !== endDate,
       category: categorize(title),
-    });
-  }
+    };
+  });
 
-  // Sort ascending by start
-  events.sort((a, b) => (a.startDate < b.startDate ? -1 : a.startDate > b.startDate ? 1 : 0));
+  // Sort ascending by start date, then start time
+  events.sort((a, b) =>
+    a.startDate !== b.startDate
+      ? (a.startDate < b.startDate ? -1 : 1)
+      : (a.startTime ?? "") < (b.startTime ?? "") ? -1 : 1
+  );
   cached = events;
   return events;
 }

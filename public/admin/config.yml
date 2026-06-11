@@ -133,6 +133,36 @@ collections:
           - { name: emailOberstufe, label: "E-Mail Oberstufe", widget: string, required: false }
 
   # =====================================================================
+  # Termine — zentrale Termin-Datenbank (Startseite „Nächste Termine" + Kalender-Seite)
+  # =====================================================================
+  - name: termine
+    label: "Termine"
+    label_singular: "Termine"
+    editor:
+      preview: false
+    files:
+      - file: src/content/site/termine.yml
+        label: "Alle Termine"
+        name: termine
+        format: yaml
+        fields:
+          - name: events
+            label: "Termine"
+            label_singular: "Termin"
+            widget: list
+            collapsed: true
+            summary: "{{fields.start}} · {{fields.title}}"
+            hint: "Die Kategorie (Ferien / Prüfung / Hervorgehoben) wird automatisch aus dem Titel erkannt — Stichworte wie „Ferien“, „Klausur“, „Prüfung“, „Zeugnis“, „Tag der offenen Tür“, „Anmeldung“ steuern die Darstellung."
+            fields:
+              - { name: title, label: "Titel", widget: string }
+              - { name: start, label: "Beginn (Datum)", widget: string, pattern: ['^\d{4}-\d{2}-\d{2}$', "Format JJJJ-MM-TT, z. B. 2026-12-05"], hint: "Format JJJJ-MM-TT, z. B. 2026-12-05" }
+              - { name: end, label: "Ende — nur bei mehrtägigen Terminen", widget: string, required: false, pattern: ['^\d{4}-\d{2}-\d{2}$', "Format JJJJ-MM-TT"], hint: "Letzter Tag (inklusive), Format JJJJ-MM-TT. Bei eintägigen Terminen leer lassen." }
+              - { name: time, label: "Uhrzeit Beginn (optional)", widget: string, required: false, pattern: ['^\d{2}:\d{2}$', "Format HH:MM, z. B. 14:30"], hint: "z. B. 14:30" }
+              - { name: timeEnd, label: "Uhrzeit Ende (optional)", widget: string, required: false, pattern: ['^\d{2}:\d{2}$', "Format HH:MM"] }
+              - { name: location, label: "Ort (optional)", widget: string, required: false }
+              - { name: note, label: "Notiz (optional)", widget: string, required: false }
+
+  # =====================================================================
   # Seiten-Inhalte — Texte, Hero-Bereiche, Listen pro Seite
   # =====================================================================
   - name: pages
