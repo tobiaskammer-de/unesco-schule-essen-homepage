@@ -117,7 +117,7 @@ const munsch = await getTeacherByLastName("Munsch");
 
 <main id="top">
 
-<PageHero variant="feature">
+<PageHero variant="feature" image={page.hero.image} imageAlt={page.hero.imageAlt || ""} imageCredit="UNESCO-Welterbe Zeche Zollverein · Foto: HopeLasts8 · CC BY-SA 4.0">
   {page.hero.badge && <Fragment slot="badge">{page.hero.badge}</Fragment>}
   <Fragment slot="eyebrow">{page.hero.eyebrow}</Fragment>
   <Fragment slot="title">{page.hero.title}{page.hero.titleHighlight && <> <em>{page.hero.titleHighlight}</em></>}</Fragment>

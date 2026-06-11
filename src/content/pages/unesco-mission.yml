@@ -3,6 +3,8 @@ hero:
   title: "Wir heißen nicht UNESCO-Schule,"
   titleHighlight: "sondern sind es"
   lede: "Wir sind das einzige Gymnasium in Deutschland, das den Namen der UNESCO trägt: nach einem intensiven, mehrjährigen Prüfungsverfahren der Deutschen UNESCO-Kommission."
+  image: "assets/unesco-mission-hero.jpg"
+  imageAlt: "Beleuchteter Doppelbock-Förderturm der Zeche Zollverein bei Nacht"
 
 statement:
   title: ""
