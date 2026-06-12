@@ -12,6 +12,9 @@ const munsch = await getTeacherByLastName("Munsch");
 <BaseLayout title="UNESCO – Name und Mission · UNESCO-Schule Essen">
 <style is:global>
   /* ---------- UNESCO-Mission page ---------- */
+  /* Hero-Bild: Förderturm sitzt bei ~66% Bildbreite — bei horizontalem
+     Beschnitt (Mobile) auf den Turm zentrieren statt auf die Bildmitte. */
+  .page-hero .page-hero__bg{object-position:66% 50%;}
   .un-statement{
     background:var(--creme);
     padding:var(--space-section) 0;
