@@ -312,7 +312,7 @@ const sp: any = await getSingle("pageSchulprogramm");
 <PageHero variant="feature" image="assets/schulhof-hero.jpg" imageAlt="Gesamtes Kollegium und die Schülerschaft der UNESCO-Schule Essen auf dem Schulhof">
   {lb.hero.badge && <Fragment slot="badge">{lb.hero.badge}</Fragment>}
   <Fragment slot="eyebrow">{lb.hero.eyebrow}</Fragment>
-  <Fragment slot="title">{lb.hero.title}{lb.hero.titleHighlight && <><br /><em>{lb.hero.titleHighlight}</em></>}</Fragment>
+  <Fragment slot="title">{lb.hero.title}{lb.hero.titleHighlight && <><br />{lb.hero.titleHighlight}</>}</Fragment>
   <Fragment slot="lede">{lb.hero.lede}</Fragment>
 </PageHero>
 

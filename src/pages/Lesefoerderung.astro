@@ -203,7 +203,7 @@ function link(p: string): string {
 
 <PageHero variant="page">
   <Fragment slot="eyebrow">{page.hero.eyebrow}</Fragment>
-  <Fragment slot="title">{page.hero.title}{page.hero.titleHighlight && <><br /><em>{page.hero.titleHighlight}</em></>}</Fragment>
+  <Fragment slot="title">{page.hero.title}{page.hero.titleHighlight && <><br />{page.hero.titleHighlight}</>}</Fragment>
   <Fragment slot="lede">{page.hero.lede}</Fragment>
 </PageHero>
 

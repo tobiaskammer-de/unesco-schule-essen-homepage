@@ -103,7 +103,7 @@ const introParas: string[] = (page.intro.body ?? "").split(/\n\n+/).map((p: stri
 
 <PageHero variant="feature">
   <Fragment slot="eyebrow">{page.hero.eyebrow}</Fragment>
-  <Fragment slot="title">{page.hero.title}{page.hero.titleHighlight && <> <em>{page.hero.titleHighlight}</em></>}</Fragment>
+  <Fragment slot="title">{page.hero.title}{page.hero.titleHighlight && <>{" "}{page.hero.titleHighlight}</>}</Fragment>
   <Fragment slot="lede">{page.hero.lede}</Fragment>
 </PageHero>
 

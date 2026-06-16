@@ -99,7 +99,7 @@ const page: any = await getSingle("pageSchliessfaecher");
 
 <PageHero variant="feature" image="assets/schließfaecher.png" imageAlt="">
   <Fragment slot="eyebrow">{page.hero.eyebrow}</Fragment>
-  <Fragment slot="title">{page.hero.title}{page.hero.titleHighlight && <> <em>{page.hero.titleHighlight}</em></>}</Fragment>
+  <Fragment slot="title">{page.hero.title}{page.hero.titleHighlight && <>{" "}{page.hero.titleHighlight}</>}</Fragment>
   <Fragment slot="lede">{page.hero.lede}</Fragment>
 </PageHero>
 

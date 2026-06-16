@@ -7,7 +7,6 @@ import {
   getTrainees,
   getAllSubjects,
   displayName,
-  initials,
 } from "../lib/teachers";
 import { getSingle } from "../lib/pageContent";
 
@@ -20,16 +19,6 @@ const subjects = await getAllSubjects();
 const rolesSet = new Set<string>();
 for (const t of staff) for (const r of t.data.roles) rolesSet.add(r);
 const roles = Array.from(rolesSet).sort((a, b) => a.localeCompare(b, "de"));
-
-const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
-const placeholder = `${BASE}/assets/kollegium/_placeholder.svg`;
-
-function asset(p: string): string {
-  if (!p) return placeholder;
-  if (p.startsWith("http")) return p;
-  if (p.startsWith("/")) return p; // schon mit BASE präfixiert
-  return `${BASE}/${p}`;
-}
 ---
 <BaseLayout title="Kollegium · UNESCO-Schule Essen" description="Die Lehrkräfte der UNESCO-Schule Essen mit Fächern und Kontaktmöglichkeiten.">
 <style is:global>
@@ -93,12 +82,6 @@ function asset(p: string): string {
   .ko-card:hover{transform:translateY(-2px);box-shadow:0 14px 32px -20px rgba(14,77,79,0.28);}
   @media (prefers-reduced-motion: reduce){.ko-card:hover{transform:none;}}
   .ko-card.is-hidden{display:none;}
-
-  .ko-card .photo{
-    aspect-ratio:4/3;overflow:hidden;background:var(--creme);
-    border-bottom:1px solid var(--hairline);
-  }
-  .ko-card .photo img{width:100%;height:100%;object-fit:cover;display:block;}
 
   .ko-card .body{padding:18px 18px 16px;display:flex;flex-direction:column;gap:8px;flex:1;}
   .ko-card .name{
@@ -181,7 +164,7 @@ function asset(p: string): string {
 
 <PageHero variant="feature" image="assets/kollegium.jpeg" imageAlt="" imageCredit="Kollegium · UNESCO-Schule Essen">
   <Fragment slot="eyebrow">{page.hero.eyebrow}</Fragment>
-  <Fragment slot="title">{page.hero.title}{page.hero.titleHighlight && <> <em>{page.hero.titleHighlight}</em></>}</Fragment>
+  <Fragment slot="title">{page.hero.title}{page.hero.titleHighlight && <>{" "}{page.hero.titleHighlight}</>}</Fragment>
   {page.hero.lede && <Fragment slot="lede">{page.hero.lede}</Fragment>}
 </PageHero>
 
@@ -204,23 +187,14 @@ function asset(p: string): string {
     </div>
 
     <div class="ko-grid" id="ko-grid">
-      {staff.map((t, i) => (
+      {staff.map((t) => (
         <article
           class="ko-card"
           data-subjects={t.data.subjects.join("|")}
           data-roles={t.data.roles.join("|")}
         >
-          <div class="photo">
-            <img
-              src={asset(t.data.photo || "")}
-              alt={`Porträt von ${displayName(t)}`}
-              width="400" height="300"
-              loading={i < 8 ? "eager" : "lazy"}
-              onerror={`this.src='${placeholder}'`}
-            />
-          </div>
           <div class="body">
-            <p class="name">{displayName(t)}</p>
+            <p class="name">{t.data.lastName}, {t.data.firstName}</p>
             {t.data.subjects.length > 0 && (
               <p class="subjects">{t.data.subjects.join(" · ")}</p>
             )}
@@ -259,11 +233,8 @@ function asset(p: string): string {
       <div class="ko-trainees-grid">
         {trainees.map((t) => (
           <article class="ko-card">
-            <div class="photo">
-              <img src={asset(t.data.photo || "")} alt={`Porträt von ${displayName(t)}`} width="400" height="300" loading="lazy" onerror={`this.src='${placeholder}'`}/>
-            </div>
             <div class="body">
-              <p class="name">{displayName(t)}</p>
+              <p class="name">{t.data.lastName}, {t.data.firstName}</p>
               <p class="subjects">Referendariat</p>
             </div>
           </article>

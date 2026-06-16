@@ -206,7 +206,7 @@ const scheding = await getTeacherByLastName("Scheding");
 
 <PageHero variant="page">
   <Fragment slot="eyebrow">{page.hero.eyebrow}</Fragment>
-  <Fragment slot="title">{page.hero.title}{page.hero.titleHighlight && <> <em>{page.hero.titleHighlight}</em></>}</Fragment>
+  <Fragment slot="title">{page.hero.title}{page.hero.titleHighlight && <>{" "}{page.hero.titleHighlight}</>}</Fragment>
   {page.hero.lede && <Fragment slot="lede">{page.hero.lede}</Fragment>}
 </PageHero>
 

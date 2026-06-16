@@ -172,7 +172,7 @@ function asset(p: string): string {
 
 <PageHero variant="feature" image={page.hero.image || "assets/ehemalige/banner.png"} imageAlt={page.hero.imageAlt || "UNESCO-Schule Essen, Ehemalige"}>
   <Fragment slot="eyebrow">{page.hero.eyebrow}</Fragment>
-  <Fragment slot="title">{page.hero.title}{page.hero.titleHighlight && <><br />immer <em>{page.hero.titleHighlight.replace(/^immer /, "")}</em></>}</Fragment>
+  <Fragment slot="title">{page.hero.title}{page.hero.titleHighlight && <><br />immer {page.hero.titleHighlight.replace(/^immer /, "")}</>}</Fragment>
   <Fragment slot="lede">{page.hero.lede}</Fragment>
 </PageHero>
 

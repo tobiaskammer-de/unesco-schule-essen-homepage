@@ -283,7 +283,7 @@ const [koordOberstufe, stufeEF] = await Promise.all([
 
 <PageHero variant="feature" image="assets/pillar-abitur.jpg" imageAlt="">
   <Fragment slot="eyebrow">{page.hero.eyebrow}</Fragment>
-  <Fragment slot="title">{page.hero.title}{page.hero.titleHighlight && <><br />den <em>{page.hero.titleHighlight.replace(/^den /, "").replace(/ finden\.$/, "")}</em> finden.</>}</Fragment>
+  <Fragment slot="title">{page.hero.title}{page.hero.titleHighlight && <><br />{page.hero.titleHighlight}</>}</Fragment>
   <Fragment slot="lede">{page.hero.lede}</Fragment>
   <Fragment slot="actions">
     <a href="assets/GO2026.pdf" class="ob-download" download>
