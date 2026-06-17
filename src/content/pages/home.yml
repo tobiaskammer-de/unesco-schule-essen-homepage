@@ -5,8 +5,8 @@ hero:
   sub: "Als UNESCO-Projektschule begleiten wir junge Menschen zu einem starken Abitur und zu einer Haltung, die in der Welt trägt."
   ctaLabel: "Unsere Schule entdecken"
   ctaHref: "#was-uns-auszeichnet"
-  imageSrc: "assets/hero.jpeg"
-  imageAlt: "Bibliothek mit geschwungenen Bücherregalen"
+  imageSrc: "assets/hero/start.jpg"
+  imageAlt: "Schülerinnen und Schüler der UNESCO-Schule Essen"
 
 path:
   title: "Dein Weg zu uns"

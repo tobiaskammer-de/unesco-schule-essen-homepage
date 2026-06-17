@@ -3,8 +3,8 @@ hero:
   title: "Die Mittelstufe"
   titleHighlight: "Klasse 7 bis 10"
   lede: "Fundiertes Wissen, methodische Klarheit und Zeit, den eigenen Weg zu finden. Die Mittelstufe ist die tragende Phase zwischen Ankommen und Oberstufe."
-  image: "assets/sp-lernend.jpg"
-  imageAlt: ""
+  image: "assets/hero/mittelstufe.jpg"
+  imageAlt: "Jugendliche mit Tablet"
 
 alert:
   label: "Bitte beachten"

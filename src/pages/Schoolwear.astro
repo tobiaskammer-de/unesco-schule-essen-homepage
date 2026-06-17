@@ -101,7 +101,7 @@ const introParas: string[] = (page.intro.body ?? "").split(/\n\n+/).map((p: stri
 
 <main id="top">
 
-<PageHero variant="feature">
+<PageHero variant="feature" image="assets/hero/schoolwear.jpg" imageAlt="Gestapelte Kleidung in warmen Tönen">
   <Fragment slot="eyebrow">{page.hero.eyebrow}</Fragment>
   <Fragment slot="title">{page.hero.title}{page.hero.titleHighlight && <> <em>{page.hero.titleHighlight}</em></>}</Fragment>
   <Fragment slot="lede">{page.hero.lede}</Fragment>

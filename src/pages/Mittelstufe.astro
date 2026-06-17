@@ -135,7 +135,7 @@ const kontaktEmail = koordMittelstufe?.data.email ?? "info@unesco-schule-essen.d
 
 <main id="top">
 
-<PageHero variant="feature" image={page.hero.image || "assets/sp-lernend.jpg"} imageAlt={page.hero.imageAlt || ""} imageCredit="Platzhalter · Foto folgt">
+<PageHero variant="feature" image={page.hero.image || "assets/sp-lernend.jpg"} imageAlt={page.hero.imageAlt || ""}>
   <Fragment slot="eyebrow">{page.hero.eyebrow}</Fragment>
   <Fragment slot="title">Die <em>{page.hero.title.replace(/^Die /, "")}</em>{page.hero.titleHighlight && <><br />{page.hero.titleHighlight}</>}</Fragment>
   <Fragment slot="lede">{page.hero.lede}</Fragment>

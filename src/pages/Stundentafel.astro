@@ -230,7 +230,7 @@ const page: any = await getSingle("pageStundentafel");
 
 <main id="top">
 
-<PageHero variant="feature">
+<PageHero variant="feature" image="assets/hero/stundentafel.jpg" imageAlt="Schreibtisch von oben mit Notizen und Unterlagen">
   <Fragment slot="eyebrow">{page.hero.eyebrow}</Fragment>
   <Fragment slot="title">{page.hero.title}{page.hero.titleHighlight && <><br />und <em>{page.hero.titleHighlight.replace(/^und /, "")}</em></>}</Fragment>
   {page.hero.lede && <Fragment slot="lede">{page.hero.lede}</Fragment>}
