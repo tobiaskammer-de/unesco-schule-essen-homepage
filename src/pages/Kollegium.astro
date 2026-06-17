@@ -194,7 +194,7 @@ const roles = Array.from(rolesSet).sort((a, b) => a.localeCompare(b, "de"));
           data-roles={t.data.roles.join("|")}
         >
           <div class="body">
-            <p class="name">{t.data.lastName}, {t.data.firstName}</p>
+            <p class="name">{t.data.title ? t.data.title + " " : ""}{t.data.lastName}, {t.data.firstName}</p>
             {t.data.subjects.length > 0 && (
               <p class="subjects">{t.data.subjects.join(" · ")}</p>
             )}
@@ -234,7 +234,7 @@ const roles = Array.from(rolesSet).sort((a, b) => a.localeCompare(b, "de"));
         {trainees.map((t) => (
           <article class="ko-card">
             <div class="body">
-              <p class="name">{t.data.lastName}, {t.data.firstName}</p>
+              <p class="name">{t.data.title ? t.data.title + " " : ""}{t.data.lastName}, {t.data.firstName}</p>
               <p class="subjects">Referendariat</p>
             </div>
           </article>
