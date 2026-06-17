@@ -3,8 +3,8 @@ hero:
   title: Lebendige
   titleHighlight: Kunst
   lede: 'An unserer Schule entstehen Werke, die mehr sind als ein Schulergebnis: Bilder, Skulpturen, Drucke und Aktionen, die unseren Schulalltag prägen.'
-  image: "assets/hero/lebendige-kunst.jpg"
-  imageAlt: "Atelier mit Staffeleien und Kunstwerken"
+  image: ''
+  imageAlt: ''
 
 gallery:
   eyebrow: Eindrücke
