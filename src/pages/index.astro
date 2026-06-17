@@ -272,7 +272,8 @@ const BASE = import.meta.env.BASE_URL;
   .pillar-quote blockquote::before{
     content:"\201E";
     display:block;font-family:var(--serif);font-size:72px;line-height:0.4;
-    color:var(--bordeaux);opacity:0.5;margin-bottom:14px;
+    color:var(--bordeaux);opacity:0.5;margin-bottom:20px;
+    transform:translateY(-0.15em);
   }
   .pillar-quote cite{
     display:block;margin-top:16px;
@@ -426,7 +427,7 @@ const BASE = import.meta.env.BASE_URL;
     .pillar-quote{transform:none;padding:28px 24px;}
     .pillar-quote:hover{transform:none;animation:none;}
     .pillar-quote blockquote{font-size:clamp(20px,4.5vw,24px);}
-    .pillar-quote blockquote::before{font-size:56px;margin-bottom:8px;}
+    .pillar-quote blockquote::before{font-size:56px;margin-bottom:14px;}
     .pillar-card h3{font-size:22px;}
 
     /* Voice: 1-spaltig */
