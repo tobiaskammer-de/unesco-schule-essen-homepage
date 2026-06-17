@@ -125,18 +125,8 @@ const ags = page.list.ags.map((ag: any) => ({
   /* Ansprechpartner-Mini-Card unten in jeder Karte */
   .ag-card .contact{
     margin-top:auto;padding:18px 28px 24px;
-    display:grid;grid-template-columns:44px 1fr;gap:14px;align-items:center;
     border-top:1px solid var(--hairline);background:var(--offwhite);
   }
-  .ag-card .contact .avatar{
-    width:44px;height:44px;border-radius:50%;overflow:hidden;
-    background:var(--petrol);color:var(--creme);
-    display:flex;align-items:center;justify-content:center;
-    font-family:var(--serif);font-weight:500;font-size:18px;letter-spacing:-0.01em;
-  }
-  .ag-card.accent-bordeaux .contact .avatar{background:var(--bordeaux);}
-  .ag-card.accent-gold .contact .avatar{background:var(--gold);color:var(--gold-text);}
-  .ag-card .contact .avatar img{width:100%;height:100%;object-fit:cover;display:block;}
   .ag-card .contact .info{display:flex;flex-direction:column;gap:2px;}
   .ag-card .contact .role{
     font-family:var(--sans);font-size:10.5px;font-weight:600;
@@ -204,9 +194,6 @@ const ags = page.list.ags.map((ag: any) => ({
           </div>
 
           <div class="contact">
-            <span class="avatar" aria-hidden="true">
-              {ag.contact.photo ? <img src={`${BASE}/${ag.contact.photo}`} alt="" loading="lazy" width="88" height="88"/> : ag.contact.initials}
-            </span>
             <div class="info">
               <span class="role">{ag.contact.role}</span>
               <span class="name">{ag.contact.name}</span>

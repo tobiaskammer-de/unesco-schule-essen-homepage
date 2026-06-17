@@ -3,7 +3,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
 import MailLink from "../components/MailLink.astro";
 import { getTeacherByRole, ROLES } from "../lib/roles";
-import { displayName, initials } from "../lib/teachers";
+import { displayName } from "../lib/teachers";
 import { getSingle } from "../lib/pageContent";
 
 const page: any = await getSingle("pageSchulleitung");
@@ -15,15 +15,6 @@ const [schulleiterin, stellv, koordEprob, koordMittelstufe, koordOberstufe] = aw
   getTeacherByRole(ROLES.KOORD_MITTELSTUFE),
   getTeacherByRole(ROLES.KOORD_OBERSTUFE),
 ]);
-
-const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
-function asset(p?: string | null): string | undefined {
-  if (!p) return undefined;
-  if (/^https?:\/\//.test(p)) return p;
-  if (p.startsWith(BASE + "/") || p.startsWith(BASE)) return p;
-  if (p.startsWith("/")) return BASE && !p.startsWith(BASE) ? BASE + p : p;
-  return BASE + "/" + p;
-}
 
 const leadership = [
   { teacher: schulleiterin, role: "Schulleiterin" },
@@ -72,14 +63,6 @@ const koordinationen = [
   }
   @media (prefers-reduced-motion: reduce){.sl-card:hover{transform:none;}}
 
-  .sl-card .avatar{
-    width:104px;height:104px;border-radius:50%;overflow:hidden;
-    background:var(--petrol);
-    display:flex;align-items:center;justify-content:center;
-    font-family:var(--serif);font-weight:500;font-size:32px;color:var(--creme);
-    letter-spacing:-0.01em;flex-shrink:0;
-  }
-  .sl-card .avatar img{width:100%;height:100%;object-fit:cover;display:block;}
 
   .sl-card .role{
     font-family:var(--sans);font-size:11px;font-weight:600;
@@ -123,11 +106,6 @@ const koordinationen = [
     <div class="sl-grid sl-grid--two">
       {leadership.map(({ teacher, role }) => (
         <article class="sl-card">
-          <div class="avatar">
-            {asset(teacher!.data.photo)
-              ? <img src={asset(teacher!.data.photo)} alt="" loading="lazy" width="104" height="104" />
-              : <span>{initials(teacher!)}</span>}
-          </div>
           <p class="role">{role}</p>
           <h3 class="name">{displayName(teacher!)}</h3>
           <MailLink class="mail" email={teacher!.data.email} />
@@ -138,11 +116,6 @@ const koordinationen = [
     <div class="sl-grid">
       {koordinationen.map(({ teacher, role }) => (
         <article class="sl-card">
-          <div class="avatar">
-            {asset(teacher!.data.photo)
-              ? <img src={asset(teacher!.data.photo)} alt="" loading="lazy" width="104" height="104" />
-              : <span>{initials(teacher!)}</span>}
-          </div>
           <p class="role">{role}</p>
           <h3 class="name">{displayName(teacher!)}</h3>
           <MailLink class="mail" email={teacher!.data.email} />

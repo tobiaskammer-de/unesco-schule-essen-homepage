@@ -1,19 +1,23 @@
 ---
 import type { TeacherEntry } from "../lib/teachers";
-import { displayName, initials } from "../lib/teachers";
+import { displayName } from "../lib/teachers";
 import MailLink from "./MailLink.astro";
 
 /**
- * Wiederverwendbares Personen-Kärtchen.
+ * Wiederverwendbares Personen-Kärtchen — ohne Foto.
  *
  * Datenquelle hat Vorrang in dieser Reihenfolge:
  *   1. teacher (Eintrag aus der Kollegium-Datenbank)
  *   2. manuelle Props (für externe Personen wie Talentscout, Förderverein)
  *
- * Die Komponente respektiert das vorhandene Design (--petrol, --gold etc.)
- * und kennt drei Varianten:
- *   - "compact"  → schmale Karte mit kleinem Avatar (für Beratung-Layout)
- *   - "feature"  → Standard-Karte mit großem Avatar (Schulleitung)
+ * Die Karte zeigt Verantwortungsbereich (roleLabel) und Name; ein farbiger
+ * Akzentbalken oben gibt visuelle Struktur. Foto-Felder (manualPhoto,
+ * photoOverride) werden aus Kompatibilitätsgründen weiter akzeptiert, aber
+ * nicht mehr dargestellt.
+ *
+ * Drei Varianten:
+ *   - "compact"  → schmale Karte (für Beratung-Layout)
+ *   - "feature"  → Standard-Karte (Schulleitung)
  *   - "dark"     → invertierte Karte für dunkle Sektionen (Schulsozialarbeit)
  */
 interface Props {
@@ -28,11 +32,12 @@ interface Props {
   manualName?: string;
   manualEmail?: string;
   manualPhone?: string;
+  /** Wird nicht mehr dargestellt (Karten sind fotolos), aus Kompatibilität erhalten. */
   manualPhoto?: string;
   /** E-Mail oder Telefon der Lehrkraft überschreiben (z. B. dienstliche statt privater Adresse). */
   emailOverride?: string;
   phoneOverride?: string;
-  /** Foto der Lehrkraft überschreiben. */
+  /** Wird nicht mehr dargestellt (Karten sind fotolos), aus Kompatibilität erhalten. */
   photoOverride?: string;
   /** Variante steuert das Layout. */
   variant?: "compact" | "feature" | "dark";
@@ -50,30 +55,12 @@ const {
   manualName,
   manualEmail,
   manualPhone,
-  manualPhoto,
   emailOverride,
   phoneOverride,
-  photoOverride,
   variant = "feature",
   ctaLabel = "E-Mail senden",
   vacantLabel = "Stelle aktuell vakant — bitte über das Sekretariat anfragen.",
 } = Astro.props;
-
-const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
-
-// Bild-URL korrekt mit Base-Pfad auflösen
-function asset(path: string | undefined | null): string | undefined {
-  if (!path) return undefined;
-  if (/^https?:\/\//.test(path)) return path;
-  if (path.startsWith(BASE + "/") || path.startsWith(BASE)) return path;
-  if (path.startsWith("/")) {
-    // Pfad aus Sveltia (z. B. /unesco-schule-essen-homepage/assets/…)
-    // bereits korrekt — sonst BASE voranstellen.
-    if (BASE && !path.startsWith(BASE)) return BASE + path;
-    return path;
-  }
-  return BASE + "/" + path;
-}
 
 const hasTeacher = !!teacher;
 const isVacant = !hasTeacher && !manualName;
@@ -88,18 +75,6 @@ const email = hasTeacher
 const phone = hasTeacher
   ? phoneOverride ?? teacher!.data.phone
   : manualPhone;
-const photo = hasTeacher
-  ? asset(photoOverride ?? teacher!.data.photo)
-  : asset(manualPhoto);
-const fallbackInitials = hasTeacher
-  ? initials(teacher!)
-  : (manualName ?? "")
-      .split(/\s+/)
-      .map((w) => w.charAt(0))
-      .filter(Boolean)
-      .slice(-2)
-      .join("")
-      .toUpperCase();
 ---
 
 {isVacant ? (
@@ -109,20 +84,6 @@ const fallbackInitials = hasTeacher
   </article>
 ) : (
   <article class:list={["cc", `cc--${variant}`]}>
-    <div class="cc-avatar" aria-hidden="true">
-      {photo ? (
-        <img
-          src={photo}
-          alt=""
-          loading="lazy"
-          width="200"
-          height="200"
-          onerror="this.parentElement.classList.add('cc-avatar--no-photo'); this.remove();"
-        />
-      ) : (
-        <span class="cc-initials">{fallbackInitials || "?"}</span>
-      )}
-    </div>
     <div class="cc-body">
       <p class="cc-role">{roleLabel}</p>
       <h3 class="cc-name">{name}</h3>
@@ -168,18 +129,6 @@ const fallbackInitials = hasTeacher
   @media (prefers-reduced-motion: reduce) {
     .cc:hover { transform: none; }
   }
-  .cc-avatar {
-    width: 100px; height: 100px; border-radius: 50%;
-    overflow: hidden;
-    display: flex; align-items: center; justify-content: center;
-    background: var(--petrol);
-    color: var(--creme);
-    font-family: var(--serif); font-weight: 500; font-size: 36px;
-    letter-spacing: -0.02em;
-    flex-shrink: 0;
-  }
-  .cc-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .cc-initials { line-height: 1; }
   .cc-role {
     font-family: var(--sans); font-size: 12px; font-weight: 600;
     letter-spacing: 0.12em; text-transform: uppercase;
@@ -187,7 +136,7 @@ const fallbackInitials = hasTeacher
   }
   .cc-name {
     font-family: var(--serif); font-weight: 500; font-size: 22px; line-height: 1.15;
-    color: var(--petrol); letter-spacing: -0.008em; margin: 0;
+    color: var(--petrol); letter-spacing: -0.008em; margin: 6px 0 0;
   }
   .cc-sub {
     font-family: var(--sans); font-size: 14.5px; color: var(--stein); margin: 6px 0 0;
@@ -224,7 +173,6 @@ const fallbackInitials = hasTeacher
   .cc-btn-phone:hover { color: var(--petrol-dark); }
 
   /* Variant: compact (for Beratung) */
-  .cc--compact .cc-avatar { width: 84px; height: 84px; font-size: 28px; }
   .cc--compact { padding: 32px 32px 28px; gap: 14px; }
   .cc--compact .cc-name { font-size: 24px; }
 
@@ -234,7 +182,6 @@ const fallbackInitials = hasTeacher
     border: 1px solid rgba(245, 239, 231, 0.2);
     border-top: var(--card-accent-width) solid var(--gold);
   }
-  .cc--dark .cc-avatar { background: var(--gold); color: var(--gold-text); }
   .cc--dark .cc-role { color: var(--gold); }
   .cc--dark .cc-name { color: var(--creme); }
   .cc--dark .cc-sub { color: rgba(245, 239, 231, 0.78); }
