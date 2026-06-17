@@ -232,7 +232,7 @@ const page: any = await getSingle("pageStundentafel");
 
 <PageHero variant="feature">
   <Fragment slot="eyebrow">{page.hero.eyebrow}</Fragment>
-  <Fragment slot="title">{page.hero.title}{page.hero.titleHighlight && <><br />und {page.hero.titleHighlight.replace(/^und /, "")}</>}</Fragment>
+  <Fragment slot="title">{page.hero.title}{page.hero.titleHighlight && <><br />und <em>{page.hero.titleHighlight.replace(/^und /, "")}</em></>}</Fragment>
   {page.hero.lede && <Fragment slot="lede">{page.hero.lede}</Fragment>}
 </PageHero>
 

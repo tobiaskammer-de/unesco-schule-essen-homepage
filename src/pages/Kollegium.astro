@@ -164,7 +164,7 @@ const roles = Array.from(rolesSet).sort((a, b) => a.localeCompare(b, "de"));
 
 <PageHero variant="feature" image="assets/kollegium.jpeg" imageAlt="" imageCredit="Kollegium · UNESCO-Schule Essen">
   <Fragment slot="eyebrow">{page.hero.eyebrow}</Fragment>
-  <Fragment slot="title">{page.hero.title}{page.hero.titleHighlight && <>{" "}{page.hero.titleHighlight}</>}</Fragment>
+  <Fragment slot="title">{page.hero.title}{page.hero.titleHighlight && <> <em>{page.hero.titleHighlight}</em></>}</Fragment>
   {page.hero.lede && <Fragment slot="lede">{page.hero.lede}</Fragment>}
 </PageHero>
 

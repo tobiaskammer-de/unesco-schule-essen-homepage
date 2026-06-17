@@ -257,7 +257,7 @@ const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
 
 <PageHero variant="feature" image={page.hero.image || "assets/erprobungsstufe/flur-schueler.jpg"} imageAlt={page.hero.imageAlt || ""}>
   {page.hero.badge && <Fragment slot="badge">{page.hero.badge}</Fragment>}
-  <Fragment slot="title">{page.hero.title}{page.hero.titleHighlight && <><br />Hier {page.hero.titleHighlight.replace(/^Hier /, "")}</>}</Fragment>
+  <Fragment slot="title">{page.hero.title}{page.hero.titleHighlight && <><br />Hier <em>{page.hero.titleHighlight.replace(/^Hier /, "")}</em></>}</Fragment>
   <Fragment slot="lede">{page.hero.lede}</Fragment>
 </PageHero>
 
