@@ -22,7 +22,8 @@ const ags = page.list.ags.map((ag: any) => ({
   quote: ag.quote || undefined,
   state: ag.state,
   accent: ag.accent,
-  photo: null,
+  image: ag.image || undefined,
+  imageAlt: ag.imageAlt || "",
 }));
 ---
 <BaseLayout title="Arbeitsgemeinschaften · UNESCO-Schule Essen" description="Unsere Arbeitsgemeinschaften: Schulsanitätsdienst, Makerspace, Kulturbesuche, Sprachen und Leseförderung.">
@@ -181,8 +182,12 @@ const ags = page.list.ags.map((ag: any) => ({
     <div class="ag-grid">
       {ags.map((ag) => (
         <article class={`ag-card accent-${ag.accent} state-${ag.state}`}>
-          <div class="photo" aria-hidden="true">
-            <div class="placeholder"><span class="dot"></span>Foto folgt</div>
+          <div class="photo">
+            {ag.image ? (
+              <img src={ag.image} alt={ag.imageAlt} loading="lazy" width="1024" height="640" />
+            ) : (
+              <div class="placeholder" aria-hidden="true"><span class="dot"></span>Foto folgt</div>
+            )}
           </div>
 
           <div class="body">
