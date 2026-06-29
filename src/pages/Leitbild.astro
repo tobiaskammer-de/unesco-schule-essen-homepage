@@ -164,6 +164,22 @@ const sp: any = await getSingle("pageSchulprogramm");
   }
   .leitsatz .media img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease;}
   .leitsatz:hover .media img{transform:scale(1.02);}
+  /* Platzhalter-Verläufe (Foto folgt) — im Farbschema der Seite */
+  .leitsatz .media-ph{display:flex;align-items:center;justify-content:center;}
+  .media-ph-0{background:linear-gradient(135deg, var(--petrol) 0%, var(--petrol-dark) 100%);}
+  .media-ph-1{background:linear-gradient(135deg, var(--bordeaux) 0%, var(--petrol) 100%);}
+  .media-ph-2{background:linear-gradient(135deg, var(--gold) 0%, var(--bordeaux) 100%);}
+  .media-ph-3{background:linear-gradient(135deg, var(--petrol) 0%, var(--gold) 100%);}
+  .media-ph-4{background:linear-gradient(135deg, var(--petrol-dark) 0%, var(--bordeaux) 100%);}
+  .media-ph-5{background:linear-gradient(135deg, var(--gold-hover) 0%, var(--petrol) 100%);}
+  .media-ph-6{background:linear-gradient(135deg, var(--bordeaux) 0%, var(--petrol-dark) 100%);}
+  .leitsatz .media-ph .ph-note{
+    font-family:var(--sans);font-size:12.5px;font-weight:500;
+    letter-spacing:0.14em;text-transform:uppercase;
+    color:rgba(245,239,231,0.78);
+    padding:7px 16px;border:1px solid rgba(245,239,231,0.4);border-radius:999px;
+    backdrop-filter:blur(2px);
+  }
   .leitsatz .media .num-badge{
     position:absolute;top:16px;left:16px;
     width:48px;height:48px;border-radius:50%;
@@ -378,8 +394,8 @@ const sp: any = await getSingle("pageSchulprogramm");
   <div class="container">
     {sp.leitsaetze.map((l: any, idx: number) => (
       <article class={`leitsatz${idx % 2 === 1 ? " flip" : ""}`}>
-        <div class="media">
-          <img src={l.image} alt="" width="1000" height="800" loading="lazy" />
+        <div class={`media media-ph media-ph-${idx % 7}`} role="img" aria-label="Platzhalter — Foto folgt">
+          <span class="ph-note">Foto folgt</span>
           <span class="num-badge">{l.num}</span>
         </div>
         <div class="body">

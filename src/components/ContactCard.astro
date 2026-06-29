@@ -45,6 +45,12 @@ interface Props {
   ctaLabel?: string;
   /** Wenn die Stelle vakant ist, wird stattdessen dieser Hinweis gezeigt. */
   vacantLabel?: string;
+  /**
+   * Opt-in: Porträtfoto der Lehrkraft anzeigen. Standardmäßig sind Karten
+   * fotolos; einzelne Karten (z. B. Schulsozialarbeit) können das Foto aber
+   * gezielt wieder einblenden.
+   */
+  showPhoto?: boolean;
 }
 
 const {
@@ -60,10 +66,12 @@ const {
   variant = "feature",
   ctaLabel = "E-Mail senden",
   vacantLabel = "Stelle aktuell vakant — bitte über das Sekretariat anfragen.",
+  showPhoto = false,
 } = Astro.props;
 
 const hasTeacher = !!teacher;
 const isVacant = !hasTeacher && !manualName;
+const photo = showPhoto && hasTeacher ? teacher!.data.photo : undefined;
 
 // Daten zusammenstellen
 const name = hasTeacher
@@ -83,7 +91,10 @@ const phone = hasTeacher
     <p class="cc-vacant-msg">{vacantLabel}</p>
   </article>
 ) : (
-  <article class:list={["cc", `cc--${variant}`]}>
+  <article class:list={["cc", `cc--${variant}`, photo && "cc--with-photo"]}>
+    {photo && (
+      <img class="cc-photo" src={photo} alt={`Porträtfoto von ${name}`} width="96" height="96" loading="lazy" />
+    )}
     <div class="cc-body">
       <p class="cc-role">{roleLabel}</p>
       <h3 class="cc-name">{name}</h3>
@@ -128,6 +139,16 @@ const phone = hasTeacher
   }
   @media (prefers-reduced-motion: reduce) {
     .cc:hover { transform: none; }
+  }
+  .cc-photo {
+    width: 96px; height: 96px; border-radius: 50%;
+    object-fit: cover; object-position: center top;
+    border: 2px solid var(--creme);
+    box-shadow: 0 6px 18px -8px rgba(14, 77, 79, 0.35);
+    margin-bottom: 4px;
+  }
+  .cc--dark .cc-photo {
+    border-color: rgba(245, 239, 231, 0.28);
   }
   .cc-role {
     font-family: var(--sans); font-size: 12px; font-weight: 600;

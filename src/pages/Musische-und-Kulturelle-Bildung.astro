@@ -151,6 +151,11 @@ const pittelkau = await getTeacherByLastName("Pittelkau");
     display:grid;grid-template-columns:minmax(0,6fr) minmax(0,6fr);
     gap:64px;align-items:center;
   }
+  .kb-press-grid + .kb-press-grid{
+    margin-top:48px;padding-top:48px;border-top:1px solid var(--hairline);
+  }
+  /* zweiter Eintrag: Foto rechts, Text links */
+  .kb-press-grid.flip .kb-press-photo{order:2;}
   .kb-press-photo{margin:0;}
   .kb-press-photo img{
     width:100%;height:auto;display:block;
@@ -354,6 +359,24 @@ const pittelkau = await getTeacherByLastName("Pittelkau");
           <a class="btn btn-secondary" href="aktuelles/2026-06-11-stadtraeume-premiere-waz.html">Unser Beitrag zur Premiere <span class="arrow">→</span></a>
           <!-- TODO: Externer Link zum WAZ-Artikel ergänzen, sobald die URL vorliegt:
           <a class="btn btn-secondary" href="WAZ_URL" target="_blank" rel="noopener">Zum Artikel auf waz.de ↗</a> -->
+        </div>
+      </div>
+    </div>
+
+    <div class="kb-press-grid flip">
+      <figure class="kb-press-photo">
+        <img src="assets/news/2026-06-29-stadtraeume-ensemble.jpg" alt="Jubelndes Ensemble mit erhobenen Armen vor grün-blauem Bühnenlicht im Aalto-Theater" width="970" height="570" loading="lazy">
+        <figcaption>„StadTräume“ am Aalto-Theater · Foto: Björn Hickmann</figcaption>
+      </figure>
+
+      <div class="kb-press-quote">
+        <blockquote>Zwei Abende auf einer der größten Bühnen Europas — getanzt, gespielt, gefeiert.</blockquote>
+        <div class="kb-press-attrib">
+          <div class="name">Rückblick · „StadTräume“ am Aalto-Theater</div>
+          <div class="role">Juni 2026 · zwei Aufführungsabende gemeinsam mit dem Aalto-Musiktheater</div>
+        </div>
+        <div class="kb-press-actions">
+          <a class="btn btn-secondary" href="aktuelles/2026-06-29-stadtraeume-zwei-abende-aalto.html">Unser Rückblick zu den Aufführungen <span class="arrow">→</span></a>
         </div>
       </div>
     </div>

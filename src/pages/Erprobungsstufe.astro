@@ -243,6 +243,11 @@ const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
   /* ---------- Photo placeholders (to be replaced by real photos) ---------- */
   .photo{position:relative;overflow:hidden;background:var(--creme);border-radius:2px;}
   .photo > img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease;}
+  /* Platzhalter-Verläufe (Foto folgt) — im Farbschema der Seite */
+  .photo > .ph-fill{width:100%;height:100%;display:block;}
+  .ph-fill-a{background:linear-gradient(135deg, var(--petrol) 0%, var(--petrol-dark) 100%);}
+  .ph-fill-b{background:linear-gradient(135deg, var(--bordeaux) 0%, var(--petrol) 100%);}
+  .ph-fill-c{background:linear-gradient(135deg, var(--petrol) 0%, var(--gold) 100%);}
   .photo .cred{
     position:absolute;bottom:10px;left:12px;
     padding:5px 10px;background:rgba(14,77,79,0.78);
@@ -266,7 +271,7 @@ const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
     <div class="er-intro-grid">
       <div>
         <div class="photo">
-          <img src="assets/sp-lernend.jpg" alt="Schülerinnen und Schüler beim gemeinsamen Lernen" width="800" height="1000" loading="lazy">
+          <div class="ph-fill ph-fill-a"></div>
           <span class="cred">Platzhalter · Foto folgt</span>
         </div>
       </div>
@@ -327,7 +332,7 @@ const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
       </article>
       <article class="er-pillar">
         <div class="photo">
-          <img src="assets/sp-persoenlich.jpg" alt="Gemeinschaft, Klassenfahrt, Zusammenhalt" width="900" height="600" loading="lazy">
+          <div class="ph-fill ph-fill-b"></div>
           <span class="cred">Platzhalter · Foto folgt</span>
         </div>
         <span class="label">Ankommen &amp; Kennenlernen</span>
@@ -336,7 +341,7 @@ const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
       </article>
       <article class="er-pillar">
         <div class="photo">
-          <img src="assets/sp-digital.jpg" alt="Digitales Lernen, iPads, Informatik" width="900" height="600" loading="lazy">
+          <div class="ph-fill ph-fill-c"></div>
           <span class="cred">Platzhalter · Foto folgt</span>
         </div>
         <span class="label">Digitale Bildung</span>
