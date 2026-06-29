@@ -49,6 +49,27 @@ const school: any = await getSingle("siteSchool");
     border:1px solid var(--hairline);overflow:hidden;
   }
   .map-wrap iframe{width:100%;height:100%;border:0;display:block;}
+  /* Klick-zum-Laden-Platzhalter (Datenschutz: keine OSM-Übertragung ohne Zustimmung) */
+  .map-consent{
+    position:absolute;inset:0;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;text-align:center;gap:14px;
+    padding:28px;background:linear-gradient(135deg, var(--petrol) 0%, var(--petrol-dark) 100%);
+  }
+  .map-consent-text{
+    font-family:var(--sans);font-size:14.5px;line-height:1.6;color:rgba(245,239,231,0.92);
+    max-width:42ch;margin:0;
+  }
+  .map-consent-text strong{color:#fff;}
+  .map-consent-btn{
+    background:var(--gold);color:var(--gold-text);border:0;
+    padding:12px 26px;font-family:var(--sans);font-weight:600;font-size:14.5px;cursor:pointer;
+    transition:background var(--transition-fast);
+  }
+  .map-consent-btn:hover{background:var(--gold-hover);}
+  .map-consent-note{
+    font-family:var(--sans);font-size:12.5px;color:rgba(245,239,231,0.7);margin:0;
+  }
+  .map-consent-note a{color:rgba(245,239,231,0.92);text-decoration:underline;}
   .map-link{
     display:inline-flex;align-items:center;gap:8px;margin-top:14px;
     font-family:var(--sans);font-size:14px;font-weight:500;color:var(--bordeaux);
@@ -130,12 +151,13 @@ const school: any = await getSingle("siteSchool");
       <div class="an-col">
         <h2>{page.map.title}</h2>
         <div class="map-wrap">
-          <iframe
-            src={page.map.embedSrc}
-            title="UNESCO-Schule Essen auf OpenStreetMap"
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
-            sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe>
+          <div class="map-consent" id="mapConsent" data-src={page.map.embedSrc}>
+            <p class="map-consent-text">
+              Die Karte wird von <strong>OpenStreetMap</strong> geladen. Dabei wird Ihre IP-Adresse an die OpenStreetMap&nbsp;Foundation (UK) übermittelt. Erst nach Ihrer Zustimmung wird die Karte geladen.
+            </p>
+            <button type="button" class="map-consent-btn" id="mapConsentBtn">Karte laden</button>
+            <p class="map-consent-note">Details in unserer <a href="Datenschutz.html">Datenschutzerklärung</a>.</p>
+          </div>
         </div>
         <a class="map-link" href={page.map.externalUrl} target="_blank" rel="noopener">
           Auf OpenStreetMap öffnen <span aria-hidden="true">↗</span>
@@ -169,6 +191,25 @@ const school: any = await getSingle("siteSchool");
     </div>
   </div>
 </section>
+
+<script is:inline>
+  (function(){
+    var box = document.getElementById('mapConsent');
+    var btn = document.getElementById('mapConsentBtn');
+    if (!box || !btn) return;
+    btn.addEventListener('click', function(){
+      var src = box.getAttribute('data-src');
+      if (!src) return;
+      var iframe = document.createElement('iframe');
+      iframe.src = src;
+      iframe.title = 'UNESCO-Schule Essen auf OpenStreetMap';
+      iframe.loading = 'lazy';
+      iframe.referrerPolicy = 'no-referrer-when-downgrade';
+      iframe.setAttribute('sandbox', 'allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox');
+      box.replaceWith(iframe);
+    });
+  })();
+</script>
 
 </main>
 </BaseLayout>

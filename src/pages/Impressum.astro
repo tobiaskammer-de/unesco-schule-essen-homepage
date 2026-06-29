@@ -6,7 +6,7 @@ import { getSingle } from "../lib/pageContent";
 
 const page = await getSingle("pageImpressum");
 ---
-<BaseLayout title="Impressum · UNESCO-Schule Essen" description="Impressum und Anbieterkennzeichnung der UNESCO-Schule Essen gemäß § 5 TMG und § 18 Abs. 2 MStV.">
+<BaseLayout title="Impressum · UNESCO-Schule Essen" description="Impressum und Anbieterkennzeichnung der UNESCO-Schule Essen gemäß § 5 DDG und § 18 Abs. 2 MStV.">
 <style is:global>
   /* ---------- Legal pages ---------- */
   .legal{background:var(--offwhite);padding:var(--space-section) 0;}
@@ -58,7 +58,7 @@ const page = await getSingle("pageImpressum");
   <div class="container wrap">
 
     <h2>Anbieter</h2>
-    <p>Diensteanbieter im Sinne des Telemediengesetzes (TMG) und des Medienstaatsvertrags (MStV):</p>
+    <p>Diensteanbieter im Sinne des Digitale-Dienste-Gesetzes (DDG) und des Medienstaatsvertrags (MStV):</p>
     <div class="addr">
       <strong>Stadt Essen</strong>
       vertreten durch den Oberbürgermeister<br>
@@ -71,15 +71,27 @@ const page = await getSingle("pageImpressum");
     </div>
 
     <h2>Verantwortlich für den Inhalt</h2>
-    <p>Verantwortlich nach § 18 Abs. 2 MStV:</p>
+    <p>Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV:</p>
     <div class="addr">
-      <strong>Die Schulleitung der UNESCO-Schule Essen</strong>
+      <strong>Silvia Lichtenstein, Schulleiterin</strong>
+      UNESCO-Schule Essen<br>
       Steinmetzstraße 9<br>
       45139 Essen<br>
       Telefon: <a href="tel:+492012802630">0201 · 280&nbsp;26&nbsp;30</a><br>
       Fax: 0201 · 280&nbsp;26&nbsp;31<br>
       E-Mail: <MailLink email="164835@schule.nrw.de" />
     </div>
+
+    <h2>Zuständige Aufsichtsbehörde</h2>
+    <p>Schulaufsichtsbehörde für die UNESCO-Schule Essen (städtisches Gymnasium) nach § 5 Abs. 1 Nr. 3 DDG:</p>
+    <div class="addr">
+      <strong>Bezirksregierung Düsseldorf</strong>
+      Am Bonneshof 35<br>
+      40474 Düsseldorf<br>
+      Telefon: <a href="tel:+4921147501">0211 · 475-0</a><br>
+      Web: <a href="https://www.brd.nrw.de" target="_blank" rel="noopener">www.brd.nrw.de</a>
+    </div>
+    <p>Oberste Schulaufsicht: Ministerium für Schule und Bildung des Landes Nordrhein-Westfalen (MSB&nbsp;NRW).</p>
 
     <h3>Verantwortlich für den redaktionellen Inhalt</h3>
     <p>Das Kollegium der UNESCO-Schule Essen, insbesondere:</p>
@@ -93,7 +105,7 @@ const page = await getSingle("pageImpressum");
     <h2>Haftungsausschluss</h2>
 
     <h3>Haftung für Inhalte</h3>
-    <p>Die Inhalte unserer Seiten wurden mit größter Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte können wir jedoch keine Gewähr übernehmen. Als Diensteanbieter sind wir gemäß § 7 Abs. 1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen. Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen bleiben hiervon unberührt. Eine diesbezügliche Haftung ist jedoch erst ab dem Zeitpunkt der Kenntnis einer konkreten Rechtsverletzung möglich. Bei Bekanntwerden von entsprechenden Rechtsverletzungen werden wir diese Inhalte umgehend entfernen.</p>
+    <p>Die Inhalte unserer Seiten wurden mit größter Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte können wir jedoch keine Gewähr übernehmen. Als Diensteanbieter sind wir gemäß § 7 Abs. 1 DDG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 DDG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen. Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen bleiben hiervon unberührt. Eine diesbezügliche Haftung ist jedoch erst ab dem Zeitpunkt der Kenntnis einer konkreten Rechtsverletzung möglich. Bei Bekanntwerden von entsprechenden Rechtsverletzungen werden wir diese Inhalte umgehend entfernen.</p>
 
     <h3>Haftung für Links</h3>
     <p>Unser Angebot enthält Links zu externen Webseiten Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich. Die verlinkten Seiten wurden zum Zeitpunkt der Verlinkung auf mögliche Rechtsverstöße überprüft. Rechtswidrige Inhalte waren zum Zeitpunkt der Verlinkung nicht erkennbar. Eine permanente inhaltliche Kontrolle der verlinkten Seiten ist jedoch ohne konkrete Anhaltspunkte einer Rechtsverletzung nicht zumutbar. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Links umgehend entfernen.</p>
@@ -112,11 +124,52 @@ const page = await getSingle("pageImpressum");
       <li>Startseite, Kartenhintergrund „UNESCO-Projektschule": <a href="https://commons.wikimedia.org/wiki/File:Essen_(DE),_Zeche_Zollverein,_Schacht_XII_--_2022_--_0026.jpg" target="_blank" rel="noopener">„Essen (DE), Zeche Zollverein, Schacht XII"</a> von Anil Öztas, Lizenz <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.de" target="_blank" rel="noopener">CC BY-SA 4.0</a>, via Wikimedia Commons — Bild skaliert und als transparenter Hintergrund eingebunden.</li>
       <li>Seite „UNESCO – Name und Mission", Hero-Hintergrund: <a href="https://commons.wikimedia.org/wiki/File:Zeche_Zollverein_bei_Nacht.jpg" target="_blank" rel="noopener">„Zeche Zollverein bei Nacht"</a> von HopeLasts8, Lizenz <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.de" target="_blank" rel="noopener">CC BY-SA 4.0</a>, via Wikimedia Commons — Bild zugeschnitten, Bildfläche links um Nachthimmel erweitert, skaliert und mit Farbverlauf überlagert.</li>
       <li>Pressefoto „StadTräume"-Probe: Kerstin Kokoska / FUNKE Foto Services — Verwendung mit freundlicher Genehmigung.</li>
+      <li>Produktionsfotos „StadTräume" (Aufführungen am Aalto-Theater, Juni 2026): Björn Hickmann.</li>
       <li>Einige der verwendeten Icons stammen von <a href="https://www.flaticon.com" target="_blank" rel="noopener">flaticon.com</a>.</li>
       <li>Weitere Bildrechte liegen, sofern nicht anders gekennzeichnet, bei der UNESCO-Schule Essen.</li>
     </ul>
 
     <p><em>Hinweise zur Verwendung von Personenabbildungen und personenbezogenen Daten auf der Webseite finden Sie im <a href="Datenschutz.html">Einwilligungsformular in der Datenschutzerklärung</a>.</em></p>
+
+    <hr>
+
+    <h2 id="barrierefreiheit">Erklärung zur Barrierefreiheit</h2>
+    <p>Die UNESCO-Schule Essen ist als öffentliche Stelle des Landes Nordrhein-Westfalen bemüht, ihre Website im Einklang mit der EU-Richtlinie 2016/2102, dem Behindertengleichstellungsgesetz Nordrhein-Westfalen (BGG&nbsp;NRW) und der Barrierefreie-Informationstechnik-Verordnung NRW (BITV&nbsp;NRW) barrierefrei zugänglich zu machen. Maßgeblich sind die Anforderungen der EN&nbsp;301&nbsp;549 bzw. der WCAG&nbsp;2.1 (Stufe&nbsp;AA).</p>
+
+    <h3>Stand der Vereinbarkeit mit den Anforderungen</h3>
+    <p>Diese Website ist aufgrund der nachfolgend genannten Punkte <strong>teilweise konform</strong> mit den genannten Anforderungen. „Teilweise konform" bedeutet, dass einige Inhalte die Anforderungen noch nicht vollständig erfüllen.</p>
+
+    <h3>Nicht barrierefreie Inhalte</h3>
+    <p>Folgende Inhalte sind nicht oder nicht vollständig barrierefrei:</p>
+    <ul>
+      <li>Einzelne zum Download bereitgestellte PDF-Dokumente sind möglicherweise nicht vollständig barrierefrei (z.&nbsp;B. fehlende Strukturauszeichnung). Wir arbeiten daran, diese schrittweise zu ersetzen oder barrierefrei bereitzustellen.</li>
+      <li>Die auf der Seite „Adresse und Anfahrt" eingebundene Karte von OpenStreetMap ist als interaktive Karte nur eingeschränkt barrierefrei nutzbar. Die vollständige Adresse steht als Text zur Verfügung.</li>
+      <li>Für einzelne Bilder können Alternativtexte noch fehlen oder unzureichend sein; dies wird laufend nachgebessert.</li>
+    </ul>
+    <p>Über das gesetzliche Mindestmaß hinaus bietet die Website ein Bedienhilfen-Werkzeug (Schriftgröße, Kontrast, Vorlesefunktion, Reduktion von Bewegung, Unterstreichung von Links).</p>
+
+    <h3>Erstellung dieser Erklärung</h3>
+    <p>Diese Erklärung wurde am 29.&nbsp;Juni&nbsp;2026 erstellt. Die Bewertung der Barrierefreiheit beruht auf einer <strong>Selbstbewertung</strong> der Schule.</p>
+
+    <h3>Barrieren melden — Feedback und Kontakt</h3>
+    <p>Sind Ihnen Mängel beim barrierefreien Zugang zu Inhalten dieser Website aufgefallen oder benötigen Sie Informationen in einer zugänglichen Form? Melden Sie sich gerne bei uns (Feedback-Mechanismus nach § 10b BGG&nbsp;NRW):</p>
+    <div class="addr">
+      <strong>UNESCO-Schule Essen — Barrierefreiheit</strong>
+      Steinmetzstraße 9, 45139 Essen<br>
+      Telefon: <a href="tel:+492012802630">0201 · 280&nbsp;26&nbsp;30</a><br>
+      E-Mail: <MailLink email="info@unesco-schule-essen.de" /><br>
+      Alternativ über unser <a href="Kontakt.html">Kontaktformular</a>.
+    </div>
+
+    <h3>Schlichtungsverfahren</h3>
+    <p>Sind Sie mit den Antworten aus dem genannten Feedback-Mechanismus nicht zufrieden, können Sie sich an die Durchsetzungs- und Überwachungsstelle bzw. die Ombudsstelle nach § 10d BGG&nbsp;NRW wenden:</p>
+    <div class="addr">
+      <strong>Ombudsstelle für das Behindertengleichstellungsrecht des Landes Nordrhein-Westfalen</strong>
+      c/o Ministerium für Arbeit, Gesundheit und Soziales des Landes Nordrhein-Westfalen (MAGS)<br>
+      Fürstenwall 25<br>
+      40219 Düsseldorf<br>
+      Web: <a href="https://www.mags.nrw" target="_blank" rel="noopener">www.mags.nrw</a>
+    </div>
 
   </div>
 </section>

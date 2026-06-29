@@ -11,11 +11,14 @@ import MailLink from "../components/MailLink.astro";
 interface Props {
   title?: string;
   description?: string;
+  /** Bild für Social-Media-Vorschau (Open Graph). Relativer Asset-Pfad. */
+  ogImage?: string;
 }
 
 const {
   title = "UNESCO-Schule Essen — Gymnasium",
   description = "UNESCO-Projektschule in Essen. Gymnasium mit Profil ab Klasse 5. Gemeinsam lernen, den eigenen Weg finden.",
+  ogImage = "assets/schulhof-hero.jpg",
 } = Astro.props;
 
 // Base-URL-Helper: sorgt dafür, dass alle Links + Assets auch aus
@@ -26,16 +29,35 @@ function link(path: string): string {
   const clean = path.startsWith("/") ? path.slice(1) : path;
   return BASE + "/" + clean;
 }
+
+// Kanonische URL + absolute Bild-URL für Open Graph / Canonical.
+// Basis ist `site` aus astro.config (wird beim Domain-Umzug zentral aktualisiert).
+const siteOrigin = Astro.site ?? new URL(Astro.url.origin);
+const canonicalURL = new URL(Astro.url.pathname, siteOrigin).href;
+const ogImageURL = new URL(link(ogImage), siteOrigin).href;
 ---
 <!DOCTYPE html>
 <html lang="de">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self'; frame-src https://www.openstreetmap.org; frame-ancestors 'none'; base-uri 'self'; form-action 'self'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self' https://api.web3forms.com; frame-src https://www.openstreetmap.org; frame-ancestors 'none'; base-uri 'self'; form-action 'self' https://api.web3forms.com">
 <title>{title}</title>
 <meta name="description" content={description}>
 <meta name="theme-color" content="#0E4D4F">
+<link rel="canonical" href={canonicalURL}>
+<!-- Open Graph / Social-Media-Vorschau -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="UNESCO-Schule Essen">
+<meta property="og:locale" content="de_DE">
+<meta property="og:title" content={title}>
+<meta property="og:description" content={description}>
+<meta property="og:url" content={canonicalURL}>
+<meta property="og:image" content={ogImageURL}>
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content={title}>
+<meta name="twitter:description" content={description}>
+<meta name="twitter:image" content={ogImageURL}>
 <link rel="icon" type="image/png" href={link("assets/logo-mark.png")}>
 <style is:global>
 :root{
@@ -1086,7 +1108,6 @@ function link(path: string): string {
                 <li><a href={link("Arbeitsgemeinschaften.html")}>Arbeitsgemeinschaften</a></li>
                 <li><a href={link("Wettbewerbe.html")}>Wettbewerbe</a></li>
                 <li><a href={link("Lesefoerderung.html")}>Lesekultur</a></li>
-                <li><a href="#">Begabtenförderung</a></li>
                 <li><a href={link("Internationales-Lernen.html")}>Internationales Lernen</a></li>
               </ul>
             </div>
@@ -1095,14 +1116,12 @@ function link(path: string): string {
               <ul>
                 <li><a href={link("Berufsorientierung.html")}>Studien- und Berufsorientierung</a></li>
                 <li><a href={link("Beratung.html")}>Beratung und Unterstützung</a></li>
-                <li><a href="#">Schülervertretung</a></li>
               </ul>
             </div>
             <div class="mega-col">
               <h4>Digitales &amp; Alltag</h4>
               <ul>
                 <li><a href={link("Mittagessen-und-Betreuung.html")}>Mittagessen &amp; Übermittagsbetreuung</a></li>
-                <li><a href="#">Digitales Lernen</a></li>
                 <li><a href={link("Schliessfaecher.html")}>Schließfächer mieten</a></li>
                 <li><a href={link("Schoolwear.html")}>Schoolwear</a></li>
               </ul>
@@ -1185,8 +1204,8 @@ function link(path: string): string {
         <address>
           Steinmetzstraße 9<br>
           45139 Essen<br><br>
-          <a href="tel:+492013658040">0201 · 365 80 40</a><br>
-          <MailLink email="kontakt@unesco-schule-essen.de" />
+          <a href="tel:+492012802630">0201 · 280 26 30</a><br>
+          <MailLink email="info@unesco-schule-essen.de" />
         </address>
         <div class="socials">
           <a href="https://www.instagram.com/unesco.schule.essen/?hl=de" target="_blank" rel="noopener" aria-label="Instagram: @unesco.schule.essen">
@@ -1212,6 +1231,7 @@ function link(path: string): string {
         <ul>
           <li><a href={link("Impressum.html")}>Impressum</a></li>
           <li><a href={link("Datenschutz.html")}>Datenschutz</a></li>
+          <li><a href={link("Impressum.html") + "#barrierefreiheit"}>Barrierefreiheit</a></li>
           <li><a href="https://www.essen.de" target="_blank" rel="noopener">Schulträger: Stadt Essen ↗</a></li>
         </ul>
       </div>
@@ -1219,7 +1239,7 @@ function link(path: string): string {
 
     <div class="footer-bottom">
       <div>© 2026 UNESCO-Schule Essen · Gymnasium der Stadt Essen</div>
-      <div>Folgen Sie uns: <a href="#" style="color:inherit;border-bottom:1px solid rgba(245,239,231,0.4);">@unescoschule.essen</a></div>
+      <div>Folgen Sie uns: <a href="https://www.instagram.com/unesco.schule.essen/?hl=de" target="_blank" rel="noopener" style="color:inherit;border-bottom:1px solid rgba(245,239,231,0.4);">@unesco.schule.essen</a></div>
     </div>
   </div>
 </footer>
