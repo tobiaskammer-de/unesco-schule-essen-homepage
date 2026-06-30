@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://unesco-schule-essen.de/sitemap-index.xml
