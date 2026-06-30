@@ -116,25 +116,26 @@ const page: any = await getSingle("pageSprachen");
     grid-column:2 / 3;
     background:linear-gradient(180deg, rgba(212,165,116,0.10) 0%, #fff 100%);
   }
-  /* Verbindungslinie zwischen Latein (Klasse 7) und 3. FS (Klasse 9) */
-  .spr-row-erweiterung::before{
+  /* Verbindung: Strich + Punkt sitzen mittig auf der 3.-FS-Karte und fluchten
+     exakt — beide werden über die Karte zentriert (left:50% + translateX(-50%)),
+     unabhängig von ihrer Breite. */
+  .spr-row-erweiterung .spr-stage::before{
     content:"";
     position:absolute;
-    /* startet rechts in der Wahl-Reihe (über Latein), zieht runter in die Erweiterungs-Reihe */
-    top:-28px;
-    right:25%;
-    width:2px;height:56px;
+    /* zieht von oberhalb der Karte herunter bis zur Spitze des Punkts */
+    top:-56px;left:50%;
+    width:2px;height:49px;
     background:linear-gradient(180deg, var(--bordeaux) 0%, var(--gold) 100%);
     transform:translateX(-50%);
   }
-  .spr-row-erweiterung::after{
+  .spr-row-erweiterung .spr-stage::after{
     content:"";
     position:absolute;
-    top:24px;
-    right:25%;
+    /* Raute zentriert auf der Oberkante der Karte */
+    top:-5px;left:50%;
     width:10px;height:10px;
     background:var(--gold);
-    transform:translateX(-50%) rotate(45deg);
+    transform:translate(-50%,0) rotate(45deg);
   }
 
   /* Pflicht/Wahl/Optional Pill innerhalb der Karte */
