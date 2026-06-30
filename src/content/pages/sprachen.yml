@@ -9,7 +9,7 @@ hero:
 journey:
   eyebrow: "01 · Sprachenfolge"
   title: "Drei Wege durch die Sprachen"
-  body: "Die Pflicht-Sprache Englisch wird ab Klasse 7 um eine zweite Fremdsprache ergänzt. Wer Latein wählt, kann ab Klasse 9 zusätzlich Französisch belegen und mit drei Schulsprachen ins Abitur gehen."
+  body: "Die Pflicht-Sprache Englisch wird ab Klasse 7 um eine zweite Fremdsprache ergänzt — zur Wahl stehen Französisch, Spanisch oder Latein. Wer Latein wählt, kann ab Klasse 9 zusätzlich Französisch belegen und mit drei Schulsprachen ins Abitur gehen."
   stages:
     - klasse: "Ab Klasse 5"
       mark: "Pflicht"
@@ -19,6 +19,10 @@ journey:
       mark: "Wahl"
       title: "Französisch"
       body: "Lebende Sprache. Im Rahmen unserer Erasmus+-Aktivitäten besteht Kontakt zu unserer französischen Partnerschule, dem Lycée Professionnel Léonard de Vinci."
+    - klasse: "Ab Klasse 7"
+      mark: "Wahl"
+      title: "Spanisch"
+      body: "Neu in unserem Sprachenangebot: lebende Weltsprache mit rund 500 Millionen Sprecherinnen und Sprechern. Kommunikativer Zugang zu Sprache und Kultur des spanischsprachigen Raums, unterrichtet von unserer neuen Spanisch-Lehrkraft."
     - klasse: "Ab Klasse 7"
       mark: "Wahl"
       title: "Latein"

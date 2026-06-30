@@ -81,9 +81,9 @@ const page: any = await getSingle("pageSprachen");
     border-top-color:var(--petrol);
   }
 
-  /* Klasse 7 — zwei Cards nebeneinander mit ODER-Trenner */
+  /* Klasse 7 — drei Cards nebeneinander mit ODER-Trennern */
   .spr-row-wahl .spr-cards{
-    display:grid;grid-template-columns:1fr auto 1fr;gap:16px;align-items:stretch;
+    display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:16px;align-items:stretch;
   }
   .spr-row-wahl .spr-or{
     display:flex;align-items:center;justify-content:center;
@@ -92,6 +92,16 @@ const page: any = await getSingle("pageSprachen");
     padding:0 4px;
   }
   .spr-row-wahl .spr-stage{border-top-color:var(--bordeaux);}
+  /* Spanisch — neu im Angebot: Gold-Akzent + Badge */
+  .spr-row-wahl .spr-stage-neu{border-top-color:var(--gold);}
+  .neu-badge{
+    display:inline-block;vertical-align:middle;
+    font-family:var(--sans);font-size:10px;font-weight:700;
+    letter-spacing:0.1em;text-transform:uppercase;
+    color:var(--gold-deep);background:rgba(212,165,116,0.18);
+    padding:2px 8px;border-radius:999px;margin-left:8px;
+    position:relative;top:-2px;
+  }
 
   /* Klasse 9 — schmale Erweiterungs-Card rechtsbündig unter Latein */
   .spr-row-erweiterung .spr-cards{
@@ -258,6 +268,9 @@ const page: any = await getSingle("pageSprachen");
     .spr-row-axis .klasse{font-size:24px;}
     .spr-row-erweiterung::before,
     .spr-row-erweiterung::after{display:none;}
+    /* drei Wahl-Karten unter 960px untereinander statt gequetscht */
+    .spr-row-wahl .spr-cards{grid-template-columns:1fr;}
+    .spr-row-wahl .spr-or{padding:8px 0;font-size:16px;}
   }
   @media (max-width:560px){
     .spr-row-wahl .spr-cards{grid-template-columns:1fr;}
@@ -303,11 +316,11 @@ const page: any = await getSingle("pageSprachen");
         </div>
       </div>
 
-      {/* Klasse 7 — Wahl zwischen Französisch ODER Latein */}
+      {/* Klasse 7 — Wahl zwischen Französisch, Spanisch ODER Latein */}
       <div class="spr-row spr-row-wahl">
         <div class="spr-row-axis">
           <span class="klasse">Klasse 7</span>
-          <span class="label">Wahl: Französisch oder Latein</span>
+          <span class="label">Wahl: Französisch, Spanisch oder Latein</span>
         </div>
         <div class="spr-cards">
           <article class="spr-stage">
@@ -316,10 +329,16 @@ const page: any = await getSingle("pageSprachen");
             <p>{page.journey?.stages?.[1]?.body}</p>
           </article>
           <span class="spr-or" aria-hidden="true">oder</span>
+          <article class="spr-stage spr-stage-neu">
+            <span class="pill is-wahl">2. Fremdsprache</span>
+            <h3>Spanisch <span class="neu-badge">Neu</span></h3>
+            <p>{page.journey?.stages?.[2]?.body}</p>
+          </article>
+          <span class="spr-or" aria-hidden="true">oder</span>
           <article class="spr-stage">
             <span class="pill is-wahl">2. Fremdsprache</span>
             <h3>Latein</h3>
-            <p>{page.journey?.stages?.[2]?.body}</p>
+            <p>{page.journey?.stages?.[3]?.body}</p>
           </article>
         </div>
       </div>
@@ -335,7 +354,7 @@ const page: any = await getSingle("pageSprachen");
           <article class="spr-stage">
             <span class="pill is-erweiterung">+ 3. Fremdsprache</span>
             <h3>Französisch <span style="color:var(--gold-deep);font-style:italic;">als Erweiterung</span></h3>
-            <p>{page.journey?.stages?.[3]?.body}</p>
+            <p>{page.journey?.stages?.[4]?.body}</p>
           </article>
         </div>
       </div>
