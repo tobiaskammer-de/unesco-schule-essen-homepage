@@ -20,7 +20,7 @@ export async function getStaticPaths() {
 
 const { entry } = Astro.props;
 const { Content } = await render(entry);
-const BASE = import.meta.env.BASE_URL;
+const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
 
 // „Verwandte Beiträge" — selbe Kategorie, neueste 3 (ohne aktuellen)
 const all = await getAllNews();

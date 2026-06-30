@@ -6,7 +6,7 @@ import { getSingle } from "../lib/pageContent";
 
 const page = await getSingle("pageAktuelles");
 const news = await getAllNews();
-const BASE = import.meta.env.BASE_URL;
+const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
 
 // Erster Artikel = Featured, Rest = Grid
 const featured = news[0];
