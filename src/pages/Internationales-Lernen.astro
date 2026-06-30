@@ -58,6 +58,19 @@ const rockensuess = await getTeacherByLastName("Rockensüß-Köln");
     font-family:var(--sans);font-size:15.5px;line-height:1.6;color:var(--tinte);margin:0;
   }
 
+  /* Partnerschulen mit Foto */
+  .il-partners{
+    display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px;margin-bottom:28px;
+  }
+  .il-school{padding:0;overflow:hidden;}
+  .il-school img{
+    width:100%;aspect-ratio:16/9;object-fit:cover;display:block;
+    border-bottom:1px solid var(--hairline);
+  }
+  .il-school .il-card-body{
+    padding:var(--card-padding);display:flex;flex-direction:column;gap:14px;
+  }
+
   .il-contacts{background:var(--creme);padding:var(--space-section) 0;border-top:1px solid var(--hairline);}
   .il-contacts .head{max-width:680px;margin:0 0 40px;}
   .il-contacts .head .eyebrow{display:block;margin-bottom:14px;}
@@ -107,18 +120,29 @@ const rockensuess = await getTeacherByLastName("Rockensüß-Köln");
       <p>Über das Erasmus+-Programm der Europäischen Union pflegen wir Schulpartnerschaften und ermöglichen unseren Schülerinnen und Schülern Auslandsbegegnungen, finanziell unterstützt und pädagogisch begleitet.</p>
     </div>
 
-    <div class="il-erasmus-grid">
-      <article class="il-card">
-        <span class="badge">Partnerschule</span>
-        <h3>Valga, Estland</h3>
-        <p>Jährliche Schulbesuche unserer Schülerinnen und Schüler an unserer Partnerschule Valga Gümnaasium in Valga. Gemeinsame Projekttage, Gastfamilien-Aufenthalte und Einblicke in das estnische Schulsystem.</p>
+    <div class="il-partners">
+      <article class="il-card il-school">
+        <img src="assets/partners/valga-guemnaasium.jpg" alt="Hauptgebäude des Valga Gümnaasium in Valga (Estland)" width="1600" height="583" loading="lazy" decoding="async">
+        <div class="il-card-body">
+          <span class="badge">Partnerschule · Estland</span>
+          <h3>Valga Gümnaasium</h3>
+          <p>Jährliche Schulbesuche unserer Schülerinnen und Schüler an unserer Partnerschule in Valga. Gemeinsame Projekttage, Gastfamilien-Aufenthalte und Einblicke in das estnische Schulsystem.</p>
+        </div>
       </article>
-      <article class="il-card">
-        <span class="badge">So funktioniert's</span>
-        <h3>Vom Antrag bis zum Aufenthalt</h3>
-        <p>Die Erasmus+-Aufenthalte sind in den Schulalltag integriert. Anmeldung, Vorbereitung, Reise und Auswertung werden gemeinsam mit den verantwortlichen Lehrkräften organisiert.</p>
+      <article class="il-card il-school">
+        <img src="assets/partners/lycee-leonard-de-vinci.jpg" alt="Schulhof des Lycée Léonard de Vinci in Paris" width="729" height="408" loading="lazy" decoding="async">
+        <div class="il-card-body">
+          <span class="badge">Partnerschule · Frankreich</span>
+          <h3>Lycée Léonard de Vinci</h3>
+          <p>Schüleraustausch mit unserer Partnerschule im 15. Pariser Arrondissement. Gemeinsame Projekte im Rahmen von Erasmus+ — darunter Besuche des UNESCO-Hauptsitzes in Paris.</p>
+        </div>
       </article>
     </div>
+    <article class="il-card il-how">
+      <span class="badge">So funktioniert's</span>
+      <h3>Vom Antrag bis zum Aufenthalt</h3>
+      <p>Die Erasmus+-Aufenthalte sind in den Schulalltag integriert. Anmeldung, Vorbereitung, Reise und Auswertung werden gemeinsam mit den verantwortlichen Lehrkräften organisiert.</p>
+    </article>
   </div>
 </section>
 
