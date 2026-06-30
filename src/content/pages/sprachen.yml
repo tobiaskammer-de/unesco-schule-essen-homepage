@@ -9,7 +9,7 @@ hero:
 journey:
   eyebrow: "01 · Sprachenfolge"
   title: "Drei Wege durch die Sprachen"
-  body: "Die Pflicht-Sprache Englisch wird ab Klasse 7 um eine zweite Fremdsprache ergänzt — zur Wahl stehen Französisch, Spanisch oder Latein. Wer Latein wählt, kann ab Klasse 9 zusätzlich Französisch belegen und mit drei Schulsprachen ins Abitur gehen."
+  body: "Die Pflicht-Sprache Englisch wird ab Klasse 7 um eine zweite Fremdsprache ergänzt — zur Wahl stehen Französisch oder Latein. Geplant ist zudem die Einführung von Spanisch als weitere zweite Fremdsprache. Wer Latein wählt, kann ab Klasse 9 zusätzlich Französisch belegen und mit drei Schulsprachen ins Abitur gehen."
   stages:
     - klasse: "Ab Klasse 5"
       mark: "Pflicht"
@@ -22,7 +22,7 @@ journey:
     - klasse: "Ab Klasse 7"
       mark: "Wahl"
       title: "Spanisch"
-      body: "Neu in unserem Sprachenangebot: lebende Weltsprache mit rund 500 Millionen Sprecherinnen und Sprechern. Kommunikativer Zugang zu Sprache und Kultur des spanischsprachigen Raums, unterrichtet von unserer neuen Spanisch-Lehrkraft."
+      body: "Geplant als weitere zweite Fremdsprache: lebende Weltsprache mit rund 500 Millionen Sprecherinnen und Sprechern. Kommunikativer Zugang zu Sprache und Kultur des spanischsprachigen Raums, unterrichtet von unserer neuen Spanisch-Lehrkraft."
     - klasse: "Ab Klasse 7"
       mark: "Wahl"
       title: "Latein"
