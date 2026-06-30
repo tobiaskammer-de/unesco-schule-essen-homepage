@@ -1,0 +1,462 @@
+---
+/*
+ * Globale Suche — Spotlight-Overlay über Pagefind.
+ *
+ * Der Suchindex (dist/pagefind/) wird beim Build von der `astro-pagefind`-
+ * Integration aus dem gerenderten HTML erzeugt. Diese Komponente lädt die
+ * Pagefind-Runtime erst beim ersten Öffnen (Lazy-Load) und rendert die
+ * Treffer — nach Inhaltstyp gruppiert — im Markendesign.
+ *
+ * Hinweis: Lokal funktioniert die Suche erst nach einem `astro build`
+ * (der Index muss existieren). Im `astro dev`-Server liefert die Integration
+ * den zuletzt gebauten Index aus.
+ */
+---
+
+<div class="search-overlay" id="searchOverlay" hidden>
+  <div class="search-backdrop" data-search-close></div>
+
+  <div
+    class="search-panel"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Website durchsuchen"
+  >
+    <div class="search-field">
+      <svg class="search-field__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+      <input
+        type="search"
+        id="searchInput"
+        class="search-field__input"
+        placeholder="Auf der Website suchen …"
+        autocomplete="off"
+        autocapitalize="off"
+        autocorrect="off"
+        spellcheck="false"
+        role="combobox"
+        aria-expanded="false"
+        aria-controls="searchResults"
+        aria-autocomplete="list"
+        aria-label="Suchbegriff eingeben"
+      />
+      <button type="button" class="search-clear" data-search-clear aria-label="Eingabe löschen" hidden>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+      <button type="button" class="search-close" data-search-close aria-label="Suche schließen">Esc</button>
+    </div>
+
+    <p class="search-status" id="searchStatus" aria-live="polite" role="status"></p>
+
+    <div class="search-results" id="searchResults" role="listbox" aria-label="Suchergebnisse"></div>
+
+    <div class="search-hint" aria-hidden="true">
+      <span><kbd>↑</kbd><kbd>↓</kbd> navigieren</span>
+      <span><kbd>↵</kbd> öffnen</span>
+      <span><kbd>Esc</kbd> schließen</span>
+    </div>
+  </div>
+</div>
+
+<style is:global>
+  .search-overlay{
+    position:fixed;inset:0;z-index:1250;
+    display:flex;flex-direction:column;align-items:center;
+    padding:10vh 20px 20px;
+    opacity:0;transition:opacity .2s ease;
+  }
+  .search-overlay.is-open{opacity:1;}
+  .search-overlay[hidden]{display:none;}
+
+  .search-backdrop{
+    position:fixed;inset:0;
+    background:rgba(10,54,56,0.5);
+    backdrop-filter:blur(4px);
+    -webkit-backdrop-filter:blur(4px);
+    cursor:pointer;
+  }
+
+  .search-panel{
+    position:relative;z-index:1;
+    width:min(640px, 100%);
+    max-height:80vh;
+    display:flex;flex-direction:column;
+    background:var(--offwhite);
+    border:1px solid var(--hairline);
+    border-top:3px solid var(--petrol);
+    border-radius:6px;
+    box-shadow:0 30px 80px -30px rgba(10,54,56,0.55);
+    transform:translateY(-12px) scale(.985);
+    transition:transform .2s ease;
+    overflow:hidden;
+  }
+  .search-overlay.is-open .search-panel{transform:translateY(0) scale(1);}
+
+  /* ---- Eingabezeile ---- */
+  .search-field{
+    display:flex;align-items:center;gap:12px;
+    padding:16px 18px;
+    border-bottom:1px solid var(--hairline);
+    background:#fff;
+  }
+  .search-field__icon{color:var(--petrol);flex-shrink:0;}
+  .search-field__input{
+    flex:1;min-width:0;
+    border:0;outline:none;background:transparent;
+    font-family:var(--sans);font-size:18px;font-weight:500;color:var(--tinte);
+    padding:4px 0;
+  }
+  .search-field__input::placeholder{color:var(--stein);font-weight:400;}
+  /* Native Such-Clear-Kreuze von WebKit ausblenden (eigener Button) */
+  .search-field__input::-webkit-search-decoration,
+  .search-field__input::-webkit-search-cancel-button{-webkit-appearance:none;}
+
+  .search-clear{
+    display:flex;align-items:center;justify-content:center;
+    width:30px;height:30px;flex-shrink:0;
+    border:0;border-radius:50%;cursor:pointer;
+    background:var(--creme);color:var(--stein);
+    transition:color .2s, background-color .2s;
+  }
+  .search-clear:hover{background:var(--hairline);color:var(--petrol);}
+
+  .search-close{
+    flex-shrink:0;
+    font-family:var(--sans);font-size:12px;font-weight:600;letter-spacing:0.04em;
+    color:var(--stein);
+    padding:5px 9px;border-radius:4px;
+    border:1px solid var(--hairline);background:#fff;cursor:pointer;
+    transition:color .2s, border-color .2s;
+  }
+  .search-close:hover{color:var(--petrol);border-color:var(--petrol);}
+
+  /* ---- Status / Trefferzahl ---- */
+  .search-status{
+    margin:0;padding:12px 20px;
+    font-family:var(--sans);font-size:13px;color:var(--stein);
+    border-bottom:1px solid var(--hairline);
+    background:var(--offwhite);
+  }
+  .search-status:empty{display:none;}
+
+  /* ---- Ergebnisliste ---- */
+  .search-results{
+    flex:1;overflow-y:auto;overscroll-behavior:contain;
+    padding:8px 0;
+  }
+  .search-results:empty{display:none;}
+
+  .search-group{padding:8px 0 4px;}
+  .search-group + .search-group{border-top:1px solid var(--hairline);}
+  .search-group__head{
+    display:flex;align-items:center;gap:10px;
+    padding:8px 20px;
+  }
+  .search-group__label{
+    font-family:var(--sans);font-size:11px;font-weight:600;
+    letter-spacing:0.12em;text-transform:uppercase;color:var(--bordeaux);
+  }
+  .sr-badge{
+    display:inline-block;
+    font-family:var(--sans);font-size:10.5px;font-weight:700;
+    letter-spacing:0.06em;text-transform:uppercase;
+    padding:3px 8px;border-radius:3px;color:#fff;
+  }
+  .sr-badge--seite{background:var(--petrol);}
+  .sr-badge--news{background:var(--bordeaux);}
+  .sr-badge--default{background:var(--gold-deep);}
+
+  .search-result{
+    display:block;
+    padding:11px 20px;
+    text-decoration:none;color:inherit;
+    border-left:3px solid transparent;
+    transition:background-color .15s, border-color .15s;
+  }
+  .search-result:hover,
+  .search-result.is-active{
+    background:var(--creme);
+    border-left-color:var(--petrol);
+  }
+  .search-result__title{
+    font-family:var(--sans);font-size:16px;font-weight:600;
+    color:var(--petrol);line-height:1.3;margin:0 0 3px;
+  }
+  .search-result__excerpt{
+    font-family:var(--sans);font-size:13.5px;line-height:1.5;color:var(--stein);
+    margin:0;
+    display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+  }
+  .search-result__excerpt mark{
+    background:rgba(212,165,116,0.34);color:var(--petrol-dark);
+    font-weight:600;padding:0 1px;border-radius:2px;
+  }
+
+  /* Leerzustand / Keine Treffer */
+  .search-empty{
+    padding:32px 20px;text-align:center;
+    font-family:var(--sans);font-size:14.5px;color:var(--stein);
+  }
+  .search-empty strong{color:var(--petrol);font-weight:600;}
+
+  /* ---- Tastatur-Hinweis ---- */
+  .search-hint{
+    display:flex;flex-wrap:wrap;gap:16px;
+    padding:12px 20px;
+    border-top:1px solid var(--hairline);
+    background:var(--offwhite);
+    font-family:var(--sans);font-size:12px;color:var(--stein);
+  }
+  .search-hint kbd{
+    display:inline-block;min-width:18px;text-align:center;
+    font-family:var(--sans);font-size:11px;
+    padding:2px 5px;margin-right:2px;
+    background:#fff;border:1px solid var(--hairline);border-radius:3px;
+    box-shadow:0 1px 0 var(--hairline);
+  }
+
+  @media (max-width:560px){
+    .search-overlay{padding:0;}
+    .search-panel{
+      width:100%;max-height:100vh;height:100dvh;
+      border-radius:0;border-top-width:3px;
+    }
+    .search-hint{display:none;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .search-overlay,.search-panel{transition:none;}
+  }
+</style>
+
+<script>
+  // Reihenfolge + Anzeigenamen der Gruppen (Inhaltstypen aus data-pagefind-meta).
+  const GROUP_ORDER = ["Seite", "Aktuelles"];
+  const GROUP_LABELS = { "Seite": "Seiten", "Aktuelles": "Aktuelles" };
+
+  function badgeClass(type){
+    if (type === "Aktuelles") return "sr-badge--news";
+    if (type === "Seite") return "sr-badge--seite";
+    return "sr-badge--default";
+  }
+
+  const overlay  = document.getElementById("searchOverlay");
+  const input    = document.getElementById("searchInput");
+  const results  = document.getElementById("searchResults");
+  const status   = document.getElementById("searchStatus");
+  const clearBtn = document.querySelector("[data-search-clear]");
+
+  if (overlay && input && results && status) {
+    let pagefind = null;       // geladene Pagefind-Runtime
+    let pfLoading = null;       // laufender Lade-Promise
+    let lastFocused = null;     // Fokus vor dem Öffnen
+    let activeIndex = -1;       // Tastatur-Auswahl
+
+    // Pagefind erst beim ersten Öffnen laden.
+    async function loadPagefind(){
+      if (pagefind) return pagefind;
+      if (pfLoading) return pfLoading;
+      const base = import.meta.env.BASE_URL.endsWith("/")
+        ? import.meta.env.BASE_URL
+        : import.meta.env.BASE_URL + "/";
+      pfLoading = import(/* @vite-ignore */ `${base}pagefind/pagefind.js`)
+        .then(async (mod) => {
+          await mod.init();
+          pagefind = mod;
+          return mod;
+        })
+        .catch((err) => {
+          console.error("Pagefind konnte nicht geladen werden:", err);
+          status.textContent = "Suche derzeit nicht verfügbar.";
+          pfLoading = null;
+          return null;
+        });
+      return pfLoading;
+    }
+
+    function openSearch(){
+      if (!overlay.hidden) return;
+      lastFocused = document.activeElement;
+      overlay.hidden = false;
+      document.body.classList.add("nav-open");
+      // Reflow erzwingen, damit die Opacity-/Transform-Transition zuverlässig
+      // spielt — auch wenn requestAnimationFrame im Hintergrund-Tab gedrosselt wäre.
+      void overlay.offsetWidth;
+      overlay.classList.add("is-open");
+      input.focus();
+      loadPagefind(); // im Hintergrund vorladen
+    }
+
+    function closeSearch(){
+      if (overlay.hidden) return;
+      overlay.classList.remove("is-open");
+      document.body.classList.remove("nav-open");
+      const finish = () => { overlay.hidden = true; };
+      setTimeout(finish, 200);
+      if (lastFocused && typeof lastFocused.focus === "function") lastFocused.focus();
+    }
+
+    function setEmptyState(){
+      results.innerHTML = "";
+      status.textContent = "";
+      input.setAttribute("aria-expanded", "false");
+      input.removeAttribute("aria-activedescendant");
+      activeIndex = -1;
+    }
+
+    function escapeHtml(str){
+      return String(str)
+        .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    }
+
+    function render(query, items){
+      if (items.length === 0){
+        results.innerHTML =
+          `<p class="search-empty">Keine Ergebnisse für <strong>„${escapeHtml(query)}"</strong>.<br>Versuche es mit einem anderen Begriff.</p>`;
+        status.textContent = "Keine Ergebnisse";
+        input.setAttribute("aria-expanded", "false");
+        input.removeAttribute("aria-activedescendant");
+        activeIndex = -1;
+        return;
+      }
+
+      // Nach Inhaltstyp gruppieren.
+      const groups = {};
+      for (const item of items){
+        const type = (item.meta && item.meta.type) || "Seite";
+        (groups[type] ||= []).push(item);
+      }
+      const types = Object.keys(groups).sort((a, b) => {
+        const ia = GROUP_ORDER.indexOf(a), ib = GROUP_ORDER.indexOf(b);
+        return (ia === -1 ? 99 : ia) - (ib === -1 ? 99 : ib);
+      });
+
+      let html = "";
+      let idx = 0;
+      for (const type of types){
+        const label = GROUP_LABELS[type] || type;
+        html += `<section class="search-group">`;
+        html += `<div class="search-group__head"><span class="sr-badge ${badgeClass(type)}">${escapeHtml(type)}</span><span class="search-group__label">${escapeHtml(label)}</span></div>`;
+        for (const item of groups[type]){
+          const title = (item.meta && item.meta.title) || item.url;
+          html += `<a class="search-result" role="option" id="sr-opt-${idx}" href="${item.url}" tabindex="-1">`
+            + `<p class="search-result__title">${escapeHtml(title)}</p>`
+            + `<p class="search-result__excerpt">${item.excerpt}</p>`
+            + `</a>`;
+          idx++;
+        }
+        html += `</section>`;
+      }
+      results.innerHTML = html;
+
+      const count = items.length;
+      status.textContent = count === 1 ? "1 Ergebnis" : `${count} Ergebnisse`;
+      input.setAttribute("aria-expanded", "true");
+      activeIndex = -1;
+      input.removeAttribute("aria-activedescendant");
+    }
+
+    function options(){
+      return Array.from(results.querySelectorAll(".search-result"));
+    }
+
+    function setActive(next){
+      const opts = options();
+      if (opts.length === 0) return;
+      opts.forEach((el) => el.classList.remove("is-active"));
+      if (next < 0) next = opts.length - 1;
+      if (next >= opts.length) next = 0;
+      activeIndex = next;
+      const el = opts[activeIndex];
+      el.classList.add("is-active");
+      el.scrollIntoView({ block: "nearest" });
+      input.setAttribute("aria-activedescendant", el.id);
+    }
+
+    // --- Suche bei Eingabe (Pagefind debounct intern) ---
+    async function runSearch(){
+      const query = input.value.trim();
+      clearBtn.hidden = query.length === 0;
+      if (!query){ setEmptyState(); return; }
+
+      const pf = await loadPagefind();
+      if (!pf) return;
+
+      const search = await pf.debouncedSearch(query);
+      if (search === null) return; // durch neuere Eingabe überholt
+
+      const data = await Promise.all(
+        search.results.slice(0, 30).map((r) => r.data())
+      );
+      // Eingabe könnte sich währenddessen geändert haben
+      if (input.value.trim() !== query) return;
+      render(query, data);
+    }
+
+    input.addEventListener("input", runSearch);
+
+    // --- Tastatur im Suchfeld ---
+    input.addEventListener("keydown", (e) => {
+      const opts = options();
+      if (e.key === "ArrowDown"){
+        if (opts.length){ e.preventDefault(); setActive(activeIndex + 1); }
+      } else if (e.key === "ArrowUp"){
+        if (opts.length){ e.preventDefault(); setActive(activeIndex - 1); }
+      } else if (e.key === "Enter"){
+        e.preventDefault();
+        const target = activeIndex >= 0 ? opts[activeIndex] : opts[0];
+        if (target) window.location.href = target.getAttribute("href");
+      }
+    });
+
+    // --- Clear-Button ---
+    clearBtn.addEventListener("click", () => {
+      input.value = "";
+      clearBtn.hidden = true;
+      setEmptyState();
+      input.focus();
+    });
+
+    // --- Öffnen / Schließen ---
+    document.querySelectorAll("[data-search-open]").forEach((btn) => {
+      btn.addEventListener("click", openSearch);
+    });
+    document.querySelectorAll("[data-search-close]").forEach((btn) => {
+      btn.addEventListener("click", closeSearch);
+    });
+
+    // Klick auf ein Ergebnis schließt das Overlay (Navigation erfolgt per Link)
+    results.addEventListener("click", (e) => {
+      if (e.target.closest(".search-result")) closeSearch();
+    });
+
+    // --- Globale Tastenkürzel ---
+    document.addEventListener("keydown", (e) => {
+      // Cmd/Strg + K öffnet die Suche
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k"){
+        e.preventDefault();
+        openSearch();
+        return;
+      }
+      // Escape schließt (nur wenn Overlay offen)
+      if (e.key === "Escape" && !overlay.hidden){
+        e.preventDefault();
+        closeSearch();
+      }
+    });
+
+    // Fokus im Dialog halten (einfacher Fokus-Trap)
+    overlay.addEventListener("keydown", (e) => {
+      if (e.key !== "Tab") return;
+      const focusables = overlay.querySelectorAll(
+        'a[href], button:not([hidden]):not([disabled]), input, [tabindex]:not([tabindex="-1"])'
+      );
+      if (focusables.length === 0) return;
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+      if (e.shiftKey && document.activeElement === first){
+        e.preventDefault(); last.focus();
+      } else if (!e.shiftKey && document.activeElement === last){
+        e.preventDefault(); first.focus();
+      }
+    });
+  }
+</script>

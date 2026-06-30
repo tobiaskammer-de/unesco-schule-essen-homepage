@@ -28,7 +28,7 @@ const related = all
   .filter((e) => e.id !== entry.id && e.data.category === entry.data.category)
   .slice(0, 3);
 ---
-<BaseLayout title={`${entry.data.title} · UNESCO-Schule Essen`} description={entry.data.excerpt}>
+<BaseLayout title={`${entry.data.title} · UNESCO-Schule Essen`} description={entry.data.excerpt} searchType="Aktuelles">
 <style is:global>
   /* ---------- Single Article ---------- */
   .art-hero{

@@ -7,18 +7,22 @@ import "@fontsource/inter/700.css";
 // Serifenschrift Fraunces wird nicht mehr geladen – siehe --serif unten.
 import AccessibilityToolbar from "../components/AccessibilityToolbar.astro";
 import MailLink from "../components/MailLink.astro";
+import SearchOverlay from "../components/SearchOverlay.astro";
 
 interface Props {
   title?: string;
   description?: string;
   /** Bild für Social-Media-Vorschau (Open Graph). Relativer Asset-Pfad. */
   ogImage?: string;
+  /** Inhaltstyp für die Gruppierung in der Suche (z. B. "Seite", "Aktuelles"). */
+  searchType?: string;
 }
 
 const {
   title = "UNESCO-Schule Essen — Gymnasium",
   description = "UNESCO-Projektschule in Essen. Gymnasium mit Profil ab Klasse 5. Gemeinsam lernen, den eigenen Weg finden.",
   ogImage = "assets/schulhof-hero.jpg",
+  searchType = "Seite",
 } = Astro.props;
 
 // Base-URL-Helper: sorgt dafür, dass alle Links + Assets auch aus
@@ -41,7 +45,7 @@ const ogImageURL = new URL(link(ogImage), siteOrigin).href;
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self' https://api.web3forms.com; frame-src https://www.openstreetmap.org; frame-ancestors 'none'; base-uri 'self'; form-action 'self' https://api.web3forms.com">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self' https://api.web3forms.com; frame-src https://www.openstreetmap.org; frame-ancestors 'none'; base-uri 'self'; form-action 'self' https://api.web3forms.com">
 <title>{title}</title>
 <meta name="description" content={description}>
 <meta name="theme-color" content="#0E4D4F">
@@ -444,6 +448,20 @@ const ogImageURL = new URL(link(ogImage), siteOrigin).href;
   }
   .header-actions a:hover{color:#fff;background:var(--petrol);border-color:var(--petrol);}
   .header-actions .sep{display:none;}
+
+  /* Such-Auslöser (Lupe) */
+  .search-trigger{
+    display:inline-flex;align-items:center;gap:7px;
+    font-family:var(--sans);font-size:13.5px;font-weight:500;
+    color:var(--petrol);
+    padding:9px 14px;border-radius:4px;
+    border:1.5px solid var(--petrol);
+    background:transparent;cursor:pointer;
+    transition:color .2s, background-color .2s, border-color .2s;
+  }
+  .search-trigger:hover{color:#fff;background:var(--petrol);border-color:var(--petrol);}
+  .search-trigger svg{flex-shrink:0;}
+  .search-trigger--mobile{display:none;}
 
   .hamburger{
     display:none;background:none;border:0;cursor:pointer;padding:10px;
@@ -873,6 +891,14 @@ const ogImageURL = new URL(link(ogImage), siteOrigin).href;
     .nav-row{display:contents;}
     .header-actions{display:none;}
     .hamburger{display:block;}
+    /* Mobile: Lupe oben links (spiegelt den Hamburger oben rechts) */
+    .search-trigger--mobile{
+      display:flex;align-items:center;justify-content:center;
+      background:none;border:0;cursor:pointer;padding:10px;
+      min-width:44px;min-height:44px;
+      position:absolute;top:12px;left:var(--pad-mob);
+      color:var(--petrol);
+    }
 
     /* Full-Screen Mobile-Drawer von rechts.
        Höhe per JS-CSS-Variable --header-h gesetzt, weil sich die
@@ -1055,7 +1081,7 @@ const ogImageURL = new URL(link(ogImage), siteOrigin).href;
 
 <a href="#top" class="skip-link">Zum Hauptinhalt springen</a>
 
-<header class="site-header" id="siteHeader">
+<header class="site-header" id="siteHeader" data-pagefind-ignore>
   <div class="header-inner">
     <a href={link("index.html")} class="logo" aria-label="UNESCO-Schule Essen Startseite">
       <span class="logo-stack">
@@ -1174,10 +1200,18 @@ const ogImageURL = new URL(link(ogImage), siteOrigin).href;
       </div>
     </nav>
       <div class="header-actions" aria-label="Schnellzugriff">
+        <button type="button" class="search-trigger" data-search-open aria-label="Suche öffnen" aria-keyshortcuts="Control+K" title="Suchen (Strg/⌘ + K)">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+          <span class="search-trigger__label">Suche</span>
+        </button>
         <a href={link("Kalender.html")}>Kalender</a>
         <a href={link("Kontakt.html")}>Kontakt</a>
       </div>
     </div>
+
+    <button type="button" class="search-trigger search-trigger--mobile" data-search-open aria-label="Suche öffnen">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+    </button>
 
     <button class="hamburger" id="hamburgerBtn" aria-label="Menü öffnen" aria-expanded="false" aria-controls="mainNav">
       <span></span><span></span><span></span>
@@ -1185,13 +1219,16 @@ const ogImageURL = new URL(link(ogImage), siteOrigin).href;
   </div>
 </header>
 
-<div class="nav-backdrop" id="navBackdrop" aria-hidden="true"></div>
+<div class="nav-backdrop" id="navBackdrop" aria-hidden="true" data-pagefind-ignore></div>
 
-<slot />
+<div data-pagefind-body data-pagefind-meta={`type:${searchType}`} style="display:contents">
+  <slot />
+</div>
 
 <AccessibilityToolbar />
+<SearchOverlay />
 
-<footer class="site-footer" aria-label="Seitenfuß">
+<footer class="site-footer" aria-label="Seitenfuß" data-pagefind-ignore>
   <div class="container">
     <div class="footer-grid">
       <div class="footer-col footer-brand">
