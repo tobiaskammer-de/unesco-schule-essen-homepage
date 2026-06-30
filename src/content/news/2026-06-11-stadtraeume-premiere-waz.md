@@ -3,7 +3,7 @@ title: "„Weit mehr als ein Schultheater“ — die WAZ über unser Bühnenproj
 date: 2026-06-11
 category: "Kooperation"
 excerpt: "Tanz, Schauspiel, Musik und eine Ausstellung: Die WAZ würdigt unser Crossover-Projekt „StadTräume“ mit dem Aalto-Theater in einem großen Artikel. Premiere am 25. und 26. Juni 2026 — Tickets gibt es im Vorverkauf bei der TuP."
-coverImage: "/unesco-schule-essen-homepage/assets/news/2026-06-11-stadtraeume-waz.jpg"
+coverImage: "/assets/news/2026-06-11-stadtraeume-waz.jpg"
 coverAlt: "Probe im Tanzsaal: Schülerinnen und Schüler stehen in Reihen mit erhobenen Armen, Aalto-Choreografin Adelina Nigra gibt vorne die Bewegung vor"
 author: "UNESCO-Schule Essen"
 draft: false

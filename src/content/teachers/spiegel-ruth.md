@@ -6,5 +6,5 @@ subjects: []
 roles: ["Schulsozialarbeit"]
 email: "ruth.spiegel@164835.nrw.schule"
 phone: "0201 2802630"
-photo: "/unesco-schule-essen-homepage/assets/kollegium/spiegel-ruth.png"
+photo: "/assets/kollegium/spiegel-ruth.png"
 ---

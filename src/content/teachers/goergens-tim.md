@@ -5,5 +5,5 @@ lastName: "Görgens"
 subjects: ["Englisch", "Sport"]
 roles: []
 email: "tim.goergens@164835.nrw.schule"
-photo: "/unesco-schule-essen-homepage/assets/kollegium/goergens-tim.jpg"
+photo: "/assets/kollegium/goergens-tim.jpg"
 ---

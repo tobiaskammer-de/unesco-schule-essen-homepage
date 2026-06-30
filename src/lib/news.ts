@@ -19,7 +19,7 @@ export async function getLatestNews(limit = 3): Promise<NewsEntry[]> {
 /**
  * Korrigiert absolute Bild-Pfade um den Astro-`base` (für GitHub Pages).
  * Frontmatter enthält `/assets/news/foo.jpg`, live wird daraus
- * `/unesco-schule-essen-homepage/assets/news/foo.jpg`.
+ * `/assets/news/foo.jpg`.
  */
 export function withBase(path: string, base: string): string {
   if (!path) return path;

@@ -5,5 +5,5 @@ lastName: "Henschel-Kibbe"
 subjects: ["Englisch", "Geschichte", "Philosophie"]
 roles: []
 email: "antje.henschel-kibbe@164835.nrw.schule"
-photo: "/unesco-schule-essen-homepage/assets/kollegium/henschel-kibbe-antje.jpg"
+photo: "/assets/kollegium/henschel-kibbe-antje.jpg"
 ---

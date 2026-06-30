@@ -1,10 +1,10 @@
 import { defineConfig } from 'astro/config';
 
 // Site URL is used for canonical links + sitemap generation.
-// Custom domain served via GitHub Pages (apex or www — update once DNS is final).
+// Custom domain (apex) served via GitHub Pages — site is served at the root.
 export default defineConfig({
-  site: 'https://tobiaskammer-de.github.io',
-  base: '/unesco-schule-essen-homepage',
+  site: 'https://unesco-schule-essen.de',
+  base: '/',
   trailingSlash: 'never',
   build: {
     format: 'file',

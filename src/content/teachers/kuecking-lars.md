@@ -5,5 +5,5 @@ lastName: "Kücking"
 subjects: ["Latein", "Chemie"]
 roles: []
 email: "lars.kuecking@164835.nrw.schule"
-photo: "/unesco-schule-essen-homepage/assets/kollegium/kuecking-lars.jpg"
+photo: "/assets/kollegium/kuecking-lars.jpg"
 ---

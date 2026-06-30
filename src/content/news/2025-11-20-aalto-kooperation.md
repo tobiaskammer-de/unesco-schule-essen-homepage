@@ -3,7 +3,7 @@ title: "Kooperation mit dem Aalto-Theater: Unsere Schülerinnen und Schüler auf
 date: 2025-11-20
 category: "Kooperation"
 excerpt: "Gemeinsam mit dem Aalto-Musiktheater und den Essener Philharmonikern erarbeiten Schülerinnen und Schüler ein interdisziplinäres Bühnenprojekt — von der Textproduktion über Bildkomposition bis zur Musik."
-coverImage: "/unesco-schule-essen-homepage/assets/news/2025-11-20-aalto-cover.png"
+coverImage: "/assets/news/2025-11-20-aalto-cover.png"
 coverAlt: "Aalto-Theater Essen, Außenansicht"
 author: "Musik- und Deutsch-Fachschaft"
 draft: false

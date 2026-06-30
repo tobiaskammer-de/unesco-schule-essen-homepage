@@ -3,7 +3,7 @@ title: Grenzen überwinden — UNESCO-Projekttag 2026
 date: 2026-04-15
 category: UNESCO-Projekttag
 excerpt: Im Rahmen unseres Profils als UNESCO-Projektschule haben wir den zweiten Projekttag dieses Schuljahres durchgeführt. Das Thema eröffnete einen weiten Denkraum — von persönlichen Grenzen bis hin zu globalen Herausforderungen.
-coverImage: /unesco-schule-essen-homepage/assets/news/Bildschirmfoto 2026-04-23 um 12.28.39.png
+coverImage: /assets/news/Bildschirmfoto 2026-04-23 um 12.28.39.png
 coverAlt: Schülerinnen und Schüler bei einer Ausstellung zum UNESCO-Projekttag
 author: UNESCO-Team
 draft: false

@@ -3,7 +3,7 @@ title: Im Dialog mit Prof. Klaus Hurrelmann
 date: 2026-05-11
 category: Aus dem Unterricht
 excerpt: Am 11. Mai 2026 war Prof. Dr. Klaus Hurrelmann zu Gast an der UNESCO-Schule Essen. Auf Einladung der Pädagogik-Fachschaft kam der Jugendforscher mit den drei Pädagogik-Kursen der Q1 ins Gespräch.
-coverImage: /unesco-schule-essen-homepage/assets/news/IMG_1946.jpeg
+coverImage: /assets/news/IMG_1946.jpeg
 coverAlt: Prof. Dr. Klaus Hurrelmann sitzt mit Schülerinnen und Schülern der Q1-Pädagogikkurse im Klassenraum
 author: Tobias Kammer
 draft: false

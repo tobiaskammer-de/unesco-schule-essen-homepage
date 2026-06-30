@@ -12,12 +12,12 @@ backend:
 # public_folder enthält den GitHub-Pages-Base-Pfad, damit Bilder in Markdown-Body
 # und Frontmatter direkt funktionieren (ohne weitere URL-Transformation).
 media_folder: public/assets/news
-public_folder: /unesco-schule-essen-homepage/assets/news
+public_folder: /assets/news
 
 # UI
-site_url: https://tobiaskammer-de.github.io/unesco-schule-essen-homepage
-display_url: https://tobiaskammer-de.github.io/unesco-schule-essen-homepage
-logo_url: /unesco-schule-essen-homepage/assets/logo-mark.png
+site_url: https://unesco-schule-essen.de
+display_url: https://unesco-schule-essen.de
+logo_url: /assets/logo-mark.png
 
 publish_mode: simple
 
@@ -79,7 +79,7 @@ collections:
     format: frontmatter
     # Kollegiums-Fotos landen separat von News-Bildern
     media_folder: "/public/assets/kollegium"
-    public_folder: "/unesco-schule-essen-homepage/assets/kollegium"
+    public_folder: "/assets/kollegium"
     summary: "{{lastName}}, {{firstName}} — {{subjects}}"
     sortable_fields: [lastName, firstName]
     view_filters:
