@@ -2,24 +2,24 @@ hero:
   eyebrow: "Service · Digitales & Alltag"
   title: "Unsere"
   titleHighlight: "Schoolwear"
-  lede: "Die UNESCO-Schule ist bunt — und so ist es auch unsere Schoolwear. Eine eigene Kollektion, die den Charakter unserer Schule unterstreicht."
+  lede: "Die UNESCO-Schule ist bunt, und so ist es auch unsere Schoolwear. Eine eigene Kollektion, die den Charakter unserer Schule unterstreicht."
 
 intro:
   title: "Bunt wie"
   titleHighlight: "unsere Schule"
   body: |
-    Alle Artikel sind auf der Vorderseite auf der rechten Brust mit unserem kleinen Logo versehen — und neuerdings zusätzlich mit einem größeren Rückenprint und einem Schriftzug.
+    Alle Artikel sind auf der Vorderseite auf der rechten Brust mit unserem kleinen Logo versehen und neuerdings zusätzlich mit einem größeren Rückenprint und einem Schriftzug.
 
-    Verfügbar sind aktuell **T-Shirts, Hoodies und Sweatshirtjacken** in verschiedenen Farben und Größen für Männer, Frauen und Kinder. Alle Kleidungsstücke können auf der Webseite der Firma **Lomestar** angeschaut werden — oder direkt bei **Frau Hödel**, die einige Pullis und weitere Artikel zum Anschauen und Anprobieren da hat.
+    Verfügbar sind aktuell **T-Shirts, Hoodies und Sweatshirtjacken** in verschiedenen Farben und Größen für Männer, Frauen und Kinder. Alle Kleidungsstücke können auf der Webseite der Firma **Lomestar** angeschaut werden oder direkt bei **Frau Hödel**, die einige Pullis und weitere Artikel zum Anschauen und Anprobieren da hat.
 
-    **Bestellungen laufen direkt über Frau Hödel.** Einfach eine E-Mail mit Wunschartikel, Größe und Farbe schreiben — den Rest übernimmt sie.
+    **Bestellungen laufen direkt über Frau Hödel.** Einfach eine E-Mail mit Wunschartikel, Größe und Farbe schreiben, den Rest übernimmt sie.
 
-    Für unsere Erasmus+-Fahrten nach Paris und Estland wurden unsere Schülerinnen und Schüler mit einheitlicher Schulkleidung ausgestattet — für ein sichtbares Gemeinschaftsgefühl und eine geschlossene Außendarstellung unserer Schule.
+    Für unsere Erasmus+-Fahrten nach Paris und Estland wurden unsere Schülerinnen und Schüler mit einheitlicher Schulkleidung ausgestattet: für ein sichtbares Gemeinschaftsgefühl und eine geschlossene Außendarstellung unserer Schule.
 
 gallery:
   eyebrow: "Unterwegs in Schoolwear"
   title: "Von Essen bis Paris"
-  body: "Bei unseren Erasmus+-Fahrten ist die Schoolwear immer dabei — hier zu sehen in Paris: am Trocadéro, an unserer Partnerschule und am UNESCO-Hauptsitz."
+  body: "Bei unseren Erasmus+-Fahrten ist die Schoolwear immer dabei. Hier zu sehen in Paris: am Trocadéro, an unserer Partnerschule und am UNESCO-Hauptsitz."
   items:
     - src: "assets/schoolwear/paris-eiffelturm.jpg"
       alt: "Schülerinnen und Schüler in Schoolwear vor dem Eiffelturm in Paris"
@@ -34,8 +34,8 @@ gallery:
 action:
   eyebrow: "So kommt ihr an eure Schoolwear"
   title: "Anschauen & bestellen"
-  body: "Die komplette Kollektion mit allen Artikeln, Größen und Farben gibt es auf der Webseite von Lomestar zum Anschauen — oder bei Frau Hödel vor Ort. Bestellt wird direkt bei ihr per E-Mail."
+  body: "Die komplette Kollektion mit allen Artikeln, Größen und Farben gibt es auf der Webseite von Lomestar oder bei Frau Hödel vor Ort zum Anschauen. Bestellt wird direkt bei ihr per E-Mail."
   buttonLabel: "Bestellung per E-Mail an Frau Hödel"
   secondaryLabel: "Kollektion bei Lomestar ansehen"
   secondaryUrl: "https://shop.lomestar.de/0296-3602/"
-  hint: "Der Lomestar-Link öffnet in einem neuen Tab und dient nur zum Anschauen der Kollektion — bestellt wird per E-Mail bei Frau Hödel."
+  hint: "Der Lomestar-Link öffnet in einem neuen Tab und dient nur zum Anschauen der Kollektion. Bestellt wird per E-Mail bei Frau Hödel."

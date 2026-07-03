@@ -12,7 +12,7 @@ const hoedel = await getTeacherByLastName("Hödel");
 const orderMail = hoedel?.data.email ?? "info@unesco-schule-essen.de";
 const mailtoHref = `mailto:${orderMail}?subject=${encodeURIComponent("Schoolwear-Bestellung")}`;
 ---
-<BaseLayout title="Schoolwear · UNESCO-Schule Essen" description="Unsere Schoolwear-Kollektion: T-Shirts, Hoodies und Sweatshirtjacken mit Schul-Logo. Anschauen bei Lomestar oder Frau Hödel — bestellt wird per E-Mail bei Frau Hödel.">
+<BaseLayout title="Schoolwear · UNESCO-Schule Essen" description="Unsere Schoolwear-Kollektion: T-Shirts, Hoodies und Sweatshirtjacken mit Schul-Logo. Anschauen bei Lomestar oder Frau Hödel, bestellt wird per E-Mail bei Frau Hödel.">
 <style is:global>
   /* ---------- Schoolwear ---------- */
   .sw-intro{background:var(--creme);padding:var(--space-section) 0;}
