@@ -3,22 +3,26 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
 import MailLink from "../components/MailLink.astro";
 import {
-  getStaffTeachers,
-  getTrainees,
+  getAllTeachers,
   getAllSubjects,
   displayName,
 } from "../lib/teachers";
 import { getSingle } from "../lib/pageContent";
 
 const page = await getSingle("pageKollegium");
-const staff = await getStaffTeachers();
-const trainees = await getTrainees();
+const teachers = await getAllTeachers();
 const subjects = await getAllSubjects();
 
-// Eindeutige Rollen für Filter
+/** Etikett für Referendar*innen, nach Anrede gegendert. */
+function traineeLabel(t: (typeof teachers)[number]): string {
+  return t.data.salutation === "Frau" ? "Referendarin" : "Referendar";
+}
+
+// Eindeutige Rollen für Filter (Referendariat als eigene Funktion)
 const rolesSet = new Set<string>();
-for (const t of staff) for (const r of t.data.roles) rolesSet.add(r);
+for (const t of teachers) for (const r of t.data.roles) rolesSet.add(r);
 const roles = Array.from(rolesSet).sort((a, b) => a.localeCompare(b, "de"));
+if (teachers.some((t) => t.data.isTrainee)) roles.push("Referendariat");
 ---
 <BaseLayout title="Kollegium · UNESCO-Schule Essen" description="Die Lehrkräfte der UNESCO-Schule Essen mit Fächern und Kontaktmöglichkeiten.">
 <style is:global>
@@ -118,24 +122,6 @@ const roles = Array.from(rolesSet).sort((a, b) => a.localeCompare(b, "de"));
   .ko-card .btn-mail:hover{background:var(--petrol);color:var(--creme);border-color:var(--petrol);}
   .ko-card .btn-mail svg{width:14px;height:14px;}
 
-  /* Trainee-Sektion */
-  .ko-trainees{background:var(--creme);padding:var(--space-section) 0;border-top:1px solid var(--hairline);}
-  .ko-trainees .head{max-width:820px;margin:0 0 32px;}
-  .ko-trainees .head .eyebrow{display:block;margin-bottom:14px;}
-  .ko-trainees .head h2{
-    font-family:var(--serif);font-weight:500;
-    font-size:clamp(26px,2.8vw,36px);line-height:1.15;letter-spacing:-0.015em;
-    color:var(--petrol);margin:0 0 12px;
-  }
-  .ko-trainees .head p{
-    font-family:var(--sans);font-size:16px;line-height:1.6;color:var(--stein);
-    max-width:640px;margin:0;
-  }
-  .ko-trainees-grid{
-    display:grid;grid-template-columns:repeat(4, minmax(0, 1fr));gap:22px;
-    max-width:600px;
-  }
-
   /* Empty state */
   .ko-empty{
     padding:64px 32px;text-align:center;
@@ -146,12 +132,12 @@ const roles = Array.from(rolesSet).sort((a, b) => a.localeCompare(b, "de"));
   .ko-empty.is-active{display:block;}
 
   @media (max-width:1080px){
-    .ko-grid,.ko-trainees-grid{grid-template-columns:repeat(3, minmax(0, 1fr));gap:18px;}
+    .ko-grid{grid-template-columns:repeat(3, minmax(0, 1fr));gap:18px;}
   }
   @media (max-width:780px){
     .ko-intro-grid{grid-template-columns:1fr;gap:28px;}
-    .ko-grid,.ko-trainees-grid{grid-template-columns:repeat(2, minmax(0, 1fr));gap:14px;}
-    .ko-intro,.ko-section,.ko-trainees{padding:var(--space-section-sm) 0;}
+    .ko-grid{grid-template-columns:repeat(2, minmax(0, 1fr));gap:14px;}
+    .ko-intro,.ko-section{padding:var(--space-section-sm) 0;}
     .ko-toolbar{gap:12px;margin-bottom:28px;}
     .ko-count{margin-left:0;width:100%;}
   }
@@ -183,23 +169,24 @@ const roles = Array.from(rolesSet).sort((a, b) => a.localeCompare(b, "de"));
         {roles.map((r) => <option value={r}>{r}</option>)}
       </select>
 
-      <span class="ko-count" id="ko-count">{staff.length} Personen</span>
+      <span class="ko-count" id="ko-count">{teachers.length} Personen</span>
     </div>
 
     <div class="ko-grid" id="ko-grid">
-      {staff.map((t) => (
+      {teachers.map((t) => (
         <article
           class="ko-card"
           data-subjects={t.data.subjects.join("|")}
-          data-roles={t.data.roles.join("|")}
+          data-roles={[...t.data.roles, ...(t.data.isTrainee ? ["Referendariat"] : [])].join("|")}
         >
           <div class="body">
             <p class="name">{t.data.title ? t.data.title + " " : ""}{t.data.lastName}, {t.data.firstName}</p>
             {t.data.subjects.length > 0 && (
               <p class="subjects">{t.data.subjects.join(" · ")}</p>
             )}
-            {t.data.roles.length > 0 && (
+            {(t.data.roles.length > 0 || t.data.isTrainee) && (
               <div class="roles">
+                {t.data.isTrainee && <span class="role-chip">{traineeLabel(t)}</span>}
                 {t.data.roles.map((r) => <span class="role-chip">{r}</span>)}
               </div>
             )}
@@ -222,27 +209,6 @@ const roles = Array.from(rolesSet).sort((a, b) => a.localeCompare(b, "de"));
     </div>
   </div>
 </section>
-
-{trainees.length > 0 && (
-  <section class="ko-trainees" aria-label="Referendarinnen und Referendare">
-    <div class="container">
-      <div class="head">
-        <span class="eyebrow">Im Referendariat</span>
-        <h2>Referendar*innen</h2>
-      </div>
-      <div class="ko-trainees-grid">
-        {trainees.map((t) => (
-          <article class="ko-card">
-            <div class="body">
-              <p class="name">{t.data.title ? t.data.title + " " : ""}{t.data.lastName}, {t.data.firstName}</p>
-              <p class="subjects">Referendariat</p>
-            </div>
-          </article>
-        ))}
-      </div>
-    </div>
-  </section>
-)}
 
 <script is:inline>
   (function(){
