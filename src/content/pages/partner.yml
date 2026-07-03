@@ -20,6 +20,10 @@ categories:
         url: "https://www.unesco.de/bildung/unesco-projektschulen"
         logo: "assets/partners/unesco.png"
         desc: "Als eine von rund 300 deutschen UNESCO-Projektschulen sind wir Teil eines weltweiten Netzwerks, verpflichtet auf Frieden, Menschenrechte, kulturelle Vielfalt und nachhaltige Entwicklung."
+      - name: "RuhrFutur"
+        url: "https://www.ruhrfutur.de"
+        logo: "assets/partners/ruhrfutur.svg"
+        desc: "Bildungsinitiative für die Metropole Ruhr. RuhrFutur koordiniert bei uns die Übermittagsbetreuung."
   - label: "Hochschule & Studienorientierung"
     intro: "Mit wem wir zusammenarbeiten, wenn es um den Übergang in Studium und Beruf geht."
     items:
