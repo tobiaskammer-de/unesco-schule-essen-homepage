@@ -52,7 +52,8 @@ const teachers = defineCollection({
     title: z.string().optional(),
     subjects: z.array(z.string()).default([]),
     roles: z.array(z.string()).default([]),
-    email: z.string().email(),
+    /** Optional: Schulleitung hat bewusst keine öffentliche Adresse (Kontakt über das Sekretariat). */
+    email: z.string().email().optional(),
     phone: z.string().optional(),
     photo: z.string().optional(),
     isTrainee: z.boolean().default(false),

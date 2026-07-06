@@ -1093,6 +1093,37 @@ const ogImageURL = new URL(link(ogImage), siteOrigin).href;
     <div class="nav-row">
       <nav class="main-nav" id="mainNav" aria-label="Hauptnavigation">
       <ul class="nav-list">
+        <li class="nav-item has-dropdown">
+          <a href="#" class="nav-link" aria-haspopup="true">Informieren</a>
+          <div class="dropdown-mega" role="menu">
+            <div class="mega-col">
+              <h4>Unsere Schule</h4>
+              <ul>
+                <li><a href={link("Schulleitung.html")}>Schulleitung</a></li>
+                <li><a href={link("Kollegium.html")}>Kollegium</a></li>
+                <li><a href={link("Anfahrt.html")}>Standort und Anfahrt</a></li>
+              </ul>
+            </div>
+            <div class="mega-col">
+              <h4>Schulstufen</h4>
+              <ul>
+                <li><a href={link("Erprobungsstufe.html")}>Erprobungsstufe (Klassen 5–6)</a></li>
+                <li><a href={link("Mittelstufe.html")}>Mittelstufe (Klassen 7–10)</a></li>
+                <li><a href={link("Oberstufe.html")}>Oberstufe (Klassen 11–13)</a></li>
+              </ul>
+            </div>
+            <div class="mega-col">
+              <h4>Für Eltern</h4>
+              <ul>
+                <li><a href={link("Tag-der-offenen-Tuer.html")}>Tag der offenen Tür</a></li>
+                <li><a href={link("Anmeldung.html")}>Anmeldung an die UNESCO-Schule</a></li>
+                <li><a href={link("Paedagogische-Konzepte.html")}>Pädagogische Konzepte</a></li>
+                <li><a href={link("Eltern.html")}>Infos für Eltern</a></li>
+              </ul>
+            </div>
+          </div>
+        </li>
+
         <li class="nav-item"><a href={link("Aktuelles.html")} class="nav-link">Aktuelles</a></li>
 
         <li class="nav-item has-dropdown">
@@ -1150,37 +1181,6 @@ const ogImageURL = new URL(link(ogImage), siteOrigin).href;
                 <li><a href={link("Mittagessen-und-Betreuung.html")}>Mittagessen &amp; Übermittagsbetreuung</a></li>
                 <li><a href={link("Schliessfaecher.html")}>Schließfächer mieten</a></li>
                 <li><a href={link("Schoolwear.html")}>Schoolwear</a></li>
-              </ul>
-            </div>
-          </div>
-        </li>
-
-        <li class="nav-item has-dropdown">
-          <a href="#" class="nav-link" aria-haspopup="true">Informieren</a>
-          <div class="dropdown-mega" role="menu">
-            <div class="mega-col">
-              <h4>Unsere Schule</h4>
-              <ul>
-                <li><a href={link("Schulleitung.html")}>Schulleitung</a></li>
-                <li><a href={link("Kollegium.html")}>Kollegium</a></li>
-                <li><a href={link("Anfahrt.html")}>Standort und Anfahrt</a></li>
-              </ul>
-            </div>
-            <div class="mega-col">
-              <h4>Schulstufen</h4>
-              <ul>
-                <li><a href={link("Erprobungsstufe.html")}>Erprobungsstufe (Klassen 5–6)</a></li>
-                <li><a href={link("Mittelstufe.html")}>Mittelstufe (Klassen 7–10)</a></li>
-                <li><a href={link("Oberstufe.html")}>Oberstufe (Klassen 11–13)</a></li>
-              </ul>
-            </div>
-            <div class="mega-col">
-              <h4>Für Eltern</h4>
-              <ul>
-                <li><a href={link("Tag-der-offenen-Tuer.html")}>Tag der offenen Tür</a></li>
-                <li><a href={link("Anmeldung.html")}>Anmeldung an die UNESCO-Schule</a></li>
-                <li><a href={link("Paedagogische-Konzepte.html")}>Pädagogische Konzepte</a></li>
-                <li><a href={link("Eltern.html")}>Infos für Eltern</a></li>
               </ul>
             </div>
           </div>

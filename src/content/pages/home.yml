@@ -27,7 +27,7 @@ path:
       ctaHref: "Anmeldung.html"
     - kicker: "Fragen stellen"
       title: "Gespräch vereinbaren"
-      text: "Ob Schulwahl, Schnuppertag für Ihr Kind oder Fragen zu unserem UNESCO-Profil: Nutzen Sie unser Kontaktformular. Werktags melden wir uns in der Regel innerhalb von 24 Stunden zurück."
+      text: "Ob Schulwahl, Schnuppertag für Ihr Kind oder Fragen zu unserem UNESCO-Profil: Nutzen Sie unser Kontaktformular."
       ctaLabel: "Termin anfragen"
       ctaHref: "Kontakt.html"
 

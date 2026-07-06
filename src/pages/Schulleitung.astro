@@ -83,6 +83,17 @@ const koordinationen = [
   }
   .sl-card .mail:hover{border-bottom-color:var(--petrol);color:var(--petrol-dark);}
 
+  .sl-card .mail-note{
+    margin:auto 0 0;
+    font-family:var(--sans);font-size:13.5px;color:var(--ink-soft, #555);
+  }
+  .sl-card .mail-note a{
+    color:var(--petrol);text-decoration:none;
+    border-bottom:1px solid var(--hairline);padding-bottom:2px;
+    transition:border-color var(--transition-fast), color var(--transition-fast);
+  }
+  .sl-card .mail-note a:hover{border-bottom-color:var(--petrol);color:var(--petrol-dark);}
+
   @media (max-width:900px){
     .sl-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;}
     .sl-grid--two{max-width:none;}
@@ -108,7 +119,9 @@ const koordinationen = [
         <article class="sl-card">
           <p class="role">{role}</p>
           <h3 class="name">{displayName(teacher!)}</h3>
-          <MailLink class="mail" email={teacher!.data.email} />
+          {teacher!.data.email
+            ? <MailLink class="mail" email={teacher!.data.email} />
+            : <p class="mail-note">Kontakt über das <a href="Kontakt.html">Sekretariat</a></p>}
         </article>
       ))}
     </div>
@@ -118,7 +131,9 @@ const koordinationen = [
         <article class="sl-card">
           <p class="role">{role}</p>
           <h3 class="name">{displayName(teacher!)}</h3>
-          <MailLink class="mail" email={teacher!.data.email} />
+          {teacher!.data.email
+            ? <MailLink class="mail" email={teacher!.data.email} />
+            : <p class="mail-note">Kontakt über das <a href="Kontakt.html">Sekretariat</a></p>}
         </article>
       ))}
     </div>

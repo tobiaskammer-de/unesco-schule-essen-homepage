@@ -11,7 +11,7 @@ school:
 
 form:
   title: "Schreiben Sie uns"
-  lede: "Dieses Formular geht direkt an unser Sekretariat. Wir melden uns werktags in der Regel innerhalb von 24 Stunden zurück."
+  lede: "Dieses Formular geht direkt an unser Sekretariat."
   hint: "Ihre Angaben verwenden wir ausschließlich zur Beantwortung Ihrer Anfrage. Details in unserer Datenschutzerklärung."
   submitLabel: "Nachricht senden →"
   topics:
