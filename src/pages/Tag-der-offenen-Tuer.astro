@@ -304,9 +304,11 @@ const link = (p: string) => p.startsWith("/") || /^https?:\/\//.test(p) ? p : `$
         <h2>Sie können nicht kommen?</h2>
       </div>
       <div>
-        <p>Wir freuen uns, wenn Sie es trotzdem einrichten können. Falls nicht: Wir nehmen uns auch außerhalb des Tags der offenen Tür gern Zeit für Sie. Vereinbaren Sie ein persönliches Gespräch oder informieren Sie sich direkt zur Anmeldung.</p>
+        <p>Wir freuen uns, wenn Sie es trotzdem einrichten können. Falls nicht: Wir nehmen uns auch außerhalb des Tags der offenen Tür gern Zeit für Sie. Kommen Sie zu unserem Elterninformationsabend für die zukünftigen 5. Klassen, vereinbaren Sie ein persönliches Gespräch oder informieren Sie sich direkt zur Anmeldung.</p>
         <div class="row">
-          <a href={link("Anmeldung.html")} class="btn btn-primary">Zur Anmeldung <span class="arrow">→</span></a>
+          {/* Termingebunden: Link nach dem Elterninformationsabend entfernen. */}
+          <a href={link("elterninformationsabend-5-klasse-essen.html")} class="btn btn-primary">Zum Elterninformationsabend <span class="arrow">→</span></a>
+          <a href={link("Anmeldung.html")} class="btn btn-secondary">Zur Anmeldung <span class="arrow">→</span></a>
           <a href={link("Kontakt.html")} class="btn btn-secondary">Termin vereinbaren <span class="arrow">→</span></a>
         </div>
       </div>

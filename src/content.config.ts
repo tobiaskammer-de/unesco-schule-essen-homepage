@@ -164,6 +164,13 @@ const pageAnmeldung = defineCollection({
       titleHighlight: z.string().optional(),
       lede: z.string(),
     }),
+    /** Termingebundenes Hinweis-Band über der Seite. Leer lassen = wird nicht gerendert. */
+    notice: z.object({
+      kicker: z.string(),
+      text: z.string(),
+      ctaLabel: z.string(),
+      ctaHref: z.string(),
+    }).optional(),
     klasse5: z.object({
       eyebrow: z.string(),
       title: z.string(),
@@ -235,6 +242,7 @@ const flexibleSchema = z.record(z.string(), z.any());
 const pageUnescoMission   = defineCollection({ loader: glob({ pattern: "unesco-mission.yml",       base: "./src/content/pages" }), schema: flexibleSchema });
 const pageSchulprogramm   = defineCollection({ loader: glob({ pattern: "schulprogramm.yml",        base: "./src/content/pages" }), schema: flexibleSchema });
 const pageErprobungsstufe = defineCollection({ loader: glob({ pattern: "erprobungsstufe.yml",      base: "./src/content/pages" }), schema: flexibleSchema });
+const pageElterninformationsabend = defineCollection({ loader: glob({ pattern: "elterninformationsabend.yml", base: "./src/content/pages" }), schema: flexibleSchema });
 const pageMittelstufe     = defineCollection({ loader: glob({ pattern: "mittelstufe.yml",          base: "./src/content/pages" }), schema: flexibleSchema });
 const pageOberstufe       = defineCollection({ loader: glob({ pattern: "oberstufe.yml",            base: "./src/content/pages" }), schema: flexibleSchema });
 const pageSchulleitung    = defineCollection({ loader: glob({ pattern: "schulleitung.yml",         base: "./src/content/pages" }), schema: flexibleSchema });
@@ -273,6 +281,7 @@ export const collections = {
   pageUnescoMission,
   pageSchulprogramm,
   pageErprobungsstufe,
+  pageElterninformationsabend,
   pageMittelstufe,
   pageOberstufe,
   pageSchulleitung,

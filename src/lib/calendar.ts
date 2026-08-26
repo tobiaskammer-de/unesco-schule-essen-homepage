@@ -44,7 +44,7 @@ function toISODate(d: Date): string {
 function categorize(title: string): CalEvent["category"] {
   const t = title.toLowerCase();
   if (
-    /(tag der offenen tür|anmeld|elternabend|einschulung|abi(turi|entlassung)|zeugnis)/i.test(
+    /(tag der offenen tür|anmeld|elternabend|informationsabend|infoabend|einschulung|abi(turi|entlassung)|zeugnis)/i.test(
       t
     )
   )

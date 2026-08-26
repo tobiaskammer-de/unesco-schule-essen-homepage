@@ -117,7 +117,7 @@ const school: any = await getSingle("siteSchool");
   }
 
   /* Form */
-  .kt-form{background:var(--creme);padding:var(--space-section) 0;border-top:1px solid var(--hairline);}
+  .kt-form{background:var(--creme);padding:var(--space-section) 0;border-top:1px solid var(--hairline);scroll-margin-top:120px;}
   .kt-form-grid{
     display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);
     gap:56px;align-items:start;
@@ -258,7 +258,7 @@ const school: any = await getSingle("siteSchool");
 </section>
 
 <!-- Formular -->
-<section class="kt-form" aria-label="Kontaktformular">
+<section class="kt-form" id="kontaktformular" aria-label="Kontaktformular">
   <div class="container">
     <div class="kt-form-grid">
       <div>
@@ -296,13 +296,7 @@ const school: any = await getSingle("siteSchool");
           <label for="ct-topic">Anliegen <span class="req" aria-hidden="true">*</span></label>
           <select id="ct-topic" name="topic" required>
             <option value="">Bitte auswählen …</option>
-            <option>Allgemeine Anfrage</option>
-            <option>Anmeldung Klasse 5</option>
-            <option>Wechsel in die Oberstufe</option>
-            <option>Elternanfrage</option>
-            <option>Presse / Medien</option>
-            <option>Kooperation / Partnerschaft</option>
-            <option>Etwas anderes</option>
+            {page.form.topics.map((t: string) => <option>{t}</option>)}
           </select>
         </div>
 

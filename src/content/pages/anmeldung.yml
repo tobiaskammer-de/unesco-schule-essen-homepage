@@ -4,10 +4,16 @@ hero:
   titleHighlight: "UNESCO-Schule"
   lede: "Zwei Wege führen an unsere Schule: der Einstieg ab Klasse 5 und der Wechsel in die gymnasiale Oberstufe. Wir begleiten Sie und Ihr Kind Schritt für Schritt."
 
+notice:
+  kicker: "18. November 2026"
+  text: "Elterninformationsabend für die zukünftigen 5. Klassen — Mittwoch, 19:00 Uhr in der Aula. Alles zum Übergang von der Grundschule ans Gymnasium, noch vor dem Tag der offenen Tür."
+  ctaLabel: "Zum Elterninformationsabend"
+  ctaHref: "elterninformationsabend-5-klasse-essen.html"
+
 klasse5:
   eyebrow: "Klasse 5"
-  title: "Schuljahr 2026/27,"
-  titleHighlight: "jetzt anmelden"
+  title: "Schuljahr 2027/28,"
+  titleHighlight: "so läuft die Anmeldung"
   intro: "Wenn Sie für Ihr Kind ein Gymnasium suchen, das anspruchsvollen Unterricht mit einer internationalen Denkweise verbindet, sind Sie bei uns richtig. So einfach geht's."
 
 termine:

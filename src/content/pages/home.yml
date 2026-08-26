@@ -20,11 +20,14 @@ path:
       text: "Unterricht zum Mitmachen, Gespräche mit Lehrkräften, Schülerinnen und Schülern, Führungen durch die Naturwissenschafts- und Kunsträume. Eine Anmeldung ist nicht nötig."
       ctaLabel: "Programm und Details"
       ctaHref: "Tag-der-offenen-Tuer.html"
-    - kicker: "Anmeldung zum Schuljahr 2027/28"
-      title: "Termine folgen"
-      text: "Die konkreten Anmeldetermine (voraussichtlich Februar 2027) werden im Winter 2026 bekanntgegeben. Auf der Anmeldeseite finden Sie alle Informationen, sobald sie vorliegen."
-      ctaLabel: "Zur Anmeldung"
-      ctaHref: "Anmeldung.html"
+    - kicker: "Elterninformationsabend · Klasse 5"
+      bigDate: "18.11.2026"
+      bigDateSub: |-
+        Mittwoch, 19:00 Uhr
+        Aula der UNESCO-Schule Essen
+      text: "Ihr Kind kommt 2027 in die 5. Klasse? Erfahren Sie als Erste, wie der Start am Gymnasium gelingt — bei unserem Elterninformationsabend zur Erprobungsstufe, noch vor dem großen Andrang zum Tag der offenen Tür. Wir bitten um kurze Anmeldung."
+      ctaLabel: "Jetzt informieren"
+      ctaHref: "elterninformationsabend-5-klasse-essen.html"
     - kicker: "Fragen stellen"
       title: "Gespräch vereinbaren"
       text: "Ob Schulwahl, Schnuppertag für Ihr Kind oder Fragen zu unserem UNESCO-Profil: Nutzen Sie unser Kontaktformular."
