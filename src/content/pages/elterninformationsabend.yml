@@ -1,69 +1,34 @@
 # Landingpage „Elterninformationsabend für die 5. Klasse".
-# Termingebundene Seite — nach dem 18.11.2026 entweder auf den Folgetermin
-# aktualisieren oder die Verlinkungen (Startseiten-Kachel, Anmeldeseite,
-# Menü, Footer) entfernen.
+# Der Einladungstext ist die wortgetreue Vorlage der Schulleitung.
+# Termingebunden: nach dem 18.11.2026 aktualisieren oder Verlinkungen
+# (Startseiten-Kachel, Anmeldeseite, Menü, Footer) entfernen.
 hero:
-  eyebrow: "Für Eltern · Klasse 5 · Schuljahr 2027/28"
   title: "Elterninformationsabend für die 5. Klasse"
   titleHighlight: "am Gymnasium in Essen"
-  lede: "Ihr Kind kommt 2027 in die 5. Klasse? An einem Abend erfahren Sie, was den Übergang von der Grundschule ans Gymnasium ausmacht, wie wir als UNESCO-Projektschule arbeiten und wie die ersten Jahre bei uns aussehen."
-  image: "assets/Buehne_Jubilaeum.jpg"
-  imageAlt: "Blick auf die Bühne der Aula der UNESCO-Schule Essen"
+  image: "assets/hero/erprobungsstufe.jpg"
+  imageAlt: "Vier Kinder im Grundschulalter arbeiten gemeinsam an einem Tisch über einem Heft"
 
 termin:
-  kicker: "Der Termin"
+  kicker: "Termin"
   bigDate: "18. November 2026"
-  sub: "Mittwoch, 19:00 Uhr. Der Abend findet gut zwei Wochen vor unserem Tag der offenen Tür statt — Sie können sich also in Ruhe einen ersten Eindruck verschaffen und gezielt Fragen mitbringen."
+  sub: "Mittwoch, 19:00 Uhr. Der Abend findet gut zwei Wochen vor unserem Tag der offenen Tür statt. Sie können sich also in Ruhe einen ersten Eindruck verschaffen und gezielt Fragen mitbringen."
   ort: "Aula der UNESCO-Schule Essen"
   ortHinweis: "Der Eingang zur Aula ist ausgeschildert. Kommen Sie gern einige Minuten früher, dann bleibt Zeit für ein Gespräch vor Beginn."
   badge: "Wir bitten um kurze Anmeldung"
 
 einladung:
+  title: "Elterninformationsabend für die zukünftigen 5. Klassen"
   anrede: "Liebe Eltern,"
   body: |-
-    Sie möchten Ihr Kind zum **Schuljahr 2027/28** an der UNESCO-Schule Essen anmelden oder sind noch auf der Suche nach der passenden weiterführenden Schule? Am **Mittwoch, 18. November 2026, um 19:00 Uhr** laden wir Sie herzlich zu unserem Elterninformationsabend ein.
+    Sie möchten Ihr Kind zum Schuljahr 2026/27 an der UNESCO-Schule Essen anmelden oder sind noch auf der Suche nach der passenden weiterführenden Schule? Am **Mittwoch, 18. November 2026, um 19:00 Uhr** laden wir Sie herzlich zu unserem Elterninformationsabend ein.
 
     An diesem Abend stellen wir Ihnen unser Schulprofil als UNESCO-Projektschule vor, informieren Sie über den Übergang von der Grundschule ins Gymnasium und geben Ihnen einen Überblick über Unterricht, Ganztagsangebot und das Leben an unserer Schule in den ersten Jahren. Im Anschluss an den Vortrag haben Sie Gelegenheit, Ihre Fragen direkt zu stellen und sich an unseren Thementischen mit Lehrkräften und Ansprechpartnern auszutauschen.
 
-    Der Abend findet vor unserem **Tag der offenen Tür am 5. Dezember 2026** statt und bietet Ihnen die Möglichkeit, sich schon vorab einen ersten Eindruck zu verschaffen und gezielt Fragen mitzubringen.
+    Der Abend findet **vor unserem Tag der offenen Tür am 5. Dezember 2026** statt und bietet Ihnen die Möglichkeit, sich schon vorab einen ersten Eindruck zu verschaffen und gezielt Fragen mitzubringen.
+  wann: "**Wann:** Mittwoch, 18. November 2026, 19:00 Uhr"
+  wo: "**Wo:** Aula der UNESCO-Schule Essen"
   gruss: "Wir freuen uns auf Ihren Besuch!"
 
-abend:
-  eyebrow: "An diesem Abend"
-  title: "Was Sie erwartet"
-  cards:
-    - num: "01"
-      title: "Unser Profil als UNESCO-Projektschule"
-      text: "Was es konkret bedeutet, an einer UNESCO-Projektschule zu lernen: Demokratiebildung, globales Lernen und interkulturelle Kompetenz sind bei uns kein Zusatzangebot, sondern Teil des Unterrichts."
-    - num: "02"
-      title: "Der Übergang von der Grundschule"
-      text: "Wie aus Grundschulkindern Gymnasiastinnen und Gymnasiasten werden: Einführungstage, Klassenleitungsteams, die beiden Profilklassen ab Klasse 5 und die Begleitung in der Erprobungsstufe."
-    - num: "03"
-      title: "Unterricht, Ganztag und Schulleben"
-      text: "Stundentafel, zweite Fremdsprache, Mittagessen und Übermittagsbetreuung, Arbeitsgemeinschaften: ein Überblick darüber, wie ein Schultag bei uns tatsächlich abläuft."
-    - num: "04"
-      title: "Thementische und Ihre Fragen"
-      text: "Nach dem Vortrag kommen Sie an unseren Thementischen direkt mit Lehrkräften, der Schulleitung und der Erprobungsstufenkoordination ins Gespräch — so lange Sie mögen."
-
 anmeldung:
-  eyebrow: "Anmeldung zum Abend"
-  title: "Sagen Sie uns kurz Bescheid"
-  text: "Damit wir die Aula und die Thementische passend vorbereiten können, bitten wir um eine kurze Anmeldung. Wählen Sie im Kontaktformular einfach das Anliegen „Elterninformationsabend Klasse 5“ — oder rufen Sie im Sekretariat an. Falls Sie sich kurzfristig entscheiden: Sie sind auch ohne Anmeldung willkommen."
-  ctaLabel: "Über das Kontaktformular anmelden"
-  ctaHref: "Kontakt.html#kontaktformular"
-  phoneLabel: "Oder telefonisch anmelden"
-
-weiter:
-  eyebrow: "Nach dem Infoabend"
-  title: "Wie es weitergeht"
-  cards:
-    - kicker: "Samstag, 5. Dezember 2026"
-      title: "Tag der offenen Tür"
-      text: "10:00 bis 14:00 Uhr: Unterricht zum Mitmachen, geführte Rundgänge und Gespräche — diesmal gemeinsam mit Ihrem Kind. Eine Anmeldung ist nicht nötig."
-      ctaLabel: "Programm ansehen"
-      ctaHref: "Tag-der-offenen-Tuer.html"
-    - kicker: "Voraussichtlich Februar 2027"
-      title: "Anmeldung für Klasse 5"
-      text: "Die konkreten Anmeldetermine für das Schuljahr 2027/28 werden im Winter 2026 bekanntgegeben. Auf der Anmeldeseite finden Sie Ablauf, Formular und Ansprechpartner."
-      ctaLabel: "Zur Anmeldung"
-      ctaHref: "Anmeldung.html"
+  ctaLabel: "Hier anmelden"
+  ctaHref: "https://eveeno.com/327357093"

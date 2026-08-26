@@ -11,6 +11,9 @@ import { safeBold, safeInlineJson } from "../lib/safeMarkup";
  * Konvention „Tag-der-offenen-Tuer.astro"): die Seite soll gezielt auf
  * „Elterninformationsabend 5. Klasse Gymnasium Essen" ranken.
  * GitHub Pages liefert die Datei auch ohne .html-Endung aus.
+ *
+ * Der Einladungstext ist die wortgetreue Vorlage der Schulleitung und
+ * wird nicht redaktionell umformuliert.
  */
 const eia    = await getSingle("pageElterninformationsabend");
 const school = await getSingle("siteSchool");
@@ -49,12 +52,19 @@ const eventJsonLd = {
     name: school.nameLong,
     url: "https://unesco-schule-essen.de",
   },
+  offers: {
+    "@type": "Offer",
+    url: eia.anmeldung.ctaHref,
+    price: "0",
+    priceCurrency: "EUR",
+    availability: "https://schema.org/InStock",
+  },
 };
 ---
 <BaseLayout
   title="Elterninformationsabend 5. Klasse – Gymnasium Essen | UNESCO-Schule"
   description="Elterninfoabend zur Erprobungsstufe am 18.11.2026: Alles zum Übergang in die 5. Klasse am Gymnasium in Essen – UNESCO-Schule, jetzt informieren."
-  ogImage="assets/Buehne_Jubilaeum.jpg"
+  ogImage="assets/hero/erprobungsstufe.jpg"
 >
 <script type="application/ld+json" slot="head" is:inline set:html={safeInlineJson(eventJsonLd)}></script>
 
@@ -100,122 +110,42 @@ const eventJsonLd = {
   /* Einladungstext */
   .eia-letter{background:var(--offwhite);padding:var(--space-section) 0;}
   .eia-letter-inner{max-width:760px;}
-  .eia-letter .anrede{
+  .eia-letter h2{
     font-family:var(--serif);font-weight:500;
-    font-size:clamp(26px,2.8vw,34px);line-height:1.2;letter-spacing:-0.015em;
-    color:var(--petrol);margin:0 0 24px;
+    font-size:clamp(26px,3vw,38px);line-height:1.15;letter-spacing:-0.015em;
+    color:var(--petrol);margin:0 0 32px;
+  }
+  .eia-letter .anrede{
+    font-family:var(--sans);font-size:17px;line-height:1.75;color:var(--tinte);
+    margin:0 0 20px;
   }
   .eia-letter p{
     font-family:var(--sans);font-size:17px;line-height:1.75;color:var(--tinte);
     margin:0 0 20px;
   }
   .eia-letter p strong{color:var(--petrol);font-weight:600;}
+  .eia-letter .wannwo{
+    background:#fff;border:1px solid var(--hairline);
+    border-left:var(--card-accent-width) solid var(--petrol);
+    padding:22px 26px;margin:32px 0;
+  }
+  .eia-letter .wannwo p{margin:0;}
+  .eia-letter .wannwo p + p{margin-top:8px;}
   .eia-letter .gruss{
     font-family:var(--serif);font-style:italic;font-size:19px;color:var(--bordeaux);
     margin:32px 0 0;
   }
-
-  /* Was Sie erwartet */
-  .eia-what{background:#fff;padding:var(--space-section) 0;border-top:1px solid var(--hairline);}
-  .eia-what .head{max-width:780px;margin:0 0 56px;}
-  .eia-what .head .eyebrow{display:block;margin-bottom:14px;color:var(--bordeaux);}
-  .eia-what .head h2{
-    font-family:var(--serif);font-weight:500;
-    font-size:clamp(30px,3.4vw,46px);line-height:1.12;letter-spacing:-0.015em;
-    color:var(--petrol);margin:0;
-  }
-  .eia-what-grid{
-    display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;
-    background:var(--hairline);border:1px solid var(--hairline);
-  }
-  .eia-what-card{
-    background:#fff;padding:32px 28px 28px;
-    display:flex;flex-direction:column;gap:12px;
-  }
-  .eia-what-card .num{
-    font-family:var(--serif);font-weight:500;font-size:42px;line-height:1;
-    color:var(--gold);letter-spacing:-0.02em;
-  }
-  .eia-what-card h3{
-    font-family:var(--serif);font-weight:500;font-size:22px;line-height:1.2;
-    color:var(--petrol);letter-spacing:-0.008em;margin:0;
-  }
-  .eia-what-card p{
-    font-family:var(--sans);font-size:14.5px;line-height:1.6;color:var(--tinte);margin:0;
-  }
-
-  /* Anmeldung */
-  .eia-signup{background:var(--petrol);color:var(--creme);padding:var(--space-section) 0;}
-  .eia-signup-grid{
-    display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);
-    gap:56px;align-items:center;
-  }
-  .eia-signup .eyebrow{color:var(--gold);display:block;margin-bottom:14px;}
-  .eia-signup h2{
-    font-family:var(--serif);font-weight:500;
-    font-size:clamp(28px,3vw,42px);line-height:1.15;letter-spacing:-0.015em;
-    color:var(--creme);margin:0;
-  }
-  .eia-signup p{
-    font-family:var(--sans);font-size:16.5px;line-height:1.7;
-    color:rgba(245,239,231,0.88);margin:0 0 24px;
-  }
-  .eia-signup .row{display:flex;flex-wrap:wrap;gap:14px;align-items:center;}
-  .eia-signup .phone{
-    font-family:var(--sans);font-size:15px;color:rgba(245,239,231,0.8);
-  }
-  .eia-signup .phone a{
-    color:var(--gold);font-weight:600;
-    border-bottom:1px solid rgba(212,165,116,0.5);
-  }
-  .eia-signup .phone a:hover{color:var(--gold-hover);}
-
-  /* Wie es weitergeht */
-  .eia-next{background:var(--creme);padding:var(--space-section) 0;}
-  .eia-next .head{max-width:780px;margin:0 0 48px;}
-  .eia-next .head .eyebrow{display:block;margin-bottom:14px;color:var(--bordeaux);}
-  .eia-next .head h2{
-    font-family:var(--serif);font-weight:500;
-    font-size:clamp(28px,3vw,40px);line-height:1.15;letter-spacing:-0.015em;
-    color:var(--petrol);margin:0;
-  }
-  .eia-next-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;}
-  .eia-next-card{
-    background:#fff;border:1px solid var(--hairline);
-    border-top:var(--card-accent-width) solid var(--petrol);
-    padding:28px 28px 32px;
-    display:flex;flex-direction:column;gap:12px;
-  }
-  .eia-next-card .kicker{
-    font-family:var(--sans);font-size:11px;font-weight:600;
-    letter-spacing:0.14em;text-transform:uppercase;color:var(--bordeaux);
-  }
-  .eia-next-card h3{
-    font-family:var(--serif);font-weight:500;font-size:24px;line-height:1.2;
-    color:var(--petrol);letter-spacing:-0.008em;margin:0;
-  }
-  .eia-next-card p{
-    font-family:var(--sans);font-size:15px;line-height:1.65;color:var(--tinte);margin:0;flex:1;
-  }
-  .eia-next-card .btn{align-self:flex-start;margin-top:8px;}
+  .eia-letter .signup{margin:36px 0 0;}
 
   @media (max-width:960px){
     .eia-date-card{grid-template-columns:1fr;gap:24px;padding:32px 28px;}
-    .eia-what-grid{grid-template-columns:1fr 1fr;}
-    .eia-signup-grid{grid-template-columns:1fr;gap:24px;}
-    .eia-next-grid{grid-template-columns:1fr;gap:14px;}
-  }
-  @media (max-width:560px){
-    .eia-what-grid{grid-template-columns:1fr;}
   }
 </style>
 
 <main id="top">
 
 <PageHero variant="feature" image={link(eia.hero.image)} imageAlt={eia.hero.imageAlt}>
-  <Fragment slot="eyebrow">{eia.hero.eyebrow}</Fragment>
   <Fragment slot="title">{eia.hero.title}{eia.hero.titleHighlight && <><br /><em>{eia.hero.titleHighlight}</em></>}</Fragment>
-  <Fragment slot="lede">{eia.hero.lede}</Fragment>
 </PageHero>
 
 <!-- ===================== TERMIN ===================== -->
@@ -240,69 +170,19 @@ const eventJsonLd = {
 <section class="eia-letter" aria-label="Einladung">
   <div class="container">
     <div class="eia-letter-inner">
+      <h2>{eia.einladung.title}</h2>
       <p class="anrede">{eia.einladung.anrede}</p>
       {einladungAbsaetze.map((para: string) => <p set:html={safeBold(para)} />)}
+      <div class="wannwo">
+        <p set:html={safeBold(eia.einladung.wann)} />
+        <p set:html={safeBold(eia.einladung.wo)} />
+      </div>
       <p class="gruss">{eia.einladung.gruss}</p>
-    </div>
-  </div>
-</section>
-
-<!-- ===================== WAS SIE ERWARTET ===================== -->
-<section class="eia-what" aria-label="Was Sie an diesem Abend erwartet">
-  <div class="container">
-    <div class="head">
-      <span class="eyebrow">{eia.abend.eyebrow}</span>
-      <h2>{eia.abend.title}</h2>
-    </div>
-
-    <div class="eia-what-grid">
-      {eia.abend.cards.map((card: any) => (
-        <article class="eia-what-card">
-          <span class="num">{card.num}</span>
-          <h3>{card.title}</h3>
-          <p>{card.text}</p>
-        </article>
-      ))}
-    </div>
-  </div>
-</section>
-
-<!-- ===================== ANMELDUNG ===================== -->
-<section class="eia-signup" aria-label="Anmeldung zum Elterninformationsabend">
-  <div class="container">
-    <div class="eia-signup-grid">
-      <div>
-        <span class="eyebrow">{eia.anmeldung.eyebrow}</span>
-        <h2>{eia.anmeldung.title}</h2>
+      <div class="signup">
+        <a href={link(eia.anmeldung.ctaHref)} class="btn btn-primary" target="_blank" rel="noopener">
+          {eia.anmeldung.ctaLabel} <span class="arrow">→</span>
+        </a>
       </div>
-      <div>
-        <p>{eia.anmeldung.text}</p>
-        <div class="row">
-          <a href={link(eia.anmeldung.ctaHref)} class="btn btn-gold">{eia.anmeldung.ctaLabel} <span class="arrow">→</span></a>
-          <span class="phone">{eia.anmeldung.phoneLabel}: <a href="tel:+492012802630">{school.phone}</a></span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===================== WIE ES WEITERGEHT ===================== -->
-<section class="eia-next" aria-label="Wie es nach dem Infoabend weitergeht">
-  <div class="container">
-    <div class="head">
-      <span class="eyebrow">{eia.weiter.eyebrow}</span>
-      <h2>{eia.weiter.title}</h2>
-    </div>
-
-    <div class="eia-next-grid">
-      {eia.weiter.cards.map((card: any) => (
-        <article class="eia-next-card">
-          <span class="kicker">{card.kicker}</span>
-          <h3>{card.title}</h3>
-          <p>{card.text}</p>
-          <a href={link(card.ctaHref)} class="btn btn-secondary">{card.ctaLabel} <span class="arrow">→</span></a>
-        </article>
-      ))}
     </div>
   </div>
 </section>
