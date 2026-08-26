@@ -99,13 +99,23 @@ const eventJsonLd = {
     margin:0 0 12px;
   }
   .eia-date-card .where p strong{color:var(--petrol);font-weight:600;}
+  /* Anmelde-Button im Termin-Kasten (fuehrt zur externen Anmeldung). */
   .eia-date-card .where .badge{
-    display:inline-flex;align-items:center;gap:8px;
-    margin-top:8px;padding:6px 14px;
-    background:rgba(212,165,116,0.16);color:#7a5120;
+    /* inline-block statt inline-flex: bei Umbruch bleibt der Pfeil am letzten Wort. */
+    display:inline-block;line-height:1.45;
+    margin-top:8px;padding:11px 18px;
+    background:var(--gold);color:var(--gold-text);
+    border:1.5px solid var(--gold);border-radius:4px;
     font-family:var(--sans);font-size:12.5px;font-weight:600;
-    letter-spacing:0.06em;
+    letter-spacing:0.06em;text-decoration:none;
+    transition:background-color .2s, border-color .2s;
   }
+  .eia-date-card .where .badge:hover{
+    background:var(--gold-hover);border-color:var(--gold-hover);color:var(--gold-text);
+  }
+  .eia-date-card .where .badge:focus-visible{outline:2px solid var(--bordeaux);outline-offset:3px;}
+  .eia-date-card .where .badge .arrow{display:inline-block;margin-left:6px;transition:transform .2s;}
+  .eia-date-card .where .badge:hover .arrow{transform:translateX(3px);}
 
   /* Einladungstext */
   .eia-letter{background:var(--offwhite);padding:var(--space-section) 0;}
@@ -160,7 +170,11 @@ const eventJsonLd = {
       <div class="where">
         <p><strong>{eia.termin.ort}</strong><br>{school.address.street}, {school.address.postal} {school.address.city}</p>
         <p>{eia.termin.ortHinweis}</p>
-        {eia.termin.badge && <span class="badge">{eia.termin.badge}</span>}
+        {eia.termin.badge && (
+          <a href={link(eia.anmeldung.ctaHref)} class="badge" target="_blank" rel="noopener">
+            {eia.termin.badge} <span class="arrow">→</span>
+          </a>
+        )}
       </div>
     </div>
   </div>

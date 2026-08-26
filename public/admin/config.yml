@@ -715,7 +715,7 @@ collections:
               - { name: sub, label: "Untertext zum Datum", widget: text }
               - { name: ort, label: "Veranstaltungsort", widget: string }
               - { name: ortHinweis, label: "Hinweis zum Ort", widget: text }
-              - { name: badge, label: "Badge (optional)", widget: string, required: false }
+              - { name: badge, label: "Anmelde-Button im Termin-Kasten (optional)", widget: string, required: false, hint: "Beschriftung des Buttons. Er verlinkt automatisch auf den Anmelde-Link weiter unten. Leer lassen blendet den Button aus." }
           - name: einladung
             label: "Einladungstext"
             widget: object
