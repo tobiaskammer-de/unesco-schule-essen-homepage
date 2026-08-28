@@ -1,6 +1,6 @@
 # Landingpage „Elterninformationsabend für die 5. Klasse".
 # Der Einladungstext ist die wortgetreue Vorlage der Schulleitung.
-# Termingebunden: nach dem 18.11.2026 aktualisieren oder Verlinkungen
+# Termingebunden: nach dem 20.01.2027 aktualisieren oder Verlinkungen
 # (Startseiten-Kachel, Anmeldeseite, Menü, Footer) entfernen.
 hero:
   title: "Elterninformationsabend für die 5. Klasse"
@@ -10,8 +10,8 @@ hero:
 
 termin:
   kicker: "Termin"
-  bigDate: "18. November 2026"
-  sub: "Mittwoch, 19:00 Uhr. Der Abend findet gut zwei Wochen vor unserem Tag der offenen Tür statt. Sie können sich also in Ruhe einen ersten Eindruck verschaffen und gezielt Fragen mitbringen."
+  bigDate: "20. Januar 2027"
+  sub: "Mittwoch, 19:00 Uhr. Der Abend findet nach unserem Tag der offenen Tür statt und ist ein guter Anschlusstermin, wenn Sie noch offene Fragen haben oder es im Dezember nicht zu uns geschafft haben."
   ort: "Aula der UNESCO-Schule Essen"
   ortHinweis: "Der Eingang zur Aula ist ausgeschildert. Kommen Sie gern einige Minuten früher, dann bleibt Zeit für ein Gespräch vor Beginn."
   badge: "Wir bitten um kurze Anmeldung"
@@ -20,12 +20,8 @@ einladung:
   title: "Elterninformationsabend für die zukünftigen 5. Klassen"
   anrede: "Liebe Eltern,"
   body: |-
-    Sie möchten Ihr Kind zum Schuljahr 2027/28 an der UNESCO-Schule Essen anmelden oder sind noch auf der Suche nach der passenden weiterführenden Schule? Am **Mittwoch, 18. November 2026, um 19:00 Uhr** laden wir Sie herzlich zu unserem Elterninformationsabend ein.
-
-    An diesem Abend stellen wir Ihnen unser Schulprofil als UNESCO-Projektschule vor, informieren Sie über den Übergang von der Grundschule ins Gymnasium und geben Ihnen einen Überblick über Unterricht, Ganztagsangebot und das Leben an unserer Schule in den ersten Jahren. Im Anschluss an den Vortrag haben Sie Gelegenheit, Ihre Fragen direkt zu stellen und sich an unseren Thementischen mit Lehrkräften und Ansprechpartnern auszutauschen.
-
-    Der Abend findet **vor unserem Tag der offenen Tür am 5. Dezember 2026** statt und bietet Ihnen die Möglichkeit, sich schon vorab einen ersten Eindruck zu verschaffen und gezielt Fragen mitzubringen.
-  wann: "**Wann:** Mittwoch, 18. November 2026, 19:00 Uhr"
+    Am **Mittwoch, 20. Januar 2027, um 19:00 Uhr** laden wir zusätzlich zu einem Elterninformationsabend in unsere Aula ein. Dort gehen wir noch einmal in Ruhe auf den Übergang von der Grundschule ans Gymnasium, unser Schulprofil als UNESCO-Projektschule und den organisatorischen Ablauf der Anmeldung ein – ein guter Anschlusstermin für Familien, die nach dem Tag der offenen Tür noch offene Fragen haben oder es zeitlich dorthin nicht geschafft haben.
+  wann: "**Wann:** Mittwoch, 20. Januar 2027, 19:00 Uhr"
   wo: "**Wo:** Aula der UNESCO-Schule Essen"
   gruss: "Wir freuen uns auf Ihren Besuch!"
 
