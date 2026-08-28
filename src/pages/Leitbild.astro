@@ -394,8 +394,7 @@ const sp: any = await getSingle("pageSchulprogramm");
   <div class="container">
     {sp.leitsaetze.map((l: any, idx: number) => (
       <article class={`leitsatz${idx % 2 === 1 ? " flip" : ""}`}>
-        <div class={`media media-ph media-ph-${idx % 7}`} role="img" aria-label="Platzhalter — Foto folgt">
-          <span class="ph-note">Foto folgt</span>
+        <div class={`media media-ph media-ph-${idx % 7}`} aria-hidden="true">
           <span class="num-badge">{l.num}</span>
         </div>
         <div class="body">
