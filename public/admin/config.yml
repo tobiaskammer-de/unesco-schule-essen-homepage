@@ -58,8 +58,8 @@ collections:
           - Allgemein
         default: Allgemein
       - { name: excerpt, label: "Teaser (1–2 Sätze, max. 320 Zeichen)", widget: text, pattern: ['^.{40,320}$', "Bitte 40–320 Zeichen."] }
-      - { name: coverImage, label: "Coverbild", widget: image, choose_url: false, media_library: { config: { multiple: false } } }
-      - { name: coverAlt, label: "Bildbeschreibung (für Screenreader)", widget: string, hint: "Was ist auf dem Bild zu sehen? Kein 'Foto von …'." }
+      - { name: coverImage, label: "Coverbild", widget: image, required: false, choose_url: false, media_library: { config: { multiple: false } }, hint: "Optional. Ohne Bild bekommt der Beitrag überall einen Farbverlauf in den Schulfarben." }
+      - { name: coverAlt, label: "Bildbeschreibung (für Screenreader)", widget: string, required: false, hint: "Was ist auf dem Bild zu sehen? Kein 'Foto von …'. Nur nötig, wenn ein Coverbild gesetzt ist." }
       - { name: author, label: "Autorin / Autor", widget: string, required: false, default: "UNESCO-Schule Essen" }
       # Optionaler Musik-Player unter dem Artikeltext. Die Audiodatei liegt auf
       # unserem eigenen Server (kein Spotify-Player) — deshalb ist keine

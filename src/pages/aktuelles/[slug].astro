@@ -65,6 +65,11 @@ const related = all
     aspect-ratio:16/9;overflow:hidden;background:var(--creme);
     border:1px solid var(--hairline);position:relative;
   }
+  /* Ohne Coverbild wird daraus ein flaches Farbband — ein 16:9-Block
+     nur aus Farbe sähe aus wie ein Bild, das nicht geladen hat. */
+  .art-cover .wrap.is-placeholder{
+    aspect-ratio:auto;height:clamp(140px,20vw,240px);
+  }
   .art-cover img{width:100%;height:100%;object-fit:cover;display:block;}
 
   .art-body{
@@ -187,8 +192,10 @@ const related = all
 
 <section class="art-cover" aria-hidden="true">
   <div class="container">
-    <div class="wrap">
-      <img src={withBase(entry.data.coverImage, BASE)} alt={entry.data.coverAlt} width="1600" height="900" fetchpriority="high">
+    <div class={`wrap${entry.data.coverImage ? "" : " is-placeholder"}`}>
+      {entry.data.coverImage
+        ? <img src={withBase(entry.data.coverImage, BASE)} alt={entry.data.coverAlt} width="1600" height="900" fetchpriority="high">
+        : <div class="news-cover-ph"></div>}
     </div>
   </div>
 </section>
@@ -223,7 +230,9 @@ const related = all
         {related.map((r) => (
           <a href={`${BASE}/aktuelles/${entrySlug(r)}.html`} class="art-related-card">
             <div class="thumb">
-              <img src={withBase(r.data.coverImage, BASE)} alt={r.data.coverAlt} width="800" height="600" loading="lazy">
+              {r.data.coverImage
+                ? <img src={withBase(r.data.coverImage, BASE)} alt={r.data.coverAlt} width="800" height="600" loading="lazy">
+                : <div class="news-cover-ph"></div>}
             </div>
             <div class="body">
               <span class="meta">{formatArticleDate(r.data.date)}</span>

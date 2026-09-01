@@ -3,8 +3,6 @@ title: "Der Schulsong kommt: „Die Welt in einem Haus“"
 date: 2026-09-01
 category: "Allgemein"
 excerpt: "Pünktlich zum ersten Schultag ist es so weit: Am 2. September 2026 erscheint unser Schulsong „Die Welt in einem Haus“ auf Spotify. Hier auf der Seite könnt ihr schon jetzt reinhören — und den Song vorab pre-saven."
-coverImage: "/assets/Buehne_Jubilaeum.jpg"
-coverAlt: "Schülerinnen und Schüler singen gemeinsam mit einer Band auf der Aula-Bühne, warm ausgeleuchtet, vor vollem Saal"
 author: "UNESCO-Schule Essen"
 audio:
   src: "/assets/news/die-welt-in-einem-haus.mp3"
@@ -16,7 +14,6 @@ audio:
   duration: "3:27"
   linkUrl: "https://listen.music-hub.com/uH6Thf"
   linkLabel: "Auf Spotify pre-saven"
-  note: "Der Song wird direkt von unserer Website abgespielt — dabei werden keine Daten an Spotify oder andere Dienste übertragen."
 draft: false
 ---
 
