@@ -225,16 +225,12 @@ const categories = Array.from(new Set(news.map((e) => e.data.category)));
             <span class="read-more">Vollständiger Beitrag <span class="arrow">→</span></span>
           </div>
           <div class="thumb">
-            {featured.data.coverImage ? (
-              <img
-                src={withBase(featured.data.coverImage, BASE)}
-                alt={featured.data.coverAlt}
-                width="1200" height="960"
-                fetchpriority="high"
-              />
-            ) : (
-              <div class="news-cover-ph"></div>
-            )}
+            <img
+              src={withBase(featured.data.coverImage, BASE)}
+              alt={featured.data.coverAlt}
+              width="1200" height="960"
+              fetchpriority="high"
+            />
           </div>
         </a>
       </div>
@@ -255,15 +251,11 @@ const categories = Array.from(new Set(news.map((e) => e.data.category)));
               data-category={entry.data.category}
             >
               <div class="thumb">
-                {entry.data.coverImage ? (
-                  <img
-                    src={withBase(entry.data.coverImage, BASE)}
-                    alt={entry.data.coverAlt}
-                    width="800" height="600" loading="lazy"
-                  />
-                ) : (
-                  <div class="news-cover-ph"></div>
-                )}
+                <img
+                  src={withBase(entry.data.coverImage, BASE)}
+                  alt={entry.data.coverAlt}
+                  width="800" height="600" loading="lazy"
+                />
               </div>
               <div class="body">
                 <div class="meta">

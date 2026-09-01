@@ -65,11 +65,6 @@ const related = all
     aspect-ratio:16/9;overflow:hidden;background:var(--creme);
     border:1px solid var(--hairline);position:relative;
   }
-  /* Ohne Coverbild wird daraus ein flaches Farbband — ein 16:9-Block
-     nur aus Farbe sähe aus wie ein Bild, das nicht geladen hat. */
-  .art-cover .wrap.is-placeholder{
-    aspect-ratio:auto;height:clamp(140px,20vw,240px);
-  }
   .art-cover img{width:100%;height:100%;object-fit:cover;display:block;}
 
   .art-body{
@@ -128,12 +123,9 @@ const related = all
 
   /* Foot nav */
   .art-foot{background:var(--creme);padding:var(--space-section) 0;border-top:1px solid var(--hairline);}
-  .art-foot .back{
-    display:inline-flex;align-items:center;gap:8px;
-    font-family:var(--sans);font-weight:500;font-size:15px;color:var(--petrol);
-    text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:2px;
-  }
-  .art-foot .back:hover{color:var(--petrol-dark);}
+  /* Der Pfeil zeigt zurück, also wandert er beim Hover nach links —
+     die .btn-Regel im BaseLayout schiebt ihn sonst nach rechts. */
+  .art-foot .btn:hover .arrow{transform:translateX(-3px);}
 
   /* Related */
   .art-related{background:var(--offwhite);padding:var(--space-section) 0;border-top:1px solid var(--hairline);}
@@ -190,15 +182,15 @@ const related = all
   </div>
 </section>
 
-<section class="art-cover" aria-hidden="true">
-  <div class="container">
-    <div class={`wrap${entry.data.coverImage ? "" : " is-placeholder"}`}>
-      {entry.data.coverImage
-        ? <img src={withBase(entry.data.coverImage, BASE)} alt={entry.data.coverAlt} width="1600" height="900" fetchpriority="high">
-        : <div class="news-cover-ph"></div>}
+{entry.data.showCoverInArticle && (
+  <section class="art-cover" aria-hidden="true">
+    <div class="container">
+      <div class="wrap">
+        <img src={withBase(entry.data.coverImage, BASE)} alt={entry.data.coverAlt} width="1600" height="900" fetchpriority="high">
+      </div>
     </div>
-  </div>
-</section>
+  </section>
+)}
 
 <article class="art-body">
   <div class="container">
@@ -215,7 +207,9 @@ const related = all
 
 <section class="art-foot">
   <div class="container">
-    <a href={`${BASE}/Aktuelles.html`} class="back">← Zurück zu allen Beiträgen</a>
+    <a href={`${BASE}/Aktuelles.html`} class="btn btn-secondary">
+      <span class="arrow" aria-hidden="true">←</span> Zurück zu allen Beiträgen
+    </a>
   </div>
 </section>
 
@@ -230,9 +224,7 @@ const related = all
         {related.map((r) => (
           <a href={`${BASE}/aktuelles/${entrySlug(r)}.html`} class="art-related-card">
             <div class="thumb">
-              {r.data.coverImage
-                ? <img src={withBase(r.data.coverImage, BASE)} alt={r.data.coverAlt} width="800" height="600" loading="lazy">
-                : <div class="news-cover-ph"></div>}
+              <img src={withBase(r.data.coverImage, BASE)} alt={r.data.coverAlt} width="800" height="600" loading="lazy">
             </div>
             <div class="body">
               <span class="meta">{formatArticleDate(r.data.date)}</span>

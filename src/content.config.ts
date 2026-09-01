@@ -26,13 +26,14 @@ const news = defineCollection({
       "Allgemein",
     ]),
     excerpt: z.string().min(40).max(320),
+    coverImage: z.string(),
+    coverAlt: z.string(),
     /**
-     * Coverbild. Optional — Beiträge ohne Foto bekommen überall
-     * (Startseite, Übersicht, Artikelkopf) den Farbverlauf-Platzhalter
-     * `.news-cover-ph` aus dem BaseLayout.
+     * Coverbild im Artikelkopf zeigen. Auf false setzen, wenn das Bild nur
+     * als Vorschau in der Übersicht und auf der Startseite dienen soll —
+     * z. B. bei quadratischen Motiven, die im 16:9-Kopf beschnitten würden.
      */
-    coverImage: z.string().optional(),
-    coverAlt: z.string().optional(),
+    showCoverInArticle: z.boolean().default(true),
     author: z.string().optional(),
     /**
      * Optionaler Musik-Player im Artikel (selbst gehostete MP3, kein Spotify-

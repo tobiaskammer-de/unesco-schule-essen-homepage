@@ -508,17 +508,13 @@ const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
             latestNews.map((entry, idx) => (
               <a href={`${BASE}/aktuelles/${entrySlug(entry)}.html`} class={`news-card ${idx === 0 ? "featured" : ""}`}>
                 <div class="thumb">
-                  {entry.data.coverImage ? (
-                    <img
-                      src={withBase(entry.data.coverImage, BASE)}
-                      alt={entry.data.coverAlt}
-                      width={idx === 0 ? 1000 : 800}
-                      height={idx === 0 ? 800 : 600}
-                      loading={idx === 0 ? "eager" : "lazy"}
-                    />
-                  ) : (
-                    <div class="news-cover-ph"></div>
-                  )}
+                  <img
+                    src={withBase(entry.data.coverImage, BASE)}
+                    alt={entry.data.coverAlt}
+                    width={idx === 0 ? 1000 : 800}
+                    height={idx === 0 ? 800 : 600}
+                    loading={idx === 0 ? "eager" : "lazy"}
+                  />
                 </div>
                 <div>
                   <div class="news-meta">
