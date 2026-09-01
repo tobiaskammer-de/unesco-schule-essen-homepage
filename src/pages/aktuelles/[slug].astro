@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import PageHero from "../../components/PageHero.astro";
+import AudioPlayer from "../../components/AudioPlayer.astro";
 import { render } from "astro:content";
 import {
   getAllNews,
@@ -97,6 +98,13 @@ const related = all
     border-left:3px solid var(--bordeaux);background:var(--creme);
     font-family:var(--serif);font-style:italic;color:var(--petrol);
   }
+  /* Der Player steht bewusst außerhalb von .prose (sonst überschreiben die
+     Fließtext-Regeln seine Abstände und Rahmen). Schrift wie .prose, damit
+     68ch dieselbe Spaltenbreite ergibt und die Kanten bündig sitzen. */
+  .art-body .art-audio{
+    max-width:68ch;margin:0 auto;
+    font-family:var(--sans);font-size:17px;
+  }
   .art-body .prose img{
     width:100%;height:auto;margin:28px 0;
     border:1px solid var(--hairline);
@@ -190,6 +198,11 @@ const related = all
     <div class="prose">
       <Content />
     </div>
+    {entry.data.audio && (
+      <div class="art-audio">
+        <AudioPlayer {...entry.data.audio} />
+      </div>
+    )}
   </div>
 </article>
 

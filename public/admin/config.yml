@@ -61,6 +61,27 @@ collections:
       - { name: coverImage, label: "Coverbild", widget: image, choose_url: false, media_library: { config: { multiple: false } } }
       - { name: coverAlt, label: "Bildbeschreibung (für Screenreader)", widget: string, hint: "Was ist auf dem Bild zu sehen? Kein 'Foto von …'." }
       - { name: author, label: "Autorin / Autor", widget: string, required: false, default: "UNESCO-Schule Essen" }
+      # Optionaler Musik-Player unter dem Artikeltext. Die Audiodatei liegt auf
+      # unserem eigenen Server (kein Spotify-Player) — deshalb ist keine
+      # Datenschutz-Einwilligung nötig. Einfach leer lassen, wenn ein Artikel
+      # keinen Player braucht.
+      - name: audio
+        label: "Musik-Player (optional)"
+        widget: object
+        required: false
+        collapsed: true
+        hint: "Nur ausfüllen, wenn unter dem Artikel ein Lied zum Anhören stehen soll. Bitte eine MP3 hochladen (nicht größer als ca. 10 MB)."
+        fields:
+          - { name: src, label: "Audiodatei (MP3)", widget: file, choose_url: false }
+          - { name: title, label: "Titel des Liedes", widget: string }
+          - { name: artist, label: "Interpret", widget: string, required: false }
+          - { name: artwork, label: "Cover (quadratisch)", widget: image, required: false, choose_url: false, media_library: { config: { multiple: false } } }
+          - { name: artworkAlt, label: "Bildbeschreibung zum Cover", widget: string, required: false }
+          - { name: eyebrow, label: "Überzeile", widget: string, required: false, default: "Zum Anhören" }
+          - { name: duration, label: "Laufzeit", widget: string, required: false, hint: "Format M:SS, z. B. 3:27. Wird angezeigt, bevor das Lied geladen ist." }
+          - { name: linkUrl, label: "Streaming-Link (z. B. Spotify)", widget: string, required: false }
+          - { name: linkLabel, label: "Beschriftung des Links", widget: string, required: false, default: "Auf Spotify anhören" }
+          - { name: note, label: "Hinweis / Credits unter dem Player", widget: text, required: false }
       - { name: draft, label: "Entwurf (nicht veröffentlichen)", widget: boolean, default: false }
       - name: body
         label: "Haupttext"

@@ -29,6 +29,26 @@ const news = defineCollection({
     coverImage: z.string(),
     coverAlt: z.string(),
     author: z.string().optional(),
+    /**
+     * Optionaler Musik-Player im Artikel (selbst gehostete MP3, kein Spotify-
+     * iFrame → keine Datenübertragung an Dritte, keine Einwilligung nötig).
+     * Wird direkt unter dem Haupttext gerendert. Weglassen = kein Player.
+     */
+    audio: z
+      .object({
+        src: z.string(),
+        title: z.string(),
+        artist: z.string().optional(),
+        artwork: z.string().optional(),
+        artworkAlt: z.string().optional(),
+        eyebrow: z.string().optional(),
+        linkUrl: z.string().optional(),
+        linkLabel: z.string().optional(),
+        note: z.string().optional(),
+        /** Laufzeit als "M:SS" — wird angezeigt, bis die Datei geladen ist. */
+        duration: z.string().optional(),
+      })
+      .optional(),
     draft: z.boolean().default(false),
   }),
 });

@@ -1,0 +1,373 @@
+---
+/**
+ * AudioPlayer — selbst gehosteter Musik-Player mit einfachem Play-Button.
+ *
+ * Bewusst OHNE Spotify-/YouTube-iFrame: die Audiodatei liegt in unserem
+ * eigenen `public/`-Ordner. Dadurch fließen beim Abspielen keine Daten an
+ * Dritte ab — es braucht also (anders als bei der Karte auf /Anfahrt)
+ * keine Klick-zum-Laden-Einwilligung.
+ *
+ * Das Audio-Element wird erst beim ersten Klick auf Play erzeugt. Beim
+ * Seitenaufruf lädt die Seite also keinerlei Audiodaten — die MP3 (rund
+ * 5 MB) geht nur an die Leute, die den Song wirklich hören wollen. Die
+ * Laufzeit steht trotzdem sofort da, weil sie über `duration` aus der
+ * Frontmatter kommt.
+ *
+ * Wird aus `src/pages/aktuelles/[slug].astro` gerendert, wenn ein Artikel
+ * in der Frontmatter einen `audio`-Block hat.
+ */
+import { withBase } from "../lib/news";
+
+interface Props {
+  /** Pfad zur Audiodatei, z. B. "/assets/news/song.mp3" */
+  src: string;
+  /** Songtitel */
+  title: string;
+  /** Interpret */
+  artist?: string;
+  /** Quadratisches Cover-Artwork */
+  artwork?: string;
+  /** Alt-Text zum Artwork */
+  artworkAlt?: string;
+  /** Kleine Überzeile über dem Titel */
+  eyebrow?: string;
+  /** Optionaler Streaming-Link (Spotify, Apple Music, Pre-Save …) */
+  linkUrl?: string;
+  linkLabel?: string;
+  /** Hinweiszeile unter dem Player (z. B. Credits) */
+  note?: string;
+  /**
+   * Laufzeit als "M:SS". Wird angezeigt, bevor die Datei geladen ist —
+   * so steht die Länge sofort da, ohne dass wir beim Seitenaufruf schon
+   * Audio-Daten nachladen müssen. Nach dem ersten Play korrigiert der
+   * Player den Wert automatisch aus der Datei.
+   */
+  duration?: string;
+}
+
+const {
+  src,
+  title,
+  artist,
+  artwork,
+  artworkAlt,
+  eyebrow = "Zum Anhören",
+  linkUrl,
+  linkLabel = "Auf Spotify anhören",
+  note,
+  duration,
+} = Astro.props;
+
+const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
+const audioSrc = withBase(src, BASE);
+const artworkSrc = artwork ? withBase(artwork, BASE) : undefined;
+
+// Eindeutige IDs, damit mehrere Player auf einer Seite nicht kollidieren.
+const uid = `ap-${Math.random().toString(36).slice(2, 9)}`;
+---
+
+<div class="audioplayer" id={uid} data-src={audioSrc}>
+  {artworkSrc && (
+    <div class="ap-art">
+      <img
+        class="ap-cover"
+        src={artworkSrc}
+        alt={artworkAlt ?? `Cover: ${title}`}
+        width="440"
+        height="440"
+        loading="lazy"
+      />
+    </div>
+  )}
+
+  <div class="ap-body">
+    <span class="ap-eyebrow">{eyebrow}</span>
+    <p class="ap-title">{title}</p>
+    {artist && <p class="ap-artist">{artist}</p>}
+
+    <div class="ap-controls">
+      <button
+        type="button"
+        class="ap-play"
+        data-role="play"
+        aria-label={`„${title}“ abspielen`}
+      >
+        <svg class="ap-icon-play" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M8 5.5v13l11-6.5-11-6.5z" fill="currentColor" />
+        </svg>
+        <svg class="ap-icon-pause" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M7 5h3.2v14H7zM13.8 5H17v14h-3.2z" fill="currentColor" />
+        </svg>
+      </button>
+
+      <div class="ap-track">
+        <input
+          type="range"
+          class="ap-seek"
+          data-role="seek"
+          min="0"
+          max="100"
+          step="0.1"
+          value="0"
+          aria-label="Position im Lied"
+          disabled
+        />
+        <div class="ap-times">
+          <span data-role="current">0:00</span>
+          <span data-role="duration">{duration ?? "–:––"}</span>
+        </div>
+      </div>
+    </div>
+
+    {linkUrl && (
+      <a class="ap-link" href={linkUrl} target="_blank" rel="noopener">
+        {linkLabel} <span aria-hidden="true">↗</span>
+      </a>
+    )}
+
+    {note && <p class="ap-note">{note}</p>}
+  </div>
+</div>
+
+<style is:global>
+  .audioplayer{
+    display:grid;
+    grid-template-columns:180px minmax(0,1fr);
+    gap:28px;
+    align-items:center;
+    margin:36px 0;
+    padding:24px;
+    background:var(--creme);
+    border:1px solid var(--hairline);
+    border-left:var(--card-accent-width) solid var(--bordeaux);
+  }
+  .audioplayer .ap-art{
+    aspect-ratio:1/1;overflow:hidden;background:var(--offwhite);
+    border:1px solid var(--hairline);
+  }
+  .audioplayer .ap-art img.ap-cover{
+    width:100%;height:100%;object-fit:cover;display:block;
+    margin:0;border:0;
+  }
+
+  .audioplayer .ap-body{min-width:0;}
+  .audioplayer .ap-eyebrow{
+    display:block;
+    font-family:var(--sans);font-size:11px;font-weight:600;
+    letter-spacing:0.14em;text-transform:uppercase;color:var(--bordeaux);
+    margin-bottom:8px;
+  }
+  .audioplayer .ap-title{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(20px,2.2vw,26px);line-height:1.2;letter-spacing:-0.01em;
+    color:var(--petrol);margin:0 0 4px;
+  }
+  .audioplayer .ap-artist{
+    font-family:var(--sans);font-size:14.5px;color:var(--stein);
+    margin:0 0 18px;
+  }
+
+  .audioplayer .ap-controls{
+    display:flex;align-items:center;gap:16px;
+  }
+  .audioplayer .ap-play{
+    flex:0 0 auto;
+    width:54px;height:54px;border-radius:50%;border:0;
+    background:var(--petrol);color:#fff;
+    display:inline-flex;align-items:center;justify-content:center;
+    cursor:pointer;
+    transition:background var(--transition-fast), transform var(--transition-fast);
+  }
+  .audioplayer .ap-play:hover{background:var(--petrol-dark);transform:scale(1.05);}
+  .audioplayer .ap-play:focus-visible{outline:0;box-shadow:var(--focus-ring);}
+  .audioplayer .ap-play svg{width:26px;height:26px;}
+  /* Play zeigen / Pause verstecken — im spielenden Zustand umgekehrt.
+     Wichtig: display gehört nur in diese vier Regeln, sonst überschreibt
+     eine allgemeinere svg-Regel die Umschaltung. */
+  .audioplayer .ap-icon-play{display:block;}
+  .audioplayer .ap-icon-pause{display:none;}
+  .audioplayer.is-playing .ap-icon-play{display:none;}
+  .audioplayer.is-playing .ap-icon-pause{display:block;}
+  /* Ladezustand: dezentes Pulsieren, bis die Datei bereit ist */
+  .audioplayer.is-loading .ap-play{opacity:0.75;}
+
+  .audioplayer .ap-track{flex:1 1 auto;min-width:0;}
+  .audioplayer .ap-seek{
+    -webkit-appearance:none;appearance:none;
+    width:100%;height:4px;margin:0;padding:0;
+    background:linear-gradient(to right, var(--bordeaux) 0%, var(--bordeaux) var(--ap-progress,0%), rgba(14,77,79,0.16) var(--ap-progress,0%), rgba(14,77,79,0.16) 100%);
+    cursor:pointer;
+  }
+  .audioplayer .ap-seek:disabled{cursor:default;opacity:0.6;}
+  .audioplayer .ap-seek::-webkit-slider-thumb{
+    -webkit-appearance:none;appearance:none;
+    width:14px;height:14px;border-radius:50%;
+    background:var(--bordeaux);border:2px solid var(--creme);
+    cursor:pointer;
+  }
+  .audioplayer .ap-seek::-moz-range-thumb{
+    width:12px;height:12px;border-radius:50%;
+    background:var(--bordeaux);border:2px solid var(--creme);
+    cursor:pointer;
+  }
+  .audioplayer .ap-seek:focus-visible{outline:0;box-shadow:var(--focus-ring);}
+  .audioplayer .ap-times{
+    display:flex;justify-content:space-between;
+    font-family:var(--sans);font-size:12.5px;color:var(--stein);
+    font-variant-numeric:tabular-nums;
+    margin-top:8px;
+  }
+
+  .audioplayer .ap-link{
+    display:inline-flex;align-items:center;gap:6px;margin-top:18px;
+    font-family:var(--sans);font-size:14px;font-weight:500;
+    color:var(--bordeaux);text-decoration:none;
+    border-bottom:1px solid currentColor;padding-bottom:2px;
+  }
+  .audioplayer .ap-link:hover{color:var(--petrol-dark);}
+  .audioplayer .ap-note{
+    font-family:var(--sans);font-size:12.5px;line-height:1.55;color:var(--stein);
+    margin:16px 0 0;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .audioplayer .ap-play:hover{transform:none;}
+  }
+
+  @media (max-width:640px){
+    .audioplayer{
+      grid-template-columns:1fr;gap:20px;padding:20px;
+    }
+    .audioplayer .ap-art{max-width:220px;}
+    .audioplayer .ap-controls{gap:14px;}
+    .audioplayer .ap-play{width:48px;height:48px;}
+    .audioplayer .ap-play svg{width:22px;height:22px;}
+  }
+</style>
+
+<script is:inline>
+  (function () {
+    function fmt(s) {
+      if (!isFinite(s) || s < 0) return "–:––";
+      var m = Math.floor(s / 60);
+      var r = Math.floor(s % 60);
+      return m + ":" + (r < 10 ? "0" : "") + r;
+    }
+
+    function init(root) {
+      if (root.dataset.apInit) return;
+      root.dataset.apInit = "1";
+
+      var playBtn = root.querySelector('[data-role="play"]');
+      var seek = root.querySelector('[data-role="seek"]');
+      var elCur = root.querySelector('[data-role="current"]');
+      var elDur = root.querySelector('[data-role="duration"]');
+      var title = root.querySelector(".ap-title");
+      var titleText = title ? title.textContent.trim() : "";
+      if (!playBtn || !seek) return;
+
+      // Audio wird erst bei Bedarf erzeugt — kein Download beim Seitenaufruf.
+      var audio = null;
+      var scrubbing = false;
+
+      function paint() {
+        var pct =
+          audio && audio.duration ? (audio.currentTime / audio.duration) * 100 : 0;
+        if (!scrubbing) seek.value = String(pct);
+        seek.style.setProperty("--ap-progress", pct + "%");
+        if (elCur) elCur.textContent = fmt(audio ? audio.currentTime : 0);
+      }
+
+      function create() {
+        if (audio) return audio;
+        audio = new Audio();
+        audio.preload = "metadata";
+        audio.src = root.dataset.src;
+
+        audio.addEventListener("loadedmetadata", function () {
+          seek.disabled = false;
+          if (elDur) elDur.textContent = fmt(audio.duration);
+          paint();
+        });
+        audio.addEventListener("timeupdate", paint);
+        audio.addEventListener("play", function () {
+          root.classList.add("is-playing");
+          root.classList.remove("is-loading");
+          playBtn.setAttribute("aria-label", "„" + titleText + "“ pausieren");
+          // Nur ein Player gleichzeitig.
+          document.querySelectorAll(".audioplayer.is-playing").forEach(function (o) {
+            if (o !== root && o.__apPause) o.__apPause();
+          });
+        });
+        audio.addEventListener("pause", function () {
+          root.classList.remove("is-playing");
+          playBtn.setAttribute("aria-label", "„" + titleText + "“ abspielen");
+        });
+        audio.addEventListener("ended", function () {
+          root.classList.remove("is-playing");
+          audio.currentTime = 0;
+          paint();
+        });
+        audio.addEventListener("waiting", function () {
+          root.classList.add("is-loading");
+        });
+        audio.addEventListener("playing", function () {
+          root.classList.remove("is-loading");
+        });
+        audio.addEventListener("error", function () {
+          root.classList.remove("is-playing", "is-loading");
+          if (elDur) elDur.textContent = "nicht verfügbar";
+        });
+
+        return audio;
+      }
+
+      root.__apPause = function () {
+        if (audio && !audio.paused) audio.pause();
+      };
+
+      playBtn.addEventListener("click", function () {
+        var a = create();
+        if (a.paused) {
+          root.classList.add("is-loading");
+          var p = a.play();
+          if (p && p.catch) {
+            p.catch(function () {
+              root.classList.remove("is-playing", "is-loading");
+            });
+          }
+        } else {
+          a.pause();
+        }
+      });
+
+      seek.addEventListener("pointerdown", function () {
+        scrubbing = true;
+      });
+      seek.addEventListener("input", function () {
+        if (!audio || !audio.duration) return;
+        var t = (Number(seek.value) / 100) * audio.duration;
+        seek.style.setProperty("--ap-progress", seek.value + "%");
+        if (elCur) elCur.textContent = fmt(t);
+      });
+      seek.addEventListener("change", function () {
+        scrubbing = false;
+        if (!audio || !audio.duration) return;
+        audio.currentTime = (Number(seek.value) / 100) * audio.duration;
+        paint();
+      });
+
+      paint();
+    }
+
+    function boot() {
+      document.querySelectorAll(".audioplayer").forEach(init);
+    }
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", boot);
+    } else {
+      boot();
+    }
+  })();
+</script>
