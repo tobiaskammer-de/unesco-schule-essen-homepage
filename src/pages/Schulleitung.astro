@@ -2,7 +2,7 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
 import MailLink from "../components/MailLink.astro";
-import { getTeacherByRole, ROLES } from "../lib/roles";
+import { getTeacherByRole, roleNoteFor, ROLES } from "../lib/roles";
 import { displayName } from "../lib/teachers";
 import { getSingle } from "../lib/pageContent";
 
@@ -21,10 +21,15 @@ const leadership = [
   { teacher: stellv,        role: "Stellvertretende Schulleitung" },
 ].filter((c) => c.teacher);
 
+const withNote = (teacher: typeof koordEprob, label: string, role: string) => {
+  const note = teacher ? roleNoteFor(teacher, role) : undefined;
+  return note ? `${label} (${note})` : label;
+};
+
 const koordinationen = [
-  { teacher: koordEprob,       role: "Koordination · Erprobungsstufe" },
-  { teacher: koordMittelstufe, role: "Koordination · Mittelstufe" },
-  { teacher: koordOberstufe,   role: "Koordination · Oberstufe" },
+  { teacher: koordEprob,       role: withNote(koordEprob,       "Koordination · Erprobungsstufe", ROLES.KOORD_ERPROBUNGSSTUFE) },
+  { teacher: koordMittelstufe, role: withNote(koordMittelstufe, "Koordination · Mittelstufe",     ROLES.KOORD_MITTELSTUFE) },
+  { teacher: koordOberstufe,   role: withNote(koordOberstufe,   "Koordination · Oberstufe",       ROLES.KOORD_OBERSTUFE) },
 ].filter((c) => c.teacher);
 ---
 <BaseLayout title="Schulleitung · UNESCO-Schule Essen">

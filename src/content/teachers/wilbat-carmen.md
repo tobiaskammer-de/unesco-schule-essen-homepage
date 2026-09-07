@@ -3,7 +3,7 @@ salutation: "Frau"
 firstName: "Carmen"
 lastName: "Wilbat"
 subjects: ["Deutsch", "Englisch"]
-roles: ["Koordination Mittelstufe"]
+roles: ["Koordination Oberstufe"]
 email: "carmen.wilbat@164835.nrw.schule"
 photo: "/assets/kollegium/wilbat-carmen.jpg"
 ---

@@ -1,4 +1,5 @@
 import { getCollection, type CollectionEntry } from "astro:content";
+import { roleCore } from "./roles";
 
 export type TeacherEntry = CollectionEntry<"teachers">;
 
@@ -29,7 +30,7 @@ export async function getTrainees(): Promise<TeacherEntry[]> {
 /** Lehrkräfte mit einer bestimmten Rolle (z. B. "Schulleitung"). */
 export async function getTeachersByRole(role: string): Promise<TeacherEntry[]> {
   const all = await getAllTeachers();
-  return all.filter((t) => t.data.roles.includes(role));
+  return all.filter((t) => t.data.roles.some((r) => roleCore(r) === role));
 }
 
 /** Lehrkräfte, die ein Fach unterrichten. */

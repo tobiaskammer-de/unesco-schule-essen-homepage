@@ -8,6 +8,7 @@ import {
   displayName,
 } from "../lib/teachers";
 import { getSingle } from "../lib/pageContent";
+import { roleCore } from "../lib/roles";
 
 const page = await getSingle("pageKollegium");
 const teachers = await getAllTeachers();
@@ -20,7 +21,7 @@ function traineeLabel(t: (typeof teachers)[number]): string {
 
 // Eindeutige Rollen für Filter (Referendariat als eigene Funktion)
 const rolesSet = new Set<string>();
-for (const t of teachers) for (const r of t.data.roles) rolesSet.add(r);
+for (const t of teachers) for (const r of t.data.roles) rolesSet.add(roleCore(r));
 const roles = Array.from(rolesSet).sort((a, b) => a.localeCompare(b, "de"));
 if (teachers.some((t) => t.data.isTrainee)) roles.push("Referendariat");
 ---
@@ -181,7 +182,7 @@ if (teachers.some((t) => t.data.isTrainee)) roles.push("Referendariat");
         <article
           class="ko-card"
           data-subjects={t.data.subjects.join("|")}
-          data-roles={[...t.data.roles, ...(t.data.isTrainee ? ["Referendariat"] : [])].join("|")}
+          data-roles={[...t.data.roles.map(roleCore), ...(t.data.isTrainee ? ["Referendariat"] : [])].join("|")}
         >
           <div class="body">
             <p class="name">{t.data.title ? t.data.title + " " : ""}{t.data.lastName}, {t.data.firstName}</p>

@@ -3,7 +3,7 @@ salutation: "Frau"
 firstName: "Viola"
 lastName: "Pietrass"
 subjects: ["Biologie", "Mathematik"]
-roles: []
+roles: ["Koordination Mittelstufe (kommissarisch)"]
 email: "viola.pietrass@164835.nrw.schule"
 photo: "/assets/kollegium/pietrass-viola.jpg"
 ---
