@@ -1,0 +1,107 @@
+---
+/**
+ * VideoPlayer — selbst gehostetes Video mit den Browser-eigenen Bedienelementen.
+ *
+ * Bewusst OHNE YouTube-/Vimeo-iFrame: die Videodatei liegt in unserem
+ * eigenen `public/`-Ordner. Beim Abspielen fließen also keine Daten an
+ * Dritte ab — es braucht keine Klick-zum-Laden-Einwilligung.
+ *
+ * `preload="none"`: Beim Seitenaufruf lädt der Browser nur das Vorschaubild
+ * (poster), nicht die Videodatei. Die geht erst an die Leute, die wirklich
+ * auf Play drücken.
+ *
+ * Wird aus `src/pages/aktuelles/[slug].astro` gerendert, wenn ein Artikel
+ * in der Frontmatter einen `video`-Block hat.
+ */
+import { withBase } from "../lib/news";
+
+interface Props {
+  /** Pfad zur Videodatei, z. B. "/assets/news/film.mp4" */
+  src: string;
+  /** Vorschaubild (16:9), wird vor dem Abspielen gezeigt */
+  poster?: string;
+  /** Titel des Films */
+  title: string;
+  /** Kleine Überzeile über dem Titel */
+  eyebrow?: string;
+  /** Laufzeit als "M:SS" — steht neben dem Titel */
+  duration?: string;
+  /** Hinweiszeile unter dem Video (z. B. Credits) */
+  note?: string;
+}
+
+const {
+  src,
+  poster,
+  title,
+  eyebrow = "Zum Anschauen",
+  duration,
+  note,
+} = Astro.props;
+
+const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
+const videoSrc = withBase(src, BASE);
+const posterSrc = poster ? withBase(poster, BASE) : undefined;
+---
+
+<figure class="videoplayer">
+  <div class="vp-head">
+    <span class="vp-eyebrow">{eyebrow}</span>
+    <p class="vp-title">
+      {title}
+      {duration && <span class="vp-duration">{duration} Min.</span>}
+    </p>
+  </div>
+  <video
+    class="vp-video"
+    controls
+    preload="none"
+    playsinline
+    poster={posterSrc}
+    width="1600"
+    height="900"
+    aria-label={`Video: ${title}`}
+  >
+    <source src={videoSrc} type="video/mp4" />
+    Dein Browser kann dieses Video nicht abspielen.
+    <a href={videoSrc}>Video herunterladen</a>
+  </video>
+  {note && <figcaption class="vp-note">{note}</figcaption>}
+</figure>
+
+<style is:global>
+  .videoplayer{
+    margin:36px 0;
+    padding:24px;
+    background:var(--creme);
+    border:1px solid var(--hairline);
+    border-left:var(--card-accent-width) solid var(--bordeaux);
+  }
+  .videoplayer .vp-head{margin:0 0 16px;}
+  .videoplayer .vp-eyebrow{
+    display:block;
+    font-family:var(--sans);font-size:11px;font-weight:600;
+    letter-spacing:0.14em;text-transform:uppercase;color:var(--bordeaux);
+    margin-bottom:8px;
+  }
+  .videoplayer .vp-title{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(20px,2.2vw,26px);line-height:1.2;letter-spacing:-0.01em;
+    color:var(--petrol);margin:0;
+  }
+  .videoplayer .vp-duration{
+    font-family:var(--sans);font-size:13px;font-weight:500;letter-spacing:0.02em;
+    color:var(--stein);margin-left:10px;white-space:nowrap;
+  }
+  .videoplayer .vp-video{
+    display:block;width:100%;height:auto;aspect-ratio:16/9;
+    background:#000;border:1px solid var(--hairline);
+  }
+  .videoplayer .vp-note{
+    font-family:var(--sans);font-size:12.5px;line-height:1.55;color:var(--stein);
+    margin:14px 0 0;padding:0;
+  }
+  @media (max-width:640px){
+    .videoplayer{padding:16px;}
+  }
+</style>

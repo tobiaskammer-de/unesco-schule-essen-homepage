@@ -55,6 +55,22 @@ const news = defineCollection({
         duration: z.string().optional(),
       })
       .optional(),
+    /**
+     * Optionales Video im Artikel (selbst gehostete MP4, kein YouTube-iFrame
+     * → keine Datenübertragung an Dritte). Wird direkt unter dem Haupttext
+     * gerendert. Weglassen = kein Video.
+     */
+    video: z
+      .object({
+        src: z.string(),
+        poster: z.string().optional(),
+        title: z.string(),
+        eyebrow: z.string().optional(),
+        /** Laufzeit als "M:SS" */
+        duration: z.string().optional(),
+        note: z.string().optional(),
+      })
+      .optional(),
     draft: z.boolean().default(false),
   }),
 });
