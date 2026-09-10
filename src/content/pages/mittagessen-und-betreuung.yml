@@ -11,8 +11,10 @@ pillars:
     body: "Frisch zubereitet von der Kantine Kayser. Montag bis Donnerstag warmes Essen mit Dessert, Freitag Kiosk-Angebot, und immer eine vegetarische Option."
     bullets:
       - "88,00 € pro Monat"
-      - "Anmeldung online unter kantinekayser.de"
+      - "Essenskarte online beantragen, ab dem 2. Werktag abholbar"
       - "Bildung-und-Teilhabe-Paket möglich"
+    ctaLabel: "Jetzt anmelden bei kantinekayser.de"
+    ctaUrl: "https://www.kantinekayser.de"
   betreuung:
     badge: "Klassen 5"
     title: "Übermittagsbetreuung"

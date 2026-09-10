@@ -64,6 +64,11 @@ const scheding = await getTeacherByLastName("Scheding");
     width:10px;height:2px;background:var(--petrol);
   }
   .mb-pillar.is-new li::before{background:var(--gold);}
+  .mb-pillar-cta{
+    align-self:flex-start;margin-top:6px;
+    font-size:16px;font-weight:600;padding:14px 22px;
+  }
+  .mb-pillar-cta svg{width:16px;height:16px;}
 
   /* ---------- Detail sections ---------- */
   .mb-detail{padding:var(--space-section) 0;border-top:1px solid var(--hairline);}
@@ -112,15 +117,15 @@ const scheding = await getTeacherByLastName("Scheding");
   .mb-detail .info-card strong{color:var(--petrol);}
   .mb-detail .info-card p{font-size:15px;line-height:1.6;margin:0;color:var(--tinte);}
   .mb-detail .ext-link{
-    display:inline-flex;align-items:center;gap:8px;
-    margin-top:18px;
-    font-family:var(--sans);font-weight:600;font-size:15px;
-    color:var(--petrol);text-decoration:none;
-    border-bottom:1.5px solid var(--gold);padding-bottom:2px;
-    transition:color var(--transition-fast), border-color var(--transition-fast);
+    display:inline-flex;align-items:center;gap:10px;
+    margin-top:20px;
+    font-family:var(--sans);font-weight:600;font-size:16px;
+    color:#fff;background:var(--petrol);text-decoration:none;
+    padding:14px 22px;border-radius:4px;border:1.5px solid var(--petrol);
+    transition:background-color var(--transition-fast), border-color var(--transition-fast);
   }
-  .mb-detail .ext-link:hover{color:var(--bordeaux);border-bottom-color:var(--bordeaux);}
-  .mb-detail .ext-link svg{width:14px;height:14px;}
+  .mb-detail .ext-link:hover{background:var(--petrol-dark);border-color:var(--petrol-dark);color:#fff;}
+  .mb-detail .ext-link svg{width:16px;height:16px;}
 
   /* ---------- Downloads ---------- */
   .mb-downloads{background:var(--petrol);color:var(--creme);padding:var(--space-section) 0;}
@@ -221,6 +226,12 @@ const scheding = await getTeacherByLastName("Scheding");
         <ul>
           {(page.pillars.mittagessen.bullets ?? []).map((b: string) => <li>{b}</li>)}
         </ul>
+        {page.pillars.mittagessen.ctaUrl && (
+          <a class="btn btn-primary mb-pillar-cta" href={page.pillars.mittagessen.ctaUrl} target="_blank" rel="noopener">
+            {page.pillars.mittagessen.ctaLabel}
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17L17 7M17 7H9M17 7v8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        )}
       </article>
 
       <article class="mb-pillar">
