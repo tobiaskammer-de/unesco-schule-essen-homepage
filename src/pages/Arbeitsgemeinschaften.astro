@@ -198,12 +198,14 @@ const ags = page.list.ags.map((ag: any) => ({
             {ag.extra && <div class="extra">{ag.extra}</div>}
           </div>
 
-          <div class="contact">
-            <div class="info">
-              <span class="role">{ag.contact.role}</span>
-              <span class="name">{ag.contact.name}</span>
+          {ag.contact.name && (
+            <div class="contact">
+              <div class="info">
+                <span class="role">{ag.contact.role}</span>
+                <span class="name">{ag.contact.name}</span>
+              </div>
             </div>
-          </div>
+          )}
         </article>
       ))}
     </div>
