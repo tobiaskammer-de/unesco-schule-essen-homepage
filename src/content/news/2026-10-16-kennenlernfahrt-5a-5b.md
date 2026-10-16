@@ -1,6 +1,6 @@
 ---
 title: "Kennenlernfahrt der Klassen 5a und 5b"
-date: 2026-10-16
+date: 2026-09-23
 category: "Allgemein"
 excerpt: "Spiele, eine Waldwanderung, Kooperationsübungen und eine Rallye: Zum Start ins Schuljahr haben unsere neuen fünften Klassen drei gemeinsame Tage in Essen-Werden verbracht."
 coverImage: "/assets/news/2026-10-16-kennenlernfahrt-5a-5b-1.jpg"
