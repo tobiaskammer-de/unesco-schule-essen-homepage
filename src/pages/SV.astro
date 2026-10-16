@@ -1,0 +1,242 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHero from "../components/PageHero.astro";
+import { getSingle } from "../lib/pageContent";
+
+const page: any = await getSingle("pageSv");
+const school: any = await getSingle("siteSchool");
+
+const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
+function asset(p: string): string {
+  return BASE + "/" + p.replace(/^\//, "");
+}
+
+// Linien-Symbole für die Aufgaben-Karten (Schlüssel = Feld „icon“ in sv.yml)
+const ICONS: Record<string, string> = {
+  megafon: `<path d="M9 23v10h7l18 9V14l-18 9z"/><path d="M16 33l3 10h6l-2-8"/><path d="M40 22c2.5 3 2.5 9 0 12"/><path d="M44.5 18c4.5 5.5 4.5 14.5 0 20"/>`,
+  wahlurne: `<path d="M21 31V9h14v22"/><path d="M24.5 19l3 3 5-6"/><rect x="9" y="28" width="38" height="19" rx="2"/><path d="M22 38h12"/>`,
+  palette: `<path d="M28 9C17 9 9 16.5 9 26.5S17 45 26.5 45c2.5 0 3.5-1.6 3.5-3.3 0-1.4-1-2.2-1-3.6 0-1.8 1.4-3.1 3.2-3.1H36c6 0 11-4.6 11-10.6C47 15.6 38.5 9 28 9z"/><circle cx="18.5" cy="25" r="2.5"/><circle cx="23" cy="17" r="2.5"/><circle cx="32" cy="16" r="2.5"/><circle cx="39" cy="22" r="2.5"/>`,
+  sprechblasen: `<path d="M8 10h26a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H18l-7 6v-6H8a2 2 0 0 1-2-2V12a2 2 0 0 1 2-2z"/><path d="M40 22h8a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-3v6l-7-6H28a2 2 0 0 1-2-2v-6"/>`,
+};
+---
+<BaseLayout
+  title="Schülervertretung (SV) · UNESCO-Schule Essen"
+  description="Die Schülervertretung der UNESCO-Schule Essen: was die SV macht, welche Aufgaben sie hat und wer im aktuellen Schuljahr Schülersprecherin und Schülersprecher ist."
+  ogImage="assets/hero/sv.jpg"
+>
+<style is:global>
+  /* Intro */
+  .sv-intro{background:var(--offwhite);padding:var(--space-section) 0;}
+  .sv-intro-grid{
+    display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:56px;align-items:start;
+  }
+  .sv-intro h2{
+    font-family:var(--serif);font-weight:500;font-size:clamp(30px,3.2vw,42px);
+    line-height:1.15;color:var(--petrol);letter-spacing:-0.015em;margin:0;
+  }
+  .sv-intro p{
+    font-family:var(--sans);font-size:17px;line-height:1.7;color:var(--tinte);margin:0 0 14px;
+  }
+  .sv-intro p:last-child{margin-bottom:0;}
+
+  /* Aufgaben */
+  .sv-tasks{background:var(--creme);padding:var(--space-section) 0;border-top:1px solid var(--hairline);}
+  .sv-tasks .head{max-width:760px;margin:0 0 48px;}
+  .sv-tasks .head .eyebrow{display:block;margin-bottom:14px;}
+  .sv-tasks .head h2{
+    font-family:var(--serif);font-weight:500;font-size:clamp(28px,3vw,40px);
+    line-height:1.15;color:var(--petrol);letter-spacing:-0.015em;margin:0;
+  }
+  /* Aufgaben-Karten im Stil der Startseiten-Kästen („Was uns auszeichnet“) */
+  .sv-tasks-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px;}
+  .sv-task{
+    position:relative;overflow:hidden;isolation:isolate;
+    background:var(--offwhite);
+    border:1px solid var(--hairline);
+    border-radius:24px;
+    padding:40px 36px;
+    display:flex;flex-direction:column;gap:20px;
+    box-shadow:0 10px 30px -20px rgba(14,77,79,0.22);
+    transition:transform .3s ease, box-shadow .3s ease;
+    min-height:280px;
+  }
+  .sv-task::before{
+    content:"";position:absolute;inset:0;z-index:-1;
+    background-image:var(--task-bg, none);
+    background-size:cover;background-position:center;
+    opacity:0.15;
+    pointer-events:none;
+  }
+  .sv-task > *{position:relative;}
+  .sv-task:hover{
+    transform:translateY(-2px);
+    box-shadow:0 18px 40px -22px rgba(14,77,79,0.3);
+  }
+  @media (prefers-reduced-motion: reduce){.sv-task:hover{transform:none;}}
+  .sv-task .icon{width:36px;height:36px;color:var(--bordeaux);}
+  .sv-task h3{
+    font-family:var(--serif);font-weight:500;font-size:24px;line-height:1.2;
+    color:var(--petrol);letter-spacing:-0.005em;margin:0 0 10px;
+  }
+  .sv-task p{font-size:15px;color:var(--stein);line-height:1.6;margin:0;}
+
+  .sv-task--bordeaux{background:var(--bordeaux);color:var(--creme);border-color:var(--bordeaux);}
+  .sv-task--bordeaux h3{color:var(--creme);}
+  .sv-task--bordeaux p{color:rgba(245,239,231,0.88);}
+  .sv-task--bordeaux .icon{color:var(--gold);}
+
+  .sv-task--petrol{background:var(--petrol);color:var(--creme);border-color:var(--petrol);}
+  .sv-task--petrol h3{color:var(--creme);}
+  .sv-task--petrol p{color:rgba(245,239,231,0.82);}
+  .sv-task--petrol .icon{color:var(--gold);}
+
+  .sv-task--gold{background:var(--gold);color:#3a2a10;border-color:var(--gold);}
+  .sv-task--gold h3{color:var(--gold-text);}
+  .sv-task--gold p{color:rgba(58,42,16,0.85);}
+  .sv-task--gold .icon{color:var(--bordeaux);}
+
+  .sv-task--creme{background:var(--creme);}
+  .sv-task--creme::after{
+    content:"";position:absolute;inset:0;z-index:-1;
+    background:rgba(250,247,241,0.55);
+    pointer-events:none;
+  }
+
+  /* Schülersprecher */
+  .sv-team{background:var(--offwhite);padding:var(--space-section) 0;border-top:1px solid var(--hairline);}
+  .sv-team .head{max-width:760px;margin:0 0 48px;}
+  .sv-team .head .eyebrow{display:block;margin-bottom:14px;}
+  .sv-team .head h2{
+    font-family:var(--serif);font-weight:500;font-size:clamp(28px,3vw,40px);
+    line-height:1.15;color:var(--petrol);letter-spacing:-0.015em;margin:0 0 16px;
+  }
+  .sv-team .head p{
+    font-family:var(--sans);font-size:17px;line-height:1.65;color:var(--stein);margin:0;
+  }
+  .sv-team-grid{
+    display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px;
+    max-width:920px;align-items:start;
+  }
+  .sv-person{
+    background:#fff;border:1px solid var(--hairline);
+    border-top:var(--card-accent-width) solid var(--petrol);
+    padding:40px 32px 34px;
+    display:flex;flex-direction:column;align-items:center;text-align:center;gap:24px;
+  }
+  .sv-person .photo{
+    width:200px;height:200px;border-radius:50%;overflow:hidden;flex-shrink:0;
+    background:var(--creme);
+    box-shadow:0 0 0 6px var(--creme), 0 0 0 7px var(--hairline);
+  }
+  .sv-person .photo img{width:100%;height:100%;object-fit:cover;display:block;}
+  .sv-person .body{display:flex;flex-direction:column;align-items:center;gap:6px;}
+  .sv-person .role{
+    font-family:var(--sans);font-size:11px;font-weight:600;
+    letter-spacing:0.14em;text-transform:uppercase;color:var(--petrol);
+  }
+  .sv-person .name{
+    font-family:var(--serif);font-weight:500;font-size:26px;line-height:1.15;
+    color:var(--petrol);letter-spacing:-0.01em;margin:0;
+  }
+  .sv-person .grade{
+    font-family:var(--sans);font-size:14.5px;color:var(--stein);margin:0;
+  }
+  .sv-person blockquote{
+    margin:16px 0 0;padding-top:18px;border-top:1px solid var(--hairline);
+    font-family:var(--serif);font-style:italic;font-weight:400;
+    font-size:16.5px;line-height:1.55;color:var(--tinte);
+  }
+  .sv-person blockquote::before{
+    content:"„";display:block;
+    font-family:var(--serif);font-size:48px;line-height:0.4;
+    color:var(--bordeaux);opacity:0.55;margin-bottom:10px;
+  }
+  .sv-person blockquote p{margin:0 0 10px;}
+  .sv-person blockquote p:last-child{margin-bottom:0;}
+
+  @media (max-width:960px){
+    .sv-intro-grid{grid-template-columns:1fr;gap:28px;}
+    .sv-intro,.sv-tasks,.sv-team{padding:var(--space-section-sm) 0;}
+    .sv-tasks-grid{grid-template-columns:1fr;gap:20px;}
+  }
+  @media (max-width:640px){
+    .sv-team-grid{grid-template-columns:1fr;gap:14px;}
+  }
+</style>
+
+<main id="top">
+
+<PageHero variant="feature" image={page.hero.image ? asset(page.hero.image) : undefined} imageAlt={page.hero.imageAlt || ""}>
+  <Fragment slot="eyebrow">{page.hero.eyebrow}</Fragment>
+  <Fragment slot="title">{page.hero.title}{page.hero.titleHighlight && <><br /><em>{page.hero.titleHighlight}</em></>}</Fragment>
+  <Fragment slot="lede">{page.hero.lede}</Fragment>
+</PageHero>
+
+<section class="sv-intro" aria-label="Was die SV ist">
+  <div class="container">
+    <div class="sv-intro-grid">
+      <div>
+        <h2>{page.intro.title}</h2>
+      </div>
+      <div>
+        {page.intro.body.trim().split("\n\n").map((para: string) => <p>{para}</p>)}
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sv-tasks" aria-label="Aufgaben der SV">
+  <div class="container">
+    <div class="head">
+      <span class="eyebrow">{page.tasks.eyebrow}</span>
+      <h2>{page.tasks.title}</h2>
+    </div>
+    <div class="sv-tasks-grid">
+      {page.tasks.list.map((t: any) => (
+        <article class={`sv-task sv-task--${t.color || "creme"}`} style={t.image ? `--task-bg:url('${asset(t.image)}')` : undefined}>
+          {ICONS[t.icon] && (
+            <svg class="icon" viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={ICONS[t.icon]} />
+          )}
+          <div>
+            <h3>{t.title}</h3>
+            <p>{t.body}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section class="sv-team" aria-label="Schülersprecherinnen und Schülersprecher">
+  <div class="container">
+    <div class="head">
+      <span class="eyebrow">Schuljahr {school.schoolYear}</span>
+      <h2>{page.team.title}</h2>
+      {page.team.body && <p>{page.team.body}</p>}
+    </div>
+    <div class="sv-team-grid">
+      {page.team.members.map((m: any) => (
+        <article class="sv-person">
+          {m.photo && (
+            <div class="photo">
+              <img src={asset(m.photo)} alt={m.photoAlt || `Porträtfoto von ${m.name}`} width="600" height="600" loading="lazy" />
+            </div>
+          )}
+          <div class="body">
+            <span class="role">{m.role}</span>
+            <h3 class="name">{m.name}</h3>
+            {m.grade && <p class="grade">Stufe {m.grade}</p>}
+            {m.text && (
+              <blockquote>
+                {m.text.trim().split("\n\n").map((para: string) => <p>{para}</p>)}
+              </blockquote>
+            )}
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+</main>
+</BaseLayout>

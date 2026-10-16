@@ -301,6 +301,7 @@ const pageSchoolwear      = defineCollection({ loader: glob({ pattern: "schoolwe
 const pageMittagessenUndBetreuung = defineCollection({ loader: glob({ pattern: "mittagessen-und-betreuung.yml", base: "./src/content/pages" }), schema: flexibleSchema });
 const pageFoerderverein   = defineCollection({ loader: glob({ pattern: "foerderverein.yml",        base: "./src/content/pages" }), schema: flexibleSchema });
 const pageEhemalige       = defineCollection({ loader: glob({ pattern: "ehemalige.yml",            base: "./src/content/pages" }), schema: flexibleSchema });
+const pageSv              = defineCollection({ loader: glob({ pattern: "sv.yml",                   base: "./src/content/pages" }), schema: flexibleSchema });
 const pagePartner         = defineCollection({ loader: glob({ pattern: "partner.yml",              base: "./src/content/pages" }), schema: flexibleSchema });
 const pageEltern          = defineCollection({ loader: glob({ pattern: "eltern.yml",               base: "./src/content/pages" }), schema: flexibleSchema });
 const pageKontakt         = defineCollection({ loader: glob({ pattern: "kontakt.yml",              base: "./src/content/pages" }), schema: flexibleSchema });
@@ -340,6 +341,7 @@ export const collections = {
   pageMittagessenUndBetreuung,
   pageFoerderverein,
   pageEhemalige,
+  pageSv,
   pagePartner,
   pageEltern,
   pageKontakt,

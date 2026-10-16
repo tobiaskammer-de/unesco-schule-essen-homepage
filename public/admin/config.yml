@@ -1591,6 +1591,66 @@ collections:
               - { name: body, label: "Text", widget: text }
               - { name: meta, label: "Meta-Hinweis", widget: string }
 
+      # ---------------- SCHÜLERVERTRETUNG (SV) ----------------
+      - file: src/content/pages/sv.yml
+        label: "Schülervertretung (SV)"
+        name: sv
+        format: yaml
+        fields:
+          - name: hero
+            label: "Hero"
+            widget: object
+            collapsed: false
+            fields:
+              - { name: eyebrow, label: "Eyebrow", widget: string }
+              - { name: title, label: "Titel — Zeile 1", widget: string }
+              - { name: titleHighlight, label: "Titel — Zeile 2 (kursiv)", widget: string, required: false }
+              - { name: lede, label: "Einleitung", widget: text }
+              - { name: image, label: "Hero-Bild", widget: image, required: false, choose_url: false }
+              - { name: imageAlt, label: "Bildbeschreibung", widget: string, required: false }
+          - name: intro
+            label: "Was die SV ist"
+            widget: object
+            collapsed: true
+            fields:
+              - { name: title, label: "Überschrift", widget: string }
+              - { name: body, label: "Text (Absätze durch Leerzeile trennen)", widget: text }
+          - name: tasks
+            label: "Aufgaben"
+            widget: object
+            collapsed: true
+            fields:
+              - { name: eyebrow, label: "Eyebrow", widget: string }
+              - { name: title, label: "Überschrift", widget: string }
+              - name: list
+                label: "Aufgaben-Karten"
+                widget: list
+                fields:
+                  - { name: n, label: "Nummer", widget: string }
+                  - { name: title, label: "Titel", widget: string }
+                  - { name: icon, label: "Symbol", widget: select, options: [megafon, wahlurne, palette, sprechblasen], required: false }
+                  - { name: color, label: "Farbe", widget: select, options: [bordeaux, petrol, gold, creme], default: creme }
+                  - { name: image, label: "Hintergrundbild", widget: image, required: false, choose_url: false }
+                  - { name: body, label: "Text", widget: text }
+          - name: team
+            label: "Schülersprecherinnen und Schülersprecher"
+            widget: object
+            collapsed: false
+            fields:
+              - { name: title, label: "Überschrift", widget: string, hint: "Darüber steht automatisch das Schuljahr aus den Schul-Stammdaten." }
+              - { name: body, label: "Einleitung", widget: text, required: false }
+              - name: members
+                label: "Personen"
+                widget: list
+                summary: "{{fields.name}} — {{fields.role}}"
+                fields:
+                  - { name: name, label: "Name", widget: string }
+                  - { name: role, label: "Funktion", widget: string, hint: "z. B. Schülersprecherin, Schülersprecher, Stellvertretung" }
+                  - { name: grade, label: "Stufe / Klasse", widget: string, required: false, hint: "z. B. Q1 oder 9b" }
+                  - { name: photo, label: "Foto (quadratisch, Gesicht mittig; wird rund angezeigt)", widget: image, required: false, choose_url: false, media_folder: /public/assets/sv, public_folder: /assets/sv, hint: "Nur mit schriftlicher Einwilligung (bei Minderjährigen auch der Eltern)." }
+                  - { name: photoAlt, label: "Bildbeschreibung", widget: string, required: false }
+                  - { name: text, label: "Steckbrief", widget: text, required: false }
+
       # ---------------- PARTNER ----------------
       - file: src/content/pages/partner.yml
         label: "Partner"

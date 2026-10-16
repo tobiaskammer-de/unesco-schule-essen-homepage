@@ -1,0 +1,60 @@
+hero:
+  eyebrow: "Über Uns · Schülervertretung"
+  title: "Die SV"
+  titleHighlight: "eure Stimme an der Schule"
+  lede: "Die Schülervertretung spricht für alle Schülerinnen und Schüler der UNESCO-Schule, von Klasse 5 bis zur Q2. Sie bringt Ideen ein, organisiert Aktionen und redet mit, wenn an unserer Schule entschieden wird."
+  image: "/assets/hero/sv.jpg"
+  imageAlt: "Jugendliche stehen im Kreis und formen mit ihren Händen gemeinsam einen Stern"
+
+intro:
+  title: "Was die SV ist"
+  body: |
+    In der Schülervertretung (SV) setzen sich Schülerinnen und Schüler für ihre Mitschülerinnen und Mitschüler ein. Zu Beginn des Schuljahres wählen alle Klassen und die Stufen der Oberstufe ihre Sprecherinnen und Sprecher. Gemeinsam bilden sie den Schülerrat, und der Schülerrat wählt die Schülersprecherinnen und Schülersprecher.
+
+    Das Schulgesetz NRW gibt der SV einen klaren Auftrag: Sie vertritt die Interessen der Schülerinnen und Schüler und fördert ihre fachlichen, kulturellen, sportlichen, politischen und sozialen Anliegen. Für eine UNESCO-Projektschule ist das mehr als eine Pflicht. Demokratie lernt man am besten, indem man sie lebt.
+
+tasks:
+  eyebrow: "Aufgaben"
+  title: "Was die SV macht"
+  list:
+    - n: "01"
+      title: "Interessen vertreten"
+      icon: "megafon"
+      color: "bordeaux"
+      image: "/assets/schulhof-hero.jpg"
+      body: "Die SV spricht für alle Schülerinnen und Schüler, gegenüber Schulleitung, Kollegium und Eltern. Sie sammelt Wünsche, Kritik und Vorschläge und bringt sie dorthin, wo entschieden wird."
+    - n: "02"
+      title: "Mitbestimmen"
+      icon: "wahlurne"
+      color: "petrol"
+      image: "/assets/hero/paedagogische-konzepte.jpg"
+      body: "Vertreterinnen und Vertreter der SV sitzen in der Schulkonferenz, dem wichtigsten Gremium der Schule, und arbeiten in Fachkonferenzen und Arbeitskreisen mit."
+    - n: "03"
+      title: "Schulleben gestalten"
+      icon: "palette"
+      color: "gold"
+      image: "/assets/Buehne_Jubilaeum.jpg"
+      body: "Aktionen, Feste, Projekte: Die SV setzt eigene Ideen um und trägt dazu bei, dass sich alle an unserer Schule wohlfühlen."
+    - n: "04"
+      title: "Ansprechbar sein"
+      icon: "sprechblasen"
+      color: "creme"
+      image: "/assets/hero/beratung.jpg"
+      body: "Wer ein Anliegen, ein Problem oder eine Idee hat, kann sich an die SV wenden. Sie hört zu, vermittelt und nimmt das Anliegen mit in die Gremien."
+
+team:
+  title: "Wer euch in diesem Schuljahr vertritt"
+  body: "Ihr habt eine Frage, eine Idee oder ein Anliegen? Sprecht eure Klassen- oder Stufensprecherinnen und -sprecher an oder wendet euch direkt an die SV."
+  members:
+    - name: "Firdaous"
+      role: "Schülersprecherin"
+      grade: "Q1"
+      photo: "/assets/sv/firdaous.jpg"
+      photoAlt: "Porträtfoto von Firdaous"
+      text: "Ich heiße Firdaous, besuche derzeit die Q1 und freue mich riesig darüber, eure neue Schülersprecherin zu sein. Gemeinsam mit euch möchte ich unsere Schule aktiv mitgestalten und eure Ideen, Wünsche sowie Projekte in die Tat umsetzen. Sprecht mich bei Fragen oder Anliegen jederzeit gerne an. Ich freue mich auf die Zusammenarbeit mit euch!"
+    - name: "Cem"
+      role: "Schülersprecher"
+      grade: "Q1"
+      photo: "/assets/sv/cem.jpg"
+      photoAlt: "Porträtfoto von Cem"
+      text: "Hallo, mein Name ist Cem, ich bin 18 Jahre alt und vertrete euch dieses Jahr als Schüler- und Stufensprecher. Für mich steht die SV für eine starke Gemeinschaft und echte Mitgestaltung. Wenn ihr Ideen, Wünsche oder Probleme habt, könnt ihr jederzeit zu mir kommen: verlässlich, engagiert und immer an eurer Seite."
