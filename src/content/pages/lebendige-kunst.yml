@@ -10,4 +10,15 @@ gallery:
   eyebrow: Eindrücke
   title: Was bei uns sichtbar wird
   body: Eine wachsende Sammlung an Werken aus dem Kunstunterricht — von ersten Übungen in der Erprobungsstufe bis zu eigenständigen Arbeiten der Oberstufe.
-  items: []
+  items:
+    - title: Wie echt ist ein Foto?
+      caption: 'Eine Übung aus dem Kunstunterricht zur fotografischen Wirklichkeit: Im Instagram-Rahmen wirkt alles aufgeräumt, schön und perfekt. Der Blick daneben zeigt, was das Bild weglässt. (Rahmenvorlage Bild 2: Freepik)'
+      images:
+        - image: /assets/news/2026-10-19-kunst-wirklichkeit-01.jpg
+          imageAlt: 'Unordentlicher Tisch mit Arbeitsblättern, Stiften und Flaschen. In der Mitte ein Instagram-Rahmen, der nur ein ordentlich arrangiertes Heft mit Handy und Becher zeigt.'
+        - image: /assets/news/2026-10-19-kunst-wirklichkeit-02.jpg
+          imageAlt: 'Vollgestelltes Regal im Kunstraum mit Gliederpuppen, Flaschen und Farbgläsern. Ein Instagram-Rahmen zeigt stattdessen einen bunten Blumenstrauß. Rahmenvorlage: Freepik.'
+        - image: /assets/news/2026-10-19-kunst-wirklichkeit-03.jpg
+          imageAlt: 'Ein Instagram-Rahmen vor einem Strauch mit weißen Blüten. Außerhalb des Rahmens sind Asphalt, Laub und die Füße einer Person zu sehen.'
+        - image: /assets/news/2026-10-19-kunst-wirklichkeit-04.jpg
+          imageAlt: 'Schulgebäude mit Baugerüst. Ein Instagram-Rahmen zeigt nur die Fassade vor makellos blauem Himmel, ohne Gerüst.'
