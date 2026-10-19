@@ -8,8 +8,6 @@ const link = (p: string) => p.startsWith("/") || /^https?:\/\//.test(p) ? p : `$
 
 // Stand der Planung: Oktober 2026. Nur bestätigte Angebote, keine Namen, keine Räume.
 const parentOffers = [
-  { title: "Die Lehrkräfte der neuen 5 kennenlernen", text: "Sprechen Sie persönlich mit den Lehrkräften, die in den neuen fünften Klassen unterrichten: über den Schulalltag, die Klassengemeinschaft und das Lernen in der Erprobungsstufe." },
-  { title: "Beratung durch den Erprobungsstufenkoordinator", text: "Persönliche Beratung zum Übergang von der Grundschule, zu den Profilen WortArt⁺ und Forscher² und zur Anmeldung." },
   { title: "Führungen durch das Haus", text: "Lernen Sie unsere Räume kennen, vom Klassenzimmer bis zum Musikraum. Start am Info-Point im Haupteingang." },
   { title: "Eltern- und Schülercafé", text: "Kaffee, Kuchen und Waffeln, dazu Gespräche mit Eltern unserer Schule." },
 ];
@@ -32,9 +30,9 @@ const upperOffers = [
 ];
 
 const posters = {
-  grundschule: { img: "assets/tdot/plakat-grundschule.jpg", pdf: "assets/tdot/plakat-tdot-2026-grundschule.pdf", label: "Plakat „Tag der offenen Tür 2026“ für Klasse 4 und Eltern als PDF herunterladen (A3, 0,8 MB)" },
-  abi: { img: "assets/tdot/plakat-von-hier-zum-abi.jpg", pdf: "assets/tdot/plakat-tdot-2026-von-hier-zum-abi.pdf", label: "Plakat „Von hier zum Abi“ als PDF herunterladen (A3, 0,9 MB)" },
-  oberstufe: { img: "assets/tdot/plakat-einladung-oberstufe.jpg", pdf: "assets/tdot/plakat-tdot-2026-einladung-oberstufe.pdf", label: "Plakat „Einladung zur Oberstufe“ als PDF herunterladen (A3, 0,2 MB)" },
+  grundschule: { img: "assets/tdot/plakat-grundschule.jpg", label: "Plakat „Tag der offenen Tür 2026“ für Klasse 4 und Eltern vergrößern", alt: "Plakat: UNESCO-Gymnasium, Tag der offenen Tür 2026, Samstag, 5. Dezember, 10 bis 14 Uhr, für Kinder der 4. Klassen und ihre Eltern. Rund um ein Foto des Schuleingangs stehen die Angebote: Instrumente kennenlernen, Mikroskopieren, Experimente, Theater, Programmieren, Mathe-Magie, Kunst, Schulsong, Elterncafé." },
+  abi: { img: "assets/tdot/plakat-von-hier-zum-abi.jpg", label: "Plakat „Von hier zum Abi“ vergrößern", alt: "Plakat: Von hier zum Abi. Am 5.12. für dich: Beratung durch das Oberstufenteam, Rundgang mit unseren Schüler:innen, Fächer und Leistungskurse kennenlernen, Programm in der Aula, Café. Gemeinsamer Neustart in der EF, persönliche Beratung, Abitur oder Fachhochschulreife." },
+  oberstufe: { img: "assets/tdot/plakat-einladung-oberstufe.jpg", label: "Plakat „Einladung zur Oberstufe“ vergrößern", alt: "Plakat: Einladung zum Tag der offenen Tür, Informationen zur gymnasialen Oberstufe. Wo, wer, was und wann auf einen Blick." },
 };
 ---
 <BaseLayout
@@ -84,13 +82,9 @@ const posters = {
   .tdo-lead{font-family:var(--sans);font-size:17px;line-height:1.65;color:var(--stein);margin:0;}
   .tdo-split{display:grid;grid-template-columns:minmax(0,8fr) minmax(0,4fr);gap:56px;align-items:start;}
   .tdo-section-kicker{
-    display:inline-flex;align-items:center;gap:10px;margin-bottom:14px;
+    display:block;margin-bottom:14px;
     font-family:var(--sans);font-size:12px;font-weight:600;letter-spacing:0.14em;
     text-transform:uppercase;color:var(--bordeaux);
-  }
-  .tdo-section-kicker .n{
-    display:inline-grid;place-items:center;width:26px;height:26px;border-radius:50%;
-    background:var(--petrol);color:#fff;letter-spacing:0;font-size:13px;
   }
   .tdo-subhead{
     font-family:var(--sans);font-size:13px;font-weight:600;letter-spacing:0.12em;
@@ -98,7 +92,10 @@ const posters = {
   }
 
   /* Plakate: Klick lädt das PDF, beim Darüberfahren leicht größer */
-  .tdo-poster-link{display:block;cursor:pointer;transition:transform .25s ease, box-shadow .25s ease;}
+  .tdo-poster-link{
+    display:block;width:100%;padding:0;border:0;background:none;cursor:zoom-in;
+    transition:transform .25s ease, box-shadow .25s ease;
+  }
   .tdo-poster-link img{width:100%;height:auto;display:block;box-shadow:0 24px 50px -24px rgba(0,0,0,0.45);}
   .tdo-poster-link:hover,.tdo-poster-link:focus-visible{transform:scale(1.025);}
   .tdo-poster-link:focus-visible{outline:2px solid var(--bordeaux);outline-offset:4px;}
@@ -108,7 +105,6 @@ const posters = {
   .tdo-kids{background:var(--offwhite);padding:calc(var(--space-section) * 0.4) 0 var(--space-section);scroll-margin-top:110px;}
   .tdo-parents{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:var(--hairline);border:1px solid var(--hairline);}
   .tdo-parents li{background:#fff;padding:22px 24px;display:flex;flex-direction:column;gap:6px;}
-  .tdo-parents li:nth-child(-n+2){background:var(--creme);border-top:3px solid var(--petrol);}
   .tdo-parents h4{font-family:var(--serif);font-weight:500;font-size:20px;line-height:1.25;color:var(--petrol);margin:0;}
   .tdo-parents p{font-family:var(--sans);font-size:15px;line-height:1.55;color:var(--tinte);margin:0;}
   .tdo-offers{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;}
@@ -130,6 +126,33 @@ const posters = {
   .tdo-note a{color:var(--bordeaux);font-weight:600;}
   .tdo-poster{position:sticky;top:120px;}
 
+  /* Lightbox für die Plakate */
+  .tdo-lightbox{
+    border:0;padding:0;background:transparent;overflow:visible;
+    max-width:min(92vw, 820px);max-height:94vh;
+  }
+  .tdo-lightbox::backdrop{background:rgba(11,42,43,0.88);}
+  .tdo-lightbox img{
+    display:block;max-width:100%;max-height:90vh;width:auto;height:auto;margin:0 auto;
+    box-shadow:0 30px 80px -30px rgba(0,0,0,0.7);
+  }
+  .tdo-lightbox[open] img{animation:tdoGrow .28s cubic-bezier(0.2,0.8,0.2,1);}
+  .tdo-lightbox[open]::backdrop{animation:tdoFade .2s ease-out;}
+  @keyframes tdoGrow{from{transform:scale(0.82);opacity:0;}to{transform:none;opacity:1;}}
+  @keyframes tdoFade{from{opacity:0;}to{opacity:1;}}
+  @media (prefers-reduced-motion: reduce){
+    .tdo-lightbox[open] img,.tdo-lightbox[open]::backdrop{animation:none;}
+  }
+  .tdo-lightbox-close{
+    position:fixed;top:16px;right:16px;
+    width:44px;height:44px;border-radius:50%;
+    background:rgba(11,42,43,0.7);color:var(--creme);
+    border:1px solid rgba(245,239,231,0.3);
+    font-size:24px;line-height:1;cursor:pointer;
+  }
+  .tdo-lightbox-close:hover{background:rgba(11,42,43,0.95);border-color:var(--gold);}
+  .tdo-lightbox-close:focus-visible{outline:2px solid var(--gold);outline-offset:2px;}
+
   /* Oberstufe */
   .tdo-upper{
     background:#1F3F8A;color:#fff;padding:var(--space-section) 0;scroll-margin-top:110px;
@@ -137,7 +160,6 @@ const posters = {
     background-size:22px 22px;
   }
   .tdo-upper .tdo-section-kicker{color:#FFE200;}
-  .tdo-upper .tdo-section-kicker .n{background:#FFE200;color:#1F3F8A;}
   .tdo-upper h2{
     font-family:var(--sans);font-weight:800;font-size:clamp(36px,4.6vw,64px);line-height:1.02;
     letter-spacing:-0.03em;margin:0 0 20px;color:#fff;
@@ -166,12 +188,6 @@ const posters = {
   .tdo-upper-posters figure:nth-child(2){transform:rotate(2deg);margin-top:40px;}
   .tdo-upper-posters .tdo-poster-link img{box-shadow:0 24px 50px -20px rgba(0,0,0,0.6);}
 
-  /* CTA */
-  .tdo-cta{background:var(--creme);padding:var(--space-section) 0;border-top:1px solid var(--hairline);}
-  .tdo-cta-grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:56px;align-items:center;}
-  .tdo-cta h2{font-family:var(--serif);font-weight:500;font-size:clamp(28px,3vw,40px);line-height:1.15;color:var(--petrol);letter-spacing:-0.015em;margin:0;}
-  .tdo-cta p{font-family:var(--sans);font-size:17px;line-height:1.65;color:var(--stein);margin:0 0 22px;}
-  .tdo-cta .row{display:flex;flex-wrap:wrap;gap:14px;}
 
   @media (max-width:960px){
     .tdo-who-grid{grid-template-columns:1fr;gap:16px;}
@@ -179,8 +195,7 @@ const posters = {
     .tdo-poster{position:static;max-width:380px;}
     .tdo-upper-list{grid-template-columns:1fr;}
     .tdo-upper-posters{max-width:520px;}
-    .tdo-cta-grid{grid-template-columns:1fr;gap:20px;}
-    .tdo-who,.tdo-kids,.tdo-upper,.tdo-cta{padding-top:var(--space-section-sm);padding-bottom:var(--space-section-sm);}
+    .tdo-who,.tdo-kids,.tdo-upper{padding-top:var(--space-section-sm);padding-bottom:var(--space-section-sm);}
   }
   @media (max-width:640px){
     .tdo-who-card{grid-template-columns:1fr 92px;gap:16px;padding:22px 20px;}
@@ -227,9 +242,9 @@ const posters = {
   <div class="container">
     <div class="tdo-split">
       <div>
-        <span class="tdo-section-kicker"><span class="n">1</span> Für Kinder der 4. Klassen und ihre Eltern</span>
+        <span class="tdo-section-kicker">Für Kinder der 4. Klassen und ihre Eltern</span>
         <h2 class="tdo-h2" id="tdo-kids-h">Die Erprobungsstufe kennenlernen</h2>
-        <p class="tdo-lead">Seit diesem Schuljahr nimmt die UNESCO-Schule Essen erstmals Schülerinnen und Schüler ab Klasse 5 auf. Am Tag der offenen Tür lernen Sie die Lehrkräfte der neuen fünften Klassen im persönlichen Gespräch kennen. Unser Erprobungsstufenkoordinator berät Sie zum Übergang von der Grundschule, zu den Profilen WortArt⁺ und Forscher² und zur Anmeldung.</p>
+        <p class="tdo-lead">Am Tag der offenen Tür lernen Sie die Lehrkräfte der neuen fünften Klassen im persönlichen Gespräch kennen. Unser Erprobungsstufenkoordinator berät Sie zum Übergang von der Grundschule, zu den Profilen WortArt⁺ und Forscher² und zur Anmeldung.</p>
 
         <h3 class="tdo-subhead">Für Eltern</h3>
         <ul class="tdo-parents">
@@ -255,9 +270,9 @@ const posters = {
       </div>
 
       <aside class="tdo-poster" aria-label="Plakat für Klasse 4 und Eltern">
-        <a class="tdo-poster-link" href={link(posters.grundschule.pdf)} download aria-label={posters.grundschule.label} title="Plakat als PDF herunterladen">
+        <button type="button" class="tdo-poster-link" data-full={link(posters.grundschule.img)} data-alt={posters.grundschule.alt} aria-label={posters.grundschule.label}>
           <img src={link(posters.grundschule.img)} alt="" width="707" height="1000" loading="lazy">
-        </a>
+        </button>
       </aside>
     </div>
   </div>
@@ -268,9 +283,9 @@ const posters = {
   <div class="container">
     <div class="tdo-split">
       <div>
-        <span class="tdo-section-kicker"><span class="n">2</span> Für Schülerinnen und Schüler der Klasse 10</span>
+        <span class="tdo-section-kicker">Für Schülerinnen und Schüler der Klasse 10</span>
         <h2 id="tdo-upper-h">Von hier <span>zum Abi.</span></h2>
-        <p class="tdo-lead">Du bist in der 10. Klasse und möchtest Abitur machen? In unserer Oberstufe startest du in der Einführungsphase (EF) gemeinsam mit vielen anderen, die neu dazukommen. Am Tag der offenen Tür lernst du die Oberstufe kennen, gern mit deinen Eltern oder einer anderen Begleitung.</p>
+        <p class="tdo-lead">Du bist in der 10. Klasse und möchtest Abitur machen? In unserer Oberstufe startest du in der Einführungsphase (EF) gemeinsam mit vielen anderen, die neu dazukommen. Am Tag der offenen Tür lernst du die Oberstufe kennen.</p>
         <ul class="tdo-upper-list">
           {upperOffers.map((o) => <li>{o}</li>)}
         </ul>
@@ -280,39 +295,42 @@ const posters = {
       </div>
       <div class="tdo-upper-posters">
         <figure>
-          <a class="tdo-poster-link" href={link(posters.abi.pdf)} download aria-label={posters.abi.label} title="Plakat als PDF herunterladen">
+          <button type="button" class="tdo-poster-link" data-full={link(posters.abi.img)} data-alt={posters.abi.alt} aria-label={posters.abi.label}>
             <img src={link(posters.abi.img)} alt="" width="707" height="1000" loading="lazy">
-          </a>
+          </button>
         </figure>
         <figure>
-          <a class="tdo-poster-link" href={link(posters.oberstufe.pdf)} download aria-label={posters.oberstufe.label} title="Plakat als PDF herunterladen">
+          <button type="button" class="tdo-poster-link" data-full={link(posters.oberstufe.img)} data-alt={posters.oberstufe.alt} aria-label={posters.oberstufe.label}>
             <img src={link(posters.oberstufe.img)} alt="" width="707" height="1000" loading="lazy">
-          </a>
+          </button>
         </figure>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===================== CTA ===================== -->
-<section class="tdo-cta" aria-label="Wenn Sie nicht kommen können">
-  <div class="container">
-    <div class="tdo-cta-grid">
-      <div>
-        <h2>Sie können am 5. Dezember nicht?</h2>
-      </div>
-      <div>
-        <p>Wir nehmen uns auch außerhalb des Tags der offenen Tür gern Zeit für Sie. Kommen Sie zu unserem Elterninformationsabend für die zukünftigen 5. Klassen, vereinbaren Sie ein persönliches Gespräch oder informieren Sie sich direkt zur Anmeldung.</p>
-        <div class="row">
-          {/* Termingebunden: Link nach dem Elterninformationsabend entfernen. */}
-          <a href={link("elterninformationsabend-5-klasse-essen.html")} class="btn btn-primary">Zum Elterninformationsabend <span class="arrow">→</span></a>
-          <a href={link("Anmeldung.html")} class="btn btn-secondary">Zur Anmeldung <span class="arrow">→</span></a>
-          <a href={link("Kontakt.html")} class="btn btn-secondary">Termin vereinbaren <span class="arrow">→</span></a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+
+<dialog class="tdo-lightbox" id="tdoLightbox" aria-label="Plakat in groß">
+  <button type="button" class="tdo-lightbox-close" aria-label="Schließen">×</button>
+  <img alt="" />
+</dialog>
+<script is:inline>
+  (function(){
+    var box = document.getElementById("tdoLightbox");
+    if (!box || typeof box.showModal !== "function") return;
+    var img = box.querySelector("img");
+    document.querySelectorAll(".tdo-poster-link").forEach(function(btn){
+      btn.addEventListener("click", function(){
+        img.src = btn.getAttribute("data-full");
+        img.alt = btn.getAttribute("data-alt") || "";
+        box.showModal();
+      });
+    });
+    box.querySelector(".tdo-lightbox-close").addEventListener("click", function(){ box.close(); });
+    // Klick neben das Plakat schließt ebenfalls
+    box.addEventListener("click", function(e){ if (e.target === box) box.close(); });
+  })();
+</script>
 
 </main>
 </BaseLayout>
