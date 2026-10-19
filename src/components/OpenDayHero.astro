@@ -1,0 +1,130 @@
+---
+/**
+ * Zweigeteilter Kopf zum Tag der offenen Tür: links Foto vom Haupteingang
+ * mit Datum, rechts Überschrift, Text und zwei Links für die Zielgruppen.
+ * Genutzt auf der Startseite (bis zum Termin) und auf der TdoT-Seite.
+ */
+import { openDay } from "../lib/openDay";
+
+interface Props {
+  /** Erste Zeile der Überschrift. */
+  title: string;
+  /** Zweite Zeile (wie „den eigenen Weg finden“ im normalen Startseiten-Kopf). */
+  titleLine2?: string;
+  lede: string;
+  /** Ziel der Zielgruppen-Links ohne Anker, leer = Anker auf derselben Seite. */
+  target?: string;
+  /** true = die ganze Sektion ist ein Link auf `target` (Startseite). */
+  wholeLink?: boolean;
+  id?: string;
+}
+const { title, titleLine2, lede, target = "", wholeLink = false, id } = Astro.props;
+const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
+---
+<section class:list={["od-hero", { "od-hero--linked": wholeLink }]} id={id} aria-label="Tag der offenen Tür">
+  {wholeLink && (
+    <a class="od-hero-cover" href={target} aria-label="Zur Seite „Tag der offenen Tür“"></a>
+  )}
+  <div class="container">
+    <div class="od-hero-grid">
+      <div class="od-hero-photo">
+        <img src={`${BASE}/assets/tdot/schulgebaeude-eingang.jpg`}
+             alt="Haupteingang der UNESCO-Schule Essen mit geöffneten Glastüren und Treppe"
+             width="1086" height="1448" fetchpriority="high">
+        <div class="od-date-badge">
+          <span class="wd">Samstag</span>
+          <span class="day">5.</span>
+          <span class="mon">Dezember 2026</span>
+          <span class="time">{openDay.time}</span>
+        </div>
+      </div>
+      <div class="od-hero-text">
+        <h1>{title}{titleLine2 && <><br />{titleLine2}</>}</h1>
+        <p class="od-hero-lede">{lede}</p>
+        <div class="od-actions">
+          <a class="btn btn-primary" href={`${target}#klasse-5`}>Mehr Informationen zur Klasse 5 <span class="arrow">→</span></a>
+          <a class="btn btn-secondary" href={`${target}#oberstufe`}>Mehr Informationen zur EF <span class="arrow">→</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style is:global>
+  .od-hero{
+    padding:40px 0 48px;
+    background:
+      radial-gradient(ellipse 60% 70% at 100% 0%, rgba(212,165,116,0.20), transparent 70%),
+      var(--offwhite);
+    border-bottom:1px solid var(--hairline);
+  }
+  .od-hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;}
+  /* Startseite: ganze Sektion klickbar (unsichtbarer Link über allem),
+     die beiden Buttons liegen darüber und springen zu ihrem Abschnitt. */
+  .od-hero--linked{position:relative;cursor:pointer;}
+  .od-hero-cover{position:absolute;inset:0;z-index:1;}
+  .od-hero-cover:focus-visible{outline:3px solid var(--bordeaux);outline-offset:-6px;}
+  .od-hero--linked .od-actions{position:relative;z-index:2;}
+  .od-hero-photo img{transition:transform .5s ease;}
+  .od-hero--linked:hover .od-hero-photo img{transform:scale(1.03);}
+  @media (prefers-reduced-motion: reduce){ .od-hero--linked:hover .od-hero-photo img{transform:none;} }
+  .od-hero-photo{
+    position:relative;aspect-ratio:1/1;max-height:520px;overflow:hidden;border-radius:2px;
+    background:var(--creme);
+  }
+  .od-hero-photo img{width:100%;height:100%;object-fit:cover;object-position:50% 70%;display:block;}
+  .od-date-badge{
+    position:absolute;left:20px;bottom:20px;
+    background:var(--petrol);color:var(--creme);
+    padding:16px 20px 14px;min-width:132px;
+    box-shadow:0 18px 40px -18px rgba(10,54,56,0.55);
+    display:flex;flex-direction:column;gap:2px;
+  }
+  .od-date-badge .wd{
+    font-family:var(--sans);font-size:11.5px;font-weight:600;
+    letter-spacing:0.16em;text-transform:uppercase;color:var(--gold);
+  }
+  .od-date-badge .day{
+    font-family:var(--sans);font-weight:700;font-size:56px;line-height:0.95;
+    letter-spacing:-0.03em;color:#fff;
+  }
+  .od-date-badge .mon{font-family:var(--sans);font-weight:600;font-size:17px;color:#fff;}
+  .od-date-badge .time{
+    margin-top:8px;padding-top:8px;border-top:1px solid rgba(245,239,231,0.25);
+    font-family:var(--sans);font-size:13.5px;color:rgba(245,239,231,0.9);
+  }
+  /* Überschrift exakt wie der normale Startseiten-Kopf (.hero-claim in index.astro) */
+  .od-hero-text h1{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(40px,4.6vw,64px);line-height:1.04;letter-spacing:-0.02em;
+    color:var(--petrol);margin:0 0 28px;
+  }
+  @media (min-width:961px){
+    .od-hero-text{container-type:inline-size;}
+    .od-hero-text h1{font-size:clamp(32px, 8.4cqw, 56px);white-space:nowrap;}
+  }
+  /* Text und Abstände wie .hero-sub im normalen Startseiten-Kopf */
+  .od-hero-lede{
+    font-family:var(--serif);color:var(--stein);
+    font-size:21px;line-height:1.5;max-width:520px;margin:0 0 40px;
+  }
+  /* Buttons wie im normalen Startseiten-Kopf (.btn aus BaseLayout) */
+  .od-actions{display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+  @media (max-width:960px){
+    .od-hero{padding:var(--space-section-sm) 0;}
+    .od-hero-grid{grid-template-columns:1fr;gap:28px;}
+    .od-hero-photo{aspect-ratio:4/3;max-height:480px;order:2;}
+    .od-hero-text{order:1;}
+    .od-hero-text h1{font-size:clamp(30px,7vw,44px);margin-bottom:18px;line-height:1.08;}
+    .od-hero-lede{font-size:17px;line-height:1.55;margin-bottom:28px;}
+    .od-date-badge{left:14px;bottom:14px;padding:12px 16px 10px;min-width:0;}
+    .od-date-badge .day{font-size:42px;}
+  }
+  @media (max-width:560px){
+    .od-actions{flex-direction:column;align-items:stretch;}
+    .od-actions .btn{width:100%;justify-content:center;}
+  }
+  @media (max-width:400px){
+    .od-hero-text h1{font-size:28px;}
+  }
+</style>
