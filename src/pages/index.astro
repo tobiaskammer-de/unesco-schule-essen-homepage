@@ -3,9 +3,14 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import { upcomingEvents, formatDayNum, formatMonthShort, formatWeekdayShort } from "../lib/calendar";
 import { getLatestNews, withBase, formatArticleDate, entrySlug, categoryBadgeClass } from "../lib/news";
 import { getSingle } from "../lib/pageContent";
+import { openDay, openDayUpcoming } from "../lib/openDay";
 
 // Editierbare Inhalte aus src/content/pages/home.yml (Sveltia)
 const home = await getSingle("pageHome");
+
+// Bis zum Ende des Tags der offenen Tür ersetzt ein eigener Kopf den
+// normalen Hero (Ende und Datum: src/lib/openDay.ts).
+const showOpenDay = openDayUpcoming();
 
 // Nächste Termine für die Startseite: 20 holen, damit auch bei spätem
 // Seitenaufruf nach dem letzten Build genug aktuelle übrig bleiben.
@@ -16,7 +21,7 @@ const nextDates = await upcomingEvents(20);
 const latestNews = await getLatestNews(3);
 const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
 ---
-<BaseLayout title="UNESCO-Schule Essen · Gymnasium" description="Städtisches Gymnasium für Jungen und Mädchen in Essen. UNESCO-Projektschule mit kultureller Bildung, MINT-Profil und internationalem Netzwerk. Anmeldung Klasse 5, Beratung und Tag der offenen Tür.">
+<BaseLayout title="UNESCO-Schule Essen · Gymnasium" description="Städtisches Gymnasium für Jungen und Mädchen in Essen. UNESCO-Projektschule mit kultureller Bildung, MINT-Profil und internationalem Netzwerk. Anmeldung Klasse 5, Beratung und Tag der offenen Tür." openDayBar={false}>
 <style is:global>
 /* ---------- HERO ---------- */
   .hero{padding:72px 0 54px;}
@@ -75,6 +80,81 @@ const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
     text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px;
   }
   .hero-open-day:hover{color:var(--petrol-dark);}
+
+  /* ---------- HERO: Tag der offenen Tür (bis lib/openDay.ts endsAt) ---------- */
+  .hero--openday{
+    background:
+      radial-gradient(ellipse 60% 70% at 100% 0%, rgba(212,165,116,0.20), transparent 70%),
+      var(--offwhite);
+    border-bottom:1px solid var(--hairline);
+  }
+  .hero--openday{padding:40px 0 48px;}
+  .hero--openday .hero-photo{aspect-ratio:1/1;max-height:520px;}
+  .hero--openday .hero-claim{margin-bottom:18px;}
+  .hero--openday .hero-sub{font-size:19px;margin-bottom:22px;}
+  .hero--openday .od-facts{margin-bottom:24px;}
+  .hero--openday .hero-photo img{object-position:50% 70%;}
+  .od-date-badge{
+    position:absolute;left:20px;bottom:20px;
+    background:var(--petrol);color:var(--creme);
+    padding:16px 20px 14px;min-width:132px;
+    box-shadow:0 18px 40px -18px rgba(10,54,56,0.55);
+    display:flex;flex-direction:column;gap:2px;
+  }
+  .od-date-badge .wd{
+    font-family:var(--sans);font-size:11.5px;font-weight:600;
+    letter-spacing:0.16em;text-transform:uppercase;color:var(--gold);
+  }
+  .od-date-badge .day{
+    font-family:var(--sans);font-weight:700;font-size:56px;line-height:0.95;
+    letter-spacing:-0.03em;color:#fff;
+  }
+  .od-date-badge .mon{font-family:var(--sans);font-weight:600;font-size:17px;color:#fff;}
+  .od-date-badge .time{
+    margin-top:8px;padding-top:8px;border-top:1px solid rgba(245,239,231,0.25);
+    font-family:var(--sans);font-size:13.5px;color:rgba(245,239,231,0.9);
+  }
+  .hero--openday .eyebrow{color:var(--bordeaux);}
+  .hero--openday .hero-claim{white-space:normal;}
+  @media (min-width:961px){
+    .hero--openday .hero-claim{font-size:clamp(34px, 3.8vw, 52px);white-space:normal;}
+  }
+  .od-facts{
+    list-style:none;margin:0 0 32px;padding:0;
+    display:flex;flex-wrap:wrap;gap:8px 10px;
+  }
+  .od-facts li{
+    display:inline-flex;align-items:center;gap:8px;
+    background:#fff;border:1px solid var(--hairline);
+    padding:7px 12px;border-radius:999px;
+    font-family:var(--sans);font-size:14px;color:var(--tinte);
+  }
+  .od-facts li::before{
+    content:"";width:6px;height:6px;border-radius:50%;background:var(--gold);flex:none;
+  }
+  .od-choose{
+    font-family:var(--sans);font-size:13px;font-weight:600;letter-spacing:0.12em;
+    text-transform:uppercase;color:var(--stein);margin:0 0 12px;
+  }
+  .od-audience{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:560px;}
+  .od-audience a{
+    display:flex;flex-direction:column;gap:4px;
+    padding:16px 18px;text-decoration:none;
+    border:1.5px solid var(--petrol);border-radius:4px;
+    transition:background-color .2s, color .2s, transform .2s;
+  }
+  .od-audience a .who{font-family:var(--sans);font-size:12.5px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;}
+  .od-audience a .what{font-family:var(--sans);font-size:17px;font-weight:600;line-height:1.3;}
+  .od-audience a.primary{background:var(--petrol);color:#fff;}
+  .od-audience a.primary .who{color:var(--gold);}
+  .od-audience a.primary:hover{background:var(--petrol-dark);}
+  .od-audience a.secondary{background:#fff;color:var(--petrol);}
+  .od-audience a.secondary .who{color:var(--bordeaux);}
+  .od-audience a.secondary:hover{background:var(--creme);}
+  .od-audience a:focus-visible{outline:2px solid var(--bordeaux);outline-offset:3px;}
+  @media (prefers-reduced-motion: no-preference){
+    .od-audience a:hover{transform:translateY(-2px);}
+  }
 
   /* ---------- News + Dates ---------- */
   .news-dates{
@@ -390,6 +470,10 @@ const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
     .hero-photo{order:1;}
     .hero-claim{font-size:clamp(30px,7vw,44px);margin-bottom:18px;line-height:1.08;}
     .hero-sub{font-size:17px;line-height:1.55;margin-bottom:28px;}
+    .hero--openday .hero-text{order:1;}
+    .hero--openday .hero-photo{order:2;aspect-ratio:4/3;}
+    .od-date-badge{left:14px;bottom:14px;padding:12px 16px 10px;min-width:0;}
+    .od-date-badge .day{font-size:42px;}
 
     /* News + Termine: stacked */
     .news-dates{grid-template-columns:1fr;gap:32px;}
@@ -455,6 +539,7 @@ const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
     /* Hero-CTA-Row vertikal stapeln */
     .hero-cta-row{flex-direction:column;align-items:flex-start;gap:14px;}
     .hero-cta-row .btn{width:100%;justify-content:center;}
+    .od-audience{grid-template-columns:1fr;}
   }
   @media (max-width:400px){
     .partners-logos{gap:10px;}
@@ -465,8 +550,50 @@ const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
 </style>
 
 <main id="top">
+<!-- ===================== HERO: TAG DER OFFENEN TÜR ===================== -->
+{showOpenDay && (
+  <section class="hero hero--openday" id="heroOpenDay" aria-label="Tag der offenen Tür">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-photo">
+          <img src={`${BASE}/assets/tdot/schulgebaeude-eingang.jpg`}
+               alt="Haupteingang der UNESCO-Schule Essen mit geöffneten Glastüren und Treppe"
+               width="1086" height="1448" fetchpriority="high">
+          <div class="od-date-badge" aria-hidden="true">
+            <span class="wd">Samstag</span>
+            <span class="day">5.</span>
+            <span class="mon">Dezember 2026</span>
+            <span class="time">{openDay.time}</span>
+          </div>
+        </div>
+        <div class="hero-text">
+          <span class="eyebrow">Tag der offenen Tür · {openDay.dateLong}</span>
+          <h1 class="hero-claim">Die Welt in einem Haus: <em>Kommen Sie vorbei!</em></h1>
+          <p class="hero-sub">Ausprobieren, mitmachen, Fragen stellen: Wir öffnen unsere Türen für Kinder der 4. Klassen und ihre Eltern und für alle, die nach der 10 bei uns in die Oberstufe wechseln möchten.</p>
+          <ul class="od-facts">
+            <li>{openDay.time}</li>
+            <li>Ohne Anmeldung</li>
+            <li>Steinmetzstraße 9 · Haltestelle Wasserturm</li>
+          </ul>
+          <p class="od-choose">Was suchen Sie?</p>
+          <div class="od-audience">
+            <a class="primary" href={`${BASE}/${openDay.page}#klasse-5`}>
+              <span class="who">Klasse 4 und Eltern</span>
+              <span class="what">Ab Klasse 5 zu uns <span aria-hidden="true">→</span></span>
+            </a>
+            <a class="secondary" href={`${BASE}/${openDay.page}#oberstufe`}>
+              <span class="who">Nach Klasse 10</span>
+              <span class="what">Neustart in der Oberstufe <span aria-hidden="true">→</span></span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+)}
+
 <!-- ===================== HERO ===================== -->
-<section class="hero" aria-label="Willkommen">
+<section class="hero" id="heroDefault" aria-label="Willkommen" hidden={showOpenDay}>
   <div class="container">
     <div class="hero-grid">
       <div class="hero-photo">
@@ -488,6 +615,18 @@ const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
     </div>
   </div>
 </section>
+{showOpenDay && (
+  <script is:inline define:vars={{ endsAt: openDay.endsAt }}>
+    // Nach dem Tag der offenen Tür sofort zum normalen Kopf wechseln,
+    // auch wenn der nächste nächtliche Build noch aussteht.
+    if (Date.now() >= new Date(endsAt).getTime()) {
+      var od = document.getElementById("heroOpenDay");
+      var def = document.getElementById("heroDefault");
+      if (od) od.remove();
+      if (def) def.hidden = false;
+    }
+  </script>
+)}
 
 <!-- ===================== AKTUELLES + TERMINE ===================== -->
 <section id="aktuelles" aria-label="Aktuelles und nächste Termine">

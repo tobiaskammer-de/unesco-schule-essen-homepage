@@ -8,6 +8,8 @@ import "@fontsource/inter/700.css";
 import AccessibilityToolbar from "../components/AccessibilityToolbar.astro";
 import MailLink from "../components/MailLink.astro";
 import SearchOverlay from "../components/SearchOverlay.astro";
+import OpenDayBar from "../components/OpenDayBar.astro";
+import { openDay, openDayUpcoming } from "../lib/openDay";
 
 interface Props {
   title?: string;
@@ -16,6 +18,8 @@ interface Props {
   ogImage?: string;
   /** Inhaltstyp für die Gruppierung in der Suche (z. B. "Seite", "Aktuelles"). */
   searchType?: string;
+  /** Hinweisleiste zum Tag der offenen Tür zeigen (aus auf Startseite und TdoT-Seite). */
+  openDayBar?: boolean;
 }
 
 const {
@@ -23,6 +27,7 @@ const {
   description = "UNESCO-Projektschule in Essen. Gymnasium mit Profil ab Klasse 5. Gemeinsam lernen, den eigenen Weg finden.",
   ogImage = "assets/schulhof-hero.jpg",
   searchType = "Seite",
+  openDayBar = true,
 } = Astro.props;
 
 // Base-URL-Helper: sorgt dafür, dass alle Links + Assets auch aus
@@ -1080,6 +1085,8 @@ const ogImageURL = new URL(link(ogImage), siteOrigin).href;
 <body>
 
 <a href="#top" class="skip-link">Zum Hauptinhalt springen</a>
+
+{openDayBar && openDayUpcoming() && <OpenDayBar href={link(openDay.page)} />}
 
 <header class="site-header" id="siteHeader" data-pagefind-ignore>
   <div class="header-inner">
