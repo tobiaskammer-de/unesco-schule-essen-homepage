@@ -7,16 +7,16 @@ const link = (p: string) => p.startsWith("/") || /^https?:\/\//.test(p) ? p : `$
 
 // Stand der Planung: Oktober 2026. Nur bestätigte Angebote, keine Namen, keine Räume.
 const parentOffers = [
-  { title: "Führungen durch das Haus", text: "Lernen Sie unsere Räume kennen, vom Klassenzimmer bis zum Musikraum. Start am Info-Point im Haupteingang." },
-  { title: "Eltern- und Schülercafé", text: "Kaffee, Kuchen und Waffeln, dazu Gespräche mit Eltern unserer Schule." },
+  { title: "Führungen durch das Haus", text: "Start am Info-Point im Haupteingang." },
+  { title: "Eltern- und Schülercafé", text: "Kaffee, Kuchen, Waffeln und Gespräche." },
 ];
 
 const kidsOffers = [
-  { tone: "violet", title: "Instrumente kennenlernen", text: "Musikerinnen und Musiker stellen ihre Instrumente vor, die Kinder dürfen selbst ausprobieren." },
-  { tone: "green",  title: "Mikroskopieren", text: "Im neuen Biologieraum, betreut von Schülerinnen und Schülern der Oberstufe." },
-  { tone: "blue",   title: "Experimente", text: "Unsere Fünftklässlerinnen und Fünftklässler zeigen, wie im Profil Forscher² gearbeitet wird." },
-  { tone: "orange", title: "Theater", text: "Szenen und Sprachspiele aus dem Profil WortArt⁺." },
-  { tone: "violet", title: "Kunst", text: "Verrückte Porträts gestalten und als Button mit nach Hause nehmen." },
+  { tone: "violet", title: "Instrumente kennenlernen", text: "Mit Musikerinnen und Musikern selbst ausprobieren." },
+  { tone: "green",  title: "Mikroskopieren", text: "Im neuen Biologieraum." },
+  { tone: "blue",   title: "Experimente", text: "Forschen wie im Profil Forscher²." },
+  { tone: "orange", title: "Theater", text: "Szenen aus dem Profil WortArt⁺." },
+  { tone: "violet", title: "Kunst", text: "Verrückte Porträts als Button." },
 ];
 
 const upperOffers = [
