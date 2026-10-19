@@ -7,16 +7,16 @@ const link = (p: string) => p.startsWith("/") || /^https?:\/\//.test(p) ? p : `$
 
 // Stand der Planung: Oktober 2026. Nur bestätigte Angebote, keine Namen, keine Räume.
 const parentOffers = [
-  { title: "Führungen durch das Haus", text: "Start am Info-Point im Haupteingang." },
-  { title: "Eltern- und Schülercafé", text: "Kaffee, Kuchen, Waffeln und Gespräche." },
+  { title: "Führungen durch das Haus", text: "Start am Info-Point im Haupteingang" },
+  { title: "Eltern- und Schülercafé", text: "Kaffee, Kuchen, Waffeln und Gespräche" },
 ];
 
 const kidsOffers = [
-  { tone: "violet", title: "Instrumente kennenlernen", text: "Mit Musikerinnen und Musikern selbst ausprobieren." },
-  { tone: "green",  title: "Mikroskopieren", text: "Im neuen Biologieraum." },
-  { tone: "blue",   title: "Experimente", text: "Forschen wie im Profil Forscher²." },
-  { tone: "orange", title: "Theater", text: "Szenen aus dem Profil WortArt⁺." },
-  { tone: "violet", title: "Kunst", text: "Verrückte Porträts als Button." },
+  { tone: "violet", title: "Instrumente kennenlernen", text: "Mit Musikerinnen und Musikern selbst ausprobieren" },
+  { tone: "green",  title: "Mikroskopieren", text: "Im neuen Biologieraum" },
+  { tone: "blue",   title: "Experimente", text: "Forschen wie im Profil Forscher²" },
+  { tone: "orange", title: "Theater", text: "Szenen aus dem Profil WortArt⁺" },
+  { tone: "violet", title: "Kunst", text: "Verrückte Porträts als Button" },
 ];
 
 const upperOffers = [
@@ -218,7 +218,7 @@ const posters = {
         <div>
           <span class="kicker">Klasse 4 und Eltern</span>
           <h2>Ihr Kind kommt 2027 in die 5. Klasse?</h2>
-          <p>Lehrkräfte der neuen 5 kennenlernen, Beratung zur Erprobungsstufe, Mitmachangebote für Kinder.</p>
+          <p>Lehrkräfte der neuen 5 kennenlernen, Beratung zur Erprobungsstufe, Mitmachangebote für Kinder</p>
           <span class="go">Zur Klasse 5 <span aria-hidden="true">↓</span></span>
         </div>
         <img src={link(posters.grundschule.img)} alt="" width="707" height="1000" loading="lazy">
@@ -227,7 +227,7 @@ const posters = {
         <div>
           <span class="kicker">Nach Klasse 10</span>
           <h2>Von hier zum Abi: Neustart in der Oberstufe</h2>
-          <p>Beratung durch das Oberstufenteam, Rundgang mit unseren Schülerinnen und Schülern.</p>
+          <p>Beratung durch das Oberstufenteam, Rundgang mit unseren Schülerinnen und Schülern</p>
           <span class="go">Zur EF <span aria-hidden="true">↓</span></span>
         </div>
         <img src={link(posters.abi.img)} alt="" width="707" height="1000" loading="lazy">
