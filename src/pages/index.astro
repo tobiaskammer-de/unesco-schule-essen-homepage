@@ -91,8 +91,7 @@ const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
   .hero--openday{padding:40px 0 48px;}
   .hero--openday .hero-photo{aspect-ratio:1/1;max-height:520px;}
   .hero--openday .hero-claim{margin-bottom:18px;}
-  .hero--openday .hero-sub{font-size:19px;margin-bottom:22px;}
-  .hero--openday .od-facts{margin-bottom:24px;}
+  .hero--openday .hero-sub{font-size:19px;margin-bottom:28px;}
   .hero--openday .hero-photo img{object-position:50% 70%;}
   .od-date-badge{
     position:absolute;left:20px;bottom:20px;
@@ -114,27 +113,9 @@ const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
     margin-top:8px;padding-top:8px;border-top:1px solid rgba(245,239,231,0.25);
     font-family:var(--sans);font-size:13.5px;color:rgba(245,239,231,0.9);
   }
-  .hero--openday .eyebrow{color:var(--bordeaux);}
   .hero--openday .hero-claim{white-space:normal;}
   @media (min-width:961px){
     .hero--openday .hero-claim{font-size:clamp(34px, 3.8vw, 52px);white-space:normal;}
-  }
-  .od-facts{
-    list-style:none;margin:0 0 32px;padding:0;
-    display:flex;flex-wrap:wrap;gap:8px 10px;
-  }
-  .od-facts li{
-    display:inline-flex;align-items:center;gap:8px;
-    background:#fff;border:1px solid var(--hairline);
-    padding:7px 12px;border-radius:999px;
-    font-family:var(--sans);font-size:14px;color:var(--tinte);
-  }
-  .od-facts li::before{
-    content:"";width:6px;height:6px;border-radius:50%;background:var(--gold);flex:none;
-  }
-  .od-choose{
-    font-family:var(--sans);font-size:13px;font-weight:600;letter-spacing:0.12em;
-    text-transform:uppercase;color:var(--stein);margin:0 0 12px;
   }
   .od-audience{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:560px;}
   .od-audience a{
@@ -567,15 +548,8 @@ const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
           </div>
         </div>
         <div class="hero-text">
-          <span class="eyebrow">Tag der offenen Tür · {openDay.dateLong}</span>
-          <h1 class="hero-claim">Die Welt in einem Haus: <em>Kommen Sie vorbei!</em></h1>
-          <p class="hero-sub">Ausprobieren, mitmachen, Fragen stellen: Wir öffnen unsere Türen für Kinder der 4. Klassen und ihre Eltern und für alle, die nach der 10 bei uns in die Oberstufe wechseln möchten.</p>
-          <ul class="od-facts">
-            <li>{openDay.time}</li>
-            <li>Ohne Anmeldung</li>
-            <li>Steinmetzstraße 9 · Haltestelle Wasserturm</li>
-          </ul>
-          <p class="od-choose">Was suchen Sie?</p>
+          <h1 class="hero-claim">Einladung zum Tag der offenen Tür</h1>
+          <p class="hero-sub">Am {openDay.dateLong}, von {openDay.time}, öffnen wir unsere Türen: für Kinder der 4. Klassen und ihre Eltern und für alle, die nach der 10 bei uns in die Oberstufe wechseln möchten. Eine Anmeldung ist nicht nötig.</p>
           <div class="od-audience">
             <a class="primary" href={`${BASE}/${openDay.page}#klasse-5`}>
               <span class="who">Klasse 4 und Eltern</span>
