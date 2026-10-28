@@ -10,6 +10,7 @@ import MailLink from "../components/MailLink.astro";
 import SearchOverlay from "../components/SearchOverlay.astro";
 import OpenDayBar from "../components/OpenDayBar.astro";
 import { openDay, openDayUpcoming } from "../lib/openDay";
+import { TERMINE_API } from "../lib/anmeldetermine";
 
 interface Props {
   title?: string;
@@ -50,7 +51,7 @@ const ogImageURL = new URL(link(ogImage), siteOrigin).href;
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self' https://api.web3forms.com; frame-src https://www.openstreetmap.org; frame-ancestors 'none'; base-uri 'self'; form-action 'self' https://api.web3forms.com">
+<meta http-equiv="Content-Security-Policy" content={`default-src 'self'; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self' https://api.web3forms.com ${new URL(TERMINE_API).origin}; frame-src https://www.openstreetmap.org; frame-ancestors 'none'; base-uri 'self'; form-action 'self' https://api.web3forms.com`}>
 <title>{title}</title>
 <meta name="description" content={description}>
 <meta name="theme-color" content="#0E4D4F">
@@ -904,6 +905,11 @@ const ogImageURL = new URL(link(ogImage), siteOrigin).href;
       position:absolute;top:12px;left:var(--pad-mob);
       color:var(--petrol);
     }
+
+    /* Der geschlossene Drawer liegt rechts neben dem Bildschirm. Ohne Clip
+       verbreitert er auf dem Handy die ganze Seite (Layout-Viewport doppelt
+       so breit, Popups und Dialoge rutschen aus dem Bild). */
+    .site-header{overflow-x:clip;}
 
     /* Full-Screen Mobile-Drawer von rechts.
        Höhe per JS-CSS-Variable --header-h gesetzt, weil sich die

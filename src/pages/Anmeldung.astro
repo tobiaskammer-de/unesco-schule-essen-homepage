@@ -133,6 +133,12 @@ const [koordEprob, koordOberstufe] = await Promise.all([
   .termine .intro p{
     font-family:var(--sans);font-size:14.5px;line-height:1.6;color:var(--stein);margin:0;
   }
+  .termine .intro a.book{
+    align-self:flex-start;margin-top:6px;
+    font-family:var(--sans);font-size:14.5px;font-weight:500;color:var(--bordeaux);
+    border-bottom:1px solid currentColor;padding-bottom:2px;text-decoration:none;
+  }
+  .termine .intro a.book:hover{color:var(--petrol-dark);}
   .termine ol{
     list-style:none;margin:0;padding:0;
     display:flex;flex-direction:column;
@@ -414,6 +420,7 @@ const [koordEprob, koordOberstufe] = await Promise.all([
         {an.termine.kicker && <span class="kicker">{an.termine.kicker}</span>}
         <h3>{an.termine.title}</h3>
         <p>{an.termine.intro}</p>
+        <a class="book" href="Anmeldetermin-vereinbaren.html">Online-Termin buchen →</a>
       </div>
       {an.termine.list.length > 0 && (
         <ol>
@@ -433,6 +440,7 @@ const [koordEprob, koordOberstufe] = await Promise.all([
           <span class="n">01</span>
           <h4>Termin vereinbaren</h4>
           <p>Rufen Sie uns an oder buchen Sie online einen verbindlichen Termin.</p>
+          <p><a href="Anmeldetermin-vereinbaren.html" class="action">Online-Termin buchen →</a></p>
           <p><a href="tel:+492012802630" class="action">0201 · 280&nbsp;26&nbsp;30 →</a></p>
         </article>
         <article class="step">

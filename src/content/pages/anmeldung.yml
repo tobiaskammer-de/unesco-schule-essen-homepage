@@ -19,8 +19,17 @@ klasse5:
 termine:
   kicker: ""
   title: "Anmelde­termine"
-  intro: "Die konkreten Anmeldetermine für das Schuljahr 2027/28 (voraussichtlich im Februar 2027) werden im Winter 2026 veröffentlicht. Wir informieren rechtzeitig auf dieser Seite."
-  list: []
+  intro: "Vereinbaren Sie Ihren Termin für das Anmeldegespräch online oder telefonisch im Sekretariat. Buchungsschluss für die Online-Buchung ist Freitag, 12. Februar 2027, 18 Uhr."
+  list:
+    - date: "13.02.2027"
+      day: "Samstag"
+      time: "9 bis 13 Uhr"
+    - date: "15.02.2027"
+      day: "Montag"
+      time: "9 bis 15 Uhr"
+    - date: "16.02.2027"
+      day: "Dienstag"
+      time: "9 bis 14 Uhr"
 
 closing:
   title: "Noch Fragen offen?"

@@ -1,0 +1,498 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHero from "../components/PageHero.astro";
+import MailLink from "../components/MailLink.astro";
+import { getSingle } from "../lib/pageContent";
+import { TERMINE_API } from "../lib/anmeldetermine";
+
+// Online-Terminbuchung für die Anmeldung Klasse 5. Freie Slots und Buchung kommen
+// live aus dem Worker `anmeldetermine` (siehe src/lib/anmeldetermine.ts).
+const school = await getSingle("siteSchool");
+const coordinatorEmail = "sven.scheding@164835.nrw.schule";
+const phoneHref = "tel:+492012802630";
+---
+<BaseLayout title="Anmeldetermin vereinbaren · UNESCO-Schule Essen" description="Anmeldung für die Klasse 5 an der UNESCO-Schule Essen: Wählen Sie online einen freien Termin an einem der drei Anmeldetage im Februar 2027.">
+<style is:global>
+  /* ---------- Anmeldetermin vereinbaren ---------- */
+  .at-main{background:var(--offwhite);padding:var(--space-section) 0;border-top:1px solid var(--hairline);}
+  .at-grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:56px;align-items:start;}
+
+  .at-info h2{font-size:clamp(26px,2.8vw,36px);line-height:1.15;margin:0 0 22px;}
+  .at-steps{list-style:none;margin:0 0 28px;padding:0;display:grid;gap:16px;counter-reset:at;}
+  .at-steps li{display:grid;grid-template-columns:40px 1fr;gap:14px;align-items:start;font-family:var(--sans);font-size:15.5px;line-height:1.6;color:var(--tinte);}
+  .at-steps li::before{
+    counter-increment:at;content:counter(at);
+    display:grid;place-items:center;width:40px;height:40px;border-radius:50%;
+    background:var(--petrol);color:var(--creme);font-weight:600;font-size:16px;
+  }
+  .at-steps li strong{display:block;color:var(--petrol);font-weight:600;}
+  .at-facts{background:#fff;border:1px solid var(--hairline);border-left:var(--card-accent-width) solid var(--gold);padding:20px 22px;display:grid;gap:14px;}
+  .at-facts .k{display:block;font-family:var(--sans);font-size:11.5px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--bordeaux);margin-bottom:2px;}
+  .at-facts p{font-family:var(--sans);font-size:15px;line-height:1.55;color:var(--tinte);}
+  .at-facts a{color:var(--bordeaux);text-decoration:underline;text-underline-offset:3px;}
+
+  /* Kalender */
+  .at-cal{background:#fff;border:1px solid var(--hairline);border-top:var(--card-accent-width) solid var(--petrol);padding:28px 28px 24px;}
+  .at-cal-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:18px;}
+  .at-cal-head h2{font-size:clamp(24px,2.4vw,30px);}
+  .at-cal-head .sub{font-family:var(--sans);font-size:13px;color:var(--stein);}
+  .at-month + .at-month{margin-top:28px;}
+  .at-month h3{font-size:15px;letter-spacing:0.08em;text-transform:uppercase;color:var(--stein);font-weight:600;margin:0 0 10px;}
+  .at-wd,.at-days{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px;}
+  .at-wd span{font-family:var(--sans);font-size:12px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--stein);text-align:center;padding:4px 0;}
+  .at-day{
+    height:64px;border-radius:var(--card-radius);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;
+    font-family:var(--sans);font-size:15px;color:#b3aea5;background:transparent;border:1px solid transparent;
+    font-variant-numeric:tabular-nums;
+  }
+  .at-day.is-blank{visibility:hidden;}
+  button.at-day{cursor:pointer;background:var(--petrol);color:var(--creme);font-weight:600;font-size:18px;border-color:var(--petrol);
+    transition:transform var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast);}
+  button.at-day:hover{background:var(--petrol-dark);transform:translateY(-2px);box-shadow:0 12px 24px -14px rgba(14,77,79,0.6);}
+  button.at-day:focus-visible{outline:2px solid var(--bordeaux);outline-offset:3px;}
+  button.at-day .info{font-size:11px;font-weight:500;letter-spacing:0.02em;color:var(--gold);line-height:1.2;text-align:center;}
+  button.at-day.is-full{background:var(--creme);color:var(--stein);border-color:var(--hairline);cursor:not-allowed;}
+  button.at-day.is-full:hover{transform:none;box-shadow:none;}
+  button.at-day.is-full .info{color:var(--bordeaux);}
+  @media (prefers-reduced-motion: reduce){button.at-day:hover{transform:none;}}
+
+  .at-quick{display:grid;gap:10px;margin-top:22px;padding-top:20px;border-top:1px solid var(--hairline);}
+  .at-quick button{
+    display:flex;align-items:center;justify-content:space-between;gap:14px;width:100%;
+    padding:14px 18px;background:var(--offwhite);border:1px solid var(--hairline);border-radius:var(--card-radius);
+    font-family:var(--sans);font-size:15px;color:var(--tinte);text-align:left;cursor:pointer;
+    transition:border-color var(--transition-fast), background var(--transition-fast);
+  }
+  .at-quick button:hover{border-color:var(--petrol);background:#fff;}
+  .at-quick button:focus-visible{outline:2px solid var(--petrol);outline-offset:2px;}
+  .at-quick button strong{color:var(--petrol);font-weight:600;}
+  .at-quick button .free{font-size:13.5px;color:var(--stein);white-space:nowrap;}
+  .at-quick button .free b{color:var(--petrol);}
+  .at-quick button:disabled{cursor:not-allowed;opacity:.65;}
+  .at-status{font-family:var(--sans);font-size:15px;line-height:1.6;color:var(--stein);padding:20px 0;}
+  .at-status.is-error{color:var(--bordeaux);}
+  .at-status a{color:var(--bordeaux);text-decoration:underline;}
+
+  /* Popup */
+  dialog.at-dialog{
+    width:min(640px, calc(100% - 32px));max-height:calc(100vh - 48px);padding:0;border:0;
+    border-top:var(--card-accent-width) solid var(--petrol);background:#fff;color:var(--tinte);
+    box-shadow:0 40px 90px -30px rgba(10,30,31,0.55);overflow:auto;
+  }
+  dialog.at-dialog::backdrop{background:rgba(10,30,31,0.5);backdrop-filter:blur(2px);}
+  dialog.at-dialog[open]{animation:at-pop .3s var(--ease-out);}
+  @keyframes at-pop{from{opacity:0;transform:translateY(14px) scale(.98);}to{opacity:1;transform:none;}}
+  .at-dlg-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 24px;border-bottom:1px solid var(--hairline);position:sticky;top:0;background:#fff;z-index:1;}
+  .at-dlg-bar .eyebrow{margin:0;}
+  .at-close{width:40px;height:40px;border:0;background:transparent;border-radius:50%;font-size:26px;line-height:1;color:var(--petrol);cursor:pointer;}
+  .at-close:hover{background:var(--creme);}
+  .at-close:focus-visible{outline:2px solid var(--petrol);outline-offset:1px;}
+  .at-pane{display:none;padding:24px 28px 28px;}
+  .at-pane.is-active{display:block;animation:at-in-right .35s var(--ease-out);}
+  .at-pane.is-active.from-left{animation-name:at-in-left;}
+  @keyframes at-in-right{from{opacity:0;transform:translateX(36px);}to{opacity:1;transform:none;}}
+  @keyframes at-in-left{from{opacity:0;transform:translateX(-36px);}to{opacity:1;transform:none;}}
+  @media (prefers-reduced-motion: reduce){dialog.at-dialog[open],.at-pane.is-active{animation:none;}}
+  .at-pane h2{font-size:clamp(22px,2.4vw,28px);margin:0 0 6px;}
+  .at-pane .sub{font-family:var(--sans);font-size:15px;line-height:1.6;color:var(--stein);margin:0 0 20px;}
+
+  .at-slots{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;}
+  .at-slot{
+    display:grid;gap:2px;padding:12px 14px;text-align:left;cursor:pointer;
+    background:#fff;border:1.5px solid var(--petrol);border-radius:var(--card-radius);
+    font-family:var(--sans);color:var(--petrol);
+    transition:background var(--transition-fast), color var(--transition-fast);
+  }
+  .at-slot .t{font-size:18px;font-weight:600;font-variant-numeric:tabular-nums;}
+  .at-slot .s{font-size:12.5px;color:var(--stein);}
+  .at-slot:hover{background:var(--petrol);color:var(--creme);}
+  .at-slot:hover .s{color:var(--gold);}
+  .at-slot:focus-visible{outline:2px solid var(--bordeaux);outline-offset:2px;}
+  .at-slot.is-low .s{color:var(--bordeaux);font-weight:600;}
+  .at-slot:hover.is-low .s{color:var(--gold);}
+  .at-slot:disabled{cursor:not-allowed;border-color:var(--hairline);background:var(--offwhite);color:#a9a49b;}
+  .at-slot:disabled .s{color:#a9a49b;font-weight:400;}
+  .at-note{font-family:var(--sans);font-size:14.5px;line-height:1.55;padding:12px 16px;margin:0 0 18px;border-left:3px solid var(--bordeaux);background:rgba(110,38,57,0.07);color:var(--bordeaux);}
+
+  .at-back{border:0;background:transparent;padding:0;margin:0 0 16px;font-family:var(--sans);font-size:14px;font-weight:500;color:var(--bordeaux);cursor:pointer;display:inline-flex;gap:6px;}
+  .at-back:hover{color:var(--petrol-dark);}
+  .at-chosen{background:var(--creme);border-left:var(--card-accent-width) solid var(--petrol);padding:14px 18px;margin:0 0 22px;font-family:var(--sans);}
+  .at-chosen .k{display:block;font-size:11.5px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--bordeaux);}
+  .at-chosen strong{font-size:17px;color:var(--petrol);font-weight:600;}
+
+  form.at-form{display:grid;gap:18px;}
+  form.at-form .row{display:grid;gap:6px;}
+  form.at-form label.l{font-family:var(--sans);font-size:12.5px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--petrol);}
+  form.at-form label.l .req{color:var(--bordeaux);margin-left:4px;}
+  form.at-form label.l .opt{color:var(--stein);font-size:11px;letter-spacing:0.08em;font-weight:500;}
+  form.at-form input[type="text"],form.at-form input[type="email"]{
+    width:100%;padding:12px 14px;font-family:var(--sans);font-size:16px;line-height:1.5;color:var(--tinte);
+    background:#fff;border:1px solid var(--hairline);border-radius:0;
+    transition:border-color var(--transition-fast), box-shadow var(--transition-fast);
+  }
+  form.at-form input:focus{outline:none;border-color:var(--petrol);box-shadow:0 0 0 3px rgba(14,77,79,0.15);}
+  form.at-form .hp{position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden;}
+  .at-privacy{background:var(--offwhite);border:1px solid var(--hairline);padding:14px 16px;font-family:var(--sans);font-size:13.5px;line-height:1.6;color:var(--tinte);}
+  .at-privacy strong{display:block;color:var(--petrol);font-size:12px;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:4px;}
+  .at-privacy p + p{margin-top:6px;}
+  .at-privacy a{color:var(--bordeaux);text-decoration:underline;}
+  form.at-form .consent{display:flex;align-items:flex-start;gap:12px;font-family:var(--sans);font-size:14.5px;line-height:1.55;color:var(--tinte);}
+  form.at-form .consent input{margin-top:3px;accent-color:var(--petrol);width:20px;height:20px;flex-shrink:0;}
+  form.at-form button[type="submit"]{
+    justify-self:start;background:var(--petrol);color:var(--creme);border:0;border-radius:4px;
+    padding:14px 26px;font-family:var(--sans);font-weight:500;font-size:15.5px;cursor:pointer;
+    transition:background var(--transition-fast);
+  }
+  form.at-form button[type="submit"]:hover{background:var(--petrol-dark);}
+  form.at-form button[type="submit"]:disabled{opacity:.6;cursor:wait;}
+  form.at-form button[type="submit"]:focus-visible{outline:2px solid var(--bordeaux);outline-offset:3px;}
+  .at-err{font-family:var(--sans);font-size:14.5px;line-height:1.55;color:var(--bordeaux);}
+  .at-err:empty{display:none;}
+
+  .at-done{text-align:left;}
+  .at-done .ok{width:56px;height:56px;border-radius:50%;background:var(--petrol);display:grid;place-items:center;margin:0 0 18px;}
+  .at-done .ok svg{width:28px;height:28px;stroke:var(--gold);}
+  .at-done ul{margin:6px 0 18px;padding-left:20px;font-family:var(--sans);font-size:14.5px;line-height:1.6;color:var(--tinte);}
+  .at-done p{font-family:var(--sans);font-size:15px;line-height:1.6;color:var(--tinte);margin:0 0 12px;}
+  .at-done .k{font-family:var(--sans);font-size:12px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--petrol);}
+  .at-done a{color:var(--bordeaux);text-decoration:underline;}
+
+  @media (max-width:960px){
+    .at-grid{grid-template-columns:1fr;gap:36px;}
+    .at-cal{order:-1;}
+    .at-main{padding:var(--space-section-sm) 0;}
+  }
+  @media (max-width:640px){
+    .at-cal{padding:20px 14px;}
+    .at-wd,.at-days{gap:4px;}
+    .at-day{height:52px;}
+    button.at-day{font-size:16px;}
+    button.at-day .info{font-size:10px;}
+    .at-slots{grid-template-columns:repeat(2,minmax(0,1fr));}
+    dialog.at-dialog{width:100%;max-width:100%;max-height:92vh;margin:auto 0 0;border-radius:14px 14px 0 0;}
+    dialog.at-dialog[open]{animation:at-sheet .35s var(--ease-out);}
+    @keyframes at-sheet{from{transform:translateY(40px);opacity:0;}to{transform:none;opacity:1;}}
+    .at-pane{padding:20px 18px 24px;}
+  }
+</style>
+
+<main id="top">
+
+<PageHero variant="page">
+  <Fragment slot="eyebrow">Anmeldung Klasse 5 · Schuljahr 2027/28</Fragment>
+  <Fragment slot="title">Anmeldetermin <em>vereinbaren</em></Fragment>
+  <Fragment slot="lede">Wählen Sie einen der drei Anmeldetage und eine freie Uhrzeit. Das Anmeldegespräch dauert etwa 30 Minuten, Sie kommen gemeinsam mit Ihrem Kind.</Fragment>
+</PageHero>
+
+<section class="at-main" aria-label="Terminbuchung">
+  <div class="container">
+    <div class="at-grid">
+
+      <div class="at-info">
+        <h2>So buchen Sie Ihren Termin</h2>
+        <ol class="at-steps">
+          <li><span><strong>Tag wählen</strong>Die drei Anmeldetage sind im Kalender farbig markiert.</span></li>
+          <li><span><strong>Uhrzeit wählen</strong>Sie sehen sofort, welche Zeiten noch frei sind.</span></li>
+          <li><span><strong>Angaben eintragen</strong>Die Bestätigung mit allen Unterlagen, die Sie mitbringen, kommt per E-Mail.</span></li>
+        </ol>
+        <div class="at-facts">
+          <div><span class="k">Buchungsschluss</span><p id="at-closes">Freitag, 12. Februar 2027, 18:00 Uhr</p></div>
+          <div><span class="k">Lieber telefonisch?</span><p>Das Sekretariat vereinbart Ihren Termin auch gern am Telefon: <a href={phoneHref}>{school.phone}</a></p></div>
+          <div><span class="k">Absage oder Umbuchung</span><p>Per E-Mail an Herrn Sven Scheding, <MailLink email={coordinatorEmail} />, oder telefonisch im Sekretariat.</p></div>
+          <div><span class="k">Ablauf und Unterlagen</span><p>Alles zur Anmeldung finden Sie auf der Seite <a href="Anmeldung.html#klasse-5">Anmeldung Klasse 5</a>. Den Anmeldebogen können Sie dort schon vorab herunterladen.</p></div>
+        </div>
+      </div>
+
+      <div class="at-cal" id="at-cal" data-api={TERMINE_API}>
+        <div class="at-cal-head">
+          <h2>Anmeldetage</h2>
+          <span class="sub">je 30 Minuten</span>
+        </div>
+        <div id="at-months">
+          <p class="at-status" id="at-status" role="status">Freie Termine werden geladen …</p>
+        </div>
+        <div class="at-quick" id="at-quick"></div>
+        <noscript><p class="at-status">Für die Online-Buchung wird JavaScript benötigt. Termine vereinbaren Sie auch telefonisch im Sekretariat: {school.phone}</p></noscript>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<dialog class="at-dialog" id="at-dialog" aria-labelledby="at-dlg-title">
+  <div class="at-dlg-bar">
+    <span class="eyebrow" id="at-dlg-title">Anmeldetermin vereinbaren</span>
+    <button class="at-close" type="button" id="at-close" aria-label="Schließen">×</button>
+  </div>
+
+  <div class="at-pane" id="at-pane-slots">
+    <h2 id="at-slots-day"></h2>
+    <p class="sub">Wählen Sie eine Uhrzeit. Jedes Gespräch dauert etwa 30 Minuten.</p>
+    <p class="at-note" id="at-slots-note" hidden></p>
+    <div class="at-slots" id="at-slots"></div>
+  </div>
+
+  <div class="at-pane" id="at-pane-form">
+    <button class="at-back" type="button" id="at-back">← Andere Uhrzeit wählen</button>
+    <div class="at-chosen"><span class="k">Ihr Termin</span><strong id="at-chosen"></strong></div>
+    <form class="at-form" id="at-form" novalidate>
+      <div class="row">
+        <label class="l" for="at-name">Name und Vorname des Kindes <span class="req" aria-hidden="true">*</span></label>
+        <input id="at-name" type="text" name="childName" required maxlength="120" autocomplete="off" placeholder="z. B. Mustermann, Mia">
+      </div>
+      <div class="row">
+        <label class="l" for="at-email">E-Mail-Adresse für die Terminbestätigung <span class="req" aria-hidden="true">*</span></label>
+        <input id="at-email" type="email" name="email" required maxlength="200" autocomplete="email" inputmode="email" placeholder="name@example.com">
+      </div>
+      <div class="row">
+        <label class="l" for="at-school">Abgebende Grundschule <span class="opt">(optional)</span></label>
+        <input id="at-school" type="text" name="school" maxlength="120" autocomplete="off" placeholder="z. B. Grundschule am Park">
+      </div>
+      <div class="hp" aria-hidden="true">
+        <label for="at-website">Website</label>
+        <input id="at-website" type="text" name="website" tabindex="-1" autocomplete="off">
+      </div>
+
+      <div class="at-privacy" id="at-privacy">
+        <strong>Datenschutzhinweis</strong>
+        <p>Ihre Angaben (Name des Kindes, E-Mail-Adresse, auf Wunsch die Grundschule) verwenden wir ausschließlich, um den Anmeldetermin zu vergeben, Ihnen eine Bestätigung zu senden und das Anmeldegespräch vorzubereiten. Einsehen können sie nur die Koordination und das Anmeldeteam der UNESCO-Schule Essen.</p>
+        <p>Gespeichert werden die Angaben auf Servern von Cloudflare in der EU, die Bestätigung versenden wir über unser Postfach bei IONOS (Deutschland). Am 31. März 2027 werden alle Angaben automatisch gelöscht.</p>
+        <p>Die Einwilligung ist freiwillig. Sie können sie jederzeit per E-Mail an Herrn Scheding widerrufen, der Termin wird dann gelöscht. Ohne Online-Buchung erhalten Sie einen Termin auch telefonisch im Sekretariat ({school.phone}). Mehr in unserer <a href="Datenschutz.html#anmeldetermine">Datenschutzerklärung</a>.</p>
+      </div>
+      <label class="consent">
+        <input type="checkbox" id="at-consent" name="consent" required>
+        <span>Ich willige ein, dass die UNESCO-Schule Essen meine Angaben zur Vergabe des Anmeldetermins für mein Kind verarbeitet. Den Datenschutzhinweis habe ich gelesen. <span class="req" aria-hidden="true" style="color:var(--bordeaux)">*</span></span>
+      </label>
+      <p class="at-err" id="at-err" role="alert"></p>
+      <button type="submit" id="at-submit">Termin verbindlich buchen →</button>
+    </form>
+  </div>
+
+  <div class="at-pane at-done" id="at-pane-done">
+    <div class="ok" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+    <h2>Ihr Termin ist gebucht</h2>
+    <div class="at-chosen"><span class="k">Termin</span><strong id="at-done-when"></strong><br><span id="at-done-child"></span></div>
+    <p id="at-done-mail"></p>
+    <span class="k">Bitte bringen Sie mit</span>
+    <ul>
+      <li>den ausgefüllten und unterschriebenen <a href="assets/eltern/Anmeldebogen-UNESCO-Schule-Essen.pdf" download>Anmeldebogen</a></li>
+      <li>das Halbjahreszeugnis der Klasse 4 mit der Übergangsempfehlung</li>
+      <li>den Anmeldeschein der Grundschule</li>
+      <li>Geburtsurkunde, Familienstammbuch oder Personalausweis Ihres Kindes</li>
+      <li>den Nachweis über ausreichenden Masernschutz (z. B. Impfpass)</li>
+      <li>falls vorhanden: den Nachweis über Leistungen aus dem Bildungs- und Teilhabepaket</li>
+    </ul>
+    <p>Und natürlich Ihr Kind: Wir freuen uns darauf, es kennenzulernen.</p>
+    <button class="btn btn-primary" type="button" id="at-done-close">Fertig</button>
+  </div>
+</dialog>
+
+<script>
+  const root = document.getElementById("at-cal") as HTMLElement;
+  const API = root.dataset.api;
+  const $ = (id: string) => document.getElementById(id) as HTMLElement;
+  const dialog = $("at-dialog") as HTMLDialogElement;
+  const PHONE = "0201 280 26 30";
+
+  type Slot = { time: string; end: string; free: number };
+  type Day = { date: string; label: string; start: string; end: string; slots: Slot[] };
+  type Data = { open: boolean; closesLabel: string; seats: number; days: Day[] };
+
+  let data: Data | null = null;
+  let current: { day: Day; slot?: Slot } | null = null;
+
+  const ERRORS: Record<string, string> = {
+    invalid_name: "Bitte tragen Sie den Namen und Vornamen Ihres Kindes ein.",
+    invalid_email: "Bitte prüfen Sie die E-Mail-Adresse.",
+    consent_required: "Bitte bestätigen Sie die Einwilligung zur Verarbeitung Ihrer Angaben.",
+    already_booked: "Für Ihr Kind ist mit dieser E-Mail-Adresse schon ein Termin gebucht. Für eine Änderung schreiben Sie bitte an Herrn Scheding oder rufen im Sekretariat an.",
+    too_many_for_email: "Mit dieser E-Mail-Adresse wurden bereits drei Termine gebucht. Bitte wenden Sie sich an das Sekretariat.",
+    booking_closed: `Die Online-Buchung ist geschlossen. Bitte rufen Sie im Sekretariat an: ${PHONE}.`,
+    slot_past: "Dieser Termin liegt bereits in der Vergangenheit.",
+    invalid_slot: "Diesen Termin gibt es nicht. Bitte wählen Sie neu.",
+    too_many_requests: "Zu viele Versuche in kurzer Zeit. Bitte versuchen Sie es später noch einmal."
+  };
+  const escapeHtml = (s: string) => s.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]!);
+  const freeOf = (d: Day) => d.slots.reduce((a, s) => a + s.free, 0);
+  const plural = (n: number, one: string, many: string) => `${n} ${n === 1 ? one : many}`;
+  const shortLabel = (d: Day) => d.label.replace(/ \d{4}$/, "");
+  const hour = (t: string) => t.replace(/^0/, "").replace(/:00$/, "");
+
+  async function load() {
+    try {
+      const res = await fetch(`${API}/api/termine`, { cache: "no-store" });
+      if (!res.ok) throw new Error(String(res.status));
+      data = await res.json();
+      render();
+    } catch {
+      $("at-months").innerHTML = `<p class="at-status is-error" role="status">Die freien Termine konnten gerade nicht geladen werden. Bitte laden Sie die Seite neu oder vereinbaren Sie Ihren Termin telefonisch im Sekretariat: <a href="tel:+492012802630">${PHONE}</a>.</p>`;
+      $("at-quick").innerHTML = "";
+    }
+  }
+
+  function render() {
+    if (!data) return;
+    $("at-closes").textContent = data.closesLabel.replace(" um ", ", ");
+    const byDate = new Map(data.days.map((d) => [d.date, d]));
+    const months = [...new Set(data.days.map((d) => d.date.slice(0, 7)))];
+    let html = "";
+    if (!data.open) {
+      html += `<p class="at-note">Die Online-Buchung ist geschlossen. Termine vereinbaren Sie telefonisch im Sekretariat: <a href="tel:+492012802630">${PHONE}</a>.</p>`;
+    }
+    for (const ym of months) {
+      const [y, m] = ym.split("-").map(Number);
+      const first = new Date(Date.UTC(y, m - 1, 1));
+      const daysIn = new Date(Date.UTC(y, m, 0)).getUTCDate();
+      const lead = (first.getUTCDay() + 6) % 7; // Montag zuerst
+      const title = new Intl.DateTimeFormat("de-DE", { month: "long", year: "numeric", timeZone: "UTC" }).format(first);
+      html += `<div class="at-month"><h3>${title}</h3><div class="at-wd" aria-hidden="true">${["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"].map((w) => `<span>${w}</span>`).join("")}</div><div class="at-days">`;
+      for (let i = 0; i < lead; i++) html += `<span class="at-day is-blank"></span>`;
+      for (let n = 1; n <= daysIn; n++) {
+        const date = `${ym}-${String(n).padStart(2, "0")}`;
+        const d = byDate.get(date);
+        if (!d) {
+          html += `<span class="at-day" aria-hidden="true">${n}</span>`;
+          continue;
+        }
+        const free = freeOf(d);
+        html += free > 0
+          ? `<button class="at-day" type="button" data-date="${d.date}" aria-label="${escapeHtml(d.label)}, ${plural(free, "Platz", "Plätze")} frei"><span>${n}</span><span class="info">${free} frei</span></button>`
+          : `<button class="at-day is-full" type="button" data-date="${d.date}" disabled aria-label="${escapeHtml(d.label)}, ausgebucht"><span>${n}</span><span class="info">voll</span></button>`;
+      }
+      html += `</div></div>`;
+    }
+    $("at-months").innerHTML = html;
+    $("at-quick").innerHTML = data.days
+      .map((d) => {
+        const free = freeOf(d);
+        return `<button type="button" data-date="${d.date}"${free ? "" : " disabled"}><span><strong>${escapeHtml(shortLabel(d))}</strong><br>${hour(d.start)} bis ${hour(d.end)} Uhr</span><span class="free">${free ? `<b>${free}</b> Plätze frei` : "ausgebucht"}</span></button>`;
+      })
+      .join("");
+  }
+
+  function showPane(id: string, fromLeft = false) {
+    for (const p of dialog.querySelectorAll(".at-pane")) p.classList.remove("is-active", "from-left");
+    const pane = $(id);
+    pane.classList.add("is-active");
+    if (fromLeft) pane.classList.add("from-left");
+    dialog.scrollTop = 0;
+  }
+
+  function renderSlots(day: Day, note = "") {
+    $("at-slots-day").textContent = day.label;
+    const n = $("at-slots-note");
+    n.hidden = !note;
+    n.textContent = note;
+    $("at-slots").innerHTML = day.slots
+      .map((s) => {
+        const status = s.free === 0 ? "belegt" : s.free === 1 ? "noch 1 Platz" : `${s.free} Plätze frei`;
+        return `<button class="at-slot${s.free === 1 ? " is-low" : ""}" type="button" data-time="${s.time}"${s.free ? "" : " disabled"} aria-label="${s.time} bis ${s.end} Uhr, ${status}"><span class="t">${s.time}</span><span class="s">bis ${s.end} · ${status}</span></button>`;
+      })
+      .join("");
+  }
+
+  function openDay(date: string) {
+    const day = data?.days.find((d) => d.date === date);
+    if (!day) return;
+    current = { day };
+    renderSlots(day);
+    showPane("at-pane-slots");
+    if (!dialog.open) dialog.showModal();
+    (dialog.querySelector(".at-slot:not(:disabled)") as HTMLElement | null)?.focus();
+  }
+
+  function openForm(time: string) {
+    if (!current) return;
+    const slot = current.day.slots.find((s) => s.time === time);
+    if (!slot || !slot.free) return;
+    current.slot = slot;
+    $("at-chosen").textContent = `${current.day.label}, ${slot.time}–${slot.end} Uhr`;
+    $("at-err").textContent = "";
+    showPane("at-pane-form");
+    ($("at-name") as HTMLInputElement).focus();
+  }
+
+  root.addEventListener("click", (ev) => {
+    const btn = (ev.target as HTMLElement).closest("button[data-date]") as HTMLButtonElement | null;
+    if (btn && !btn.disabled) openDay(btn.dataset.date!);
+  });
+  $("at-slots").addEventListener("click", (ev) => {
+    const btn = (ev.target as HTMLElement).closest("button[data-time]") as HTMLButtonElement | null;
+    if (btn && !btn.disabled) openForm(btn.dataset.time!);
+  });
+  $("at-back").addEventListener("click", () => {
+    if (current) renderSlots(current.day);
+    showPane("at-pane-slots", true);
+  });
+  $("at-close").addEventListener("click", () => dialog.close());
+  $("at-done-close").addEventListener("click", () => dialog.close());
+  dialog.addEventListener("click", (ev) => {
+    if (ev.target === dialog) dialog.close(); // Klick auf den abgedunkelten Hintergrund
+  });
+
+  $("at-form").addEventListener("submit", async (ev) => {
+    ev.preventDefault();
+    if (!current?.slot) return;
+    const err = $("at-err");
+    const name = ($("at-name") as HTMLInputElement).value.trim();
+    const email = ($("at-email") as HTMLInputElement).value.trim();
+    const consent = ($("at-consent") as HTMLInputElement).checked;
+    if (name.split(/\s+/).filter(Boolean).length < 2 && !name.includes(",")) return void (err.textContent = "Bitte tragen Sie Name und Vorname Ihres Kindes ein.");
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) return void (err.textContent = ERRORS.invalid_email);
+    if (!consent) return void (err.textContent = ERRORS.consent_required);
+    err.textContent = "";
+    const submit = $("at-submit") as HTMLButtonElement;
+    const label = submit.textContent;
+    submit.disabled = true;
+    submit.textContent = "Wird gebucht …";
+    try {
+      const res = await fetch(`${API}/api/buchung`, {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({
+          date: current.day.date,
+          time: current.slot.time,
+          childName: name,
+          email,
+          school: ($("at-school") as HTMLInputElement).value,
+          website: ($("at-website") as HTMLInputElement).value,
+          consent: true
+        })
+      });
+      const body = await res.json().catch(() => ({}));
+      if (res.ok && body.ok) {
+        $("at-done-when").textContent = `${current.day.label}, ${current.slot.time}–${current.slot.end} Uhr`;
+        $("at-done-child").textContent = `für ${name}`;
+        $("at-done-mail").textContent = body.mailSent
+          ? `Wir haben Ihnen eine Bestätigung an ${email} geschickt, mit dem Termin als Kalendereintrag. Bitte schauen Sie auch im Spam-Ordner nach.`
+          : `Die Bestätigungsmail konnte gerade nicht verschickt werden. Ihr Termin ist trotzdem gespeichert. Bitte notieren Sie ihn sich.`;
+        ($("at-form") as HTMLFormElement).reset();
+        showPane("at-pane-done");
+        load();
+        return;
+      }
+      if (body.error === "slot_full") {
+        await load();
+        const day = data?.days.find((d) => d.date === current!.day.date);
+        if (day) {
+          current = { day };
+          renderSlots(day, "Dieser Termin wurde gerade vergeben. Bitte wählen Sie eine andere Uhrzeit, Ihre Angaben bleiben erhalten.");
+          showPane("at-pane-slots", true);
+        }
+        return;
+      }
+      err.textContent = ERRORS[body.error] || `Die Buchung hat leider nicht geklappt. Bitte versuchen Sie es noch einmal oder rufen Sie im Sekretariat an: ${PHONE}.`;
+    } catch {
+      err.textContent = `Keine Verbindung zum Buchungssystem. Bitte versuchen Sie es noch einmal oder rufen Sie im Sekretariat an: ${PHONE}.`;
+    } finally {
+      submit.disabled = false;
+      submit.textContent = label;
+    }
+  });
+
+  load();
+</script>
+
+</main>
+</BaseLayout>
