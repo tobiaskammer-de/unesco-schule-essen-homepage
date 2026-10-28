@@ -67,8 +67,8 @@ const phoneHref = "tel:+492012802630";
   .at-quick button:hover{border-color:var(--petrol);background:#fff;}
   .at-quick button:focus-visible{outline:2px solid var(--petrol);outline-offset:2px;}
   .at-quick button strong{color:var(--petrol);font-weight:600;}
-  .at-quick button .free{font-size:13.5px;color:var(--stein);white-space:nowrap;}
-  .at-quick button .free b{color:var(--petrol);}
+  .at-quick button .free{font-size:13.5px;font-weight:500;color:var(--bordeaux);white-space:nowrap;}
+  .at-quick button:disabled .free{color:var(--stein);}
   .at-quick button:disabled{cursor:not-allowed;opacity:.65;}
   .at-status{font-family:var(--sans);font-size:15px;line-height:1.6;color:var(--stein);padding:20px 0;}
   .at-status.is-error{color:var(--bordeaux);}
@@ -109,8 +109,6 @@ const phoneHref = "tel:+492012802630";
   .at-slot:hover{background:var(--petrol);color:var(--creme);}
   .at-slot:hover .s{color:var(--gold);}
   .at-slot:focus-visible{outline:2px solid var(--bordeaux);outline-offset:2px;}
-  .at-slot.is-low .s{color:var(--bordeaux);font-weight:600;}
-  .at-slot:hover.is-low .s{color:var(--gold);}
   .at-slot:disabled{cursor:not-allowed;border-color:var(--hairline);background:var(--offwhite);color:#a9a49b;}
   .at-slot:disabled .s{color:#a9a49b;font-weight:400;}
   .at-note{font-family:var(--sans);font-size:14.5px;line-height:1.55;padding:12px 16px;margin:0 0 18px;border-left:3px solid var(--bordeaux);background:rgba(110,38,57,0.07);color:var(--bordeaux);}
@@ -315,7 +313,6 @@ const phoneHref = "tel:+492012802630";
   };
   const escapeHtml = (s: string) => s.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]!);
   const freeOf = (d: Day) => d.slots.reduce((a, s) => a + s.free, 0);
-  const plural = (n: number, one: string, many: string) => `${n} ${n === 1 ? one : many}`;
   const shortLabel = (d: Day) => d.label.replace(/ \d{4}$/, "");
   const hour = (t: string) => t.replace(/^0/, "").replace(/:00$/, "");
 
@@ -357,7 +354,7 @@ const phoneHref = "tel:+492012802630";
         }
         const free = freeOf(d);
         html += free > 0
-          ? `<button class="at-day" type="button" data-date="${d.date}" aria-label="${escapeHtml(d.label)}, ${plural(free, "Platz", "Plätze")} frei"><span>${n}</span><span class="info">${free} frei</span></button>`
+          ? `<button class="at-day" type="button" data-date="${d.date}" aria-label="${escapeHtml(d.label)}, Uhrzeit wählen"><span>${n}</span></button>`
           : `<button class="at-day is-full" type="button" data-date="${d.date}" disabled aria-label="${escapeHtml(d.label)}, ausgebucht"><span>${n}</span><span class="info">voll</span></button>`;
       }
       html += `</div></div>`;
@@ -366,7 +363,7 @@ const phoneHref = "tel:+492012802630";
     $("at-quick").innerHTML = data.days
       .map((d) => {
         const free = freeOf(d);
-        return `<button type="button" data-date="${d.date}"${free ? "" : " disabled"}><span><strong>${escapeHtml(shortLabel(d))}</strong><br>${hour(d.start)} bis ${hour(d.end)} Uhr</span><span class="free">${free ? `<b>${free}</b> Plätze frei` : "ausgebucht"}</span></button>`;
+        return `<button type="button" data-date="${d.date}"${free ? "" : " disabled"}><span><strong>${escapeHtml(shortLabel(d))}</strong><br>${hour(d.start)} bis ${hour(d.end)} Uhr</span><span class="free">${free ? "Uhrzeit wählen →" : "ausgebucht"}</span></button>`;
       })
       .join("");
   }
@@ -386,8 +383,8 @@ const phoneHref = "tel:+492012802630";
     n.textContent = note;
     $("at-slots").innerHTML = day.slots
       .map((s) => {
-        const status = s.free === 0 ? "belegt" : s.free === 1 ? "noch 1 Platz" : `${s.free} Plätze frei`;
-        return `<button class="at-slot${s.free === 1 ? " is-low" : ""}" type="button" data-time="${s.time}"${s.free ? "" : " disabled"} aria-label="${s.time} bis ${s.end} Uhr, ${status}"><span class="t">${s.time}</span><span class="s">bis ${s.end} · ${status}</span></button>`;
+        const full = s.free === 0;
+        return `<button class="at-slot" type="button" data-time="${s.time}"${full ? " disabled" : ""} aria-label="${s.time} bis ${s.end} Uhr${full ? ", belegt" : ""}"><span class="t">${s.time}</span><span class="s">bis ${s.end}${full ? " · belegt" : ""}</span></button>`;
       })
       .join("");
   }
