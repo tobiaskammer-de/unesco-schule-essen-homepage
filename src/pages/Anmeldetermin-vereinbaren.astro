@@ -294,7 +294,7 @@ const phoneHref = "tel:+492012802630";
   const dialog = $("at-dialog") as HTMLDialogElement;
   const PHONE = "0201 · 280 26 30";
 
-  type Slot = { time: string; end: string; available?: boolean; free?: number };
+  type Slot = { time: string; end: string; available: boolean };
   type Day = { date: string; label: string; start: string; end: string; slots: Slot[] };
   type Data = { open: boolean; closesLabel: string; days: Day[] };
 
@@ -313,8 +313,7 @@ const phoneHref = "tel:+492012802630";
     too_many_requests: "Zu viele Versuche in kurzer Zeit. Bitte versuchen Sie es später noch einmal."
   };
   const escapeHtml = (s: string) => s.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]!);
-  // `free` nur, bis der Worker überall `available` liefert
-  const isFree = (s: Slot) => s.available ?? (s.free ?? 0) > 0;
+  const isFree = (s: Slot) => s.available;
   const hasFree = (d: Day) => d.slots.some(isFree);
   const shortLabel = (d: Day) => d.label.replace(/ \d{4}$/, "");
   const hour = (t: string) => t.replace(/^0/, "").replace(/:00$/, "");
