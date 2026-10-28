@@ -95,6 +95,7 @@ const phoneHref = "tel:+492012802630";
   @keyframes at-in-left{from{opacity:0;transform:translateX(-36px);}to{opacity:1;transform:none;}}
   @media (prefers-reduced-motion: reduce){dialog.at-dialog[open],.at-pane.is-active{animation:none;}}
   .at-pane h2{font-size:clamp(22px,2.4vw,28px);margin:0 0 6px;}
+  .at-pane h2:focus,.at-note:focus{outline:none;} /* nur programmatischer Fokus für Screenreader */
   .at-pane .sub{font-family:var(--sans);font-size:15px;line-height:1.6;color:var(--stein);margin:0 0 20px;}
 
   .at-slots{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;}
@@ -192,7 +193,7 @@ const phoneHref = "tel:+492012802630";
         <ol class="at-steps">
           <li><span><strong>Tag wählen</strong>Die drei Anmeldetage sind im Kalender farbig markiert.</span></li>
           <li><span><strong>Uhrzeit wählen</strong>Sie sehen sofort, welche Zeiten noch frei sind.</span></li>
-          <li><span><strong>Angaben eintragen</strong>Die Bestätigung mit allen Unterlagen, die Sie mitbringen, kommt per E-Mail.</span></li>
+          <li><span><strong>Angaben eintragen</strong>Per E-Mail erhalten Sie die Bestätigung und die Liste der Unterlagen, die Sie mitbringen.</span></li>
         </ol>
         <div class="at-facts">
           <div><span class="k">Buchungsschluss</span><p id="at-closes">Freitag, 12. Februar 2027, 18:00 Uhr</p></div>
@@ -227,7 +228,7 @@ const phoneHref = "tel:+492012802630";
   <div class="at-pane" id="at-pane-slots">
     <h2 id="at-slots-day"></h2>
     <p class="sub">Wählen Sie eine Uhrzeit. Jedes Gespräch dauert etwa 30 Minuten.</p>
-    <p class="at-note" id="at-slots-note" hidden></p>
+    <p class="at-note" id="at-slots-note" tabindex="-1" hidden></p>
     <div class="at-slots" id="at-slots"></div>
   </div>
 
@@ -269,7 +270,7 @@ const phoneHref = "tel:+492012802630";
 
   <div class="at-pane at-done" id="at-pane-done">
     <div class="ok" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
-    <h2>Ihr Termin ist gebucht</h2>
+    <h2 id="at-done-title" tabindex="-1">Ihr Termin ist gebucht</h2>
     <div class="at-chosen"><span class="k">Termin</span><strong id="at-done-when"></strong><br><span id="at-done-child"></span></div>
     <p id="at-done-mail"></p>
     <span class="k">Bitte bringen Sie mit</span>
@@ -291,11 +292,11 @@ const phoneHref = "tel:+492012802630";
   const API = root.dataset.api;
   const $ = (id: string) => document.getElementById(id) as HTMLElement;
   const dialog = $("at-dialog") as HTMLDialogElement;
-  const PHONE = "0201 280 26 30";
+  const PHONE = "0201 · 280 26 30";
 
-  type Slot = { time: string; end: string; free: number };
+  type Slot = { time: string; end: string; available?: boolean; free?: number };
   type Day = { date: string; label: string; start: string; end: string; slots: Slot[] };
-  type Data = { open: boolean; closesLabel: string; seats: number; days: Day[] };
+  type Data = { open: boolean; closesLabel: string; days: Day[] };
 
   let data: Data | null = null;
   let current: { day: Day; slot?: Slot } | null = null;
@@ -312,7 +313,9 @@ const phoneHref = "tel:+492012802630";
     too_many_requests: "Zu viele Versuche in kurzer Zeit. Bitte versuchen Sie es später noch einmal."
   };
   const escapeHtml = (s: string) => s.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]!);
-  const freeOf = (d: Day) => d.slots.reduce((a, s) => a + s.free, 0);
+  // `free` nur, bis der Worker überall `available` liefert
+  const isFree = (s: Slot) => s.available ?? (s.free ?? 0) > 0;
+  const hasFree = (d: Day) => d.slots.some(isFree);
   const shortLabel = (d: Day) => d.label.replace(/ \d{4}$/, "");
   const hour = (t: string) => t.replace(/^0/, "").replace(/:00$/, "");
 
@@ -352,9 +355,8 @@ const phoneHref = "tel:+492012802630";
           html += `<span class="at-day" aria-hidden="true">${n}</span>`;
           continue;
         }
-        const free = freeOf(d);
-        html += free > 0
-          ? `<button class="at-day" type="button" data-date="${d.date}" aria-label="${escapeHtml(d.label)}, Uhrzeit wählen"><span>${n}</span></button>`
+        html += hasFree(d)
+          ?`<button class="at-day" type="button" data-date="${d.date}" aria-label="${escapeHtml(d.label)}, Uhrzeit wählen"><span>${n}</span></button>`
           : `<button class="at-day is-full" type="button" data-date="${d.date}" disabled aria-label="${escapeHtml(d.label)}, ausgebucht"><span>${n}</span><span class="info">voll</span></button>`;
       }
       html += `</div></div>`;
@@ -362,7 +364,7 @@ const phoneHref = "tel:+492012802630";
     $("at-months").innerHTML = html;
     $("at-quick").innerHTML = data.days
       .map((d) => {
-        const free = freeOf(d);
+        const free = hasFree(d);
         return `<button type="button" data-date="${d.date}"${free ? "" : " disabled"}><span><strong>${escapeHtml(shortLabel(d))}</strong><br>${hour(d.start)} bis ${hour(d.end)} Uhr</span><span class="free">${free ? "Uhrzeit wählen →" : "ausgebucht"}</span></button>`;
       })
       .join("");
@@ -383,7 +385,7 @@ const phoneHref = "tel:+492012802630";
     n.textContent = note;
     $("at-slots").innerHTML = day.slots
       .map((s) => {
-        const full = s.free === 0;
+        const full = !isFree(s);
         return `<button class="at-slot" type="button" data-time="${s.time}"${full ? " disabled" : ""} aria-label="${s.time} bis ${s.end} Uhr${full ? ", belegt" : ""}"><span class="t">${s.time}</span><span class="s">bis ${s.end}${full ? " · belegt" : ""}</span></button>`;
       })
       .join("");
@@ -396,13 +398,17 @@ const phoneHref = "tel:+492012802630";
     renderSlots(day);
     showPane("at-pane-slots");
     if (!dialog.open) dialog.showModal();
+    focusFirstSlot();
+  }
+
+  function focusFirstSlot() {
     (dialog.querySelector(".at-slot:not(:disabled)") as HTMLElement | null)?.focus();
   }
 
   function openForm(time: string) {
     if (!current) return;
     const slot = current.day.slots.find((s) => s.time === time);
-    if (!slot || !slot.free) return;
+    if (!slot || !isFree(slot)) return;
     current.slot = slot;
     $("at-chosen").textContent = `${current.day.label}, ${slot.time}–${slot.end} Uhr`;
     $("at-err").textContent = "";
@@ -421,6 +427,7 @@ const phoneHref = "tel:+492012802630";
   $("at-back").addEventListener("click", () => {
     if (current) renderSlots(current.day);
     showPane("at-pane-slots", true);
+    focusFirstSlot();
   });
   $("at-close").addEventListener("click", () => dialog.close());
   $("at-done-close").addEventListener("click", () => dialog.close());
@@ -466,6 +473,7 @@ const phoneHref = "tel:+492012802630";
           : `Die Bestätigungsmail konnte gerade nicht verschickt werden. Ihr Termin ist trotzdem gespeichert. Bitte notieren Sie ihn sich.`;
         ($("at-form") as HTMLFormElement).reset();
         showPane("at-pane-done");
+        $("at-done-title").focus();
         load();
         return;
       }
@@ -476,6 +484,7 @@ const phoneHref = "tel:+492012802630";
           current = { day };
           renderSlots(day, "Dieser Termin wurde gerade vergeben. Bitte wählen Sie eine andere Uhrzeit, Ihre Angaben bleiben erhalten.");
           showPane("at-pane-slots", true);
+          $("at-slots-note").focus();
         }
         return;
       }
