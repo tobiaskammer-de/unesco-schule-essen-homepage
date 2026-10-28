@@ -17,6 +17,8 @@ import { safeBold, safeInlineJson } from "../lib/safeMarkup";
  */
 const eia    = await getSingle("pageElterninformationsabend");
 const school = await getSingle("siteSchool");
+// Anmeldetage kommen aus der Anmeldeseite (src/content/pages/anmeldung.yml)
+const anmeldung = await getSingle("pageAnmeldung");
 
 const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
 const link = (p: string) => (p.startsWith("/") || /^https?:\/\//.test(p) ? p : `${BASE}/${p}`);
@@ -147,8 +149,43 @@ const eventJsonLd = {
   }
   .eia-letter .signup{margin:36px 0 0;}
 
+  /* Nächster Schritt: Anmeldetermin buchen */
+  .eia-next{background:var(--creme);padding:var(--space-section-sm) 0;border-top:1px solid var(--hairline);}
+  .eia-next-card{
+    display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);
+    gap:48px;align-items:center;
+    background:var(--petrol);color:var(--creme);
+    border-top:var(--card-accent-width) solid var(--gold);
+    padding:44px 48px;
+  }
+  .eia-next .kicker{
+    font-family:var(--sans);font-size:11.5px;font-weight:600;
+    letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);
+    display:block;margin-bottom:14px;
+  }
+  .eia-next h2{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(26px,3vw,38px);line-height:1.15;letter-spacing:-0.015em;
+    color:var(--creme);margin:0 0 16px;
+  }
+  .eia-next p{font-family:var(--sans);font-size:16.5px;line-height:1.7;color:rgba(245,239,231,0.92);margin:0 0 22px;}
+  .eia-next p a{color:var(--gold);text-decoration:underline;text-underline-offset:3px;}
+  .eia-next .actions{display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center;}
+  .eia-next .more{font-family:var(--sans);font-size:14.5px;font-weight:500;color:var(--creme);border-bottom:1px solid rgba(245,239,231,0.5);padding-bottom:2px;text-decoration:none;}
+  .eia-next .more:hover{color:var(--gold);border-color:var(--gold);}
+  .eia-next ol{list-style:none;margin:0;padding:0;border-top:1px solid rgba(245,239,231,0.2);}
+  .eia-next ol li{
+    display:grid;grid-template-columns:auto 1fr;gap:4px 18px;align-items:baseline;
+    padding:14px 0;border-bottom:1px solid rgba(245,239,231,0.2);
+    font-family:var(--sans);font-variant-numeric:tabular-nums;
+  }
+  .eia-next ol .date{font-family:var(--serif);font-size:22px;font-weight:500;color:var(--creme);}
+  .eia-next ol .day{font-size:14.5px;color:rgba(245,239,231,0.85);}
+  .eia-next ol .time{grid-column:2;font-size:13.5px;color:var(--gold);}
+
   @media (max-width:960px){
     .eia-date-card{grid-template-columns:1fr;gap:24px;padding:32px 28px;}
+    .eia-next-card{grid-template-columns:1fr;gap:28px;padding:32px 28px;}
   }
 </style>
 
@@ -197,6 +234,30 @@ const eventJsonLd = {
           {eia.anmeldung.ctaLabel} <span class="arrow">→</span>
         </a>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== NÄCHSTER SCHRITT: ANMELDUNG ===================== -->
+<section class="eia-next" aria-label="Anmeldetermin vereinbaren">
+  <div class="container">
+    <div class="eia-next-card">
+      <div>
+        <span class="kicker">Nächster Schritt: Anmeldung</span>
+        <h2>Anmeldetermin vereinbaren</h2>
+        <p>Die Anmeldung für die 5. Klassen findet im Februar 2027 in einem persönlichen Gespräch statt, zu dem Sie gemeinsam mit Ihrem Kind kommen. Ihren Termin können Sie schon jetzt online buchen oder telefonisch im Sekretariat vereinbaren: <a href="tel:+492012802630">{school.phone}</a>.</p>
+        <div class="actions">
+          <a href={link("Anmeldetermin-vereinbaren.html")} class="btn btn-gold">Anmeldetermin buchen <span class="arrow">→</span></a>
+          <a href={link("Anmeldung.html#klasse-5")} class="more">Ablauf und Unterlagen</a>
+        </div>
+      </div>
+      {anmeldung.termine.list.length > 0 && (
+        <ol aria-label="Anmeldetage">
+          {anmeldung.termine.list.map((t: { date: string; day: string; time: string }) => (
+            <li><span class="date">{t.date.replace(/\d{4}$/, "")}</span><span class="day">{t.day}</span><span class="time">{t.time}</span></li>
+          ))}
+        </ol>
+      )}
     </div>
   </div>
 </section>
