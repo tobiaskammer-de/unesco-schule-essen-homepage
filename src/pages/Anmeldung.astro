@@ -5,17 +5,63 @@ import ContactCard from "../components/ContactCard.astro";
 import MailLink from "../components/MailLink.astro";
 import { getSingle } from "../lib/pageContent";
 import { getTeacherByRole, ROLES } from "../lib/roles";
+import { safeBold, safeInlineJson } from "../lib/safeMarkup";
 
 // Editierbare Inhalte aus src/content/pages/anmeldung.yml (Sveltia)
 const an = await getSingle("pageAnmeldung");
 const school = await getSingle("siteSchool");
+
+// Elterninformationsabend: seit 29.10.2026 Teil dieser Seite (#elternabend), Inhalte weiter
+// aus src/content/pages/elterninformationsabend.yml. Der Einladungstext ist die wortgetreue
+// Vorlage der Schulleitung und wird nicht redaktionell umformuliert.
+const eia = await getSingle("pageElterninformationsabend");
+const einladungAbsaetze = String(eia.einladung.body).split("\n\n");
+
+// Strukturierte Daten für die Google-Terminanzeige des Elterninformationsabends.
+const eventJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Event",
+  name: "Elterninformationsabend für die zukünftigen 5. Klassen",
+  description:
+    "Informationsabend zur Erprobungsstufe: Schulprofil als UNESCO-Projektschule, Übergang von der Grundschule ins Gymnasium, Unterricht und Ganztag.",
+  startDate: "2027-01-20T19:00:00+01:00",
+  endDate: "2027-01-20T21:00:00+01:00",
+  eventStatus: "https://schema.org/EventScheduled",
+  eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
+  isAccessibleForFree: true,
+  inLanguage: "de",
+  location: {
+    "@type": "Place",
+    name: `Aula der ${school.name}`,
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: school.address.street,
+      postalCode: school.address.postal,
+      addressLocality: school.address.city,
+      addressCountry: "DE",
+    },
+  },
+  organizer: {
+    "@type": "EducationalOrganization",
+    name: school.nameLong,
+    url: "https://unesco-schule-essen.de",
+  },
+  offers: {
+    "@type": "Offer",
+    url: eia.anmeldung.ctaHref,
+    price: "0",
+    priceCurrency: "EUR",
+    availability: "https://schema.org/InStock",
+  },
+};
 
 const [koordEprob, koordOberstufe] = await Promise.all([
   getTeacherByRole(ROLES.KOORD_ERPROBUNGSSTUFE),
   getTeacherByRole(ROLES.KOORD_OBERSTUFE),
 ]);
 ---
-<BaseLayout title="Anmeldung · UNESCO-Schule Essen" description="Wege an die UNESCO-Schule Essen: Anmeldung für Klasse 5 und Wechsel in die gymnasiale Oberstufe. Termine, Unterlagen und persönliche Beratung.">
+<BaseLayout title="Anmeldung Klasse 5 und Oberstufe · Elterninformationsabend · UNESCO-Schule Essen" description="Anmeldung an der UNESCO-Schule Essen: Elterninformationsabend zur 5. Klasse am 20.01.2027, Anmeldetermine im Februar 2027 online buchen, Unterlagen und Wechsel in die Oberstufe.">
+<script type="application/ld+json" slot="head" is:inline set:html={safeInlineJson(eventJsonLd)}></script>
 <style is:global>
   /* ---------- Anmeldung ---------- */
 
@@ -342,8 +388,39 @@ const [koordEprob, koordOberstufe] = await Promise.all([
   }
   .an-closing .cta-row{display:flex;gap:14px;flex-wrap:wrap;}
 
+  /* Elterninformationsabend (früher eigene Seite) */
+  .an-eia{
+    display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);
+    background:#fff;border:1px solid var(--hairline);
+    border-top:var(--card-accent-width) solid var(--gold);
+    margin-bottom:48px;scroll-margin-top:120px;
+  }
+  .an-eia .when{padding:32px 36px;background:var(--petrol);color:var(--creme);display:flex;flex-direction:column;gap:10px;}
+  .an-eia .when .kicker{
+    font-family:var(--sans);font-size:11px;font-weight:600;
+    letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);
+  }
+  .an-eia .when .big{font-family:var(--serif);font-weight:500;font-size:clamp(30px,3.2vw,40px);line-height:1.05;letter-spacing:-0.015em;color:var(--creme);}
+  .an-eia .when p{font-family:var(--sans);font-size:14.5px;line-height:1.6;color:rgba(245,239,231,0.9);margin:0;}
+  .an-eia .when p strong{color:var(--creme);font-weight:600;}
+  .an-eia .when .badge{
+    align-self:flex-start;display:inline-block;margin-top:8px;padding:11px 18px;
+    background:var(--gold);color:var(--gold-text);border:1.5px solid var(--gold);border-radius:4px;
+    font-family:var(--sans);font-size:13px;font-weight:600;letter-spacing:0.04em;text-decoration:none;
+    transition:background-color .2s, border-color .2s;
+  }
+  .an-eia .when .badge:hover{background:var(--gold-hover);border-color:var(--gold-hover);}
+  .an-eia .when .badge:focus-visible{outline:2px solid var(--gold);outline-offset:3px;}
+  .an-eia .letter{padding:32px 40px;}
+  .an-eia .letter h3{font-family:var(--serif);font-weight:500;font-size:22px;line-height:1.2;color:var(--petrol);letter-spacing:-0.008em;margin:0 0 16px;}
+  .an-eia .letter p{font-family:var(--sans);font-size:15.5px;line-height:1.7;color:var(--tinte);margin:0 0 14px;}
+  .an-eia .letter p strong{color:var(--petrol);font-weight:600;}
+  .an-eia .letter .gruss{font-family:var(--serif);font-style:italic;font-size:17px;color:var(--bordeaux);margin:6px 0 0;}
+
   @media (max-width:960px){
     .choose-grid{grid-template-columns:1fr;gap:16px;}
+    .an-eia{grid-template-columns:1fr;}
+    .an-eia .when,.an-eia .letter{padding:28px 24px;}
     .termine{grid-template-columns:1fr;}
     .termine .intro{border-right:0;border-bottom:1px solid var(--hairline);}
     .termine ol li{grid-template-columns:auto 1fr;gap:10px 16px;}
@@ -414,6 +491,27 @@ const [koordEprob, koordOberstufe] = await Promise.all([
       <p>{an.klasse5.intro}</p>
     </div>
 
+    <!-- Elterninformationsabend -->
+    <div class="an-eia" id="elternabend">
+      <div class="when">
+        <span class="kicker">Elterninformationsabend</span>
+        <div class="big">{eia.termin.bigDate}</div>
+        <p>{eia.termin.sub}</p>
+        <p><strong>{eia.termin.ort}</strong><br>{school.address.street}, {school.address.postal} {school.address.city}</p>
+        {eia.termin.badge && (
+          <a href={eia.anmeldung.ctaHref} class="badge" target="_blank" rel="noopener">{eia.termin.badge} →</a>
+        )}
+      </div>
+      <div class="letter">
+        <h3>{eia.einladung.title}</h3>
+        <p>{eia.einladung.anrede}</p>
+        {einladungAbsaetze.map((para: string) => <p set:html={safeBold(para)} />)}
+        <p set:html={safeBold(eia.einladung.wann)} />
+        <p set:html={safeBold(eia.einladung.wo)} />
+        <p class="gruss">{eia.einladung.gruss}</p>
+      </div>
+    </div>
+
     <!-- Termine -->
     <div class="termine">
       <div class="intro">
@@ -447,7 +545,7 @@ const [koordEprob, koordOberstufe] = await Promise.all([
           <span class="n">02</span>
           <h4>Formular ausfüllen</h4>
           <p>Bitte laden Sie das Anmeldeformular hier herunter und bringen Sie es ausgefüllt und ausgedruckt zum Termin mit.</p>
-          <a href="assets/eltern/Anmeldebogen-UNESCO-Schule-Essen.pdf" class="action" download>Anmeldeformular herunterladen (PDF · 233 KB) →</a>
+          <a href="assets/eltern/Anmeldebogen-UNESCO-Schule-Essen.pdf" class="action" download>Anmeldeformular herunterladen (PDF · 106 KB) →</a>
         </article>
         <article class="step">
           <span class="n">03</span>

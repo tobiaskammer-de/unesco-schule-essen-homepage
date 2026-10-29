@@ -1,7 +1,8 @@
-# Landingpage „Elterninformationsabend für die 5. Klasse".
+# Elterninformationsabend für die 5. Klasse. Seit 29.10.2026 ein Block auf der
+# Anmeldeseite (Anmeldung.html#elternabend); die alte Seite leitet dorthin um.
 # Der Einladungstext ist die wortgetreue Vorlage der Schulleitung.
-# Termingebunden: nach dem 20.01.2027 aktualisieren oder Verlinkungen
-# (Startseiten-Kachel, Anmeldeseite, Menü, Footer) entfernen.
+# Termingebunden: nach dem 20.01.2027 aktualisieren oder den Block entfernen.
+# hero.* wird seitdem nicht mehr angezeigt.
 hero:
   title: "Elterninformationsabend für die 5. Klasse"
   titleHighlight: "am Gymnasium in Essen"

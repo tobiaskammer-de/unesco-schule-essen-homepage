@@ -10,6 +10,15 @@ import { TERMINE_API } from "../lib/anmeldetermine";
 const school = await getSingle("siteSchool");
 const coordinatorEmail = "sven.scheding@164835.nrw.schule";
 const phoneHref = "tel:+492012802630";
+const formHref = "assets/eltern/Anmeldebogen-UNESCO-Schule-Essen.pdf";
+// Wie im Anmeldebogen („Vorgelegte Unterlagen“, Masernschutz); gleiche Liste in den Mails des Workers (src/texte.js)
+const unterlagen = [
+  "das Halbjahreszeugnis der Klasse 4 mit der Übergangsempfehlung",
+  "den Anmeldeschein der Grundschule",
+  "Geburtsurkunde, Familienstammbuch oder Personalausweis Ihres Kindes",
+  "den Nachweis über ausreichenden Masernschutz (z. B. Impfpass)",
+  "falls vorhanden: den Nachweis über Leistungen aus dem Bildungs- und Teilhabepaket",
+];
 ---
 <BaseLayout title="Anmeldetermin vereinbaren · UNESCO-Schule Essen" description="Anmeldung für die Klasse 5 an der UNESCO-Schule Essen: Wählen Sie online einen freien Termin an einem der drei Anmeldetage im Februar 2027.">
 <style is:global>
@@ -30,6 +39,8 @@ const phoneHref = "tel:+492012802630";
   .at-facts .k{display:block;font-family:var(--sans);font-size:11.5px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--bordeaux);margin-bottom:2px;}
   .at-facts p{font-family:var(--sans);font-size:15px;line-height:1.55;color:var(--tinte);}
   .at-facts a{color:var(--bordeaux);text-decoration:underline;text-underline-offset:3px;}
+  .at-bring{margin:2px 0 8px;padding-left:18px;font-family:var(--sans);font-size:15px;line-height:1.55;color:var(--tinte);}
+  .at-bring li + li{margin-top:3px;}
 
   /* Kalender */
   .at-cal{background:#fff;border:1px solid var(--hairline);border-top:var(--card-accent-width) solid var(--petrol);padding:28px 28px 24px;}
@@ -199,7 +210,15 @@ const phoneHref = "tel:+492012802630";
           <div><span class="k">Buchungsschluss</span><p id="at-closes">Freitag, 12. Februar 2027, 18:00 Uhr</p></div>
           <div><span class="k">Lieber telefonisch?</span><p>Das Sekretariat vereinbart Ihren Termin auch gern am Telefon: <a href={phoneHref}>{school.phone}</a></p></div>
           <div><span class="k">Absage oder Umbuchung</span><p>Per E-Mail an Herrn Sven Scheding, <MailLink email={coordinatorEmail} />, oder telefonisch im Sekretariat.</p></div>
-          <div><span class="k">Ablauf und Unterlagen</span><p>Alles zur Anmeldung finden Sie auf der Seite <a href="Anmeldung.html#klasse-5">Anmeldung Klasse 5</a>. Den Anmeldebogen können Sie dort schon vorab herunterladen.</p></div>
+          <div>
+            <span class="k">Bitte mitbringen</span>
+            <ul class="at-bring">
+              <li>den ausgefüllten und unterschriebenen <a href={formHref} download>Anmeldebogen</a> (PDF)</li>
+              {unterlagen.map((u) => <li>{u}</li>)}
+              <li>und Ihr Kind: Es ist beim Gespräch dabei.</li>
+            </ul>
+            <p>Mehr zum Ablauf auf der Seite <a href="Anmeldung.html#klasse-5">Anmeldung Klasse 5</a>.</p>
+          </div>
         </div>
       </div>
 
@@ -275,12 +294,8 @@ const phoneHref = "tel:+492012802630";
     <p id="at-done-mail"></p>
     <span class="k">Bitte bringen Sie mit</span>
     <ul>
-      <li>den ausgefüllten und unterschriebenen <a href="assets/eltern/Anmeldebogen-UNESCO-Schule-Essen.pdf" download>Anmeldebogen</a></li>
-      <li>das Halbjahreszeugnis der Klasse 4 mit der Übergangsempfehlung</li>
-      <li>den Anmeldeschein der Grundschule</li>
-      <li>Geburtsurkunde, Familienstammbuch oder Personalausweis Ihres Kindes</li>
-      <li>den Nachweis über ausreichenden Masernschutz (z. B. Impfpass)</li>
-      <li>falls vorhanden: den Nachweis über Leistungen aus dem Bildungs- und Teilhabepaket</li>
+      <li>den ausgefüllten und unterschriebenen <a href={formHref} download>Anmeldebogen</a></li>
+      {unterlagen.map((u) => <li>{u}</li>)}
     </ul>
     <p>Und natürlich Ihr Kind: Wir freuen uns darauf, es kennenzulernen.</p>
     <button class="btn btn-primary" type="button" id="at-done-close">Fertig</button>

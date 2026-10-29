@@ -12,4 +12,9 @@ export default defineConfig({
     format: 'file',
   },
   integrations: [sitemap(), pagefind()],
+  // Alte Adressen, die irgendwo verlinkt oder gedruckt sein können
+  redirects: {
+    // Elterninformationsabend ist seit 29.10.2026 Teil der Anmeldeseite
+    '/elterninformationsabend-5-klasse-essen': '/Anmeldung.html#elternabend',
+  },
 });

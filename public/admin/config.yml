@@ -279,7 +279,7 @@ collections:
               - { name: kicker, label: "Datum / Mini-Label", widget: string, required: false }
               - { name: text, label: "Hinweis-Text", widget: text, required: false }
               - { name: ctaLabel, label: "Link-Text", widget: string, required: false }
-              - { name: ctaHref, label: "Link-Ziel", widget: string, required: false, hint: "z. B. elterninformationsabend-5-klasse-essen.html" }
+              - { name: ctaHref, label: "Link-Ziel", widget: string, required: false, hint: "z. B. Anmeldung.html#klasse-5" }
           - name: klasse5
             label: "Klasse-5-Block"
             widget: object
