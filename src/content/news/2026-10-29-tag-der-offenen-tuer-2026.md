@@ -7,6 +7,7 @@ coverImage: "/assets/tdot/plakat-grundschule.jpg"
 coverAlt: "Plakat: UNESCO-Gymnasium, Tag der offenen Tür 2026, Samstag, 5. Dezember, 10 bis 14 Uhr, für Kinder der 4. Klassen und ihre Eltern"
 showCoverInArticle: false
 author: "UNESCO-Schule Essen"
+pinnedUntil: 2026-12-05
 draft: false
 ---
 
