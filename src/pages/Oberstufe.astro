@@ -285,13 +285,8 @@ const [koordOberstufe, stufeEF] = await Promise.all([
   <Fragment slot="eyebrow">{page.hero.eyebrow}</Fragment>
   <Fragment slot="title">{page.hero.title}{page.hero.titleHighlight && <><br /><em>{page.hero.titleHighlight}</em></>}</Fragment>
   <Fragment slot="lede">{page.hero.lede}</Fragment>
-  <Fragment slot="actions">
-    <a href="assets/GO2026.pdf" class="ob-download" download>
-      <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      Informationsbroschüre herunterladen
-      <span class="meta">PDF · 2,2&#8239;MB</span>
-    </a>
-  </Fragment>
+  {/* Download der Informationsbroschüre entfernt: veraltet, die Oberstufenkoordination überarbeitet sie
+       (Wilbat, 30.10.2026). Für die neue Fassung den Knopf mit class="ob-download" wieder einsetzen. */}
 </PageHero>
 
 <section class="ob-lauf" id="laufbahn" aria-label="Individuelle Laufbahnberatung">
