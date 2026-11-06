@@ -98,6 +98,7 @@ collections:
           - { name: eyebrow, label: "Überzeile", widget: string, required: false, default: "Zum Anschauen" }
           - { name: duration, label: "Laufzeit", widget: string, required: false, hint: "Format M:SS, z. B. 2:37." }
           - { name: note, label: "Hinweis / Credits unter dem Video", widget: text, required: false }
+      - { name: pinnedUntil, label: "Oben anheften bis (optional)", widget: datetime, date_format: "YYYY-MM-DD", time_format: false, picker_utc: false, required: false, hint: "Die Nachricht steht bis einschließlich zu diesem Tag ganz oben in Aktuelles und auf der Startseite, danach wieder nach Datum. Leer lassen = normal nach Datum." }
       - { name: draft, label: "Entwurf (nicht veröffentlichen)", widget: boolean, default: false }
       - name: body
         label: "Haupttext"

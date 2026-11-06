@@ -2,12 +2,26 @@ import { getCollection, type CollectionEntry } from "astro:content";
 
 export type NewsEntry = CollectionEntry<"news">;
 
-/** Alle veröffentlichten Artikel, absteigend nach Datum sortiert. */
+const DAY_MS = 24 * 60 * 60 * 1000;
+
+/** Angeheftet, solange der Tag `pinnedUntil` noch nicht vorbei ist. */
+export function isPinned(entry: NewsEntry, now = new Date()): boolean {
+  const until = entry.data.pinnedUntil;
+  return !!until && now.getTime() < until.getTime() + DAY_MS;
+}
+
+/**
+ * Alle veröffentlichten Artikel: angeheftete zuerst (siehe `pinnedUntil`),
+ * sonst absteigend nach Datum sortiert.
+ */
 export async function getAllNews(): Promise<NewsEntry[]> {
   const all = await getCollection("news", (entry) => !entry.data.draft);
-  return all.sort(
-    (a, b) => b.data.date.getTime() - a.data.date.getTime()
-  );
+  const now = new Date();
+  return all.sort((a, b) => {
+    const pin = Number(isPinned(b, now)) - Number(isPinned(a, now));
+    if (pin !== 0) return pin;
+    return b.data.date.getTime() - a.data.date.getTime();
+  });
 }
 
 /** Die N neuesten Artikel. */

@@ -71,6 +71,13 @@ const news = defineCollection({
         note: z.string().optional(),
       })
       .optional(),
+    /**
+     * Optional: Artikel bis einschließlich dieses Datums oben anheften
+     * (vor allen anderen, unabhängig vom Veröffentlichungsdatum). Danach
+     * rutscht er automatisch wieder an seinen Platz nach Datum; der tägliche
+     * Neubau um 03:00 UTC sorgt dafür. Weglassen = nicht angeheftet.
+     */
+    pinnedUntil: z.coerce.date().optional(),
     draft: z.boolean().default(false),
   }),
 });
