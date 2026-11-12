@@ -159,6 +159,28 @@ const [koordOberstufe, stufeEF] = await Promise.all([
   }
   .ob-check li strong{color:var(--petrol);}
 
+  /* Neu ab 2027/28 */
+  .ob-neu-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;}
+  .ob-neu-card{
+    background:#fff;border:1px solid var(--hairline);
+    border-top:var(--card-accent-width) solid var(--bordeaux);
+    padding:28px 28px 26px;
+  }
+  .ob-neu-card h3{
+    font-family:var(--serif);font-weight:500;font-size:22px;line-height:1.2;
+    color:var(--petrol);letter-spacing:-0.008em;margin:0 0 10px;
+  }
+  .ob-neu-card p{
+    font-family:var(--sans);font-size:15.5px;line-height:1.6;color:var(--tinte);margin:0;
+  }
+  .ob-neu-detail{max-width:780px;margin:36px 0 0;}
+  .ob-neu-detail p{
+    font-family:var(--sans);font-size:16px;line-height:1.65;color:var(--tinte);margin:0 0 14px;
+  }
+  .ob-neu-detail p strong{color:var(--petrol);}
+  .ob-neu-detail p.fine{font-size:13px;line-height:1.55;color:var(--stein);margin:20px 0 0;}
+  @media (max-width:960px){.ob-neu-grid{grid-template-columns:1fr;gap:14px;}}
+
   /* Six steps */
   .ob-steps{background:var(--petrol);color:var(--creme);padding:var(--space-section) 0;}
   .ob-steps .head{max-width:780px;margin:0 0 48px;}
@@ -191,8 +213,8 @@ const [koordOberstufe, stufeEF] = await Promise.all([
     color:rgba(245,239,231,0.82);margin:0;
   }
   .steps-list .when{
-    font-family:var(--sans);font-size:12px;letter-spacing:0.1em;text-transform:uppercase;
-    color:rgba(245,239,231,0.7);text-align:right;min-width:140px;
+    font-family:var(--sans);font-size:12.5px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;
+    color:var(--gold);text-align:right;min-width:140px;max-width:200px;
   }
 
   /* Contact */
@@ -260,7 +282,7 @@ const [koordOberstufe, stufeEF] = await Promise.all([
     .ob-stat:nth-child(-n+2){border-bottom:1px solid var(--hairline);}
     .ob-check{grid-template-columns:1fr;}
     .steps-list li{grid-template-columns:48px 1fr;gap:16px;padding:20px 24px;}
-    .steps-list .when{grid-column:1 / -1;text-align:left;margin-top:6px;}
+    .steps-list .when{grid-column:1 / -1;text-align:left;margin-top:6px;max-width:none;}
     .steps-list .num{font-size:30px;}
     .contact-duo{grid-template-columns:1fr;gap:14px;}
     .ob-duwir,.ob-sect,.ob-steps,.ob-contact{padding:var(--space-section-sm) 0;}
@@ -285,8 +307,14 @@ const [koordOberstufe, stufeEF] = await Promise.all([
   <Fragment slot="eyebrow">{page.hero.eyebrow}</Fragment>
   <Fragment slot="title">{page.hero.title}{page.hero.titleHighlight && <><br /><em>{page.hero.titleHighlight}</em></>}</Fragment>
   <Fragment slot="lede">{page.hero.lede}</Fragment>
-  {/* Download der Informationsbroschüre entfernt: veraltet, die Oberstufenkoordination überarbeitet sie
-       (Wilbat, 30.10.2026). Für die neue Fassung den Knopf mit class="ob-download" wieder einsetzen. */}
+  {/* Handbuch EF 2027/28: überarbeitete Fassung der Oberstufenkoordination (Wilbat, 12.11.2026). */}
+  <Fragment slot="actions">
+    <a href="/assets/Handbuch_EF_2027-28_UNESCO-Schule_Essen.pdf" class="ob-download" download>
+      <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Handbuch zur Einführungsphase 2027/28
+      <span class="meta">PDF · 0,4&#8239;MB</span>
+    </a>
+  </Fragment>
 </PageHero>
 
 <section class="ob-lauf" id="laufbahn" aria-label="Individuelle Laufbahnberatung">
@@ -340,9 +368,38 @@ const [koordOberstufe, stufeEF] = await Promise.all([
 <section class="ob-stats" aria-label="Die Schule in Zahlen">
   <div class="container">
     <div class="stats-row">
-      <div class="ob-stat"><span class="n">~550</span><span class="label">Schülerinnen und Schüler aus fast 45 Nationen</span></div>
-      <div class="ob-stat"><span class="n">~350</span><span class="label">Schülerinnen und Schüler in der Oberstufe</span></div>
-      <div class="ob-stat"><span class="n">48</span><span class="label">Lehrkräfte</span></div>
+      <div class="ob-stat"><span class="n">400</span><span class="label">Schülerinnen und Schüler aus fast 45 Nationen</span></div>
+      <div class="ob-stat"><span class="n">250</span><span class="label">Schülerinnen und Schüler in der Oberstufe</span></div>
+      <div class="ob-stat"><span class="n">48</span><span class="label">Lehrerinnen und Lehrer</span></div>
+      <div class="ob-stat"><span class="n">iPad</span><span class="label">für alle Schülerinnen und Schüler</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="ob-sect alt" id="neu" aria-label="Neu ab dem Schuljahr 2027/28">
+  <div class="container">
+    <div class="head">
+      <span class="eyebrow">Neu ab 2027/28</span>
+      <h2>Du bist der erste Jahrgang der neuen Oberstufe</h2>
+    </div>
+    <div class="ob-neu-grid">
+      <article class="ob-neu-card">
+        <h3>GKL statt Klausur</h3>
+        <p>In jedem der drei Aufgabenfelder ersetzt ein gleichwertiger komplexer Leistungsnachweis (GKL) eine Klausur, je nach Fach zum Beispiel eine Präsentation, ein Portfolio oder eine praktische Aufgabe.</p>
+      </article>
+      <article class="ob-neu-card">
+        <h3>Projektkurse in der Q2</h3>
+        <p>Spannende Projektkurse aus unterschiedlichen Aufgabenfeldern. Gewählt wird in der Q1.</p>
+      </article>
+      <article class="ob-neu-card">
+        <h3>Fünf Abiturfächer</h3>
+        <p>Schriftliche, mündliche und Präsentationsprüfungen im Abitur. Die Abiturfächer 3 bis 5 legst du zu Beginn der Q2 fest.</p>
+      </article>
+    </div>
+    <div class="ob-neu-detail">
+      <p>In der EF schreibst du Klausuren in Deutsch, Mathematik und deinen Fremdsprachen sowie in mindestens einer Gesellschaftswissenschaft und einer Naturwissenschaft. Ein <strong>GKL</strong> ist genauso anspruchsvoll wie eine Klausur, hat aber eine andere Form und kann auch in Gruppen erarbeitet werden.</p>
+      <p>In jedem der drei Aufgabenfelder (Sprachen, Kunst und Musik · Gesellschaftswissenschaften · Mathematik und Naturwissenschaften) erbringst du in der EF genau einen GKL, in einem Grundkurs, den du schriftlich belegt hast. In welchem Fach, entscheidest du selbst. Welche Formate es in welchem Fach gibt, legen die Kernlehrpläne und unsere Fachkonferenzen fest.</p>
+      <p class="fine">Stand: November 2026. Rechtsgrundlage für die gymnasiale Oberstufe ist die APO-GOSt in der ab 01.08.2027 geltenden Fassung; rechtsverbindlich ist die in GV. NRW. bzw. BASS veröffentlichte Fassung.</p>
     </div>
   </div>
 </section>
@@ -352,12 +409,12 @@ const [koordOberstufe, stufeEF] = await Promise.all([
     <div class="head">
       <span class="eyebrow">Wer bei uns aufgenommen wird</span>
       <h2>Wir nehmen in die gymnasiale Oberstufe auf</h2>
-      <p>Für die Aufnahme ist es unerheblich, welcher Notendurchschnitt dabei erreicht wurde. Alle Schülerinnen und Schüler erhalten bei uns die Chance auf den Erwerb der Allgemeinen Hochschulreife (Abitur) oder auf den Erwerb des schulischen Teils der Fachhochschulreife.</p>
+      <p>Für die Aufnahme ist es unerheblich, welcher Notendurchschnitt dabei erreicht wurde: Was zählt, ist die erreichte Qualifikation. Alle Schülerinnen und Schüler erhalten bei uns die Chance auf den Erwerb der Allgemeinen Hochschulreife (Abitur) oder auf den Erwerb des schulischen Teils der Fachhochschulreife.</p>
     </div>
     <ul class="ob-check">
       <li>Schülerinnen und Schüler, die an einer <strong>Realschule, Sekundarschule, Hauptschule</strong> oder an einem <strong>Berufskolleg</strong> ihre Fachoberschulreife mit Qualifikationsvermerk erworben haben</li>
       <li>Schülerinnen und Schüler, die an einem <strong>anderen Gymnasium</strong> die Berechtigung zum Eintritt in die gymnasiale Oberstufe erworben haben oder die Jahrgangsstufe EF wiederholen</li>
-      <li>Schülerinnen und Schüler, die an einem anderen Gymnasium am Ende des Schuljahres 2025/26 die Jahrgangsstufe <strong>EF wiederholen</strong> müssen oder möchten</li>
+      <li>Schülerinnen und Schüler, die an einem anderen Gymnasium am Ende des Schuljahres 2026/27 die Jahrgangsstufe <strong>EF wiederholen</strong> müssen oder möchten</li>
       <li>Schülerinnen und Schüler in die Jahrgangsstufen <strong>Q1 oder Q2</strong></li>
     </ul>
   </div>
@@ -370,12 +427,13 @@ const [koordOberstufe, stufeEF] = await Promise.all([
       <h2>Wir bieten in der Oberstufe</h2>
     </div>
     <ul class="ob-check">
-      <li><strong>Erhaltung eines Klassenverbandes</strong> in der Einführungsphase in Mathematik, Deutsch, Englisch und Sport</li>
-      <li><strong>Klassenbildung gemäß den bisher besuchten Schulformen:</strong> Schülergruppen aus ein und derselben Schule können zusammen­bleiben</li>
-      <li><strong>Vertiefungskurse</strong> in Mathematik, Deutsch und Englisch</li>
-      <li><strong>Neueinsetzende Fremdsprache</strong> Französisch und Latein (ggf. Erwerb des Kleinen Latinums)</li>
-      <li><strong>Fortsetzung</strong> der Fremdsprache Französisch aus der Sekundarstufe I</li>
-      <li><strong>Leistungskurse</strong> in Deutsch, Englisch, Mathematik, Pädagogik, Sozialwissenschaft, Biologie, Chemie, Erdkunde, Geschichte</li>
+      <li><strong>Klassenverband</strong> in der Einführungsphase in den Kernfächern Deutsch, Mathematik, Englisch und in Sport</li>
+      <li><strong>Eine neue Schule, aber vertraute Gesichter:</strong> Klassenbildung mit Blick auf die Herkunftsschule und persönliche Wünsche</li>
+      <li><strong>Vertiefungskurse</strong> in den Fächern Deutsch, Mathematik und Englisch</li>
+      <li><strong>Anfängerkurse</strong> in Französisch und Latein (ggf. Erwerb des Kleinen Latinums)</li>
+      <li><strong>Fortsetzung</strong> von Französisch aus der Sekundarstufe I, sofern genügend Schülerinnen und Schüler es wählen</li>
+      <li><strong>Leistungskurse</strong> in Deutsch, Englisch, Mathematik, Erziehungswissenschaft, Sozialwissenschaften, Chemie, Geschichte und Biologie</li>
+      <li><strong>Projektkurse</strong> in der Q2 aus unterschiedlichen Aufgabenfeldern, neu ab 2027/28</li>
     </ul>
   </div>
 </section>
@@ -387,23 +445,38 @@ const [koordOberstufe, stufeEF] = await Promise.all([
       <h2>Fordern und fördern</h2>
     </div>
     <ul class="ob-check">
-      <li>Orientierung der Unterrichtsgestaltung an den Voraussetzungen der Schülerinnen und Schüler</li>
+      <li>Qualitativer Unterricht, der gymnasiale Standards vermittelt, aber die unterschiedlichen Voraussetzungen und Schulbiografien im Blick behält</li>
       <li>Progressive (stetig ansteigende) Anforderungsprofile in Klausuren und Prüfungen</li>
-      <li>Einrichtung von <strong>Schülertutorien</strong> in Deutsch, Mathematik und Englisch</li>
-      <li>Intensive individuelle Beratung durch die Stufenleitungen</li>
+      <li>Intensive individuelle Beratung und Betreuung durch die Stufenleiterinnen und Stufenleiter</li>
       <li>Initiierung und Betreuung von Lerngruppen</li>
-      <li>Förderung besonderer Stärken</li>
+      <li>Förderung von besonderen Stärken</li>
       <li>Vermittlung von Stipendien</li>
-      <li>Unterstützung bei Beantragung von Mitteln zur Bildung und Teilhabe</li>
+      <li>Unterstützung bei der Beantragung von Mitteln zur Bildung und Teilhabe</li>
       <li>Kennenlern- und Methodentage zu Beginn des Schuljahres</li>
+      <li>Unterstützung durch Schulsozialarbeit, Schulpsychologischen Dienst, Berufs- und Studienberatung und Arbeitsagentur</li>
     </ul>
   </div>
 </section>
 
-<section class="ob-sect alt" aria-label="Zusätzliches Angebot">
+<section class="ob-sect alt" aria-label="Wir lernen digital">
   <div class="container">
     <div class="head">
-      <span class="eyebrow">Zusätzlich an unserer Schule</span>
+      <span class="eyebrow">Digitale Schule</span>
+      <h2>Wir lernen digital</h2>
+    </div>
+    <ul class="ob-check">
+      <li>Alle Schülerinnen und Schüler erhalten ein <strong>iPad</strong> für die verpflichtende Nutzung im schulischen Bereich</li>
+      <li>Für alle gibt es eine digitale <strong>Lern- und Kommunikationsplattform</strong>, auf die nur sie Zugriff haben</li>
+      <li>Wir fördern einen ausgewogenen, zielgerichteten und reflektierten Umgang mit digitalen Medien und Werkzeugen</li>
+    </ul>
+  </div>
+</section>
+
+<section class="ob-sect" aria-label="Zusätzliches Angebot">
+  <div class="container">
+    <div class="head">
+      <span class="eyebrow">Studium und Beruf</span>
+      <h2>Wir bieten zusätzlich an</h2>
     </div>
     <ul class="ob-check">
       <li><strong>Schülerbetriebspraktikum</strong> oder duales Praktikum in der Einführungs­phase</li>
@@ -415,7 +488,7 @@ const [koordOberstufe, stufeEF] = await Promise.all([
   </div>
 </section>
 
-<section class="ob-steps" aria-label="Dein Weg zu uns in 6 Schritten">
+<section class="ob-steps" id="weg" aria-label="Dein Weg zu uns in 6 Schritten">
   <div class="container">
     <div class="head">
       <span class="eyebrow">Dein Weg zu uns</span>
@@ -426,43 +499,49 @@ const [koordOberstufe, stufeEF] = await Promise.all([
         <span class="num">01</span>
         <div class="body">
           <h3>Vor der Anmeldung</h3>
-          <p>Tag der offenen Tür, Informationsveranstaltung in der Aula und Schnuppertage. Ein Tag am Unterricht teilnehmen, mit einem „Stundenplan", der deinen Interessen entspricht.</p>
+          <p><strong>Samstag, 05.12.2026, 10–14 Uhr:</strong> Tag der offenen Tür. <strong>Dienstag, 19.01.2027, 19 Uhr:</strong> Informationsveranstaltung in der Aula. <strong>11.01. bis 11.02.2027:</strong> Schnuppertage. Nach einer telefonischen oder schriftlichen Anfrage nimmst du einen Tag am Unterricht der Jahrgangsstufe teil, mit einem „Stundenplan", der deinen Interessen entspricht.</p>
         </div>
+        <span class="when">Dezember bis Februar</span>
       </li>
       <li>
         <span class="num">02</span>
         <div class="body">
           <h3>Die Anmeldung</h3>
-          <p>Anmeldung online über <strong>www.schueleranmeldung.de</strong>. Danach persönlich mit unterschriebenem Anmeldebogen, Ausweis und Halbjahreszeugnis bei uns vorbeikommen. Nach der Anmeldung bist du zunächst aufgenommen.</p>
+          <p>Die Anmeldung erfolgt über die Onlineplattform <strong>www.schulbewerbung.de</strong>. Den Startcodezettel für die Onlineanmeldung erhältst du von deiner jetzigen Schule. Welche Unterlagen du einreichst, erfährst du auf dem Informationsabend am 19.01.2027. Mit der Anmeldung bist du zunächst einmal an unserer Schule aufgenommen.</p>
         </div>
+        <span class="when">03.02. bis 05.03.2027</span>
       </li>
       <li>
         <span class="num">03</span>
         <div class="body">
           <h3>Die Fächerwahl</h3>
-          <p>Pflicht­belegungen (Deutsch, Mathematik, Englisch, Sport), zweite Fremdsprache (Französisch oder Latein als neueinsetzende Fremdsprache, wenn bisher keine zweite Fremdsprache), Religion/Philosophie, Kunst/Musik, Natur- und Gesellschafts­wissenschaften. Infoabend und Abgabe des Wahlzettels.</p>
+          <p><strong>Mittwoch, 21.04.2027, 19 Uhr:</strong> Informationsveranstaltung in der Aula. Wir erklären die Fächerwahl und zeigen mögliche Schullaufbahnen. Dort oder in einem individuellen Beratungsgespräch (Termine ab 21.04.2027) erhältst du den Wahlzettel. Pflicht für alle sind Deutsch, Mathematik, Englisch und Sport. Dazu kommen Religion oder Philosophie, Kunst oder Musik, Natur- und Gesellschafts­wissenschaften und, wenn du bisher keine zweite Fremdsprache hattest, Französisch oder Latein als neu einsetzende Fremdsprache. Mit einem weiteren Fach nach Wahl hast du in der EF zehn Grundkurse.</p>
         </div>
+        <span class="when">Wahlzettel bis 12.05.2027, 12 Uhr</span>
       </li>
       <li>
         <span class="num">04</span>
         <div class="body">
           <h3>Deine besonderen Wünsche</h3>
-          <p>In der EF bilden wir Klassenverbände in Deutsch, Englisch, Mathematik und Sport. Auf dem Wahlzettel gibst du an, mit wem du gerne in eine „Klasse" möchtest: wir versuchen, deine Wünsche zu berücksichtigen.</p>
+          <p>In der EF bilden wir Klassenverbände in Deutsch, Englisch, Mathematik und Sport. Auf dem Wahlzettel gibst du an, mit wem du gerne in eine „Klasse" möchtest oder auch auf gar keinen Fall: wir versuchen, deine Wünsche zu berücksichtigen.</p>
         </div>
+        <span class="when">Auf dem Wahlzettel</span>
       </li>
       <li>
         <span class="num">05</span>
         <div class="body">
           <h3>Die endgültige Aufnahme</h3>
-          <p>Sobald du dein Abschlusszeugnis (Fachoberschulreife mit Qualifikationsvermerk oder Gymnasialzeugnis) hast, legst du uns schnellstmöglich, noch vor den Sommerferien, eine Kopie vor. Dann bist du endgültig Schülerin oder Schüler am UNESCO-Gymnasium.</p>
+          <p>Sobald du dein Abschlusszeugnis mit der Fachoberschulreife mit Qualifikationsvermerk hast, legst du es uns so schnell wie möglich, unbedingt vor Beginn der Sommerferien, in Kopie mit dem Original vor. Kommst du von einem anderen Gymnasium, brauchen wir dein Abgangszeugnis. Dann bist du endgültig Schülerin oder Schüler am UNESCO-Gymnasium. Hat es mit der Qualifikation nicht geklappt oder hast du dich für eine andere Schule entschieden, melde dich bitte bei uns: andere warten vielleicht auf den Platz.</p>
         </div>
+        <span class="when">Vor den Sommerferien</span>
       </li>
       <li>
         <span class="num">06</span>
         <div class="body">
           <h3>Der erste Schultag</h3>
-          <p>Dein erster Schultag an der UNESCO-Schule, am zweiten Schultag nach den Sommerferien. Der gesamte Vormittag gehört dir: Schule, Mitschüler, Stundenplan, alle Fragen an Klassenlehrer und Stufenleitung.</p>
+          <p>Dein erster Schultag an der UNESCO-Schule ist der zweite Schultag nach den Sommerferien. Der gesamte Vormittag gehört dir: Schule, Mitschülerinnen und Mitschüler, Stundenplan, alle Fragen an Klassenleitung und Stufenleitung.</p>
         </div>
+        <span class="when">Donnerstag, 02.09.2027</span>
       </li>
     </ol>
   </div>
