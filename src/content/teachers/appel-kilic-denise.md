@@ -2,7 +2,7 @@
 salutation: "Frau"
 firstName: "Denise"
 lastName: "Appel-Kilic"
-subjects: ["Französisch", "Deutsch"]
+subjects: ["Französisch", "Spanisch"]
 roles: []
 email: "denise.appel-kilic@164835.nrw.schule"
 ---

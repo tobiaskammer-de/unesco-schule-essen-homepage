@@ -2,7 +2,7 @@
 salutation: "Frau"
 firstName: "Beate"
 lastName: "Höh"
-subjects: ["Biologie"]
+subjects: ["Biologie", "Deutsch"]
 roles: []
 email: "beate.hoeh@164835.nrw.schule"
 ---
