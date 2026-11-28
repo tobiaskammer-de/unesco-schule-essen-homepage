@@ -80,6 +80,7 @@ if (teachers.some((t) => t.data.isTrainee)) roles.push("Referendariat");
     display:grid;grid-template-columns:repeat(4, minmax(0, 1fr));gap:22px;
   }
   .ko-card{
+    min-width:0;
     background:#fff;border:1px solid var(--hairline);
     display:flex;flex-direction:column;
     transition:transform var(--transition), box-shadow var(--transition);
@@ -88,7 +89,7 @@ if (teachers.some((t) => t.data.isTrainee)) roles.push("Referendariat");
   @media (prefers-reduced-motion: reduce){.ko-card:hover{transform:none;}}
   .ko-card.is-hidden{display:none;}
 
-  .ko-card .body{padding:18px 18px 16px;display:flex;flex-direction:column;gap:8px;flex:1;}
+  .ko-card .body{padding:18px 18px 16px;display:flex;flex-direction:column;gap:8px;flex:1;min-width:0;}
   .ko-card .name{
     font-family:var(--serif);font-weight:500;font-size:18px;line-height:1.2;
     color:var(--petrol);letter-spacing:-0.005em;margin:0;
@@ -106,6 +107,9 @@ if (teachers.some((t) => t.data.isTrainee)) roles.push("Referendariat");
     letter-spacing:0.04em;
     padding:3px 8px;background:var(--creme);color:var(--petrol);
     border:1px solid var(--hairline);
+    /* Lange Einzelwörter umbrechen, sonst ragt der Chip am Handy aus der
+       Karte und verbreitert die Seite. */
+    max-width:100%;overflow-wrap:anywhere;hyphens:auto;
   }
 
   .ko-card .contact{
@@ -147,7 +151,9 @@ if (teachers.some((t) => t.data.isTrainee)) roles.push("Referendariat");
     .ko-count{margin-left:0;width:100%;}
   }
   @media (max-width:560px){
-    .ko-toolbar select{flex:1;}
+    /* min-width:0, sonst ist das Feld so breit wie sein längster Eintrag
+       und macht die ganze Seite am Handy breiter als den Bildschirm. */
+    .ko-toolbar select{flex:1;min-width:0;max-width:100%;text-overflow:ellipsis;}
   }
 </style>
 

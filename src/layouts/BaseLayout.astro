@@ -889,20 +889,29 @@ const ogImageURL = new URL(link(ogImage), siteOrigin).href;
   /* ---------- Responsive ---------- */
   @media (max-width:1080px){
     /* Mobile: Logo zentriert, Hamburger oben rechts, Menü als Drawer */
-    .header-inner{padding:14px var(--pad-mob) 12px;gap:0;}
+    /* Seitlich Platz für Lupe (links) und Hamburger (rechts) freihalten:
+       20 px Rand + 44 px Knopf + 8 px Luft. Ohne das schiebt sich das Logo
+       auf schmalen Handys (360 px und weniger) unter die beiden Knöpfe. */
+    .header-inner{padding:14px calc(var(--pad-mob) + 52px) 12px;gap:0;}
+    .logo{max-width:100%;min-width:0;}
+    .logo .logo-stack{max-width:100%;}
     .logo .logo-stack,
     .logo .logo-stack img{height:64px;}
+    .logo .logo-stack img{object-fit:contain;}
     .site-header[data-scrolled="true"] .logo .logo-stack,
     .site-header[data-scrolled="true"] .logo .logo-stack img{height:32px;}
     .nav-row{display:contents;}
     .header-actions{display:none;}
-    .hamburger{display:block;}
+    /* Lupe und Hamburger senkrecht mittig zum Logo (2 px tiefer wegen des
+       4-px-Akzentstreifens), egal wie hoch der Header gerade ist. */
+    .hamburger{display:block;top:calc(50% + 2px);transform:translateY(-50%);}
     /* Mobile: Lupe oben links (spiegelt den Hamburger oben rechts) */
     .search-trigger--mobile{
       display:flex;align-items:center;justify-content:center;
       background:none;border:0;cursor:pointer;padding:10px;
       min-width:44px;min-height:44px;
-      position:absolute;top:12px;left:var(--pad-mob);
+      position:absolute;top:calc(50% + 2px);left:var(--pad-mob);
+      transform:translateY(-50%);
       color:var(--petrol);
     }
 
@@ -912,15 +921,21 @@ const ogImageURL = new URL(link(ogImage), siteOrigin).href;
     .site-header{overflow-x:clip;}
 
     /* Full-Screen Mobile-Drawer von rechts.
-       Höhe per JS-CSS-Variable --header-h gesetzt, weil sich die
-       Header-Höhe je nach Logo-Höhe unterscheidet. */
+       top:100% = direkt unter dem Header (der Header ist wegen
+       backdrop-filter der Bezugsrahmen). Die Höhe setzt das Skript beim
+       Öffnen als --nav-h (Platz zwischen Header-Unterkante und
+       Bildschirmrand), weil der Header je nach Scrollstand verschieden
+       hoch ist und nicht immer ganz oben sitzt.
+       justify-content:flex-start ist Pflicht: Mit dem zentrierten
+       Desktop-Wert rutscht der Anfang der Liste im Querformat (Menü höher
+       als der Bildschirm) nach oben aus dem Bild und ist nicht erreichbar. */
     .main-nav{
-      position:fixed;top:var(--header-h, 92px);right:0;bottom:auto;
+      position:fixed;top:100%;right:0;bottom:auto;
       width:min(360px, 86vw);left:auto;
-      height:calc(100vh - var(--header-h, 92px));
-      height:calc(100dvh - var(--header-h, 92px));
+      height:calc(100vh - 92px);
+      height:var(--nav-h, calc(100dvh - 92px));
       background:var(--offwhite);
-      flex-direction:column;align-items:stretch;
+      flex-direction:column;align-items:stretch;justify-content:flex-start;
       max-height:none;overflow-y:auto;overscroll-behavior:contain;
       transform:translateX(100%);
       transition:transform .3s cubic-bezier(0.2,0.8,0.2,1);
@@ -1056,6 +1071,12 @@ const ogImageURL = new URL(link(ogImage), siteOrigin).href;
   }
   @media (max-width:560px){
     .container{padding:0 var(--pad-mob);}
+    /* Lange Wörter („Persönlichkeitsentwickelnde“, „Übermittagsbetreuung“)
+       dürfen umbrechen. Sonst drücken sie Karten und Raster über den
+       Bildschirmrand, und die ganze Seite wird am Handy breiter als das
+       Display (Menü und Header sitzen dann nicht mehr sauber). */
+    main :is(h1,h2,h3,h4,p,li,dt,dd,a,span,strong,em,figcaption,blockquote){overflow-wrap:anywhere;}
+    main :is(h1,h2,h3,h4){hyphens:auto;}
     h2{font-size:26px;}
     .pillars-head h2,.path-head h2{font-size:28px;}
     .pillars-quote{font-size:21px;}
@@ -1304,7 +1325,17 @@ const ogImageURL = new URL(link(ogImage), siteOrigin).href;
   const backdrop  = document.getElementById('navBackdrop');
   const body      = document.body;
 
+  // Höhe des Mobile-Menüs: Platz von der Header-Unterkante bis zum unteren
+  // Bildschirmrand. Wird beim Öffnen und beim Drehen des Handys neu gemessen.
+  function sizeMenu(){
+    const header = document.getElementById('siteHeader');
+    if(!header) return;
+    const free = Math.max(120, window.innerHeight - header.getBoundingClientRect().bottom);
+    mainNav.style.setProperty('--nav-h', free + 'px');
+  }
   function openMenu(){
+    sizeMenu();
+    mainNav.scrollTop = 0;
     hamburger.classList.add('active');
     mainNav.classList.add('open');
     backdrop.classList.add('is-visible');
@@ -1362,7 +1393,8 @@ const ogImageURL = new URL(link(ogImage), siteOrigin).href;
 
   // Wenn Fenster auf Desktop-Größe resized wird: Mobile-Menü sauber zurücksetzen
   window.addEventListener('resize', ()=>{
-    if(window.innerWidth > 1080 && mainNav.classList.contains('open')) closeMenu();
+    if(!mainNav.classList.contains('open')) return;
+    if(window.innerWidth > 1080) closeMenu(); else sizeMenu();
   });
 
   // Scroll-Shrink: Logo schrumpft auf 50 %, sobald gescrollt wird
