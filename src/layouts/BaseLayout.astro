@@ -332,9 +332,6 @@ const ogImageURL = new URL(link(ogImage), siteOrigin).href;
   /* ---------- Header ---------- */
   .site-header{
     position:sticky;top:0;z-index:1000;
-    background:rgba(245,239,231,0.96);
-    backdrop-filter:saturate(140%) blur(8px);
-    -webkit-backdrop-filter:saturate(140%) blur(8px);
     border-bottom:1px solid var(--hairline);
     box-shadow:0 1px 0 rgba(14,77,79,0) inset;
     transition:box-shadow .3s ease, border-color .3s ease;
@@ -343,6 +340,18 @@ const ogImageURL = new URL(link(ogImage), siteOrigin).href;
   .site-header::before{
     content:"";display:block;height:4px;width:100%;
     background:linear-gradient(90deg, var(--petrol) 0%, var(--petrol) 65%, var(--bordeaux) 100%);
+  }
+  /* Hintergrund und Weichzeichner liegen auf einer eigenen Ebene hinter dem
+     Header-Inhalt, NICHT auf .site-header selbst. Grund: backdrop-filter
+     macht ein Element zum Bezugsrahmen für position:fixed-Kinder. Das
+     Mobile-Menü steckt im Header; Safari am iPhone schnitt es deshalb nach
+     der Einblend-Animation auf die Header-Fläche zu (Menü blitzt auf und
+     verschwindet, nur der gedimmte Hintergrund bleibt). */
+  .site-header::after{
+    content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+    background:rgba(245,239,231,0.96);
+    backdrop-filter:saturate(140%) blur(8px);
+    -webkit-backdrop-filter:saturate(140%) blur(8px);
   }
   /* Sanfter Schatten beim Scrollen statt harter Hairline */
   .site-header[data-scrolled="true"]{
@@ -915,36 +924,34 @@ const ogImageURL = new URL(link(ogImage), siteOrigin).href;
       color:var(--petrol);
     }
 
-    /* Der geschlossene Drawer liegt rechts neben dem Bildschirm. Ohne Clip
-       verbreitert er auf dem Handy die ganze Seite (Layout-Viewport doppelt
-       so breit, Popups und Dialoge rutschen aus dem Bild). */
-    .site-header{overflow-x:clip;}
-
-    /* Full-Screen Mobile-Drawer von rechts.
-       top:100% = direkt unter dem Header (der Header ist wegen
-       backdrop-filter der Bezugsrahmen). Die Höhe setzt das Skript beim
-       Öffnen als --nav-h (Platz zwischen Header-Unterkante und
-       Bildschirmrand), weil der Header je nach Scrollstand verschieden
-       hoch ist und nicht immer ganz oben sitzt.
+    /* Mobile-Drawer von rechts, fest am Bildschirm (nicht am Header).
+       Das Skript misst beim Öffnen, wo der Header endet, und setzt
+       --nav-top (Oberkante) und --nav-h (Höhe bis zum Bildschirmrand), weil
+       der Header je nach Scrollstand verschieden hoch ist und nicht immer
+       ganz oben sitzt. Geschlossen ist das Menü zusätzlich unsichtbar.
        justify-content:flex-start ist Pflicht: Mit dem zentrierten
        Desktop-Wert rutscht der Anfang der Liste im Querformat (Menü höher
        als der Bildschirm) nach oben aus dem Bild und ist nicht erreichbar. */
     .main-nav{
-      position:fixed;top:100%;right:0;bottom:auto;
+      position:fixed;top:var(--nav-top, 92px);right:0;bottom:auto;
       width:min(360px, 86vw);left:auto;
       height:calc(100vh - 92px);
       height:var(--nav-h, calc(100dvh - 92px));
       background:var(--offwhite);
       flex-direction:column;align-items:stretch;justify-content:flex-start;
       max-height:none;overflow-y:auto;overscroll-behavior:contain;
-      transform:translateX(100%);
-      transition:transform .3s cubic-bezier(0.2,0.8,0.2,1);
+      -webkit-overflow-scrolling:touch;
+      transform:translateX(100%);visibility:hidden;
+      transition:transform .3s cubic-bezier(0.2,0.8,0.2,1), visibility 0s linear .3s;
       border-top:1px solid var(--hairline);
       border-left:1px solid var(--hairline);
       box-shadow:-12px 0 32px -16px rgba(10,54,56,0.22);
       z-index:950;
     }
-    .main-nav.open{transform:translateX(0);}
+    .main-nav.open{
+      transform:translateX(0);visibility:visible;
+      transition:transform .3s cubic-bezier(0.2,0.8,0.2,1), visibility 0s;
+    }
 
     .nav-list{flex-direction:column;height:auto;gap:0;padding:8px 0 24px;}
     .nav-item{display:block;border-bottom:1px solid var(--hairline);}
@@ -1325,12 +1332,14 @@ const ogImageURL = new URL(link(ogImage), siteOrigin).href;
   const backdrop  = document.getElementById('navBackdrop');
   const body      = document.body;
 
-  // Höhe des Mobile-Menüs: Platz von der Header-Unterkante bis zum unteren
+  // Lage des Mobile-Menüs: von der Header-Unterkante bis zum unteren
   // Bildschirmrand. Wird beim Öffnen und beim Drehen des Handys neu gemessen.
   function sizeMenu(){
     const header = document.getElementById('siteHeader');
     if(!header) return;
-    const free = Math.max(120, window.innerHeight - header.getBoundingClientRect().bottom);
+    const top = Math.max(0, Math.round(header.getBoundingClientRect().bottom));
+    const free = Math.max(120, window.innerHeight - top);
+    mainNav.style.setProperty('--nav-top', top + 'px');
     mainNav.style.setProperty('--nav-h', free + 'px');
   }
   function openMenu(){
